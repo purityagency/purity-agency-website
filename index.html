@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purity Agency — Sites, automatisation & IA pour indépendants et PME</title>
+<meta name="description" content="Une présence en ligne qui travaille pour vous, même la nuit. Sites premium, automatisation et IA accessibles aux artisans, TPE et PME. Qualité agence, prix freelance. Charleroi, Wallonie.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="hero-bg.png" as="image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader" class="loader">
+  <span class="loader__logo">Purity<span>®</span></span>
+  <div class="loader__bar"><div class="loader__fill"></div></div>
+</div>
+
+<!-- Custom Cursor -->
+<div id="cursor" class="cursor"></div>
+<div id="cursor-dot" class="cursor-dot"></div>
+
+<!-- ═══ NAV ═══ -->
+<header id="nav">
+  <a class="nav__logo" href="#hero" aria-label="Purity Agency — accueil"><img src="logo.png" alt="Purity Agency"></a>
+  <nav class="nav__links">
+    <a href="#services">Services</a>
+    <a href="#methode">Méthode</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="nav__cta lg" href="#contact">Parlons de votre projet</a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<!-- Mobile -->
+<div id="mobile-menu" class="mob" hidden>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#methode">Méthode</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="btn btn--white">Parlons de votre projet</a>
+  </nav>
+</div>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="hero">
+  <div class="hero__media">
+    <img src="hero-bg.png" alt="" class="hero__img">
+  </div>
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <div class="hero__text-col">
+      <h1 class="hero__title" data-reveal style="--d:.1s">
+        Vous partez en vacances.<br>Votre entreprise <em>non.</em>
+      </h1>
+      <p class="hero__sub" data-reveal style="--d:.2s">
+        On construit votre présence en ligne, et on la fait travailler à votre place : elle vous trouve des clients, répond, prend les rendez-vous.<br><strong>Vous, vous gardez le métier que vous aimez.</strong>
+      </p>
+      <div class="hero__ctas" data-reveal style="--d:.3s">
+        <a href="#contact" class="btn btn--accent btn--lg">Parlons de votre projet</a>
+        <a href="#services" class="btn btn--glass-strong">Voir ce qu'on fait</a>
+      </div>
+      <ul class="hero__proof" data-reveal style="--d:.4s">
+        <li>Premier échange gratuit</li>
+        <li>Sans engagement</li>
+        <li>Réponse sous 24&nbsp;h</li>
+        <li>Dès 390&nbsp;€</li>
+      </ul>
+    </div>
+  </div>
+  <a href="#probleme" class="hero__scroll" aria-label="Faire défiler" data-reveal style="--d:.5s">
+    <span></span>
+  </a>
+</section>
+
+<!-- ═══ PROBLÈME (Scène 2) ═══ -->
+<section id="probleme" class="sec scene-2">
+  <div class="scene-2__media">
+    <img src="scene2-bg-4k.png" alt="" class="scene-2__img">
+  </div>
+  <div class="wrap">
+    <p class="scene-2__kicker" data-reveal>Le constat</p>
+    <div class="kt" aria-label="Pendant que vous lisez ça, un client cherche votre métier. Il trouve quelqu'un d'autre. Vous êtes excellent. Mais en ligne, on ne vous voit pas.">
+      <span class="kt__line" data-kt>Pendant que vous lisez ça,</span>
+      <span class="kt__line kt__big" data-kt>un client cherche votre métier.</span>
+      <span class="kt__line" data-kt>Il trouve <em>quelqu'un d'autre.</em></span>
+      <span class="kt__line kt__big" data-kt>Vous êtes excellent.</span>
+      <span class="kt__line" data-kt>Mais en ligne, <em>on ne vous voit pas.</em></span>
+    </div>
+    <p class="reveal-sub" data-reveal>Ce n'est pas une question de talent. <strong>C'est une question de présence.</strong></p>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE MÉTIERS ═══ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Restaurants</span><span class="marquee__dot">•</span><span>Artisans</span><span class="marquee__dot">•</span><span>Coiffeurs</span><span class="marquee__dot">•</span><span>Garages</span><span class="marquee__dot">•</span><span>Indépendants</span><span class="marquee__dot">•</span><span>Commerces</span><span class="marquee__dot">•</span><span>Cabinets</span><span class="marquee__dot">•</span><span>PME</span><span class="marquee__dot">•</span>
+    <span>Restaurants</span><span class="marquee__dot">•</span><span>Artisans</span><span class="marquee__dot">•</span><span>Coiffeurs</span><span class="marquee__dot">•</span><span>Garages</span><span class="marquee__dot">•</span><span>Indépendants</span><span class="marquee__dot">•</span><span>Commerces</span><span class="marquee__dot">•</span><span>Cabinets</span><span class="marquee__dot">•</span><span>PME</span><span class="marquee__dot">•</span>
+  </div>
+</div>
+
+<!-- ═══ SERVICES — full-screen snap scenes ═══ -->
+<section id="services" class="svc">
+  <!-- Compteur de progression -->
+  <div class="svc__progress" aria-hidden="true">
+    <span class="svc__index">01</span>
+    <span class="svc__bar"><i></i></span>
+    <span class="svc__total">04</span>
+  </div>
+
+  <div class="svc__stage">
+  <!-- Scène 1 — zone libre : DROITE (mur sombre) -->
+  <article class="svc-scene is-active" data-scene="01" data-pos="right" style="--img:url('service1.png')">
+    <div class="svc-scene__media"></div>
+    <div class="svc-scene__content">
+      <span class="svc-scene__num">01</span>
+      <h2 class="svc-scene__title">On vous rend <em>visible.</em></h2>
+      <p class="svc-scene__lead">Quand un client tape votre métier dans Google, c'est vous qu'il doit trouver — pas le concurrent d'à côté. On construit une présence qui inspire confiance dès la première seconde.</p>
+      <div class="svc-scene__tags"><span>Présence Google</span><span>Landing page</span><span>Site vitrine &amp; complet</span><span>E-commerce</span></div>
+      <a class="svc-scene__more" href="presence.html">Voir en détail<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <!-- Scène 2 — zone libre : BAS-GAUCHE (table sombre) -->
+  <article class="svc-scene" data-scene="02" data-pos="bottom-left" style="--img:url('service2.png')">
+    <div class="svc-scene__media"></div>
+    <div class="svc-scene__content">
+      <span class="svc-scene__num">02</span>
+      <h2 class="svc-scene__title">On vous amène des <em>clients.</em></h2>
+      <p class="svc-scene__lead">Être en ligne ne suffit pas si personne ne vous voit. On va chercher les clients là où ils sont déjà — et on les ramène vers vous, prêts à acheter.</p>
+      <div class="svc-scene__tags"><span>SEO local</span><span>Google &amp; Meta Ads</span><span>E-mail &amp; SMS marketing</span></div>
+      <a class="svc-scene__more" href="acquisition.html">Voir en détail<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <!-- Scène 3 — zone libre : DROITE (ciel/mer clairs ' texte sombre) -->
+  <article class="svc-scene svc-scene--onlight" data-scene="03" data-pos="right" style="--img:url('service3.png')">
+    <div class="svc-scene__media"></div>
+    <div class="svc-scene__content">
+      <span class="svc-scene__num">03</span>
+      <h2 class="svc-scene__title">On vous fait gagner du <em>temps.</em></h2>
+      <p class="svc-scene__lead">Vous ne pouvez pas répondre à un message à 22h, ni en plein chantier. L'IA le fait pour vous : elle répond, prend les RDV, envoie les devis. Vous gardez le contrôle, pas la charge.</p>
+      <div class="svc-scene__tags"><span>WhatsApp &amp; DM automatisés</span><span>Prise de RDV</span><span>Devis &amp; relances</span></div>
+      <a class="svc-scene__more" href="automatisation.html">Voir en détail<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <!-- Scène 4 — zone libre : HAUT-DROITE (ciel clair ' texte sombre) -->
+  <article class="svc-scene svc-scene--onlight" data-scene="04" data-pos="top-right" style="--img:url('service4.png')">
+    <div class="svc-scene__media"></div>
+    <div class="svc-scene__content">
+      <span class="svc-scene__num">04</span>
+      <h2 class="svc-scene__title">On structure votre <em>activité.</em></h2>
+      <p class="svc-scene__lead">Tout est dans votre tête, vos carnets, un Excel qui déborde. On rassemble votre activité dans un seul outil clair, fait pour vous : planning, clients, suivi — tout au même endroit.</p>
+      <div class="svc-scene__tags"><span>Applications métier</span><span>Outils custom</span><span>Intégrations</span></div>
+      <a class="svc-scene__more" href="outils.html">Voir en détail<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+  </div><!-- /.svc__stage -->
+</section>
+
+<hr class="sec-divider" aria-hidden="true">
+
+<!-- ═══ STATS BENTO ═══ -->
+<section class="sec sec--stats">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="bento2">
+
+      <!-- 390 € — grande carte avec jauge -->
+      <article class="b2 b2--price" data-reveal>
+        <span class="b2__top">À partir de</span>
+        <div class="b2__num"><span class="b2__count" data-count="390">0</span><small>€</small></div>
+        <span class="b2__label">Votre première présence en ligne. Sans devis opaque.</span>
+        <div class="b2__gauge"><span class="b2__gauge-fill"></span></div>
+        <div class="b2__gauge-legend"><span>390 €</span><span>3 800 €+</span></div>
+      </article>
+
+      <!-- 24 h — horloge -->
+      <article class="b2 b2--clock" data-reveal style="--d:.08s">
+        <div class="b2__clock" aria-hidden="true">
+          <span class="b2__hand b2__hand--h"></span>
+          <span class="b2__hand b2__hand--m"></span>
+          <span class="b2__dot"></span>
+        </div>
+        <div class="b2__num"><span class="b2__count" data-count="24">0</span><small>h</small></div>
+        <span class="b2__label">Réponse garantie. Toujours.</span>
+      </article>
+
+      <!-- 0 € — gratuit -->
+      <article class="b2 b2--free" data-reveal style="--d:.16s">
+        <span class="b2__badge">Offert</span>
+        <div class="b2__num"><span class="b2__count" data-count="0">0</span><small>€</small></div>
+        <span class="b2__label">Le premier échange. Sans engagement.</span>
+      </article>
+
+      <!-- 4× — segments paiement -->
+      <article class="b2 b2--split" data-reveal style="--d:.24s">
+        <div class="b2__segs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="b2__num"><span class="b2__count" data-count="4">0</span><small>×</small></div>
+        <span class="b2__label">Paiement en plusieurs fois.</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POURQUOI PURITY — sticky split scroll-driven ═══ -->
+<section id="pourquoi" class="why2">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="why2__wrap">
+    <div class="why2__sticky">
+      <span class="tag lg">Pourquoi Purity</span>
+      <h2 class="why2__title">Qualité d'agence.<br>Prix de freelance.<br><em>Obsession : le résultat.</em></h2>
+      <div class="why2__count"><span class="why2__count-now">01</span><span class="why2__count-tot">/03</span></div>
+    </div>
+    <div class="why2__list">
+      <article class="why2__item" data-why="01">
+        <span class="why2__big" aria-hidden="true">01</span>
+        <div class="why2__viz" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="32" r="9"/><path d="M32 14v-6M32 56v-6M14 32h-6M56 32h-6M44.5 19.5l4-4M15.5 48.5l4-4M44.5 44.5l4 4M15.5 15.5l4 4"/>
+          </svg>
+        </div>
+        <div class="why2__body">
+          <h3>L'IA, <em>à votre portée.</em></h3>
+          <p>Vous voyez le résultat, pas la machine.</p>
+        </div>
+      </article>
+      <article class="why2__item" data-why="02">
+        <span class="why2__big" aria-hidden="true">02</span>
+        <div class="why2__viz" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 34l10 10 26-26"/>
+          </svg>
+        </div>
+        <div class="why2__body">
+          <h3>Des résultats, <em>pas du vocabulaire.</em></h3>
+          <p>On nomme le problème, on le règle. Vite.</p>
+        </div>
+      </article>
+      <article class="why2__item" data-why="03">
+        <span class="why2__big" aria-hidden="true">03</span>
+        <div class="why2__viz" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 8l6 14 15 1-11 10 3 15-13-8-13 8 3-15-11-10 15-1z"/>
+          </svg>
+        </div>
+        <div class="why2__body">
+          <h3>Le soin d'un <em>studio premium.</em></h3>
+          <p>Zéro template. Ça doit avoir l'air d'avoir coûté trois fois son prix.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider" aria-hidden="true">
+
+<!-- ═══ MÉTHODE — scrollytelling pictos ═══ -->
+<section id="methode" class="method">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="tag lg">Notre méthode</span>
+      <h2>Simple pour vous.<br><em>Carré chez nous.</em></h2>
+    </div>
+    <div class="mtrack">
+      <div class="mtrack__line" aria-hidden="true"><span class="mtrack__progress"></span></div>
+
+      <article class="mstep" data-step="01">
+        <span class="mstep__n">01</span>
+        <div class="mstep__ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 28a12 12 0 0 1 24 0c0 8-6 10-6 16a6 6 0 0 1-12 0"/><path d="M26 44h12"/>
+          </svg>
+        </div>
+        <h3>On écoute</h3>
+        <p>Votre vrai problème, pas un catalogue.</p>
+      </article>
+
+      <article class="mstep" data-step="02">
+        <span class="mstep__n">02</span>
+        <div class="mstep__ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="14" y="12" width="36" height="40" rx="4"/><path d="M22 24h20M22 32h20M22 40h12"/>
+          </svg>
+        </div>
+        <h3>On propose</h3>
+        <p>Un plan clair, un prix clair.</p>
+      </article>
+
+      <article class="mstep" data-step="03">
+        <span class="mstep__n">03</span>
+        <div class="mstep__ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 10l18 10v24L32 54 14 44V20z"/><path d="M14 20l18 10 18-10M32 30v24"/>
+          </svg>
+        </div>
+        <h3>On construit</h3>
+        <p>Vite, bien. Vous suivez sans gérer.</p>
+      </article>
+
+      <article class="mstep" data-step="04">
+        <span class="mstep__n">04</span>
+        <div class="mstep__ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 50s-16-9-16-22a9 9 0 0 1 16-5 9 9 0 0 1 16 5c0 13-16 22-16 22z"/>
+          </svg>
+        </div>
+        <h3>On accompagne</h3>
+        <p>On reste là. Ça continue de tourner.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider" aria-hidden="true">
+
+<!-- ═══ PREUVE / ENGAGEMENTS ═══ -->
+<section id="preuve" class="sec">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="tag lg">Nos engagements</span>
+      <h2>Ce sur quoi vous pouvez <em>compter.</em></h2>
+      <p class="sec-head__lead">Pas de promesses en l'air. Des engagements simples, qu'on tient sur chaque projet.</p>
+    </div>
+    <div class="promises" data-reveal>
+      <div class="promise lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Premier échange gratuit et sans engagement.</span></div>
+      <div class="promise lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Prix annoncé d'avance, jamais de surprise.</span></div>
+      <div class="promise lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Travail premium ou on recommence.</span></div>
+      <div class="promise lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Un interlocuteur unique, joignable.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TARIFS ═══ -->
+<section id="tarifs" class="sec">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="tag lg">Tarifs</span>
+      <h2>Des prix clairs. Affichés.<br><em>Sans surprise.</em></h2>
+      <p class="sec-head__lead">On commence là où vous en avez besoin. Vous montez quand vous voulez.</p>
+    </div>
+    <!-- Sélecteur d'onglets interactif -->
+    <div class="tarifs-tabs-container" data-reveal style="--d:.1s">
+      <div class="tarifs-tabs lg">
+        <button class="tarifs-tab is-active" data-target="briques">🧱 Les Briques</button>
+        <button class="tarifs-tab" data-target="packs">💼 Packs Métier</button>
+      </div>
+    </div>
+
+    <!-- Conteneur des volets d'onglets -->
+    <div class="tarifs-panes">
+      
+      <!-- ONGLET 1 : LES BRIQUES (Catalogue horizontal) -->
+      <div class="tarifs-pane is-active" id="pane-briques">
+        <div class="briques-grid">
+          
+          <!-- Présence -->
+          <article class="brique-card lg" data-reveal>
+            <div class="brique-card__header">
+              <span class="brique-card__category">A. Présence</span>
+              <h3>Être trouvé & crédible</h3>
+              <p>Installer des fondations solides pour votre visibilité en ligne.</p>
+            </div>
+            <ul class="brique-list">
+              <li>
+                <span class="brique-name">Landing Page</span>
+                <span class="brique-price">390 €</span>
+              </li>
+              <li>
+                <span class="brique-name">Site Vitrine</span>
+                <span class="brique-price">1 490 €</span>
+              </li>
+              <li>
+                <span class="brique-name">Site Complet</span>
+                <span class="brique-price">2 490 €</span>
+              </li>
+              <li>
+                <span class="brique-name">E-commerce</span>
+                <span class="brique-price">3 800 – 4 800 €</span>
+              </li>
+              <li>
+                <span class="brique-name">Fiche Google Business <small>(Setup)</small></span>
+                <span class="brique-price">290 €</span>
+                <span class="brique-note">Suivi : 39–89 €/mois</span>
+              </li>
+              <li>
+                <span class="brique-name">Pack E-mail Pro + Domaine</span>
+                <span class="brique-price">dès 90 €</span>
+              </li>
+              <li>
+                <span class="brique-name">Refonte de site existant</span>
+                <span class="brique-price">sur devis</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Acquisition -->
+          <article class="brique-card lg" data-reveal style="--d:.08s">
+            <div class="brique-card__header">
+              <span class="brique-card__category">B. Acquisition</span>
+              <h3>Générer des clients</h3>
+              <p>Capter l'attention et attirer vos prospects idéaux en Wallonie.</p>
+            </div>
+            <ul class="brique-list">
+              <li>
+                <span class="brique-name">SEO / Référencement local</span>
+                <span class="brique-price">dès 390 €</span>
+                <span class="brique-note">Suivi : 149–290 €/mois</span>
+              </li>
+              <li>
+                <span class="brique-name">Publicité Google & Meta</span>
+                <span class="brique-price">dès 290 €</span>
+                <span class="brique-note">Gestion : dès 150 €/mois</span>
+              </li>
+              <li>
+                <span class="brique-name">E-mail & SMS Marketing</span>
+                <span class="brique-price">dès 290 €</span>
+                <span class="brique-note">Suivi : dès 79 €/mois</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Automatisation & IA -->
+          <article class="brique-card lg" data-reveal style="--d:.16s">
+            <div class="brique-card__header">
+              <span class="brique-card__category">C. Automatisation & IA</span>
+              <h3>Gagner du temps</h3>
+              <p>Mettre la technologie au service de vos opérations quotidiennes.</p>
+            </div>
+            <ul class="brique-list">
+              <li>
+                <div class="brique-item-row">
+                  <span class="brique-name">Niveau 1 — Essentiel</span>
+                  <span class="brique-price">dès 390 €</span>
+                </div>
+                <span class="brique-note">Mensuel optionnel : 29 €/mois</span>
+                <p class="brique-desc">Un canal : capteur d'appels, agent WhatsApp, chat site, rappels RDV, avis Google.</p>
+              </li>
+              <li>
+                <div class="brique-item-row">
+                  <span class="brique-name">Niveau 2 — Intermédiaire</span>
+                  <span class="brique-price">dès 790 €</span>
+                </div>
+                <span class="brique-note">Mensuel optionnel : 49 €/mois</span>
+                <p class="brique-desc">Intégrations vente : réservation + agenda connecté, devis automatiques, relances factures.</p>
+              </li>
+              <li>
+                <div class="brique-item-row">
+                  <span class="brique-name">Niveau 3 — Système</span>
+                  <span class="brique-price">dès 1 900 €</span>
+                </div>
+                <span class="brique-note">Mensuel optionnel : 89 €/mois</span>
+                <p class="brique-desc">Plusieurs automatisations connectées (boîte omnicanale, lecture de documents ➔ CRM/compta).</p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Sur-mesure & Récurrent -->
+          <div class="briques-subgrid">
+            <article class="brique-card lg" data-reveal style="--d:.24s">
+              <div class="brique-card__header">
+                <span class="brique-card__category">D. Sur-mesure</span>
+                <h3>Outils Métier</h3>
+                <p>Applications sur mesure adaptées à votre fonctionnement.</p>
+              </div>
+              <ul class="brique-list">
+                <li>
+                  <span class="brique-name">Application Métier</span>
+                  <span class="brique-price">dès 2 900 €</span>
+                  <p class="brique-desc">Suivi client, planning interne, portail client sur devis.</p>
+                </li>
+              </ul>
+            </article>
+
+            <article class="brique-card lg" data-reveal style="--d:.32s">
+              <div class="brique-card__header">
+                <span class="brique-card__category">E. Accompagnement</span>
+                <h3>Maintenance & Évolutions</h3>
+                <p>La sécurité et l'optimisation continue de vos outils digitaux.</p>
+              </div>
+              <ul class="brique-list">
+                <li>
+                  <span class="brique-name">Support & Maintenance</span>
+                  <span class="brique-price">89 – 390 €/mo</span>
+                  <p class="brique-desc">Mises à jour, sécurité, sauvegardes, et assistance prioritaire.</p>
+                </li>
+              </ul>
+            </article>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ONGLET 2 : PACKS MÉTIER (Offre phare verticalisée) -->
+      <div class="tarifs-pane" id="pane-packs">
+        <div class="packs-grid">
+          
+          <!-- Pack Coiffure -->
+          <article class="pack-card lg" data-reveal>
+            <div class="pack-card__header">
+              <span class="pack-tag">Agenda Plein</span>
+              <h3>Coiffure & Beauté</h3>
+              <div class="pack-price">~1 290 € <span class="pack-recurring">+ 69 €/mois</span></div>
+            </div>
+            <div class="pack-body">
+              <p class="pack-pitch">Réservation en ligne 24/7 + rappels automatiques anti no-show + récolte d'avis Google automatisée.</p>
+              <div class="pack-roi">
+                <strong>Justification ROI :</strong> Un salon perd en moyenne 2 500 € à 5 000 €/mois en rendez-vous manqués. Ce pack résout la douleur dès le premier mois.
+              </div>
+              <p class="pack-target"><strong>Cible :</strong> Coiffeurs, barbiers, instituts de beauté, ongleries, esthétique.</p>
+            </div>
+            <div class="pack-footer">
+              <a href="#contact" class="btn btn--glass-strong btn--full">Activer ce pack</a>
+            </div>
+          </article>
+
+          <!-- Pack Artisan -->
+          <article class="pack-card lg" data-reveal style="--d:.08s">
+            <div class="pack-card__header">
+              <span class="pack-tag">Zéro Appel Perdu</span>
+              <h3>Artisan & Bâtiment</h3>
+              <div class="pack-price">~1 490 € <span class="pack-recurring">+ 79 €/mois</span></div>
+            </div>
+            <div class="pack-body">
+              <p class="pack-pitch">Présence Google locale + capteur d'appels manqués intelligent + agent WhatsApp automatisé + devis rapides.</p>
+              <div class="pack-roi">
+                <strong>Justification ROI :</strong> 62 % des appels aux artisans ne sont pas décrochés. Ce pack capte instantanément les clients au lieu de les laisser partir chez un concurrent.
+              </div>
+              <p class="pack-target"><strong>Cible :</strong> Plombiers, électriciens, chauffagistes, menuisiers, rénovation.</p>
+            </div>
+            <div class="pack-footer">
+              <a href="#contact" class="btn btn--glass-strong btn--full">Activer ce pack</a>
+            </div>
+          </article>
+
+          <!-- Pack HoReCa -->
+          <article class="pack-card lg" data-reveal style="--d:.16s">
+            <div class="pack-card__header">
+              <span class="pack-tag">Toujours Ouvert</span>
+              <h3>HoReCa & Restauration</h3>
+              <div class="pack-price">~1 490 € <span class="pack-recurring">+ 79 €/mois</span></div>
+            </div>
+            <div class="pack-body">
+              <p class="pack-pitch">Présence Google + module de réservation ou commande en ligne + récolte automatique d'avis + synchronisation réseaux.</p>
+              <div class="pack-roi">
+                <strong>Justification ROI :</strong> 30 % à 50 % des réservations se font en dehors des heures d'ouverture. Sans système, ces clients sont perdus.
+              </div>
+              <p class="pack-target"><strong>Cible :</strong> Restaurants, traiteurs, bars, food trucks.</p>
+            </div>
+            <div class="pack-footer">
+              <a href="#contact" class="btn btn--glass-strong btn--full">Activer ce pack</a>
+            </div>
+          </article>
+
+          <!-- Pack Praticien -->
+          <article class="pack-card lg" data-reveal style="--d:.24s">
+            <div class="pack-card__header">
+              <span class="pack-tag">Cabinet Serein</span>
+              <h3>Praticien & Bien-être</h3>
+              <div class="pack-price">~1 290 € <span class="pack-recurring">+ 69 €/mois</span></div>
+            </div>
+            <div class="pack-body">
+              <p class="pack-pitch">Réservation en ligne + rappels SMS + acompte sécurisé anti-désistement + portail patient ultra-simple.</p>
+              <div class="pack-roi">
+                <strong>Justification ROI :</strong> Le no-show est la bête noire des praticiens. Les rappels SMS diminuent les oublis de 40 %, et l'acompte réduit le no-show de 65 %.
+              </div>
+              <p class="pack-target"><strong>Cible :</strong> Kinés, ostéopathes, coachs, thérapeutes, esthétique médicale.</p>
+            </div>
+            <div class="pack-footer">
+              <a href="#contact" class="btn btn--glass-strong btn--full">Activer ce pack</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    <!-- Mentions de bas de page & CTA global -->
+    <div class="sec-cta" data-reveal style="--d:.1s">
+      <p class="tva-mention">Petite entreprise soumise au régime de la franchise — TVA non applicable, art. 56bis CTVA. Paiement en 4× disponible via Stripe/Klarna.</p>
+      <a href="#contact" class="btn btn--white btn--lg">Démarrer votre projet</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq" class="sec">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div class="wrap wrap--sm">
+    <div class="sec-head" data-reveal>
+      <span class="tag lg">FAQ</span>
+      <h2>Questions <em>fréquentes</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq" data-reveal><button class="faq__q" aria-expanded="false"><span>C'est pas trop cher pour moi ?</span><i></i></button><div class="faq__a"><div><p>On commence là où ça compte, à partir de 390 €, et le paiement peut se faire en 4 fois. Vous investissez davantage seulement quand ça vous rapporte déjà. L'idée n'est pas de dépenser, c'est de récupérer des clients.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.05s"><button class="faq__q" aria-expanded="false"><span>L'IA, c'est compliqué non ?</span><i></i></button><div class="faq__a"><div><p>Pour vous, non — c'est tout l'intérêt. On installe, on règle, ça tourne. Vous ne voyez que les résultats : plus de réponses, plus de RDV, moins d'heures perdues. Jamais la technique.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.1s"><button class="faq__q" aria-expanded="false"><span>Je suis trop petit pour ça ?</span><i></i></button><div class="faq__a"><div><p>C'est l'inverse. Plus vous êtes petit, plus chaque client compte, et plus le temps gagné change concrètement votre quotidien. Nos offres sont justement pensées pour les indépendants et petites structures.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.15s"><button class="faq__q" aria-expanded="false"><span>Et si j'ai déjà un site ?</span><i></i></button><div class="faq__a"><div><p>On regarde s'il vous sert vraiment, ou s'il vous dessert. Souvent une refonte ciblée — vitesse, mobile, conversion — suffit à tout changer, sans repartir de zéro.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.2s"><button class="faq__q" aria-expanded="false"><span>Combien de temps ça prend ?</span><i></i></button><div class="faq__a"><div><p>Une présence simple part en quelques jours. Pour un projet plus large, on vous donne un délai précis dès le départ — et on s'y tient. Vous suivez l'avancée sans rien avoir à gérer.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.25s"><button class="faq__q" aria-expanded="false"><span>Je reste propriétaire de tout ?</span><i></i></button><div class="faq__a"><div><p>Oui, entièrement : le code, le domaine, vos comptes. Aucun engagement de durée, aucune dépendance. Vous pouvez partir quand vous voulez — c'est rare, et c'est voulu.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.3s"><button class="faq__q" aria-expanded="false"><span>Et si je veux juste un truc précis ?</span><i></i></button><div class="faq__a"><div><p>Parfait. On fait à la carte. Besoin juste d'un site, ou juste d'automatiser votre WhatsApp ? On règle ce besoin-là, sans vous vendre le reste.</p></div></div></div>
+      <div class="faq" data-reveal style="--d:.35s"><button class="faq__q" aria-expanded="false"><span>Vous êtes où ?</span><i></i></button><div class="faq__a"><div><p>À Charleroi. On travaille avec toute la Wallonie et la Belgique — à distance comme sur place, selon ce qui vous arrange.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="sec">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info" data-reveal>
+        <span class="tag lg">Contact</span>
+        <h2>Votre présence peut commencer à travailler <em>dès cette semaine.</em></h2>
+        <p>Un échange, gratuit, sans engagement. On regarde ensemble ce qui vous fait perdre des clients — et comment y mettre fin.</p>
+        <div class="contact-links">
+          <a href="mailto:contact@purity-agency.be"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>contact@purity-agency.be</a>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Charleroi & toute la Wallonie</div>
+        </div>
+      </div>
+      <form id="contact-form" class="form lg" data-reveal style="--d:.1s">
+        <div class="field"><input type="text" id="f-name" name="name" placeholder=" " required autocomplete="name"><label for="f-name">Nom</label></div>
+        <div class="field"><input type="email" id="f-email" name="email" placeholder=" " required autocomplete="email"><label for="f-email">E-mail</label></div>
+        <div class="field"><input type="tel" id="f-phone" name="phone" placeholder=" " autocomplete="tel"><label for="f-phone">Téléphone <small>(facultatif)</small></label></div>
+        <div class="field"><input type="text" id="f-activity" name="activity" placeholder=" "><label for="f-activity">Votre métier / activité</label></div>
+        <div class="field"><textarea id="f-need" name="need" rows="4" placeholder=" " required></textarea><label for="f-need">Votre besoin en quelques mots</label></div>
+        <button type="submit" class="btn btn--white">Envoyer</button>
+        <span class="form__note">Réponse garantie sous 24 h ouvrées.</span>
+        <div class="form__sent"><strong>Message envoyé !</strong><span>On revient vers vous très vite.</span></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__top">
+      <p class="footer__tagline">On crée votre présence.<br><em>Elle travaille pour vous.</em></p>
+      <nav class="footer__nav"><a href="#services">Services</a><a href="#methode">Méthode</a><a href="#tarifs">Tarifs</a><a href="#contact">Contact</a></nav>
+    </div>
+    <div class="footer__legal">
+      <p><strong>Purity Agency</strong><br>BCE : 1036.775.590<br>Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA.<br><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></p>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__links"><a href="legal.html#mentions">Mentions légales</a><a href="legal.html#confidentialite">Confidentialité</a><a href="legal.html#cookies">Cookies</a></div>
+      <p>© 2026 Purity Agency. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Chatbot OctoMask -->
+<div id="chat" class="chat">
+  <button id="chat-toggle" class="chat__toggle" aria-label="Ouvrir le chat">
+    <video class="chat__avatar" src="octomask%20floating.mp4" muted loop autoplay playsinline disablepictureinpicture></video>
+    <span class="chat-close">✕.</span>
+  </button>
+  <div id="chat-panel" class="chat__panel" role="dialog" aria-label="Assistant Purity" hidden>
+    <div class="chat__header">
+      <div class="chat__title">OctoMask IA</div>
+      <div class="chat__status">En ligne</div>
+    </div>
+    <div id="chat-log" class="chat__log"></div>
+    <form id="chat-form" class="chat__form">
+      <input type="text" id="chat-input" class="chat__input" placeholder="Posez votre question..." autocomplete="off">
+      <button type="submit" id="chat-submit" class="chat__submit" aria-label="Envoyer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="site.js" defer></script>
+</body>
+</html>

@@ -7,7 +7,8 @@
 <meta name="description" content="Une présence en ligne qui travaille pour vous, même la nuit. Sites premium, automatisation et IA accessibles aux artisans, TPE et PME. Qualité agence, prix freelance. Charleroi, Wallonie.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="hero-bg.png" as="image">
+<link rel="preload" href="hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
+<link rel="preload" href="hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -54,7 +55,11 @@
 <!-- ═══ HERO ═══ -->
 <section id="hero" class="hero">
   <div class="hero__media">
-    <img src="hero-bg.png" alt="" class="hero__img">
+    <picture>
+      <source media="(max-width: 768px)" srcset="hero-bg-mobile.webp" type="image/webp">
+      <source srcset="hero-bg.webp" type="image/webp">
+      <img src="hero-bg.png" alt="" class="hero__img" fetchpriority="high" width="1672" height="941">
+    </picture>
   </div>
   <div class="hero__scrim"></div>
   <div class="hero__content">

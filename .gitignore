@@ -1,3 +1,4 @@
 .gemini-key
 node_modules
 *.log
+superpowers/

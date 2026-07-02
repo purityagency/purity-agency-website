@@ -593,6 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let chatOpen = false;
   let chatInited = false;
   let chatMemory = []; // Stocke l'historique pour l'IA
+  let chatLeadSent = false; // un seul lead capturé par conversation
 
   const addMsg = (text, type = 'sys') => {
     const d = document.createElement('div');
@@ -643,7 +644,27 @@ document.addEventListener('DOMContentLoaded', () => {
       removeTypingIndicator();
 
       if (data.reply) {
-        addMsg(data.reply, 'sys');
+        // Interception du lead : la balise [LEAD]{...}[/LEAD] ne s'affiche jamais
+        let display = data.reply;
+        const leadMatch = data.reply.match(/\[LEAD\]\s*(\{[\s\S]*?\})\s*\[\/LEAD\]/i);
+        if (leadMatch) {
+          display = data.reply.replace(/\[LEAD\][\s\S]*?\[\/LEAD\]/i, '').trim();
+          try {
+            const lead = JSON.parse(leadMatch[1]);
+            if (!chatLeadSent && lead && (lead.email || lead.phone) && lead.name) {
+              chatLeadSent = true;
+              fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name: lead.name || '', email: lead.email || '', phone: lead.phone || '',
+                  activity: lead.activity || '', need: (lead.need || '') + ' [via chatbot OctoMask]',
+                }),
+              }).catch(() => {});
+            }
+          } catch { /* balise malformée : on ignore, le texte reste propre */ }
+        }
+        if (display) addMsg(display, 'sys');
         chatMemory.push({ role: 'model', text: data.reply });
       } else {
         addMsg("Désolé, je rencontre un problème de connexion.", 'sys');
@@ -678,15 +699,16 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInited = true;
         // Message d'accueil (n'est pas envoyé à l'API, sert juste d'intro)
         setTimeout(() => {
-          const intro = "Bonjour ! Je suis OctoMask, l'IA de Purity Agency. Comment puis-je vous aider aujourd'hui ?";
+          const intro = "Bonjour 👋 Je suis OctoMask, l'assistant de Purity Agency. Dites-moi votre métier et ce que vous aimeriez améliorer — je vous oriente en 30 secondes.";
           addMsg(intro, 'sys');
           chatMemory.push({ role: 'model', text: intro });
 
-          // Suggestions de base
+          // Suggestions orientées conversion
           const suggestions = [
-            "Quels sont vos tarifs pour un site ?",
-            "Que peut faire l'IA pour mon entreprise ?",
-            "Comment se passe un projet chez vous ?"
+            "Je veux un site pour mon activité",
+            "Combien coûte un site ?",
+            "Automatiser mon WhatsApp / mes RDV",
+            "Être trouvé sur Google"
           ];
           
           const sugContainer = document.createElement('div');
@@ -721,7 +743,101 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  if (chatToggle) {
-    chatToggle.addEventListener('click', toggleChat);
+  // --- Chatbot déplaçable (drag) : distingue clic (ouvre) vs glissé (déplace) ---
+  const chatEl = document.getElementById('chat');
+  if (chatToggle && chatEl) {
+    let dragging = false, moved = false, startX = 0, startY = 0, originX = 0, originY = 0;
+
+    const onDown = (e) => {
+      const pt = e.touches ? e.touches[0] : e;
+      dragging = true; moved = false;
+      startX = pt.clientX; startY = pt.clientY;
+      const rect = chatEl.getBoundingClientRect();
+      originX = rect.left; originY = rect.top;
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('touchend', onUp);
+    };
+    const onMove = (e) => {
+      if (!dragging) return;
+      const pt = e.touches ? e.touches[0] : e;
+      const dx = pt.clientX - startX, dy = pt.clientY - startY;
+      if (Math.abs(dx) > 5 || Math.abs(dy) > 5) { moved = true; chatEl.classList.add('is-dragging'); }
+      if (moved) {
+        if (e.cancelable) e.preventDefault();
+        const w = chatEl.offsetWidth, h = chatEl.offsetHeight;
+        let nx = Math.min(Math.max(0, originX + dx), window.innerWidth - w);
+        let ny = Math.min(Math.max(0, originY + dy), window.innerHeight - h);
+        chatEl.style.left = nx + 'px';
+        chatEl.style.top = ny + 'px';
+        chatEl.style.right = 'auto';
+        chatEl.style.bottom = 'auto';
+      }
+    };
+    const onUp = () => {
+      dragging = false;
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      document.removeEventListener('touchmove', onMove);
+      document.removeEventListener('touchend', onUp);
+
+      if (moved) {
+        // Magnétisme aux bords (comme la bulle Messenger) : snap au bord vertical le plus proche
+        const w = chatEl.offsetWidth, h = chatEl.offsetHeight;
+        const rect = chatEl.getBoundingClientRect();
+        const margin = 20;
+        const centerX = rect.left + w / 2;
+        const snapLeft = centerX < window.innerWidth / 2;
+        // clamp vertical dans l'écran
+        let ny = Math.min(Math.max(margin, rect.top), window.innerHeight - h - margin);
+        chatEl.classList.remove('is-dragging'); // réactive la transition pour un snap animé
+        chatEl.style.top = ny + 'px';
+        chatEl.style.bottom = 'auto';
+        chatEl.style.right = 'auto';
+        chatEl.style.left = (snapLeft ? margin : window.innerWidth - w - margin) + 'px';
+        chatEl.dataset.side = snapLeft ? 'left' : 'right';
+      } else {
+        chatEl.classList.remove('is-dragging');
+      }
+    };
+
+    chatToggle.addEventListener('mousedown', onDown);
+    chatToggle.addEventListener('touchstart', onDown, { passive: true });
+    // Clic = ouvre/ferme SEULEMENT si pas de déplacement
+    chatToggle.addEventListener('click', (e) => {
+      if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; return; }
+      toggleChat();
+    });
+  }
+
+  // --- Bulle teaser d'onboarding (12s OU 1er scroll, une seule fois) ---
+  const teaser = document.getElementById('chat-teaser');
+  if (teaser) {
+    let teaserShown = false;
+    const showTeaser = () => {
+      if (teaserShown || chatOpen) return;
+      if (localStorage.getItem('octomask_teaser_seen')) return;
+      teaserShown = true;
+      teaser.removeAttribute('hidden');
+      requestAnimationFrame(() => teaser.classList.add('is-visible'));
+      // auto-masque après 8s si ignorée
+      setTimeout(() => hideTeaser(false), 8000);
+    };
+    const hideTeaser = (permanent) => {
+      teaser.classList.remove('is-visible');
+      setTimeout(() => teaser.setAttribute('hidden', ''), 400);
+      if (permanent) localStorage.setItem('octomask_teaser_seen', '1');
+    };
+    teaser.querySelector('.chat__teaser-close')?.addEventListener('click', (e) => {
+      e.stopPropagation(); hideTeaser(true);
+    });
+    // clic sur la bulle → ouvre le chat
+    teaser.addEventListener('click', () => { hideTeaser(true); if (!chatOpen) toggleChat(); });
+    // déclencheurs
+    setTimeout(showTeaser, 12000);
+    window.addEventListener('scroll', function onFirstScroll() {
+      if (window.scrollY > 400) { showTeaser(); window.removeEventListener('scroll', onFirstScroll); }
+    }, { passive: true });
   }
 });

@@ -85,8 +85,9 @@
       </ul>
     </div>
   </div>
-  <a href="#probleme" class="hero__scroll" aria-label="Faire défiler" data-reveal style="--d:.5s">
-    <span></span>
+  <a href="#probleme" class="hero__scroll" aria-label="Découvrir la suite" data-reveal style="--d:.6s">
+    <span class="hero__scroll-label">Découvrir</span>
+    <span class="hero__scroll-mouse"><span></span></span>
   </a>
 </section>
 
@@ -702,6 +703,11 @@
 
 <!-- Chatbot OctoMask -->
 <div id="chat" class="chat">
+  <div id="chat-teaser" class="chat__teaser" hidden>
+    <button class="chat__teaser-close" aria-label="Fermer">✕</button>
+    <span class="chat__teaser-wave">👋</span>
+    <p>Un projet en tête ?<br><strong>Parlons-en — c'est gratuit.</strong></p>
+  </div>
   <button id="chat-toggle" class="chat__toggle" aria-label="Ouvrir le chat">
     <video class="chat__avatar" src="octomask%20floating.mp4" muted loop autoplay playsinline disablepictureinpicture></video>
     <span class="chat-close">✕.</span>

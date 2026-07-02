@@ -1540,14 +1540,110 @@ header::before {
 .form__note { display: block; margin-top: 1rem; font-size: 0.8rem; color: var(--c-fg-muted); text-align: center; }
 .form__sent { display: none; margin-top: 1rem; text-align: center; color: #10B981; }
 
-/* Footer */
-footer { padding: var(--s-xxl) 0 var(--s-lg); border-top: 1px solid var(--c-border); margin-top: var(--s-xxl); }
-.footer__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s-xl); }
-.footer__tagline { font-family: var(--font-head); font-size: 2.5rem; color: var(--c-fg); line-height: 0.9;}
-.footer__nav { display: flex; gap: 2rem; font-weight: 500; }
-.footer__legal { font-size: 0.85rem; margin-bottom: var(--s-xl); }
-.footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--s-lg); border-top: 1px solid var(--c-border); font-size: 0.8rem; color: var(--c-fg-muted); }
-.footer__links { display: flex; gap: 1.5rem; }
+/* ── Footer premium ── */
+footer {
+  position: relative;
+  padding: clamp(3rem, 6vw, 5rem) 0 var(--s-lg);
+  margin-top: var(--s-xxl);
+  border-top: 1px solid var(--c-border);
+  overflow: hidden;
+  background: linear-gradient(to bottom, transparent, rgba(124,58,237,.04));
+}
+/* halo violet diffus derrière le footer */
+.footer__glow {
+  position: absolute;
+  bottom: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(124,58,237,.16), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.footer__inner { position: relative; z-index: 1; }
+
+/* CTA final */
+.footer__cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--c-border);
+}
+.footer__tagline {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  color: var(--c-fg);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Grille de colonnes */
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.3fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.footer__col-title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 1.2rem;
+}
+.footer__nav { display: flex; flex-direction: column; gap: 0.7rem; font-weight: 400; }
+.footer__nav a { color: var(--c-fg-muted); transition: color var(--t-fast); font-size: 0.92rem; }
+.footer__nav a:hover { color: var(--c-fg); }
+.footer__muted { color: var(--c-fg-muted); font-size: 0.92rem; }
+
+/* Colonne marque */
+.footer__logo { display: inline-flex; flex-direction: column; line-height: 1; gap: 3px; margin-bottom: 1rem; }
+.footer__logo-name { font-family: var(--font-head); font-weight: 700; font-size: 1.6rem; letter-spacing: 0.16em; color: #fff; }
+.footer__logo-sub { font-family: var(--font-head); font-weight: 500; font-size: 0.62rem; letter-spacing: 0.42em; color: var(--c-fg-muted); }
+.footer__pitch { color: var(--c-fg-muted); font-size: 0.92rem; line-height: 1.6; max-width: 34ch; margin-bottom: 1.3rem; }
+.footer__socials { display: flex; gap: 0.8rem; }
+.footer__socials a {
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--c-border); border-radius: 12px;
+  color: var(--c-fg-muted);
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
+}
+.footer__socials a:hover { border-color: var(--c-accent); color: #fff; background: rgba(124,58,237,.12); }
+.footer__socials svg { width: 20px; height: 20px; }
+
+/* Bas de footer */
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: var(--s-lg);
+  border-top: 1px solid var(--c-border);
+  font-size: 0.8rem;
+  color: var(--c-fg-muted);
+}
+.footer__legal-line { max-width: 70ch; }
+.footer__legal-line strong { color: rgba(255,255,255,.8); }
+
+@media (max-width: 860px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__col--brand { grid-column: 1 / -1; }
+  .footer__cta { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 520px) {
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; }
+}
 
 /* ==========================================================================
    LOADER (intro screen)

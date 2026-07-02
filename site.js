@@ -31,9 +31,21 @@ window.addEventListener('load', () => {
   _jumpTop();
   requestAnimationFrame(() => { html.style.scrollBehavior = prev; });
   _dismissLoader();
+  // Vidéo avatar du chat : chargée seulement après le load complet (ne concurrence pas le hero)
+  document.querySelectorAll('video.chat__avatar[data-src]').forEach(v => {
+    v.src = v.dataset.src;
+    v.play().catch(() => {});
+  });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Garde-fou : si GSAP n'est pas chargé sur cette page, on ne plante pas tout le script
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    console.warn('[site.js] GSAP absent — animations désactivées sur cette page.');
+    document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    return;
+  }
 
   // --- GSAP Setup ---
   gsap.registerPlugin(ScrollTrigger);
@@ -55,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Mobile Menu ---
   const burger = document.querySelector('.nav__burger');
   const mobMenu = document.getElementById('mobile-menu');
-  
+
+  if (burger && mobMenu) {
   const toggleMenu = () => {
     const isExpanded = burger.getAttribute('aria-expanded') === 'true';
     burger.setAttribute('aria-expanded', !isExpanded);
@@ -77,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mobMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
     if (burger.getAttribute('aria-expanded') === 'true') toggleMenu();
   }));
+  }
 
   // --- Scroll Reveal Blocks (GSAP) ---
   gsap.utils.toArray('[data-reveal]').forEach(el => {

@@ -69,7 +69,30 @@ Règles de la balise : uniquement quand tu as un nom + (email OU phone) ; champs
 Objectif secondaire si le visiteur refuse de laisser ses coordonnées : l'inviter à écrire à contact.purityagency@gmail.com.
 Règles de vérité : n'invente jamais de témoignages, de chiffres non sourcés ou de nom de fondateur (ne cite jamais Amir, présente l'agence comme un collectif). Reste concis (2 à 4 phrases), chaleureux, vouvoiement systématique, français.`;
 
+/* ── Rate-limit simple par IP (protège le quota Gemini) ── */
+const RATE = { windowMs: 60_000, max: 20 };
+const rateMap = new Map();
+function rateLimited(req) {
+    const ip = req.socket.remoteAddress || '?';
+    const now = Date.now();
+    const entry = rateMap.get(ip);
+    if (!entry || now - entry.start > RATE.windowMs) {
+        rateMap.set(ip, { start: now, count: 1 });
+        return false;
+    }
+    entry.count++;
+    return entry.count > RATE.max;
+}
+setInterval(() => {
+    const now = Date.now();
+    for (const [ip, e] of rateMap) if (now - e.start > RATE.windowMs) rateMap.delete(ip);
+}, 5 * 60_000).unref();
+
 function handleChat(req, res) {
+    if (rateLimited(req)) {
+        res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+        return res.end(JSON.stringify({ error: 'rate_limited' }));
+    }
     const key = geminiKey();
     if (!key) {
         res.writeHead(503, { 'Content-Type': 'application/json' });
@@ -216,6 +239,18 @@ function handleContact(req, res) {
     });
 }
 
+/* Seules ces extensions sont servies. Tout le reste (clés, logs, server.js,
+   dotfiles) répond 404 — indispensable avant mise en ligne. */
+const BLOCKED_FILES = new Set(['server.js']);
+function isServable(filePath) {
+    const base = path.basename(filePath);
+    if (base.startsWith('.') || BLOCKED_FILES.has(base)) return false;
+    // aucun segment du chemin ne doit être un dossier caché
+    const rel = path.relative(ROOT, filePath);
+    if (rel.split(path.sep).some(seg => seg.startsWith('.'))) return false;
+    return Object.prototype.hasOwnProperty.call(MIME, path.extname(filePath).toLowerCase());
+}
+
 const MIME = {
     '.html' : 'text/html; charset=utf-8',
     '.css'  : 'text/css',
@@ -235,27 +270,16 @@ const MIME = {
 const server = http.createServer((req, res) => {
     let urlPath = req.url.split('?')[0];
 
-    // API : assistant IA (proxy Gemini)
+    // API : assistant IA (proxy Gemini) — même origine uniquement (pas de CORS ouvert)
     if (urlPath === '/api/chat') {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-        if (req.method === 'OPTIONS') {
-            res.writeHead(200);
-            return res.end();
-        }
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
         return handleChat(req, res);
     }
 
     // API : contact (leads)
     if (urlPath === '/api/contact') {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-        if (req.method === 'OPTIONS') { res.writeHead(200); return res.end(); }
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
+        if (rateLimited(req)) { res.writeHead(429, { 'Retry-After': '60' }); return res.end(); }
         return handleContact(req, res);
     }
 
@@ -263,43 +287,50 @@ const server = http.createServer((req, res) => {
 
     const filePath = path.normalize(path.join(ROOT, decodeURIComponent(urlPath)));
 
-    if (!filePath.startsWith(ROOT)) {
-        res.writeHead(403);
-        return res.end('Forbidden');
+    if (!filePath.startsWith(ROOT) || !isServable(filePath)) {
+        res.writeHead(404);
+        return res.end('404 Not found');
     }
 
     fs.stat(filePath, (err, stat) => {
-        if (err) {
-            res.writeHead(err.code === 'ENOENT' ? 404 : 500);
-            return res.end(err.code === 'ENOENT' ? '404 Not found' : '500 Error');
+        if (err || !stat.isFile()) {
+            res.writeHead(err && err.code !== 'ENOENT' ? 500 : 404);
+            return res.end(err && err.code !== 'ENOENT' ? '500 Error' : '404 Not found');
         }
 
         const ext         = path.extname(filePath).toLowerCase();
-        const contentType = MIME[ext] || 'application/octet-stream';
+        const contentType = MIME[ext];
         const fileSize    = stat.size;
         const rangeHeader = req.headers['range'];
+        // HTML : toujours revalidé ; assets : cache long (versionner les fichiers si modifiés)
+        const cacheControl = ext === '.html' ? 'no-cache' : 'public, max-age=86400';
 
         if (rangeHeader) {
-            // Parse "bytes=start-end"
-            const [startStr, endStr] = rangeHeader.replace(/bytes=/, '').split('-');
-            const start    = parseInt(startStr, 10);
-            const end      = endStr ? parseInt(endStr, 10) : fileSize - 1;
-            const chunkLen = end - start + 1;
+            // Parse et valide "bytes=start-end"
+            const m = /^bytes=(\d*)-(\d*)$/.exec(rangeHeader);
+            const start = m && m[1] !== '' ? parseInt(m[1], 10) : 0;
+            const end   = m && m[2] !== '' ? parseInt(m[2], 10) : fileSize - 1;
+            if (!m || start > end || start >= fileSize) {
+                res.writeHead(416, { 'Content-Range': `bytes */${fileSize}` });
+                return res.end();
+            }
+            const safeEnd  = Math.min(end, fileSize - 1);
+            const chunkLen = safeEnd - start + 1;
 
             res.writeHead(206, {
-                'Content-Range'  : `bytes ${start}-${end}/${fileSize}`,
+                'Content-Range'  : `bytes ${start}-${safeEnd}/${fileSize}`,
                 'Accept-Ranges'  : 'bytes',
                 'Content-Length' : chunkLen,
                 'Content-Type'   : contentType,
-                'Cache-Control'  : 'no-cache, no-store',
+                'Cache-Control'  : cacheControl,
             });
-            fs.createReadStream(filePath, { start, end }).pipe(res);
+            fs.createReadStream(filePath, { start, end: safeEnd }).pipe(res);
         } else {
             res.writeHead(200, {
                 'Content-Length' : fileSize,
                 'Content-Type'   : contentType,
                 'Accept-Ranges'  : 'bytes',
-                'Cache-Control'  : 'no-cache, no-store',
+                'Cache-Control'  : cacheControl,
             });
             fs.createReadStream(filePath).pipe(res);
         }

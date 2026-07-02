@@ -502,6 +502,11 @@ document.addEventListener('DOMContentLoaded', () => {
               // Display target pane
               targetPane.style.display = 'block';
               targetPane.classList.add('is-active');
+              targetPane.setAttribute('aria-hidden', 'false');
+
+              // Accessibility updates
+              tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+              tab.setAttribute('aria-selected', 'true');
 
               // ScrollTrigger refresh is critical here to recalculate scroll heights
               ScrollTrigger.refresh();
@@ -535,6 +540,25 @@ document.addEventListener('DOMContentLoaded', () => {
               }
             }
           });
+        }
+      });
+    });
+
+    // Handle keyboard navigation for tabs
+    const tabElements = document.querySelectorAll('.tarifs-tab');
+    tabElements.forEach((tab, index) => {
+      tab.addEventListener('keydown', (e) => {
+        let newIndex = index;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          newIndex = (index + 1) % tabElements.length;
+          e.preventDefault();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          newIndex = (index - 1 + tabElements.length) % tabElements.length;
+          e.preventDefault();
+        }
+        if (newIndex !== index) {
+          tabElements[newIndex].focus();
+          tabElements[newIndex].click();
         }
       });
     });
@@ -607,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let chatOpen = false;
   let chatInited = false;
   let chatMemory = []; // Stocke l'historique pour l'IA
-  let chatLeadSent = false; // un seul lead capturé par conversation
+  let chatLeadSent = sessionStorage.getItem('chatLeadSent') === '1'; // un seul lead capturé par session
 
   const addMsg = (text, type = 'sys') => {
     const d = document.createElement('div');
@@ -667,6 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lead = JSON.parse(leadMatch[1]);
             if (!chatLeadSent && lead && (lead.email || lead.phone) && lead.name) {
               chatLeadSent = true;
+              sessionStorage.setItem('chatLeadSent', '1');
               fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -681,11 +706,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (display) addMsg(display, 'sys');
         chatMemory.push({ role: 'model', text: data.reply });
       } else {
-        addMsg("Désolé, je rencontre un problème de connexion.", 'sys');
+        addMsg("Désolé, je rencontre un problème de connexion. Vous pouvez nous écrire à contact@purity-agency.be.", 'sys');
       }
     } catch (err) {
       removeTypingIndicator();
-      addMsg("Désolé, une erreur s'est produite.", 'sys');
+      addMsg("Désolé, une erreur s'est produite. Vous pouvez nous contacter directement à contact@purity-agency.be.", 'sys');
     }
 
     chatInput.disabled = false;

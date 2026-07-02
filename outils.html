@@ -6,12 +6,20 @@
 <title>Outils métier sur-mesure — Purity Agency | Toute votre activité, au même endroit</title>
 <meta name="description" content="Quand tout est éparpillé entre un carnet, un Excel et votre mémoire, vous perdez du temps et des clients. On construit l'outil sur-mesure qui rassemble planning, clients et suivi.">
 <meta name="theme-color" content="#060309">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="service4.png" as="image">
+<link rel="canonical" href="https://purity-agency.be/outils.html">
+<meta property="og:title" content="Outils métier sur-mesure — Purity Agency | Toute votre activité, au même endroit">
+<meta property="og:description" content="Quand tout est éparpillé entre un carnet, un Excel et votre mémoire, vous perdez du temps et des clients. On construit l'outil qui centralise tout.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://purity-agency.be/outils.html">
+<meta property="og:image" content="https://purity-agency.be/logo.png">
+<meta property="og:locale" content="fr_BE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="preload" href="service4.webp" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extra.css">
 </head>
 <body class="detail detail--outils">
 
@@ -19,7 +27,7 @@
 <div id="cursor-dot" class="cursor-dot"></div>
 
 <header id="nav">
-  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.png" alt="Purity Agency"></a>
+  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
   <nav class="nav__links">
     <a href="index.html#services">Services</a>
     <a href="index.html#methode">Méthode</a>
@@ -44,7 +52,7 @@
 
   <section class="dp-hero" id="haut">
     <div class="dp-hero__media">
-      <img src="service4.png" alt="Votre activité rassemblée dans un seul outil clair, pensé pour vous" class="dp-hero__img">
+      <img src="service4.webp" alt="Votre activité rassemblée dans un seul outil clair, pensé pour vous" class="dp-hero__img">
     </div>
     <div class="dp-hero__inner">
       <a href="index.html#services" class="dp-back" data-reveal>← Tout ce qu'on fait</a>
@@ -72,22 +80,66 @@
   </section>
 
   <section class="dp-features" id="ce-quon-construit">
-    <div class="dp-feature" data-reveal>
-      <span class="dp-feature__index">Pensé autour de vous</span>
-      <h2>Une application <span class="grad">métier.</span></h2>
-      <p>Pas un logiciel générique où vous vous tordez pour rentrer dans les cases. Un outil construit autour de votre quotidien réel : vos étapes, vos mots, votre manière de bosser. Vous l'ouvrez et tout est à sa place.</p>
+    <div class="dp-feature dp-feature--viz" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Pensé autour de vous</span>
+        <h2>Une application <span class="grad">métier.</span></h2>
+        <p>Pas un logiciel générique où vous vous tordez pour rentrer dans les cases. Un outil construit autour de votre quotidien réel : vos étapes, vos mots, votre manière de bosser. Vous l'ouvrez et tout est à sa place.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz-phone viz-float">
+          <div class="viz-phone__notch"></div>
+          <div class="viz-cal__head" style="font-size:.78rem"><span>Ma journée</span><span style="color:rgba(255,255,255,.45);font-weight:400;font-size:.62rem">mardi 8</span></div>
+          <div class="viz-job"><span class="viz-node__ico"><i class="viz-orb viz-orb--ok"></i></span><span><b>Chantier Dupont</b><small>Fin prévue 11 h</small></span><span class="st st--ok">Terminé</span></div>
+          <div class="viz-job"><span class="viz-node__ico"><i class="viz-orb viz-orb--accent"></i></span><span><b>Dépannage Leroy</b><small>Rue de la Station 12</small></span><span class="st st--now">En cours</span></div>
+          <div class="viz-job"><span class="viz-node__ico"><i class="viz-geometric-line"></i></span><span><b>Devis Martin</b><small>Visite à 16 h 30</small></span><span class="st st--next">À venir</span></div>
+          <div class="viz-job" style="margin-bottom:0"><span class="viz-node__ico"><i class="viz-orb viz-orb--ok"></i></span><span><b>Facture #218</b><small>Payée ce matin</small></span><span class="st st--ok">+340 €</span></div>
+        </div>
+        <span class="viz-chip viz-chip--br">📱 Tout votre métier, en poche</span>
+      </div>
     </div>
 
-    <div class="dp-feature dp-feature--alt" data-reveal>
-      <span class="dp-feature__index">Tout en un coup d'œil</span>
-      <h2>Un tableau de bord <span class="grad">clair.</span></h2>
-      <p>Vos chiffres clés, vos rendez-vous, vos clients, votre chiffre d'affaires : lisibles, à jour, au même endroit. Vous savez où vous en êtes sans avoir à fouiller dans dix fichiers.</p>
+    <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Tout en un coup d'œil</span>
+        <h2>Un tableau de bord <span class="grad">clair.</span></h2>
+        <p>Vos chiffres clés, vos rendez-vous, vos clients, votre chiffre d'affaires : lisibles, à jour, au même endroit. Vous savez où vous en êtes sans avoir à fouiller dans dix fichiers.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-kpis">
+            <div class="viz-kpi"><small>CA du mois</small><b>12 480 €</b><em>+18 %</em></div>
+            <div class="viz-kpi"><small>Rendez-vous</small><b>23</b><em>+5</em></div>
+            <div class="viz-kpi"><small>Nouveaux clients</small><b>8</b><em>+3</em></div>
+          </div>
+          <div class="viz-bars">
+            <i style="--h:35"></i><i style="--h:48"></i><i style="--h:42"></i><i style="--h:60"></i><i style="--h:55"></i><i style="--h:74"></i><i style="--h:88"></i>
+          </div>
+          <div class="viz-bars__lbl"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+        </div>
+        <span class="viz-chip viz-chip--tr"><span class="viz-live"></span>À jour en temps réel</span>
+      </div>
     </div>
 
-    <div class="dp-feature" data-reveal>
-      <span class="dp-feature__index">Vos outils, reliés</span>
-      <h2>Des intégrations qui <span class="grad">parlent.</span></h2>
-      <p>On relie ce que vous utilisez déjà — agenda, messagerie, facturation, paiement — pour que tout travaille ensemble au lieu de vivre chacun dans son coin. Moins de double saisie, moins d'oublis.</p>
+    <div class="dp-feature dp-feature--viz" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Vos outils, reliés</span>
+        <h2>Des intégrations qui <span class="grad">parlent.</span></h2>
+        <p>On relie ce que vous utilisez déjà — agenda, messagerie, facturation, paiement — pour que tout travaille ensemble au lieu de vivre chacun dans son coin. Moins de double saisie, moins d'oublis.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-hub">
+            <div class="viz-hub__ring"></div>
+            <div class="viz-hub__center">Votre<br>outil</div>
+            <div class="viz-hub__sat"><span class="viz-sat__ico"><i class="viz-geometric-cross"></i></span>Agenda</div>
+            <div class="viz-hub__sat"><span class="viz-sat__ico"><i class="viz-geometric-line"></i></span>Paiement</div>
+            <div class="viz-hub__sat"><span class="viz-sat__ico"><i class="viz-orb viz-orb--ok"></i></span>Facturation</div>
+            <div class="viz-hub__sat"><span class="viz-sat__ico"><i class="viz-orb viz-orb--accent"></i></span>WhatsApp</div>
+          </div>
+        </div>
+        <span class="viz-chip viz-chip--bl">🔗 Zéro double saisie</span>
+      </div>
     </div>
   </section>
 

@@ -2,9 +2,58 @@ const http  = require('http');
 const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
+const zlib  = require('zlib');
 
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT, 10) || 3000;
 const ROOT = __dirname;
+const LEADS_DIR = path.join(ROOT, '..', 'data');
+
+/* ── Security headers (appliqués à chaque réponse) ── */
+const SECURITY_HEADERS = {
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    'Content-Security-Policy': [
+        "default-src 'self'",
+        "script-src 'self' https://cdnjs.cloudflare.com",
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+        "font-src https://fonts.gstatic.com",
+        "img-src 'self' data:",
+        "media-src 'self'",
+        "connect-src 'self'",
+        "frame-ancestors 'none'",
+    ].join('; '),
+};
+function setSecurityHeaders(res) {
+    for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
+}
+
+/* ── Origin check (bloque les requêtes cross-origin sur les APIs) ── */
+const ALLOWED_ORIGINS = new Set([
+    'https://purity-agency.be',
+    'https://www.purity-agency.be',
+    `http://localhost:${PORT}`,
+    `http://127.0.0.1:${PORT}`,
+]);
+function isOriginAllowed(req) {
+    const origin = req.headers['origin'] || '';
+    const referer = req.headers['referer'] || '';
+    // Pas d'Origin header = requête same-origin (navigation classique)
+    if (!origin && !referer) return true;
+    if (ALLOWED_ORIGINS.has(origin)) return true;
+    for (const allowed of ALLOWED_ORIGINS) {
+        if (referer.startsWith(allowed)) return true;
+    }
+    return false;
+}
+
+/* ── Compressible MIME types ── */
+const COMPRESSIBLE = new Set([
+    'text/html; charset=utf-8', 'text/css', 'application/javascript',
+    'image/svg+xml', 'application/xml', 'text/plain; charset=utf-8',
+]);
 
 /* ── Assistant IA (proxy Gemini, clé côté serveur uniquement) ── */
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
@@ -166,7 +215,10 @@ function escapeHtml(s) {
 }
 function logLead(lead) {
     const line = JSON.stringify({ at: new Date().toISOString(), ...lead }) + '\n';
-    try { fs.appendFileSync(path.join(ROOT, 'leads.log'), line); } catch { /* ignore */ }
+    try {
+        fs.mkdirSync(LEADS_DIR, { recursive: true });
+        fs.appendFileSync(path.join(LEADS_DIR, 'leads.log'), line);
+    } catch { /* ignore */ }
 }
 function handleContact(req, res) {
     let body = '';
@@ -241,14 +293,17 @@ function handleContact(req, res) {
 
 /* Seules ces extensions sont servies. Tout le reste (clés, logs, server.js,
    dotfiles) répond 404 — indispensable avant mise en ligne. */
-const BLOCKED_FILES = new Set(['server.js']);
+const BLOCKED_FILES = new Set(['server.js', 'leads.log']);
+const BLOCKED_EXTENSIONS = new Set(['.png']); // WebP existe pour chaque PNG → bloquer les sources lourdes
 function isServable(filePath) {
     const base = path.basename(filePath);
     if (base.startsWith('.') || BLOCKED_FILES.has(base)) return false;
     // aucun segment du chemin ne doit être un dossier caché
     const rel = path.relative(ROOT, filePath);
     if (rel.split(path.sep).some(seg => seg.startsWith('.'))) return false;
-    return Object.prototype.hasOwnProperty.call(MIME, path.extname(filePath).toLowerCase());
+    const ext = path.extname(filePath).toLowerCase();
+    if (BLOCKED_EXTENSIONS.has(ext)) return false;
+    return Object.prototype.hasOwnProperty.call(MIME, ext);
 }
 
 const MIME = {
@@ -265,20 +320,32 @@ const MIME = {
     '.webm' : 'video/webm',
     '.woff' : 'font/woff',
     '.woff2': 'font/woff2',
+    '.webp' : 'image/webp',
+    '.txt'  : 'text/plain; charset=utf-8',
+    '.xml'  : 'application/xml',
 };
 
 const server = http.createServer((req, res) => {
+    setSecurityHeaders(res);
     let urlPath = req.url.split('?')[0];
 
-    // API : assistant IA (proxy Gemini) — même origine uniquement (pas de CORS ouvert)
+    // Health check (monitoring / load balancer)
+    if (urlPath === '/health') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ status: 'ok', ts: Date.now() }));
+    }
+
+    // API : assistant IA (proxy Gemini) — même origine uniquement
     if (urlPath === '/api/chat') {
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
+        if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
         return handleChat(req, res);
     }
 
     // API : contact (leads)
     if (urlPath === '/api/contact') {
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
+        if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
         if (rateLimited(req)) { res.writeHead(429, { 'Retry-After': '60' }); return res.end(); }
         return handleContact(req, res);
     }
@@ -302,8 +369,8 @@ const server = http.createServer((req, res) => {
         const contentType = MIME[ext];
         const fileSize    = stat.size;
         const rangeHeader = req.headers['range'];
-        // HTML : toujours revalidé ; assets : cache long (versionner les fichiers si modifiés)
-        const cacheControl = ext === '.html' ? 'no-cache' : 'public, max-age=86400';
+        // HTML/CSS/JS : toujours revalidés ; médias : cache long
+        const cacheControl = ['.html', '.css', '.js'].includes(ext) ? 'no-cache' : 'public, max-age=86400';
 
         if (rangeHeader) {
             // Parse et valide "bytes=start-end"
@@ -326,13 +393,26 @@ const server = http.createServer((req, res) => {
             });
             fs.createReadStream(filePath, { start, end: safeEnd }).pipe(res);
         } else {
-            res.writeHead(200, {
-                'Content-Length' : fileSize,
-                'Content-Type'   : contentType,
-                'Accept-Ranges'  : 'bytes',
-                'Cache-Control'  : cacheControl,
-            });
-            fs.createReadStream(filePath).pipe(res);
+            // Gzip compression for text assets
+            const acceptEncoding = req.headers['accept-encoding'] || '';
+            if (COMPRESSIBLE.has(contentType) && acceptEncoding.includes('gzip')) {
+                res.writeHead(200, {
+                    'Content-Type'     : contentType,
+                    'Content-Encoding' : 'gzip',
+                    'Accept-Ranges'    : 'bytes',
+                    'Cache-Control'    : cacheControl,
+                    'Vary'             : 'Accept-Encoding',
+                });
+                fs.createReadStream(filePath).pipe(zlib.createGzip({ level: 6 })).pipe(res);
+            } else {
+                res.writeHead(200, {
+                    'Content-Length' : fileSize,
+                    'Content-Type'   : contentType,
+                    'Accept-Ranges'  : 'bytes',
+                    'Cache-Control'  : cacheControl,
+                });
+                fs.createReadStream(filePath).pipe(res);
+            }
         }
     });
 });

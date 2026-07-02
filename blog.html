@@ -13,27 +13,37 @@
 <meta property="og:locale" content="fr_BE">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extra.css">
 </head>
-<body class="loading">
+<body class="page-article">
 
-<div id="cursor"><div id="c-dot"></div><div id="c-ring"></div></div>
-<canvas id="stars"></canvas>
-<div id="aurora" aria-hidden="true"></div>
-<div id="grain"></div>
-
-<div id="site">
+<div id="cursor" class="cursor"></div>
+<div id="cursor-dot" class="cursor-dot"></div>
   <header id="nav">
-    <a class="nav-logo" href="index.html">Purity<span>®</span></a>
-    <nav class="nav-links" aria-label="Principale">
-      <a href="index.html#solutions">Solutions</a>
-      <a href="index.html#preuves">Résultats</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="blog.html" aria-current="page">Blog</a>
-    </nav>
-    <a class="nav-cta magnetic" href="index.html#contact"><span>Réserver un appel</span></a>
-  </header>
+  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
+  <nav class="nav__links">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#methode">Méthode</a>
+    <a href="index.html#tarifs">Tarifs</a>
+    <a href="blog.html" aria-current="page">Blog</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <a class="nav__cta lg" href="index.html#contact">Parlons de votre projet</a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<div id="mobile-menu" class="mob" hidden>
+  <nav>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#methode">Méthode</a>
+    <a href="index.html#tarifs">Tarifs</a>
+    <a href="blog.html">Blog</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#contact" class="btn btn--white">Parlons de votre projet</a>
+  </nav>
+</div>
 
   <main>
     <div class="wrap page-head">
@@ -44,76 +54,116 @@
 
     <div class="wrap posts">
       <a class="post" href="article-prix-site-web-belgique.html" data-reveal>
+        <span class="post-cover" aria-hidden="true">
+          <div class="viz-glass-node" style="width:100%; height:100%; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+            <i class="viz-orb viz-orb--accent" style="width:60px; height:60px; filter:blur(15px); opacity:0.8"></i>
+            <div class="viz-geometric-line" style="position:absolute; width:120%; transform:rotate(-25deg); opacity:0.3"></div>
+          </div>
+        </span>
+        <span class="post__body">
         <span class="post-cat">Budget &amp; prix</span>
         <h2>Combien coûte un site web professionnel en Belgique en 2026 ?</h2>
         <p>Vitrine, site premium ou e-commerce : ce qui fait vraiment varier la facture, les coûts cachés à anticiper et comment lire un devis sans se faire piéger.</p>
         <span class="post-meta">12 min de lecture · Mis à jour en 2026</span>
         <span class="post-go">Lire l'article →</span>
+        </span>
       </a>
 
       <a class="post" href="article-seo-local-wallonie.html" data-reveal style="--rd:.07s">
+        <span class="post-cover" aria-hidden="true">
+          <div class="viz-glass-node" style="width:100%; height:100%; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+            <i class="viz-orb viz-orb--ok" style="width:50px; height:50px; filter:blur(10px); opacity:0.6; position:absolute; top:10%; left:20%"></i>
+            <i class="viz-geometric-cross" style="width:30px; height:30px; color:rgba(255,255,255,0.8)"></i>
+          </div>
+        </span>
+        <span class="post__body">
         <span class="post-cat">SEO local</span>
         <h2>Être trouvé à Charleroi et en Wallonie : le guide du SEO local</h2>
         <p>Pourquoi vos clients vous cherchent sur Google sans vous trouver, et la méthode concrète pour remonter sur les recherches « près de chez moi ».</p>
         <span class="post-meta">11 min de lecture · Mis à jour en 2026</span>
         <span class="post-go">Lire l'article →</span>
+        </span>
       </a>
 
       <a class="post" href="article-ia-pme-belgique.html" data-reveal style="--rd:.14s">
+        <span class="post-cover" aria-hidden="true">
+          <div class="viz-glass-node" style="width:100%; height:100%; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+            <i class="viz-orb viz-orb--accent" style="width:80px; height:80px; filter:blur(20px); opacity:0.5; position:absolute; bottom:-10%; right:-10%"></i>
+            <div style="display:flex; gap:8px">
+              <span class="viz-geometric-line" style="width:20px; transform:rotate(90deg)"></span>
+              <span class="viz-geometric-line" style="width:20px; transform:rotate(90deg)"></span>
+              <span class="viz-geometric-line" style="width:20px; transform:rotate(90deg)"></span>
+            </div>
+          </div>
+        </span>
+        <span class="post__body">
         <span class="post-cat">Intelligence artificielle</span>
         <h2>L'IA pour les indépendants et PME : par où commencer (vraiment)</h2>
         <p>Réceptionniste IA, devis automatisés, relances : les cas d'usage qui font gagner du temps dès aujourd'hui, sans budget de grand groupe.</p>
         <span class="post-meta">10 min de lecture · Mis à jour en 2026</span>
         <span class="post-go">Lire l'article →</span>
+        </span>
       </a>
 
       <a class="post" href="article-site-ne-convertit-pas.html" data-reveal style="--rd:.21s">
+        <span class="post-cover" aria-hidden="true">
+          <div class="viz-glass-node" style="width:100%; height:100%; border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative">
+            <i class="viz-orb viz-orb--ok" style="width:40px; height:40px; filter:blur(10px); position:absolute; left:20%"></i>
+            <div class="viz-geometric-line" style="width:60%; opacity:0.8"></div>
+            <i class="viz-orb viz-orb--accent" style="width:30px; height:30px; filter:blur(8px); position:absolute; right:20%"></i>
+          </div>
+        </span>
+        <span class="post__body">
         <span class="post-cat">Conversion</span>
         <h2>Votre site ne convertit pas : 7 raisons fréquentes (et comment y remédier)</h2>
         <p>Du trafic mais peu d'appels ? Les fuites les plus courantes — vitesse, message, mobile, confiance — et comment les colmater une par une.</p>
         <span class="post-meta">11 min de lecture · Mis à jour en 2026</span>
         <span class="post-go">Lire l'article →</span>
+        </span>
       </a>
     </div>
   </main>
 
   <footer id="footer">
-    <div class="wrap footer-inner">
-      <p class="footer-word">PURITY</p>
-      <div class="footer-cols">
-        <p class="footer-legal">
-          <strong>Purity Agency</strong>
-          Charleroi — Wallonie, Belgique<br>
-          BCE : 1036.775.590 · TVA : BE 1036.775.590<br>
-          Petite entreprise — franchise, TVA non applicable (art. 56bis CTVA)<br>
-          <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
-        </p>
-        <nav class="footer-links" aria-label="Pied de page">
-          <a href="index.html#solutions">Solutions</a>
-          <a href="index.html#preuves">Résultats</a>
-          <a href="index.html#faq">FAQ</a>
-          <a href="blog.html">Blog</a>
-          <a href="legal.html#mentions">Mentions légales</a>
-          <a href="legal.html#confidentialite">Confidentialité</a>
-        </nav>
-      </div>
-      <p class="footer-base"><span>© 2026 Purity Agency · Charleroi · Wallonie</span><span>Faites croître votre business en toute sérénité.</span></p>
+  <div class="wrap footer__inner">
+    <div class="footer__top">
+      <p class="footer__tagline">On crée votre présence.<br><em>Elle travaille pour vous.</em></p>
+      <nav class="footer__nav"><a href="index.html#services">Services</a><a href="index.html#methode">Méthode</a><a href="index.html#tarifs">Tarifs</a><a href="index.html#contact">Contact</a></nav>
     </div>
-  </footer>
-</div>
+    <div class="footer__legal">
+      <p><strong>Purity Agency</strong><br>BCE : 1036.775.590<br>Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA.<br><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></p>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__links"><a href="legal.html#mentions">Mentions légales</a><a href="legal.html#confidentialite">Confidentialité</a><a href="legal.html#cookies">Cookies</a></div>
+      <p>© 2026 Purity Agency. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
 
-<div id="chat">
-  <button id="chat-toggle" aria-label="Ouvrir le chat — glissez pour déplacer">
-    <video class="chat-octo" src="octomask%20floating.mp4" muted loop autoplay playsinline disablepictureinpicture></video>
-    <span class="chat-close">✕</span>
+<!-- Chatbot OctoMask -->
+<div id="chat" class="chat">
+  <button id="chat-toggle" class="chat__toggle" aria-label="Ouvrir le chat">
+    <video class="chat__avatar" data-src="octomask-floating.mp4" preload="none" muted loop autoplay playsinline disablepictureinpicture></video>
+    <span class="chat-close">✕.</span>
   </button>
-  <div id="chat-panel" role="dialog" aria-label="Assistant Purity" hidden>
-    <div class="chat-head"><span class="chat-dot"></span> Assistant Purity <small>· répond en 1 min</small></div>
-    <div id="chat-log" class="chat-log"></div>
-    <div id="chat-choices" class="chat-choices"></div>
+  <div id="chat-panel" class="chat__panel" role="dialog" aria-label="Assistant Purity" hidden>
+    <div class="chat__header">
+      <div class="chat__title">OctoMask IA</div>
+      <div class="chat__status">En ligne</div>
+    </div>
+    <div id="chat-log" class="chat__log"></div>
+    <form id="chat-form" class="chat__form">
+      <input type="text" id="chat-input" class="chat__input" placeholder="Posez votre question..." autocomplete="off">
+      <button type="submit" id="chat-submit" class="chat__submit" aria-label="Envoyer">
+        <span class="viz-geometric-line" style="width:16px; margin-right:8px;"></span>
+      </button>
+    </form>
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <script src="site.js" defer></script>
 </body>
 </html>

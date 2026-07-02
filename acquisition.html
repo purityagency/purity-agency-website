@@ -6,12 +6,20 @@
 <title>Visibilité & acquisition — Purity Agency | On va chercher vos clients</title>
 <meta name="description" content="Un beau site ne suffit pas s'il ne reçoit aucune visite. Référencement local, publicité Google et Meta, e-mail et SMS : on vous amène un trafic qui devient des demandes.">
 <meta name="theme-color" content="#060309">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="service2.png" as="image">
+<link rel="canonical" href="https://purity-agency.be/acquisition.html">
+<meta property="og:title" content="Visibilité & acquisition — Purity Agency | On va chercher vos clients">
+<meta property="og:description" content="Un beau site ne suffit pas s'il ne reçoit aucune visite. Référencement local, publicité Google et Meta, e-mail et SMS : on vous amène des clients.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://purity-agency.be/acquisition.html">
+<meta property="og:image" content="https://purity-agency.be/logo.png">
+<meta property="og:locale" content="fr_BE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="preload" href="service2.webp" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extra.css">
 </head>
 <body class="detail detail--acquisition">
 
@@ -19,7 +27,7 @@
 <div id="cursor-dot" class="cursor-dot"></div>
 
 <header id="nav">
-  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.png" alt="Purity Agency"></a>
+  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
   <nav class="nav__links">
     <a href="index.html#services">Services</a>
     <a href="index.html#methode">Méthode</a>
@@ -44,7 +52,7 @@
 
   <section class="dp-hero" id="haut">
     <div class="dp-hero__media">
-      <img src="service2.png" alt="Référencement, publicité ciblée et campagnes qui ramènent des demandes" class="dp-hero__img">
+      <img src="service2.webp" alt="Référencement, publicité ciblée et campagnes qui ramènent des demandes" class="dp-hero__img">
     </div>
     <div class="dp-hero__inner">
       <a href="index.html#services" class="dp-back" data-reveal>← Tout ce qu'on fait</a>
@@ -72,22 +80,72 @@
   </section>
 
   <section class="dp-features" id="leviers">
-    <div class="dp-feature" data-reveal>
-      <span class="dp-feature__index">Sans payer chaque clic</span>
-      <h2>Référencement <span class="grad">local.</span></h2>
-      <p>On travaille votre site pour qu'il remonte naturellement quand on cherche votre métier dans votre région. C'est lent à construire, mais une fois en place, ça vous ramène des clients sans budget publicitaire — jour après jour.</p>
+    <div class="dp-feature dp-feature--viz" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Sans payer chaque clic</span>
+        <h2>Référencement <span class="grad">local.</span></h2>
+        <p>On travaille votre site pour qu'il remonte naturellement quand on cherche votre métier dans votre région. C'est lent à construire, mais une fois en place, ça vous ramène des clients sans budget publicitaire — jour après jour.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-graph viz-float">
+          <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+            <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(124,58,237,0.4)"/><stop offset="100%" stop-color="rgba(124,58,237,0)"/></linearGradient></defs>
+            <path d="M0 100 C40 96 60 88 90 82 S150 60 190 42 S260 18 300 10 L300 120 L0 120 Z" fill="url(#ga)"/>
+            <path class="viz-graph__line" d="M0 100 C40 96 60 88 90 82 S150 60 190 42 S260 18 300 10"/>
+          </svg>
+          <div class="viz-kw">
+            <span>« chauffagiste charleroi »<b>#1</b></span>
+            <span>« dépannage chauffage »<b>#2 ↑</b></span>
+            <span>« entretien chaudière »<b>#3 ↑</b></span>
+          </div>
+        </div>
+        <span class="viz-chip viz-chip--tr">📈 Visites ×3 en 6 mois</span>
+      </div>
     </div>
 
-    <div class="dp-feature dp-feature--alt" data-reveal>
-      <span class="dp-feature__index">Pour des résultats maintenant</span>
-      <h2>Publicité <span class="grad">Google &amp; Meta.</span></h2>
-      <p>Quand il faut remplir un agenda creux ou lancer une offre, on cible précisément ceux qui cherchent déjà ce que vous faites. Pas de budget jeté en l'air : on suit ce qui ramène des demandes, et on coupe le reste.</p>
+    <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Pour des résultats maintenant</span>
+        <h2>Publicité <span class="grad">Google &amp; Meta.</span></h2>
+        <p>Quand il faut remplir un agenda creux ou lancer une offre, on cible précisément ceux qui cherchent déjà ce que vous faites. Pas de budget jeté en l'air : on suit ce qui ramène des demandes, et on coupe le reste.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-serp__bar"><span class="viz-orb viz-orb--accent" style="width:12px; height:12px; margin-right:8px"></span><span>toiture liège devis</span></div>
+          <div class="viz-serp__card" style="margin-bottom:.7rem">
+            <small style="color:rgba(255,255,255,.45);font-size:.62rem;font-weight:700;letter-spacing:.06em">SPONSORISÉ</small>
+            <div class="viz-serp__head"><b>Votre annonce, en premier</b></div>
+            <div class="viz-line viz-line--md" style="margin:.35rem 0"></div>
+            <div class="viz-serp__actions"><span>Devis en 24 h</span><span>☎ Appeler</span></div>
+          </div>
+          <div class="viz-kpis" style="margin-bottom:0">
+            <div class="viz-kpi"><small>Clics</small><b>312</b></div>
+            <div class="viz-kpi"><small>Demandes</small><b>27</b></div>
+            <div class="viz-kpi"><small>Coût/dem.</small><b>9 €</b><em> suivi</em></div>
+          </div>
+        </div>
+        <span class="viz-chip viz-chip--bl">🎯 Chaque euro est tracé</span>
+      </div>
     </div>
 
-    <div class="dp-feature" data-reveal>
-      <span class="dp-feature__index">Vos meilleurs clients</span>
-      <h2>E-mail &amp; SMS <span class="grad">marketing.</span></h2>
-      <p>Vos anciens clients sont votre or : ils vous connaissent déjà. On les réactive au bon moment — une offre, une nouveauté, un rappel — pour qu'ils reviennent au lieu d'aller voir ailleurs.</p>
+    <div class="dp-feature dp-feature--viz" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Vos meilleurs clients</span>
+        <h2>E-mail &amp; SMS <span class="grad">marketing.</span></h2>
+        <p>Vos anciens clients sont votre or : ils vous connaissent déjà. On les réactive au bon moment — une offre, une nouveauté, un rappel — pour qu'ils reviennent au lieu d'aller voir ailleurs.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-flow viz-seq">
+            <div class="viz-node"><span class="viz-node__ico"><i class="viz-orb viz-orb--accent"></i></span><span><b>E-mail « On pense à vous »</b><small>Offre entretien annuel</small></span><em>Jour 0</em></div>
+            <div class="viz-link"></div>
+            <div class="viz-node"><span class="viz-node__ico"><i class="viz-geometric-line"></i></span><span><b>SMS de rappel</b><small>« Encore 3 créneaux cette semaine »</small></span><em>J +3</em></div>
+            <div class="viz-link"></div>
+            <div class="viz-node viz-node--ok"><span class="viz-node__ico"><i class="viz-orb viz-orb--ok"></i></span><span><b>11 rendez-vous repris</b><small>Sur 240 anciens clients contactés</small></span><em>J +7</em></div>
+          </div>
+        </div>
+        <span class="viz-chip viz-chip--tr">42 % d'ouverture</span>
+      </div>
     </div>
   </section>
 

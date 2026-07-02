@@ -6,12 +6,20 @@
 <title>Présence en ligne — Purity Agency | Être trouvé, et inspirer confiance</title>
 <meta name="description" content="Quand un client cherche votre métier sur Google, c'est vous qu'il doit trouver. Sites premium, fiche Google, landing, e-commerce pour indépendants et PME de Wallonie.">
 <meta name="theme-color" content="#060309">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="service1.png" as="image">
+<link rel="canonical" href="https://purity-agency.be/presence.html">
+<meta property="og:title" content="Présence en ligne — Purity Agency | Être trouvé, et inspirer confiance">
+<meta property="og:description" content="Quand un client cherche votre métier sur Google, c'est vous qu'il doit trouver. Sites premium, fiche Google, landing, e-commerce pour indépendants et PME de Wallonie.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://purity-agency.be/presence.html">
+<meta property="og:image" content="https://purity-agency.be/logo.png">
+<meta property="og:locale" content="fr_BE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="preload" href="service1.webp" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site-extra.css">
 </head>
 <body class="detail detail--presence">
 
@@ -19,7 +27,7 @@
 <div id="cursor-dot" class="cursor-dot"></div>
 
 <header id="nav">
-  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.png" alt="Purity Agency"></a>
+  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
   <nav class="nav__links">
     <a href="index.html#services">Services</a>
     <a href="index.html#methode">Méthode</a>
@@ -44,7 +52,7 @@
 
   <section class="dp-hero" id="haut">
     <div class="dp-hero__media">
-      <img src="service1.png" alt="Apparaître sur Google et la carte locale quand un client cherche votre métier" class="dp-hero__img">
+      <img src="service1.webp" alt="Apparaître sur Google et la carte locale quand un client cherche votre métier" class="dp-hero__img">
     </div>
     <div class="dp-hero__inner">
       <a href="index.html#services" class="dp-back" data-reveal>← Tout ce qu'on fait</a>
@@ -72,28 +80,94 @@
   </section>
 
   <section class="dp-features" id="ce-quon-fait">
-    <div class="dp-feature" data-reveal>
-      <span class="dp-feature__index">Là où on vous cherche</span>
-      <h2>Présent sur <span class="grad">Google &amp; Maps.</span></h2>
-      <p>On installe et on soigne votre fiche Google : horaires, photos, avis, itinéraire. Quand quelqu'un tape votre métier près de chez vous, vous apparaissez — sur la recherche comme sur la carte. C'est souvent le tout premier contact, et il doit donner envie.</p>
+    <div class="dp-feature dp-feature--viz" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Là où on vous cherche</span>
+        <h2>Présent sur <span class="grad">Google &amp; Maps.</span></h2>
+        <p>On installe et on soigne votre fiche Google : horaires, photos, avis, itinéraire. Quand quelqu'un tape votre métier près de chez vous, vous apparaissez — sur la recherche comme sur la carte. C'est souvent le tout premier contact, et il doit donner envie.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-serp viz-float">
+          <div class="viz-serp__bar"><span class="viz-orb viz-orb--accent" style="width:12px; height:12px; margin-right:8px"></span><span>plombier charleroi</span><i class="caret"></i></div>
+          <div class="viz-serp__map">
+            <div class="viz-geometric-line" style="width:100%; height:2px; opacity:0.2; margin: 24px 0"></div>
+            <div class="viz-glass-node viz-pin" style="width:32px; height:32px; display:flex; align-items:center; justify-content:center"><i class="viz-orb viz-orb--accent"></i></div>
+          </div>
+          <div class="viz-serp__card">
+            <div class="viz-serp__head"><b>Votre entreprise</b><span class="viz-badge">Ouvert</span></div>
+            <div class="viz-stars"><b>4,9</b><i>★★★★★</i><em>(127 avis)</em></div>
+            <div class="viz-serp__actions"><span>Appeler</span><span>Itinéraire</span><span>Site web</span></div>
+          </div>
+          <div class="viz-ghost"></div>
+          <div class="viz-ghost"></div>
+        </div>
+        <span class="viz-chip viz-chip--tr"><span class="viz-live"></span>1ᵉʳ résultat local</span>
+      </div>
     </div>
 
-    <div class="dp-feature dp-feature--alt" data-reveal>
-      <span class="dp-feature__index">Une page qui convertit</span>
-      <h2>La landing qui <span class="grad">transforme.</span></h2>
-      <p>Une seule page, pensée pour une chose : transformer le curieux en contact. Votre offre, vos preuves, un bouton clair. Idéale pour démarrer une présence sérieuse sans gros budget — à partir de 390 €.</p>
+    <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Une page qui convertit</span>
+        <h2>La landing qui <span class="grad">transforme.</span></h2>
+        <p>Une seule page, pensée pour une chose : transformer le curieux en contact. Votre offre, vos preuves, un bouton clair. Idéale pour démarrer une présence sérieuse sans gros budget — à partir de 390 €.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-browser__bar">
+            <div class="viz-browser__dots"><i></i><i></i><i></i></div>
+            <div class="viz-browser__url"><span class="viz-orb viz-orb--ok" style="margin-right:6px"></span> <b>votre-métier.be</b></div>
+          </div>
+          <div class="viz-line viz-line--hero"></div>
+          <div class="viz-line viz-line--md"></div>
+          <div class="viz-line viz-line--sm"></div>
+          <div class="viz-input">votre@email.be</div>
+          <span class="viz-cta">Demander un devis gratuit →</span>
+        </div>
+        <span class="viz-chip viz-chip--bl">✦ 1 page. 1 objectif. 0 distraction.</span>
+      </div>
     </div>
 
-    <div class="dp-feature" data-reveal>
-      <span class="dp-feature__index">Votre métier, comme il faut</span>
-      <h2>Site vitrine &amp; <span class="grad">complet.</span></h2>
-      <p>Plusieurs pages pour raconter ce que vous faites, montrer vos réalisations, installer la confiance avant même l'appel. Un design premium, sur-mesure, sans template visible — qui a l'air d'avoir coûté trois fois son prix.</p>
+    <div class="dp-feature dp-feature--viz" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Votre métier, comme il faut</span>
+        <h2>Site vitrine &amp; <span class="grad">complet.</span></h2>
+        <p>Plusieurs pages pour raconter ce que vous faites, montrer vos réalisations, installer la confiance avant même l'appel. Un design premium, sur-mesure, sans template visible — qui a l'air d'avoir coûté trois fois son prix.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-browser__bar">
+            <div class="viz-browser__dots"><i></i><i></i><i></i></div>
+            <div class="viz-browser__url"><span class="viz-orb viz-orb--ok" style="margin-right:6px"></span> <b>votre-entreprise.be</b> — Accueil · Réalisations · Contact</div>
+          </div>
+          <div class="viz-line viz-line--hero" style="width:60%"></div>
+          <div class="viz-line viz-line--md"></div>
+          <div class="viz-shop" style="margin-top:.7rem">
+            <div class="viz-prod"><div class="viz-prod__img"></div><b>Réalisation</b><small>Avant / après</small></div>
+            <div class="viz-prod"><div class="viz-prod__img"></div><b>Réalisation</b><small>Chantier 2026</small></div>
+          </div>
+        </div>
+        <span class="viz-chip viz-chip--br">★ Zéro template — 100 % sur-mesure</span>
+      </div>
     </div>
 
-    <div class="dp-feature dp-feature--alt" data-reveal>
-      <span class="dp-feature__index">Vendre, pas seulement exister</span>
-      <h2>Boutique <span class="grad">en ligne.</span></h2>
-      <p>Un site qui encaisse pendant que vous dormez : paiement sécurisé, stock, commandes, relances — tout est en place et relié. Vous n'avez qu'à préparer les commandes.</p>
+    <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
+      <div class="dp-feature__txt">
+        <span class="dp-feature__index">Vendre, pas seulement exister</span>
+        <h2>Boutique <span class="grad">en ligne.</span></h2>
+        <p>Un site qui encaisse pendant que vous dormez : paiement sécurisé, stock, commandes, relances — tout est en place et relié. Vous n'avez qu'à préparer les commandes.</p>
+      </div>
+      <div class="dp-feature__viz" aria-hidden="true">
+        <div class="viz viz-float">
+          <div class="viz-shop">
+            <div class="viz-prod"><div class="viz-prod__img"></div><b>Produit A</b><small>29,90 €</small></div>
+            <div class="viz-prod"><div class="viz-prod__img"></div><b>Produit B</b><small>45,00 €</small></div>
+            <div class="viz-prod"><div class="viz-prod__img"></div><b>Produit C</b><small>18,50 €</small></div>
+            <div class="viz-prod"><div class="viz-prod__img"></div><b>Produit D</b><small>62,00 €</small></div>
+            <div class="viz-toast"><span class="viz-node__ico" style="border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.15);color:#34D399"><i class="viz-orb viz-orb--ok"></i></span><span><b>Paiement reçu — 89,90 €</b><br><small>Commande #142 · 03:12 du matin</small></span></div>
+          </div>
+        </div>
+        <span class="viz-chip viz-chip--tr"><span class="viz-live"></span>Ça vend même la nuit</span>
+      </div>
     </div>
   </section>
 

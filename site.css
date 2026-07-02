@@ -1730,8 +1730,13 @@ footer {
   .cursor, .cursor-dot { display: none !important; }
 }
 @media (hover: hover) {
-  html { cursor: none !important; }
-  a, button, input, textarea, select, [data-magnetic] { cursor: none !important; }
+  html.has-custom-cursor { cursor: none !important; }
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select,
+  html.has-custom-cursor [data-magnetic] { cursor: none !important; }
 }
 
 /* ==========================================================================

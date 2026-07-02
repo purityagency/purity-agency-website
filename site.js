@@ -384,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursor-dot');
     if (cursor && cursorDot) {
+      document.documentElement.classList.add('has-custom-cursor');
       const xTo = gsap.quickTo(cursor, 'left', { duration: 0.4, ease: 'power3.out' });
       const yTo = gsap.quickTo(cursor, 'top', { duration: 0.4, ease: 'power3.out' });
       const xDot = gsap.quickTo(cursorDot, 'left', { duration: 0.15, ease: 'power2.out' });
@@ -484,9 +485,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (activePane) {
             activePane.classList.remove('is-active');
             activePane.style.display = 'none';
+            activePane.setAttribute('aria-hidden', 'true');
           }
           targetPane.style.display = 'block';
           targetPane.classList.add('is-active');
+          targetPane.setAttribute('aria-hidden', 'false');
+          tabBtns.forEach(t => t.setAttribute('aria-selected', 'false'));
+          btn.setAttribute('aria-selected', 'true');
           ScrollTrigger.refresh();
         } else {
           // Fade out active pane
@@ -498,6 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
             onComplete: () => {
               activePane.classList.remove('is-active');
               activePane.style.display = 'none';
+              activePane.setAttribute('aria-hidden', 'true');
 
               // Display target pane
               targetPane.style.display = 'block';
@@ -505,8 +511,8 @@ document.addEventListener('DOMContentLoaded', () => {
               targetPane.setAttribute('aria-hidden', 'false');
 
               // Accessibility updates
-              tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
-              tab.setAttribute('aria-selected', 'true');
+              tabBtns.forEach(t => t.setAttribute('aria-selected', 'false'));
+              btn.setAttribute('aria-selected', 'true');
 
               // ScrollTrigger refresh is critical here to recalculate scroll heights
               ScrollTrigger.refresh();

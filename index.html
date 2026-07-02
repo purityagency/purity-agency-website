@@ -408,9 +408,9 @@
     </div>
     <!-- Sélecteur d'onglets interactif -->
     <div class="tarifs-tabs-container" data-reveal style="--d:.1s">
-      <div class="tarifs-tabs lg">
-        <button class="tarifs-tab is-active" data-target="briques">🧱 Les Briques</button>
-        <button class="tarifs-tab" data-target="packs">💼 Packs Métier</button>
+      <div class="tarifs-tabs lg" role="tablist" aria-label="Catégories de tarifs">
+        <button class="tarifs-tab is-active" id="tab-briques" data-target="briques" role="tab" aria-selected="true" aria-controls="pane-briques">🧱 Les Briques</button>
+        <button class="tarifs-tab" id="tab-packs" data-target="packs" role="tab" aria-selected="false" aria-controls="pane-packs">💼 Packs Métier</button>
       </div>
     </div>
 
@@ -418,7 +418,7 @@
     <div class="tarifs-panes">
       
       <!-- ONGLET 1 : LES BRIQUES (Catalogue horizontal) -->
-      <div class="tarifs-pane is-active" id="pane-briques">
+      <div class="tarifs-pane is-active" id="pane-briques" role="tabpanel" aria-labelledby="tab-briques">
         <div class="briques-grid">
           
           <!-- Présence -->
@@ -559,7 +559,7 @@
       </div>
 
       <!-- ONGLET 2 : PACKS MÉTIER (Offre phare verticalisée) -->
-      <div class="tarifs-pane" id="pane-packs">
+      <div class="tarifs-pane" id="pane-packs" role="tabpanel" aria-labelledby="tab-packs" aria-hidden="true" style="display: none;">
         <div class="packs-grid">
           
           <!-- Pack Coiffure -->

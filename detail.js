@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursor-dot');
     if (cursor && cursorDot) {
+      document.documentElement.classList.add('has-custom-cursor');
       const xTo = gsap.quickTo(cursor, 'left', { duration: 0.4, ease: 'power3.out' });
       const yTo = gsap.quickTo(cursor, 'top', { duration: 0.4, ease: 'power3.out' });
       const xDot = gsap.quickTo(cursorDot, 'left', { duration: 0.15, ease: 'power2.out' });

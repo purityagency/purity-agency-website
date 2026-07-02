@@ -28,11 +28,13 @@
 
 <!-- ═══ NAV ═══ -->
 <header id="nav">
-  <a class="nav__logo" href="#hero" aria-label="Purity Agency — accueil"><img src="logo.png" alt="Purity Agency"></a>
+  <a class="nav__logo nav__logo--text" href="#hero" aria-label="Purity Agency — accueil"><span class="nav__logo-name">PURITY</span><span class="nav__logo-sub">AGENCY</span></a>
   <nav class="nav__links">
     <a href="#services">Services</a>
     <a href="#methode">Méthode</a>
+    <a href="#services">Réalisations</a>
     <a href="#tarifs">Tarifs</a>
+    <a href="blog.html">Blog</a>
     <a href="#contact">Contact</a>
   </nav>
   <a class="nav__cta lg" href="#contact">Parlons de votre projet</a>
@@ -44,7 +46,9 @@
   <nav>
     <a href="#services">Services</a>
     <a href="#methode">Méthode</a>
+    <a href="#services">Réalisations</a>
     <a href="#tarifs">Tarifs</a>
+    <a href="blog.html">Blog</a>
     <a href="#contact">Contact</a>
     <a href="#contact" class="btn btn--white">Parlons de votre projet</a>
   </nav>
@@ -65,20 +69,19 @@
   <div class="hero__content">
     <div class="hero__text-col">
       <h1 class="hero__title" data-reveal style="--d:.1s">
-        Vous partez en vacances.<br>Votre entreprise <em>non.</em>
+        Votre prochain employé<br>ne dort <em>jamais.</em>
       </h1>
       <p class="hero__sub" data-reveal style="--d:.2s">
-        On construit votre présence en ligne, et on la fait travailler à votre place : elle vous trouve des clients, répond, prend les rendez-vous.<br><strong>Vous, vous gardez le métier que vous aimez.</strong>
+        Sites web, visibilité locale, automatisations et intégrations.<br><strong>Des solutions concrètes pour attirer, convertir et fidéliser vos clients.</strong>
       </p>
       <div class="hero__ctas" data-reveal style="--d:.3s">
         <a href="#contact" class="btn btn--accent btn--lg">Parlons de votre projet</a>
-        <a href="#services" class="btn btn--glass-strong">Voir ce qu'on fait</a>
+        <a href="#services" class="btn btn--glass-strong">Voir nos réalisations</a>
       </div>
       <ul class="hero__proof" data-reveal style="--d:.4s">
-        <li>Premier échange gratuit</li>
-        <li>Sans engagement</li>
         <li>Réponse sous 24&nbsp;h</li>
-        <li>Dès 390&nbsp;€</li>
+        <li>Sans engagement</li>
+        <li>100&nbsp;% sécurisé</li>
       </ul>
     </div>
   </div>
@@ -87,21 +90,45 @@
   </a>
 </section>
 
-<!-- ═══ PROBLÈME (Scène 2) ═══ -->
-<section id="probleme" class="sec scene-2">
-  <div class="scene-2__media">
-    <img src="scene2-bg-4k.png" alt="" class="scene-2__img">
-  </div>
+<!-- ═══ CE QU'ON FAIT POUR VOUS — 4 cards ═══ -->
+<section id="probleme" class="sec svc-cards">
   <div class="wrap">
-    <p class="scene-2__kicker" data-reveal>Le constat</p>
-    <div class="kt" aria-label="Pendant que vous lisez ça, un client cherche votre métier. Il trouve quelqu'un d'autre. Vous êtes excellent. Mais en ligne, on ne vous voit pas.">
-      <span class="kt__line" data-kt>Pendant que vous lisez ça,</span>
-      <span class="kt__line kt__big" data-kt>un client cherche votre métier.</span>
-      <span class="kt__line" data-kt>Il trouve <em>quelqu'un d'autre.</em></span>
-      <span class="kt__line kt__big" data-kt>Vous êtes excellent.</span>
-      <span class="kt__line" data-kt>Mais en ligne, <em>on ne vous voit pas.</em></span>
+    <h2 class="svc-cards__title" data-reveal>Ce qu'on fait pour vous</h2>
+    <div class="svc-cards__grid">
+
+      <article class="svc-card" data-reveal>
+        <div class="svc-card__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 6 3.8 9S14.5 18.3 12 21c-2.5-2.7-3.8-6-3.8-9S9.5 5.7 12 3z"/></svg>
+        </div>
+        <h3>Sites web performants</h3>
+        <p>Des sites rapides, modernes et optimisés pour convertir vos visiteurs en clients.</p>
+      </article>
+
+      <article class="svc-card" data-reveal style="--d:.08s">
+        <div class="svc-card__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M12 3v9h9"/></svg>
+        </div>
+        <h3>Présence Google Business</h3>
+        <p>Soyez visible localement, remontez dans les résultats et attirez des clients près de chez vous.</p>
+      </article>
+
+      <article class="svc-card" data-reveal style="--d:.16s">
+        <div class="svc-card__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        </div>
+        <h3>Intégration WhatsApp</h3>
+        <p>Discutez avec vos clients instantanément et ne ratez plus aucune opportunité.</p>
+      </article>
+
+      <article class="svc-card" data-reveal style="--d:.24s">
+        <div class="svc-card__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </div>
+        <h3>Automatisations &amp; IA</h3>
+        <p>Gagnez du temps, automatisez vos tâches et concentrez-vous sur l'essentiel.</p>
+      </article>
+
     </div>
-    <p class="reveal-sub" data-reveal>Ce n'est pas une question de talent. <strong>C'est une question de présence.</strong></p>
   </div>
 </section>
 

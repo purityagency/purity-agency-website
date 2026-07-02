@@ -699,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInited = true;
         // Message d'accueil (n'est pas envoyé à l'API, sert juste d'intro)
         setTimeout(() => {
-          const intro = "Bonjour 👋 Je suis OctoMask, l'assistant de Purity Agency. Dites-moi votre métier et ce que vous aimeriez améliorer — je vous oriente en 30 secondes.";
+          const intro = "Salut 👋 Moi c'est OctoMask, de l'équipe Purity. Vous faites quoi comme métier ? Je vous dis vite fait ce qu'on pourrait améliorer pour vous.";
           addMsg(intro, 'sys');
           chatMemory.push({ role: 'model', text: intro });
 

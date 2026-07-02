@@ -331,16 +331,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Contact Form ---
   const form = document.getElementById('contact-form');
-  form.addEventListener('submit', (e) => {
+  if (form) form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button');
+    const original = btn.textContent;
     btn.textContent = 'Envoi...';
     btn.disabled = true;
-    setTimeout(() => {
+    const payload = {
+      name: form.querySelector('#f-name')?.value || '',
+      email: form.querySelector('#f-email')?.value || '',
+      phone: form.querySelector('#f-phone')?.value || '',
+      activity: form.querySelector('#f-activity')?.value || '',
+      need: form.querySelector('#f-need')?.value || '',
+    };
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('bad status');
       form.querySelector('.form__sent').style.display = 'block';
       btn.style.display = 'none';
       form.reset();
-    }, 1000);
+    } catch (err) {
+      btn.textContent = 'Erreur — réessayer';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = original; }, 2500);
+    }
   });
 
   // ════════════════════════════════════════════════════════════

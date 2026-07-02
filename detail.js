@@ -93,17 +93,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Formulaire de contact (page détail) ---
   const dForm = document.getElementById('detail-form');
   if (dForm) {
-    dForm.addEventListener('submit', (e) => {
+    dForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = dForm.querySelector('button[type="submit"]');
+      const original = btn.textContent;
       btn.textContent = 'Envoi…';
       btn.disabled = true;
-      setTimeout(() => {
+      const payload = {
+        name: dForm.querySelector('#d-name')?.value || '',
+        email: dForm.querySelector('#d-email')?.value || '',
+        phone: dForm.querySelector('#d-phone')?.value || '',
+        activity: dForm.querySelector('#d-activity')?.value || '',
+        need: dForm.querySelector('#d-need')?.value || '',
+      };
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('bad status');
         dForm.querySelector('.dp-form__sent').style.display = 'block';
         btn.style.display = 'none';
-        dForm.querySelector('.dp-form__note').style.display = 'none';
+        const note = dForm.querySelector('.dp-form__note');
+        if (note) note.style.display = 'none';
         dForm.reset();
-      }, 900);
+      } catch (err) {
+        btn.textContent = 'Erreur — réessayer';
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = original; }, 2500);
+      }
     });
   }
 

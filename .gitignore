@@ -2,3 +2,5 @@
 node_modules
 *.log
 superpowers/
+.resend-key
+leads.log

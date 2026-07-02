@@ -103,6 +103,95 @@ function handleChat(req, res) {
     });
 }
 
+/* ── Contact (lead) : envoi email via Resend, fallback log fichier ── */
+// NB Resend en mode test (domaine non vérifié) : from doit rester onboarding@resend.dev
+// et to doit être l'email du compte Resend. Après vérification DNS de purity-agency.be,
+// passer CONTACT_FROM sur 'Purity Agency <contact@purity-agency.be>' et CONTACT_TO sur contact@purity-agency.be.
+const CONTACT_TO = process.env.CONTACT_TO || 'amir.jobpro@gmail.com';
+const CONTACT_FROM = process.env.CONTACT_FROM || 'Purity Agency <onboarding@resend.dev>';
+function resendKey() {
+    if (process.env.RESEND_API_KEY) return process.env.RESEND_API_KEY.trim();
+    try { return fs.readFileSync(path.join(ROOT, '.resend-key'), 'utf8').trim(); }
+    catch { return ''; }
+}
+function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+function logLead(lead) {
+    const line = JSON.stringify({ at: new Date().toISOString(), ...lead }) + '\n';
+    try { fs.appendFileSync(path.join(ROOT, 'leads.log'), line); } catch { /* ignore */ }
+}
+function handleContact(req, res) {
+    let body = '';
+    req.on('data', c => { body += c; if (body.length > 12000) req.destroy(); });
+    req.on('end', () => {
+        let data = {};
+        try { data = JSON.parse(body) || {}; } catch { /* ignore */ }
+        const name = String(data.name || '').slice(0, 200).trim();
+        const email = String(data.email || '').slice(0, 200).trim();
+        const phone = String(data.phone || '').slice(0, 60).trim();
+        const activity = String(data.activity || '').slice(0, 200).trim();
+        const need = String(data.need || '').slice(0, 4000).trim();
+
+        // Validation minimale
+        if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !need) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'invalid' }));
+        }
+
+        const lead = { name, email, phone, activity, need };
+        logLead(lead); // capture immédiate — 0 lead perdu même sans clé
+
+        const key = resendKey();
+        if (!key) {
+            // Pas de clé : le lead est loggé, on répond OK (branchement email plus tard)
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ ok: true, mode: 'logged' }));
+        }
+
+        const html = `<h2>Nouveau lead — Purity Agency</h2>
+<p><strong>Nom :</strong> ${escapeHtml(name)}<br>
+<strong>E-mail :</strong> ${escapeHtml(email)}<br>
+<strong>Téléphone :</strong> ${escapeHtml(phone || '—')}<br>
+<strong>Activité :</strong> ${escapeHtml(activity || '—')}</p>
+<p><strong>Besoin :</strong><br>${escapeHtml(need).replace(/\n/g, '<br>')}</p>`;
+        const payload = JSON.stringify({
+            from: CONTACT_FROM, to: [CONTACT_TO], reply_to: email,
+            subject: `Nouveau lead — ${name}`, html,
+        });
+        const rreq = https.request({
+            method: 'POST',
+            hostname: 'api.resend.com',
+            path: '/emails',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(payload),
+                'Authorization': `Bearer ${key}`,
+            },
+        }, rres => {
+            let d = '';
+            rres.on('data', x => d += x);
+            rres.on('end', () => {
+                if (rres.statusCode >= 400) {
+                    console.error('[contact] resend', rres.statusCode, d.slice(0, 300));
+                    // Email échoué mais lead loggé → on ne perd rien
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ ok: true, mode: 'logged_email_failed' }));
+                }
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ ok: true, mode: 'sent' }));
+            });
+        });
+        rreq.on('error', e => {
+            console.error('[contact] network', e.message);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ ok: true, mode: 'logged_network_error' }));
+        });
+        rreq.write(payload);
+        rreq.end();
+    });
+}
+
 const MIME = {
     '.html' : 'text/html; charset=utf-8',
     '.css'  : 'text/css',
@@ -134,6 +223,16 @@ const server = http.createServer((req, res) => {
         }
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
         return handleChat(req, res);
+    }
+
+    // API : contact (leads)
+    if (urlPath === '/api/contact') {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        if (req.method === 'OPTIONS') { res.writeHead(200); return res.end(); }
+        if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
+        return handleContact(req, res);
     }
 
     if (urlPath === '/') urlPath = '/index.html';

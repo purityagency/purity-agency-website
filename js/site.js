@@ -7,7 +7,7 @@ const hasHash = !!window.location.hash;
 // Pour Google Calendar → https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID
 // Pour Calendly → https://calendly.com/purity-agency/15min
 // Les paramètres ?name=&email=&phone= seront ajoutés automatiquement
-const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID';
+const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Mg-8wLya1IHrX8h2kIFUrFAgJpdl0qPvoY8YkqCx1KugNvIUtOYq5FGeeXRP7khf0DqVbhTWI';
 // ────────────────────────────────────────────────────────────────────────────
 
 /**

@@ -238,6 +238,11 @@
         </ul>
       </div>
       <form class="dp-form" id="detail-form" data-reveal style="--d:.1s">
+        <!-- Honeypot anti-spam -->
+        <div style="position: absolute; left: -9999px; overflow: hidden; width: 0; height: 0;" aria-hidden="true">
+          <label for="d-website">Ne pas remplir :</label>
+          <input type="text" id="d-website" name="website_verification" tabindex="-1" autocomplete="off">
+        </div>
         <div class="dp-form__row">
           <div class="dp-field"><input type="text" id="d-name" name="name" placeholder=" " required autocomplete="name"><label for="d-name">Nom</label></div>
           <div class="dp-field"><input type="tel" id="d-phone" name="phone" placeholder=" " autocomplete="tel"><label for="d-phone">Téléphone</label></div>
@@ -257,7 +262,7 @@
 <footer id="footer">
   <div class="wrap footer__inner">
     <div class="footer__top">
-      <p class="footer__tagline">On crée votre présence.<br><em>Elle travaille pour vous.</em></p>
+      <p class="footer__tagline">On crée votre présence. <br><em>Elle travaille pour vous.</em></p>
       <nav class="footer__nav"><a href="index.html#services">Services</a><a href="index.html#methode">Méthode</a><a href="index.html#tarifs">Tarifs</a><a href="index.html#contact">Contact</a></nav>
     </div>
     <div class="footer__legal">

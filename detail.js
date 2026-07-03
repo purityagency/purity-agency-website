@@ -3,8 +3,98 @@ if (history.scrollRestoration) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Injection des tentacules par section (DA Purity) ---
+  if (window.innerWidth >= 1100) {
+    document.querySelectorAll('.sec, .dp-section, section, header, footer').forEach((sec) => {
+      if (sec.querySelector('.ambient-tentacles') || sec.classList.contains('nav') || sec.id === 'nav' || sec.tagName === 'NAV') return;
+      
+      const position = window.getComputedStyle(sec).position;
+      if (position === 'static') {
+        sec.style.position = 'relative';
+      }
+
+      const tentaclesContainer = document.createElement('div');
+      tentaclesContainer.className = 'ambient-tentacles';
+      tentaclesContainer.setAttribute('aria-hidden', 'true');
+      tentaclesContainer.innerHTML = `
+        <div class="ambient-tentacle ambient-tentacle--left">
+          <div class="ambient-tentacle__float">
+            <div class="ambient-tentacle__inner"></div>
+          </div>
+        </div>
+        <div class="ambient-tentacle ambient-tentacle--right">
+          <div class="ambient-tentacle__float">
+            <div class="ambient-tentacle__inner"></div>
+          </div>
+        </div>
+      `;
+      sec.appendChild(tentaclesContainer);
+    });
+  }
+
   gsap.registerPlugin(ScrollTrigger);
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Animation Organique des Tentacules (DA Purity) ---
+  if (document.querySelector('.ambient-tentacle') && !prefersReduced) {
+    // 1. Flottaison lente organique (masse physique dans l'eau)
+    gsap.utils.toArray('.ambient-tentacle__float').forEach((floatEl, i) => {
+      gsap.to(floatEl, {
+        y: i % 2 === 0 ? "+=25" : "-=25",
+        rotation: i % 2 === 0 ? 3 : -3,
+        duration: 8 + (i % 3),
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true
+      });
+    });
+
+    // 2. Parallaxe de profondeur au scroll (ScrollTrigger par section parente)
+    gsap.utils.toArray('.ambient-tentacle').forEach((tentacle, i) => {
+      const parentSection = tentacle.closest('section, .sec, .dp-section, header, footer');
+      if (!parentSection) return;
+      gsap.to(tentacle, {
+        yPercent: i % 2 === 0 ? -12 : 12,
+        rotation: i % 2 === 0 ? "+=3" : "-=3",
+        ease: "none",
+        scrollTrigger: {
+          trigger: parentSection,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      });
+    });
+
+    // 3. Interaction fluide avec la souris (Inertie)
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+      
+      gsap.utils.toArray('.ambient-tentacle--left .ambient-tentacle__inner').forEach(inner => {
+        gsap.to(inner, {
+          x: mouseX * 35,
+          y: mouseY * 40,
+          overwrite: "auto",
+          duration: 2.2,
+          ease: "power2.out"
+        });
+      });
+      
+      gsap.utils.toArray('.ambient-tentacle--right .ambient-tentacle__inner').forEach(inner => {
+        gsap.to(inner, {
+          x: mouseX * 35,
+          y: mouseY * -35,
+          overwrite: "auto",
+          duration: 2.5,
+          ease: "power2.out"
+        });
+      });
+    });
+  }
 
   // Nav cachée au scroll vers le bas
   const nav = document.getElementById('nav');
@@ -105,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         phone: dForm.querySelector('#d-phone')?.value || '',
         activity: dForm.querySelector('#d-activity')?.value || '',
         need: dForm.querySelector('#d-need')?.value || '',
+        website_verification: dForm.querySelector('input[name="website_verification"]')?.value || '',
       };
       try {
         const res = await fetch('/api/contact', {

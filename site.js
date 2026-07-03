@@ -39,6 +39,37 @@ window.addEventListener('load', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Injection des tentacules par section (DA Purity) ---
+  if (window.innerWidth >= 1100) {
+    document.querySelectorAll('.sec, .dp-section, section, header, footer').forEach((sec) => {
+      // Ne pas injecter dans les sections invisibles, trop petites, ou déjà pourvues
+      if (sec.querySelector('.ambient-tentacles') || sec.classList.contains('nav') || sec.id === 'nav' || sec.tagName === 'NAV') return;
+      
+      // S'assurer que le parent est positionné pour contenir l'absolu
+      const position = window.getComputedStyle(sec).position;
+      if (position === 'static') {
+        sec.style.position = 'relative';
+      }
+
+      const tentaclesContainer = document.createElement('div');
+      tentaclesContainer.className = 'ambient-tentacles';
+      tentaclesContainer.setAttribute('aria-hidden', 'true');
+      tentaclesContainer.innerHTML = `
+        <div class="ambient-tentacle ambient-tentacle--left">
+          <div class="ambient-tentacle__float">
+            <div class="ambient-tentacle__inner"></div>
+          </div>
+        </div>
+        <div class="ambient-tentacle ambient-tentacle--right">
+          <div class="ambient-tentacle__float">
+            <div class="ambient-tentacle__inner"></div>
+          </div>
+        </div>
+      `;
+      sec.appendChild(tentaclesContainer);
+    });
+  }
+
 
   // Garde-fou : si GSAP n'est pas chargé sur cette page, on ne plante pas tout le script
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
@@ -52,6 +83,75 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Animation Organique des Tentacules (DA Purity) ---
+  const leftTentacle = document.querySelector('.ambient-tentacle--left');
+  const rightTentacle = document.querySelector('.ambient-tentacle--right');
+  
+  if (leftTentacle && rightTentacle && !prefersReduced) {
+    const leftFloat = leftTentacle.querySelector('.ambient-tentacle__float');
+    const rightFloat = rightTentacle.querySelector('.ambient-tentacle__float');
+    const leftInner = leftTentacle.querySelector('.ambient-tentacle__inner');
+    const rightInner = rightTentacle.querySelector('.ambient-tentacle__inner');
+
+    // 1. Flottaison lente organique (masse physique dans l'eau)
+    gsap.utils.toArray('.ambient-tentacle__float').forEach((floatEl, i) => {
+      gsap.to(floatEl, {
+        y: i % 2 === 0 ? "+=25" : "-=25",
+        rotation: i % 2 === 0 ? 3 : -3,
+        duration: 8 + (i % 3),
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true
+      });
+    });
+
+    // 2. Parallaxe de profondeur au scroll (ScrollTrigger par section parente)
+    gsap.utils.toArray('.ambient-tentacle').forEach((tentacle, i) => {
+      const parentSection = tentacle.closest('section, .sec, .dp-section, header, footer');
+      if (!parentSection) return;
+      gsap.to(tentacle, {
+        yPercent: i % 2 === 0 ? -12 : 12,
+        rotation: i % 2 === 0 ? "+=3" : "-=3",
+        ease: "none",
+        scrollTrigger: {
+          trigger: parentSection,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      });
+    });
+
+    // 3. Interaction fluide avec la souris (Inertie)
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+      
+      gsap.utils.toArray('.ambient-tentacle--left .ambient-tentacle__inner').forEach(inner => {
+        gsap.to(inner, {
+          x: mouseX * 35,
+          y: mouseY * 40,
+          overwrite: "auto",
+          duration: 2.2,
+          ease: "power2.out"
+        });
+      });
+      
+      gsap.utils.toArray('.ambient-tentacle--right .ambient-tentacle__inner').forEach(inner => {
+        gsap.to(inner, {
+          x: mouseX * 35,
+          y: mouseY * -35,
+          overwrite: "auto",
+          duration: 2.5,
+          ease: "power2.out"
+        });
+      });
+    });
+  }
 
   // --- Sticky Nav (GSAP) ---
   const nav = document.getElementById('nav');
@@ -357,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
       phone: form.querySelector('#f-phone')?.value || '',
       activity: form.querySelector('#f-activity')?.value || '',
       need: form.querySelector('#f-need')?.value || '',
+      website_verification: form.querySelector('input[name="website_verification"]')?.value || '',
     };
     try {
       const res = await fetch('/api/contact', {
@@ -744,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInited = true;
         // Message d'accueil (n'est pas envoyé à l'API, sert juste d'intro)
         setTimeout(() => {
-          const intro = "Salut 👋 Moi c'est OctoMask, de l'équipe Purity. Vous faites quoi comme métier ? Je vous dis vite fait ce qu'on pourrait améliorer pour vous.";
+          const intro = "Bonjour ! 👋 Je suis OctoMask, l'assistant virtuel de Purity Agency. Quel est votre métier ? Je peux vous indiquer concrètement ce que nous pourrions optimiser pour votre présence en ligne.";
           addMsg(intro, 'sys');
           chatMemory.push({ role: 'model', text: intro });
 

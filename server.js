@@ -101,7 +101,6 @@ Nos offres s'organisent ainsi :
 
 Règles de facturation & structure :
 - Prix HTVA. Petite entreprise sous régime de la franchise — TVA non applicable, art. 56bis CTVA (ne jamais parler de TVA facturée).
-- Paiement possible en 4× via Stripe/Klarna.
 - Le client est propriétaire à 100% de tout (code, domaine, comptes), sans engagement de durée.
 
 TA MISSION PRINCIPALE = GÉNÉRER DES LEADS (pas seulement informer).
@@ -115,7 +114,7 @@ PROTOCOLE DE CAPTURE (IMPORTANT) : lorsque tu disposes du contact, termine ta r�
 [LEAD]{"name":"...","email":"...","phone":"...","activity":"...","need":"..."}[/LEAD]
 Règles de la balise : uniquement quand tu as un nom + (email OU phone) ; champs inconnus = chaîne vide ""; JSON valide sur une seule ligne ; n'en émets qu'UNE par conversation (sauf correction explicite). Le texte AVANT la balise reste une phrase de confirmation humaine ("Parfait Marie, c'est noté ✅ — on vous écrit sous 24 h."). Ne mentionne JAMAIS la balise ni le mot "LEAD" au visiteur.
 
-Objectif secondaire si le visiteur refuse de laisser ses coordonnées : l'inviter à écrire à contact.purityagency@gmail.com.
+Objectif secondaire si le visiteur refuse de laisser ses coordonnées : l'inviter à écrire à contact@purity-agency.be.
 Règles de vérité : n'invente jamais de témoignages, de chiffres non sourcés ou de nom de fondateur (ne cite jamais Amir, présente l'agence comme un collectif). Reste concis (2 à 4 phrases), chaleureux, vouvoiement systématique, français.`;
 
 /* ── Rate-limit simple par IP (protège le quota Gemini) ── */
@@ -231,6 +230,13 @@ function handleContact(req, res) {
         const phone = String(data.phone || '').slice(0, 60).trim();
         const activity = String(data.activity || '').slice(0, 200).trim();
         const need = String(data.need || '').slice(0, 4000).trim();
+        const honeypot = String(data.website_verification || '').trim();
+
+        // Honeypot anti-spam check (silently drop bot submissions)
+        if (honeypot) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ ok: true, mode: 'sent' }));
+        }
 
         // Validation minimale
         if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !need) {
@@ -295,9 +301,11 @@ function handleContact(req, res) {
    dotfiles) répond 404 — indispensable avant mise en ligne. */
 const BLOCKED_FILES = new Set(['server.js', 'leads.log']);
 const BLOCKED_EXTENSIONS = new Set(['.png']); // WebP existe pour chaque PNG → bloquer les sources lourdes
+const PNG_EXCEPTIONS = new Set(['logo.png']); // og:image — les crawlers sociaux préfèrent le PNG
 function isServable(filePath) {
     const base = path.basename(filePath);
     if (base.startsWith('.') || BLOCKED_FILES.has(base)) return false;
+    if (PNG_EXCEPTIONS.has(base)) return true;
     // aucun segment du chemin ne doit être un dossier caché
     const rel = path.relative(ROOT, filePath);
     if (rel.split(path.sep).some(seg => seg.startsWith('.'))) return false;
@@ -369,8 +377,22 @@ const server = http.createServer((req, res) => {
         const contentType = MIME[ext];
         const fileSize    = stat.size;
         const rangeHeader = req.headers['range'];
-        // HTML/CSS/JS : toujours revalidés ; médias : cache long
-        const cacheControl = ['.html', '.css', '.js'].includes(ext) ? 'no-cache' : 'public, max-age=86400';
+        
+        // Cache headers
+        const lastModified = stat.mtime.toUTCString();
+        const cacheControl = ['.html', '.css', '.js'].includes(ext)
+            ? 'no-cache'
+            : 'public, max-age=31536000, immutable';
+
+        res.setHeader('Last-Modified', lastModified);
+        res.setHeader('Cache-Control', cacheControl);
+
+        // Cache validation (304 Not Modified)
+        const ifModifiedSince = req.headers['if-modified-since'];
+        if (ifModifiedSince && ifModifiedSince === lastModified) {
+            res.writeHead(304);
+            return res.end();
+        }
 
         if (rangeHeader) {
             // Parse et valide "bytes=start-end"

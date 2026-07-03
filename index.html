@@ -19,7 +19,7 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"C'est pas trop cher pour moi ?","acceptedAnswer":{"@type":"Answer","text":"On commence là où ça compte, à partir de 390 €, et le paiement peut se faire en 4 fois. Vous investissez davantage seulement quand ça vous rapporte déjà."}},
+{"@type":"Question","name":"C'est pas trop cher pour moi ?","acceptedAnswer":{"@type":"Answer","text":"On commence là où ça compte, à partir de 390 €. Vous investissez davantage seulement quand ça vous rapporte déjà."}},
 {"@type":"Question","name":"L'IA, c'est compliqué non ?","acceptedAnswer":{"@type":"Answer","text":"Pour vous, non — c'est tout l'intérêt. On installe, on règle, ça tourne. Vous ne voyez que les résultats."}},
 {"@type":"Question","name":"Je suis trop petit pour ça ?","acceptedAnswer":{"@type":"Answer","text":"C'est l'inverse. Plus vous êtes petit, plus chaque client compte. Nos offres sont justement pensées pour les indépendants et petites structures."}},
 {"@type":"Question","name":"Et si j'ai déjà un site ?","acceptedAnswer":{"@type":"Answer","text":"On regarde s'il vous sert vraiment. Souvent une refonte ciblée suffit à tout changer, sans repartir de zéro."}},
@@ -264,11 +264,11 @@
         <span class="b2__label">Le premier échange. Sans engagement.</span>
       </article>
 
-      <!-- 4× — segments paiement -->
+      <!-- 100 % — propriété totale -->
       <article class="b2 b2--split" data-reveal style="--d:.24s">
         <div class="b2__segs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        <div class="b2__num"><span class="b2__count" data-count="4">0</span><small>×</small></div>
-        <span class="b2__label">Paiement en plusieurs fois.</span>
+        <div class="b2__num"><span class="b2__count" data-count="100">0</span><small>%</small></div>
+        <span class="b2__label">Vous êtes propriétaire de tout : code, domaine, comptes.</span>
       </article>
 
     </div>
@@ -643,7 +643,7 @@
 
     <!-- Mentions de bas de page & CTA global -->
     <div class="sec-cta" data-reveal style="--d:.1s">
-      <p class="tva-mention">Petite entreprise soumise au régime de la franchise — TVA non applicable, art. 56bis CTVA. Paiement en 4× disponible via Stripe/Klarna.</p>
+      <p class="tva-mention">Petite entreprise soumise au régime de la franchise — TVA non applicable, art. 56bis CTVA.</p>
       <a href="#contact" class="btn btn--white btn--lg">Démarrer votre projet</a>
     </div>
   </div>
@@ -660,7 +660,7 @@
       <h2>Questions <em>fréquentes</em></h2>
     </div>
     <div class="faq-list">
-      <div class="faq" data-reveal><button class="faq__q" aria-expanded="false"><span>C'est pas trop cher pour moi ?</span><i></i></button><div class="faq__a"><div><p>On commence là où ça compte, à partir de 390 €, et le paiement peut se faire en 4 fois. Vous investissez davantage seulement quand ça vous rapporte déjà. L'idée n'est pas de dépenser, c'est de récupérer des clients.</p></div></div></div>
+      <div class="faq" data-reveal><button class="faq__q" aria-expanded="false"><span>C'est pas trop cher pour moi ?</span><i></i></button><div class="faq__a"><div><p>On commence là où ça compte, à partir de 390 €. Vous investissez davantage seulement quand ça vous rapporte déjà. L'idée n'est pas de dépenser, c'est de récupérer des clients.</p></div></div></div>
       <div class="faq" data-reveal style="--d:.05s"><button class="faq__q" aria-expanded="false"><span>L'IA, c'est compliqué non ?</span><i></i></button><div class="faq__a"><div><p>Pour vous, non — c'est tout l'intérêt. On installe, on règle, ça tourne. Vous ne voyez que les résultats : plus de réponses, plus de RDV, moins d'heures perdues. Jamais la technique.</p></div></div></div>
       <div class="faq" data-reveal style="--d:.1s"><button class="faq__q" aria-expanded="false"><span>Je suis trop petit pour ça ?</span><i></i></button><div class="faq__a"><div><p>C'est l'inverse. Plus vous êtes petit, plus chaque client compte, et plus le temps gagné change concrètement votre quotidien. Nos offres sont justement pensées pour les indépendants et petites structures.</p></div></div></div>
       <div class="faq" data-reveal style="--d:.15s"><button class="faq__q" aria-expanded="false"><span>Et si j'ai déjà un site ?</span><i></i></button><div class="faq__a"><div><p>On regarde s'il vous sert vraiment, ou s'il vous dessert. Souvent une refonte ciblée — vitesse, mobile, conversion — suffit à tout changer, sans repartir de zéro.</p></div></div></div>
@@ -688,6 +688,11 @@
         </div>
       </div>
       <form id="contact-form" class="form lg" data-reveal style="--d:.1s">
+        <!-- Honeypot anti-spam -->
+        <div style="position: absolute; left: -9999px; overflow: hidden; width: 0; height: 0;" aria-hidden="true">
+          <label for="f-website">Ne pas remplir :</label>
+          <input type="text" id="f-website" name="website_verification" tabindex="-1" autocomplete="off">
+        </div>
         <div class="field"><input type="text" id="f-name" name="name" placeholder=" " required autocomplete="name"><label for="f-name">Nom</label></div>
         <div class="field"><input type="email" id="f-email" name="email" placeholder=" " required autocomplete="email"><label for="f-email">E-mail</label></div>
         <div class="field"><input type="tel" id="f-phone" name="phone" placeholder=" " autocomplete="tel"><label for="f-phone">Téléphone <small>(facultatif)</small></label></div>
@@ -710,7 +715,7 @@
 
     <!-- CTA final -->
     <div class="footer__cta">
-      <p class="footer__tagline">On crée votre présence.<br><em>Elle travaille pour vous.</em></p>
+      <p class="footer__tagline">On crée votre présence. <br><em>Elle travaille pour vous.</em></p>
       <a href="#contact" class="btn btn--accent btn--lg">Parlons de votre projet</a>
     </div>
 

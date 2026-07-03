@@ -957,6 +957,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Sélecteur de langue (fonctionnel : traduction réelle via i18n/{code}.json) ---
+  const langsel = document.getElementById('langsel');
+  if (langsel) {
+    const SUPPORTED_LANGS = ['fr', 'en', 'nl', 'de']; // langues traduites et activées
+    const btn = document.getElementById('langsel-btn');
+    const options = Array.from(langsel.querySelectorAll('[role="option"]'));
+    const dictCache = {};
+
+    // Désactive proprement les langues pas encore traduites (pas de fausse traduction)
+    options.forEach(li => {
+      if (!SUPPORTED_LANGS.includes(li.dataset.lang)) {
+        li.setAttribute('aria-disabled', 'true');
+        li.title = 'Bientôt disponible';
+        li.style.opacity = '0.4';
+        li.style.pointerEvents = 'none';
+        li.style.cursor = 'not-allowed';
+      }
+    });
+
+    const openMenu = () => { langsel.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
+    const closeMenu = () => { langsel.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
+    const toggleMenu = () => langsel.classList.contains('is-open') ? closeMenu() : openMenu();
+
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+
+    const applyDict = (dict) => {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        if (dict[key] != null) el.setAttribute('aria-label', dict[key].replace(/<[^>]+>/g, ''));
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key] != null) el.setAttribute('placeholder', dict[key].replace(/<[^>]+>/g, ''));
+      });
+    };
+
+    const selectLang = async (li, { persist = true, userInitiated = false } = {}) => {
+      if (li.getAttribute('aria-disabled') === 'true') return;
+      const code = li.dataset.lang, flag = li.dataset.flag;
+
+      try {
+        if (!dictCache[code]) {
+          const res = await fetch(`/i18n/${code}.json`);
+          if (!res.ok) throw new Error('i18n fetch failed: ' + res.status);
+          dictCache[code] = await res.json();
+        }
+        applyDict(dictCache[code]);
+      } catch (err) {
+        console.warn('[i18n] Impossible de charger la langue', code, err);
+        if (userInitiated) return; // on n'affiche pas un site à moitié traduit
+      }
+
+      options.forEach(o => o.classList.remove('is-active'));
+      li.classList.add('is-active');
+      btn.querySelector('[data-flag]').textContent = flag;
+      btn.querySelector('[data-code]').textContent = code.toUpperCase();
+      document.documentElement.lang = code;
+      document.documentElement.dir = (code === 'ar') ? 'rtl' : 'ltr';
+      if (persist) { try { localStorage.setItem('purity_lang', code); } catch {} }
+      closeMenu();
+    };
+    options.forEach(li => li.addEventListener('click', () => selectLang(li, { userInitiated: true })));
+
+    // restaure le choix mémorisé (uniquement s'il fait partie des langues traduites)
+    try {
+      const saved = localStorage.getItem('purity_lang');
+      if (saved && SUPPORTED_LANGS.includes(saved)) {
+        const li = options.find(o => o.dataset.lang === saved);
+        if (li) selectLang(li, { persist: false });
+      }
+    } catch {}
+
+    // fermeture : clic extérieur + Échap
+    document.addEventListener('click', (e) => { if (!langsel.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  }
+
   // --- Bulle teaser d'onboarding (12s OU 1er scroll, une seule fois) ---
   const teaser = document.getElementById('chat-teaser');
   if (teaser) {

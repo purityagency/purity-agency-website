@@ -14,7 +14,7 @@ Le serveur Node.js (`server.js`) servant les fichiers statiques de manière dire
 ```text
 purity-agency-website/
 │
-├── 📄 Pages HTML (Points d'entrée)
+├── 📄 Pages HTML (Points d'entrée à la racine pour URL propres)
 │   ├── index.html                           # Page d'accueil principale (Hub & Grille de services)
 │   ├── presence.html                        # Service : Présence en ligne & Landing Pages
 │   ├── outils.html                          # Service : Outils métiers & Applications sur mesure
@@ -27,26 +27,28 @@ purity-agency-website/
 │   ├── article-site-ne-convertit-pas.html   # Article : 7 raisons de baisse de conversion
 │   └── legal.html                           # Mentions légales, Confidentialité & Cookies
 │
-├── ⚡ Logique Client (Vanilla JavaScript + GSAP)
-│   ├── site.js                              # Scripts globaux (Chatbot, Nav, Animations Accueil)
-│   └── detail.js                            # Scripts spécifiques aux pages de services (Sub-sections, FAQ)
-│
-├── 🎨 Design & Styles (CSS BEM-inspired)
+├── 📁 css/                                  # Styles (CSS BEM-inspired)
 │   ├── site.css                             # Design System principal, variables violet/glass, layouts
 │   └── site-extra.css                       # Styles complémentaires et animations avancées
 │
-├── ⚙️ Serveur & Backend (Pure Node.js)
-│   ├── server.js                            # Serveur HTTP natif (sans Express) : routage, API Chatbot, Contact
-│   └── leads.log                            # Journal local de capture des leads (fallback fichiers)
+├── 📁 js/                                   # Scripts (Vanilla JS + GSAP)
+│   ├── site.js                              # Scripts globaux (Chatbot, Nav, Animations Accueil)
+│   └── detail.js                            # Scripts spécifiques aux pages de services
 │
-└── 📦 Assets (Médias & Identité)
-    ├── logo.webp                            # Logo officiel Purity Agency
-    ├── favicon.svg                          # Favicon vectoriel du site
-    ├── hero-bg.webp                         # Fond d'écran du Hero section
-    ├── service1.webp à service4.webp        # Visuels premium des services
-    ├── tentacle-left.webp                   # Tentacule gauche OctoMask
-    ├── tentacle-right.webp                  # Tentacule droite OctoMask
-    └── octomask-floating.mp4                # Vidéo d'ambiance du chatbot
+├── 📁 assets/                               # Ressources médias (Images & Vidéos)
+│   ├── logo.webp                            # Logo officiel Purity Agency
+│   ├── logo.png                             # Logo alternatif (fallbacks)
+│   ├── favicon.svg                          # Favicon vectoriel du site
+│   ├── hero-bg.webp                         # Fond d'écran du Hero section (WebP)
+│   ├── hero-bg.jpg                          # Fond d'écran alternatif (JPEG fallback)
+│   ├── service1.webp à service4.webp        # Visuels premium des services
+│   ├── tentacle-left.webp                   # Tentacule gauche OctoMask
+│   ├── tentacle-right.webp                  # Tentacule droite OctoMask
+│   └── octomask-floating.mp4                # Vidéo d'ambiance du chatbot
+│
+└── ⚙️ Serveur & Configurations
+    ├── server.js                            # Serveur HTTP natif (sans Express)
+    └── leads.log                            # Journal local de capture des leads
 ```
 
 ---

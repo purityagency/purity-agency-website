@@ -193,12 +193,12 @@ p {
 }
 .sec--tentacles::before {
   left: 0;
-  background-image: url('tentacle-left.webp');
+  background-image: url('../assets/tentacle-left.webp');
   background-position: left center;
 }
 .sec--tentacles::after {
   right: 0;
-  background-image: url('tentacle-right.webp');
+  background-image: url('../assets/tentacle-right.webp');
   background-position: right center;
   -webkit-mask-image: linear-gradient(to left, #000 0%, #000 45%, transparent 100%);
   mask-image: linear-gradient(to left, #000 0%, #000 45%, transparent 100%);
@@ -265,12 +265,12 @@ p {
 }
 
 .ambient-tentacle--left .ambient-tentacle__inner {
-  background-image: url('tentacle-left.webp');
+  background-image: url('../assets/tentacle-left.webp');
   background-position: left center;
 }
 
 .ambient-tentacle--right .ambient-tentacle__inner {
-  background-image: url('tentacle-right.webp');
+  background-image: url('../assets/tentacle-right.webp');
   background-position: right center;
 }
 

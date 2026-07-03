@@ -52,7 +52,7 @@ function isOriginAllowed(req) {
 /* ── Compressible MIME types ── */
 const COMPRESSIBLE = new Set([
     'text/html; charset=utf-8', 'text/css', 'application/javascript',
-    'image/svg+xml', 'application/xml', 'text/plain; charset=utf-8',
+    'image/svg+xml', 'application/xml', 'text/plain; charset=utf-8', 'application/json',
 ]);
 
 /* ── Assistant IA (proxy Gemini, clé côté serveur uniquement) ── */
@@ -331,6 +331,7 @@ const MIME = {
     '.webp' : 'image/webp',
     '.txt'  : 'text/plain; charset=utf-8',
     '.xml'  : 'application/xml',
+    '.json' : 'application/json',
 };
 
 const server = http.createServer((req, res) => {
@@ -380,7 +381,7 @@ const server = http.createServer((req, res) => {
         
         // Cache headers
         const lastModified = stat.mtime.toUTCString();
-        const cacheControl = ['.html', '.css', '.js'].includes(ext)
+        const cacheControl = ['.html', '.css', '.js', '.json'].includes(ext)
             ? 'no-cache'
             : 'public, max-age=31536000, immutable';
 

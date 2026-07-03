@@ -960,21 +960,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Sélecteur de langue (fonctionnel : traduction réelle via i18n/{code}.json) ---
   const langsel = document.getElementById('langsel');
   if (langsel) {
-    const SUPPORTED_LANGS = ['fr', 'en', 'nl', 'de']; // langues traduites et activées
+    const SUPPORTED_LANGS = ['fr', 'en', 'nl', 'de', 'es', 'pt', 'it', 'pl', 'ru', 'ar', 'zh', 'hi'];
     const btn = document.getElementById('langsel-btn');
     const options = Array.from(langsel.querySelectorAll('[role="option"]'));
     const dictCache = {};
-
-    // Désactive proprement les langues pas encore traduites (pas de fausse traduction)
-    options.forEach(li => {
-      if (!SUPPORTED_LANGS.includes(li.dataset.lang)) {
-        li.setAttribute('aria-disabled', 'true');
-        li.title = 'Bientôt disponible';
-        li.style.opacity = '0.4';
-        li.style.pointerEvents = 'none';
-        li.style.cursor = 'not-allowed';
-      }
-    });
 
     const openMenu = () => { langsel.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
     const closeMenu = () => { langsel.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
@@ -1024,12 +1013,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     options.forEach(li => li.addEventListener('click', () => selectLang(li, { userInitiated: true })));
 
-    // restaure le choix mémorisé (uniquement s'il fait partie des langues traduites)
+    // restaure le choix mémorisé ou détecte la langue navigateur
     try {
       const saved = localStorage.getItem('purity_lang');
-      if (saved && SUPPORTED_LANGS.includes(saved)) {
-        const li = options.find(o => o.dataset.lang === saved);
-        if (li) selectLang(li, { persist: false });
+      const detected = (navigator.language || '').slice(0, 2).toLowerCase();
+      const preferred = saved || (SUPPORTED_LANGS.includes(detected) ? detected : null);
+      if (preferred && preferred !== 'fr') {
+        const li = options.find(o => o.dataset.lang === preferred);
+        if (li) selectLang(li, { persist: !!saved });
       }
     } catch {}
 

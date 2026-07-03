@@ -1026,7 +1026,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       options.forEach(o => o.classList.remove('is-active'));
       li.classList.add('is-active');
-      btn.querySelector('[data-flag]').textContent = flag;
+      const flagImg = btn.querySelector('[data-flag] img');
+      if (flagImg) flagImg.src = flag;
       btn.querySelector('[data-code]').textContent = code.toUpperCase();
       document.documentElement.lang = code;
       document.documentElement.dir = (code === 'ar') ? 'rtl' : 'ltr';

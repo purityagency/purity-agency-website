@@ -11,7 +11,6 @@
   "langsel.aria": "Kies uw taal",
   "langsel.soon": "Binnenkort beschikbaar",
   "burger.aria": "Menu",
-
   "hero.title": "Uw volgende medewerker<br>slaapt <em>nooit.</em>",
   "hero.sub": "Websites, lokale zichtbaarheid, automatisaties en integraties.<br><strong>Concrete oplossingen om klanten aan te trekken, te overtuigen en te binden.</strong>",
   "hero.cta2": "Bekijk onze realisaties",
@@ -19,7 +18,6 @@
   "hero.proof2": "Geen verbintenis",
   "hero.proof3": "100&nbsp;% veilig",
   "hero.scroll": "Ontdekken",
-
   "probleme.title": "Wat we voor u doen",
   "card1.title": "Krachtige websites",
   "card1.desc": "Snelle, moderne sites, geoptimaliseerd om bezoekers in klanten om te zetten.",
@@ -29,7 +27,6 @@
   "card3.desc": "Praat rechtstreeks met uw klanten en mis nooit meer een kans.",
   "card4.title": "Automatisatie &amp; AI",
   "card4.desc": "Win tijd, automatiseer uw taken en focus op wat echt telt.",
-
   "marquee.restaurants": "Restaurants",
   "marquee.artisans": "Vakmensen",
   "marquee.coiffeurs": "Kappers",
@@ -38,7 +35,6 @@
   "marquee.commerces": "Winkels",
   "marquee.cabinets": "Praktijken",
   "marquee.pme": "KMO's",
-
   "scene.cta": "Bekijk in detail",
   "scene1.title": "Wij maken u <em>zichtbaar.</em>",
   "scene1.lead": "Wanneer een klant uw beroep intikt op Google, moet hij ú vinden — niet de concurrent verderop. Wij bouwen een aanwezigheid die vanaf de eerste seconde vertrouwen wekt.",
@@ -61,14 +57,12 @@
   "scene4.tag1": "Bedrijfsapplicaties",
   "scene4.tag2": "Maatwerktools",
   "scene4.tag3": "Integraties",
-
   "stat1.top": "Vanaf",
   "stat1.label": "Uw eerste online aanwezigheid. Zonder verborgen offerte.",
   "stat2.label": "Gegarandeerd antwoord. Altijd.",
   "stat3.badge": "Gratis",
   "stat3.label": "Het eerste gesprek. Zonder verbintenis.",
   "stat4.label": "U bent eigenaar van alles: code, domein, accounts.",
-
   "why.tag": "Waarom Purity",
   "why.title": "De grondigheid van een agentschap.<br>De prijs van een zelfstandige.<br><em>Obsessie voor resultaat.</em>",
   "why1.q": "Bent u zaterdag open?",
@@ -82,7 +76,6 @@
   "why3.cta": "Op maat",
   "why3.h3": "Design als <em>oneerlijk voordeel.</em>",
   "why3.p": "Wij weigeren generieke templates. Op het scherm moet uw activiteit onmiddellijk vertrouwen wekken, premium aanvoelen en de lokale concurrentie overstijgen.",
-
   "method.tag": "Onze methode",
   "method.title": "Eenvoudig voor u.<br><em>Strak bij ons.</em>",
   "step1.h3": "Wij luisteren",
@@ -93,7 +86,6 @@
   "step3.p": "Snel, goed. U volgt, zonder te moeten beheren.",
   "step4.h3": "Wij begeleiden",
   "step4.p": "Wij blijven aanwezig. Het blijft draaien.",
-
   "preuve.tag": "Onze beloftes",
   "preuve.title": "Waar u op kunt <em>rekenen.</em>",
   "preuve.lead": "Geen loze beloftes. Eenvoudige engagementen die we bij elk project nakomen.",
@@ -105,13 +97,11 @@
   "promise3.p": "Als het resultaat niet premium aanvoelt, werken we het bij. Het is onze naam die erop staat.",
   "promise4.h3": "Eén vast aanspreekpunt",
   "promise4.p": "Eén persoon volgt uw project op, bereikbaar, die uw dossier van binnen en van buiten kent.",
-
   "tarifs.tag": "Tarieven",
   "tarifs.title": "Duidelijke prijzen. Zichtbaar.<br><em>Zonder verrassingen.</em>",
   "tarifs.lead": "We starten waar u het nodig heeft. U schaalt op wanneer u wilt.",
-  "tab.briques": "🧱 De Bouwstenen",
-  "tab.packs": "💼 Sector Packs",
-
+  "tab.briques": "De Bouwstenen",
+  "tab.packs": "Sector Packs",
   "briqueA.cat": "A. Aanwezigheid",
   "briqueA.h3": "Gevonden worden &amp; geloofwaardig zijn",
   "briqueA.p": "Solide fundamenten leggen voor uw online zichtbaarheid.",
@@ -124,7 +114,6 @@
   "briqueA.item6": "Pro E-mail + Domeinpakket",
   "briqueA.item7": "Herwerking van bestaande site",
   "briqueA.item7_price": "op offerte",
-
   "briqueB.cat": "B. Acquisitie",
   "briqueB.h3": "Klanten genereren",
   "briqueB.p": "Aandacht trekken en uw ideale prospects in Wallonië aantrekken.",
@@ -134,7 +123,6 @@
   "briqueB.item2_note": "Beheer: vanaf € 150/maand",
   "briqueB.item3": "E-mail- &amp; sms-marketing",
   "briqueB.item3_note": "Opvolging: vanaf € 79/maand",
-
   "briqueC.cat": "C. Automatisatie &amp; AI",
   "briqueC.h3": "Tijd winnen",
   "briqueC.p": "Technologie inzetten voor uw dagelijkse werking.",
@@ -147,50 +135,41 @@
   "briqueC.item3_name": "Niveau 3 — Systeem",
   "briqueC.item3_note": "Optioneel maandelijks: € 89/maand",
   "briqueC.item3_desc": "Meerdere gekoppelde automatisaties (omnichannel inbox, documentherkenning ➔ CRM/boekhouding).",
-
   "briqueD.cat": "D. Op maat",
   "briqueD.h3": "Bedrijfstools",
   "briqueD.p": "Applicaties op maat, afgestemd op uw manier van werken.",
   "briqueD.item1": "Bedrijfsapplicatie",
   "briqueD.item1_desc": "Klantopvolging, interne planning, klantenportaal — op offerte.",
-
   "briqueE.cat": "E. Begeleiding",
   "briqueE.h3": "Onderhoud &amp; Uitbreidingen",
   "briqueE.p": "De veiligheid en continue optimalisatie van uw digitale tools.",
   "briqueE.item1": "Support &amp; Onderhoud",
   "briqueE.item1_desc": "Updates, beveiliging, back-ups en prioritaire ondersteuning.",
-
   "pack1.tag": "Volle Agenda",
   "pack1.h3": "Kapsalon &amp; Beauty",
   "pack1.pitch": "Online boeken 24/7 + automatische no-show-herinneringen + geautomatiseerde Google-reviews.",
   "pack1.roi": "Een salon verliest gemiddeld € 2.500 tot € 5.000/maand aan gemiste afspraken. Dit pack lost het probleem al vanaf maand één op.",
   "pack1.target": "Kappers, barbiers, schoonheidsinstituten, nagelstudio's, esthetiek.",
-
   "pack2.tag": "Nooit Meer Gemist",
   "pack2.h3": "Vakman &amp; Bouw",
   "pack2.pitch": "Lokale Google-aanwezigheid + slimme detectie van gemiste oproepen + geautomatiseerde WhatsApp-agent + snelle offertes.",
   "pack2.roi": "62 % van de oproepen naar vakmensen wordt niet opgenomen. Dit pack vangt klanten meteen op, in plaats van ze naar de concurrent te laten gaan.",
   "pack2.target": "Loodgieters, elektriciens, verwarmingstechnici, schrijnwerkers, renovatie.",
-
   "pack3.tag": "Altijd Open",
   "pack3.h3": "Horeca",
   "pack3.pitch": "Google-aanwezigheid + online reservatie- of bestelmodule + automatische reviews + sociale-mediasynchronisatie.",
   "pack3.roi": "30 % tot 50 % van de reservaties gebeurt buiten de openingsuren. Zonder systeem raakt u die klanten kwijt.",
   "pack3.target": "Restaurants, traiteurs, bars, food trucks.",
-
   "pack4.tag": "Rustige Praktijk",
   "pack4.h3": "Zorgverlener &amp; Wellness",
   "pack4.pitch": "Online boeken + sms-herinneringen + veilig voorschot tegen no-show + ultra-eenvoudig patiëntenportaal.",
   "pack4.roi": "No-show is de grootste vijand van elke praktijk. Sms-herinneringen verminderen vergeten afspraken met 40 %, en een voorschot verlaagt no-shows met 65 %.",
   "pack4.target": "Kinesisten, osteopaten, coaches, therapeuten, medische esthetiek.",
-
   "pack.roi_label": "ROI-onderbouwing:",
   "pack.target_label": "Doelgroep:",
   "pack.cta": "Dit pack activeren",
-
   "tarifs.tva": "Kleine onderneming onder de vrijstellingsregeling — btw niet van toepassing, art. 56bis CTVA.",
   "tarifs.cta": "Start uw project",
-
   "faq.tag": "FAQ",
   "faq.title": "Veelgestelde <em>vragen</em>",
   "faq1.q": "Is dit niet te duur voor mij?",
@@ -209,12 +188,10 @@
   "faq7.a": "Perfect. Wij werken à la carte. Enkel een website nodig, of enkel uw WhatsApp automatiseren? Wij lossen precies dat op, zonder u de rest te verkopen.",
   "faq8.q": "Waar bent u gevestigd?",
   "faq8.a": "In Charleroi. Wij werken in heel Wallonië en België — op afstand of ter plaatse, naargelang wat u het beste uitkomt.",
-
   "contact.tag": "Contact",
   "contact.title": "Uw aanwezigheid kan deze week al <em>aan het werk gaan.</em>",
   "contact.lead": "Een gratis gesprek, zonder verbintenis. We bekijken samen wat u klanten kost — en hoe we daar een einde aan maken.",
   "contact.location": "Charleroi &amp; heel Wallonië",
-
   "form.name": "Naam",
   "form.email": "E-mail",
   "form.phone": "Telefoon <small>(optioneel)</small>",
@@ -225,7 +202,6 @@
   "form.sent_title": "Bericht verstuurd!",
   "form.sent_sub": "We nemen snel contact met u op.",
   "form.honeypot_label": "Niet invullen:",
-
   "footer.tagline": "Wij bouwen uw aanwezigheid. <br><em>Ze werkt voor u.</em>",
   "footer.pitch": "Digitaal agentschap in Charleroi. Websites, lokale zichtbaarheid, automatisatie &amp; AI voor zelfstandigen en KMO's.",
   "footer.email_label": "E-mail",
@@ -238,7 +214,6 @@
   "footer.legal3": "Cookies",
   "footer.legal_line": "<strong>Purity Agency</strong> · KBO&nbsp;1036.775.590 · Kleine onderneming — vrijstellingsregeling, btw niet van toepassing (art.&nbsp;56bis CTVA)",
   "footer.copyright": "© 2026 Purity Agency. Alle rechten voorbehouden.",
-
   "chat.title": "OctoMask AI",
   "chat.status": "Online",
   "chat.placeholder": "Stel uw vraag...",
@@ -247,7 +222,6 @@
   "chat.aria_send": "Versturen",
   "teaser.text": "Een project in gedachten?<br><strong>Laten we praten — het is gratis.</strong>",
   "teaser.close_aria": "Sluiten",
-
   "cookie.text": "Deze site gebruikt externe lettertypen (Google Fonts) en bibliotheken (Cloudflare CDN). Er worden geen advertentiecookies geplaatst. <a href=\"legal.html#cookies\">Meer weten</a>",
   "cookie.accept": "Begrepen"
 }

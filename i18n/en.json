@@ -11,7 +11,6 @@
   "langsel.aria": "Choose language",
   "langsel.soon": "Coming soon",
   "burger.aria": "Menu",
-
   "hero.title": "Your next employee<br>never sleeps <em>a wink.</em>",
   "hero.sub": "Websites, local visibility, automations and integrations.<br><strong>Real solutions to attract, convert and retain your customers.</strong>",
   "hero.cta2": "See our work",
@@ -19,7 +18,6 @@
   "hero.proof2": "No commitment",
   "hero.proof3": "100&nbsp;% secure",
   "hero.scroll": "Discover",
-
   "probleme.title": "What we do for you",
   "card1.title": "High-performance websites",
   "card1.desc": "Fast, modern sites optimised to turn your visitors into customers.",
@@ -29,7 +27,6 @@
   "card3.desc": "Chat with your customers instantly and never miss an opportunity again.",
   "card4.title": "Automation &amp; AI",
   "card4.desc": "Save time, automate your tasks and focus on what matters.",
-
   "marquee.restaurants": "Restaurants",
   "marquee.artisans": "Tradespeople",
   "marquee.coiffeurs": "Hairdressers",
@@ -38,7 +35,6 @@
   "marquee.commerces": "Shops",
   "marquee.cabinets": "Practices",
   "marquee.pme": "SMEs",
-
   "scene.cta": "See in detail",
   "scene1.title": "We make you <em>visible.</em>",
   "scene1.lead": "When a customer types your trade into Google, it's you they need to find — not the competitor next door. We build a presence that inspires trust from the very first second.",
@@ -61,14 +57,12 @@
   "scene4.tag1": "Business applications",
   "scene4.tag2": "Custom tools",
   "scene4.tag3": "Integrations",
-
   "stat1.top": "Starting from",
   "stat1.label": "Your first online presence. No hidden quote.",
   "stat2.label": "Guaranteed reply. Always.",
   "stat3.badge": "Free",
   "stat3.label": "The first conversation. No commitment.",
   "stat4.label": "You own everything: code, domain, accounts.",
-
   "why.tag": "Why Purity",
   "why.title": "An agency's rigour.<br>An independent's price.<br><em>Obsessed with results.</em>",
   "why1.q": "Are you open on Saturdays?",
@@ -82,7 +76,6 @@
   "why3.cta": "Made to measure",
   "why3.h3": "Design as an <em>unfair advantage.</em>",
   "why3.p": "We refuse generic templates. On screen, your business needs to inspire trust instantly, feel premium, and outshine the local competition.",
-
   "method.tag": "Our method",
   "method.title": "Simple for you.<br><em>Precise for us.</em>",
   "step1.h3": "We listen",
@@ -93,7 +86,6 @@
   "step3.p": "Fast, well done. You follow along, no managing needed.",
   "step4.h3": "We support",
   "step4.p": "We stick around. It keeps running.",
-
   "preuve.tag": "Our commitments",
   "preuve.title": "What you can <em>count on.</em>",
   "preuve.lead": "No empty promises. Simple commitments we keep on every project.",
@@ -105,13 +97,11 @@
   "promise3.p": "If the result isn't premium, we rework it. It's our name on it.",
   "promise4.h3": "One single contact",
   "promise4.p": "One person follows your project, reachable, who knows your file by heart.",
-
   "tarifs.tag": "Pricing",
   "tarifs.title": "Clear prices. Displayed.<br><em>No surprises.</em>",
   "tarifs.lead": "We start wherever you need it. You scale up whenever you want.",
-  "tab.briques": "🧱 The Building Blocks",
-  "tab.packs": "💼 Trade Packs",
-
+  "tab.briques": "The Building Blocks",
+  "tab.packs": "Trade Packs",
   "briqueA.cat": "A. Presence",
   "briqueA.h3": "Be found &amp; credible",
   "briqueA.p": "Building solid foundations for your online visibility.",
@@ -124,7 +114,6 @@
   "briqueA.item6": "Pro Email + Domain Pack",
   "briqueA.item7": "Redesign of existing site",
   "briqueA.item7_price": "on quote",
-
   "briqueB.cat": "B. Acquisition",
   "briqueB.h3": "Generate customers",
   "briqueB.p": "Capture attention and attract your ideal prospects in Wallonia.",
@@ -134,7 +123,6 @@
   "briqueB.item2_note": "Management: from €150/month",
   "briqueB.item3": "Email &amp; SMS Marketing",
   "briqueB.item3_note": "Follow-up: from €79/month",
-
   "briqueC.cat": "C. Automation &amp; AI",
   "briqueC.h3": "Save time",
   "briqueC.p": "Putting technology to work for your daily operations.",
@@ -147,50 +135,41 @@
   "briqueC.item3_name": "Level 3 — System",
   "briqueC.item3_note": "Optional monthly: €89/month",
   "briqueC.item3_desc": "Several connected automations (omnichannel inbox, document reading ➔ CRM/accounting).",
-
   "briqueD.cat": "D. Custom-built",
   "briqueD.h3": "Business Tools",
   "briqueD.p": "Bespoke applications tailored to the way you work.",
   "briqueD.item1": "Business Application",
   "briqueD.item1_desc": "Customer tracking, internal scheduling, client portal — on quote.",
-
   "briqueE.cat": "E. Ongoing support",
   "briqueE.h3": "Maintenance &amp; Upgrades",
   "briqueE.p": "The security and continuous optimisation of your digital tools.",
   "briqueE.item1": "Support &amp; Maintenance",
   "briqueE.item1_desc": "Updates, security, backups, and priority assistance.",
-
   "pack1.tag": "Full Diary",
   "pack1.h3": "Hair &amp; Beauty",
   "pack1.pitch": "24/7 online booking + automatic no-show reminders + automated Google review collection.",
   "pack1.roi": "A salon loses on average €2,500 to €5,000/month to missed appointments. This pack fixes the problem from month one.",
   "pack1.target": "Hairdressers, barbers, beauty salons, nail bars, aesthetics.",
-
   "pack2.tag": "Zero Missed Call",
   "pack2.h3": "Trades &amp; Construction",
   "pack2.pitch": "Local Google presence + smart missed-call catcher + automated WhatsApp agent + quick quotes.",
   "pack2.roi": "62% of calls to tradespeople go unanswered. This pack captures customers instantly instead of letting them go to a competitor.",
   "pack2.target": "Plumbers, electricians, heating engineers, joiners, renovation.",
-
   "pack3.tag": "Always Open",
   "pack3.h3": "Hospitality &amp; Catering",
   "pack3.pitch": "Google presence + online booking or ordering module + automatic review collection + social sync.",
   "pack3.roi": "30% to 50% of bookings happen outside opening hours. Without a system, those customers are lost.",
   "pack3.target": "Restaurants, caterers, bars, food trucks.",
-
   "pack4.tag": "Calm Practice",
   "pack4.h3": "Practitioners &amp; Wellness",
   "pack4.pitch": "Online booking + SMS reminders + secure no-show deposit + ultra-simple patient portal.",
   "pack4.roi": "No-shows are practitioners' worst enemy. SMS reminders cut forgotten appointments by 40%, and deposits cut no-shows by 65%.",
   "pack4.target": "Physiotherapists, osteopaths, coaches, therapists, medical aesthetics.",
-
   "pack.roi_label": "ROI justification:",
   "pack.target_label": "Target:",
   "pack.cta": "Activate this pack",
-
   "tarifs.tva": "Small business under the VAT exemption scheme (franchise) — VAT not applicable, art. 56bis CTVA.",
   "tarifs.cta": "Start your project",
-
   "faq.tag": "FAQ",
   "faq.title": "Frequently <em>asked questions</em>",
   "faq1.q": "Isn't this too expensive for me?",
@@ -209,12 +188,10 @@
   "faq7.a": "Perfect. We work à la carte. Just need a website, or just want to automate your WhatsApp? We handle that need, without selling you the rest.",
   "faq8.q": "Where are you based?",
   "faq8.a": "In Charleroi. We work across Wallonia and Belgium — remotely or on site, whichever suits you.",
-
   "contact.tag": "Contact",
   "contact.title": "Your presence can start working <em>this week.</em>",
   "contact.lead": "A free, no-commitment conversation. We look together at what's costing you customers — and how to fix it.",
   "contact.location": "Charleroi &amp; all of Wallonia",
-
   "form.name": "Name",
   "form.email": "Email",
   "form.phone": "Phone <small>(optional)</small>",
@@ -225,7 +202,6 @@
   "form.sent_title": "Message sent!",
   "form.sent_sub": "We'll get back to you very soon.",
   "form.honeypot_label": "Leave blank:",
-
   "footer.tagline": "We build your presence. <br><em>It works for you.</em>",
   "footer.pitch": "Digital agency based in Charleroi. Websites, local visibility, automation &amp; AI for freelancers and SMEs.",
   "footer.email_label": "Email",
@@ -238,7 +214,6 @@
   "footer.legal3": "Cookies",
   "footer.legal_line": "<strong>Purity Agency</strong> · BCE&nbsp;1036.775.590 · Small business — VAT exemption scheme (art.&nbsp;56bis CTVA)",
   "footer.copyright": "© 2026 Purity Agency. All rights reserved.",
-
   "chat.title": "OctoMask AI",
   "chat.status": "Online",
   "chat.placeholder": "Ask your question...",
@@ -247,7 +222,6 @@
   "chat.aria_send": "Send",
   "teaser.text": "Got a project in mind?<br><strong>Let's talk — it's free.</strong>",
   "teaser.close_aria": "Close",
-
   "cookie.text": "This site uses external fonts (Google Fonts) and libraries (Cloudflare CDN). No advertising cookies are set. <a href=\"legal.html#cookies\">Learn more</a>",
   "cookie.accept": "Got it"
 }

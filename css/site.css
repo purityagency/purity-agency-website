@@ -2692,6 +2692,10 @@ footer {
   border-radius: 99px;
   transition: all var(--t-med);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .tarifs-tab:hover {
   color: #fff;

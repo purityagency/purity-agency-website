@@ -11,7 +11,6 @@
   "langsel.aria": "选择语言",
   "langsel.soon": "即将推出",
   "burger.aria": "菜单",
-
   "hero.title": "您的下一位员工<br>从不<em>休息。</em>",
   "hero.sub": "网站建设、本地曝光、自动化与系统集成。<br><strong>切实方案，助您吸引、转化并留住客户。</strong>",
   "hero.cta2": "查看我们的案例",
@@ -19,7 +18,6 @@
   "hero.proof2": "无需承诺",
   "hero.proof3": "100&nbsp;% 安全",
   "hero.scroll": "了解更多",
-
   "probleme.title": "我们为您做什么",
   "card1.title": "高性能网站",
   "card1.desc": "快速、现代的网站，专为将访客转化为客户而优化。",
@@ -29,7 +27,6 @@
   "card3.desc": "即时与客户沟通，不错失任何商机。",
   "card4.title": "自动化 &amp; 人工智能",
   "card4.desc": "节省时间，自动化任务，专注于核心业务。",
-
   "marquee.restaurants": "餐厅",
   "marquee.artisans": "工匠",
   "marquee.coiffeurs": "发廊",
@@ -38,7 +35,6 @@
   "marquee.commerces": "商店",
   "marquee.cabinets": "诊所",
   "marquee.pme": "中小企业",
-
   "scene.cta": "查看详情",
   "scene1.title": "让您<em>被看见。</em>",
   "scene1.lead": "当客户在 Google 上搜索您的行业，他们必须找到您——而不是隔壁的竞争对手。我们打造从第一秒就赢得信任的数字形象。",
@@ -61,14 +57,12 @@
   "scene4.tag1": "行业专属应用",
   "scene4.tag2": "定制工具",
   "scene4.tag3": "系统集成",
-
   "stat1.top": "起价",
   "stat1.label": "您的第一个线上形象。无隐性报价。",
   "stat2.label": "保证回复。始终如一。",
   "stat3.badge": "免费",
   "stat3.label": "首次沟通。无需承诺。",
   "stat4.label": "您拥有一切：代码、域名、账号。",
-
   "why.tag": "为何选择 Purity",
   "why.title": "专业机构的严谨。<br>自由职业者的价格。<br><em>对结果的执着追求。</em>",
   "why1.q": "你们周六开放吗？",
@@ -82,7 +76,6 @@
   "why3.cta": "定制方案",
   "why3.h3": "设计是<em>不公平的优势。</em>",
   "why3.p": "我们拒绝通用模板。在屏幕上，您的业务必须立即赢得信任，散发高端气质，并让本地竞争对手相形见绌。",
-
   "method.tag": "我们的方法",
   "method.title": "对您而言简单。<br><em>对我们而言严格。</em>",
   "step1.h3": "倾听",
@@ -93,7 +86,6 @@
   "step3.p": "快速、高质量。您跟进，无需管理。",
   "step4.h3": "陪伴",
   "step4.p": "我们持续在旁。它继续运转。",
-
   "preuve.tag": "我们的承诺",
   "preuve.title": "您可以依赖<em>的事。</em>",
   "preuve.lead": "没有空洞承诺。每个项目都兑现的简单承诺。",
@@ -105,13 +97,11 @@
   "promise3.p": "如果结果不够高端，我们重做。我们的名誉在此。",
   "promise4.h3": "单一对接人",
   "promise4.p": "一个人全程跟进您的项目，随时可联系，对您的需求了如指掌。",
-
   "tarifs.tag": "价格",
   "tarifs.title": "透明定价。公开展示。<br><em>绝无意外。</em>",
   "tarifs.lead": "从您需要的地方开始。随时扩展。",
-  "tab.briques": "🧱 功能模块",
-  "tab.packs": "💼 行业套餐",
-
+  "tab.briques": "功能模块",
+  "tab.packs": "行业套餐",
   "briqueA.cat": "A. 线上形象",
   "briqueA.h3": "被发现 &amp; 建立信任",
   "briqueA.p": "为您的线上可见度打造坚实基础。",
@@ -124,7 +114,6 @@
   "briqueA.item6": "企业邮箱 + 域名套餐",
   "briqueA.item7": "现有网站改版",
   "briqueA.item7_price": "按需报价",
-
   "briqueB.cat": "B. 客户获取",
   "briqueB.h3": "产生客户",
   "briqueB.p": "吸引注意力并获取理想潜在客户。",
@@ -134,7 +123,6 @@
   "briqueB.item2_note": "管理费用：150 €起/月",
   "briqueB.item3": "邮件 &amp; 短信营销",
   "briqueB.item3_note": "托管服务：79 €起/月",
-
   "briqueC.cat": "C. 自动化 &amp; 人工智能",
   "briqueC.h3": "节省时间",
   "briqueC.p": "让技术服务于您的日常运营。",
@@ -147,50 +135,41 @@
   "briqueC.item3_name": "级别3 — 系统版",
   "briqueC.item3_note": "可选月费：89 €/月",
   "briqueC.item3_desc": "多重自动化联动（全渠道收件箱、文档读取 ➔ CRM/财务）。",
-
   "briqueD.cat": "D. 定制开发",
   "briqueD.h3": "行业专属工具",
   "briqueD.p": "根据您的运作方式量身定制的应用程序。",
   "briqueD.item1": "行业专属应用",
   "briqueD.item1_desc": "客户管理、内部排班、客户门户（按需报价）。",
-
   "briqueE.cat": "E. 持续支持",
   "briqueE.h3": "维护 &amp; 迭代升级",
   "briqueE.p": "数字化工具的安全保障与持续优化。",
   "briqueE.item1": "技术支持 &amp; 维护",
   "briqueE.item1_desc": "更新升级、安全防护、数据备份与优先响应支持。",
-
   "pack1.tag": "预约满档",
   "pack1.h3": "美发 &amp; 美容",
   "pack1.pitch": "24/7 在线预约 + 自动防爽约提醒 + Google 评价自动收集。",
   "pack1.roi": "一家沙龙每月因爽约平均损失 2,500–5,000 €。这个套餐从第一个月起就能解决问题。",
   "pack1.target": "发型师、理发师、美容院、美甲店、美体。",
-
   "pack2.tag": "零漏接电话",
   "pack2.h3": "工匠 &amp; 建筑",
   "pack2.pitch": "本地 Google 主页 + 智能漏接电话接收 + WhatsApp 自动客服 + 快速报价。",
   "pack2.roi": "62% 打给工匠的电话无人接听。这个套餐即时抓住客户，不让他们流向竞争对手。",
   "pack2.target": "水管工、电工、暖通工、木工、装修。",
-
   "pack3.tag": "全天候开放",
   "pack3.h3": "餐饮 &amp; 酒店业",
   "pack3.pitch": "Google 主页 + 在线预订或点餐模块 + 自动评价收集 + 社交媒体同步。",
   "pack3.roi": "30–50% 的预订发生在营业时间之外。没有系统，这些客户就流失了。",
   "pack3.target": "餐厅、外卖、酒吧、餐车。",
-
   "pack4.tag": "从容诊所",
   "pack4.h3": "专业人士 &amp; 健康",
   "pack4.pitch": "在线预约 + 短信提醒 + 防爽约预付金 + 极简患者门户。",
   "pack4.roi": "爽约是专业人士的噩梦。短信提醒将遗忘率降低40%，预付金将爽约率降低65%。",
   "pack4.target": "理疗师、整骨师、教练、治疗师、医美。",
-
   "pack.roi_label": "投资回报依据：",
   "pack.target_label": "适用对象：",
   "pack.cta": "激活此套餐",
-
   "tarifs.tva": "小型企业，适用免税制度——增值税不适用，依据第56bis CTVA条款。",
   "tarifs.cta": "启动您的项目",
-
   "faq.tag": "常见问题",
   "faq.title": "常见<em>问题解答</em>",
   "faq1.q": "这对我来说不会太贵吗？",
@@ -209,12 +188,10 @@
   "faq7.a": "完美。我们按需定制。只需要一个网站，或者只需要自动化您的WhatsApp？我们解决那个需求，不向您推销其他。",
   "faq8.q": "你们在哪里？",
   "faq8.a": "在比利时沙勒罗瓦。我们服务整个瓦隆大区和比利时——远程或到场，根据您的方便。",
-
   "contact.tag": "联系我们",
   "contact.title": "您的线上形象可以<em>本周就开始为您工作。</em>",
   "contact.lead": "一次对话，免费，无需承诺。我们一起审视是什么让您流失客户——并找到终止它的方法。",
   "contact.location": "沙勒罗瓦 &amp; 整个瓦隆大区",
-
   "form.name": "姓名",
   "form.email": "电子邮件",
   "form.phone": "电话 <small>（可选）</small>",
@@ -225,7 +202,6 @@
   "form.sent_title": "消息已发送！",
   "form.sent_sub": "我们很快会与您联系。",
   "form.honeypot_label": "请勿填写：",
-
   "footer.tagline": "我们打造您的线上形象。<br><em>它为您工作。</em>",
   "footer.pitch": "沙勒罗瓦数字营销机构。网站建设、本地曝光、自动化 &amp; 人工智能，服务自由职业者和中小企业。",
   "footer.email_label": "电子邮件",
@@ -238,7 +214,6 @@
   "footer.legal3": "Cookie 政策",
   "footer.legal_line": "<strong>Purity Agency</strong> · BCE&nbsp;1036.775.590 · 小型企业 — 免税制度，增值税不适用（第&nbsp;56bis CTVA条款）",
   "footer.copyright": "© 2026 Purity Agency. 保留所有权利。",
-
   "chat.title": "OctoMask AI",
   "chat.status": "在线",
   "chat.placeholder": "提问...",
@@ -247,7 +222,6 @@
   "chat.aria_send": "发送",
   "teaser.text": "有项目想法？<br><strong>聊聊吧——免费。</strong>",
   "teaser.close_aria": "关闭",
-
   "cookie.text": "本网站使用外部字体（Google Fonts）和资源库（Cloudflare CDN）。不设置任何广告 Cookie。<a href=\"legal.html#cookies\">了解更多</a>",
   "cookie.accept": "明白了"
 }

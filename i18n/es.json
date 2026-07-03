@@ -11,7 +11,6 @@
   "langsel.aria": "Seleccionar idioma",
   "langsel.soon": "Próximamente",
   "burger.aria": "Menú",
-
   "hero.title": "Tu próximo empleado<br>nunca <em>descansa.</em>",
   "hero.sub": "Sitios web, visibilidad local, automatizaciones e integraciones.<br><strong>Soluciones concretas para atraer, convertir y fidelizar a tus clientes.</strong>",
   "hero.cta2": "Ver nuestros proyectos",
@@ -19,7 +18,6 @@
   "hero.proof2": "Sin compromiso",
   "hero.proof3": "100&nbsp;% seguro",
   "hero.scroll": "Descubrir",
-
   "probleme.title": "Lo que hacemos por ti",
   "card1.title": "Sitios web de alto rendimiento",
   "card1.desc": "Sitios rápidos, modernos y optimizados para convertir visitantes en clientes.",
@@ -29,7 +27,6 @@
   "card3.desc": "Chatea con tus clientes al instante y no pierdas ninguna oportunidad.",
   "card4.title": "Automatizaciones &amp; IA",
   "card4.desc": "Ahorra tiempo, automatiza tus tareas y concéntrate en lo esencial.",
-
   "marquee.restaurants": "Restaurantes",
   "marquee.artisans": "Artesanos",
   "marquee.coiffeurs": "Peluquerías",
@@ -38,7 +35,6 @@
   "marquee.commerces": "Comercios",
   "marquee.cabinets": "Consultorios",
   "marquee.pme": "PYMES",
-
   "scene.cta": "Ver en detalle",
   "scene1.title": "Te hacemos <em>visible.</em>",
   "scene1.lead": "Cuando un cliente busca tu oficio en Google, debe encontrarte a ti — no al competidor de al lado. Construimos una presencia que genera confianza desde el primer segundo.",
@@ -61,14 +57,12 @@
   "scene4.tag1": "Aplicaciones profesionales",
   "scene4.tag2": "Herramientas a medida",
   "scene4.tag3": "Integraciones",
-
   "stat1.top": "Desde",
   "stat1.label": "Tu primera presencia en línea. Sin presupuesto opaco.",
   "stat2.label": "Respuesta garantizada. Siempre.",
   "stat3.badge": "Gratis",
   "stat3.label": "La primera conversación. Sin compromiso.",
   "stat4.label": "Eres propietario de todo: código, dominio, cuentas.",
-
   "why.tag": "Por qué Purity",
   "why.title": "El rigor de una agencia.<br>Los precios de un freelance.<br><em>Obsesión por los resultados.</em>",
   "why1.q": "¿Abren los sábados?",
@@ -82,7 +76,6 @@
   "why3.cta": "A medida",
   "why3.h3": "El diseño como <em>ventaja desleal.</em>",
   "why3.p": "Rechazamos las plantillas genéricas. En pantalla, tu negocio debe inspirar confianza de inmediato, transmitir alta calidad y eclipsar a la competencia local.",
-
   "method.tag": "Nuestro método",
   "method.title": "Simple para ti.<br><em>Sólido por nuestra parte.</em>",
   "step1.h3": "Escuchamos",
@@ -93,7 +86,6 @@
   "step3.p": "Rápido, bien hecho. Tú haces el seguimiento sin gestionar.",
   "step4.h3": "Acompañamos",
   "step4.p": "Seguimos aquí. Sigue funcionando.",
-
   "preuve.tag": "Nuestros compromisos",
   "preuve.title": "En lo que puedes <em>contar.</em>",
   "preuve.lead": "Sin promesas vacías. Compromisos simples que cumplimos en cada proyecto.",
@@ -105,13 +97,11 @@
   "promise3.p": "Si el resultado no es premium, lo retrabajamos. Nuestro nombre está en juego.",
   "promise4.h3": "Interlocutor único",
   "promise4.p": "Una sola persona sigue tu proyecto, disponible, que conoce tu expediente al dedillo.",
-
   "tarifs.tag": "Tarifas",
   "tarifs.title": "Precios claros. Publicados.<br><em>Sin sorpresas.</em>",
   "tarifs.lead": "Empezamos donde lo necesitas. Escalas cuando quieres.",
-  "tab.briques": "🧱 Los Módulos",
-  "tab.packs": "💼 Packs Sectoriales",
-
+  "tab.briques": "Los Módulos",
+  "tab.packs": "Packs Sectoriales",
   "briqueA.cat": "A. Presencia",
   "briqueA.h3": "Ser encontrado &amp; creíble",
   "briqueA.p": "Instalar unas bases sólidas para tu visibilidad en línea.",
@@ -124,7 +114,6 @@
   "briqueA.item6": "Pack E-mail Pro + Dominio",
   "briqueA.item7": "Rediseño de sitio existente",
   "briqueA.item7_price": "a presupuesto",
-
   "briqueB.cat": "B. Captación",
   "briqueB.h3": "Generar clientes",
   "briqueB.p": "Captar la atención y atraer a tus prospectos ideales.",
@@ -134,7 +123,6 @@
   "briqueB.item2_note": "Gestión: desde 150 €/mes",
   "briqueB.item3": "E-mail &amp; SMS Marketing",
   "briqueB.item3_note": "Seguimiento: desde 79 €/mes",
-
   "briqueC.cat": "C. Automatización &amp; IA",
   "briqueC.h3": "Ganar tiempo",
   "briqueC.p": "Poner la tecnología al servicio de tus operaciones diarias.",
@@ -147,50 +135,41 @@
   "briqueC.item3_name": "Nivel 3 — Sistema",
   "briqueC.item3_note": "Mensual opcional: 89 €/mes",
   "briqueC.item3_desc": "Varias automatizaciones conectadas (bandeja omnicanal, lectura de documentos ➔ CRM/contabilidad).",
-
   "briqueD.cat": "D. A medida",
   "briqueD.h3": "Herramientas Profesionales",
   "briqueD.p": "Aplicaciones a medida adaptadas a tu funcionamiento.",
   "briqueD.item1": "Aplicación Profesional",
   "briqueD.item1_desc": "Seguimiento de clientes, planificación interna, portal de cliente a presupuesto.",
-
   "briqueE.cat": "E. Acompañamiento",
   "briqueE.h3": "Mantenimiento &amp; Evoluciones",
   "briqueE.p": "La seguridad y la optimización continua de tus herramientas digitales.",
   "briqueE.item1": "Soporte &amp; Mantenimiento",
   "briqueE.item1_desc": "Actualizaciones, seguridad, copias de seguridad y asistencia prioritaria.",
-
   "pack1.tag": "Agenda Llena",
   "pack1.h3": "Peluquería &amp; Belleza",
   "pack1.pitch": "Reservas online 24/7 + recordatorios automáticos anti no-show + recolección de reseñas Google automatizada.",
   "pack1.roi": "Un salón pierde de media entre 2.500 € y 5.000 €/mes en citas perdidas. Este pack resuelve el problema desde el primer mes.",
   "pack1.target": "Peluqueros, barberos, institutos de belleza, salones de uñas, estética.",
-
   "pack2.tag": "Cero Llamada Perdida",
   "pack2.h3": "Artesano &amp; Construcción",
   "pack2.pitch": "Presencia Google local + receptor inteligente de llamadas perdidas + agente WhatsApp automatizado + presupuestos rápidos.",
   "pack2.roi": "El 62 % de las llamadas a los artesanos no se contestan. Este pack capta al instante a los clientes en lugar de dejarlos ir a la competencia.",
   "pack2.target": "Fontaneros, electricistas, calefactores, carpinteros, renovación.",
-
   "pack3.tag": "Siempre Abierto",
   "pack3.h3": "HoReCa &amp; Restauración",
   "pack3.pitch": "Presencia Google + módulo de reservas u pedidos online + recolección automática de reseñas + sincronización redes sociales.",
   "pack3.roi": "Entre el 30 % y el 50 % de las reservas se hacen fuera del horario de apertura. Sin sistema, esos clientes se pierden.",
   "pack3.target": "Restaurantes, catering, bares, food trucks.",
-
   "pack4.tag": "Consulta Tranquila",
   "pack4.h3": "Profesional &amp; Bienestar",
   "pack4.pitch": "Reservas online + recordatorios SMS + señal anti-cancelación + portal de paciente ultra-sencillo.",
   "pack4.roi": "El no-show es la pesadilla de los profesionales. Los recordatorios SMS reducen los olvidos un 40 %, y la señal reduce el no-show un 65 %.",
   "pack4.target": "Fisioterapeutas, osteópatas, coaches, terapeutas, estética médica.",
-
   "pack.roi_label": "Justificación ROI:",
   "pack.target_label": "Público objetivo:",
   "pack.cta": "Activar este pack",
-
   "tarifs.tva": "Pequeña empresa sujeta al régimen de franquicia — IVA no aplicable, art. 56bis CTVA.",
   "tarifs.cta": "Iniciar tu proyecto",
-
   "faq.tag": "FAQ",
   "faq.title": "Preguntas <em>frecuentes</em>",
   "faq1.q": "¿No es demasiado caro para mí?",
@@ -209,12 +188,10 @@
   "faq7.a": "Perfecto. Lo hacemos a la carta. ¿Solo necesitas un sitio, o solo automatizar tu WhatsApp? Resolvemos esa necesidad, sin venderte lo demás.",
   "faq8.q": "¿Dónde estáis?",
   "faq8.a": "En Charleroi, Bélgica. Trabajamos con toda Valonia y Bélgica — a distancia o en persona, según lo que te venga mejor.",
-
   "contact.tag": "Contacto",
   "contact.title": "Tu presencia puede empezar a trabajar <em>esta misma semana.</em>",
   "contact.lead": "Una conversación, gratis, sin compromiso. Miramos juntos qué te está haciendo perder clientes — y cómo ponerle fin.",
   "contact.location": "Charleroi &amp; toda Valonia",
-
   "form.name": "Nombre",
   "form.email": "E-mail",
   "form.phone": "Teléfono <small>(opcional)</small>",
@@ -225,7 +202,6 @@
   "form.sent_title": "¡Mensaje enviado!",
   "form.sent_sub": "Nos pondremos en contacto muy pronto.",
   "form.honeypot_label": "No rellenar:",
-
   "footer.tagline": "Creamos tu presencia. <br><em>Trabaja por ti.</em>",
   "footer.pitch": "Agencia digital en Charleroi. Sitios web, visibilidad local, automatización &amp; IA para autónomos y PYMES.",
   "footer.email_label": "E-mail",
@@ -238,7 +214,6 @@
   "footer.legal3": "Cookies",
   "footer.legal_line": "<strong>Purity Agency</strong> · BCE&nbsp;1036.775.590 · Pequeña empresa — régimen de franquicia, IVA no aplicable (art.&nbsp;56bis CTVA)",
   "footer.copyright": "© 2026 Purity Agency. Todos los derechos reservados.",
-
   "chat.title": "OctoMask IA",
   "chat.status": "En línea",
   "chat.placeholder": "Haz tu pregunta...",
@@ -247,7 +222,6 @@
   "chat.aria_send": "Enviar",
   "teaser.text": "¿Un proyecto en mente?<br><strong>Hablemos — es gratis.</strong>",
   "teaser.close_aria": "Cerrar",
-
   "cookie.text": "Este sitio utiliza fuentes externas (Google Fonts) y librerías (Cloudflare CDN). No se instalan cookies publicitarias. <a href=\"legal.html#cookies\">Más información</a>",
   "cookie.accept": "Entendido"
 }

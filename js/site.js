@@ -29,26 +29,25 @@ window.addEventListener('load', () => {
   const html = document.documentElement;
   const prev = html.style.scrollBehavior;
   html.style.scrollBehavior = 'auto';
-  _jumpTop();
+  
+  if (hasHash) {
+    // On se positionne instantanément sur l'ancre sous le loader
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      target.scrollIntoView();
+    }
+  } else {
+    _jumpTop();
+  }
+
   requestAnimationFrame(() => { html.style.scrollBehavior = prev; });
   _dismissLoader();
 
-  // Si l'URL contient une ancre, on scrolle vers la cible après un court délai
-  if (hasHash) {
+  // Si l'URL contient une ancre, on force ScrollTrigger à se rafraîchir pour s'assurer que les animations se déclenchent correctement
+  if (hasHash && typeof ScrollTrigger !== 'undefined') {
     setTimeout(() => {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
-          gsap.to(window, {
-            scrollTo: { y: target, offsetY: 0 },
-            duration: 1.2,
-            ease: 'power3.inOut'
-          });
-        } else {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }, 400); // 400ms de délai pour laisser le loader se dissiper et la hauteur de page s'ajuster
+      ScrollTrigger.refresh();
+    }, 100);
   }
 
   // Vidéo avatar du chat : chargée seulement après le load complet (ne concurrence pas le hero)

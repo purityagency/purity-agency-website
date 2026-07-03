@@ -613,7 +613,7 @@
               <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack1.target">Coiffeurs, barbiers, instituts de beauté, ongleries, esthétique.</span></p>
             </div>
             <div class="pack-footer">
-              <a href="#contact" class="btn btn--glass-strong btn--full" data-i18n="pack.cta">Activer ce pack</a>
+              <a href="javascript:void(0)" class="btn btn--glass-strong btn--full ob-trigger" data-open-ob="coiffure" data-i18n="pack.cta">Activer ce pack</a>
             </div>
           </article>
 
@@ -632,7 +632,7 @@
               <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack2.target">Plombiers, électriciens, chauffagistes, menuisiers, rénovation.</span></p>
             </div>
             <div class="pack-footer">
-              <a href="#contact" class="btn btn--glass-strong btn--full" data-i18n="pack.cta">Activer ce pack</a>
+              <a href="javascript:void(0)" class="btn btn--glass-strong btn--full ob-trigger" data-open-ob="artisan" data-i18n="pack.cta">Activer ce pack</a>
             </div>
           </article>
 
@@ -651,7 +651,7 @@
               <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack3.target">Restaurants, traiteurs, bars, food trucks.</span></p>
             </div>
             <div class="pack-footer">
-              <a href="#contact" class="btn btn--glass-strong btn--full" data-i18n="pack.cta">Activer ce pack</a>
+              <a href="javascript:void(0)" class="btn btn--glass-strong btn--full ob-trigger" data-open-ob="horeca" data-i18n="pack.cta">Activer ce pack</a>
             </div>
           </article>
 
@@ -670,7 +670,7 @@
               <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack4.target">Kinés, ostéopathes, coachs, thérapeutes, esthétique médicale.</span></p>
             </div>
             <div class="pack-footer">
-              <a href="#contact" class="btn btn--glass-strong btn--full" data-i18n="pack.cta">Activer ce pack</a>
+              <a href="javascript:void(0)" class="btn btn--glass-strong btn--full ob-trigger" data-open-ob="praticien" data-i18n="pack.cta">Activer ce pack</a>
             </div>
           </article>
 
@@ -827,6 +827,166 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <script src="js/site.js" defer></script>
+
+<!-- ═══ MODAL ONBOARDING PACKS ═══ -->
+<div id="ob-modal" class="ob-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="ob-modal__backdrop"></div>
+  <div class="ob-modal__wrapper">
+    <div class="ob-card">
+      <button class="ob-close" aria-label="Fermer">×</button>
+      
+      <!-- Étape 1 : Choix & Secteur -->
+      <div class="ob-step is-active" data-step="1">
+        <h3 class="ob-title">Dites-nous en plus sur vous</h3>
+        <p class="ob-subtitle">Adaptons le pack à votre activité quotidienne.</p>
+        
+        <div class="ob-form-group">
+          <label class="ob-label">Votre secteur d'activité</label>
+          <div class="ob-select-grid">
+            <label class="ob-select-card">
+              <input type="radio" name="ob-sector" value="coiffure">
+              <span class="ob-select-box">
+                <span class="ob-select-icon">💇‍♀️</span>
+                <span class="ob-select-title">Coiffure & Esthétique</span>
+              </span>
+            </label>
+            <label class="ob-select-card">
+              <input type="radio" name="ob-sector" value="artisan">
+              <span class="ob-select-box">
+                <span class="ob-select-icon">🛠️</span>
+                <span class="ob-select-title">Artisanat & Rénovation</span>
+              </span>
+            </label>
+            <label class="ob-select-card">
+              <input type="radio" name="ob-sector" value="horeca">
+              <span class="ob-select-box">
+                <span class="ob-select-icon">🍽️</span>
+                <span class="ob-select-title">Resto & Alimentation</span>
+              </span>
+            </label>
+            <label class="ob-select-card">
+              <input type="radio" name="ob-sector" value="praticien">
+              <span class="ob-select-box">
+                <span class="ob-select-icon">🧘</span>
+                <span class="ob-select-title">Santé & Bien-être</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="ob-form-group">
+          <label class="ob-label">Votre plus grande douleur actuelle</label>
+          <div class="ob-chips">
+            <label class="ob-chip">
+              <input type="checkbox" name="ob-pain" value="no-show">
+              <span>Rendez-vous manqués (no-show)</span>
+            </label>
+            <label class="ob-chip">
+              <input type="checkbox" name="ob-pain" value="no-time">
+              <span>Pas le temps de répondre au téléphone</span>
+            </label>
+            <label class="ob-chip">
+              <input type="checkbox" name="ob-pain" value="no-reviews">
+              <span>Pas assez d'avis Google positifs</span>
+            </label>
+            <label class="ob-chip">
+              <input type="checkbox" name="ob-pain" value="no-prospects">
+              <span>Besoin de plus de clients locaux</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="ob-footer">
+          <div></div>
+          <button class="btn btn--white ob-btn-next">Continuer</button>
+        </div>
+      </div>
+
+      <!-- Étape 2 : Configuration des fonctionnalités -->
+      <div class="ob-step" data-step="2">
+        <h3 class="ob-title">Personnalisez vos outils</h3>
+        <p class="ob-subtitle">Sélectionnez les briques indispensables à connecter.</p>
+        
+        <div class="ob-features-list">
+          <!-- Chargé dynamiquement en JS -->
+        </div>
+
+        <div class="ob-footer">
+          <button class="btn btn--glass ob-btn-prev">Retour</button>
+          <button class="btn btn--white ob-btn-next">Valider mes choix</button>
+        </div>
+      </div>
+
+      <!-- Étape 3 : Coordonnées & Envoi -->
+      <div class="ob-step" data-step="3">
+        <h3 class="ob-title">Finalisons votre dossier</h3>
+        <p class="ob-subtitle">Où devons-nous vous envoyer l'analyse de faisabilité gratuite ?</p>
+        
+        <form id="ob-contact-form" class="ob-form">
+          <div class="ob-form-grid">
+            <div class="ob-field">
+              <label for="ob-f-name" class="ob-label">Votre nom complet</label>
+              <input type="text" id="ob-f-name" required placeholder="Jean Dupont">
+            </div>
+            <div class="ob-field">
+              <label for="ob-f-company" class="ob-label">Nom de votre entreprise</label>
+              <input type="text" id="ob-f-company" placeholder="Salon XYZ, Sprl ABC...">
+            </div>
+            <div class="ob-field">
+              <label for="ob-f-email" class="ob-label">Adresse e-mail pro</label>
+              <input type="email" id="ob-f-email" required placeholder="jean@dupont.be">
+            </div>
+            <div class="ob-field">
+              <label for="ob-f-phone" class="ob-label">Numéro de téléphone</label>
+              <input type="tel" id="ob-f-phone" placeholder="0495 00 00 00">
+            </div>
+          </div>
+
+          <div class="ob-field" style="margin-top: 0.8rem;">
+            <label for="ob-f-msg" class="ob-label">Remarques ou besoins spécifiques (optionnel)</label>
+            <textarea id="ob-f-msg" rows="3" placeholder="Ex: horaires spéciaux, logiciels actuels..."></textarea>
+          </div>
+
+          <!-- Honeypot honeypot -->
+          <input type="text" name="website_verification" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+          <div class="ob-footer" style="margin-top: 1rem; padding-top: 0; border-top: none;">
+            <button type="button" class="btn btn--glass ob-btn-prev">Retour</button>
+            <button type="submit" class="btn btn--white ob-btn-submit">Déposer ma demande</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Étape 4 : Succès -->
+      <div class="ob-step" data-step="4">
+        <div class="ob-success">
+          <div class="ob-success-glow">
+            <svg class="ob-success-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="ob-title">Demande envoyée !</h3>
+          <p class="ob-subtitle">Notre équipe analyse déjà votre configuration.</p>
+          <div class="ob-success-desc">
+            On revient vers vous sous 24h avec une proposition claire et une maquette de faisabilité pour votre activité.
+          </div>
+          <button class="btn btn--glass ob-btn-close">Fermer</button>
+        </div>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="ob-progress-bar">
+        <div class="ob-progress-fill" style="width: 33%"></div>
+        <div class="ob-progress-steps">
+          <span class="ob-progress-step is-active">1</span>
+          <span class="ob-progress-step">2</span>
+          <span class="ob-progress-step">3</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 <!-- Bandeau cookies minimal (RGPD) -->
 <div id="cookie-banner" class="cookie-banner" hidden>

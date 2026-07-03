@@ -1100,4 +1100,212 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.scrollY > 400) { showTeaser(); window.removeEventListener('scroll', onFirstScroll); }
     }, { passive: true });
   }
+
+  // ==========================================================================
+  //  ONBOARDING ASSISTANT FOR PACKS
+  // ==========================================================================
+  const obModal = document.getElementById('ob-modal');
+  if (obModal) {
+    const triggers = document.querySelectorAll('.ob-trigger');
+    const closeBtn = obModal.querySelector('.ob-close');
+    const steps = obModal.querySelectorAll('.ob-step');
+    const progressFill = obModal.querySelector('.ob-progress-fill');
+    const progressSteps = obModal.querySelectorAll('.ob-progress-step');
+    
+    let currentStep = 1;
+    let selectedSector = '';
+    
+    // Config des briques par secteur
+    const sectorFeatures = {
+      coiffure: [
+        { name: "Réservation en ligne 24/7", desc: "Permettez à vos clients de réserver à tout moment sans vous déranger.", checked: true },
+        { name: "Rappels SMS & WhatsApp anti no-show", desc: "Réduisez les rendez-vous manqués de plus de 65%.", checked: true },
+        { name: "Récolte d'avis Google automatisée", desc: "Envoyez une demande d'avis par message après chaque visite.", checked: true },
+        { name: "Acompte en ligne sécurisé", desc: "Optionnel : encaissez un acompte à la réservation pour garantir le RDV.", checked: false },
+        { name: "Campagnes SMS Marketing de fidélisation", desc: "Optionnel : relancez automatiquement les clients inactifs.", checked: false }
+      ],
+      artisan: [
+        { name: "Répondeur SMS intelligent", desc: "Envoie un SMS automatisé en cas d'appel manqué pour capter le client.", checked: true },
+        { name: "WhatsApp Business automatisé", desc: "Répond instantanément aux demandes de devis et questions courantes.", checked: true },
+        { name: "Visibilité locale Google (Fiche)", desc: "Optimisation de votre présence pour apparaître premier dans votre région.", checked: true },
+        { name: "Module d'estimation et devis rapide", desc: "Optionnel : formulaire intelligent pour estimer un coût de travaux.", checked: false },
+        { name: "Espace client suivi de chantiers", desc: "Optionnel : partagez l'avancement des travaux avec photos en ligne.", checked: false }
+      ],
+      horeca: [
+        { name: "Module de commande & Click & Collect", desc: "Permettez la commande à emporter sans commissions tierces.", checked: true },
+        { name: "Réservation de table connectée", desc: "Confirmez les réservations par SMS ou mail de manière autonome.", checked: true },
+        { name: "Menu QR code interactif", desc: "Affichez votre carte de manière dynamique et moderne.", checked: true },
+        { name: "Avis clients Tripadvisor & Google", desc: "Optionnel : récolte systématique d'avis de satisfaction.", checked: false },
+        { name: "Fidélité digitale intégrée", desc: "Optionnel : programme de fidélité automatique pour les clients réguliers.", checked: false }
+      ],
+      praticien: [
+        { name: "Prise de rendez-vous médicale/soins", desc: "Agenda en ligne avec créneaux et spécialités configurables.", checked: true },
+        { name: "SMS et WhatsApp de rappels", desc: "Rappels programmés à H-24 et H-2 pour éviter les oublis.", checked: true },
+        { name: "Acompte sécurisé anti-désistement", desc: "Optionnel : sécurisez vos créneaux en demandant un acompte.", checked: true },
+        { name: "Questionnaire pré-consultation", desc: "Optionnel : récoltez les antécédents avant la séance.", checked: false },
+        { name: "Espace fiches patients sécurisé", desc: "Optionnel : suivi numérique des séances et notes de consultation.", checked: false }
+      ]
+    };
+
+    const showStep = (step) => {
+      steps.forEach(s => s.classList.remove('is-active'));
+      const activeStep = obModal.querySelector(`.ob-step[data-step="${step}"]`);
+      if (activeStep) activeStep.classList.add('is-active');
+      
+      // Update progress bar
+      if (step <= 3) {
+        progressFill.style.width = `${((step - 1) / 2) * 100}%`;
+        progressSteps.forEach((s, idx) => {
+          s.classList.remove('is-active', 'is-done');
+          if (idx + 1 < step) s.classList.add('is-done');
+          else if (idx + 1 === step) s.classList.add('is-active');
+        });
+        obModal.querySelector('.ob-progress-bar').style.display = 'block';
+      } else {
+        obModal.querySelector('.ob-progress-bar').style.display = 'none';
+      }
+      currentStep = step;
+    };
+
+    const loadFeatures = (sector) => {
+      const list = obModal.querySelector('.ob-features-list');
+      if (!list) return;
+      list.innerHTML = '';
+      
+      const features = sectorFeatures[sector] || [];
+      features.forEach((f, idx) => {
+        const item = document.createElement('label');
+        item.className = 'ob-feature-item';
+        item.innerHTML = `
+          <input type="checkbox" name="ob-feature" value="${f.name}" ${f.checked ? 'checked' : ''}>
+          <span class="ob-feature-checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="ob-feature-text">
+            <span class="ob-feature-name">${f.name}</span>
+            <span class="ob-feature-desc">${f.desc}</span>
+          </span>
+        `;
+        list.appendChild(item);
+      });
+    };
+
+    // Trigger open
+    triggers.forEach(t => t.addEventListener('click', (e) => {
+      e.preventDefault();
+      const sector = t.getAttribute('data-open-ob');
+      selectedSector = sector;
+      
+      // Check correct sector radio
+      const radio = obModal.querySelector(`input[name="ob-sector"][value="${sector}"]`);
+      if (radio) {
+        radio.checked = true;
+      }
+      
+      // Load relevant features
+      loadFeatures(sector);
+      
+      // Show first step & open modal
+      showStep(1);
+      obModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden'; // block page scroll
+    }));
+
+    // Close
+    const closeModal = () => {
+      obModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      // Reset form
+      obModal.querySelector('#ob-contact-form')?.reset();
+      const firstRadio = obModal.querySelector('input[name="ob-sector"]:checked');
+      if (firstRadio) firstRadio.checked = false;
+      const painChecks = obModal.querySelectorAll('input[name="ob-pain"]');
+      painChecks.forEach(c => c.checked = false);
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    obModal.querySelector('.ob-modal__backdrop').addEventListener('click', closeModal);
+    obModal.querySelector('.ob-btn-close')?.addEventListener('click', closeModal);
+
+    // Radios change handler to dynamic features load
+    obModal.querySelectorAll('input[name="ob-sector"]').forEach(input => {
+      input.addEventListener('change', (e) => {
+        selectedSector = e.target.value;
+        loadFeatures(selectedSector);
+      });
+    });
+
+    // Next / Prev actions
+    obModal.querySelectorAll('.ob-btn-next').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (currentStep === 1) {
+          if (!selectedSector) {
+            // Force selection if none
+            const selected = obModal.querySelector('input[name="ob-sector"]:checked');
+            if (selected) selectedSector = selected.value;
+            else {
+              alert("Veuillez sélectionner votre secteur d'activité.");
+              return;
+            }
+          }
+          loadFeatures(selectedSector);
+          showStep(2);
+        } else if (currentStep === 2) {
+          showStep(3);
+        }
+      });
+    });
+
+    obModal.querySelectorAll('.ob-btn-prev').forEach(btn => {
+      btn.addEventListener('click', () => {
+        showStep(currentStep - 1);
+      });
+    });
+
+    // Form submit
+    const obForm = obModal.querySelector('#ob-contact-form');
+    if (obForm) obForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = obForm.querySelector('.ob-btn-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Envoi...';
+      btn.disabled = true;
+
+      // Extract options selected
+      const chosenSectorName = obModal.querySelector(`input[name="ob-sector"]:checked`)?.parentElement.querySelector('.ob-select-title')?.textContent || selectedSector;
+      const chosenPains = Array.from(obModal.querySelectorAll('input[name="ob-pain"]:checked')).map(el => el.parentElement.querySelector('span').textContent);
+      const chosenFeatures = Array.from(obModal.querySelectorAll('input[name="ob-feature"]:checked')).map(el => el.value);
+
+      const needFormatted = `[Onboarding Pack - ${chosenSectorName}]
+- Douleurs ciblées : ${chosenPains.length > 0 ? chosenPains.join(', ') : 'Aucune spécifique'}
+- Fonctionnalités connectées : ${chosenFeatures.length > 0 ? chosenFeatures.join(', ') : 'Aucune spécifique'}
+- Message additionnel : ${obForm.querySelector('#ob-f-msg')?.value || '—'}`;
+
+      const payload = {
+        name: obForm.querySelector('#ob-f-name')?.value || '',
+        email: obForm.querySelector('#ob-f-email')?.value || '',
+        phone: obForm.querySelector('#ob-f-phone')?.value || '',
+        activity: `Secteur : ${chosenSectorName} (${obForm.querySelector('#ob-f-company')?.value || 'Sans entreprise'})`,
+        need: needFormatted,
+        website_verification: obForm.querySelector('input[name="website_verification"]')?.value || '',
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('bad status');
+        showStep(4);
+        obForm.reset();
+      } catch (err) {
+        btn.textContent = 'Erreur — réessayer';
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = originalText; }, 2500);
+      }
+    });
+  }
 });

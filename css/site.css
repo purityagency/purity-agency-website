@@ -2669,6 +2669,11 @@ footer {
    INTERACTIVE PRICING CATALOG (TABS & VOLETS)
    ========================================================================== */
 
+/* Helper to restrict grid width for a tighter, premium feel */
+.wrap--tarifs {
+  max-width: 1080px;
+}
+
 /* Tabs selection bar */
 .tarifs-tabs-container {
   display: flex;
@@ -2725,23 +2730,33 @@ footer {
 /* ONGLET 1 : LES BRIQUES */
 .briques-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-lg);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
   margin-bottom: var(--s-lg);
 }
+/* Distribution harmonieuse : 3 colonnes sur la ligne 1, 2 colonnes centrées sur la ligne 2 */
+.briques-grid > article:nth-child(1) { grid-column: span 2; }
+.briques-grid > article:nth-child(2) { grid-column: span 2; }
+.briques-grid > article:nth-child(3) { grid-column: span 2; }
+.briques-grid > article:nth-child(4) { grid-column: 2 / span 2; }
+.briques-grid > article:nth-child(5) { grid-column: 4 / span 2; }
+
 .brique-card {
-  padding: var(--s-lg);
+  padding: 1.6rem 1.2rem;
   display: flex;
   flex-direction: column;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
 }
 .brique-card__header {
-  margin-bottom: var(--s-lg);
+  margin-bottom: var(--s-md);
   border-bottom: 1px solid var(--c-border);
-  padding-bottom: var(--s-md);
+  padding-bottom: var(--s-sm);
 }
 .brique-card__category {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--c-accent);
@@ -2749,11 +2764,13 @@ footer {
   margin-bottom: var(--s-sm);
 }
 .brique-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: #fff;
+  font-family: var(--font-head);
 }
 .brique-card p {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   line-height: 1.4;
   color: var(--c-fg-muted);
 }
@@ -2782,7 +2799,7 @@ footer {
 }
 .brique-list li > .brique-name {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -2792,50 +2809,47 @@ footer {
 .brique-list li > .brique-name::after {
   content: '';
   flex-grow: 1;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
-  margin: 0 10px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  margin: 0 8px;
 }
 .brique-price {
   font-family: var(--font-head);
   font-weight: 600;
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   flex-shrink: 0;
 }
 .brique-note {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--c-fg-muted);
   margin-top: 0.15rem;
   font-weight: 400;
 }
 .brique-desc {
-  font-size: 0.82rem !important;
-  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 0.76rem !important;
+  color: rgba(255, 255, 255, 0.45) !important;
   margin-top: 0.35rem;
   line-height: 1.35 !important;
 }
 .briques-subgrid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-lg);
-}
-.briques-subgrid .brique-card {
-  height: 100%;
+  display: contents; /* ignore le container et traite D et E en enfants directs du grid parent */
 }
 
 /* ONGLET 2 : PACKS METIER */
 .packs-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--s-lg);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
   margin-bottom: var(--s-lg);
 }
 .pack-card {
-  padding: var(--s-xl) var(--s-lg);
+  padding: 1.6rem 1.1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.015);
   transition: border-color var(--t-med), box-shadow var(--t-med);
 }
 .pack-card:hover {
@@ -3022,6 +3036,21 @@ footer {
 @media (max-width: 1024px) {
   .briques-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  /* On réinitialise les grid-columns pour la grille à 2 colonnes */
+  .briques-grid > article:nth-child(1),
+  .briques-grid > article:nth-child(2),
+  .briques-grid > article:nth-child(3),
+  .briques-grid > article:nth-child(4) {
+    grid-column: span 1 !important;
+  }
+  .briques-grid > article:nth-child(5) {
+    grid-column: span 2 !important; /* L'accompagnement s'étend sur 2 colonnes */
+  }
+  .packs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
   .approche-container {
     grid-template-columns: 1fr;
@@ -3031,6 +3060,9 @@ footer {
 @media (max-width: 768px) {
   .briques-grid {
     grid-template-columns: 1fr;
+  }
+  .briques-grid > article {
+    grid-column: span 1 !important;
   }
   .packs-grid {
     grid-template-columns: 1fr;

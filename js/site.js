@@ -1,6 +1,27 @@
 // Si l'URL contient une ancre (#services…) au rechargement, on ne force pas le scroll au top pour permettre la redirection
 const hasHash = !!window.location.hash;
 
+// ────────────────────────────────────────────────────────────────────────────
+// 🗓 CONFIGURATION GLOBALE — URL de réservation Google Calendar
+// Remplacez par votre lien Google Appointment Schedules ou Calendly/Cal.com
+// Pour Google Calendar → https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID
+// Pour Calendly → https://calendly.com/purity-agency/15min
+// Les paramètres ?name=&email=&phone= seront ajoutés automatiquement
+const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID';
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Génère un lien de réservation pré-rempli avec les infos de l'utilisateur.
+ * Compatible Google Calendar Appointment Schedules, Calendly, Cal.com.
+ */
+function buildBookingUrl(name, email, phone) {
+  const url = new URL(BOOKING_URL, window.location.href);
+  if (name)  url.searchParams.set('name',  name);
+  if (email) url.searchParams.set('email', email);
+  if (phone) url.searchParams.set('phone', phone);
+  return url.toString();
+}
+
 if (history.scrollRestoration) {
   if (!hasHash) history.scrollRestoration = 'manual';
 }
@@ -507,7 +528,15 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('bad status');
-      form.querySelector('.form__sent').style.display = 'block';
+
+      // Injecter l'URL de réservation pré-remplie dans le bouton de calendrier
+      const sentBlock = form.querySelector('.form__sent');
+      const bookingBtn = sentBlock?.querySelector('.ob-btn-booking');
+      if (bookingBtn) {
+        bookingBtn.href = buildBookingUrl(payload.name, payload.email, payload.phone);
+      }
+
+      sentBlock.style.display = 'block';
       btn.style.display = 'none';
       form.reset();
     } catch (err) {
@@ -1425,6 +1454,13 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error('bad status');
+
+        // Injecter l'URL de réservation pré-remplie dans le bouton du modal step 4
+        const obBookingBtn = obModal.querySelector('[data-step="4"] .ob-btn-booking');
+        if (obBookingBtn) {
+          obBookingBtn.href = buildBookingUrl(payload.name, payload.email, payload.phone);
+        }
+
         showStep(4);
         obForm.reset();
       } catch (err) {

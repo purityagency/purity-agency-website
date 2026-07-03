@@ -736,7 +736,17 @@
         <div class="field"><textarea id="f-need" name="need" rows="4" placeholder=" " required></textarea><label for="f-need" data-i18n="form.need">Votre besoin en quelques mots</label></div>
         <button type="submit" class="btn btn--white" data-i18n="form.submit">Envoyer</button>
         <span class="form__note" data-i18n="form.note">Réponse garantie sous 24 h ouvrées.</span>
-        <div class="form__sent"><strong data-i18n="form.sent_title">Message envoyé !</strong><span data-i18n="form.sent_sub">On revient vers vous très vite.</span></div>
+        <div class="form__sent">
+          <strong data-i18n="form.sent_title">Message envoyé !</strong>
+          <span data-i18n="form.sent_sub" style="display:block; margin-bottom: 1rem;">On revient vers vous très vite.</span>
+          
+          <!-- Carte de planification Meet -->
+          <div class="ob-calendar-invite-card" style="margin-top: 1rem; text-align: left;">
+            <h4 class="ob-invite-title" style="font-size: 1.1rem; margin-bottom: 0.4rem; color: #fff; font-family: var(--font-head);">📅 Bloquez votre appel stratégique</h4>
+            <p class="ob-invite-desc" style="font-size: 0.8rem; line-height: 1.4; color: var(--c-fg-muted); margin-bottom: 1rem;">Planifiez dès maintenant votre échange stratégique de 15 minutes sur Google Meet. Vos coordonnées seront pré-remplies.</p>
+            <a href="#" target="_blank" class="btn btn--accent ob-btn-booking ob-glow-pulse" style="font-size:0.8rem; padding: 0.65rem 1.3rem; display: inline-block;">Réserver mon créneau strategique</a>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -1070,10 +1080,15 @@
             </svg>
           </div>
           <h3 class="ob-title">Demande envoyée !</h3>
-          <p class="ob-subtitle">Notre équipe analyse déjà votre configuration.</p>
-          <div class="ob-success-desc">
-            On revient vers vous sous 24h avec une proposition claire et une maquette de faisabilité pour votre activité.
+          <p class="ob-subtitle" style="margin-bottom: 1.2rem;">Notre équipe analyse déjà votre configuration.</p>
+          
+          <!-- Carte de planification Meet -->
+          <div class="ob-calendar-invite-card" style="margin-bottom: 1.5rem; text-align: center; width: 100%;">
+            <h4 class="ob-invite-title" style="font-size: 1.15rem; margin-bottom: 0.4rem; color: #fff; font-family: var(--font-head);">📈 Boostez votre projet immédiatement</h4>
+            <p class="ob-invite-desc" style="font-size: 0.8rem; line-height: 1.45; color: var(--c-fg-muted); margin-bottom: 1.2rem; max-width: 44ch; margin-left: auto; margin-right: auto;">Planifiez dès maintenant votre appel stratégique de 15 minutes sur Google Meet. Vos coordonnées seront pré-remplies.</p>
+            <a href="#" target="_blank" class="btn btn--accent ob-btn-booking ob-glow-pulse" style="font-size:0.85rem; padding: 0.7rem 1.4rem; display: inline-block;">Réserver mon créneau strategique</a>
           </div>
+
           <button class="btn btn--glass ob-btn-close">Fermer</button>
         </div>
       </div>

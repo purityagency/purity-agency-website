@@ -63,6 +63,7 @@
     <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
     <a href="blog.html" data-i18n="nav.blog">Blog</a>
     <a href="#contact" data-i18n="nav.contact">Contact</a>
+    <a href="#booking" class="nav__link--booking" style="color: var(--c-accent); font-weight: 600;">📅 Réserver</a>
   </nav>
   <div class="nav__actions">
     <!-- Sélecteur de langue -->
@@ -104,7 +105,7 @@
     <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
     <a href="blog.html" data-i18n="nav.blog">Blog</a>
     <a href="#contact" data-i18n="nav.contact">Contact</a>
-    <a href="#contact" class="btn btn--white" data-i18n="nav.cta">Parlons de votre projet</a>
+    <a href="#booking" class="btn btn--accent" style="margin-top: .5rem;">📅 Réserver un appel</a>
   </nav>
 </div>
 
@@ -708,7 +709,7 @@
   </div>
 </section>
 
-<!-- ═══ CONTACT ═══ -->
+<!-- ═══ CONTACT & FUNNEL ═══ -->
 <section id="contact" class="sec">
   <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
   <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
@@ -752,7 +753,55 @@
   </div>
 </section>
 
+<!-- ═══ BOOKING — Calendrier intégré ═══ -->
+<section id="booking" class="sec bk-section" aria-labelledby="bk-title">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="bk-header" data-reveal>
+      <span class="tag lg">Réservation directe</span>
+      <h2 id="bk-title">Bloquez votre créneau<br><em>maintenant, en 30 secondes.</em></h2>
+      <p class="bk-lead">Choisissez un horaire qui vous convient. L'appel dure 15 min — pas de pitch, que de la valeur.</p>
+    </div>
+    <div class="bk-embed-wrap" data-reveal style="--d:.15s">
+      <div class="bk-badges">
+        <span class="bk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Gratuit & sans engagement</span>
+        <span class="bk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>15 minutes chrono</span>
+        <span class="bk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l-4 4-2-2"/><circle cx="12" cy="12" r="10"/></svg>Diagnostic offert</span>
+      </div>
+      <div class="bk-iframe-container">
+        <iframe
+          id="bk-calendar-iframe"
+          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Mg-8wLya1IHrX8h2kIFUrFAgJpdl0qPvoY8YkqCx1KugNvIUtOYq5FGeeXRP7khf0DqVbhTWI"
+          width="100%"
+          height="620"
+          frameborder="0"
+          scrolling="yes"
+          allow="payment"
+          title="Réserver un appel stratégique avec Purity Agency"
+          loading="lazy"
+          style="border-radius: 16px; border: 0;"
+        ></iframe>
+      </div>
+      <div class="bk-fallback">
+        <p>Votre navigateur ne supporte pas l'intégration directe. <a href="https://calendar.app.google/j7UKhrUxjiNY27iQA" target="_blank" rel="noopener" class="btn btn--accent bk-fallback-btn ob-glow-pulse">Ouvrir le calendrier →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<!-- ═══ STICKY BOOKING CTA ═══ -->
+<div id="sticky-booking" class="sticky-booking" aria-live="polite" hidden>
+  <div class="sticky-booking__inner">
+    <div class="sticky-booking__text">
+      <strong>Vous avez une question ?</strong>
+      <span>Réservez un appel de 15 min — gratuit</span>
+    </div>
+    <a href="#booking" class="btn btn--accent sticky-booking__btn ob-glow-pulse">📅 Réserver maintenant</a>
+    <button class="sticky-booking__close" aria-label="Fermer" onclick="document.getElementById('sticky-booking').hidden=true">✕</button>
+  </div>
+</div>
 
 <!-- ═══ FOOTER ═══ -->
 <footer id="footer">

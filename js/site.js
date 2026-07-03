@@ -1131,6 +1131,78 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
+  //  STICKY BOOKING CTA — affiche après scroll 55% ou 45s de visite
+  // ==========================================================================
+  const stickyBooking = document.getElementById('sticky-booking');
+  if (stickyBooking) {
+    let stickyShown = false;
+    let stickyDismissed = false;
+    
+    const showStickyBooking = () => {
+      if (stickyShown || stickyDismissed) return;
+      // Ne pas afficher si le visiteur est déjà sur la section #booking
+      const bkSection = document.getElementById('booking');
+      if (bkSection) {
+        const rect = bkSection.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) return;
+      }
+      stickyShown = true;
+      stickyBooking.hidden = false;
+    };
+
+    // Trigger 1 — 55% de scroll
+    const onStickyScroll = () => {
+      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      if (scrolled > 0.55) {
+        showStickyBooking();
+        window.removeEventListener('scroll', onStickyScroll);
+      }
+    };
+    window.addEventListener('scroll', onStickyScroll, { passive: true });
+
+    // Trigger 2 — 45 secondes de dwell time
+    setTimeout(showStickyBooking, 45000);
+
+    // Masquer quand l'utilisateur arrive sur #booking (IntersectionObserver)
+    const bkEl = document.getElementById('booking');
+    if (bkEl) {
+      const bkObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            stickyBooking.hidden = true;
+          } else if (stickyShown && !stickyDismissed) {
+            stickyBooking.hidden = false;
+          }
+        });
+      }, { threshold: 0.1 });
+      bkObserver.observe(bkEl);
+    }
+
+    // Marquer comme dismissed si l'utilisateur ferme manuellement
+    stickyBooking.querySelector('.sticky-booking__close')?.addEventListener('click', () => {
+      stickyDismissed = true;
+    });
+  }
+
+  // Iframe booking fallback — si Google bloque l'embed, afficher le fallback
+  const bkIframe = document.getElementById('bk-calendar-iframe');
+  if (bkIframe) {
+    bkIframe.addEventListener('error', () => {
+      bkIframe.closest('.bk-iframe-container').style.display = 'none';
+      const fallback = document.querySelector('.bk-fallback');
+      if (fallback) fallback.style.display = 'block';
+    });
+    // Timeout safety — si après 8s l'iframe est vide, afficher le fallback
+    setTimeout(() => {
+      if (bkIframe.contentDocument?.body?.innerHTML?.length < 10) {
+        bkIframe.closest('.bk-iframe-container').style.display = 'none';
+        const fallback = document.querySelector('.bk-fallback');
+        if (fallback) fallback.style.display = 'block';
+      }
+    }, 8000);
+  }
+
+  // ==========================================================================
   //  ONBOARDING ASSISTANT FOR PACKS
   // ==========================================================================
   const obModal = document.getElementById('ob-modal');

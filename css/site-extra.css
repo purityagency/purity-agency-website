@@ -1138,5 +1138,183 @@
   100% { box-shadow: 0 0 12px rgba(124, 58, 237, 0.3); }
 }
 
+/* ============================================================
+   BOOKING SECTION — Calendrier intégré
+   ============================================================ */
+.bk-section {
+  padding: 6rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.bk-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.bk-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0.6rem 0 0.9rem;
+  line-height: 1.15;
+}
+.bk-lead {
+  font-size: 1rem;
+  color: var(--c-fg-muted);
+  max-width: 48ch;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+/* Badges de réassurance */
+.bk-badges {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.8rem;
+}
+.bk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.9rem;
+  border-radius: 100px;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.01em;
+  transition: all 0.25s ease;
+}
+.bk-badge svg {
+  width: 14px; height: 14px;
+  stroke: var(--c-accent);
+  flex-shrink: 0;
+}
+.bk-badge:hover {
+  background: rgba(124, 58, 237, 0.18);
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: translateY(-1px);
+}
+/* iframe container */
+.bk-iframe-container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(124, 58, 237, 0.08) inset;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: box-shadow 0.3s ease;
+}
+.bk-iframe-container:hover {
+  box-shadow: 0 24px 70px rgba(0,0,0,0.4), 0 0 35px rgba(124, 58, 237, 0.12);
+}
+.bk-iframe-container iframe {
+  display: block;
+  min-height: 600px;
+  background: transparent;
+}
+/* Fallback si l'iframe est bloqué */
+.bk-fallback {
+  display: none;
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--c-fg-muted);
+}
+.bk-fallback a {
+  margin-left: 0.5rem;
+}
+
+/* ============================================================
+   STICKY BOOKING CTA BAR
+   ============================================================ */
+.sticky-booking {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  padding: 0.85rem 1.25rem;
+  background: rgba(6, 3, 9, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(124, 58, 237, 0.25);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sticky-booking:not([hidden]) {
+  display: block;
+  transform: translateY(0);
+}
+.sticky-booking[hidden] {
+  display: none !important;
+}
+.sticky-booking__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.sticky-booking__text {
+  flex: 1;
+  min-width: 160px;
+}
+.sticky-booking__text strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+.sticky-booking__text span {
+  font-size: 0.78rem;
+  color: var(--c-fg-muted);
+}
+.sticky-booking__btn {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  flex-shrink: 0;
+}
+.sticky-booking__close {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.25rem;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.sticky-booking__close:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 600px) {
+  .bk-badges {
+    gap: 0.5rem;
+  }
+  .bk-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.7rem;
+  }
+  .sticky-booking__inner {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+  }
+  .sticky-booking__text span {
+    display: none;
+  }
+}
+
+
 
 

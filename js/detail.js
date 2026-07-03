@@ -1,6 +1,28 @@
 // Pages détail — reveal au scroll, nav, menu mobile
-if (history.scrollRestoration) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
+const hasHash = !!window.location.hash;
+if (history.scrollRestoration) {
+  if (!hasHash) history.scrollRestoration = 'manual';
+}
+if (!hasHash) {
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('load', () => {
+  if (hasHash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
+        gsap.to(window, {
+          scrollTo: { y: target, offsetY: 0 },
+          duration: 1.2,
+          ease: 'power3.inOut'
+        });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // --- Injection des tentacules par section (DA Purity) ---

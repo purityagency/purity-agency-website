@@ -1,12 +1,13 @@
-// Force page to load at the top (Hero) on refresh, sans animation
+// Si l'URL contient une ancre (#services…) au rechargement, on ne force pas le scroll au top pour permettre la redirection
+const hasHash = !!window.location.hash;
+
 if (history.scrollRestoration) {
-  history.scrollRestoration = 'manual';
+  if (!hasHash) history.scrollRestoration = 'manual';
 }
-// Si l'URL contient une ancre (#services…) au rechargement, on la retire pour repartir du hero
-if (window.location.hash) {
-  history.replaceState(null, '', window.location.pathname + window.location.search);
-}
-const _jumpTop = () => window.scrollTo(0, 0);
+
+const _jumpTop = () => {
+  if (!hasHash) window.scrollTo(0, 0);
+};
 _jumpTop();
 
 // --- Loader dismiss (bulletproof) ---
@@ -31,6 +32,25 @@ window.addEventListener('load', () => {
   _jumpTop();
   requestAnimationFrame(() => { html.style.scrollBehavior = prev; });
   _dismissLoader();
+
+  // Si l'URL contient une ancre, on scrolle vers la cible après un court délai
+  if (hasHash) {
+    setTimeout(() => {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
+          gsap.to(window, {
+            scrollTo: { y: target, offsetY: 0 },
+            duration: 1.2,
+            ease: 'power3.inOut'
+          });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }, 400); // 400ms de délai pour laisser le loader se dissiper et la hauteur de page s'ajuster
+  }
+
   // Vidéo avatar du chat : chargée seulement après le load complet (ne concurrence pas le hero)
   document.querySelectorAll('video.chat__avatar[data-src]').forEach(v => {
     v.src = v.dataset.src;

@@ -1111,6 +1111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const steps = obModal.querySelectorAll('.ob-step');
     const progressFill = obModal.querySelector('.ob-progress-fill');
     const progressSteps = obModal.querySelectorAll('.ob-progress-step');
+    const customSectorWrap = obModal.querySelector('#ob-custom-sector-wrap');
+    const customSectorInput = obModal.querySelector('#ob-custom-sector');
     
     let currentStep = 1;
     let selectedSector = '';
@@ -1144,6 +1146,34 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Acompte sécurisé anti-désistement", desc: "Optionnel : sécurisez vos créneaux en demandant un acompte.", checked: true },
         { name: "Questionnaire pré-consultation", desc: "Optionnel : récoltez les antécédents avant la séance.", checked: false },
         { name: "Espace fiches patients sécurisé", desc: "Optionnel : suivi numérique des séances et notes de consultation.", checked: false }
+      ],
+      liberal: [
+        { name: "Prise de rendez-vous en ligne sécurisée", desc: "Agenda partagé pour réserver des créneaux de consultation.", checked: true },
+        { name: "Relance et rappels automatiques", desc: "WhatsApp/SMS automatisés pour réduire le taux d'absentéisme.", checked: true },
+        { name: "Récolte d'avis et recommandations", desc: "Obtenez des avis Google de façon autonome et déontologique.", checked: true },
+        { name: "Espace de dépôt de documents sécurisé", desc: "Optionnel : portail client conforme RGPD pour recevoir les pièces.", checked: false },
+        { name: "Formulaire intelligent de pré-qualification", desc: "Optionnel : qualifie le besoin du prospect avant le RDV.", checked: false }
+      ],
+      commerce: [
+        { name: "Click & Collect & Vente locale", desc: "Votre boutique en ligne pour commander et retirer les produits.", checked: true },
+        { name: "Visibilité Maps & SEO Local", desc: "Abonnement de visibilité pour capter les recherches à proximité.", checked: true },
+        { name: "WhatsApp Business avec FAQ intégrée", desc: "Réponses instantanées sur vos horaires, stocks et localisations.", checked: true },
+        { name: "Fidélisation client par SMS", desc: "Optionnel : envoyez vos ventes privées et offres directement sur le mobile.", checked: false },
+        { name: "Synchronisation catalogue Instagram", desc: "Optionnel : vendez directement depuis vos publications sociales.", checked: false }
+      ],
+      immo: [
+        { name: "Prise de RDV visites automatisée", desc: "Planification autonome des visites pour désengorger vos agents.", checked: true },
+        { name: "Formulaire d'estimation de bien", desc: "Capteur de leads qualifiés souhaitant vendre leur bien.", checked: true },
+        { name: "WhatsApp automatisé acquéreurs", desc: "Répond aux critères de recherche des acheteurs 24h/24.", checked: true },
+        { name: "Alertes SMS nouveaux biens", desc: "Optionnel : notifiez vos acheteurs chauds dès qu'un bien rentre.", checked: false },
+        { name: "Visite virtuelle interactive", desc: "Optionnel : intégration HD de vos visites 3D sur le site.", checked: false }
+      ],
+      autre: [
+        { name: "Landing page de capture de leads", desc: "Page moderne centrée sur la conversion pour récolter des demandes.", checked: true },
+        { name: "Rappels et notifications par e-mail", desc: "Suivi automatisé pour accuser réception et rassurer le client.", checked: true },
+        { name: "Secrétariat WhatsApp Business", desc: "Réponse automatique aux messages de prospects.", checked: true },
+        { name: "Module de réservation en ligne", desc: "Optionnel : agenda interactif pour fixer vos prestations.", checked: false },
+        { name: "Paiement en ligne sécurisé (Stripe/PayPal)", desc: "Optionnel : encaissez vos prestations directement depuis le site.", checked: false }
       ]
     };
 
@@ -1172,7 +1202,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!list) return;
       list.innerHTML = '';
       
-      const features = sectorFeatures[sector] || [];
+      const features = sectorFeatures[sector] || sectorFeatures['autre'];
       features.forEach((f, idx) => {
         const item = document.createElement('label');
         item.className = 'ob-feature-item';
@@ -1204,6 +1234,17 @@ document.addEventListener('DOMContentLoaded', () => {
         radio.checked = true;
       }
       
+      if (sector === 'autre') {
+        if (customSectorWrap) customSectorWrap.style.display = 'block';
+        if (customSectorInput) {
+          customSectorInput.required = true;
+          customSectorInput.focus();
+        }
+      } else {
+        if (customSectorWrap) customSectorWrap.style.display = 'none';
+        if (customSectorInput) customSectorInput.required = false;
+      }
+      
       // Load relevant features
       loadFeatures(sector);
       
@@ -1223,26 +1264,86 @@ document.addEventListener('DOMContentLoaded', () => {
       if (firstRadio) firstRadio.checked = false;
       const painChecks = obModal.querySelectorAll('input[name="ob-pain"]');
       painChecks.forEach(c => c.checked = false);
+      if (customSectorWrap) customSectorWrap.style.display = 'none';
+      if (customSectorInput) {
+        customSectorInput.value = '';
+        customSectorInput.required = false;
+      }
+      // Supprimer les douleurs personnalisées rajoutées dynamiquement (les 20 premières sont par défaut)
+      const painsWrapper = obModal.querySelector('#ob-pains-wrapper');
+      if (painsWrapper) {
+        const dynamicChips = painsWrapper.querySelectorAll('.ob-chip:nth-child(n+21)');
+        dynamicChips.forEach(c => c.remove());
+      }
+      const addPainInput = obModal.querySelector('#ob-add-pain-input');
+      if (addPainInput) addPainInput.value = '';
     };
 
     closeBtn.addEventListener('click', closeModal);
     obModal.querySelector('.ob-modal__backdrop').addEventListener('click', closeModal);
     obModal.querySelector('.ob-btn-close')?.addEventListener('click', closeModal);
 
-    // Radios change handler to dynamic features load
+    // Radios change handler to dynamic features load & custom text input visibility
     obModal.querySelectorAll('input[name="ob-sector"]').forEach(input => {
       input.addEventListener('change', (e) => {
         selectedSector = e.target.value;
+        if (selectedSector === 'autre') {
+          if (customSectorWrap) customSectorWrap.style.display = 'block';
+          if (customSectorInput) {
+            customSectorInput.required = true;
+            customSectorInput.focus();
+          }
+        } else {
+          if (customSectorWrap) customSectorWrap.style.display = 'none';
+          if (customSectorInput) {
+            customSectorInput.value = '';
+            customSectorInput.required = false;
+          }
+        }
         loadFeatures(selectedSector);
       });
     });
+
+    // Pain points custom additions handler
+    const addPainInput = obModal.querySelector('#ob-add-pain-input');
+    const addPainBtn = obModal.querySelector('#ob-add-pain-btn');
+    const painsWrapper = obModal.querySelector('#ob-pains-wrapper');
+
+    if (addPainBtn && addPainInput && painsWrapper) {
+      const handleAddPain = () => {
+        const val = addPainInput.value.trim();
+        if (!val) return;
+        
+        const label = document.createElement('label');
+        label.className = 'ob-chip';
+        const cleanVal = val.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        label.innerHTML = `
+          <input type="checkbox" name="ob-pain" value="${cleanVal}" checked>
+          <span>${val}</span>
+        `;
+        
+        painsWrapper.appendChild(label);
+        addPainInput.value = '';
+      };
+
+      addPainBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleAddPain();
+      });
+      
+      addPainInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleAddPain();
+        }
+      });
+    }
 
     // Next / Prev actions
     obModal.querySelectorAll('.ob-btn-next').forEach(btn => {
       btn.addEventListener('click', () => {
         if (currentStep === 1) {
           if (!selectedSector) {
-            // Force selection if none
             const selected = obModal.querySelector('input[name="ob-sector"]:checked');
             if (selected) selectedSector = selected.value;
             else {
@@ -1250,9 +1351,27 @@ document.addEventListener('DOMContentLoaded', () => {
               return;
             }
           }
+          if (selectedSector === 'autre' && customSectorInput && !customSectorInput.value.trim()) {
+            alert("Veuillez saisir votre métier.");
+            customSectorInput.focus();
+            return;
+          }
+          // Validation minimum 1 douleur
+          const chosenPains = obModal.querySelectorAll('input[name="ob-pain"]:checked');
+          if (chosenPains.length === 0) {
+            alert("Veuillez cocher au moins une douleur actuelle.");
+            return;
+          }
+          
           loadFeatures(selectedSector);
           showStep(2);
         } else if (currentStep === 2) {
+          // Validation minimum 1 brique
+          const chosenFeatures = obModal.querySelectorAll('input[name="ob-feature"]:checked');
+          if (chosenFeatures.length === 0) {
+            alert("Veuillez sélectionner au moins une brique de fonctionnalité.");
+            return;
+          }
           showStep(3);
         }
       });
@@ -1274,7 +1393,14 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
 
       // Extract options selected
-      const chosenSectorName = obModal.querySelector(`input[name="ob-sector"]:checked`)?.parentElement.querySelector('.ob-select-title')?.textContent || selectedSector;
+      let chosenSectorName = '';
+      if (selectedSector === 'autre' && customSectorInput) {
+        chosenSectorName = customSectorInput.value.trim() || 'Autre';
+      } else {
+        const checkedRadio = obModal.querySelector(`input[name="ob-sector"]:checked`);
+        chosenSectorName = checkedRadio?.parentElement.querySelector('.ob-select-title')?.textContent || selectedSector;
+      }
+      
       const chosenPains = Array.from(obModal.querySelectorAll('input[name="ob-pain"]:checked')).map(el => el.parentElement.querySelector('span').textContent);
       const chosenFeatures = Array.from(obModal.querySelectorAll('input[name="ob-feature"]:checked')).map(el => el.value);
 

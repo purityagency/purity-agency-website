@@ -1062,3 +1062,49 @@
   }
 }
 
+.ob-pains-scroll-container {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-bottom: 0.5rem;
+}
+.ob-pains-scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+.ob-pains-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.02);
+  border-radius: 2px;
+}
+.ob-pains-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(124,58,237,0.3);
+  border-radius: 2px;
+}
+.ob-pains-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--c-accent);
+}
+
+.ob-add-pain-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.ob-add-pain-row input {
+  flex-grow: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+.ob-add-pain-row input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+.ob-add-pain-row input:focus {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--c-accent);
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.15);
+}
+
+

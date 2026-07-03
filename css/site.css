@@ -234,25 +234,25 @@ p {
 
 .ambient-tentacle {
   position: absolute;
-  width: clamp(220px, 20vw, 400px);
+  width: clamp(250px, 22vw, 450px);
   height: 100%;
-  opacity: 0.22;
+  opacity: 0.25;
   will-change: transform, opacity;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .ambient-tentacle--left {
-  left: -20px;
-  top: 15vh;
-  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 35%, transparent 100%);
-  mask-image: linear-gradient(to right, #000 0%, #000 35%, transparent 100%);
+  left: -30px;
+  top: 10vh;
+  -webkit-mask-image: radial-gradient(ellipse at left center, #000 0%, rgba(0, 0, 0, 0.85) 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at left center, #000 0%, rgba(0, 0, 0, 0.85) 30%, transparent 80%);
 }
 
 .ambient-tentacle--right {
-  right: -20px;
-  top: 25vh;
-  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 35%, transparent 100%);
-  mask-image: linear-gradient(to left, #000 0%, #000 35%, transparent 100%);
+  right: -30px;
+  top: 20vh;
+  -webkit-mask-image: radial-gradient(ellipse at right center, #000 0%, rgba(0, 0, 0, 0.85) 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at right center, #000 0%, rgba(0, 0, 0, 0.85) 30%, transparent 80%);
 }
 
 .ambient-tentacle__float,

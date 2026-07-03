@@ -41,9 +41,31 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
   // --- Injection des tentacules par section (DA Purity) ---
   if (window.innerWidth >= 1100) {
+    const shouldHaveTentacles = (sec) => {
+      const tag = sec.tagName.toLowerCase();
+      if (tag === 'nav' || tag === 'header' || tag === 'footer') return false;
+
+      const id = sec.id || '';
+      const classes = sec.classList;
+
+      // Exclure les menus, entêtes, pieds de page, hero, services et formulaire contact
+      if (id === 'services' || id === 'hero' || id === 'contact' || id === 'nav' || id === 'haut') return false;
+      if (classes.contains('nav') || classes.contains('dp-hero') || classes.contains('dp-contact') || classes.contains('svc')) return false;
+
+      // Exclure les sections trop courtes/spécifiques (ex. déclarations ou intro de blog)
+      if (classes.contains('dp-statement') || classes.contains('why-intro') || classes.contains('legal')) return false;
+
+      // Exclure les sections qui ont déjà des tentacules statiques/breathe en CSS
+      if (classes.contains('sec--tentacles')) return false;
+
+      // Éviter l'injection si déjà présent
+      if (sec.querySelector('.ambient-tentacles')) return false;
+
+      return true;
+    };
+
     document.querySelectorAll('.sec, .dp-section, section, header, footer').forEach((sec) => {
-      // Ne pas injecter dans les sections invisibles, trop petites, ou déjà pourvues
-      if (sec.querySelector('.ambient-tentacles') || sec.classList.contains('nav') || sec.id === 'nav' || sec.tagName === 'NAV') return;
+      if (!shouldHaveTentacles(sec)) return;
       
       // S'assurer que le parent est positionné pour contenir l'absolu
       const position = window.getComputedStyle(sec).position;

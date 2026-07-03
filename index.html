@@ -824,10 +824,10 @@
 <div id="sticky-booking" class="sticky-booking" aria-live="polite" hidden>
   <div class="sticky-booking__inner">
     <div class="sticky-booking__text">
-      <strong>Vous avez une question ?</strong>
-      <span>Réservez un appel de 15 min — gratuit</span>
+      <strong data-i18n="sticky.question">Vous avez une question ?</strong>
+      <span data-i18n="sticky.sub">Réservez un appel de 15 min — gratuit</span>
     </div>
-    <a href="#booking" class="btn btn--accent sticky-booking__btn ob-glow-pulse">📅 Réserver maintenant</a>
+    <a href="#booking" class="btn btn--accent sticky-booking__btn ob-glow-pulse" data-i18n="sticky.btn">📅 Réserver maintenant</a>
     <button class="sticky-booking__close" aria-label="Fermer" onclick="document.getElementById('sticky-booking').hidden=true">✕</button>
   </div>
 </div>
@@ -925,226 +925,226 @@
       
       <!-- Étape 1 : Choix & Secteur -->
       <div class="ob-step is-active" data-step="1">
-        <h3 class="ob-title">Dites-nous en plus sur vous</h3>
-        <p class="ob-subtitle">Adaptons le pack à votre activité quotidienne.</p>
+        <h3 class="ob-title" data-i18n="ob.step1.title">Dites-nous en plus sur vous</h3>
+        <p class="ob-subtitle" data-i18n="ob.step1.subtitle">Adaptons le pack à votre activité quotidienne.</p>
         
         <div class="ob-form-group">
-          <label class="ob-label">Votre secteur d'activité</label>
+          <label class="ob-label" data-i18n="ob.step1.sector_label">Votre secteur d'activité</label>
           <div class="ob-select-grid">
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="coiffure">
               <span class="ob-select-box">
                 <span class="ob-select-icon">💇‍♀️</span>
-                <span class="ob-select-title">Coiffure & Beauté</span>
+                <span class="ob-select-title" data-i18n="ob.sector.coiffure">Coiffure & Beauté</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="artisan">
               <span class="ob-select-box">
                 <span class="ob-select-icon">🛠️</span>
-                <span class="ob-select-title">Artisanat & Rénov</span>
+                <span class="ob-select-title" data-i18n="ob.sector.artisan">Artisanat & Rénov</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="horeca">
               <span class="ob-select-box">
                 <span class="ob-select-icon">🍽️</span>
-                <span class="ob-select-title">Resto & Alimentation</span>
+                <span class="ob-select-title" data-i18n="ob.sector.horeca">Resto & Alimentation</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="praticien">
               <span class="ob-select-box">
                 <span class="ob-select-icon">🧘</span>
-                <span class="ob-select-title">Santé & Bien-être</span>
+                <span class="ob-select-title" data-i18n="ob.sector.praticien">Santé & Bien-être</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="liberal">
               <span class="ob-select-box">
                 <span class="ob-select-icon">⚖️</span>
-                <span class="ob-select-title">Cabinet & Libéral</span>
+                <span class="ob-select-title" data-i18n="ob.sector.liberal">Cabinet & Libéral</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="commerce">
               <span class="ob-select-box">
                 <span class="ob-select-icon">🛍️</span>
-                <span class="ob-select-title">Boutique & Commerce</span>
+                <span class="ob-select-title" data-i18n="ob.sector.commerce">Boutique & Commerce</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="immo">
               <span class="ob-select-box">
                 <span class="ob-select-icon">🏠</span>
-                <span class="ob-select-title">Agence & Immo</span>
+                <span class="ob-select-title" data-i18n="ob.sector.immo">Agence & Immo</span>
               </span>
             </label>
             <label class="ob-select-card">
               <input type="radio" name="ob-sector" value="autre">
               <span class="ob-select-box">
                 <span class="ob-select-icon">✨</span>
-                <span class="ob-select-title">Autre métier...</span>
+                <span class="ob-select-title" data-i18n="ob.sector.autre">Autre métier...</span>
               </span>
             </label>
           </div>
           <!-- Champ texte personnalisé pour Autre métier -->
           <div id="ob-custom-sector-wrap" style="display: none; margin-top: 0.8rem;" class="ob-field">
-            <label for="ob-custom-sector" class="ob-label" style="font-size:0.7rem;">Saisissez votre métier</label>
-            <input type="text" id="ob-custom-sector" placeholder="Ex: Fleuriste, Boulanger, Avocat...">
+            <label for="ob-custom-sector" class="ob-label" style="font-size:0.7rem;" data-i18n="ob.step1.custom_sector_label">Saisissez votre métier</label>
+            <input type="text" id="ob-custom-sector" placeholder="Ex: Fleuriste, Boulanger, Avocat..." data-i18n-placeholder="ob.step1.custom_sector_placeholder">
           </div>
         </div>
 
         <div class="ob-form-group">
-          <label class="ob-label">Vos douleurs actuelles (minimum 1)</label>
+          <label class="ob-label" data-i18n="ob.step1.pains_label">Vos douleurs actuelles (minimum 1)</label>
           <div class="ob-pains-scroll-container">
             <div class="ob-chips" id="ob-pains-wrapper">
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-site">
-                <span>Pas de site internet</span>
+                <span data-i18n="ob.pain.no-site">Pas de site internet</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="old-site">
-                <span>Site internet obsolète / lent</span>
+                <span data-i18n="ob.pain.old-site">Site internet obsolète / lent</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-mobile">
-                <span>Site non adapté aux téléphones</span>
+                <span data-i18n="ob.pain.no-mobile">Site non adapté aux téléphones</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-show">
-                <span>Rendez-vous manqués / No-shows</span>
+                <span data-i18n="ob.pain.no-show">Rendez-vous manqués / No-shows</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="phone-distraction">
-                <span>Appels incessants pendant le travail</span>
+                <span data-i18n="ob.pain.phone-distraction">Appels incessants pendant le travail</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="missed-calls">
-                <span>Appels clients manqués hors-horaires</span>
+                <span data-i18n="ob.pain.missed-calls">Appels clients manqués hors-horaires</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="bad-seo">
-                <span>Invisible localement sur Google / Maps</span>
+                <span data-i18n="ob.pain.bad-seo">Invisible localement sur Google / Maps</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-traffic">
-                <span>Manque de nouveaux clients réguliers</span>
+                <span data-i18n="ob.pain.no-traffic">Manque de nouveaux clients réguliers</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-booking">
-                <span>Pas de système de réservation en ligne</span>
+                <span data-i18n="ob.pain.no-booking">Pas de système de réservation en ligne</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="manual-booking">
-                <span>Gestion d'agenda manuelle trop lourde</span>
+                <span data-i18n="ob.pain.manual-booking">Gestion d'agenda manuelle trop lourde</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-reviews">
-                <span>Difficulté à obtenir des avis Google</span>
+                <span data-i18n="ob.pain.no-reviews">Difficulté à obtenir des avis Google</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="quote-delays">
-                <span>Devis trop longs à rédiger et envoyer</span>
+                <span data-i18n="ob.pain.quote-delays">Devis trop longs à rédiger et envoyer</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="unpaid-invoices">
-                <span>Factures impayées / Relances manuelles</span>
+                <span data-i18n="ob.pain.unpaid-invoices">Factures impayées / Relances manuelles</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-social">
-                <span>Pas de présence sur les réseaux sociaux</span>
+                <span data-i18n="ob.pain.no-social">Pas de présence sur les réseaux sociaux</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="competition">
-                <span>Difficile de se démarquer des concurrents</span>
+                <span data-i18n="ob.pain.competition">Difficile de se démarquer des concurrents</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-database">
-                <span>Fichier client inexistant ou non exploité</span>
+                <span data-i18n="ob.pain.no-database">Fichier client inexistant ou non exploité</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="faq-time">
-                <span>Trop d'appels pour des questions basiques</span>
+                <span data-i18n="ob.pain.faq-time">Trop d'appels pour des questions basiques</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="no-ecommerce">
-                <span>Pas de vente en ligne ni Click & Collect</span>
+                <span data-i18n="ob.pain.no-ecommerce">Pas de vente en ligne ni Click & Collect</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="ad-waste">
-                <span>Budget pub Google/Meta perdu sans retour</span>
+                <span data-i18n="ob.pain.ad-waste">Budget pub Google/Meta perdu sans retour</span>
               </label>
               <label class="ob-chip">
                 <input type="checkbox" name="ob-pain" value="silo-tools">
-                <span>Logiciels actuels non connectés entre eux</span>
+                <span data-i18n="ob.pain.silo-tools">Logiciels actuels non connectés entre eux</span>
               </label>
             </div>
           </div>
           <!-- Champ d'ajout personnalisé pour douleur -->
           <div class="ob-add-pain-row" style="margin-top: 0.6rem;">
-            <input type="text" id="ob-add-pain-input" placeholder="Ajouter une autre douleur spécifique...">
+            <input type="text" id="ob-add-pain-input" placeholder="Ajouter une autre douleur spécifique..." data-i18n-placeholder="ob.step1.add_pain_placeholder">
             <button type="button" id="ob-add-pain-btn" class="btn btn--accent" style="padding: 0.5rem 1.1rem; font-size: 0.9rem;">+</button>
           </div>
         </div>
 
         <div class="ob-footer">
           <div></div>
-          <button class="btn btn--white ob-btn-next">Continuer</button>
+          <button class="btn btn--white ob-btn-next" data-i18n="ob.btn.continue">Continuer</button>
         </div>
       </div>
 
       <!-- Étape 2 : Configuration des fonctionnalités -->
       <div class="ob-step" data-step="2">
-        <h3 class="ob-title">Personnalisez vos outils</h3>
-        <p class="ob-subtitle">Sélectionnez les briques indispensables à connecter.</p>
+        <h3 class="ob-title" data-i18n="ob.step2.title">Personnalisez vos outils</h3>
+        <p class="ob-subtitle" data-i18n="ob.step2.subtitle">Sélectionnez les briques indispensables à connecter.</p>
         
         <div class="ob-features-list">
           <!-- Chargé dynamiquement en JS -->
         </div>
 
         <div class="ob-footer">
-          <button class="btn btn--glass ob-btn-prev">Retour</button>
-          <button class="btn btn--white ob-btn-next">Valider mes choix</button>
+          <button class="btn btn--glass ob-btn-prev" data-i18n="ob.btn.back">Retour</button>
+          <button class="btn btn--white ob-btn-next" data-i18n="ob.btn.validate">Valider mes choix</button>
         </div>
       </div>
 
       <!-- Étape 3 : Coordonnées & Envoi -->
       <div class="ob-step" data-step="3">
-        <h3 class="ob-title">Finalisons votre dossier</h3>
-        <p class="ob-subtitle">Où devons-nous vous envoyer l'analyse de faisabilité gratuite ?</p>
+        <h3 class="ob-title" data-i18n="ob.step3.title">Finalisons votre dossier</h3>
+        <p class="ob-subtitle" data-i18n="ob.step3.subtitle">Où devons-nous vous envoyer l'analyse de faisabilité gratuite ?</p>
         
         <form id="ob-contact-form" class="ob-form">
           <div class="ob-form-grid">
             <div class="ob-field">
-              <label for="ob-f-name" class="ob-label">Votre nom complet</label>
-              <input type="text" id="ob-f-name" required placeholder="Jean Dupont">
+              <label for="ob-f-name" class="ob-label" data-i18n="ob.form.name_label">Votre nom complet</label>
+              <input type="text" id="ob-f-name" required placeholder="Jean Dupont" data-i18n-placeholder="ob.form.name_placeholder">
             </div>
             <div class="ob-field">
-              <label for="ob-f-company" class="ob-label">Nom de votre entreprise</label>
-              <input type="text" id="ob-f-company" placeholder="Salon XYZ, Sprl ABC...">
+              <label for="ob-f-company" class="ob-label" data-i18n="ob.form.company_label">Nom de votre entreprise</label>
+              <input type="text" id="ob-f-company" placeholder="Salon XYZ, Sprl ABC..." data-i18n-placeholder="ob.form.company_placeholder">
             </div>
             <div class="ob-field">
-              <label for="ob-f-email" class="ob-label">Adresse e-mail pro</label>
-              <input type="email" id="ob-f-email" required placeholder="jean@dupont.be">
+              <label for="ob-f-email" class="ob-label" data-i18n="ob.form.email_placeholder_label">Adresse e-mail pro</label>
+              <input type="email" id="ob-f-email" required placeholder="jean@dupont.be" data-i18n-placeholder="ob.form.email_placeholder">
             </div>
             <div class="ob-field">
-              <label for="ob-f-phone" class="ob-label">Numéro de téléphone</label>
-              <input type="tel" id="ob-f-phone" placeholder="0495 00 00 00">
+              <label for="ob-f-phone" class="ob-label" data-i18n="ob.form.phone_label">Numéro de téléphone</label>
+              <input type="tel" id="ob-f-phone" placeholder="0495 00 00 00" data-i18n-placeholder="ob.form.phone_placeholder">
             </div>
           </div>
 
           <div class="ob-field" style="margin-top: 0.8rem;">
-            <label for="ob-f-msg" class="ob-label">Remarques ou besoins spécifiques (optionnel)</label>
-            <textarea id="ob-f-msg" rows="3" placeholder="Ex: horaires spéciaux, logiciels actuels..."></textarea>
+            <label for="ob-f-msg" class="ob-label" data-i18n="ob.form.msg_label">Remarques ou besoins spécifiques (optionnel)</label>
+            <textarea id="ob-f-msg" rows="3" placeholder="Ex: horaires spéciaux, logiciels actuels..." data-i18n-placeholder="ob.form.msg_placeholder"></textarea>
           </div>
 
           <!-- Honeypot honeypot -->
           <input type="text" name="website_verification" style="display:none !important;" tabindex="-1" autocomplete="off">
 
           <div class="ob-footer" style="margin-top: 1rem; padding-top: 0; border-top: none;">
-            <button type="button" class="btn btn--glass ob-btn-prev">Retour</button>
-            <button type="submit" class="btn btn--white ob-btn-submit">Déposer ma demande</button>
+            <button type="button" class="btn btn--glass ob-btn-prev" data-i18n="ob.btn.back">Retour</button>
+            <button type="submit" class="btn btn--white ob-btn-submit" data-i18n="ob.form.submit">Déposer ma demande</button>
           </div>
         </form>
       </div>
@@ -1157,17 +1157,17 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h3 class="ob-title">Demande envoyée !</h3>
-          <p class="ob-subtitle" style="margin-bottom: 1.2rem;">Notre équipe analyse déjà votre configuration.</p>
+          <h3 class="ob-title" data-i18n="ob.step4.title">Demande envoyée !</h3>
+          <p class="ob-subtitle" style="margin-bottom: 1.2rem;" data-i18n="ob.step4.subtitle">Notre équipe analyse déjà votre configuration.</p>
           
           <!-- Carte de planification Meet -->
           <div class="ob-calendar-invite-card" style="margin-bottom: 1.5rem; text-align: center; width: 100%;">
-            <h4 class="ob-invite-title" style="font-size: 1.15rem; margin-bottom: 0.4rem; color: #fff; font-family: var(--font-head);">📈 Boostez votre projet immédiatement</h4>
-            <p class="ob-invite-desc" style="font-size: 0.8rem; line-height: 1.45; color: var(--c-fg-muted); margin-bottom: 1.2rem; max-width: 44ch; margin-left: auto; margin-right: auto;">Planifiez dès maintenant votre appel stratégique de 15 minutes sur Google Meet. Vos coordonnées seront pré-remplies.</p>
-            <a href="#" target="_blank" class="btn btn--accent ob-btn-booking ob-glow-pulse" style="font-size:0.85rem; padding: 0.7rem 1.4rem; display: inline-block;">Réserver mon créneau strategique</a>
+            <h4 class="ob-invite-title" style="font-size: 1.15rem; margin-bottom: 0.4rem; color: #fff; font-family: var(--font-head);" data-i18n="ob.step4.invite_title">📈 Boostez votre projet immédiatement</h4>
+            <p class="ob-invite-desc" style="font-size: 0.8rem; line-height: 1.45; color: var(--c-fg-muted); margin-bottom: 1.2rem; max-width: 44ch; margin-left: auto; margin-right: auto;" data-i18n="ob.step4.invite_desc">Planifiez dès maintenant votre appel stratégique de 15 minutes sur Google Meet. Vos coordonnées seront pré-remplies.</p>
+            <a href="#" target="_blank" class="btn btn--accent ob-btn-booking ob-glow-pulse" style="font-size:0.85rem; padding: 0.7rem 1.4rem; display: inline-block;" data-i18n="ob.step4.invite_btn">Réserver mon créneau stratégique</a>
           </div>
 
-          <button class="btn btn--glass ob-btn-close">Fermer</button>
+          <button class="btn btn--glass ob-btn-close" data-i18n="ob.btn.close">Fermer</button>
         </div>
       </div>
 

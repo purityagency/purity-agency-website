@@ -1058,15 +1058,71 @@ header::before {
 }
 
 @media (max-width: 768px) {
-  .svc-scene {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding: 12vh 0;
-    gap: 2rem;
+  .svc {
+    height: auto !important;
+    padding-block: 3rem;
   }
-  .svc-scene__media { order: -1 !important; aspect-ratio: 16 / 11; }
-  .svc-scene__content > * { max-width: none; }
-  .svc__progress { right: 1rem; }
+  .svc__stage {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .svc-scene {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .svc-scene__media {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    height: 240px !important;
+  }
+  .svc-scene__content {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    transform: none !important;
+    padding: 1.5rem !important;
+    background: rgba(12, 8, 18, 0.45) !important;
+    backdrop-filter: blur(16px) saturate(1.2) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  }
+  .svc-scene__content::before,
+  .svc-scene__content::after {
+    display: none !important;
+  }
+  .svc-scene__title {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+  .svc-scene__lead {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.2rem !important;
+    max-width: none !important;
+  }
+  .svc-scene__tags {
+    margin-bottom: 1.2rem !important;
+  }
+  .svc__progress {
+    display: none !important;
+  }
 }
 
 /* Stats Bento */

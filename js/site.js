@@ -369,13 +369,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    if (prefersReduced) {
+    const isMobile = () => window.innerWidth <= 768;
+
+    if (prefersReduced || isMobile()) {
       scenes.forEach((s) => {
         gsap.set(s, { position: 'relative', clearProps: 'transform', opacity: 1 });
         gsap.set(contentOf(s), { opacity: 1, y: 0 });
       });
-      gsap.set(stage, { height: 'auto' });
+      gsap.set(stage, { height: 'auto', position: 'relative', overflow: 'visible' });
       gsap.set(svc, { height: 'auto' });
+      const prog = svc.querySelector('.svc__progress');
+      if (prog) prog.style.display = 'none';
     } else {
       gsap.set(scenes, { opacity: 1 });
       gsap.set(scenes.map(s => contentOf(s)), { opacity: 1, y: 0 });
@@ -396,7 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // GAP_X dépend de la largeur → recalcule au resize
       window.addEventListener('resize', () => ScrollTrigger.refresh());
     }
   }
@@ -1027,6 +1030,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const key = el.getAttribute('data-i18n-placeholder');
         if (dict[key] != null) el.setAttribute('placeholder', dict[key].replace(/<[^>]+>/g, ''));
       });
+      if (typeof window.refreshOnboardingFeatures === 'function') {
+        window.refreshOnboardingFeatures();
+      }
     };
 
     const selectLang = async (li, { persist = true, userInitiated = false } = {}) => {
@@ -1343,6 +1349,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const features = sectorFeatures[sector] || sectorFeatures['autre'];
       features.forEach((f, idx) => {
+        const nameKey = `ob.feat.${sector}.${idx}.name`;
+        const descKey = `ob.feat.${sector}.${idx}.desc`;
+        const name = (typeof _i18nDict !== 'undefined' && _i18nDict[nameKey]) || f.name;
+        const desc = (typeof _i18nDict !== 'undefined' && _i18nDict[descKey]) || f.desc;
         const item = document.createElement('label');
         item.className = 'ob-feature-item';
         item.innerHTML = `
@@ -1353,12 +1363,18 @@ document.addEventListener('DOMContentLoaded', () => {
             </svg>
           </span>
           <span class="ob-feature-text">
-            <span class="ob-feature-name">${f.name}</span>
-            <span class="ob-feature-desc">${f.desc}</span>
+            <span class="ob-feature-name">${name}</span>
+            <span class="ob-feature-desc">${desc}</span>
           </span>
         `;
         list.appendChild(item);
       });
+    };
+
+    window.refreshOnboardingFeatures = () => {
+      if (selectedSector) {
+        loadFeatures(selectedSector);
+      }
     };
 
     // Trigger open

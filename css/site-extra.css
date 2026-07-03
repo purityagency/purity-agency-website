@@ -1324,6 +1324,83 @@
   }
 }
 
+/* ═══ CB TABS (CONTACT & BOOKING FUSION) ═══ */
+.cb-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+.cb-tabs {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 4px;
+}
+.cb-tab {
+  font-family: var(--font-head);
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  font-weight: 500;
+  color: var(--c-fg-muted);
+  padding: 0.8rem 1.8rem;
+  border-radius: 99px;
+  transition: all var(--t-med);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+}
+.cb-tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.cb-tab.is-active {
+  background: var(--c-accent);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+.cb-tab__icon {
+  transition: transform 0.3s;
+}
+.cb-tab.is-active .cb-tab__icon {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Panes layout */
+.cb-panes {
+  position: relative;
+  width: 100%;
+}
+.cb-pane {
+  animation: cbPaneFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cbPaneFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.anchor-offset {
+  position: absolute;
+  top: -120px;
+  visibility: hidden;
+}
+
+
 
 
 

@@ -78,6 +78,8 @@ window.addEventListener('load', () => {
   });
 });
 
+let _i18nDict = {};
+
 document.addEventListener('DOMContentLoaded', () => {
   // --- Injection des tentacules par section (DA Purity) ---
   if (window.innerWidth >= 1100) {
@@ -399,37 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 2. Number count-up : stats bento ---
-  const countEls = [
-    ...document.querySelectorAll('.bento__val'),
-  ];
-  countEls.forEach(el => {
-    // Extrait le nombre, garde le reste (€, h, ×, small...) intact
-    const match = el.textContent.match(/(\d[\d\s ]*)/);
-    if (!match) return;
-    const target = parseInt(match[1].replace(/[\s ]/g, ''), 10);
-    if (isNaN(target)) return;
-    const fullHTML = el.innerHTML;
-    const numStr = match[1];
-    const proxy = { v: 0 };
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 90%',
-      once: true,
-      onEnter: () => {
-        gsap.to(proxy, {
-          v: target,
-          duration: 1.4,
-          ease: 'power2.out',
-          onUpdate: () => {
-            const current = Math.round(proxy.v).toString();
-            el.innerHTML = fullHTML.replace(numStr.trim(), current);
-          },
-          onComplete: () => { el.innerHTML = fullHTML; }
-        });
-      }
-    });
-  });
 
   // --- Kinetic typography (constat) : lignes qui montent au scroll ---
   const ktLines = gsap.utils.toArray('[data-kt]');
@@ -511,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const btn = form.querySelector('button');
     const original = btn.textContent;
-    btn.textContent = 'Envoi...';
+    btn.textContent = _i18nDict['form.sending'] || 'Envoi…';
     btn.disabled = true;
     const payload = {
       name: form.querySelector('#f-name')?.value || '',
@@ -536,11 +507,11 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingBtn.href = buildBookingUrl(payload.name, payload.email, payload.phone);
       }
 
-      sentBlock.style.display = 'block';
+      if (sentBlock) sentBlock.style.display = 'block';
       btn.style.display = 'none';
       form.reset();
     } catch (err) {
-      btn.textContent = 'Erreur — réessayer';
+      btn.textContent = _i18nDict['form.error'] || 'Erreur — réessayer';
       btn.disabled = false;
       setTimeout(() => { btn.textContent = original; }, 2500);
     }
@@ -881,13 +852,14 @@ document.addEventListener('DOMContentLoaded', () => {
           } catch { /* balise malformée : on ignore, le texte reste propre */ }
         }
         if (display) addMsg(display, 'sys');
-        chatMemory.push({ role: 'model', text: data.reply });
+        chatMemory.push({ role: 'model', text: display });
+        if (chatMemory.length > 20) chatMemory = chatMemory.slice(-20);
       } else {
-        addMsg("Désolé, je rencontre un problème de connexion. Vous pouvez nous écrire à contact@purity-agency.be.", 'sys');
+        addMsg(_i18nDict['chat.error1'] || "Désolé, je rencontre un problème de connexion. Vous pouvez nous écrire à contact@purity-agency.be.", 'sys');
       }
     } catch (err) {
       removeTypingIndicator();
-      addMsg("Désolé, une erreur s'est produite. Vous pouvez nous contacter directement à contact@purity-agency.be.", 'sys');
+      addMsg(_i18nDict['chat.error2'] || "Désolé, une erreur s'est produite. Vous pouvez nous contacter directement à contact@purity-agency.be.", 'sys');
     }
 
     chatInput.disabled = false;
@@ -915,16 +887,16 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInited = true;
         // Message d'accueil (n'est pas envoyé à l'API, sert juste d'intro)
         setTimeout(() => {
-          const intro = "Bonjour ! 👋 Je suis OctoMask, l'assistant virtuel de Purity Agency. Quel est votre métier ? Je peux vous indiquer concrètement ce que nous pourrions optimiser pour votre présence en ligne.";
+          const intro = _i18nDict['chat.intro'] || "Bonjour ! 👋 Je suis OctoMask, l'assistant virtuel de Purity Agency. Quel est votre métier ? Je peux vous indiquer concrètement ce que nous pourrions optimiser pour votre présence en ligne.";
           addMsg(intro, 'sys');
           chatMemory.push({ role: 'model', text: intro });
 
           // Suggestions orientées conversion
           const suggestions = [
-            "Je veux un site pour mon activité",
-            "Combien coûte un site ?",
-            "Automatiser mon WhatsApp / mes RDV",
-            "Être trouvé sur Google"
+            _i18nDict['chat.sug1'] || "Je veux un site pour mon activité",
+            _i18nDict['chat.sug2'] || "Combien coûte un site ?",
+            _i18nDict['chat.sug3'] || "Automatiser mon WhatsApp / mes RDV",
+            _i18nDict['chat.sug4'] || "Être trouvé sur Google"
           ];
           
           const sugContainer = document.createElement('div');
@@ -1042,6 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
 
     const applyDict = (dict) => {
+      _i18nDict = dict;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] != null) el.innerHTML = dict[key];
@@ -1097,7 +1070,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // fermeture : clic extérieur + Échap
     document.addEventListener('click', (e) => { if (!langsel.contains(e.target)) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+        const obEl = document.getElementById('ob-modal');
+        if (obEl && obEl.classList.contains('is-open')) obEl.querySelector('.ob-close')?.click();
+      }
+    });
   }
 
   // --- Bulle teaser d'onboarding (12s OU 1er scroll, une seule fois) ---
@@ -1140,8 +1119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const showStickyBooking = () => {
       if (stickyShown || stickyDismissed) return;
-      // Ne pas afficher si le visiteur est déjà sur la section #booking
-      const bkSection = document.getElementById('booking');
+      // Ne pas afficher si le visiteur est déjà sur la section de contact/booking
+      const bkSection = document.getElementById('contact');
       if (bkSection) {
         const rect = bkSection.getBoundingClientRect();
         if (rect.top >= 0 && rect.bottom <= window.innerHeight) return;
@@ -1163,8 +1142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger 2 — 45 secondes de dwell time
     setTimeout(showStickyBooking, 45000);
 
-    // Masquer quand l'utilisateur arrive sur #booking (IntersectionObserver)
-    const bkEl = document.getElementById('booking');
+    // Masquer quand l'utilisateur arrive sur #contact (IntersectionObserver)
+    const bkEl = document.getElementById('contact');
     if (bkEl) {
       const bkObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1200,6 +1179,65 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fallback) fallback.style.display = 'block';
       }
     }, 8000);
+  }
+
+  // ==========================================================================
+  //  FUSION CONTACT & BOOKING — Commutateur d'onglets & gestion des ancres
+  // ==========================================================================
+  const cbTabs = document.querySelector('.cb-tabs');
+  if (cbTabs) {
+    const tabs = cbTabs.querySelectorAll('.cb-tab');
+    const panes = document.querySelectorAll('.cb-pane');
+
+    const activateTab = (targetId) => {
+      tabs.forEach(tab => {
+        const isActive = tab.getAttribute('data-target') === targetId;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      panes.forEach(pane => {
+        const idSuffix = pane.id.replace('pane-', '');
+        if (idSuffix === targetId) {
+          pane.style.display = 'block';
+        } else {
+          pane.style.display = 'none';
+        }
+      });
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-target');
+        activateTab(targetId);
+      });
+    });
+
+    // Intercepter les clics sur les liens d'ancres de navigation
+    document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href');
+        const hash = href.substring(href.indexOf('#'));
+        if (hash === '#booking') {
+          activateTab('calendar');
+        } else if (hash === '#contact') {
+          activateTab('form');
+        }
+      });
+    });
+
+    // Vérifier l'ancre au chargement
+    const checkHashOnLoad = () => {
+      const hash = window.location.hash;
+      if (hash === '#booking') {
+        activateTab('calendar');
+      } else if (hash === '#contact') {
+        activateTab('form');
+      }
+    };
+
+    window.addEventListener('hashchange', checkHashOnLoad);
+    checkHashOnLoad();
   }
 
   // ==========================================================================
@@ -1352,12 +1390,15 @@ document.addEventListener('DOMContentLoaded', () => {
       // Show first step & open modal
       showStep(1);
       obModal.classList.add('is-open');
+      obModal.removeAttribute('aria-hidden');
+      obModal.querySelector('.ob-close')?.focus();
       document.body.style.overflow = 'hidden'; // block page scroll
     }));
 
     // Close
     const closeModal = () => {
       obModal.classList.remove('is-open');
+      obModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       // Reset form
       obModal.querySelector('#ob-contact-form')?.reset();
@@ -1418,10 +1459,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const label = document.createElement('label');
         label.className = 'ob-chip';
         const cleanVal = val.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        label.innerHTML = `
-          <input type="checkbox" name="ob-pain" value="${cleanVal}" checked>
-          <span>${val}</span>
-        `;
+        const cb = document.createElement('input');
+        cb.type = 'checkbox'; cb.name = 'ob-pain'; cb.value = cleanVal; cb.checked = true;
+        const sp = document.createElement('span');
+        sp.textContent = val;
+        label.appendChild(cb);
+        label.appendChild(sp);
         
         painsWrapper.appendChild(label);
         addPainInput.value = '';
@@ -1448,19 +1491,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const selected = obModal.querySelector('input[name="ob-sector"]:checked');
             if (selected) selectedSector = selected.value;
             else {
-              alert("Veuillez sélectionner votre secteur d'activité.");
+              alert(_i18nDict['ob.alert.sector'] || "Veuillez sélectionner votre secteur d'activité.");
               return;
             }
           }
           if (selectedSector === 'autre' && customSectorInput && !customSectorInput.value.trim()) {
-            alert("Veuillez saisir votre métier.");
+            alert(_i18nDict['ob.alert.metier'] || "Veuillez saisir votre métier.");
             customSectorInput.focus();
             return;
           }
           // Validation minimum 1 douleur
           const chosenPains = obModal.querySelectorAll('input[name="ob-pain"]:checked');
           if (chosenPains.length === 0) {
-            alert("Veuillez cocher au moins une douleur actuelle.");
+            alert(_i18nDict['ob.alert.pain'] || "Veuillez cocher au moins une douleur actuelle.");
             return;
           }
           
@@ -1470,7 +1513,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Validation minimum 1 brique
           const chosenFeatures = obModal.querySelectorAll('input[name="ob-feature"]:checked');
           if (chosenFeatures.length === 0) {
-            alert("Veuillez sélectionner au moins une brique de fonctionnalité.");
+            alert(_i18nDict['ob.alert.feature'] || "Veuillez sélectionner au moins une brique de fonctionnalité.");
             return;
           }
           showStep(3);
@@ -1490,7 +1533,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const btn = obForm.querySelector('.ob-btn-submit');
       const originalText = btn.textContent;
-      btn.textContent = 'Envoi...';
+      btn.textContent = _i18nDict['form.sending'] || 'Envoi…';
       btn.disabled = true;
 
       // Extract options selected
@@ -1536,9 +1579,18 @@ document.addEventListener('DOMContentLoaded', () => {
         showStep(4);
         obForm.reset();
       } catch (err) {
-        btn.textContent = 'Erreur — réessayer';
+        btn.textContent = _i18nDict['form.error'] || 'Erreur — réessayer';
         btn.disabled = false;
         setTimeout(() => { btn.textContent = originalText; }, 2500);
+      }
+    });
+  }
+
+  // Escape key sans langsel (ex. pages où langsel absent)
+  if (!langsel) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && obModal && obModal.classList.contains('is-open')) {
+        obModal.querySelector('.ob-close')?.click();
       }
     });
   }

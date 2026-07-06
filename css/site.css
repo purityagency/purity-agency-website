@@ -3383,29 +3383,20 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 
 /* Card 1: Browser + Cursor Click Animation */
 .ico-browser__cursor {
-  transform-origin: 12px 14px;
+  transform-origin: 10px 10px;
   transition: transform var(--t-med) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .svc-card:hover .ico-browser__cursor {
-  transform: translate(-2px, -2px) scale(0.9);
-  animation: cursor-click 0.4s ease forwards;
-}
-@keyframes cursor-click {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-2px, -2px) scale(0.85); }
-  100% { transform: translate(-1px, -1px) scale(1); }
+  transform: translate(2px, 2px) scale(0.9);
 }
 
-/* Card 2: Google Pin Bounce Animation */
-.ico-pin__marker {
-  transform-origin: 12px 19px;
+/* Card 2: Google Store Door Animation */
+.ico-pin__door {
+  transform-origin: center bottom;
+  transition: transform var(--t-med) ease;
 }
-.svc-card:hover .ico-pin__marker {
-  animation: pin-bounce 0.6s ease infinite alternate;
-}
-@keyframes pin-bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-3px); }
+.svc-card:hover .ico-pin__door {
+  transform: translateY(-2px);
 }
 
 /* Card 3: Chat Bubble Typing Animation */
@@ -3426,7 +3417,7 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 
 /* Card 4: IA Sparkle Animation */
 .ico-spark__main {
-  transform-origin: 12px 12px;
+  transform-origin: 12px 10px;
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .svc-card:hover .ico-spark__main {
@@ -3435,6 +3426,7 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 .ico-spark__sub-1, .ico-spark__sub-2 {
   opacity: 0.5;
   transform-origin: center;
+  transform-box: fill-box;
 }
 .svc-card:hover .ico-spark__sub-1 {
   animation: spark-pulse 1s infinite alternate;
@@ -3446,4 +3438,5 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   0% { opacity: 0.3; transform: scale(0.8); }
   100% { opacity: 1; transform: scale(1.2); }
 }
+
 

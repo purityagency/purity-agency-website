@@ -495,7 +495,7 @@ header::before {
 /* Hero — image plein écran + texte par-dessus (version d'origine) */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   padding-top: var(--nav-h);
@@ -530,8 +530,8 @@ header::before {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;   /* bloc texte remonté */
-  padding-top: calc(var(--nav-h) + 7vh); /* sous la nav, dans le tiers supérieur */
-  min-height: 100vh;
+  padding-top: calc(var(--nav-h) + 5vh); /* sous la nav, dans le tiers supérieur */
+  min-height: 90vh;
 }
 
 .hero__text-col {
@@ -639,7 +639,7 @@ header::before {
 /* Indicateur de scroll — incitatif (label + souris + rebond doux) */
 .hero__scroll {
   position: absolute;
-  bottom: 3.5vh;
+  bottom: 7vh;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1983,7 +1983,7 @@ footer {
 .chat {
   position: fixed;
   bottom: var(--s-lg);
-  left: var(--s-lg);   /* à gauche par défaut */
+  right: var(--s-lg);   /* à droite par défaut */
   z-index: 950; /* toujours au-dessus du bandeau sticky-booking (900) : jamais masqué */
   touch-action: none;  /* pour le drag tactile */
   /* snap magnétique animé (façon bulle Messenger) au relâchement */

@@ -345,62 +345,97 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 1b. SERVICES : carrousel COVERFLOW 3D (cartes dans l'espace) ---
-  const svc = document.getElementById('services');
-  const stage = svc && svc.querySelector('.svc__stage');
-  if (svc && stage) {
-    const scenes = gsap.utils.toArray('.svc-scene');
-    const progIndex = svc.querySelector('.svc__index');
-    const progFill = svc.querySelector('.svc__bar i');
+  // --- SHOWCASE SERVICES TV CINÉMATIQUE ---
+  const svcShowcase = document.querySelector('.svc-showcase');
+  if (svcShowcase) {
+    const scenes = svcShowcase.querySelectorAll('.svc-scene');
+    const dots = svcShowcase.querySelectorAll('.svc-dot');
+    const cards = document.querySelectorAll('.svc-card');
+    const btnPrev = svcShowcase.querySelector('.svc-nav-btn--prev');
+    const btnNext = svcShowcase.querySelector('.svc-nav-btn--next');
+    let currentIndex = 0;
     const total = scenes.length;
 
-    const contentOf = (s) => s.querySelectorAll('.svc-scene__num, .svc-scene__title, .svc-scene__lead, .svc-scene__tags, .svc-scene__more');
+    const goToScene = (index) => {
+      if (index < 0 || index >= total) return; // pas de boucle : les bornes sont réellement désactivées
+      currentIndex = index;
 
-    // Setters rapides (uniquement translation X pour le slide)
-    const setters = scenes.map(s => ({
-      x: gsap.quickSetter(s, 'x', 'px')
-    }));
-    const vw = () => window.innerWidth;
-
-    // Place toutes les cartes selon l'index actif (float continu)
-    const layout = (active) => {
-      scenes.forEach((_, i) => {
-        const off = i - active; // distance de la carte active
-        setters[i].x(off * vw()); // décalage de 100vw par index
+      scenes.forEach((s, i) => {
+        s.style.setProperty('--offset', i - currentIndex); // slide réel (translateX), plus de fade
+        s.classList.toggle('is-active', i === currentIndex);
       });
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+      cards.forEach((card, i) => card.classList.toggle('is-active', i === currentIndex));
+      if (btnPrev) btnPrev.disabled = currentIndex === 0;
+      if (btnNext) btnNext.disabled = currentIndex === total - 1;
     };
 
-    const isMobile = () => window.innerWidth <= 768;
+    if (btnPrev && btnNext) {
+      btnPrev.addEventListener('click', () => goToScene(currentIndex - 1));
+      btnNext.addEventListener('click', () => goToScene(currentIndex + 1));
+      goToScene(0); // état initial : flèche précédente désactivée dès le chargement
+    }
 
-    if (prefersReduced || isMobile()) {
-      scenes.forEach((s) => {
-        gsap.set(s, { position: 'relative', clearProps: 'transform', opacity: 1 });
-        gsap.set(contentOf(s), { opacity: 1, y: 0 });
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToScene(parseInt(dot.getAttribute('data-index')));
       });
-      gsap.set(stage, { height: 'auto', position: 'relative', overflow: 'visible' });
-      gsap.set(svc, { height: 'auto' });
-      const prog = svc.querySelector('.svc__progress');
-      if (prog) prog.style.display = 'none';
-    } else {
-      gsap.set(scenes, { opacity: 1 });
-      gsap.set(scenes.map(s => contentOf(s)), { opacity: 1, y: 0 });
-      layout(0);
+    });
 
-      ScrollTrigger.create({
-        trigger: svc,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1,
-        onUpdate: (self) => {
-          const active = self.progress * (total - 1);
-          layout(active);
-          const idx = Math.round(active);
-          if (progIndex) progIndex.textContent = String(idx + 1).padStart(2, '0');
-          if (progFill) progFill.style.transform = `translateY(${idx * 100}%)`;
-          scenes.forEach((s, n) => s.classList.toggle('is-active', n === idx));
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        goToScene(i);
+        const showcaseSection = document.getElementById('services');
+        if (showcaseSection) {
+          showcaseSection.scrollIntoView({ behavior: 'smooth' });
         }
       });
+      card.style.cursor = 'pointer';
+    });
 
-      window.addEventListener('resize', () => ScrollTrigger.refresh());
+    // Support du swipe sur mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const screen = svcShowcase.querySelector('.svc-showcase__screen');
+
+    if (screen) {
+      screen.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, {passive: true});
+
+      screen.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 40) goToScene(currentIndex + 1); // Swipe gauche (suivant)
+        if (touchEndX > touchStartX + 40) goToScene(currentIndex - 1); // Swipe droite (précédent)
+      }, {passive: true});
+
+      // Support du drag à la souris (desktop) — même logique que le swipe tactile
+      let isDragging = false;
+      let dragMoved = false;
+      let dragStartX = 0;
+
+      screen.addEventListener('mousedown', e => {
+        if (e.target.closest('a, button')) return; // ne pas gêner les CTA/liens dans les scènes
+        isDragging = true;
+        dragMoved = false;
+        dragStartX = e.clientX;
+        screen.classList.add('is-dragging');
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        if (Math.abs(e.clientX - dragStartX) > 5) dragMoved = true;
+      });
+
+      window.addEventListener('mouseup', e => {
+        if (!isDragging) return;
+        isDragging = false;
+        screen.classList.remove('is-dragging');
+        if (!dragMoved) return;
+        const dx = e.clientX - dragStartX;
+        if (dx < -40) goToScene(currentIndex + 1); // glisse vers la gauche → scène suivante
+        if (dx > 40) goToScene(currentIndex - 1);  // glisse vers la droite → scène précédente
+      });
     }
   }
 
@@ -874,11 +909,20 @@ document.addEventListener('DOMContentLoaded', () => {
     chatForm.addEventListener('submit', handleChatSubmit);
   }
 
+  const chatBadge = document.getElementById('chat-badge');
+  if (chatBadge) {
+    try { if (localStorage.getItem('octomask_badge_seen')) chatBadge.hidden = true; } catch {}
+  }
+
   const toggleChat = () => {
     chatOpen = !chatOpen;
     const parent = document.getElementById('chat');
-    
+
     if (chatOpen) {
+      if (chatBadge) {
+        chatBadge.hidden = true;
+        try { localStorage.setItem('octomask_badge_seen', '1'); } catch {}
+      }
       parent.classList.add('is-open');
       chatPanel.removeAttribute('hidden');
       chatPanel.classList.add('is-entering');
@@ -1169,22 +1213,142 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Iframe booking fallback — si Google bloque l'embed, afficher le fallback
-  const bkIframe = document.getElementById('bk-calendar-iframe');
-  if (bkIframe) {
-    bkIframe.addEventListener('error', () => {
-      bkIframe.closest('.bk-iframe-container').style.display = 'none';
-      const fallback = document.querySelector('.bk-fallback');
-      if (fallback) fallback.style.display = 'block';
-    });
-    // Timeout safety — si après 8s l'iframe est vide, afficher le fallback
-    setTimeout(() => {
-      if (bkIframe.contentDocument?.body?.innerHTML?.length < 10) {
-        bkIframe.closest('.bk-iframe-container').style.display = 'none';
-        const fallback = document.querySelector('.bk-fallback');
-        if (fallback) fallback.style.display = 'block';
+  // ── Calendrier de réservation maison (backend Google Calendar via /api) ──
+  const booking = document.getElementById('booking-widget');
+  if (booking) {
+    const daysEl   = booking.querySelector('#booking-days');
+    const slotsEl  = booking.querySelector('#booking-slots');
+    const slotsLbl = booking.querySelector('#booking-slots-label');
+    const formEl   = booking.querySelector('#booking-form');
+    const doneEl   = booking.querySelector('#booking-done');
+    const errEl    = booking.querySelector('#booking-error');
+    const calEl    = booking.querySelector('.booking__cal');
+    const whenEl   = booking.querySelector('#booking-form-when');
+    let selectedSlot = null;
+
+    const LOCALE = () => document.documentElement.lang || 'fr';
+    const fmtDay = (d) => d.toLocaleDateString(LOCALE(), { weekday: 'short', day: 'numeric', month: 'short' });
+    const fmtTime = (d) => d.toLocaleTimeString(LOCALE(), { hour: '2-digit', minute: '2-digit' });
+    const fmtFull = (d) => d.toLocaleString(LOCALE(), { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+
+    const showError = (msg) => { errEl.textContent = msg; errEl.hidden = false; };
+    const clearError = () => { errEl.hidden = true; };
+
+    // Construit les ~14 prochains jours (hors week-end géré côté serveur : jours vides = aucun créneau)
+    const buildDays = () => {
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      for (let i = 0; i < 14; i++) {
+        const d = new Date(today.getTime() + i * 86400000);
+        const wd = d.getDay();
+        if (wd === 0 || wd === 6) continue; // on n'affiche pas les week-ends
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'booking__day';
+        btn.dataset.date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        btn.innerHTML = `<span class="booking__day-wd">${d.toLocaleDateString(LOCALE(), { weekday: 'short' })}</span><span class="booking__day-num">${d.getDate()}</span><span class="booking__day-mo">${d.toLocaleDateString(LOCALE(), { month: 'short' })}</span>`;
+        btn.addEventListener('click', () => selectDay(btn));
+        daysEl.appendChild(btn);
       }
-    }, 8000);
+    };
+
+    const selectDay = (btn) => {
+      daysEl.querySelectorAll('.booking__day').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      loadSlots(btn.dataset.date);
+    };
+
+    const loadSlots = async (date) => {
+      clearError();
+      slotsEl.innerHTML = '';
+      slotsLbl.textContent = _i18nDict['booking.loading'] || 'Chargement des créneaux…';
+      try {
+        const res = await fetch(`/api/availability?date=${date}`);
+        const data = await res.json();
+        if (data.error === 'not_configured') { showError(_i18nDict['booking.err_config'] || 'Réservation en ligne bientôt disponible. Écrivez-nous en attendant.'); slotsLbl.textContent = ''; return; }
+        const slots = data.slots || [];
+        if (!slots.length) { slotsLbl.textContent = _i18nDict['booking.no_slot'] || 'Aucun créneau ce jour-là. Essayez un autre jour.'; return; }
+        slotsLbl.textContent = _i18nDict['booking.pick_slot'] || 'Créneaux disponibles :';
+        slots.forEach(iso => {
+          const d = new Date(iso);
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'booking__slot';
+          b.textContent = fmtTime(d);
+          b.addEventListener('click', () => chooseSlot(iso));
+          slotsEl.appendChild(b);
+        });
+      } catch (e) {
+        showError(_i18nDict['booking.err_load'] || 'Impossible de charger les créneaux. Réessayez.');
+        slotsLbl.textContent = '';
+      }
+    };
+
+    const chooseSlot = (iso) => {
+      selectedSlot = iso;
+      whenEl.textContent = fmtFull(new Date(iso));
+      calEl.hidden = true;
+      formEl.hidden = false;
+      clearError();
+      formEl.querySelector('#bk-name')?.focus();
+    };
+
+    booking.querySelector('#booking-back')?.addEventListener('click', () => {
+      formEl.hidden = true;
+      calEl.hidden = false;
+    });
+
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+      const submitBtn = formEl.querySelector('#booking-submit');
+      const original = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = _i18nDict['form.sending'] || 'Envoi…';
+      try {
+        const res = await fetch('/api/book', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            start: selectedSlot,
+            name: formEl.querySelector('#bk-name').value.trim(),
+            email: formEl.querySelector('#bk-email').value.trim(),
+            phone: formEl.querySelector('#bk-phone').value.trim(),
+            need: formEl.querySelector('#bk-need').value.trim(),
+            website_verification: formEl.querySelector('#bk-website').value,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          if (data.error === 'taken') showError(_i18nDict['booking.err_taken'] || 'Ce créneau vient d\'être pris. Choisissez-en un autre.');
+          else showError(_i18nDict['booking.err_book'] || 'La réservation a échoué. Réessayez ou écrivez-nous.');
+          submitBtn.disabled = false; submitBtn.textContent = original;
+          return;
+        }
+        booking.querySelector('#booking-done-when').textContent = fmtFull(new Date(data.start));
+        formEl.hidden = true;
+        doneEl.hidden = false;
+      } catch (err) {
+        showError(_i18nDict['booking.err_book'] || 'La réservation a échoué. Réessayez ou écrivez-nous.');
+        submitBtn.disabled = false; submitBtn.textContent = original;
+      }
+    });
+
+    buildDays();
+    const firstDay = daysEl.querySelector('.booking__day');
+    if (firstDay) selectDay(firstDay);
+  }
+
+  // ── Notice cookies (informative : aucun traceur, aucun tiers navigateur) ──
+  const cookieBanner = document.getElementById('cookie-banner');
+  if (cookieBanner) {
+    let seen = false;
+    try { seen = !!localStorage.getItem('purity_cookie_notice'); } catch {}
+    if (!seen) {
+      cookieBanner.removeAttribute('hidden');
+      document.getElementById('cookie-accept')?.addEventListener('click', () => {
+        try { localStorage.setItem('purity_cookie_notice', '1'); } catch {}
+        cookieBanner.setAttribute('hidden', '');
+      });
+    }
   }
 
   // ==========================================================================

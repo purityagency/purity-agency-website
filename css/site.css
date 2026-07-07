@@ -2388,6 +2388,12 @@ footer {
   align-items: center;
   background: linear-gradient(to right, rgba(124, 58, 237, 0.1), transparent);
 }
+.chat__header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
 .chat__title {
   font-weight: 600;
   font-size: 1.1rem;
@@ -4051,4 +4057,18 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 .mobile-nav-item.is-active::after {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Positionnement chatbot sur mobile pour éviter de chevaucher la TabBar */
+@media (max-width: 860px) {
+  .chat {
+    bottom: 96px !important;
+    right: 16px !important;
+  }
+  .chat__panel {
+    bottom: 96px !important;
+    right: 16px !important;
+    width: calc(100% - 32px) !important;
+    max-width: 380px !important;
+  }
 }

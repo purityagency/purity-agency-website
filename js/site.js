@@ -1791,3 +1791,49 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateActiveNavItem, { passive: true });
   updateActiveNavItem();
 });
+
+// Swipe tactile Services
+document.addEventListener('DOMContentLoaded', () => {
+  const screen = document.querySelector('.svc-showcase__screen');
+  if (!screen) return;
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  screen.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  screen.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const threshold = 50;
+    if (touchEndX < touchStartX - threshold) {
+      // Swipe à gauche -> Service suivant
+      const btnNext = document.querySelector('.svc-nav-btn--next');
+      if (btnNext) btnNext.click();
+    } else if (touchEndX > touchStartX + threshold) {
+      // Swipe à droite -> Service précédent
+      const btnPrev = document.querySelector('.svc-nav-btn--prev');
+      // If we don't have a direct prev button click handler, we trigger previous card
+      if (btnPrev) {
+        // Wait, on desktop the prev button is there, on mobile we can simulate it
+        // by finding the active card and clicking its previous sibling
+        const activeCard = document.querySelector('.svc-card.is-active');
+        if (activeCard) {
+          const prevCard = activeCard.previousElementSibling;
+          if (prevCard && prevCard.classList.contains('svc-card')) {
+            prevCard.click();
+          } else {
+            // Loop back to last card
+            const cards = document.querySelectorAll('.svc-card');
+            if (cards.length > 0) cards[cards.length - 1].click();
+          }
+        }
+      }
+    }
+  }
+});

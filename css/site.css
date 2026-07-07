@@ -1612,45 +1612,67 @@ header::before {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(1rem, 2vw, 2rem);
-  margin-top: clamp(2rem, 5vh, 4rem);
+  gap: clamp(1rem, 2vw, 2.5rem);
+  margin-top: clamp(2.5rem, 5vh, 4rem);
+  align-items: start;
 }
+/* Rail — centré sur les cercles :
+   numéro 0.72rem×1.5lh ≈ 17px + margin-bottom 1.4rem ≈ 22px = 39px ;
+   demi-cercle = 52px → top = 91px */
 .mtrack__line {
-  position: absolute; top: 52px; left: 8%; right: 8%; height: 2px;
-  background: rgba(255,255,255,.1); border-radius: 2px;
+  position: absolute;
+  top: 91px;
+  left: 12.5%; right: 12.5%;
+  height: 1px;
+  background: rgba(255,255,255,.09);
+  overflow: hidden;
+  z-index: 1;
 }
 .mtrack__progress {
   display: block; height: 100%; width: 0;
-  background: linear-gradient(90deg, var(--c-accent), #c084fc); border-radius: 2px;
+  background: linear-gradient(90deg, var(--c-accent) 0%, #c084fc 100%);
+  transition: width .3s ease;
 }
 .mstep {
   position: relative;
   text-align: center;
   padding: 0 0.5rem;
-  opacity: 0.4;
-  transition: opacity .5s ease;
+  opacity: 0.55;
+  transition: opacity .55s ease;
 }
 .mstep.is-active { opacity: 1; }
 .mstep__n {
   display: block;
-  font-family: var(--font-head); font-size: 0.85rem; font-weight: 600; letter-spacing: .15em;
-  color: var(--c-fg-muted); margin-bottom: 1.4rem;
+  font-family: var(--font-head);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(168,85,247,.5);
+  margin-bottom: 1.4rem;
+  transition: color .55s ease;
 }
+.mstep.is-active .mstep__n { color: var(--c-accent); }
 .mstep__ico {
-  width: 104px; height: 104px; margin: 0 auto 1.5rem;
+  width: 104px; height: 104px; margin: 0 auto 1.6rem;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
   background: var(--c-bg);
-  border: 1.5px solid rgba(168,85,247,.5);
-  box-shadow: 0 0 16px rgba(168,85,247,.15);
-  color: var(--c-fg-muted);
+  border: 1.5px solid rgba(168,85,247,.45);
+  box-shadow: 0 0 20px rgba(168,85,247,.12);
   position: relative; z-index: 2;
-  transition: border-color .5s ease, color .5s ease, transform .5s ease, box-shadow .5s ease;
+  transition: border-color .55s ease, transform .55s ease, box-shadow .55s ease;
 }
 .mstep__ico svg {
-  width: 52px;
-  height: 52px;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)) drop-shadow(0 0 16px rgba(168, 85, 247, 0.15));
+  width: 52px; height: 52px;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.18)) drop-shadow(0 0 14px rgba(168,85,247,.2));
+  transition: filter .55s ease;
+}
+.mstep.is-active .mstep__ico {
+  border-color: var(--c-accent);
+  transform: scale(1.07);
+  box-shadow: 0 0 0 1px rgba(168,85,247,.18), 0 0 32px rgba(168,85,247,.35), 0 0 60px rgba(168,85,247,.1);
+}
+.mstep.is-active .mstep__ico svg {
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.25)) drop-shadow(0 0 20px rgba(168,85,247,.4));
 }
 .anim-spin-slow {
   transform-origin: center;
@@ -1660,17 +1682,22 @@ header::before {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.mstep.is-active .mstep__ico {
-  border-color: var(--c-accent);
+.mstep h3 {
+  font-size: clamp(1.1rem,1.8vw,1.55rem);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
   color: #fff;
-  transform: scale(1.06);
-  box-shadow: 0 0 40px rgba(168,85,247,.35);
 }
-.mstep h3 { font-size: clamp(1.2rem,2vw,1.7rem); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
-.mstep p { font-size: 0.95rem; color: var(--c-fg-muted); max-width: 22ch; margin: 0 auto; }
+.mstep p {
+  font-size: 0.88rem;
+  color: var(--c-fg-muted);
+  max-width: 20ch;
+  margin: 0 auto;
+  line-height: 1.65;
+}
 
 @media (max-width: 768px) {
-  .mtrack { grid-template-columns: 1fr 1fr; gap: 2rem 1rem; }
+  .mtrack { grid-template-columns: 1fr 1fr; gap: 2.5rem 1rem; }
   .mtrack__line { display: none; }
 }
 
@@ -4070,5 +4097,36 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
     right: 16px !important;
     width: calc(100% - 32px) !important;
     max-width: 380px !important;
+  }
+
+  /* Transformation des grilles de tarifs en carrousels horizontaux sur mobile */
+  .briques-grid, .packs-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 16px !important;
+    padding: 16px var(--s-md) !important;
+    scrollbar-width: none !important; /* Firefox */
+    width: 100% !important;
+  }
+  .briques-grid::-webkit-scrollbar, .packs-grid::-webkit-scrollbar {
+    display: none !important; /* Chrome/Safari */
+  }
+
+  .brique-card, .pack-card {
+    min-width: 290px !important;
+    flex: 0 0 85% !important;
+    scroll-snap-align: center !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Reset des grid placements spécifiques pour les briques */
+  .briques-grid > article:nth-child(1),
+  .briques-grid > article:nth-child(2),
+  .briques-grid > article:nth-child(3),
+  .briques-grid > article:nth-child(4),
+  .briques-grid > article:nth-child(5),
+  .briques-subgrid > article {
+    grid-column: auto !important;
   }
 }

@@ -1,26 +1,7 @@
 // Si l'URL contient une ancre (#services…) au rechargement, on ne force pas le scroll au top pour permettre la redirection
 const hasHash = !!window.location.hash;
 
-// ────────────────────────────────────────────────────────────────────────────
-// 🗓 CONFIGURATION GLOBALE — URL de réservation Google Calendar
-// Remplacez par votre lien Google Appointment Schedules ou Calendly/Cal.com
-// Pour Google Calendar → https://calendar.google.com/calendar/appointments/schedules/VOTRE_ID
-// Pour Calendly → https://calendly.com/purity-agency/15min
-// Les paramètres ?name=&email=&phone= seront ajoutés automatiquement
-const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Mg-8wLya1IHrX8h2kIFUrFAgJpdl0qPvoY8YkqCx1KugNvIUtOYq5FGeeXRP7khf0DqVbhTWI';
-// ────────────────────────────────────────────────────────────────────────────
-
-/**
- * Génère un lien de réservation pré-rempli avec les infos de l'utilisateur.
- * Compatible Google Calendar Appointment Schedules, Calendly, Cal.com.
- */
-function buildBookingUrl(name, email, phone) {
-  const url = new URL(BOOKING_URL, window.location.href);
-  if (name)  url.searchParams.set('name',  name);
-  if (email) url.searchParams.set('email', email);
-  if (phone) url.searchParams.set('phone', phone);
-  return url.toString();
-}
+// Configuration supprimée : Le calendrier externe a été remplacé par une intégration native.
 
 if (history.scrollRestoration) {
   if (!hasHash) history.scrollRestoration = 'manual';
@@ -344,54 +325,141 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 1b. SERVICES : carrousel COVERFLOW 3D (cartes dans l'espace) ---
-  // --- SHOWCASE SERVICES TV CINÉMATIQUE ---
+  // --- 1b. SERVICES : carrousel COVERFLOW 3D + Onglets Accordéon & Autoplay ---
   const svcShowcase = document.querySelector('.svc-showcase');
   if (svcShowcase) {
     const scenes = svcShowcase.querySelectorAll('.svc-scene');
     const dots = svcShowcase.querySelectorAll('.svc-dot');
     const cards = document.querySelectorAll('.svc-card');
-    const btnPrev = svcShowcase.querySelector('.svc-nav-btn--prev');
-    const btnNext = svcShowcase.querySelector('.svc-nav-btn--next');
+    const svcLayout = document.querySelector('.svc-layout');
+    const btnPrev = document.querySelector('.svc-nav-btn--prev');
+    const btnNext = document.querySelector('.svc-nav-btn--next');
     let currentIndex = 0;
     const total = scenes.length;
 
-    const goToScene = (index) => {
-      if (index < 0 || index >= total) return; // pas de boucle : les bornes sont réellement désactivées
+    let autoplayTween = null;
+    let autoplayStopped = false;
+    let isHovered = false;
+
+    const animateProgress = (index) => {
+      if (autoplayStopped) return;
+      const card = cards[index];
+      if (!card) return;
+      const fill = card.querySelector('.svc-card__progress-fill');
+      if (!fill) return;
+
+      gsap.killTweensOf(fill);
+      gsap.set(fill, { width: '0%' });
+
+      autoplayTween = gsap.to(fill, {
+        width: '100%',
+        duration: 8,
+        ease: 'none',
+        onComplete: () => {
+          let nextIndex = currentIndex + 1;
+          if (nextIndex >= total) nextIndex = 0;
+          goToScene(nextIndex);
+        }
+      });
+
+      if (isHovered && autoplayTween) {
+        autoplayTween.pause();
+      }
+    };
+
+    const stopAutoplay = () => {
+      autoplayStopped = true;
+      if (autoplayTween) {
+        autoplayTween.kill();
+        autoplayTween = null;
+      }
+      // Reset all progress bars to 0%
+      cards.forEach(card => {
+        const fill = card.querySelector('.svc-card__progress-fill');
+        if (fill) gsap.set(fill, { width: '0%' });
+      });
+    };
+
+    const goToScene = (index, userClicked = false) => {
+      if (index < 0 || index >= total) return;
       currentIndex = index;
 
       scenes.forEach((s, i) => {
-        s.style.setProperty('--offset', i - currentIndex); // slide réel (translateX), plus de fade
+        s.style.setProperty('--offset', i - currentIndex);
         s.classList.toggle('is-active', i === currentIndex);
       });
       dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
-      cards.forEach((card, i) => card.classList.toggle('is-active', i === currentIndex));
+      
+      cards.forEach((card, i) => {
+        const isActive = i === currentIndex;
+        card.classList.toggle('is-active', isActive);
+        
+        const cardBody = card.querySelector('.svc-card__body');
+        if (cardBody) {
+          if (isActive) {
+            gsap.killTweensOf(cardBody);
+            cardBody.style.display = 'block';
+            gsap.fromTo(cardBody, 
+              { height: 0, opacity: 0, marginTop: 0 },
+              { height: 'auto', opacity: 1, marginTop: 12, duration: 0.45, ease: 'power2.out' }
+            );
+          } else {
+            gsap.killTweensOf(cardBody);
+            gsap.to(cardBody, { 
+              height: 0, 
+              opacity: 0, 
+              marginTop: 0, 
+              duration: 0.3, 
+              ease: 'power2.in',
+              onComplete: () => {
+                cardBody.style.display = 'none';
+              }
+            });
+          }
+        }
+      });
+
       if (btnPrev) btnPrev.disabled = currentIndex === 0;
       if (btnNext) btnNext.disabled = currentIndex === total - 1;
+
+      // Autoplay control
+      if (userClicked) {
+        stopAutoplay();
+      } else if (!autoplayStopped) {
+        animateProgress(currentIndex);
+      }
     };
 
     if (btnPrev && btnNext) {
-      btnPrev.addEventListener('click', () => goToScene(currentIndex - 1));
-      btnNext.addEventListener('click', () => goToScene(currentIndex + 1));
-      goToScene(0); // état initial : flèche précédente désactivée dès le chargement
+      btnPrev.addEventListener('click', () => goToScene(currentIndex - 1, true));
+      btnNext.addEventListener('click', () => goToScene(currentIndex + 1, true));
     }
 
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
-        goToScene(parseInt(dot.getAttribute('data-index')));
+        goToScene(parseInt(dot.getAttribute('data-index')), true);
       });
     });
 
     cards.forEach((card, i) => {
       card.addEventListener('click', () => {
-        goToScene(i);
-        const showcaseSection = document.getElementById('services');
-        if (showcaseSection) {
-          showcaseSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        goToScene(i, true);
       });
       card.style.cursor = 'pointer';
     });
+
+    // Pause on hover
+    const section = document.getElementById('services');
+    if (section && window.matchMedia('(hover: hover)').matches) {
+      section.addEventListener('mouseenter', () => {
+        isHovered = true;
+        if (autoplayTween) autoplayTween.pause();
+      });
+      section.addEventListener('mouseleave', () => {
+        isHovered = false;
+        if (autoplayTween && !autoplayStopped) autoplayTween.play();
+      });
+    }
 
     // Support du swipe sur mobile
     let touchStartX = 0;
@@ -405,17 +473,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       screen.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX < touchStartX - 40) goToScene(currentIndex + 1); // Swipe gauche (suivant)
-        if (touchEndX > touchStartX + 40) goToScene(currentIndex - 1); // Swipe droite (précédent)
+        if (touchEndX < touchStartX - 40) goToScene(currentIndex + 1, true); // Swipe gauche (suivant)
+        if (touchEndX > touchStartX + 40) goToScene(currentIndex - 1, true); // Swipe droite (précédent)
       }, {passive: true});
 
-      // Support du drag à la souris (desktop) — même logique que le swipe tactile
+      // Support du drag à la souris (desktop)
       let isDragging = false;
       let dragMoved = false;
       let dragStartX = 0;
 
       screen.addEventListener('mousedown', e => {
-        if (e.target.closest('a, button')) return; // ne pas gêner les CTA/liens dans les scènes
+        if (e.target.closest('a, button')) return;
         isDragging = true;
         dragMoved = false;
         dragStartX = e.clientX;
@@ -433,10 +501,32 @@ document.addEventListener('DOMContentLoaded', () => {
         screen.classList.remove('is-dragging');
         if (!dragMoved) return;
         const dx = e.clientX - dragStartX;
-        if (dx < -40) goToScene(currentIndex + 1); // glisse vers la gauche → scène suivante
-        if (dx > 40) goToScene(currentIndex - 1);  // glisse vers la droite → scène précédente
+        if (dx < -40) goToScene(currentIndex + 1, true);
+        if (dx > 40) goToScene(currentIndex - 1, true);
       });
     }
+
+    // Initial state setup
+    // Initialise le premier accordéon ouvert sans animation et lance l'autoplay
+    cards.forEach((card, i) => {
+      const cardBody = card.querySelector('.svc-card__body');
+      if (cardBody) {
+        if (i === 0) {
+          cardBody.style.display = 'block';
+          cardBody.style.height = 'auto';
+          cardBody.style.opacity = '1';
+          cardBody.style.marginTop = '12px';
+        } else {
+          cardBody.style.display = 'none';
+          cardBody.style.height = '0';
+          cardBody.style.opacity = '0';
+          cardBody.style.marginTop = '0';
+        }
+      }
+    });
+
+    if (btnPrev) btnPrev.disabled = true;
+    animateProgress(0);
   }
 
 
@@ -538,11 +628,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       if (!res.ok) throw new Error('bad status');
 
-      // Injecter l'URL de réservation pré-remplie dans le bouton de calendrier
+      // Configurer le bouton de réservation natif
       const sentBlock = form.querySelector('.form__sent');
       const bookingBtn = sentBlock?.querySelector('.ob-btn-booking');
       if (bookingBtn) {
-        bookingBtn.href = buildBookingUrl(payload.name, payload.email, payload.phone);
+        // Cloner pour enlever d'anciens events si on soumet 2 fois
+        const newBtn = bookingBtn.cloneNode(true);
+        bookingBtn.parentNode.replaceChild(newBtn, bookingBtn);
+        newBtn.addEventListener('click', (ev) => {
+          ev.preventDefault();
+          const bkName = document.getElementById('bk-name');
+          const bkEmail = document.getElementById('bk-email');
+          const bkPhone = document.getElementById('bk-phone');
+          const bkNeed = document.getElementById('bk-need');
+          if (bkName) bkName.value = payload.name;
+          if (bkEmail) bkEmail.value = payload.email;
+          if (bkPhone) bkPhone.value = payload.phone;
+          if (bkNeed) bkNeed.value = payload.need;
+          
+          window.location.hash = '#booking';
+          const calTab = document.getElementById('tab-calendar');
+          if (calTab) calTab.click();
+        });
       }
 
       if (sentBlock) sentBlock.style.display = 'block';
@@ -559,20 +666,13 @@ document.addEventListener('DOMContentLoaded', () => {
   //  NEW FEATURES — 10 concrete improvements
   // ════════════════════════════════════════════════════════════
 
-  // --- #1. Custom Cursor (magnetic) ---
+  // --- #1. Custom Cursor aura ---
   if (window.matchMedia('(hover: hover)').matches && !prefersReduced) {
     const cursor = document.getElementById('cursor');
-    const cursorDot = document.getElementById('cursor-dot');
-    if (cursor && cursorDot) {
-      document.documentElement.classList.add('has-custom-cursor');
-      const xTo = gsap.quickTo(cursor, 'left', { duration: 0.4, ease: 'power3.out' });
-      const yTo = gsap.quickTo(cursor, 'top', { duration: 0.4, ease: 'power3.out' });
-      const xDot = gsap.quickTo(cursorDot, 'left', { duration: 0.15, ease: 'power2.out' });
-      const yDot = gsap.quickTo(cursorDot, 'top', { duration: 0.15, ease: 'power2.out' });
-
+    if (cursor) {
       window.addEventListener('mousemove', (e) => {
-        xTo(e.clientX); yTo(e.clientY);
-        xDot(e.clientX); yDot(e.clientY);
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
       });
 
       document.querySelectorAll('a, button, input, textarea, .btn, .price, .faq__q, .why, .bento__card').forEach(el => {
@@ -807,7 +907,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // --- Chatbot OctoMask (Gemini Flash 2.5) ---
+  const chatEl = document.getElementById('chat');
   const chatToggle = document.getElementById('chat-toggle');
+
+  if (chatEl && chatToggle) {
+    // Dynamic injection of chat-badge if missing
+    if (!document.getElementById('chat-badge')) {
+      const badge = document.createElement('span');
+      badge.id = 'chat-badge';
+      badge.className = 'chat__badge';
+      badge.setAttribute('aria-hidden', 'true');
+      badge.textContent = '1';
+      chatToggle.appendChild(badge);
+    }
+    // Dynamic injection of chat-teaser if missing
+    if (!document.getElementById('chat-teaser')) {
+      const teaser = document.createElement('div');
+      teaser.id = 'chat-teaser';
+      teaser.className = 'chat__teaser';
+      teaser.setAttribute('hidden', '');
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'chat__teaser-close';
+      closeBtn.setAttribute('data-i18n-aria', 'teaser.close_aria');
+      closeBtn.setAttribute('aria-label', (typeof _i18nDict !== 'undefined' && _i18nDict['teaser.close_aria']) || 'Fermer');
+      closeBtn.textContent = '✕';
+      
+      const waveSpan = document.createElement('span');
+      waveSpan.className = 'chat__teaser-wave';
+      waveSpan.textContent = '👋';
+      
+      const textPara = document.createElement('p');
+      textPara.setAttribute('data-i18n', 'teaser.text');
+      textPara.innerHTML = (typeof _i18nDict !== 'undefined' && _i18nDict['teaser.text']) || 'Un projet en tête ?<br><strong>Parlons-en — c\'est gratuit.</strong>';
+      
+      teaser.appendChild(closeBtn);
+      teaser.appendChild(waveSpan);
+      teaser.appendChild(textPara);
+      chatEl.insertBefore(teaser, chatToggle);
+    }
+  }
+
   const chatPanel = document.getElementById('chat-panel');
   const chatLog = document.getElementById('chat-log');
   const chatForm = document.getElementById('chat-form');
@@ -911,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const chatBadge = document.getElementById('chat-badge');
   if (chatBadge) {
-    try { if (localStorage.getItem('octomask_badge_seen')) chatBadge.hidden = true; } catch {}
+    try { if (sessionStorage.getItem('octomask_badge_seen')) chatBadge.hidden = true; } catch {}
   }
 
   const toggleChat = () => {
@@ -921,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatOpen) {
       if (chatBadge) {
         chatBadge.hidden = true;
-        try { localStorage.setItem('octomask_badge_seen', '1'); } catch {}
+        try { sessionStorage.setItem('octomask_badge_seen', '1'); } catch {}
       }
       parent.classList.add('is-open');
       chatPanel.removeAttribute('hidden');
@@ -934,16 +1074,16 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInited = true;
         // Message d'accueil (n'est pas envoyé à l'API, sert juste d'intro)
         setTimeout(() => {
-          const intro = _i18nDict['chat.intro'] || "Bonjour ! 👋 Je suis OctoMask, l'assistant virtuel de Purity Agency. Quel est votre métier ? Je peux vous indiquer concrètement ce que nous pourrions optimiser pour votre présence en ligne.";
+          const intro = _i18nDict['chat.intro'] || "Bonjour ! 👋 Je filtre les premières demandes pour l'équipe Purity. Pour aller droit au but et vous faire gagner du temps : quel est le principal frein de votre activité aujourd'hui ?";
           addMsg(intro, 'sys');
           chatMemory.push({ role: 'model', text: intro });
 
-          // Suggestions orientées conversion
+          // Suggestions orientées conversion (approche "douleur" / ROI)
           const suggestions = [
-            _i18nDict['chat.sug1'] || "Je veux un site pour mon activité",
-            _i18nDict['chat.sug2'] || "Combien coûte un site ?",
-            _i18nDict['chat.sug3'] || "Automatiser mon WhatsApp / mes RDV",
-            _i18nDict['chat.sug4'] || "Être trouvé sur Google"
+            _i18nDict['chat.sug1'] || "Je perds des appels quand je travaille",
+            _i18nDict['chat.sug2'] || "J'ai trop de RDV oubliés (no-shows)",
+            _i18nDict['chat.sug3'] || "On ne me trouve pas bien sur Google",
+            _i18nDict['chat.sug4'] || "Je veux (re)faire mon site web"
           ];
           
           const sugContainer = document.createElement('div');
@@ -979,7 +1119,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- Chatbot déplaçable (drag) : distingue clic (ouvre) vs glissé (déplace) ---
-  const chatEl = document.getElementById('chat');
+  // chatEl already declared above
   if (chatToggle && chatEl) {
     let dragging = false, moved = false, startX = 0, startY = 0, originX = 0, originY = 0;
 
@@ -1135,7 +1275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let teaserShown = false;
     const showTeaser = () => {
       if (teaserShown || chatOpen) return;
-      if (localStorage.getItem('octomask_teaser_seen')) return;
+      if (sessionStorage.getItem('octomask_teaser_seen')) return;
       teaserShown = true;
       teaser.removeAttribute('hidden');
       requestAnimationFrame(() => teaser.classList.add('is-visible'));
@@ -1145,7 +1285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hideTeaser = (permanent) => {
       teaser.classList.remove('is-visible');
       setTimeout(() => teaser.setAttribute('hidden', ''), 400);
-      if (permanent) localStorage.setItem('octomask_teaser_seen', '1');
+      if (permanent) sessionStorage.setItem('octomask_teaser_seen', '1');
     };
     teaser.querySelector('.chat__teaser-close')?.addEventListener('click', (e) => {
       e.stopPropagation(); hideTeaser(true);
@@ -1153,7 +1293,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // clic sur la bulle → ouvre le chat
     teaser.addEventListener('click', () => { hideTeaser(true); if (!chatOpen) toggleChat(); });
     // déclencheurs
-    setTimeout(showTeaser, 12000);
+    setTimeout(showTeaser, 4000);
     window.addEventListener('scroll', function onFirstScroll() {
       if (window.scrollY > 400) { showTeaser(); window.removeEventListener('scroll', onFirstScroll); }
     }, { passive: true });
@@ -1411,367 +1551,243 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  //  ONBOARDING ASSISTANT FOR PACKS
+  //  ONBOARDING ASSISTANT (TYPEFORM 3.0 FLOW)
   // ==========================================================================
   const obModal = document.getElementById('ob-modal');
   if (obModal) {
     const triggers = document.querySelectorAll('.ob-trigger');
-    const closeBtn = obModal.querySelector('.ob-close');
-    const steps = obModal.querySelectorAll('.ob-step');
-    const progressFill = obModal.querySelector('.ob-progress-fill');
-    const progressSteps = obModal.querySelectorAll('.ob-progress-step');
-    const customSectorWrap = obModal.querySelector('#ob-custom-sector-wrap');
-    const customSectorInput = obModal.querySelector('#ob-custom-sector');
-    
+    const closeBtns = obModal.querySelectorAll('.ob-close');
+    const steps = obModal.querySelectorAll('.ob-tf-step');
+    const options = obModal.querySelectorAll('.ob-tf-opt');
+    const obForm = obModal.querySelector('#ob-contact-form');
+    const progressFill = obModal.querySelector('.ob-tf-progress-fill');
+    const prevBtn = obModal.querySelector('.ob-tf-nav-btn[aria-label="Précédent"]');
+    const nextBtn = obModal.querySelector('.ob-tf-nav-btn[aria-label="Suivant"]');
+
     let currentStep = 1;
-    let selectedSector = '';
-    
-    // Config des briques par secteur
-    const sectorFeatures = {
-      coiffure: [
-        { name: "Réservation en ligne 24/7", desc: "Permettez à vos clients de réserver à tout moment sans vous déranger.", checked: true },
-        { name: "Rappels SMS & WhatsApp anti no-show", desc: "Réduisez les rendez-vous manqués de plus de 65%.", checked: true },
-        { name: "Récolte d'avis Google automatisée", desc: "Envoyez une demande d'avis par message après chaque visite.", checked: true },
-        { name: "Acompte en ligne sécurisé", desc: "Optionnel : encaissez un acompte à la réservation pour garantir le RDV.", checked: false },
-        { name: "Campagnes SMS Marketing de fidélisation", desc: "Optionnel : relancez automatiquement les clients inactifs.", checked: false }
-      ],
-      artisan: [
-        { name: "Répondeur SMS intelligent", desc: "Envoie un SMS automatisé en cas d'appel manqué pour capter le client.", checked: true },
-        { name: "WhatsApp Business automatisé", desc: "Répond instantanément aux demandes de devis et questions courantes.", checked: true },
-        { name: "Visibilité locale Google (Fiche)", desc: "Optimisation de votre présence pour apparaître premier dans votre région.", checked: true },
-        { name: "Module d'estimation et devis rapide", desc: "Optionnel : formulaire intelligent pour estimer un coût de travaux.", checked: false },
-        { name: "Espace client suivi de chantiers", desc: "Optionnel : partagez l'avancement des travaux avec photos en ligne.", checked: false }
-      ],
-      horeca: [
-        { name: "Module de commande & Click & Collect", desc: "Permettez la commande à emporter sans commissions tierces.", checked: true },
-        { name: "Réservation de table connectée", desc: "Confirmez les réservations par SMS ou mail de manière autonome.", checked: true },
-        { name: "Menu QR code interactif", desc: "Affichez votre carte de manière dynamique et moderne.", checked: true },
-        { name: "Avis clients Tripadvisor & Google", desc: "Optionnel : récolte systématique d'avis de satisfaction.", checked: false },
-        { name: "Fidélité digitale intégrée", desc: "Optionnel : programme de fidélité automatique pour les clients réguliers.", checked: false }
-      ],
-      praticien: [
-        { name: "Prise de rendez-vous médicale/soins", desc: "Agenda en ligne avec créneaux et spécialités configurables.", checked: true },
-        { name: "SMS et WhatsApp de rappels", desc: "Rappels programmés à H-24 et H-2 pour éviter les oublis.", checked: true },
-        { name: "Acompte sécurisé anti-désistement", desc: "Optionnel : sécurisez vos créneaux en demandant un acompte.", checked: true },
-        { name: "Questionnaire pré-consultation", desc: "Optionnel : récoltez les antécédents avant la séance.", checked: false },
-        { name: "Espace fiches patients sécurisé", desc: "Optionnel : suivi numérique des séances et notes de consultation.", checked: false }
-      ],
-      liberal: [
-        { name: "Prise de rendez-vous en ligne sécurisée", desc: "Agenda partagé pour réserver des créneaux de consultation.", checked: true },
-        { name: "Relance et rappels automatiques", desc: "WhatsApp/SMS automatisés pour réduire le taux d'absentéisme.", checked: true },
-        { name: "Récolte d'avis et recommandations", desc: "Obtenez des avis Google de façon autonome et déontologique.", checked: true },
-        { name: "Espace de dépôt de documents sécurisé", desc: "Optionnel : portail client conforme RGPD pour recevoir les pièces.", checked: false },
-        { name: "Formulaire intelligent de pré-qualification", desc: "Optionnel : qualifie le besoin du prospect avant le RDV.", checked: false }
-      ],
-      commerce: [
-        { name: "Click & Collect & Vente locale", desc: "Votre boutique en ligne pour commander et retirer les produits.", checked: true },
-        { name: "Visibilité Maps & SEO Local", desc: "Abonnement de visibilité pour capter les recherches à proximité.", checked: true },
-        { name: "WhatsApp Business avec FAQ intégrée", desc: "Réponses instantanées sur vos horaires, stocks et localisations.", checked: true },
-        { name: "Fidélisation client par SMS", desc: "Optionnel : envoyez vos ventes privées et offres directement sur le mobile.", checked: false },
-        { name: "Synchronisation catalogue Instagram", desc: "Optionnel : vendez directement depuis vos publications sociales.", checked: false }
-      ],
-      immo: [
-        { name: "Prise de RDV visites automatisée", desc: "Planification autonome des visites pour désengorger vos agents.", checked: true },
-        { name: "Formulaire d'estimation de bien", desc: "Capteur de leads qualifiés souhaitant vendre leur bien.", checked: true },
-        { name: "WhatsApp automatisé acquéreurs", desc: "Répond aux critères de recherche des acheteurs 24h/24.", checked: true },
-        { name: "Alertes SMS nouveaux biens", desc: "Optionnel : notifiez vos acheteurs chauds dès qu'un bien rentre.", checked: false },
-        { name: "Visite virtuelle interactive", desc: "Optionnel : intégration HD de vos visites 3D sur le site.", checked: false }
-      ],
-      autre: [
-        { name: "Landing page de capture de leads", desc: "Page moderne centrée sur la conversion pour récolter des demandes.", checked: true },
-        { name: "Rappels et notifications par e-mail", desc: "Suivi automatisé pour accuser réception et rassurer le client.", checked: true },
-        { name: "Secrétariat WhatsApp Business", desc: "Réponse automatique aux messages de prospects.", checked: true },
-        { name: "Module de réservation en ligne", desc: "Optionnel : agenda interactif pour fixer vos prestations.", checked: false },
-        { name: "Paiement en ligne sécurisé (Stripe/PayPal)", desc: "Optionnel : encaissez vos prestations directement depuis le site.", checked: false }
-      ]
+    const totalSteps = 7;
+    let onboardingState = {};
+
+    const updateProgress = () => {
+      if (!progressFill) return;
+      const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+      progressFill.style.width = `${progress}%`;
     };
 
     const showStep = (step) => {
       steps.forEach(s => s.classList.remove('is-active'));
-      const activeStep = obModal.querySelector(`.ob-step[data-step="${step}"]`);
+      const activeStep = obModal.querySelector(`.ob-tf-step[data-step="${step}"]`);
       if (activeStep) activeStep.classList.add('is-active');
-      
-      // Update progress bar
-      if (step <= 3) {
-        progressFill.style.width = `${((step - 1) / 2) * 100}%`;
-        progressSteps.forEach((s, idx) => {
-          s.classList.remove('is-active', 'is-done');
-          if (idx + 1 < step) s.classList.add('is-done');
-          else if (idx + 1 === step) s.classList.add('is-active');
-        });
-        obModal.querySelector('.ob-progress-bar').style.display = 'block';
-      } else {
-        obModal.querySelector('.ob-progress-bar').style.display = 'none';
-      }
       currentStep = step;
-    };
+      updateProgress();
 
-    const loadFeatures = (sector) => {
-      const list = obModal.querySelector('.ob-features-list');
-      if (!list) return;
-      list.innerHTML = '';
+      if (prevBtn) prevBtn.disabled = currentStep === 1 || currentStep >= 5;
+      if (nextBtn) nextBtn.disabled = currentStep >= 5;
       
-      const features = sectorFeatures[sector] || sectorFeatures['autre'];
-      features.forEach((f, idx) => {
-        const nameKey = `ob.feat.${sector}.${idx}.name`;
-        const descKey = `ob.feat.${sector}.${idx}.desc`;
-        const name = (typeof _i18nDict !== 'undefined' && _i18nDict[nameKey]) || f.name;
-        const desc = (typeof _i18nDict !== 'undefined' && _i18nDict[descKey]) || f.desc;
-        const item = document.createElement('label');
-        item.className = 'ob-feature-item';
-        item.innerHTML = `
-          <input type="checkbox" name="ob-feature" value="${f.name}" ${f.checked ? 'checked' : ''}>
-          <span class="ob-feature-checkbox">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          </span>
-          <span class="ob-feature-text">
-            <span class="ob-feature-name">${name}</span>
-            <span class="ob-feature-desc">${desc}</span>
-          </span>
-        `;
-        list.appendChild(item);
-      });
-    };
-
-    window.refreshOnboardingFeatures = () => {
-      if (selectedSector) {
-        loadFeatures(selectedSector);
+      if (step === 5) {
+        setTimeout(() => {
+          const t1 = obModal.querySelector('.ob-tl-2');
+          if (t1) t1.style.opacity = '1';
+        }, 800);
+        setTimeout(() => {
+          const t2 = obModal.querySelector('.ob-tl-3');
+          if (t2) t2.style.opacity = '1';
+        }, 1600);
+        setTimeout(() => {
+          generateBento();
+          showStep(6);
+        }, 2800);
       }
     };
 
-    // Trigger open
-    triggers.forEach(t => t.addEventListener('click', (e) => {
-      e.preventDefault();
-      const sector = t.getAttribute('data-open-ob');
-      selectedSector = sector;
-      
-      // Check correct sector radio
-      const radio = obModal.querySelector(`input[name="ob-sector"][value="${sector}"]`);
-      if (radio) {
-        radio.checked = true;
-      }
-      
-      if (sector === 'autre') {
-        if (customSectorWrap) customSectorWrap.style.display = 'block';
-        if (customSectorInput) {
-          customSectorInput.required = true;
-          customSectorInput.focus();
-        }
-      } else {
-        if (customSectorWrap) customSectorWrap.style.display = 'none';
-        if (customSectorInput) customSectorInput.required = false;
-      }
-      
-      // Load relevant features
-      loadFeatures(sector);
-      
-      // Show first step & open modal
-      showStep(1);
-      obModal.classList.add('is-open');
-      obModal.removeAttribute('aria-hidden');
-      obModal.querySelector('.ob-close')?.focus();
-      document.body.style.overflow = 'hidden'; // block page scroll
-    }));
-
-    // Close
     const closeModal = () => {
       obModal.classList.remove('is-open');
       obModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      // Reset form
-      obModal.querySelector('#ob-contact-form')?.reset();
-      const firstRadio = obModal.querySelector('input[name="ob-sector"]:checked');
-      if (firstRadio) firstRadio.checked = false;
-      const painChecks = obModal.querySelectorAll('input[name="ob-pain"]');
-      painChecks.forEach(c => c.checked = false);
-      if (customSectorWrap) customSectorWrap.style.display = 'none';
-      if (customSectorInput) {
-        customSectorInput.value = '';
-        customSectorInput.required = false;
-      }
-      // Supprimer les douleurs personnalisées rajoutées dynamiquement (les 20 premières sont par défaut)
-      const painsWrapper = obModal.querySelector('#ob-pains-wrapper');
-      if (painsWrapper) {
-        const dynamicChips = painsWrapper.querySelectorAll('.ob-chip:nth-child(n+21)');
-        dynamicChips.forEach(c => c.remove());
-      }
-      const addPainInput = obModal.querySelector('#ob-add-pain-input');
-      if (addPainInput) addPainInput.value = '';
+      setTimeout(() => {
+        showStep(1);
+        if (obForm) obForm.reset();
+        onboardingState = {};
+        options.forEach(opt => opt.classList.remove('is-selected'));
+        obModal.querySelectorAll('.ob-term-line').forEach((line, i) => {
+          if (i > 0) line.style.opacity = '0';
+        });
+      }, 500);
     };
 
-    closeBtn.addEventListener('click', closeModal);
-    obModal.querySelector('.ob-modal__backdrop').addEventListener('click', closeModal);
-    obModal.querySelector('.ob-btn-close')?.addEventListener('click', closeModal);
+    triggers.forEach(t => t.addEventListener('click', (e) => {
+      e.preventDefault();
+      showStep(1);
+      obModal.classList.add('is-open');
+      obModal.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+    }));
 
-    // Radios change handler to dynamic features load & custom text input visibility
-    obModal.querySelectorAll('input[name="ob-sector"]').forEach(input => {
-      input.addEventListener('change', (e) => {
-        selectedSector = e.target.value;
-        if (selectedSector === 'autre') {
-          if (customSectorWrap) customSectorWrap.style.display = 'block';
-          if (customSectorInput) {
-            customSectorInput.required = true;
-            customSectorInput.focus();
-          }
-        } else {
-          if (customSectorWrap) customSectorWrap.style.display = 'none';
-          if (customSectorInput) {
-            customSectorInput.value = '';
-            customSectorInput.required = false;
-          }
-        }
-        loadFeatures(selectedSector);
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+    const backdrop = obModal.querySelector('.ob-modal__backdrop');
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const key = opt.getAttribute('data-key');
+        const val = opt.getAttribute('data-val');
+        const stepContainer = opt.closest('.ob-tf-step');
+        
+        stepContainer.querySelectorAll('.ob-tf-opt').forEach(sibling => sibling.classList.remove('is-selected'));
+        opt.classList.add('is-selected');
+
+        onboardingState[key] = val;
+
+        setTimeout(() => {
+          if (currentStep < 5) showStep(currentStep + 1);
+        }, 300);
       });
     });
 
-    // Pain points custom additions handler
-    const addPainInput = obModal.querySelector('#ob-add-pain-input');
-    const addPainBtn = obModal.querySelector('#ob-add-pain-btn');
-    const painsWrapper = obModal.querySelector('#ob-pains-wrapper');
+    document.addEventListener('keydown', (e) => {
+      if (!obModal.classList.contains('is-open')) return;
+      if (currentStep >= 5) return;
 
-    if (addPainBtn && addPainInput && painsWrapper) {
-      const handleAddPain = () => {
-        const val = addPainInput.value.trim();
-        if (!val) return;
-        
-        const label = document.createElement('label');
-        label.className = 'ob-chip';
-        const cleanVal = val.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        const cb = document.createElement('input');
-        cb.type = 'checkbox'; cb.name = 'ob-pain'; cb.value = cleanVal; cb.checked = true;
-        const sp = document.createElement('span');
-        sp.textContent = val;
-        label.appendChild(cb);
-        label.appendChild(sp);
-        
-        painsWrapper.appendChild(label);
-        addPainInput.value = '';
-      };
+      const activeStepEl = obModal.querySelector(`.ob-tf-step[data-step="${currentStep}"]`);
+      if (!activeStepEl) return;
 
-      addPainBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        handleAddPain();
-      });
-      
-      addPainInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          handleAddPain();
+      const opts = activeStepEl.querySelectorAll('.ob-tf-opt');
+      opts.forEach(opt => {
+        if (opt.getAttribute('data-shortcut') === e.key) {
+          opt.click();
         }
+      });
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentStep > 1 && currentStep < 5) showStep(currentStep - 1);
       });
     }
 
-    // Next / Prev actions
-    obModal.querySelectorAll('.ob-btn-next').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (currentStep === 1) {
-          if (!selectedSector) {
-            const selected = obModal.querySelector('input[name="ob-sector"]:checked');
-            if (selected) selectedSector = selected.value;
-            else {
-              alert(_i18nDict['ob.alert.sector'] || "Veuillez sélectionner votre secteur d'activité.");
-              return;
-            }
-          }
-          if (selectedSector === 'autre' && customSectorInput && !customSectorInput.value.trim()) {
-            alert(_i18nDict['ob.alert.metier'] || "Veuillez saisir votre métier.");
-            customSectorInput.focus();
-            return;
-          }
-          // Validation minimum 1 douleur
-          const chosenPains = obModal.querySelectorAll('input[name="ob-pain"]:checked');
-          if (chosenPains.length === 0) {
-            alert(_i18nDict['ob.alert.pain'] || "Veuillez cocher au moins une douleur actuelle.");
-            return;
-          }
-          
-          loadFeatures(selectedSector);
-          showStep(2);
-        } else if (currentStep === 2) {
-          // Validation minimum 1 brique
-          const chosenFeatures = obModal.querySelectorAll('input[name="ob-feature"]:checked');
-          if (chosenFeatures.length === 0) {
-            alert(_i18nDict['ob.alert.feature'] || "Veuillez sélectionner au moins une brique de fonctionnalité.");
-            return;
-          }
-          showStep(3);
-        }
-      });
-    });
-
-    obModal.querySelectorAll('.ob-btn-prev').forEach(btn => {
-      btn.addEventListener('click', () => {
-        showStep(currentStep - 1);
-      });
-    });
-
-    // Form submit
-    const obForm = obModal.querySelector('#ob-contact-form');
-    if (obForm) obForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = obForm.querySelector('.ob-btn-submit');
-      const originalText = btn.textContent;
-      btn.textContent = _i18nDict['form.sending'] || 'Envoi…';
-      btn.disabled = true;
-
-      // Extract options selected
-      let chosenSectorName = '';
-      if (selectedSector === 'autre' && customSectorInput) {
-        chosenSectorName = customSectorInput.value.trim() || 'Autre';
-      } else {
-        const checkedRadio = obModal.querySelector(`input[name="ob-sector"]:checked`);
-        chosenSectorName = checkedRadio?.parentElement.querySelector('.ob-select-title')?.textContent || selectedSector;
-      }
+    const generateBento = () => {
+      const bentoBadge = document.getElementById('ob-bento-badge');
+      const bentoPrice = document.getElementById('ob-bento-price');
+      const bentoFeatures = document.getElementById('ob-bento-features');
       
-      const chosenPains = Array.from(obModal.querySelectorAll('input[name="ob-pain"]:checked')).map(el => el.parentElement.querySelector('span').textContent);
-      const chosenFeatures = Array.from(obModal.querySelectorAll('input[name="ob-feature"]:checked')).map(el => el.value);
+      if (!bentoBadge || !bentoPrice || !bentoFeatures) return;
 
-      const needFormatted = `[Onboarding Pack - ${chosenSectorName}]
-- Douleurs ciblées : ${chosenPains.length > 0 ? chosenPains.join(', ') : 'Aucune spécifique'}
-- Fonctionnalités connectées : ${chosenFeatures.length > 0 ? chosenFeatures.join(', ') : 'Aucune spécifique'}
-- Message additionnel : ${obForm.querySelector('#ob-f-msg')?.value || '—'}`;
+      let badge = "Pack Conversion";
+      let price = "À partir de 150€/mois";
+      let features = [];
 
-      const payload = {
-        name: obForm.querySelector('#ob-f-name')?.value || '',
-        email: obForm.querySelector('#ob-f-email')?.value || '',
-        phone: obForm.querySelector('#ob-f-phone')?.value || '',
-        activity: `Secteur : ${chosenSectorName} (${obForm.querySelector('#ob-f-company')?.value || 'Sans entreprise'})`,
-        need: needFormatted,
-        website_verification: obForm.querySelector('input[name="website_verification"]')?.value || '',
-      };
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('bad status');
-
-        // Injecter l'URL de réservation pré-remplie dans le bouton du modal step 4
-        const obBookingBtn = obModal.querySelector('[data-step="4"] .ob-btn-booking');
-        if (obBookingBtn) {
-          obBookingBtn.href = buildBookingUrl(payload.name, payload.email, payload.phone);
-        }
-
-        showStep(4);
-        obForm.reset();
-      } catch (err) {
-        btn.textContent = _i18nDict['form.error'] || 'Erreur — réessayer';
-        btn.disabled = false;
-        setTimeout(() => { btn.textContent = originalText; }, 2500);
+      if (onboardingState.ambition === 'refonte') {
+        badge = "Pack Ingénierie";
+        price = "Sur Devis (Personnalisé)";
+        features = ['Refonte UI/UX Complète', 'Développement Sur Mesure', 'Intégration Systèmes Tierces', 'Hébergement & Maintenance Inclus'];
+      } else if (onboardingState.focus === 'automatisation') {
+        badge = "Pack Automatisation";
+        price = "À partir de 120€/mois";
+        features = ['Automatisation des Process', 'Prise de Rendez-vous 24/7', 'CRM Intégré', 'Maintenance Incluse'];
+      } else {
+        features = ['Design Ethereal Glass', 'Optimisation SEO Local', 'Performances Extremes', 'Hébergement Inclus'];
       }
-    });
+
+      bentoBadge.textContent = badge;
+      bentoPrice.textContent = price;
+      bentoFeatures.innerHTML = features.map(f => `
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          ${f}
+        </li>
+      `).join('');
+    };
+
+    if (obForm) {
+      obForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = obForm.querySelector('.ob-btn-submit-quick');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<span>Envoi en cours...</span>`;
+        btn.disabled = true;
+
+        const payload = {
+          name: document.getElementById('ob-f-name')?.value || '',
+          company: document.getElementById('ob-f-company')?.value || '',
+          email: document.getElementById('ob-f-email')?.value || '',
+          state: JSON.stringify(onboardingState),
+          need: "[Onboarding V3] Demande soumise via Typeform Flow"
+        };
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('bad status');
+
+          showStep(7);
+        } catch (err) {
+          btn.innerHTML = `<span>Erreur, réessayer</span>`;
+          btn.disabled = false;
+          setTimeout(() => { btn.innerHTML = originalHtml; }, 2500);
+        }
+      });
+    }
   }
 
-  // Escape key sans langsel (ex. pages où langsel absent)
-  if (!langsel) {
+  // Escape key
+  if (typeof langsel === 'undefined') {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && obModal && obModal.classList.contains('is-open')) {
         obModal.querySelector('.ob-close')?.click();
       }
     });
   }
+});
+
+// --- Custom Glow Cursor (Mauve lueur sous la souris normale) ---
+document.addEventListener('DOMContentLoaded', () => {
+  const glowTracker = document.createElement('div');
+  glowTracker.className = 'cursor-glow-tracker';
+  document.body.appendChild(glowTracker);
+
+  document.addEventListener('mousemove', (e) => {
+    // La transition CSS s'occupe de la fluidité
+    glowTracker.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+  }, { passive: true });
+});
+
+// --- Sticky Booking — fermeture du bandeau ---
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('.sticky-booking__close');
+  const stickyBanner = document.getElementById('sticky-booking');
+  if (closeBtn && stickyBanner) {
+    closeBtn.addEventListener('click', () => { stickyBanner.hidden = true; });
+  }
+});
+
+// Scrollspy pour la TabBar Mobile
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+  const sections = document.querySelectorAll('section[id], header[id]');
+
+  function updateActiveNavItem() {
+    let currentSectionId = 'hero';
+    const scrollPos = window.scrollY + window.innerHeight / 3;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+
+    mobileNavItems.forEach(item => {
+      item.classList.remove('is-active');
+      if (item.getAttribute('data-section') === currentSectionId) {
+        item.classList.add('is-active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNavItem, { passive: true });
+  updateActiveNavItem();
 });

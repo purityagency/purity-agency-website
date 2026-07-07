@@ -1673,6 +1673,37 @@ header::before {
 }
 .mstep.is-active .mstep__ico svg {
   filter: drop-shadow(0 0 8px rgba(255,255,255,.25)) drop-shadow(0 0 20px rgba(168,85,247,.4));
+  animation: mstep-breathe 3.5s ease-in-out infinite;
+}
+/* Sonar pulse rings — two staggered rings per active icon */
+.mstep__ico::before,
+.mstep__ico::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(168,85,247,.5);
+  opacity: 0;
+  pointer-events: none;
+}
+.mstep.is-active .mstep__ico::before {
+  animation: mstep-sonar 2.8s ease-out 0s infinite;
+}
+.mstep.is-active .mstep__ico::after {
+  animation: mstep-sonar 2.8s ease-out 1.4s infinite;
+}
+@keyframes mstep-sonar {
+  0%   { transform: scale(1);    opacity: 0.55; }
+  100% { transform: scale(1.65); opacity: 0;    }
+}
+@keyframes mstep-breathe {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mstep__ico::before,
+  .mstep__ico::after { animation: none !important; }
+  .mstep.is-active .mstep__ico svg { animation: none !important; }
 }
 .anim-spin-slow {
   transform-origin: center;
@@ -4130,3 +4161,52 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
     grid-column: auto !important;
   }
 }
+
+/* ==========================================================================
+   EXPERT DESIGN-ENGINEERING POLISH (make-interfaces-feel-better)
+   ========================================================================== */
+
+/* 1. Lissage des polices au niveau racine */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Équilibrage des retours à la ligne (Text-wrap) */
+h1, h2, h3, .hero__title, .sec-head h2, .svc__title, .brique-card h3, .pack-card h3, .detail-hero__title {
+  text-wrap: balance;
+}
+
+p, .hero__lead, .sec-head__lead, .svc-scene__lead, .brique-card p, .pack-card p, .detail-hero__lead {
+  text-wrap: pretty;
+}
+
+/* 3. Chiffres tabulaires pour les prix (évite le sautillement visuel) */
+.brique-price, .pack-price, .pricing-card__price, .price-amount {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 4. Outlines neutres et fins pour les images (évite le flou sur fond sombre) */
+img, .svc-scene__media, .pack-card__media, .detail-hero__media {
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+  outline-offset: -1px;
+}
+
+/* 5. Transitions explicites (Pas de transition: all) */
+.mobile-nav-item, .svc-dot, .btn, .brique-card, .pack-card, .chat__toggle {
+  transition-property: transform, opacity, background-color, border-color, box-shadow, color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 6. Effet de clic tactile (Tactile Active State) */
+.mobile-nav-item:active, .btn:active, .svc-dot:active, .tarifs-tab:active {
+  transform: scale(0.95);
+}
+
+/* 7. Cohérence des angles arrondis imbriqués (Concentric Radius) */
+/* Parent border-radius: 32px (mobile-nav-bar) -> Enfant mobile-nav-item a 8px de padding -> Radius interne = 24px */
+.mobile-nav-item {
+  border-radius: 24px;
+}
+

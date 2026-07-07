@@ -4210,3 +4210,29 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
   border-radius: 24px;
 }
 
+/* 8. Adaptations avancées des pages de détails (services) sur mobile */
+@media (max-width: 768px) {
+  /* Grille Trust (Pourquoi l'IA) : 1 colonne sur mobile au lieu de 3 */
+  .dp-trust__grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--s-md) !important;
+  }
+
+  /* Redressement des Features alternés (Feature alignement) */
+  .dp-feature--alt {
+    text-align: left !important;
+    padding-left: clamp(1rem, 4vw, 3rem) !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    border-left: 2px solid var(--accent-glow) !important;
+    margin-left: 0 !important;
+  }
+
+  /* Grille de packs de services internes (Toutes les pages services) */
+  .dp-packs__grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+

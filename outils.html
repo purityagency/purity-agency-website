@@ -11,13 +11,13 @@
 <meta property="og:description" content="Quand tout est éparpillé entre un carnet, un Excel et votre mémoire, vous perdez du temps et des clients. On construit l'outil qui centralise tout.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://purity-agency.be/outils.html">
-<meta property="og:image" content="https://purity-agency.be/assets/logo.png">
+<meta property="og:image" content="https://purity-agency.be/assets/og-outils.jpg">
 <meta property="og:locale" content="fr_BE">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/service4.webp" as="image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="twitter:image" content="https://purity-agency.be/assets/og-outils.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/service4.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/site-extra.css">
 </head>
@@ -29,22 +29,48 @@
 <header id="nav">
   <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="assets/logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
   <nav class="nav__links">
-    <a href="index.html#services">Services</a>
-    <a href="index.html#methode">Méthode</a>
-    <a href="index.html#tarifs">Tarifs</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="index.html#services" data-i18n="nav.services">Services</a>
+    <a href="index.html#methode" data-i18n="nav.methode">Méthode</a>
+    <a href="index.html#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+    <a href="blog.html" data-i18n="nav.blog">Blog</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
   </nav>
-  <a class="nav__cta lg" href="index.html#booking" data-i18n="nav.cta">Réserver un appel</a>
-  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="langsel" id="langsel">
+    <button class="langsel__btn" id="langsel-btn" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langsel.aria">
+      <span class="langsel__flag" data-flag><img src="assets/flags/fr.svg" alt="FR" width="20" height="15"></span>
+      <span class="langsel__code" data-code>FR</span>
+      <svg class="langsel__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="langsel__menu" id="langsel-menu" role="listbox" hidden>
+      <div class="langsel__menu-head" data-i18n="langsel.title">Langue</div>
+      <ul class="langsel__list">
+        <li role="option" data-lang="fr" data-flag="assets/flags/fr.svg" class="is-active"><img src="assets/flags/fr.svg" alt="" width="20" height="15" loading="lazy"> Français</li>
+        <li role="option" data-lang="en" data-flag="assets/flags/en.svg"><img src="assets/flags/en.svg" alt="" width="20" height="15" loading="lazy"> English</li>
+        <li role="option" data-lang="nl" data-flag="assets/flags/nl.svg"><img src="assets/flags/nl.svg" alt="" width="20" height="15" loading="lazy"> Nederlands</li>
+        <li role="option" data-lang="de" data-flag="assets/flags/de.svg"><img src="assets/flags/de.svg" alt="" width="20" height="15" loading="lazy"> Deutsch</li>
+        <li role="option" data-lang="es" data-flag="assets/flags/es.svg"><img src="assets/flags/es.svg" alt="" width="20" height="15" loading="lazy"> Español</li>
+        <li role="option" data-lang="pt" data-flag="assets/flags/pt.svg"><img src="assets/flags/pt.svg" alt="" width="20" height="15" loading="lazy"> Português</li>
+        <li role="option" data-lang="it" data-flag="assets/flags/it.svg"><img src="assets/flags/it.svg" alt="" width="20" height="15" loading="lazy"> Italiano</li>
+        <li role="option" data-lang="pl" data-flag="assets/flags/pl.svg"><img src="assets/flags/pl.svg" alt="" width="20" height="15" loading="lazy"> Polski</li>
+        <li role="option" data-lang="ru" data-flag="assets/flags/ru.svg"><img src="assets/flags/ru.svg" alt="" width="20" height="15" loading="lazy"> Русский</li>
+        <li role="option" data-lang="ar" data-flag="assets/flags/ar.svg"><img src="assets/flags/ar.svg" alt="" width="20" height="15" loading="lazy"> العربية</li>
+        <li role="option" data-lang="zh" data-flag="assets/flags/zh.svg"><img src="assets/flags/zh.svg" alt="" width="20" height="15" loading="lazy"> 中文</li>
+        <li role="option" data-lang="hi" data-flag="assets/flags/hi.svg"><img src="assets/flags/hi.svg" alt="" width="20" height="15" loading="lazy"> हिन्दी</li>
+      </ul>
+    </div>
+  </div>
+  <a class="nav__cta lg" href="#contact" data-i18n="dp.contact.kicker">Parlons-en</a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false" data-i18n-aria="burger.aria"><span></span><span></span></button>
 </header>
 
 <div id="mobile-menu" class="mob" hidden>
   <nav>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#methode">Méthode</a>
-    <a href="index.html#tarifs">Tarifs</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="index.html#booking" class="btn btn--white" data-i18n="nav.cta">Réserver un appel</a>
+    <a href="index.html#services" data-i18n="nav.services">Services</a>
+    <a href="index.html#methode" data-i18n="nav.methode">Méthode</a>
+    <a href="index.html#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+    <a href="blog.html" data-i18n="nav.blog">Blog</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+    <a href="#contact" class="btn btn--white" data-i18n="dp.contact.kicker">Parlons-en</a>
   </nav>
 </div>
 
@@ -55,25 +81,25 @@
       <img src="assets/service4.webp" alt="Votre activité rassemblée dans un seul outil clair, pensé pour vous" class="dp-hero__img">
     </div>
     <div class="dp-hero__inner">
-      <a href="index.html#services" class="dp-back" data-reveal>← Tout ce qu'on fait</a>
-      <p class="dp-kicker" data-reveal style="--d:.05s">Outils métier sur-mesure</p>
-      <h1 class="dp-hero__title" data-reveal style="--d:.1s">Tout est dans votre tête.<br><span class="grad">Mettons-le au clair.</span></h1>
-      <p class="dp-hero__lead" data-reveal style="--d:.2s">Un carnet, un Excel qui déborde, des SMS, votre mémoire. Tant que l'information est éparpillée, <span class="grad">vous perdez du temps et vous laissez passer des choses.</span> On rassemble votre activité dans un seul outil, fait pour votre façon de travailler.</p>
+      <a href="index.html#services" class="dp-back" data-reveal data-i18n="dp.back">← Tout ce qu'on fait</a>
+      <p class="dp-kicker" data-reveal style="--d:.05s" data-i18n="outils.kicker">Outils métier sur-mesure</p>
+      <h1 class="dp-hero__title" data-reveal style="--d:.1s" data-i18n="outils.hero.title">Tout est dans votre tête.<br><span class="grad">Mettons-le au clair.</span></h1>
+      <p class="dp-hero__lead" data-reveal style="--d:.2s" data-i18n="outils.hero.lead">Un carnet, un Excel qui déborde, des SMS, votre mémoire. Tant que l'information est éparpillée, <span class="grad">vous perdez du temps et vous laissez passer des choses.</span> On rassemble votre activité dans un seul outil, fait pour votre façon de travailler.</p>
     </div>
   </section>
 
   <nav class="dp-toc" aria-label="Sommaire">
     <div class="dp-toc__bar">
-      <a class="dp-toc__link" href="#ce-quon-construit">Ce qu'on construit</a>
-      <a class="dp-toc__link" href="#evolutif">Évolutif</a>
-      <a class="dp-toc__link" href="#pour-qui">Pour qui</a>
-      <a class="dp-toc__link" href="#faq">Questions</a>
-      <a class="dp-toc__link" href="#contact">Parler à un humain</a>
+      <a class="dp-toc__link" href="#ce-quon-construit" data-i18n="outils.toc.features">Ce qu'on construit</a>
+      <a class="dp-toc__link" href="#evolutif" data-i18n="outils.toc.trust">Évolutif</a>
+      <a class="dp-toc__link" href="#pour-qui" data-i18n="dp.toc.pourqui">Pour qui</a>
+      <a class="dp-toc__link" href="#faq" data-i18n="dp.toc.faq">Questions</a>
+      <a class="dp-toc__link" href="#contact" data-i18n="dp.toc.contact">Parler à un humain</a>
     </div>
   </nav>
 
   <section class="dp-statement">
-    <p class="dp-statement__text" data-reveal>
+    <p class="dp-statement__text" data-reveal data-i18n="outils.statement">
       Vous ne devriez pas avoir à tout retenir.<br>
       <span class="dp-muted">Un bon outil s'en souvient pour vous,</span> <span class="grad">et vous laisse faire votre métier.</span>
     </p>
@@ -82,9 +108,9 @@
   <section class="dp-features" id="ce-quon-construit">
     <div class="dp-feature dp-feature--viz" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Pensé autour de vous</span>
-        <h2>Une application <span class="grad">métier.</span></h2>
-        <p>Pas un logiciel générique où vous vous tordez pour rentrer dans les cases. Un outil construit autour de votre quotidien réel : vos étapes, vos mots, votre manière de bosser. Vous l'ouvrez et tout est à sa place.</p>
+        <span class="dp-feature__index" data-i18n="outils.feat1.index">Pensé autour de vous</span>
+        <h2 data-i18n="outils.feat1.h2">Une application <span class="grad">métier.</span></h2>
+        <p data-i18n="outils.feat1.p">Pas un logiciel générique où vous vous tordez pour rentrer dans les cases. Un outil construit autour de votre quotidien réel : vos étapes, vos mots, votre manière de bosser. Vous l'ouvrez et tout est à sa place.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz-phone viz-float">
@@ -107,9 +133,9 @@
 
     <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Tout en un coup d'œil</span>
-        <h2>Un tableau de bord <span class="grad">clair.</span></h2>
-        <p>Vos chiffres clés, vos rendez-vous, vos clients, votre chiffre d'affaires : lisibles, à jour, au même endroit. Vous savez où vous en êtes sans avoir à fouiller dans dix fichiers.</p>
+        <span class="dp-feature__index" data-i18n="outils.feat2.index">Tout en un coup d'œil</span>
+        <h2 data-i18n="outils.feat2.h2">Un tableau de bord <span class="grad">clair.</span></h2>
+        <p data-i18n="outils.feat2.p">Vos chiffres clés, vos rendez-vous, vos clients, votre chiffre d'affaires : lisibles, à jour, au même endroit. Vous savez où vous en êtes sans avoir à fouiller dans dix fichiers.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz viz-float">
@@ -129,9 +155,9 @@
 
     <div class="dp-feature dp-feature--viz" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Vos outils, reliés</span>
-        <h2>Des intégrations qui <span class="grad">parlent.</span></h2>
-        <p>On relie ce que vous utilisez déjà — agenda, messagerie, facturation, paiement — pour que tout travaille ensemble au lieu de vivre chacun dans son coin. Moins de double saisie, moins d'oublis.</p>
+        <span class="dp-feature__index" data-i18n="outils.feat3.index">Vos outils, reliés</span>
+        <h2 data-i18n="outils.feat3.h2">Des intégrations qui <span class="grad">parlent.</span></h2>
+        <p data-i18n="outils.feat3.p">On relie ce que vous utilisez déjà — agenda, messagerie, facturation, paiement — pour que tout travaille ensemble au lieu de vivre chacun dans son coin. Moins de double saisie, moins d'oublis.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz viz-float">
@@ -151,76 +177,76 @@
 
   <section class="dp-trust" id="evolutif">
     <div class="dp-trust__inner">
-      <h2 class="dp-trust__title" data-reveal>Un outil qui grandit<br><span class="grad">avec vous.</span></h2>
+      <h2 class="dp-trust__title" data-reveal data-i18n="outils.trust.title">Un outil qui grandit<br><span class="grad">avec vous.</span></h2>
       <div class="dp-trust__grid">
         <div class="dp-trust__item" data-reveal>
-          <h3>Simple à utiliser</h3>
-          <p>Conçu pour être pris en main sans formation. Si c'est compliqué, c'est qu'on l'a raté.</p>
+          <h3 data-i18n="outils.trust1.h3">Simple à utiliser</h3>
+          <p data-i18n="outils.trust1.p">Conçu pour être pris en main sans formation. Si c'est compliqué, c'est qu'on l'a raté.</p>
         </div>
         <div class="dp-trust__item" data-reveal style="--d:.08s">
-          <h3>Accessible partout</h3>
-          <p>Au bureau, sur le terrain, sur téléphone : votre activité vous suit où que vous soyez.</p>
+          <h3 data-i18n="outils.trust2.h3">Accessible partout</h3>
+          <p data-i18n="outils.trust2.p">Au bureau, sur le terrain, sur téléphone : votre activité vous suit où que vous soyez.</p>
         </div>
         <div class="dp-trust__item" data-reveal style="--d:.16s">
-          <h3>Évolutif</h3>
-          <p>On commence par l'essentiel, on ajoute au fur et à mesure que votre activité change.</p>
+          <h3 data-i18n="outils.trust3.h3">Évolutif</h3>
+          <p data-i18n="outils.trust3.p">On commence par l'essentiel, on ajoute au fur et à mesure que votre activité change.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="dp-forwho" id="pour-qui">
-    <p data-reveal><span class="dp-muted">C'est pour vous si…</span> votre activité grandit et que l'Excel ne suit plus, ou si vous avez <span class="grad">un besoin précis qu'aucun logiciel du marché ne couvre vraiment.</span></p>
+    <p data-reveal><span class="dp-muted" data-i18n="dp.forwho.prefix">C'est pour vous si…</span> <span data-i18n="outils.forwho">votre activité grandit et que l'Excel ne suit plus, ou si vous avez <span class="grad">un besoin précis qu'aucun logiciel du marché ne couvre vraiment.</span></span></p>
   </section>
 
   <section class="dp-packs">
     <div class="dp-packs__head" data-reveal>
-      <p class="dp-kicker">Comment ça marche</p>
-      <h2>Du sur-mesure, <span class="grad">à votre rythme.</span></h2>
+      <p class="dp-kicker" data-i18n="outils.packs.kicker">Comment ça marche</p>
+      <h2 data-i18n="outils.packs.h2">Du sur-mesure, <span class="grad">à votre rythme.</span></h2>
     </div>
     <div class="dp-packs__grid">
       <a class="dp-pack" href="#contact" data-reveal>
-        <span class="dp-pack__name">Outil sur-mesure</span>
-        <span class="dp-pack__price">Sur&nbsp;devis</span>
-        <span class="dp-pack__desc">On chiffre selon votre besoin réel. Devis gratuit, sans engagement.</span>
-        <span class="dp-pack__arrow">Décrire mon besoin →</span>
+        <span class="dp-pack__name" data-i18n="outils.pack1.name">Outil sur-mesure</span>
+        <span class="dp-pack__price" data-i18n="outils.pack1.price">Sur&nbsp;devis</span>
+        <span class="dp-pack__desc" data-i18n="outils.pack1.desc">On chiffre selon votre besoin réel. Devis gratuit, sans engagement.</span>
+        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.describe">Décrire mon besoin →</span>
       </a>
       <a class="dp-pack" href="#contact" data-reveal style="--d:.06s">
-        <span class="dp-pack__name">On commence petit</span>
-        <span class="dp-pack__price">Par étapes</span>
-        <span class="dp-pack__desc">On démarre par l'essentiel, on ajoute au fur et à mesure. Pas de gros budget d'un coup.</span>
-        <span class="dp-pack__arrow">En parler →</span>
+        <span class="dp-pack__name" data-i18n="outils.pack2.name">On commence petit</span>
+        <span class="dp-pack__price" data-i18n="outils.pack2.price">Par étapes</span>
+        <span class="dp-pack__desc" data-i18n="outils.pack2.desc">On démarre par l'essentiel, on ajoute au fur et à mesure. Pas de gros budget d'un coup.</span>
+        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.talk">En parler →</span>
       </a>
       <a class="dp-pack" href="index.html#tarifs" data-reveal style="--d:.12s">
-        <span class="dp-pack__name">Accompagnement</span>
-        <span class="dp-pack__price">dès 89<small>&nbsp;€/mois</small></span>
-        <span class="dp-pack__desc">On maintient et on fait évoluer votre outil dans le temps.</span>
-        <span class="dp-pack__arrow">Voir →</span>
+        <span class="dp-pack__name" data-i18n="dp.pack.accomp.name">Accompagnement</span>
+        <span class="dp-pack__price" data-i18n="dp.pack.accomp.price">dès 89<small>&nbsp;€/mois</small></span>
+        <span class="dp-pack__desc" data-i18n="outils.pack3.desc">On maintient et on fait évoluer votre outil dans le temps.</span>
+        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.see_short">Voir →</span>
       </a>
     </div>
   </section>
 
   <section class="dp-faq" id="faq">
     <div class="dp-faq__head" data-reveal>
-      <p class="dp-kicker">Vos questions</p>
-      <h2>Ce qu'on nous demande <span class="grad">souvent.</span></h2>
+      <p class="dp-kicker" data-i18n="dp.faq.kicker">Vos questions</p>
+      <h2 data-i18n="dp.faq.h2">Ce qu'on nous demande <span class="grad">souvent.</span></h2>
     </div>
     <div class="dp-faq__list" data-reveal>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>Un logiciel existant ne ferait pas l'affaire ?</span><i></i></button>
-        <div class="dp-faq__a"><div>Parfois si, et on vous le dira honnêtement. Mais quand vous tordez votre façon de travailler pour rentrer dans un logiciel générique, vous perdez du temps tous les jours. Le sur-mesure colle à vous, pas l'inverse.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="outils.faq1.q">Un logiciel existant ne ferait pas l'affaire ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="outils.faq1.a">Parfois si, et on vous le dira honnêtement. Mais quand vous tordez votre façon de travailler pour rentrer dans un logiciel générique, vous perdez du temps tous les jours. Le sur-mesure colle à vous, pas l'inverse.</div></div>
       </div>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>C'est cher, un outil sur-mesure ?</span><i></i></button>
-        <div class="dp-faq__a"><div>On commence par l'essentiel, pas par tout d'un coup. Vous investissez par étapes, à votre rythme. On part de ce qui vous fait le plus perdre de temps aujourd'hui.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="outils.faq2.q">C'est cher, un outil sur-mesure ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="outils.faq2.a">On commence par l'essentiel, pas par tout d'un coup. Vous investissez par étapes, à votre rythme. On part de ce qui vous fait le plus perdre de temps aujourd'hui.</div></div>
       </div>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>Ça se connecte à ce que j'utilise déjà ?</span><i></i></button>
-        <div class="dp-faq__a"><div>Oui. On relie votre agenda, votre messagerie, votre facturation, vos paiements. L'idée est que tout se parle, sans double saisie.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="outils.faq3.q">Ça se connecte à ce que j'utilise déjà ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="outils.faq3.a">Oui. On relie votre agenda, votre messagerie, votre facturation, vos paiements. L'idée est que tout se parle, sans double saisie.</div></div>
       </div>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>Et si mon activité change dans un an ?</span><i></i></button>
-        <div class="dp-faq__a"><div>L'outil évolue avec vous. On ajoute, on ajuste au fil du temps. C'est tout l'intérêt du sur-mesure par rapport à un logiciel figé.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="outils.faq4.q">Et si mon activité change dans un an ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="outils.faq4.a">L'outil évolue avec vous. On ajoute, on ajuste au fil du temps. C'est tout l'intérêt du sur-mesure par rapport à un logiciel figé.</div></div>
       </div>
     </div>
   </section>
@@ -228,31 +254,30 @@
   <section class="dp-contact" id="contact">
     <div class="dp-contact__inner">
       <div class="dp-contact__intro" data-reveal>
-        <p class="dp-kicker">Parlons-en</p>
-        <h2>Décrivez-nous votre quotidien. <span class="grad">On vous propose l'outil.</span></h2>
-        <p>Un échange gratuit, sans engagement. On part de ce qui vous fait perdre du temps aujourd'hui — et on dessine ce qui vous le rendrait.</p>
+        <p class="dp-kicker" data-i18n="dp.contact.kicker">Parlons-en</p>
+        <h2 data-i18n="outils.contact.h2">Décrivez-nous votre quotidien. <span class="grad">On vous propose l'outil.</span></h2>
+        <p data-i18n="outils.contact.p">Un échange gratuit, sans engagement. On part de ce qui vous fait perdre du temps aujourd'hui — et on dessine ce qui vous le rendrait.</p>
         <ul class="dp-contact__points">
-          <li>Réponse sous 24 h ouvrées</li>
-          <li>Premier échange offert</li>
-          <li>On commence petit, à votre rythme</li>
+          <li data-i18n="dp.contact.li1">Réponse sous 24 h ouvrées</li>
+          <li data-i18n="dp.contact.li2">Premier échange offert</li>
+          <li data-i18n="outils.contact.li3">On commence petit, à votre rythme</li>
         </ul>
       </div>
       <form class="dp-form" id="detail-form" data-reveal style="--d:.1s">
-        <!-- Honeypot anti-spam -->
         <div style="position: absolute; left: -9999px; overflow: hidden; width: 0; height: 0;" aria-hidden="true">
-          <label for="d-website">Ne pas remplir :</label>
+          <label for="d-website" data-i18n="form.honeypot_label">Ne pas remplir :</label>
           <input type="text" id="d-website" name="website_verification" tabindex="-1" autocomplete="off">
         </div>
         <div class="dp-form__row">
-          <div class="dp-field"><input type="text" id="d-name" name="name" placeholder=" " required autocomplete="name"><label for="d-name">Nom</label></div>
-          <div class="dp-field"><input type="tel" id="d-phone" name="phone" placeholder=" " autocomplete="tel"><label for="d-phone">Téléphone</label></div>
+          <div class="dp-field"><input type="text" id="d-name" name="name" placeholder=" " required autocomplete="name"><label for="d-name" data-i18n="dp.form.name">Nom</label></div>
+          <div class="dp-field"><input type="tel" id="d-phone" name="phone" placeholder=" " autocomplete="tel"><label for="d-phone" data-i18n="dp.form.phone">Téléphone</label></div>
         </div>
-        <div class="dp-field"><input type="email" id="d-email" name="email" placeholder=" " required autocomplete="email"><label for="d-email">E-mail</label></div>
-        <div class="dp-field"><input type="text" id="d-activity" name="activity" placeholder=" "><label for="d-activity">Votre métier</label></div>
-        <div class="dp-field"><textarea id="d-need" name="need" rows="3" placeholder=" " required></textarea><label for="d-need">Ce qui vous fait perdre du temps</label></div>
-        <button type="submit" class="btn btn--accent btn--lg">Demander un échange gratuit</button>
-        <span class="dp-form__note">Réponse garantie sous 24 h ouvrées. Sans engagement.</span>
-        <div class="dp-form__sent"><strong>Message envoyé !</strong><span>On revient vers vous très vite.</span></div>
+        <div class="dp-field"><input type="email" id="d-email" name="email" placeholder=" " required autocomplete="email"><label for="d-email" data-i18n="dp.form.email">E-mail</label></div>
+        <div class="dp-field"><input type="text" id="d-activity" name="activity" placeholder=" "><label for="d-activity" data-i18n="dp.form.activity">Votre métier</label></div>
+        <div class="dp-field"><textarea id="d-need" name="need" rows="3" placeholder=" " required></textarea><label for="d-need" data-i18n="outils.form.need">Ce qui vous fait perdre du temps</label></div>
+        <button type="submit" class="btn btn--accent btn--lg" data-i18n="dp.form.submit">Demander un échange gratuit</button>
+        <span class="dp-form__note" data-i18n="dp.form.note">Réponse garantie sous 24 h ouvrées. Sans engagement.</span>
+        <div class="dp-form__sent" aria-live="polite"><strong data-i18n="dp.form.sent_title">Message envoyé !</strong><span data-i18n="dp.form.sent_sub">On revient vers vous très vite.</span></div>
       </form>
     </div>
   </section>
@@ -262,21 +287,50 @@
 <footer id="footer">
   <div class="wrap footer__inner">
     <div class="footer__top">
-      <p class="footer__tagline">On crée votre présence. <br><em>Elle travaille pour vous.</em></p>
-      <nav class="footer__nav"><a href="index.html#services">Services</a><a href="index.html#methode">Méthode</a><a href="index.html#tarifs">Tarifs</a><a href="index.html#contact">Contact</a></nav>
+      <p class="footer__tagline" data-i18n="footer.tagline">On crée votre présence. <br><em>Elle travaille pour vous.</em></p>
+      <nav class="footer__nav">
+        <a href="index.html#services" data-i18n="nav.services">Services</a>
+        <a href="index.html#methode" data-i18n="nav.methode">Méthode</a>
+        <a href="index.html#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
     </div>
     <div class="footer__legal">
-      <p><strong>Purity Agency</strong><br>BCE : 1036.775.590<br>Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA.<br><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></p>
+      <p data-i18n="footer.legal_line"><strong>Purity Agency</strong><br>BCE : 1036.775.590<br>Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA.<br><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></p>
     </div>
     <div class="footer__bottom">
-      <div class="footer__links"><a href="legal.html#mentions">Mentions légales</a><a href="legal.html#confidentialite">Confidentialité</a><a href="legal.html#cookies">Cookies</a></div>
-      <p>© 2026 Purity Agency. Tous droits réservés.</p>
+      <div class="footer__links">
+        <a href="legal.html#mentions" data-i18n="footer.legal1">Mentions légales</a>
+        <a href="legal.html#confidentialite" data-i18n="footer.legal2">Confidentialité</a>
+        <a href="legal.html#cookies" data-i18n="footer.legal3">Cookies</a>
+      </div>
+      <p data-i18n="footer.copyright">© 2026 Purity Agency. Tous droits réservés.</p>
     </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="js/detail.js" defer></script>
+<!-- Barre de Navigation Basse Mobile -->
+<nav class="mobile-nav-bar" aria-label="Navigation mobile">
+  <a href="index.html#hero" class="mobile-nav-item" data-section="hero">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <span class="mobile-nav-label">Accueil</span>
+  </a>
+  <a href="index.html#services" class="mobile-nav-item" data-section="services">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    <span class="mobile-nav-label">Services</span>
+  </a>
+  <a href="index.html#tarifs" class="mobile-nav-item" data-section="tarifs">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>
+    <span class="mobile-nav-label">Tarifs</span>
+  </a>
+  <a href="index.html#contact" class="mobile-nav-item" data-section="contact">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="mobile-nav-label">Contact</span>
+  </a>
+</nav>
+
 </body>
 </html>

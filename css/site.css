@@ -4035,7 +4035,7 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
     transform: translateX(-50%) translateY(0);
   }
   /* Cacher le menu burger existant du top header */
-  .header__burger, .nav-menu {
+  .nav__burger, .mob {
     display: none !important;
   }
 }

@@ -11,13 +11,13 @@
 <meta property="og:description" content="Quand un client cherche votre métier sur Google, c'est vous qu'il doit trouver. Sites premium, fiche Google, landing, e-commerce pour indépendants et PME de Wallonie.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://purity-agency.be/presence.html">
-<meta property="og:image" content="https://purity-agency.be/assets/logo.png">
+<meta property="og:image" content="https://purity-agency.be/assets/og-presence.jpg">
 <meta property="og:locale" content="fr_BE">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="preload" href="assets/service1.webp" as="image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="twitter:image" content="https://purity-agency.be/assets/og-presence.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/service1.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/site-extra.css">
 </head>
@@ -29,21 +29,47 @@
 <header id="nav">
   <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="assets/logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
   <nav class="nav__links">
-    <a href="index.html#services">Services</a>
-    <a href="index.html#methode">Méthode</a>
-    <a href="index.html#tarifs">Tarifs</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="index.html#services" data-i18n="nav.services">Services</a>
+    <a href="index.html#methode" data-i18n="nav.methode">Méthode</a>
+    <a href="index.html#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+    <a href="blog.html" data-i18n="nav.blog">Blog</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
   </nav>
+  <div class="langsel" id="langsel">
+    <button class="langsel__btn" id="langsel-btn" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langsel.aria">
+      <span class="langsel__flag" data-flag><img src="assets/flags/fr.svg" alt="FR" width="20" height="15"></span>
+      <span class="langsel__code" data-code>FR</span>
+      <svg class="langsel__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="langsel__menu" id="langsel-menu" role="listbox" hidden>
+      <div class="langsel__menu-head" data-i18n="langsel.title">Langue</div>
+      <ul class="langsel__list">
+        <li role="option" data-lang="fr" data-flag="assets/flags/fr.svg" class="is-active"><img src="assets/flags/fr.svg" alt="" width="20" height="15" loading="lazy"> Français</li>
+        <li role="option" data-lang="en" data-flag="assets/flags/en.svg"><img src="assets/flags/en.svg" alt="" width="20" height="15" loading="lazy"> English</li>
+        <li role="option" data-lang="nl" data-flag="assets/flags/nl.svg"><img src="assets/flags/nl.svg" alt="" width="20" height="15" loading="lazy"> Nederlands</li>
+        <li role="option" data-lang="de" data-flag="assets/flags/de.svg"><img src="assets/flags/de.svg" alt="" width="20" height="15" loading="lazy"> Deutsch</li>
+        <li role="option" data-lang="es" data-flag="assets/flags/es.svg"><img src="assets/flags/es.svg" alt="" width="20" height="15" loading="lazy"> Español</li>
+        <li role="option" data-lang="pt" data-flag="assets/flags/pt.svg"><img src="assets/flags/pt.svg" alt="" width="20" height="15" loading="lazy"> Português</li>
+        <li role="option" data-lang="it" data-flag="assets/flags/it.svg"><img src="assets/flags/it.svg" alt="" width="20" height="15" loading="lazy"> Italiano</li>
+        <li role="option" data-lang="pl" data-flag="assets/flags/pl.svg"><img src="assets/flags/pl.svg" alt="" width="20" height="15" loading="lazy"> Polski</li>
+        <li role="option" data-lang="ru" data-flag="assets/flags/ru.svg"><img src="assets/flags/ru.svg" alt="" width="20" height="15" loading="lazy"> Русский</li>
+        <li role="option" data-lang="ar" data-flag="assets/flags/ar.svg"><img src="assets/flags/ar.svg" alt="" width="20" height="15" loading="lazy"> العربية</li>
+        <li role="option" data-lang="zh" data-flag="assets/flags/zh.svg"><img src="assets/flags/zh.svg" alt="" width="20" height="15" loading="lazy"> 中文</li>
+        <li role="option" data-lang="hi" data-flag="assets/flags/hi.svg"><img src="assets/flags/hi.svg" alt="" width="20" height="15" loading="lazy"> हिन्दी</li>
+      </ul>
+    </div>
+  </div>
   <a class="nav__cta lg" href="index.html#booking" data-i18n="nav.cta">Réserver un appel</a>
-  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false" data-i18n-aria="burger.aria"><span></span><span></span></button>
 </header>
 
 <div id="mobile-menu" class="mob" hidden>
   <nav>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#methode">Méthode</a>
-    <a href="index.html#tarifs">Tarifs</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="index.html#services" data-i18n="nav.services">Services</a>
+    <a href="index.html#methode" data-i18n="nav.methode">Méthode</a>
+    <a href="index.html#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+    <a href="blog.html" data-i18n="nav.blog">Blog</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
     <a href="index.html#booking" class="btn btn--white" data-i18n="nav.cta">Réserver un appel</a>
   </nav>
 </div>
@@ -55,25 +81,25 @@
       <img src="assets/service1.webp" alt="Apparaître sur Google et la carte locale quand un client cherche votre métier" class="dp-hero__img">
     </div>
     <div class="dp-hero__inner">
-      <a href="index.html#services" class="dp-back" data-reveal>← Tout ce qu'on fait</a>
-      <p class="dp-kicker" data-reveal style="--d:.05s">Présence en ligne</p>
-      <h1 class="dp-hero__title" data-reveal style="--d:.1s">On vous cherche.<br><span class="grad">On doit vous trouver.</span></h1>
-      <p class="dp-hero__lead" data-reveal style="--d:.2s">Avant de vous appeler, on vous cherche sur Google. Si on ne vous trouve pas — ou si ce qu'on trouve fait amateur — <span class="grad">on contacte quelqu'un d'autre.</span> Aussi simple, et aussi injuste, que ça. On répare ça.</p>
+      <a href="index.html#services" class="dp-back" data-reveal data-i18n="dp.back">← Tout ce qu'on fait</a>
+      <p class="dp-kicker" data-reveal style="--d:.05s" data-i18n="pres.kicker">Présence en ligne</p>
+      <h1 class="dp-hero__title" data-reveal style="--d:.1s" data-i18n="pres.hero.title">On vous cherche.<br><span class="grad">On doit vous trouver.</span></h1>
+      <p class="dp-hero__lead" data-reveal style="--d:.2s" data-i18n="pres.hero.lead">Avant de vous appeler, on vous cherche sur Google. Si on ne vous trouve pas — ou si ce qu'on trouve fait amateur — <span class="grad">on contacte quelqu'un d'autre.</span> Aussi simple, et aussi injuste, que ça. On répare ça.</p>
     </div>
   </section>
 
   <nav class="dp-toc" aria-label="Sommaire">
     <div class="dp-toc__bar">
-      <a class="dp-toc__link" href="#ce-quon-fait">Ce qu'on fait</a>
-      <a class="dp-toc__link" href="#confiance">La confiance</a>
-      <a class="dp-toc__link" href="#pour-qui">Pour qui</a>
-      <a class="dp-toc__link" href="#faq">Questions</a>
-      <a class="dp-toc__link" href="#contact">Parler à un humain</a>
+      <a class="dp-toc__link" href="#ce-quon-fait" data-i18n="pres.toc.features">Ce qu'on fait</a>
+      <a class="dp-toc__link" href="#confiance" data-i18n="pres.toc.trust">La confiance</a>
+      <a class="dp-toc__link" href="#pour-qui" data-i18n="dp.toc.pourqui">Pour qui</a>
+      <a class="dp-toc__link" href="#faq" data-i18n="dp.toc.faq">Questions</a>
+      <a class="dp-toc__link" href="#contact" data-i18n="dp.toc.contact">Parler à un humain</a>
     </div>
   </nav>
 
   <section class="dp-statement">
-    <p class="dp-statement__text" data-reveal>
+    <p class="dp-statement__text" data-reveal data-i18n="pres.statement">
       Vous êtes excellent dans votre métier.<br>
       <span class="dp-muted">Encore faut-il qu'on puisse le voir</span> <span class="grad">avant de vous faire confiance.</span>
     </p>
@@ -82,9 +108,9 @@
   <section class="dp-features" id="ce-quon-fait">
     <div class="dp-feature dp-feature--viz" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Là où on vous cherche</span>
-        <h2>Présent sur <span class="grad">Google &amp; Maps.</span></h2>
-        <p>On installe et on soigne votre fiche Google : horaires, photos, avis, itinéraire. Quand quelqu'un tape votre métier près de chez vous, vous apparaissez — sur la recherche comme sur la carte. C'est souvent le tout premier contact, et il doit donner envie.</p>
+        <span class="dp-feature__index" data-i18n="pres.feat1.index">Là où on vous cherche</span>
+        <h2 data-i18n="pres.feat1.h2">Présent sur <span class="grad">Google &amp; Maps.</span></h2>
+        <p data-i18n="pres.feat1.p">On installe et on soigne votre fiche Google : horaires, photos, avis, itinéraire. Quand quelqu'un tape votre métier près de chez vous, vous apparaissez — sur la recherche comme sur la carte. C'est souvent le tout premier contact, et il doit donner envie.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz viz-serp viz-float">
@@ -107,9 +133,9 @@
 
     <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Une page qui convertit</span>
-        <h2>La landing qui <span class="grad">transforme.</span></h2>
-        <p>Une seule page, pensée pour une chose : transformer le curieux en contact. Votre offre, vos preuves, un bouton clair. Idéale pour démarrer une présence sérieuse sans gros budget — à partir de 390 €.</p>
+        <span class="dp-feature__index" data-i18n="pres.feat2.index">Une page qui convertit</span>
+        <h2 data-i18n="pres.feat2.h2">La landing qui <span class="grad">transforme.</span></h2>
+        <p data-i18n="pres.feat2.p">Une seule page, pensée pour une chose : transformer le curieux en contact. Votre offre, vos preuves, un bouton clair. Idéale pour démarrer une présence sérieuse sans gros budget — à partir de 390 €.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz viz-float">
@@ -129,9 +155,9 @@
 
     <div class="dp-feature dp-feature--viz" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Votre métier, comme il faut</span>
-        <h2>Site vitrine &amp; <span class="grad">complet.</span></h2>
-        <p>Plusieurs pages pour raconter ce que vous faites, montrer vos réalisations, installer la confiance avant même l'appel. Un design premium, sur-mesure, sans template visible — qui a l'air d'avoir coûté trois fois son prix.</p>
+        <span class="dp-feature__index" data-i18n="pres.feat3.index">Votre métier, comme il faut</span>
+        <h2 data-i18n="pres.feat3.h2">Site vitrine &amp; <span class="grad">complet.</span></h2>
+        <p data-i18n="pres.feat3.p">Plusieurs pages pour raconter ce que vous faites, montrer vos réalisations, installer la confiance avant même l'appel. Un design premium, sur-mesure, sans template visible — qui a l'air d'avoir coûté trois fois son prix.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz viz-float">
@@ -152,9 +178,9 @@
 
     <div class="dp-feature dp-feature--viz dp-feature--alt" data-reveal>
       <div class="dp-feature__txt">
-        <span class="dp-feature__index">Vendre, pas seulement exister</span>
-        <h2>Boutique <span class="grad">en ligne.</span></h2>
-        <p>Un site qui encaisse pendant que vous dormez : paiement sécurisé, stock, commandes, relances — tout est en place et relié. Vous n'avez qu'à préparer les commandes.</p>
+        <span class="dp-feature__index" data-i18n="pres.feat4.index">Vendre, pas seulement exister</span>
+        <h2 data-i18n="pres.feat4.h2">Boutique <span class="grad">en ligne.</span></h2>
+        <p data-i18n="pres.feat4.p">Un site qui encaisse pendant que vous dormez : paiement sécurisé, stock, commandes, relances — tout est en place et relié. Vous n'avez qu'à préparer les commandes.</p>
       </div>
       <div class="dp-feature__viz" aria-hidden="true">
         <div class="viz viz-float">
@@ -173,76 +199,76 @@
 
   <section class="dp-trust" id="confiance">
     <div class="dp-trust__inner">
-      <h2 class="dp-trust__title" data-reveal>La confiance se joue<br><span class="grad">en une seconde.</span></h2>
+      <h2 class="dp-trust__title" data-reveal data-i18n="pres.trust.title">La confiance se joue<br><span class="grad">en une seconde.</span></h2>
       <div class="dp-trust__grid">
         <div class="dp-trust__item" data-reveal>
-          <h3>Rapide</h3>
-          <p>Un site qui se charge vite. Au-delà de quelques secondes d'attente, le visiteur est déjà reparti.</p>
+          <h3 data-i18n="pres.trust1.h3">Rapide</h3>
+          <p data-i18n="pres.trust1.p">Un site qui se charge vite. Au-delà de quelques secondes d'attente, le visiteur est déjà reparti.</p>
         </div>
         <div class="dp-trust__item" data-reveal style="--d:.08s">
-          <h3>Impeccable sur mobile</h3>
-          <p>La majorité de vos visiteurs sont sur téléphone. Tout est pensé pour eux d'abord.</p>
+          <h3 data-i18n="pres.trust2.h3">Impeccable sur mobile</h3>
+          <p data-i18n="pres.trust2.p">La majorité de vos visiteurs sont sur téléphone. Tout est pensé pour eux d'abord.</p>
         </div>
         <div class="dp-trust__item" data-reveal style="--d:.16s">
-          <h3>À vous, vraiment</h3>
-          <p>Le code, le domaine, les comptes : tout vous appartient. Sans engagement, sans dépendance.</p>
+          <h3 data-i18n="pres.trust3.h3">À vous, vraiment</h3>
+          <p data-i18n="pres.trust3.p">Le code, le domaine, les comptes : tout vous appartient. Sans engagement, sans dépendance.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="dp-forwho" id="pour-qui">
-    <p data-reveal><span class="dp-muted">C'est pour vous si…</span> vous n'avez pas de site, ou si le vôtre date et <span class="grad">ne vous ramène plus personne</span> — et que vous dépendez encore trop du seul bouche-à-oreille.</p>
+    <p data-reveal><span class="dp-muted" data-i18n="dp.forwho.prefix">C'est pour vous si…</span> <span data-i18n="pres.forwho">vous n'avez pas de site, ou si le vôtre date et <span class="grad">ne vous ramène plus personne</span> — et que vous dépendez encore trop du seul bouche-à-oreille.</span></p>
   </section>
 
   <section class="dp-packs">
     <div class="dp-packs__head" data-reveal>
-      <p class="dp-kicker">Par où commencer</p>
-      <h2>On commence là où <span class="grad">vous en êtes.</span></h2>
+      <p class="dp-kicker" data-i18n="pres.packs.kicker">Par où commencer</p>
+      <h2 data-i18n="pres.packs.h2">On commence là où <span class="grad">vous en êtes.</span></h2>
     </div>
     <div class="dp-packs__grid">
       <a class="dp-pack" href="index.html#tarifs" data-reveal>
-        <span class="dp-pack__name">Landing Page</span>
+        <span class="dp-pack__name" data-i18n="pres.pack1.name">Landing Page</span>
         <span class="dp-pack__price">390<small>&nbsp;€</small></span>
-        <span class="dp-pack__desc">Une page, un objectif : transformer le visiteur en contact. Pour démarrer.</span>
-        <span class="dp-pack__arrow">Voir le pack →</span>
+        <span class="dp-pack__desc" data-i18n="pres.pack1.desc">Une page, un objectif : transformer le visiteur en contact. Pour démarrer.</span>
+        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.see">Voir le pack →</span>
       </a>
       <a class="dp-pack" href="index.html#tarifs" data-reveal style="--d:.06s">
-        <span class="dp-pack__name">Site Vitrine</span>
+        <span class="dp-pack__name" data-i18n="pres.pack2.name">Site Vitrine</span>
         <span class="dp-pack__price">1&nbsp;490<small>&nbsp;€</small></span>
-        <span class="dp-pack__desc">Votre métier présenté comme il le mérite, crédible dès la première visite.</span>
-        <span class="dp-pack__arrow">Voir le pack →</span>
+        <span class="dp-pack__desc" data-i18n="pres.pack2.desc">Votre métier présenté comme il le mérite, crédible dès la première visite.</span>
+        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.see">Voir le pack →</span>
       </a>
       <a class="dp-pack" href="index.html#tarifs" data-reveal style="--d:.12s">
-        <span class="dp-pack__name">Site Complet</span>
+        <span class="dp-pack__name" data-i18n="pres.pack3.name">Site Complet</span>
         <span class="dp-pack__price">2&nbsp;490<small>&nbsp;€</small></span>
-        <span class="dp-pack__desc">Le site qui vous ramène des clients : blog, SEO, première automatisation.</span>
-        <span class="dp-pack__arrow">Voir le pack →</span>
+        <span class="dp-pack__desc" data-i18n="pres.pack3.desc">Le site qui vous ramène des clients : blog, SEO, première automatisation.</span>
+        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.see">Voir le pack →</span>
       </a>
     </div>
   </section>
 
   <section class="dp-faq" id="faq">
     <div class="dp-faq__head" data-reveal>
-      <p class="dp-kicker">Vos questions</p>
-      <h2>Ce qu'on nous demande <span class="grad">souvent.</span></h2>
+      <p class="dp-kicker" data-i18n="dp.faq.kicker">Vos questions</p>
+      <h2 data-i18n="dp.faq.h2">Ce qu'on nous demande <span class="grad">souvent.</span></h2>
     </div>
     <div class="dp-faq__list" data-reveal>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>J'ai déjà un site, faut-il tout refaire ?</span><i></i></button>
-        <div class="dp-faq__a"><div>Pas forcément. On regarde s'il vous sert vraiment ou s'il vous dessert. Souvent une refonte ciblée — vitesse, mobile, conversion — suffit à tout changer, sans repartir de zéro.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="pres.faq1.q">J'ai déjà un site, faut-il tout refaire ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="pres.faq1.a">Pas forcément. On regarde s'il vous sert vraiment ou s'il vous dessert. Souvent une refonte ciblée — vitesse, mobile, conversion — suffit à tout changer, sans repartir de zéro.</div></div>
       </div>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>Je serai bien propriétaire de mon site ?</span><i></i></button>
-        <div class="dp-faq__a"><div>Oui, entièrement : le code, le domaine, vos comptes. Aucun engagement de durée, aucune dépendance. C'est rare, et c'est voulu.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="pres.faq2.q">Je serai bien propriétaire de mon site ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="pres.faq2.a">Oui, entièrement : le code, le domaine, vos comptes. Aucun engagement de durée, aucune dépendance. C'est rare, et c'est voulu.</div></div>
       </div>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>Combien de temps avant d'être en ligne ?</span><i></i></button>
-        <div class="dp-faq__a"><div>Une présence simple part en quelques jours. Pour un projet plus large, on vous donne un délai précis dès le départ — et on s'y tient.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="pres.faq3.q">Combien de temps avant d'être en ligne ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="pres.faq3.a">Une présence simple part en quelques jours. Pour un projet plus large, on vous donne un délai précis dès le départ — et on s'y tient.</div></div>
       </div>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>Et si mon budget est serré ?</span><i></i></button>
-        <div class="dp-faq__a"><div>On commence à 390 €. On part de ce qui compte le plus pour vous, et vous montez quand ça vous rapporte déjà.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="pres.faq4.q">Et si mon budget est serré ?</span><i></i></button>
+        <div class="dp-faq__a"><div data-i18n="pres.faq4.a">On commence à 390 €. On part de ce qui compte le plus pour vous, et vous montez quand ça vous rapporte déjà.</div></div>
       </div>
     </div>
   </section>
@@ -250,31 +276,30 @@
   <section class="dp-contact" id="contact">
     <div class="dp-contact__inner">
       <div class="dp-contact__intro" data-reveal>
-        <p class="dp-kicker">Parlons-en</p>
-        <h2>On regarde ensemble ce qu'on trouve <span class="grad">quand on vous cherche.</span></h2>
-        <p>Un échange gratuit, sans engagement. On part de ce que voient vos clients aujourd'hui — et de ce qu'ils devraient voir.</p>
+        <p class="dp-kicker" data-i18n="dp.contact.kicker">Parlons-en</p>
+        <h2 data-i18n="pres.contact.h2">On regarde ensemble ce qu'on trouve <span class="grad">quand on vous cherche.</span></h2>
+        <p data-i18n="pres.contact.p">Un échange gratuit, sans engagement. On part de ce que voient vos clients aujourd'hui — et de ce qu'ils devraient voir.</p>
         <ul class="dp-contact__points">
-          <li>Réponse sous 24 h ouvrées</li>
-          <li>Premier échange offert</li>
-          <li>Prix clair d'avance, sans surprise</li>
+          <li data-i18n="dp.contact.li1">Réponse sous 24 h ouvrées</li>
+          <li data-i18n="dp.contact.li2">Premier échange offert</li>
+          <li data-i18n="pres.contact.li3">Prix clair d'avance, sans surprise</li>
         </ul>
       </div>
       <form class="dp-form" id="detail-form" data-reveal style="--d:.1s">
-        <!-- Honeypot anti-spam -->
         <div style="position: absolute; left: -9999px; overflow: hidden; width: 0; height: 0;" aria-hidden="true">
-          <label for="d-website">Ne pas remplir :</label>
+          <label for="d-website" data-i18n="form.honeypot_label">Ne pas remplir :</label>
           <input type="text" id="d-website" name="website_verification" tabindex="-1" autocomplete="off">
         </div>
         <div class="dp-form__row">
-          <div class="dp-field"><input type="text" id="d-name" name="name" placeholder=" " required autocomplete="name"><label for="d-name">Nom</label></div>
-          <div class="dp-field"><input type="tel" id="d-phone" name="phone" placeholder=" " autocomplete="tel"><label for="d-phone">Téléphone</label></div>
+          <div class="dp-field"><input type="text" id="d-name" name="name" placeholder=" " required autocomplete="name"><label for="d-name" data-i18n="dp.form.name">Nom</label></div>
+          <div class="dp-field"><input type="tel" id="d-phone" name="phone" placeholder=" " autocomplete="tel"><label for="d-phone" data-i18n="dp.form.phone">Téléphone</label></div>
         </div>
-        <div class="dp-field"><input type="email" id="d-email" name="email" placeholder=" " required autocomplete="email"><label for="d-email">E-mail</label></div>
-        <div class="dp-field"><input type="text" id="d-activity" name="activity" placeholder=" "><label for="d-activity">Votre métier</label></div>
-        <div class="dp-field"><textarea id="d-need" name="need" rows="3" placeholder=" " required></textarea><label for="d-need">Votre projet en quelques mots</label></div>
-        <button type="submit" class="btn btn--accent btn--lg">Demander un échange gratuit</button>
-        <span class="dp-form__note">Réponse garantie sous 24 h ouvrées. Sans engagement.</span>
-        <div class="dp-form__sent"><strong>Message envoyé !</strong><span>On revient vers vous très vite.</span></div>
+        <div class="dp-field"><input type="email" id="d-email" name="email" placeholder=" " required autocomplete="email"><label for="d-email" data-i18n="dp.form.email">E-mail</label></div>
+        <div class="dp-field"><input type="text" id="d-activity" name="activity" placeholder=" "><label for="d-activity" data-i18n="dp.form.activity">Votre métier</label></div>
+        <div class="dp-field"><textarea id="d-need" name="need" rows="3" placeholder=" " required></textarea><label for="d-need" data-i18n="pres.form.need">Votre projet en quelques mots</label></div>
+        <button type="submit" class="btn btn--accent btn--lg" data-i18n="dp.form.submit">Demander un échange gratuit</button>
+        <span class="dp-form__note" data-i18n="dp.form.note">Réponse garantie sous 24 h ouvrées. Sans engagement.</span>
+        <div class="dp-form__sent" aria-live="polite"><strong data-i18n="dp.form.sent_title">Message envoyé !</strong><span data-i18n="dp.form.sent_sub">On revient vers vous très vite.</span></div>
       </form>
     </div>
   </section>
@@ -284,21 +309,50 @@
 <footer id="footer">
   <div class="wrap footer__inner">
     <div class="footer__top">
-      <p class="footer__tagline">On crée votre présence. <br><em>Elle travaille pour vous.</em></p>
-      <nav class="footer__nav"><a href="index.html#services">Services</a><a href="index.html#methode">Méthode</a><a href="index.html#tarifs">Tarifs</a><a href="index.html#contact">Contact</a></nav>
+      <p class="footer__tagline" data-i18n="footer.tagline">On crée votre présence. <br><em>Elle travaille pour vous.</em></p>
+      <nav class="footer__nav">
+        <a href="index.html#services" data-i18n="nav.services">Services</a>
+        <a href="index.html#methode" data-i18n="nav.methode">Méthode</a>
+        <a href="index.html#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
     </div>
     <div class="footer__legal">
-      <p><strong>Purity Agency</strong><br>BCE : 1036.775.590<br>Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA.<br><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></p>
+      <p data-i18n="footer.legal_line"><strong>Purity Agency</strong><br>BCE : 1036.775.590<br>Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA.<br><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></p>
     </div>
     <div class="footer__bottom">
-      <div class="footer__links"><a href="legal.html#mentions">Mentions légales</a><a href="legal.html#confidentialite">Confidentialité</a><a href="legal.html#cookies">Cookies</a></div>
-      <p>© 2026 Purity Agency. Tous droits réservés.</p>
+      <div class="footer__links">
+        <a href="legal.html#mentions" data-i18n="footer.legal1">Mentions légales</a>
+        <a href="legal.html#confidentialite" data-i18n="footer.legal2">Confidentialité</a>
+        <a href="legal.html#cookies" data-i18n="footer.legal3">Cookies</a>
+      </div>
+      <p data-i18n="footer.copyright">© 2026 Purity Agency. Tous droits réservés.</p>
     </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="js/detail.js" defer></script>
+<!-- Barre de Navigation Basse Mobile -->
+<nav class="mobile-nav-bar" aria-label="Navigation mobile">
+  <a href="index.html#hero" class="mobile-nav-item" data-section="hero">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <span class="mobile-nav-label">Accueil</span>
+  </a>
+  <a href="index.html#services" class="mobile-nav-item" data-section="services">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    <span class="mobile-nav-label">Services</span>
+  </a>
+  <a href="index.html#tarifs" class="mobile-nav-item" data-section="tarifs">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>
+    <span class="mobile-nav-label">Tarifs</span>
+  </a>
+  <a href="index.html#contact" class="mobile-nav-item" data-section="contact">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="mobile-nav-label">Contact</span>
+  </a>
+</nav>
+
 </body>
 </html>

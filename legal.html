@@ -6,9 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Informations légales — Purity Agency</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--fg-1:rgba(255,255,255,.92);--fg-2:rgba(255,255,255,.6);--fg-3:rgba(255,255,255,.38);--line:rgba(255,255,255,.1);--mono:'Space Grotesk',sans-serif}
@@ -49,14 +47,13 @@ footer{margin-top:clamp(3rem,6vw,5rem);padding-top:2rem;border-top:1px solid var
     <p>Le présent site est édité par&nbsp;:</p>
     <p class="mono">
       Purity Agency<br>
-      6000 Charleroi — Wallonie, Belgique<br>
+      Boulevard Frans Dewandre 14/11 — 6000 Charleroi, Wallonie, Belgique<br>
       BCE&nbsp;: 1036.775.590 · TVA&nbsp;: BE&nbsp;1036.775.590<br>
-      Adresse du siège social consultable publiquement au registre de la Banque-Carrefour des Entreprises.<br>
       Petite entreprise soumise au régime de la franchise — TVA non applicable, art.&nbsp;56bis CTVA<br>
-      Contact&nbsp;: <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+      Contact&nbsp;: <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a> · Tél.&nbsp;: +32 (0) 490 00 00 00
     </p>
     <h3>Hébergement</h3>
-    <p>Les coordonnées de l'hébergeur sont disponibles sur simple demande à l'adresse de contact ci-dessus.</p>
+    <p>Le site est hébergé par OVHcloud (OVH SAS — 2 rue Kellermann, 59100 Roubaix, France). Les coordonnées complètes de l'hébergeur sont disponibles sur simple demande à l'adresse de contact ci-dessus.</p>
     <h3>Propriété intellectuelle</h3>
     <p>L'ensemble des contenus de ce site (textes, visuels, code, animations) est la propriété de Purity Agency, sauf mention contraire. Toute reproduction sans autorisation est interdite.</p>
   </section>
@@ -65,29 +62,63 @@ footer{margin-top:clamp(3rem,6vw,5rem);padding-top:2rem;border-top:1px solid var
     <h2>Politique de confidentialité</h2>
     <p><strong>Responsable du traitement&nbsp;:</strong> Purity Agency (coordonnées ci-dessus).</p>
     <h3>Données collectées</h3>
-    <p>Via notre formulaire de contact et notre chatbot interactif (OctoMask)&nbsp;: nom, adresse e-mail, numéro de téléphone et contenu de vos messages. Ces données servent uniquement à qualifier et répondre à votre demande. Elles sont stockées de façon sécurisée (registre local) et ne sont jamais revendues.</p>
+    <p>Via notre formulaire de contact et notre chatbot interactif (OctoMask)&nbsp;: nom, adresse e-mail, numéro de téléphone et contenu de vos messages. Ces données servent uniquement à qualifier et répondre à votre demande. Elles sont stockées de façon sécurisée et ne sont jamais revendues.</p>
+    <h3>Destinataires &amp; sous-traitants</h3>
+    <p>Le contenu échangé avec notre chatbot est traité par l'API <strong>Google Gemini</strong> (Google&nbsp;Ireland / Google&nbsp;LLC) afin de générer les réponses. La prise de rendez-vous inscrit l'événement dans <strong>Google&nbsp;Calendar</strong> (Google&nbsp;Ireland / Google&nbsp;LLC). Ces services peuvent impliquer un transfert de données hors de l'Union européenne, encadré par les clauses contractuelles types de la Commission européenne. Aucune donnée n'est transmise à d'autres tiers à des fins commerciales.</p>
     <h3>Base légale &amp; conservation</h3>
     <p>Le traitement repose sur votre consentement (envoi d'une demande). Vos données sont conservées pour une durée maximale de 12 mois après notre dernier contact, puis supprimées définitivement.</p>
     <h3>Vos droits (RGPD)</h3>
-    <p>Vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition. Pour l'exercer&nbsp;: <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>. Vous pouvez aussi introduire une réclamation auprès de l'Autorité de protection des données (Belgique).</p>
+    <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et à la portabilité. Pour l'exercer&nbsp;: <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>. Vous pouvez aussi introduire une réclamation auprès de l'<a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">Autorité de protection des données</a> (Rue de la Presse&nbsp;35, 1000&nbsp;Bruxelles).</p>
   </section>
 
   <section id="cookies">
     <h2>Politique de cookies</h2>
-    <p>Ce site dépose uniquement des données de session (<code>sessionStorage</code>) strictement nécessaires pour mémoriser l'état de votre interaction avec notre chatbot, évitant ainsi l'envoi de demandes en double. Ce fonctionnement ne requiert pas de consentement préalable.</p>
-    <p>Le site charge également des polices (Google Fonts) et des librairies d'animation. Aucun cookie publicitaire, d'analyse comportementale ou traceur marketing tiers n'est utilisé sur ce site.</p>
+    <p>Ce site n'utilise <strong>aucun cookie publicitaire, aucun traceur analytique ni aucun outil de profilage</strong>.</p>
+    <h3>Stockage strictement fonctionnel</h3>
+    <p>Nous utilisons le stockage local de votre navigateur (<code>localStorage</code> / <code>sessionStorage</code>) uniquement pour des besoins techniques, exemptés de consentement&nbsp;:</p>
+    <ul style="margin:0 0 .9rem 1.2rem">
+      <li><code>purity_lang</code> — mémorise la langue que vous avez choisie&nbsp;;</li>
+      <li><code>purity_cookie_notice</code> — mémorise que vous avez vu la présente notice&nbsp;;</li>
+      <li><code>octomask_teaser_seen</code> / <code>octomask_badge_seen</code> — évitent de réafficher la bulle et le badge d'accueil du chatbot&nbsp;;</li>
+      <li><code>chatLeadSent</code> — évite l'envoi en double d'une même demande via le chatbot.</li>
+    </ul>
+    <h3>Réservation en ligne — aucun tiers dans votre navigateur</h3>
+    <p>Notre calendrier de réservation est <strong>hébergé par nos soins</strong>. Lorsque vous réservez, votre navigateur ne communique qu'avec notre propre serveur&nbsp;; c'est <strong>notre serveur</strong> qui inscrit ensuite le rendez-vous dans Google&nbsp;Calendar. Aucun cookie tiers ni script externe n'est donc chargé dans votre navigateur pour cette fonction. Les données du rendez-vous (nom, e-mail, créneau) sont traitées par Google&nbsp;Calendar en tant que sous-traitant (voir «&nbsp;Destinataires &amp; sous-traitants&nbsp;» ci-dessus).</p>
+    <h3>Ressources techniques</h3>
+    <p>Les polices d'écriture sont <strong>hébergées sur notre propre serveur</strong> (aucune requête vers Google&nbsp;Fonts). La librairie d'animation GSAP est chargée depuis le CDN Cloudflare (cdnjs)&nbsp;: cette requête technique ne dépose aucun cookie, elle transmet seulement l'adresse IP nécessaire à la livraison du fichier.</p>
   </section>
 
   <section id="cgv">
     <h2>Conditions générales de vente</h2>
     <p><strong>Prestations&nbsp;:</strong> conception de sites, agents IA, automatisations et outils sur mesure, selon devis accepté.</p>
-    <p><strong>Prix&nbsp;:</strong> affichés en euros HTVA (petite entreprise — TVA non applicable, art.&nbsp;56bis CTVA). Offres à partir de 390&nbsp;€ HTVA pour une présence web. Paiement en 4&nbsp;fois possible.</p>
+    <p><strong>Prix&nbsp;:</strong> affichés en euros HTVA (petite entreprise — TVA non applicable, art.&nbsp;56bis CTVA). Offres à partir de 390&nbsp;€ HTVA pour une présence web.</p>
     <p><strong>Commande &amp; paiement&nbsp;:</strong> toute commande est validée par l'acceptation écrite du devis. Les modalités d'acompte et d'échéances sont précisées au devis.</p>
     <p><strong>Livraison &amp; révisions&nbsp;:</strong> délais et itérations précisés au devis.</p>
+    <p><strong>Droit de rétractation&nbsp;:</strong> nos prestations s'adressent à des professionnels (B2B). Si un client consommateur (particulier) contracte à distance, il dispose d'un délai légal de rétractation de 14&nbsp;jours, sauf début d'exécution du service avec son accord exprès et sa renonciation à ce droit.</p>
     <p><strong>Droit applicable&nbsp;:</strong> droit belge. Tout litige relève des tribunaux de l'arrondissement judiciaire du siège de Purity Agency.</p>
   </section>
 
   <footer>© 2026 Purity Agency · Charleroi · Wallonie</footer>
 </div>
+<!-- Barre de Navigation Basse Mobile -->
+<nav class="mobile-nav-bar" aria-label="Navigation mobile">
+  <a href="index.html#hero" class="mobile-nav-item" data-section="hero">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <span class="mobile-nav-label">Accueil</span>
+  </a>
+  <a href="index.html#services" class="mobile-nav-item" data-section="services">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    <span class="mobile-nav-label">Services</span>
+  </a>
+  <a href="index.html#tarifs" class="mobile-nav-item" data-section="tarifs">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>
+    <span class="mobile-nav-label">Tarifs</span>
+  </a>
+  <a href="index.html#contact" class="mobile-nav-item" data-section="contact">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="mobile-nav-label">Contact</span>
+  </a>
+</nav>
+
 </body>
 </html>

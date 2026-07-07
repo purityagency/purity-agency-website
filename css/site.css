@@ -1102,59 +1102,74 @@ header::before {
 
 @media (max-width: 768px) {
   .svc-showcase__screen {
-    height: 600px;
-    border-radius: 20px;
-    transform: none; /* Désactiver la 3D sur mobile */
+    height: auto !important;
+    border-radius: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+  
+  .svc-scene {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 0 !important;
+    display: none !important;
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .svc-scene.is-active {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  .svc-scene__media {
+    position: relative !important;
+    width: 100% !important;
+    height: 220px !important;
+    border-radius: 16px !important;
+    margin-bottom: 1.25rem !important;
   }
   
   .svc-scene[data-pos] .svc-scene__content {
+    position: relative !important;
     inset: auto !important;
-    left: 5% !important;
-    right: 5% !important;
-    bottom: 5% !important;
-    width: 90% !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
     transform: none !important;
-    padding: 1.5rem !important;
-    background: rgba(12, 8, 18, 0.45) !important;
-    backdrop-filter: blur(16px) saturate(1.2) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
-    border-radius: 16px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
   .svc-scene__num {
-    width: 32px; height: 32px;
-    top: 1.2rem !important;
-    right: 1.2rem !important;
-    font-size: 0.72rem;
+    display: none !important; /* Pas besoin du gros badge numéro sur mobile */
   }
   .svc-scene__title {
-    font-size: 1.8rem !important;
+    font-size: 1.6rem !important;
     margin-bottom: 0.8rem !important;
-    padding-right: 2.4rem !important;
   }
   .svc-scene__lead {
-    font-size: 0.95rem !important;
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
     margin-bottom: 1.2rem !important;
     max-width: none !important;
+    color: var(--c-fg-muted) !important;
   }
   .svc-scene__tags {
     margin-bottom: 1.2rem !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
   }
   
   .svc-nav-btn {
-    top: auto;
-    bottom: -64px;
-    transform: none;
-    width: 48px; height: 48px;
-    background: transparent;
-    backdrop-filter: none;
+    display: none !important; /* Cacher les flèches de navigation encombrantes sur mobile */
   }
-  .svc-nav-btn svg { width: 32px; height: 32px; }
-  .svc-nav-btn:hover { transform: scale(1.1); }
-  .svc-nav-btn--prev { left: 20px; }
-  .svc-nav-btn--next { right: 20px; }
-  .svc-showcase__dots { margin-top: 0; margin-bottom: 24px; }
+  .svc-showcase__dots { margin-top: 0; margin-bottom: 16px; }
 }
 
 /* Stats Bento */
@@ -3827,6 +3842,88 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   display: block;
 }
 
+/* Pane headers */
+.cb-pane-head {
+  margin-bottom: 2rem;
+}
+.cb-pane-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 0.6rem;
+}
+.cb-pane-lead {
+  font-size: 0.92rem;
+  color: var(--c-fg-muted);
+  line-height: 1.65;
+  margin-bottom: 1.1rem;
+  max-width: 38ch;
+}
+.cb-pane-head .contact-links { gap: 0.65rem; }
+.cb-pane-head .contact-links > * {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,.5);
+}
+.cb-pane-head .contact-links svg { width: 15px; height: 15px; }
+.cb-pane-head .contact-links a:hover { color: #fff; }
+
+/* Séparateur desktop */
+.cb-divider { display: none; }
+
+/* ── Desktop : layout côte-à-côte ── */
+@media (min-width: 860px) {
+  .cb-tabs-container { display: none; }
+
+  .cb-panes {
+    display: grid;
+    grid-template-columns: 1fr 64px 1fr;
+    max-width: none;
+    gap: 0;
+    align-items: start;
+  }
+
+  /* Forcer les deux panes visibles en ignorant display:none inline du JS */
+  .cb-pane,
+  .cb-pane.is-active { display: block !important; }
+
+  #pane-calendar { padding-right: 3rem; }
+  #pane-form     { padding-left: 3rem; }
+
+  /* Divider "ou" */
+  .cb-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    min-height: 480px;
+  }
+  .cb-divider::before,
+  .cb-divider::after {
+    content: '';
+    flex: 1;
+    width: 1px;
+    background: rgba(255,255,255,.07);
+    display: block;
+  }
+  .cb-divider span {
+    padding: 1.25rem 0;
+    font-size: 0.65rem;
+    letter-spacing: .22em;
+    color: rgba(255,255,255,.18);
+    text-transform: uppercase;
+  }
+
+  /* form.lg — supprimer le padding latéral inutile dans la nouvelle mise en page */
+  #pane-form .form.lg { padding-left: 0; padding-right: 0; padding-top: 0; }
+}
+
+/* ── Mobile : cacher le divider, garder les tabs ── */
+@media (max-width: 859px) {
+  .cb-divider { display: none; }
+}
+
 /* --- Native Calendar --- */
 .bk-embed-wrap {
   display: flex;
@@ -3910,15 +4007,15 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 }
 
 .booking__day:hover {
-  border-color: rgba(124, 58, 237, 0.5);
+  border-color: rgba(168,85,247,.5);
   color: #fff;
 }
 
 .booking__day.is-active {
   border-color: var(--c-accent);
-  background: rgba(124, 58, 237, 0.08);
+  background: rgba(168,85,247,.1);
   color: #fff;
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.15);
+  box-shadow: 0 0 14px rgba(168,85,247,.2);
 }
 
 .booking__day-wd {
@@ -3968,8 +4065,8 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 
 .booking__slot:hover {
   border-color: var(--c-accent);
-  background: rgba(124, 58, 237, 0.1);
-  box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
+  background: rgba(168,85,247,.1);
+  box-shadow: 0 0 8px rgba(168,85,247,.2);
 }
 
 .booking__form {
@@ -3979,12 +4076,18 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 }
 
 .booking__form-when {
-  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.1rem;
+  background: rgba(168,85,247,.08);
+  border: 1px solid rgba(168,85,247,.3);
+  border-radius: 999px;
+  font-size: 0.88rem;
   color: #fff;
   font-weight: 500;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  width: fit-content;
 }
 
 .booking__form-actions {
@@ -4006,7 +4109,8 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(168,85,247,.12);
+  border: 1px solid rgba(168,85,247,.3);
   color: var(--c-accent);
   margin-bottom: 1.5rem;
 }
@@ -4030,6 +4134,73 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 .booking__done-sub {
   margin-top: 1rem;
   font-size: 0.9rem;
+}
+
+/* "Ajouter à l'agenda" — liens post-confirmation */
+.booking__done-cal {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.booking__done-cal a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--c-fg-muted);
+  text-decoration: none;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.booking__done-cal a:hover {
+  border-color: rgba(168,85,247,.5);
+  color: #fff;
+  background: rgba(168,85,247,.06);
+}
+.booking__done-cal a svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* Activity chips — formulaire contact */
+.activity-chips { border: none; padding: 0; margin-bottom: 1.5rem; }
+.activity-chips__legend {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-fg-muted);
+  margin-bottom: 0.7rem;
+}
+.activity-chips__list { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.activity-chip {
+  padding: 0.38rem 0.9rem;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--c-fg-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s, box-shadow .2s;
+  white-space: nowrap;
+}
+.activity-chip:hover { border-color: rgba(168,85,247,.45); color: #fff; }
+.activity-chip.is-active {
+  border-color: var(--c-accent);
+  background: rgba(168,85,247,.12);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(168,85,247,.18);
+}
+.activity-hint {
+  font-size: 0.78rem;
+  color: rgba(168,85,247,.75);
+  margin-top: 0.4rem;
+  padding-left: 0.1rem;
+  font-style: italic;
+  min-height: 1.2rem;
 }
 
 .booking__error {

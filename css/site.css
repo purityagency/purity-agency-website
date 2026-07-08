@@ -1102,32 +1102,52 @@ header::before {
 
 @media (max-width: 768px) {
   .svc-showcase__screen {
-    height: auto !important;
-    border-radius: 0;
+    height: 250px !important;
+    perspective: 1000px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    overflow: visible !important;
+    border-radius: 0 !important;
   }
   
   .svc-scene {
-    position: relative !important;
-    inset: auto !important;
-    opacity: 0 !important;
-    display: none !important;
-    flex-direction: column !important;
-    height: auto !important;
-  }
-  .svc-scene.is-active {
+    position: absolute !important;
+    width: 200px !important;
+    height: 220px !important;
     display: flex !important;
-    opacity: 1 !important;
+    flex-direction: column !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    padding: 8px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translate3d(0, 0, -200px) rotateY(0deg) !important;
   }
+  
+  .svc-scene.is-active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 10 !important;
+    transform: translate3d(0, 0, 0) rotateY(0deg) !important;
+    border-color: rgba(124, 58, 237, 0.4) !important;
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.25) !important;
+  }
+  
   .svc-scene__media {
     position: relative !important;
     width: 100% !important;
-    height: 220px !important;
-    border-radius: 16px !important;
-    margin-bottom: 1.25rem !important;
+    height: 120px !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.6rem !important;
   }
   
   .svc-scene[data-pos] .svc-scene__content {
@@ -1138,38 +1158,65 @@ header::before {
     bottom: 0 !important;
     width: 100% !important;
     transform: none !important;
-    padding: 0 !important;
+    padding: 0 4px !important;
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
+  
   .svc-scene__num {
-    display: none !important; /* Pas besoin du gros badge numéro sur mobile */
+    display: none !important;
   }
   .svc-scene__title {
-    font-size: 1.6rem !important;
-    margin-bottom: 0.8rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.2rem !important;
+    color: #fff !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
-  .svc-scene__lead {
-    font-size: 0.92rem !important;
-    line-height: 1.6 !important;
-    margin-bottom: 1.2rem !important;
-    max-width: none !important;
-    color: var(--c-fg-muted) !important;
+  
+  /* Cacher les détails superflus sur la carte du carrousel */
+  .svc-scene__lead, .svc-scene__tags, .svc-scene__actions {
+    display: none !important;
   }
-  .svc-scene__tags {
-    margin-bottom: 1.2rem !important;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+  
+  /* Ligne néon tentacule */
+  .svc-glow-line {
+    position: relative;
+    width: calc(100% - 32px);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 24px auto 8px;
+    border-radius: 99px;
+  }
+  .svc-glow-line__fill {
+    position: absolute;
+    top: -1px; left: 0;
+    height: 3px;
+    width: 35%;
+    background: linear-gradient(90deg, transparent, #7C3AED, transparent);
+    filter: drop-shadow(0 0 5px #7C3AED);
+    transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 99px;
   }
   
   .svc-nav-btn {
-    display: none !important; /* Cacher les flèches de navigation encombrantes sur mobile */
+    display: none !important; /* Cacher les flèches encombrantes */
   }
-  .svc-showcase__dots { margin-top: 0; margin-bottom: 16px; }
+  .svc-showcase__dots {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+  }
 }
 
 /* Stats Bento */
@@ -3953,15 +4000,26 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
     display: block;
   }
   .cb-divider span {
-    padding: 1.25rem 0;
-    font-size: 0.65rem;
-    letter-spacing: .22em;
-    color: rgba(255,255,255,.18);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,.32);
     text-transform: uppercase;
+    background: rgba(168,85,247,.07);
+    border: 1px solid rgba(168,85,247,.18);
+    border-radius: 50%;
   }
 
-  /* form.lg — supprimer le padding latéral inutile dans la nouvelle mise en page */
-  #pane-form .form.lg { padding-left: 0; padding-right: 0; padding-top: 0; }
+  /* form.lg — card cohérent avec .booking */
+  #pane-form .form.lg {
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+  }
 }
 
 /* ── Mobile : cacher le divider, garder les tabs ── */

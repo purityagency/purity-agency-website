@@ -365,7 +365,23 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </button>
     </div>
-</section><hr class="sec-divider" aria-hidden="true">
+</section>
+
+<!-- iOS Bottom Sheet Drawer pour les détails de service -->
+<div class="svc-drawer" id="svc-drawer" aria-hidden="true" role="dialog">
+  <div class="svc-drawer__overlay" id="svc-drawer-overlay"></div>
+  <div class="svc-drawer__panel">
+    <div class="svc-drawer__handle"></div>
+    <button class="svc-drawer__close" id="svc-drawer-close" aria-label="Fermer le volet">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="svc-drawer__body" id="svc-drawer-body">
+      <!-- Rempli dynamiquement en JS -->
+    </div>
+  </div>
+</div>
+
+<hr class="sec-divider" aria-hidden="true">
 
 <!-- ═══ STATS BENTO ═══ -->
 <section class="sec sec--stats">

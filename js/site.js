@@ -384,10 +384,50 @@ document.addEventListener('DOMContentLoaded', () => {
       if (index < 0 || index >= total) return;
       currentIndex = index;
 
+      const isMobile = window.innerWidth <= 768;
+
       scenes.forEach((s, i) => {
-        s.style.setProperty('--offset', i - currentIndex);
         s.classList.toggle('is-active', i === currentIndex);
+        
+        if (isMobile) {
+          const diff = i - currentIndex;
+          s.style.opacity = Math.abs(diff) > 2 ? '0' : '1';
+          s.style.pointerEvents = diff === 0 ? 'auto' : 'none';
+          
+          let tx = 0;
+          let tz = 0;
+          let ry = 0;
+          
+          if (diff === 0) {
+            tx = 0; tz = 0; ry = 0;
+          } else if (diff === 1) {
+            tx = 110; tz = -130; ry = -30;
+          } else if (diff === -1) {
+            tx = -110; tz = -130; ry = 30;
+          } else if (diff === 2) {
+            tx = 190; tz = -240; ry = -50;
+          } else if (diff === -2) {
+            tx = -190; tz = -240; ry = 50;
+          } else {
+            tx = diff * 120; tz = -300; ry = diff > 0 ? -60 : 60;
+          }
+          
+          s.style.transform = `translate3d(${tx}px, 0, ${tz}px) rotateY(${ry}deg)`;
+        } else {
+          s.style.transform = '';
+          s.style.opacity = '';
+          s.style.pointerEvents = '';
+          s.style.setProperty('--offset', i - currentIndex);
+        }
       });
+      
+      // Mettre à jour la ligne de néon tentacule mobile
+      const glowFill = document.getElementById('svc-glow-fill');
+      if (glowFill && isMobile) {
+        const percent = (currentIndex / (total - 1)) * 65;
+        glowFill.style.left = `${percent}%`;
+      }
+
       dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
       
       cards.forEach((card, i) => {
@@ -506,6 +546,123 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // --- 1c. iOS Bottom Sheet drawer logic ---
+    const drawer = document.getElementById('svc-drawer');
+    const drawerClose = document.getElementById('svc-drawer-close');
+    const drawerOverlay = document.getElementById('svc-drawer-overlay');
+    const drawerBody = document.getElementById('svc-drawer-body');
+    const drawerPanel = drawer ? drawer.querySelector('.svc-drawer__panel') : null;
+
+    const openDrawer = (sceneElement) => {
+      if (!drawer || !drawerBody || !sceneElement) return;
+      
+      // Clone structure and build a rich detail presentation inside the drawer
+      const media = sceneElement.querySelector('.svc-scene__media');
+      const content = sceneElement.querySelector('.svc-scene__content');
+      
+      if (!content) return;
+      
+      let htmlContent = '';
+      
+      // Media header
+      if (media) {
+        const bgUrl = media.style.backgroundImage;
+        htmlContent += `<div class="svc-drawer__media" style="background-image: ${bgUrl}"></div>`;
+      }
+      
+      // Clone title (stripping inline style adjustments)
+      const title = content.querySelector('.svc-scene__title');
+      if (title) {
+        htmlContent += `<h3 class="svc-drawer__title">${title.innerHTML}</h3>`;
+      }
+      
+      // Lead text
+      const lead = content.querySelector('.svc-scene__lead');
+      if (lead) {
+        htmlContent += `<p class="svc-drawer__lead">${lead.innerHTML}</p>`;
+      }
+      
+      // Tags
+      const tags = content.querySelector('.svc-scene__tags');
+      if (tags) {
+        htmlContent += `<div class="svc-drawer__tags">${tags.innerHTML}</div>`;
+      }
+      
+      // Actions/CTAs
+      const actions = content.querySelector('.svc-scene__actions');
+      if (actions) {
+        htmlContent += `<div class="svc-drawer__actions">${actions.innerHTML}</div>`;
+      }
+      
+      drawerBody.innerHTML = htmlContent;
+      
+      // Show drawer
+      drawer.style.display = 'flex';
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; // block parent scroll
+      
+      // Force layout and trigger CSS transition
+      setTimeout(() => {
+        drawer.classList.add('is-active');
+      }, 10);
+    };
+
+    const closeDrawer = () => {
+      if (!drawer) return;
+      drawer.classList.remove('is-active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        drawer.style.display = 'none';
+        drawer.setAttribute('aria-hidden', 'true');
+      }, 450); // Match transition speed
+    };
+
+    if (drawerClose && drawerOverlay) {
+      drawerClose.addEventListener('click', closeDrawer);
+      drawerOverlay.addEventListener('click', closeDrawer);
+    }
+
+    // Touch swipe-down behavior to close bottom sheet
+    if (drawerPanel) {
+      let drawerStartY = 0;
+      let drawerCurrentY = 0;
+      
+      drawerPanel.addEventListener('touchstart', e => {
+        drawerStartY = e.touches[0].clientY;
+      }, {passive: true});
+      
+      drawerPanel.addEventListener('touchmove', e => {
+        drawerCurrentY = e.touches[0].clientY;
+        const deltaY = drawerCurrentY - drawerStartY;
+        if (deltaY > 0) {
+          // Drag down effect
+          drawerPanel.style.transform = `translateY(${deltaY}px)`;
+        }
+      }, {passive: true});
+      
+      drawerPanel.addEventListener('touchend', e => {
+        const deltaY = drawerCurrentY - drawerStartY;
+        drawerPanel.style.transform = '';
+        if (deltaY > 120) {
+          closeDrawer();
+        }
+      });
+    }
+
+    // Open sheet when clicking on the active scene card (mobile only)
+    scenes.forEach((scene) => {
+      scene.addEventListener('click', e => {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && scene.classList.contains('is-active')) {
+          // If they didn't tap on a link/button inside
+          if (!e.target.closest('a, button')) {
+            openDrawer(scene);
+          }
+        }
+      });
+      scene.style.cursor = 'pointer';
+    });
+
     // Initial state setup
     // Initialise le premier accordéon ouvert sans animation et lance l'autoplay
     cards.forEach((card, i) => {
@@ -601,6 +758,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const isExp = q.getAttribute('aria-expanded') === 'true';
       faqs.forEach(other => other.setAttribute('aria-expanded', 'false'));
       if (!isExp) q.setAttribute('aria-expanded', 'true');
+    });
+  });
+
+  // --- Activity chips (formulaire contact) ---
+  const activityChips = document.querySelectorAll('.activity-chip');
+  const activityHidden = document.getElementById('f-activity');
+  const needField = document.getElementById('f-need');
+  const activityHint = document.getElementById('activity-hint');
+  const chipHints = {
+    'site':     'Ex : refonte de mon site actuel, je veux plus de leads entrants…',
+    'ia':       'Ex : un chatbot pour qualifier mes prospects et répondre aux FAQ 24h/24…',
+    'auto':     'Ex : automatiser mes relances e-mail et devis depuis mon CRM…',
+    'presence': 'Ex : me faire connaître en ligne — Google, réseaux sociaux, visibilité locale…',
+    'autre':    'Décrivez votre besoin en quelques mots…',
+  };
+  activityChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      activityChips.forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      if (activityHidden) activityHidden.value = chip.dataset.value;
+      const hint = chipHints[chip.dataset.hint] || '';
+      if (activityHint) {
+        activityHint.textContent = hint;
+        activityHint.hidden = !hint;
+      }
+      if (needField && hint) needField.focus();
     });
   });
 
@@ -1425,7 +1608,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const chooseSlot = (iso) => {
       selectedSlot = iso;
-      whenEl.textContent = fmtFull(new Date(iso));
+      // Recap chip : icône calendrier + date formatée
+      whenEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ' + fmtFull(new Date(iso));
       calEl.hidden = true;
       formEl.hidden = false;
       clearError();
@@ -1466,6 +1650,36 @@ document.addEventListener('DOMContentLoaded', () => {
         booking.querySelector('#booking-done-when').textContent = fmtFull(new Date(data.start));
         formEl.hidden = true;
         doneEl.hidden = false;
+        // Liens "Ajouter à l'agenda"
+        const startDt = new Date(data.start);
+        const endDt   = new Date(startDt.getTime() + 15 * 60000);
+        const fmtCal  = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        const gcalBtn = document.getElementById('bk-done-gcal');
+        const icsBtn  = document.getElementById('bk-done-ics');
+        const calBlock = document.getElementById('booking-done-cal');
+        if (gcalBtn) {
+          const gcal = new URL('https://calendar.google.com/calendar/render');
+          gcal.searchParams.set('action', 'TEMPLATE');
+          gcal.searchParams.set('text', 'Appel stratégique — Purity Agency');
+          gcal.searchParams.set('dates', fmtCal(startDt) + '/' + fmtCal(endDt));
+          gcal.searchParams.set('details', 'Diagnostic offert de 15 min avec Purity Agency.');
+          gcalBtn.href = gcal.toString();
+        }
+        if (icsBtn) {
+          const ics = [
+            'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Purity Agency//FR',
+            'BEGIN:VEVENT',
+            'DTSTART:' + fmtCal(startDt),
+            'DTEND:'   + fmtCal(endDt),
+            'SUMMARY:Appel stratégique — Purity Agency',
+            'DESCRIPTION:Diagnostic offert de 15 min avec Purity Agency.',
+            'END:VEVENT', 'END:VCALENDAR',
+          ].join('\r\n');
+          const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+          icsBtn.href = URL.createObjectURL(blob);
+          icsBtn.download = 'purity-agency-rdv.ics';
+        }
+        if (calBlock) calBlock.hidden = false;
       } catch (err) {
         showError(_i18nDict['booking.err_book'] || 'La réservation a échoué. Réessayez ou écrivez-nous.');
         submitBtn.disabled = false; submitBtn.textContent = original;

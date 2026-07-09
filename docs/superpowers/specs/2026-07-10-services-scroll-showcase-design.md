@@ -1,57 +1,59 @@
-# Spécification Technique — Showcase des Services Immersif au Scroll
+# Spécification Technique — Showcase de Services avec Dashboard Glassmorphic Unifié
 
-Ce document présente l'architecture et les choix d'implémentation pour transformer la section des Services en une expérience immersive pilotée par le défilement (Scroll-Driven Showcase) avec GSAP ScrollTrigger.
+Ce document présente l'architecture mise à jour selon le croquis de l'utilisateur.
 
-## Objectifs d'Interaction & UX
+## Structure de la Grille (Desktop)
 
-1. **Contrôle utilisateur** : Le défilement de l'utilisateur dicte la progression des services.
-2. **Effet de Pinning (Verrouillage)** : La section `#services` se verrouille en haut de l'écran pendant que l'utilisateur fait défiler la molette, puis se déverrouille une fois le dernier service passé.
-3. **Barre de progression synchronisée** : Chaque pilier affiche un trait de progression vertical à sa gauche qui se remplit au pixel près selon la position du scroll de l'utilisateur.
-4. **Cinématiques d'Image** : À chaque changement d'étape, l'image du service subit un léger zoom cinématographique inversé (de `1.12` à `1.0`) et un fondu croisé pour donner une impression de mouvement tridimensionnel.
-5. **Fluidité des textes** : Les descriptions effectuent un glissement subtil vers le haut en fondu enchaîné pour guider le regard de l'utilisateur.
+Le layout général est divisé en deux grandes zones :
+1. **Colonne gauche (3.5fr)** : Le menu de navigation vertical composé des 5 piliers sous forme de cartes d'onglets épurées.
+2. **Colonne droite (8.5fr)** : Le dashboard unifié `.svc-showcase` qui regroupe la description active et l'illustration visuelle.
 
----
+```mermaid
+graph TD
+    A[Section Services] --> B[Entête: Ce qu'on fait pour vous]
+    A --> C[Grille 2 Colonnes]
+    C --> D[Gauche: 5 Piliers Timeline]
+    C --> E[Droite: Dashboard Glassmorphic]
+    E --> F[Dashboard Gauche: Descriptions]
+    E --> G[Dashboard Droite: cran Image/Mockup]
+```
 
-## Architecture de la Grille & Styles CSS
+## Choix de Design & Graphisme (2026-2027 Agentic Era)
 
-### 1. Structure de gauche (Piliers & Descriptions)
-Nous conservons la disposition en 3 parties, mais l'optimisons pour l'alignement vertical :
-- Les cartes `.svc-card` sont empilées verticalement sans bordure extérieure complète, mais avec un bord gauche de chronologie (`border-left`).
-- Un conteneur `.svc-card__progress-fill` se remplit verticalement (`height: 0%` vers `100%`) pour matérialiser la progression.
+- **Le Dashboard (`.svc-showcase`)** : Un grand conteneur arrondi (`border-radius: 24px`) avec un arrière-plan en verre liquide sombre, une bordure fine blanche (`border: 1px solid rgba(255,255,255,0.06)`), et un flou d'arrière-plan prononcé (`backdrop-filter: blur(20px)`).
+- **Le split interne** :
+  - **À gauche** : Le bloc description `.svc-desc-panel` avec son titre contrasté, son texte descriptif, ses tags colorés en violet fluide et ses boutons d'action.
+  - **À droite** : L'écran TV cinématographique `.svc-showcase__screen` affichant les images et illustrations.
+- **Micro-interactions** :
+  - La progression verticale se fait sur le côté gauche de chaque pilier.
+  - Les changements de scène déclenchent des animations GSAP de transition et de zoom sur l'illustration à droite et de glissement vertical pour les textes à gauche.
 
-### 2. Structure de droite (Showcase Sticky)
-- La colonne de droite `.svc-showcase-col` et son conteneur `.svc-showcase` sont configurés pour occuper tout l'écran en hauteur (`height: 100vh`) pour un rendu théâtral pendant le pinning.
+## Structure HTML Attendue
 
----
+```html
+<div class="svc-layout">
+  <!-- Colonne GAUCHE : Chronologie des Piliers -->
+  <div class="svc-pillars-col">
+    <div class="svc-pillars-sidebar">
+      <div class="svc-nav-list">
+        <!-- 5 svc-card -->
+      </div>
+    </div>
+  </div>
 
-## Logique JavaScript & GSAP (ScrollTrigger)
+  <!-- Colonne DROITE : Dashboard unifié -->
+  <div class="svc-showcase-col">
+    <div class="svc-showcase">
+      <!-- Partie gauche du dashboard : Textes -->
+      <div class="svc-desc-panel">
+        <!-- svc-desc-pane -->
+      </div>
 
-1. **Initialisation de ScrollTrigger** :
-   - Un conteneur ScrollTrigger est créé sur la section `#services`.
-   - `pin: true` verrouille le layout.
-   - `scrub: 1` assure que les transitions suivent la molette avec une inertie premium très douce.
-   - `end: "+=3500"` définit une hauteur de défilement virtuelle de 3500px pour laisser le temps de lire confortablement.
-
-2. **Calcul de l'index de progression** :
-   - Le défilement est divisé en 5 zones égales (de 0 à 4).
-   - `currentIndex = Math.min(4, Math.floor(progress * 5))`.
-   - À chaque transition de zone : appel de la fonction `goToScene(nextIndex)`.
-
-3. **Synchronisation du clic** :
-   - Cliquer sur un pilier `i` fait défiler la page de manière fluide jusqu'à la position de scroll correspondant à sa zone :
-     `scrollTarget = scrollTrigger.start + (i / 5) * (scrollTrigger.end - scrollTrigger.start) + 50`.
-
-4. **Animations GSAP** :
-   - **Textes** : `gsap.fromTo(pane, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" })`.
-   - **Média (Mouvement de caméra)** : `gsap.fromTo(media, { scale: 1.12, filter: "brightness(0.75)" }, { scale: 1.0, filter: "brightness(1)", duration: 1.2, ease: "power2.out" })`.
-
----
-
-## Plan de Validation
-
-1. **Scroll standard** : Vérifier que la section se bloque proprement en haut de l'écran, que les 5 services défilent un par un à la molette, et que la page continue ensuite normalement.
-2. **Barre de progression** : Valider que le remplissage des barres de gauche suit fidèlement la vitesse du scroll de l'utilisateur.
-3. **Clics de navigation** : Cliquer sur le pilier 4 doit scroller la page directement à l'étape 4 avec une transition fluide.
-4. **Validation Responsive** :
-   - Largeur > 860px : Pinning et grille complète active.
-   - Largeur < 860px : Pinning désactivé, comportement normal de défilement pour garantir une accessibilité parfaite.
+      <!-- Partie droite du dashboard : Média/Écran -->
+      <div class="svc-showcase__screen">
+        <!-- svc-scene -->
+      </div>
+    </div>
+  </div>
+</div>
+```

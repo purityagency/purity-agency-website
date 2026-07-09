@@ -325,229 +325,219 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 1b. SERVICES : carrousel COVERFLOW 3D + Onglets Accordéon & Autoplay ---
+  // --- 1b. SERVICES : Scroll-Driven Showcase with GSAP ScrollTrigger ---
   const svcShowcase = document.querySelector('.svc-showcase');
   if (svcShowcase) {
     const scenes = svcShowcase.querySelectorAll('.svc-scene');
     const dots = svcShowcase.querySelectorAll('.svc-dot');
     const cards = document.querySelectorAll('.svc-card');
-    const svcLayout = document.querySelector('.svc-layout');
-    const btnPrev = document.querySelector('.svc-nav-btn--prev');
-    const btnNext = document.querySelector('.svc-nav-btn--next');
-    let currentIndex = 0;
+    const panes = document.querySelectorAll('.svc-desc-pane');
     const total = scenes.length;
+    let currentIndex = 0;
+    let isAnimating = false;
+    let scrollTriggerInstance = null;
 
-    let autoplayTween = null;
-    let autoplayStopped = false;
-    let isHovered = false;
-
-    const animateProgress = (index) => {
-      if (autoplayStopped) return;
-      const card = cards[index];
-      if (!card) return;
-      const fill = card.querySelector('.svc-card__progress-fill');
-      if (!fill) return;
-
-      gsap.killTweensOf(fill);
-      gsap.set(fill, { width: '0%' });
-
-      autoplayTween = gsap.to(fill, {
-        width: '100%',
-        duration: 8,
-        ease: 'none',
-        onComplete: () => {
-          let nextIndex = currentIndex + 1;
-          if (nextIndex >= total) nextIndex = 0;
-          goToScene(nextIndex);
-        }
-      });
-
-      if (isHovered && autoplayTween) {
-        autoplayTween.pause();
-      }
-    };
-
-    const stopAutoplay = () => {
-      autoplayStopped = true;
-      if (autoplayTween) {
-        autoplayTween.kill();
-        autoplayTween = null;
-      }
-      // Reset all progress bars to 0%
-      cards.forEach(card => {
-        const fill = card.querySelector('.svc-card__progress-fill');
-        if (fill) gsap.set(fill, { width: '0%' });
-      });
-    };
-
-    const goToScene = (index, userClicked = false) => {
+    const goToScene = (index, triggerScroll = false) => {
       if (index < 0 || index >= total) return;
       currentIndex = index;
 
-      const isMobile = window.innerWidth <= 768;
+      // Update dots active state
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
 
-      scenes.forEach((s, i) => {
-        s.classList.toggle('is-active', i === currentIndex);
-        if (!isMobile) {
-          s.style.transform = '';
-          s.style.opacity = '';
-          s.style.pointerEvents = '';
-          s.style.setProperty('--offset', i - currentIndex);
+      // Update cards active state
+      cards.forEach((card, i) => card.classList.toggle('is-active', i === currentIndex));
+
+      // Transition description panes
+      panes.forEach((pane, i) => {
+        const isActive = i === currentIndex;
+        pane.classList.toggle('is-active', isActive);
+        if (isActive) {
+          pane.style.display = 'flex';
+          gsap.killTweensOf(pane);
+          gsap.fromTo(pane, 
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+          );
+        } else {
+          pane.style.display = 'none';
         }
       });
 
-      if (isMobile) {
-        const screenEl = svcShowcase.querySelector('.svc-showcase__screen');
-        if (screenEl && scenes[index]) {
-          screenEl.scrollTo({ left: scenes[index].offsetLeft, behavior: 'smooth' });
-        }
-        const mobileBarFill = document.querySelector('.svc-mobile-bar__fill');
-        if (mobileBarFill) mobileBarFill.style.width = ((currentIndex + 1) / total * 100) + '%';
-      }
-
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
-      
-      const panes = document.querySelectorAll('.svc-desc-pane');
-      panes.forEach((pane, i) => pane.classList.toggle('is-active', i === currentIndex));
-      
-      cards.forEach((card, i) => {
+      // Transition scenes on desktop (cinematic scale and brightness)
+      const isMobile = window.innerWidth <= 860;
+      scenes.forEach((scene, i) => {
         const isActive = i === currentIndex;
-        card.classList.toggle('is-active', isActive);
+        scene.classList.toggle('is-active', isActive);
         
-        const cardBody = card.querySelector('.svc-card__body');
-        if (cardBody) {
+        if (!isMobile) {
+          scene.style.transform = '';
+          scene.style.opacity = '';
+          scene.style.pointerEvents = '';
+          scene.style.setProperty('--offset', i - currentIndex);
+
           if (isActive) {
-            gsap.killTweensOf(cardBody);
-            cardBody.style.display = 'block';
-            gsap.fromTo(cardBody, 
-              { height: 0, opacity: 0, marginTop: 0 },
-              { height: 'auto', opacity: 1, marginTop: 12, duration: 0.45, ease: 'power2.out' }
-            );
-          } else {
-            gsap.killTweensOf(cardBody);
-            gsap.to(cardBody, { 
-              height: 0, 
-              opacity: 0, 
-              marginTop: 0, 
-              duration: 0.3, 
-              ease: 'power2.in',
-              onComplete: () => {
-                cardBody.style.display = 'none';
-              }
-            });
+            const media = scene.querySelector('.svc-scene__media');
+            if (media) {
+              gsap.killTweensOf(media);
+              gsap.fromTo(media,
+                { scale: 1.12, filter: 'brightness(0.7)' },
+                { scale: 1.0, filter: 'brightness(1)', duration: 1.2, ease: 'power2.out' }
+              );
+            }
           }
         }
       });
 
-      if (btnPrev) btnPrev.disabled = currentIndex === 0;
-      if (btnNext) btnNext.disabled = currentIndex === total - 1;
-
-      // Autoplay control
-      if (userClicked) {
-        stopAutoplay();
-      } else if (!autoplayStopped) {
-        animateProgress(currentIndex);
+      // If requested (e.g. from dot or card click on desktop), scroll page to matching range
+      if (triggerScroll && scrollTriggerInstance && !isMobile) {
+        isAnimating = true;
+        const rangeStart = currentIndex / total;
+        const scrollPos = scrollTriggerInstance.start + rangeStart * (scrollTriggerInstance.end - scrollTriggerInstance.start) + 20;
+        gsap.to(window, {
+          scrollTo: scrollPos,
+          duration: 1.0,
+          ease: "power3.inOut",
+          onComplete: () => {
+            setTimeout(() => { isAnimating = false; }, 50);
+          }
+        });
       }
     };
 
-    if (btnPrev && btnNext) {
-      btnPrev.addEventListener('click', () => goToScene(currentIndex - 1, true));
-      btnNext.addEventListener('click', () => goToScene(currentIndex + 1, true));
-    }
+    const initScrollShowcase = () => {
+      const isMobile = window.innerWidth <= 860;
 
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        goToScene(parseInt(dot.getAttribute('data-index')), true);
+      if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill();
+        scrollTriggerInstance = null;
+      }
+
+      if (isMobile) {
+        // Clear desktop transforms
+        scenes.forEach((s) => {
+          s.style.transform = '';
+          s.style.opacity = '';
+          s.style.pointerEvents = '';
+        });
+        
+        // Reset progress fills on cards
+        cards.forEach(card => {
+          const fill = card.querySelector('.svc-card__progress-fill');
+          if (fill) gsap.set(fill, { height: '' });
+        });
+        return;
+      }
+
+      // Initialize ScrollTrigger on desktop
+      scrollTriggerInstance = ScrollTrigger.create({
+        trigger: "#services",
+        start: "top top",
+        end: "+=3200", // Height of scroll track
+        pin: true,
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const index = Math.min(total - 1, Math.floor(progress * total));
+          
+          if (index !== currentIndex && !isAnimating) {
+            goToScene(index);
+          }
+
+          // Sync vertical timelines
+          cards.forEach((card, i) => {
+            const fill = card.querySelector('.svc-card__progress-fill');
+            if (fill) {
+              const startRange = i / total;
+              const endRange = (i + 1) / total;
+              let pct = 0;
+              
+              if (progress > startRange && progress <= endRange) {
+                pct = (progress - startRange) / (endRange - startRange);
+              } else if (progress > endRange) {
+                pct = 1;
+              }
+              gsap.set(fill, { height: `${pct * 100}%` });
+            }
+          });
+        }
       });
-    });
+    };
 
+    // Run setup
+    initScrollShowcase();
+
+    // Click handler for desktop cards
     cards.forEach((card, i) => {
       card.addEventListener('click', () => {
-        goToScene(i, true);
+        const isMobile = window.innerWidth <= 860;
+        if (!isMobile) {
+          goToScene(i, true);
+        }
       });
-      card.style.cursor = 'pointer';
     });
 
-    // Pause on hover
-    const section = document.getElementById('services');
-    if (section && window.matchMedia('(hover: hover)').matches) {
-      section.addEventListener('mouseenter', () => {
-        isHovered = true;
-        if (autoplayTween) autoplayTween.pause();
+    // Click handler for dots
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        const isMobile = window.innerWidth <= 860;
+        if (!isMobile) {
+          goToScene(i, true);
+        } else {
+          const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
+          if (mobileScreen && scenes[i]) {
+            mobileScreen.scrollTo({ left: scenes[i].offsetLeft, behavior: 'smooth' });
+          }
+        }
       });
-      section.addEventListener('mouseleave', () => {
-        isHovered = false;
-        if (autoplayTween && !autoplayStopped) autoplayTween.play();
-      });
-    }
+    });
 
-    // Support du swipe sur mobile
+    // Touch swipe handler for tablet screens (> 768px but <= 860px)
     let touchStartX = 0;
     let touchEndX = 0;
     const screen = svcShowcase.querySelector('.svc-showcase__screen');
-
     if (screen) {
-      // Touch swipe only for non-mobile (mobile uses native scroll-snap)
-      if (window.innerWidth > 768) {
-        screen.addEventListener('touchstart', e => {
-          touchStartX = e.changedTouches[0].screenX;
-        }, {passive: true});
+      screen.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, {passive: true});
 
-        screen.addEventListener('touchend', e => {
-          touchEndX = e.changedTouches[0].screenX;
-          if (touchEndX < touchStartX - 40) goToScene(currentIndex + 1, true);
-          if (touchEndX > touchStartX + 40) goToScene(currentIndex - 1, true);
-        }, {passive: true});
-      }
-
-      // Support du drag à la souris (desktop)
-      let isDragging = false;
-      let dragMoved = false;
-      let dragStartX = 0;
-
-      screen.addEventListener('mousedown', e => {
-        if (e.target.closest('a, button')) return;
-        isDragging = true;
-        dragMoved = false;
-        dragStartX = e.clientX;
-        screen.classList.add('is-dragging');
-      });
-
-      window.addEventListener('mousemove', e => {
-        if (!isDragging) return;
-        if (Math.abs(e.clientX - dragStartX) > 5) dragMoved = true;
-      });
-
-      window.addEventListener('mouseup', e => {
-        if (!isDragging) return;
-        isDragging = false;
-        screen.classList.remove('is-dragging');
-        if (!dragMoved) return;
-        const dx = e.clientX - dragStartX;
-        if (dx < -40) goToScene(currentIndex + 1, true);
-        if (dx > 40) goToScene(currentIndex - 1, true);
-      });
+      screen.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const isMobile = window.innerWidth <= 860;
+        if (isMobile) {
+          if (touchEndX < touchStartX - 40 && currentIndex < total - 1) {
+            const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
+            if (mobileScreen && scenes[currentIndex + 1]) {
+              mobileScreen.scrollTo({ left: scenes[currentIndex + 1].offsetLeft, behavior: 'smooth' });
+            }
+          }
+          if (touchEndX > touchStartX + 40 && currentIndex > 0) {
+            const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
+            if (mobileScreen && scenes[currentIndex - 1]) {
+              mobileScreen.scrollTo({ left: scenes[currentIndex - 1].offsetLeft, behavior: 'smooth' });
+            }
+          }
+        }
+      }, {passive: true});
     }
 
     // Mobile scroll-snap carousel: IntersectionObserver syncs currentIndex from scroll position
-    if (window.innerWidth <= 768) {
-      const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
-      const mobileBarFill = document.querySelector('.svc-mobile-bar__fill');
-      if (mobileScreen && scenes.length) {
-        const snapObs = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const idx = Array.from(scenes).indexOf(entry.target);
-            if (idx === -1 || idx === currentIndex) return;
-            currentIndex = idx;
-            scenes.forEach((s, i) => s.classList.toggle('is-active', i === idx));
-            dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-            if (mobileBarFill) mobileBarFill.style.width = ((idx + 1) / total * 100) + '%';
-          });
-        }, { root: mobileScreen, threshold: 0.6 });
-        scenes.forEach(s => snapObs.observe(s));
-        if (mobileBarFill) mobileBarFill.style.width = (1 / total * 100) + '%';
-      }
+    const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
+    const mobileBarFill = document.querySelector('.svc-mobile-bar__fill');
+    if (mobileScreen && scenes.length) {
+      const snapObs = new IntersectionObserver((entries) => {
+        const isMobile = window.innerWidth <= 860;
+        if (!isMobile) return;
+        
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const idx = Array.from(scenes).indexOf(entry.target);
+          if (idx === -1 || idx === currentIndex) return;
+          goToScene(idx);
+          if (mobileBarFill) mobileBarFill.style.width = ((idx + 1) / total * 100) + '%';
+        });
+      }, { root: mobileScreen, threshold: 0.6 });
+      scenes.forEach(s => snapObs.observe(s));
+      if (mobileBarFill) mobileBarFill.style.width = (1 / total * 100) + '%';
     }
 
     // --- 1c. iOS Bottom Sheet drawer logic ---
@@ -667,27 +657,11 @@ document.addEventListener('DOMContentLoaded', () => {
       scene.style.cursor = 'pointer';
     });
 
-    // Initial state setup
-    // Initialise le premier accordéon ouvert sans animation et lance l'autoplay
-    cards.forEach((card, i) => {
-      const cardBody = card.querySelector('.svc-card__body');
-      if (cardBody) {
-        if (i === 0) {
-          cardBody.style.display = 'block';
-          cardBody.style.height = 'auto';
-          cardBody.style.opacity = '1';
-          cardBody.style.marginTop = '12px';
-        } else {
-          cardBody.style.display = 'none';
-          cardBody.style.height = '0';
-          cardBody.style.opacity = '0';
-          cardBody.style.marginTop = '0';
-        }
-      }
+    // Handle resize
+    window.addEventListener('resize', () => {
+      initScrollShowcase();
+      ScrollTrigger.refresh();
     });
-
-    if (btnPrev) btnPrev.disabled = true;
-    animateProgress(0);
   }
 
 

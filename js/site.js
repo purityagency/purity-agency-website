@@ -388,47 +388,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       scenes.forEach((s, i) => {
         s.classList.toggle('is-active', i === currentIndex);
-        
-        if (isMobile) {
-          const diff = i - currentIndex;
-          s.style.opacity = Math.abs(diff) > 2 ? '0' : '1';
-          s.style.pointerEvents = diff === 0 ? 'auto' : 'none';
-          
-          let tx = 0;
-          let tz = 0;
-          let ry = 0;
-          
-          if (diff === 0) {
-            tx = 0; tz = 0; ry = 0;
-          } else if (diff === 1) {
-            tx = 110; tz = -130; ry = -30;
-          } else if (diff === -1) {
-            tx = -110; tz = -130; ry = 30;
-          } else if (diff === 2) {
-            tx = 190; tz = -240; ry = -50;
-          } else if (diff === -2) {
-            tx = -190; tz = -240; ry = 50;
-          } else {
-            tx = diff * 120; tz = -300; ry = diff > 0 ? -60 : 60;
-          }
-          
-          s.style.transform = `translate3d(${tx}px, 0, ${tz}px) rotateY(${ry}deg)`;
-        } else {
+        if (!isMobile) {
           s.style.transform = '';
           s.style.opacity = '';
           s.style.pointerEvents = '';
           s.style.setProperty('--offset', i - currentIndex);
         }
       });
-      
-      // Mettre à jour la ligne de néon tentacule mobile
-      const glowFill = document.getElementById('svc-glow-fill');
-      if (glowFill && isMobile) {
-        const percent = (currentIndex / (total - 1)) * 65;
-        glowFill.style.left = `${percent}%`;
+
+      if (isMobile) {
+        const screenEl = svcShowcase.querySelector('.svc-showcase__screen');
+        if (screenEl && scenes[index]) {
+          screenEl.scrollTo({ left: scenes[index].offsetLeft, behavior: 'smooth' });
+        }
+        const mobileBarFill = document.querySelector('.svc-mobile-bar__fill');
+        if (mobileBarFill) mobileBarFill.style.width = ((currentIndex + 1) / total * 100) + '%';
       }
 
       dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+      
+      const panes = document.querySelectorAll('.svc-desc-pane');
+      panes.forEach((pane, i) => pane.classList.toggle('is-active', i === currentIndex));
       
       cards.forEach((card, i) => {
         const isActive = i === currentIndex;
@@ -507,15 +487,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const screen = svcShowcase.querySelector('.svc-showcase__screen');
 
     if (screen) {
-      screen.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, {passive: true});
+      // Touch swipe only for non-mobile (mobile uses native scroll-snap)
+      if (window.innerWidth > 768) {
+        screen.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
 
-      screen.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX < touchStartX - 40) goToScene(currentIndex + 1, true); // Swipe gauche (suivant)
-        if (touchEndX > touchStartX + 40) goToScene(currentIndex - 1, true); // Swipe droite (précédent)
-      }, {passive: true});
+        screen.addEventListener('touchend', e => {
+          touchEndX = e.changedTouches[0].screenX;
+          if (touchEndX < touchStartX - 40) goToScene(currentIndex + 1, true);
+          if (touchEndX > touchStartX + 40) goToScene(currentIndex - 1, true);
+        }, {passive: true});
+      }
 
       // Support du drag à la souris (desktop)
       let isDragging = false;
@@ -544,6 +527,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dx < -40) goToScene(currentIndex + 1, true);
         if (dx > 40) goToScene(currentIndex - 1, true);
       });
+    }
+
+    // Mobile scroll-snap carousel: IntersectionObserver syncs currentIndex from scroll position
+    if (window.innerWidth <= 768) {
+      const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
+      const mobileBarFill = document.querySelector('.svc-mobile-bar__fill');
+      if (mobileScreen && scenes.length) {
+        const snapObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const idx = Array.from(scenes).indexOf(entry.target);
+            if (idx === -1 || idx === currentIndex) return;
+            currentIndex = idx;
+            scenes.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+            dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+            if (mobileBarFill) mobileBarFill.style.width = ((idx + 1) / total * 100) + '%';
+          });
+        }, { root: mobileScreen, threshold: 0.6 });
+        scenes.forEach(s => snapObs.observe(s));
+        if (mobileBarFill) mobileBarFill.style.width = (1 / total * 100) + '%';
+      }
     }
 
     // --- 1c. iOS Bottom Sheet drawer logic ---
@@ -1430,11 +1434,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     options.forEach(li => li.addEventListener('click', () => selectLang(li, { userInitiated: true })));
 
-    // restaure le choix mémorisé ou détecte la langue navigateur
+    // priorité : ?lang= (URLs indexables / hreflang) > choix mémorisé > langue navigateur
     try {
+      const urlLang = new URLSearchParams(location.search).get('lang');
       const saved = localStorage.getItem('purity_lang');
       const detected = (navigator.language || '').slice(0, 2).toLowerCase();
-      const preferred = saved || (SUPPORTED_LANGS.includes(detected) ? detected : null);
+      const preferred = (SUPPORTED_LANGS.includes(urlLang) ? urlLang : null)
+        || saved
+        || (SUPPORTED_LANGS.includes(detected) ? detected : null);
       if (preferred && preferred !== 'fr') {
         const li = options.find(o => o.dataset.lang === preferred);
         if (li) selectLang(li, { persist: !!saved });
@@ -1596,8 +1603,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const b = document.createElement('button');
           b.type = 'button';
           b.className = 'booking__slot';
+          if (selectedSlot === iso) b.classList.add('is-active');
           b.textContent = fmtTime(d);
-          b.addEventListener('click', () => chooseSlot(iso));
+          b.addEventListener('click', () => chooseSlot(iso, b));
           slotsEl.appendChild(b);
         });
       } catch (e) {
@@ -1606,19 +1614,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    const chooseSlot = (iso) => {
+    const chooseSlot = (iso, btnEl) => {
       selectedSlot = iso;
-      // Recap chip : icône calendrier + date formatée
-      whenEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ' + fmtFull(new Date(iso));
-      calEl.hidden = true;
+      // Mettre en évidence le bouton sélectionné et nettoyer les autres
+      slotsEl.querySelectorAll('.booking__slot').forEach(b => b.classList.remove('is-active'));
+      if (btnEl) btnEl.classList.add('is-active');
+      
+      // On garde le calendrier visible et on affiche simplement le formulaire en dessous
       formEl.hidden = false;
       clearError();
       formEl.querySelector('#bk-name')?.focus();
     };
 
+    // Le bouton retour est caché en CSS mais conservé pour rétrocompatibilité fonctionnelle
     booking.querySelector('#booking-back')?.addEventListener('click', () => {
       formEl.hidden = true;
-      calEl.hidden = false;
     });
 
     formEl.addEventListener('submit', async (e) => {
@@ -1764,196 +1774,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkHashOnLoad();
   }
 
-  // ==========================================================================
-  //  ONBOARDING ASSISTANT (TYPEFORM 3.0 FLOW)
-  // ==========================================================================
-  const obModal = document.getElementById('ob-modal');
-  if (obModal) {
-    const triggers = document.querySelectorAll('.ob-trigger');
-    const closeBtns = obModal.querySelectorAll('.ob-close');
-    const steps = obModal.querySelectorAll('.ob-tf-step');
-    const options = obModal.querySelectorAll('.ob-tf-opt');
-    const obForm = obModal.querySelector('#ob-contact-form');
-    const progressFill = obModal.querySelector('.ob-tf-progress-fill');
-    const prevBtn = obModal.querySelector('.ob-tf-nav-btn[aria-label="Précédent"]');
-    const nextBtn = obModal.querySelector('.ob-tf-nav-btn[aria-label="Suivant"]');
-
-    let currentStep = 1;
-    const totalSteps = 7;
-    let onboardingState = {};
-
-    const updateProgress = () => {
-      if (!progressFill) return;
-      const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
-      progressFill.style.width = `${progress}%`;
-    };
-
-    const showStep = (step) => {
-      steps.forEach(s => s.classList.remove('is-active'));
-      const activeStep = obModal.querySelector(`.ob-tf-step[data-step="${step}"]`);
-      if (activeStep) activeStep.classList.add('is-active');
-      currentStep = step;
-      updateProgress();
-
-      if (prevBtn) prevBtn.disabled = currentStep === 1 || currentStep >= 5;
-      if (nextBtn) nextBtn.disabled = currentStep >= 5;
-      
-      if (step === 5) {
-        setTimeout(() => {
-          const t1 = obModal.querySelector('.ob-tl-2');
-          if (t1) t1.style.opacity = '1';
-        }, 800);
-        setTimeout(() => {
-          const t2 = obModal.querySelector('.ob-tl-3');
-          if (t2) t2.style.opacity = '1';
-        }, 1600);
-        setTimeout(() => {
-          generateBento();
-          showStep(6);
-        }, 2800);
-      }
-    };
-
-    const closeModal = () => {
-      obModal.classList.remove('is-open');
-      obModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        showStep(1);
-        if (obForm) obForm.reset();
-        onboardingState = {};
-        options.forEach(opt => opt.classList.remove('is-selected'));
-        obModal.querySelectorAll('.ob-term-line').forEach((line, i) => {
-          if (i > 0) line.style.opacity = '0';
-        });
-      }, 500);
-    };
-
-    triggers.forEach(t => t.addEventListener('click', (e) => {
-      e.preventDefault();
-      showStep(1);
-      obModal.classList.add('is-open');
-      obModal.removeAttribute('aria-hidden');
-      document.body.style.overflow = 'hidden';
-    }));
-
-    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
-    const backdrop = obModal.querySelector('.ob-modal__backdrop');
-    if (backdrop) backdrop.addEventListener('click', closeModal);
-
-    options.forEach(opt => {
-      opt.addEventListener('click', () => {
-        const key = opt.getAttribute('data-key');
-        const val = opt.getAttribute('data-val');
-        const stepContainer = opt.closest('.ob-tf-step');
-        
-        stepContainer.querySelectorAll('.ob-tf-opt').forEach(sibling => sibling.classList.remove('is-selected'));
-        opt.classList.add('is-selected');
-
-        onboardingState[key] = val;
-
-        setTimeout(() => {
-          if (currentStep < 5) showStep(currentStep + 1);
-        }, 300);
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (!obModal.classList.contains('is-open')) return;
-      if (currentStep >= 5) return;
-
-      const activeStepEl = obModal.querySelector(`.ob-tf-step[data-step="${currentStep}"]`);
-      if (!activeStepEl) return;
-
-      const opts = activeStepEl.querySelectorAll('.ob-tf-opt');
-      opts.forEach(opt => {
-        if (opt.getAttribute('data-shortcut') === e.key) {
-          opt.click();
-        }
-      });
-    });
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (currentStep > 1 && currentStep < 5) showStep(currentStep - 1);
-      });
-    }
-
-    const generateBento = () => {
-      const bentoBadge = document.getElementById('ob-bento-badge');
-      const bentoPrice = document.getElementById('ob-bento-price');
-      const bentoFeatures = document.getElementById('ob-bento-features');
-      
-      if (!bentoBadge || !bentoPrice || !bentoFeatures) return;
-
-      let badge = "Pack Conversion";
-      let price = "À partir de 150€/mois";
-      let features = [];
-
-      if (onboardingState.ambition === 'refonte') {
-        badge = "Pack Ingénierie";
-        price = "Sur Devis (Personnalisé)";
-        features = ['Refonte UI/UX Complète', 'Développement Sur Mesure', 'Intégration Systèmes Tierces', 'Hébergement & Maintenance Inclus'];
-      } else if (onboardingState.focus === 'automatisation') {
-        badge = "Pack Automatisation";
-        price = "À partir de 120€/mois";
-        features = ['Automatisation des Process', 'Prise de Rendez-vous 24/7', 'CRM Intégré', 'Maintenance Incluse'];
-      } else {
-        features = ['Design Ethereal Glass', 'Optimisation SEO Local', 'Performances Extremes', 'Hébergement Inclus'];
-      }
-
-      bentoBadge.textContent = badge;
-      bentoPrice.textContent = price;
-      bentoFeatures.innerHTML = features.map(f => `
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          ${f}
-        </li>
-      `).join('');
-    };
-
-    if (obForm) {
-      obForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = obForm.querySelector('.ob-btn-submit-quick');
-        const originalHtml = btn.innerHTML;
-        btn.innerHTML = `<span>Envoi en cours...</span>`;
-        btn.disabled = true;
-
-        const payload = {
-          name: document.getElementById('ob-f-name')?.value || '',
-          company: document.getElementById('ob-f-company')?.value || '',
-          email: document.getElementById('ob-f-email')?.value || '',
-          state: JSON.stringify(onboardingState),
-          need: "[Onboarding V3] Demande soumise via Typeform Flow"
-        };
-
-        try {
-          const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if (!res.ok) throw new Error('bad status');
-
-          showStep(7);
-        } catch (err) {
-          btn.innerHTML = `<span>Erreur, réessayer</span>`;
-          btn.disabled = false;
-          setTimeout(() => { btn.innerHTML = originalHtml; }, 2500);
-        }
-      });
-    }
-  }
-
-  // Escape key
-  if (typeof langsel === 'undefined') {
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && obModal && obModal.classList.contains('is-open')) {
-        obModal.querySelector('.ob-close')?.click();
-      }
-    });
-  }
+  // Onboarding modal géré par js/order.js
 });
 
 // --- Custom Glow Cursor (Mauve lueur sous la souris normale) ---
@@ -2051,3 +1872,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// --- Amélioration de texte IA (OctoMask) ---
+document.addEventListener('DOMContentLoaded', () => {
+  const textareas = ['#f-need', '#bk-need'];
+  textareas.forEach(id => {
+    const textarea = document.querySelector(id);
+    if (!textarea) return;
+    
+    // Create button
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ai-improve-btn';
+    const labelText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><path d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.187.904zM19 6.5L18.5 9l-.5-2.5L15.5 6l2.5-.5.5-2.5.5 2.5 2.5.5-2.5.5z"/></svg><span>${labelText}</span>`;
+    btn.title = "Améliorer votre description avec l'IA d'OctoMask";
+    
+    // Insérer le bouton à l'intérieur du conteneur .field
+    textarea.parentNode.appendChild(btn);
+    
+    btn.addEventListener('click', async () => {
+      const val = textarea.value.trim();
+      const fieldContainer = textarea.closest('.field');
+      
+      btn.classList.add('is-loading');
+      if (fieldContainer) fieldContainer.classList.add('is-ai-working');
+      
+      const optimizingText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_optimizing']) || 'Amélioration…';
+      btn.querySelector('span').textContent = optimizingText;
+      
+      try {
+        const res = await fetch('/api/improve-text', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: val })
+        });
+        const data = await res.json();
+        if (res.ok && data.text) {
+          // Typewriter effect: Type character by character
+          let i = 0;
+          textarea.value = '';
+          textarea.focus();
+          
+          const typingInterval = setInterval(() => {
+            if (i < data.text.length) {
+              textarea.value += data.text.charAt(i);
+              // Dispatch input event so float labels and character counters react correctly
+              textarea.dispatchEvent(new Event('input', { bubbles: true }));
+              i++;
+            } else {
+              clearInterval(typingInterval);
+              btn.classList.remove('is-loading');
+              if (fieldContainer) fieldContainer.classList.remove('is-ai-working');
+              const defaultText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
+              btn.querySelector('span').textContent = defaultText;
+            }
+          }, 6); // Fast 6ms interval for premium feeling
+          
+        } else {
+          const errText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_err']) || "Impossible de joindre l'IA d'OctoMask pour le moment.";
+          alert(errText);
+          btn.classList.remove('is-loading');
+          if (fieldContainer) fieldContainer.classList.remove('is-ai-working');
+          const defaultText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
+          btn.querySelector('span').textContent = defaultText;
+        }
+      } catch (e) {
+        console.error(e);
+        const errText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_err']) || "Impossible de joindre l'IA d'OctoMask pour le moment.";
+        alert(errText);
+        btn.classList.remove('is-loading');
+        if (fieldContainer) fieldContainer.classList.remove('is-ai-working');
+        const defaultText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
+        btn.querySelector('span').textContent = defaultText;
+      }
+    });
+  });
+});
+

@@ -1880,26 +1880,77 @@ document.addEventListener('DOMContentLoaded', () => {
     const textarea = document.querySelector(id);
     if (!textarea) return;
     
-    // Create button
+    const parentField = textarea.parentNode;
+    
+    // Create inspiration chips container
+    const chipsContainer = document.createElement('div');
+    chipsContainer.className = 'ai-inspiration-chips';
+    
+    const chipsData = [
+      { label: "Site Vitrine", text: "Je souhaite concevoir un site vitrine moderne et immersif pour valoriser mon expertise et capter des prospects qualifiés..." },
+      { label: "Boutique E-commerce", text: "Je cherche à lancer une boutique e-commerce fluide et performante, optimisée pour maximiser le taux de conversion..." },
+      { label: "Portail Client / SaaS", text: "Je souhaite développer un portail client sur-mesure pour automatiser nos échanges et centraliser les données de nos utilisateurs..." },
+      { label: "Automatisation & CRM", text: "Je souhaite interconnecter nos outils internes et automatiser nos processus pour gagner en productivité et éliminer les tâches répétitives..." }
+    ];
+    
+    chipsData.forEach(chip => {
+      const btnChip = document.createElement('button');
+      btnChip.type = 'button';
+      btnChip.className = 'ai-chip';
+      btnChip.textContent = chip.label;
+      btnChip.addEventListener('click', () => {
+        textarea.value = chip.text;
+        textarea.dispatchEvent(new Event('input', { bubbles: true }));
+        textarea.focus();
+        // Hide chips
+        chipsContainer.classList.remove('is-visible');
+      });
+      chipsContainer.appendChild(btnChip);
+    });
+    
+    parentField.appendChild(chipsContainer);
+    
+    // Toggle chips visibility based on focus and content
+    const updateChipsVisibility = () => {
+      const val = textarea.value.trim();
+      if (!val && document.activeElement === textarea) {
+        chipsContainer.classList.add('is-visible');
+      } else {
+        chipsContainer.classList.remove('is-visible');
+      }
+    };
+    
+    textarea.addEventListener('focus', updateChipsVisibility);
+    textarea.addEventListener('blur', () => {
+      // Small delay to allow chip click to register before hiding
+      setTimeout(updateChipsVisibility, 150);
+    });
+    textarea.addEventListener('input', updateChipsVisibility);
+    
+    // Create Sublimer button
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ai-improve-btn';
-    const labelText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
+    const labelText = "Sublimer avec l'IA";
     btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><path d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.187.904zM19 6.5L18.5 9l-.5-2.5L15.5 6l2.5-.5.5-2.5.5 2.5 2.5.5-2.5.5z"/></svg><span>${labelText}</span>`;
-    btn.title = "Améliorer votre description avec l'IA d'OctoMask";
+    btn.title = "Sublimer votre texte avec l'IA d'OctoMask";
     
-    // Insérer le bouton à l'intérieur du conteneur .field
-    textarea.parentNode.appendChild(btn);
+    parentField.appendChild(btn);
     
     btn.addEventListener('click', async () => {
       const val = textarea.value.trim();
-      const fieldContainer = textarea.closest('.field');
+      if (!val) {
+        // If empty, trigger focus to show chips and prompt user
+        textarea.focus();
+        chipsContainer.classList.add('is-visible');
+        return;
+      }
       
       btn.classList.add('is-loading');
-      if (fieldContainer) fieldContainer.classList.add('is-ai-working');
+      textarea.classList.add('textarea-ai-loading');
+      if (parentField) parentField.classList.add('is-ai-working');
       
-      const optimizingText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_optimizing']) || 'Amélioration…';
-      btn.querySelector('span').textContent = optimizingText;
+      btn.querySelector('span').textContent = 'Sublimation…';
       
       try {
         const res = await fetch('/api/improve-text', {
@@ -1909,42 +1960,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const data = await res.json();
         if (res.ok && data.text) {
-          // Typewriter effect: Type character by character
-          let i = 0;
-          textarea.value = '';
-          textarea.focus();
-          
-          const typingInterval = setInterval(() => {
-            if (i < data.text.length) {
-              textarea.value += data.text.charAt(i);
-              // Dispatch input event so float labels and character counters react correctly
-              textarea.dispatchEvent(new Event('input', { bubbles: true }));
-              i++;
-            } else {
-              clearInterval(typingInterval);
-              btn.classList.remove('is-loading');
-              if (fieldContainer) fieldContainer.classList.remove('is-ai-working');
-              const defaultText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
-              btn.querySelector('span').textContent = defaultText;
-            }
-          }, 6); // Fast 6ms interval for premium feeling
-          
+          // Instant text update with opacity fade
+          textarea.value = data.text;
+          textarea.dispatchEvent(new Event('input', { bubbles: true }));
         } else {
-          const errText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_err']) || "Impossible de joindre l'IA d'OctoMask pour le moment.";
+          const errText = "Impossible de joindre l'IA d'OctoMask pour le moment.";
           alert(errText);
-          btn.classList.remove('is-loading');
-          if (fieldContainer) fieldContainer.classList.remove('is-ai-working');
-          const defaultText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
-          btn.querySelector('span').textContent = defaultText;
         }
       } catch (e) {
         console.error(e);
-        const errText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_err']) || "Impossible de joindre l'IA d'OctoMask pour le moment.";
+        const errText = "Impossible de joindre l'IA d'OctoMask pour le moment.";
         alert(errText);
+      } finally {
         btn.classList.remove('is-loading');
-        if (fieldContainer) fieldContainer.classList.remove('is-ai-working');
-        const defaultText = (typeof _i18nDict !== 'undefined' && _i18nDict['booking.ai_improve']) || "Améliorer avec l'IA";
-        btn.querySelector('span').textContent = defaultText;
+        textarea.classList.remove('textarea-ai-loading');
+        if (parentField) parentField.classList.remove('is-ai-working');
+        btn.querySelector('span').textContent = "Sublimer avec l'IA";
       }
     });
   });

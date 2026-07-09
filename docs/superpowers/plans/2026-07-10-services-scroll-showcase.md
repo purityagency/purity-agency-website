@@ -1,38 +1,51 @@
-# Scroll-Driven Services Showcase Implementation Plan
+# Unified Glassmorphic Showcase Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Transform the Services section into an immersive Scroll-Driven Showcase. The section pins as you scroll, filling vertical timeline indicators next to the pillars, cross-fading description cards, and triggering cinematic camera scale animations on the media assets.
+**Goal:** Implement the Services section layout where the 5 vertical timeline pillars sit on the left, and the description texts and screens are hosted side-by-side inside a single, unified glassmorphic card on the right.
 
-**Architecture:** Integrate GSAP ScrollTrigger to pin the `#services` section on desktop screens. Calculate the active service index dynamically from the scrubbed scroll progress. Add linear interpolation to fill the active pillar's timeline bar vertically. Trigger GSAP scale-down transitions on the media assets for cinematic impact.
-
-**Tech Stack:** Vanilla JavaScript (ES6), GSAP, ScrollTrigger, CSS, HTML5.
-
-## Global Constraints
-- Target: SMBs, freelancers, artisans in Wallonia
-- Stack: Vanilla HTML/CSS/JS + Node.js server (no framework)
-- Dark theme background (near-black `#060309`) with violet accent (`#7C3AED`)
-- No browser window openings during execution or testing
+**Architecture:**
+- **HTML**: Move `.svc-desc-panel` inside `.svc-showcase`, adjacent to `.svc-showcase__screen`.
+- **CSS**: Apply glassmorphic styles and 2-column flex/grid layouts inside `.svc-showcase` on desktop screen dimensions.
+- **JS**: Verify selectors still function properly with the updated DOM tree structure.
 
 ---
 
-### Task 1: CSS Updates in css/site-extra.css
+### Task 1: HTML Structure Modification in index.html
+
+**Files:**
+- Modify: `index.html`
+
+**Interfaces:**
+- Consumes: Existing HTML structure.
+- Produces: Nest `.svc-desc-panel` inside `.svc-showcase`.
+
+- [ ] **Step 1: Relocate the description panel container**
+  Cut the `.svc-desc-panel` container and its inner `.svc-desc-pane` elements (lines 277 to 355) and paste them inside `.svc-showcase` (just before `.svc-showcase__screen`, around line 374).
+  Also simplify the column container `.svc-nav-col` to only hold the `.svc-pillars-sidebar` to match the two-column sidebar vs dashboard grid.
+
+- [ ] **Step 2: Commit HTML changes**
+  Run:
+  ```bash
+  git add index.html
+  git commit -m "feat(html): relocate service description panel into unified showcase container"
+  ```
+
+---
+
+### Task 2: CSS Styling Updates in css/site-extra.css
 
 **Files:**
 - Modify: `css/site-extra.css`
 
 **Interfaces:**
-- Consumes: `.svc-card`, `.svc-card__progress`, and `.svc-card__progress-fill` classes.
-- Produces: Timeline progress line styling and height pinning styles.
+- Consumes: Moved HTML structures.
+- Produces: Unified glassmorphic dashboard container styling and responsive column rules.
 
-- [ ] **Step 1: Replace previously appended AI/showcase styles in css/site-extra.css**
-  We will replace the showcase section (under `Premium Split Showcase`) with updated scroll-driven styles:
+- [ ] **Step 1: Implement unified dashboard styling in css/site-extra.css**
+  Update the media query styling starting from `@media (min-width: 861px)` to lay out the sidebar and the dashboard card.
+  Specifically, `.svc-showcase` will become the unified card container with a liquid glass backdrop, fine white borders, and an internal grid splitting the text and media:
   ```css
-  /* ==========================================================================
-     Premium Split Showcase: Left Column Descriptions & Right Column Clean Image
-     ========================================================================== */
-
-  /* 50/50 main grid split on desktop */
   @media (min-width: 861px) {
     #services {
       height: 100vh !important;
@@ -43,44 +56,27 @@
     }
 
     .svc-layout {
-      grid-template-columns: 5.5fr 6.5fr !important; /* Balanced split */
+      grid-template-columns: 3.5fr 8.5fr !important; /* Pillars sidebar vs wide unified dashboard */
+      gap: 3rem !important;
       height: 100%;
       align-items: center;
     }
-    
-    /* Hide the right-side floating content cards to keep image completely clean */
-    .svc-scene__content {
-      display: none !important;
-    }
-    
-    /* Left column styling */
+
+    /* Left column only has sidebar */
     .svc-nav-col {
-      padding: 2.8rem 2.2rem !important;
-      justify-content: center !important;
-      border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
+      padding: 2rem 0 !important;
+      border-right: none !important;
+      height: auto;
     }
     
-    /* Grid inside the left column */
-    .svc-left-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.35fr; /* 5 pillars on left, active description next to it */
-      gap: 2rem;
-      width: 100%;
-      align-items: center;
-    }
-    
-    /* 5 Pillars Sidebar */
     .svc-pillars-sidebar {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
-    
-    /* Inactive states & timeline styling */
+
+    /* Timeline pillars styling */
     .svc-card {
       position: relative;
       padding: 1.2rem 1.4rem !important;
@@ -90,7 +86,6 @@
       border-right: none !important;
       border-bottom: none !important;
       border-radius: 0 !important;
-      box-shadow: none !important;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
@@ -115,39 +110,59 @@
     }
     .svc-card__progress-fill {
       width: 100%;
-      height: 0%; /* Vertical progression! */
+      height: 0%;
       background: var(--c-accent-bright, #9F67FF);
       box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
-      transition: none; /* Controlled directly by GSAP ScrollTrigger */
     }
 
-    /* Descriptions Panel */
+    /* Right column holds the unified showcase card */
+    .svc-showcase-col {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Unified Glassmorphic Card Container */
+    .svc-showcase {
+      display: grid !important;
+      grid-template-columns: 5.2fr 6.8fr !important; /* Left: texts, Right: screen */
+      gap: 3.5rem !important;
+      padding: 3rem !important;
+      width: 100%;
+      background: rgba(10, 6, 18, 0.3) !important; /* Liquid glass background */
+      border: 1px solid rgba(255, 255, 255, 0.06) !important;
+      border-radius: 24px !important;
+      backdrop-filter: blur(25px) !important;
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Active description panels inside the card */
     .svc-desc-panel {
       position: relative;
       width: 100%;
-      min-height: 380px;
-      align-self: center;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    
-    /* Inactive pane styling */
+
     .svc-desc-pane {
       display: none;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1rem;
       opacity: 0;
       transform: translateY(12px);
-      transition: none;
     }
-    
-    /* Active pane animations */
     .svc-desc-pane.is-active {
       display: flex;
     }
 
     .svc-desc-pane__title {
       font-family: var(--font-head);
-      font-size: 1.4rem;
-      line-height: 1.35;
+      font-size: 1.45rem;
+      line-height: 1.3;
       color: #fff;
       font-weight: 600;
       margin: 0;
@@ -160,13 +175,12 @@
     }
 
     .svc-desc-pane__lead {
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       line-height: 1.55;
       color: rgba(255, 255, 255, 0.65);
       margin: 0;
     }
 
-    /* Tag Pills */
     .svc-desc-pane__tags {
       display: flex;
       flex-wrap: wrap;
@@ -181,7 +195,7 @@
       background: rgba(124, 58, 237, 0.05);
       border: 1px solid rgba(124, 58, 237, 0.18);
       border-radius: 99px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.8);
       transition: all 0.2s ease;
@@ -192,13 +206,12 @@
       color: #fff;
     }
     .svc-desc-pane__tag-ico {
-      width: 11px;
-      height: 11px;
+      width: 10px;
+      height: 10px;
       color: var(--c-accent-bright, #9F67FF);
       flex-shrink: 0;
     }
 
-    /* Actions Container */
     .svc-desc-pane__actions {
       display: flex;
       align-items: center;
@@ -247,34 +260,28 @@
     .svc-desc-pane__more:hover .viz-arrow-line {
       transform: translateX(3px);
     }
-  }
 
-  /* Fallbacks & Tablet Adjustments */
-  @media (max-width: 860px) and (min-width: 769px) {
-    .svc-left-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    /* Right column holds the media screen inside the card */
+    .svc-showcase__screen {
+      position: relative;
       width: 100%;
+      height: 290px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: #000;
     }
-    .svc-desc-panel {
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-    .svc-desc-pane {
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .svc-desc-pane.is-active {
-      display: flex;
+
+    /* Desktop fallback styles for inner scenes */
+    .svc-scene__content {
+      display: none !important; /* Handled by left panel */
     }
   }
 
-  /* In mobile layout, hide the left side description pane container (right column swipe card displays instead) */
-  @media (max-width: 768px) {
+  /* Fallback and responsive rules for tablet dimensions */
+  @media (max-width: 860px) {
     .svc-desc-panel {
-      display: none !important;
+      display: none !important; /* Hidden on mobile/tablet viewport sizes */
     }
   }
   ```
@@ -283,156 +290,24 @@
   Run:
   ```bash
   git add css/site-extra.css
-  git commit -m "style: modify services layout to vertical left-border timelines"
+  git commit -m "style: implement unified dashboard container layout in site-extra.css"
   ```
 
 ---
 
-### Task 2: JavaScript Implementation in js/site.js
+### Task 3: JS Selector Verification in js/site.js
 
 **Files:**
 - Modify: `js/site.js`
 
 **Interfaces:**
-- Consumes: GSAP ScrollTrigger library, HTML cards `.svc-card`, scenes `.svc-scene`, and description panes `.svc-desc-pane`.
-- Produces: Fully interactive scroll-driven pinning timeline.
+- Consumes: Modified DOM nodes.
+- Produces: Verify that `cards`, `panes`, `scenes`, and `dots` event listeners and transitions work as before.
 
-- [ ] **Step 1: Replace showcase navigation script in js/site.js**
-  We will replace the carousel coverflow script (lines 328-466) with a ScrollTrigger implementation:
-  ```javascript
-    // --- 1b. SERVICES : Scroll-Driven Showcase with GSAP ScrollTrigger ---
-    const svcShowcase = document.querySelector('.svc-showcase');
-    if (svcShowcase) {
-      const scenes = svcShowcase.querySelectorAll('.svc-scene');
-      const dots = svcShowcase.querySelectorAll('.svc-dot');
-      const cards = document.querySelectorAll('.svc-card');
-      const panes = document.querySelectorAll('.svc-desc-pane');
-      const total = scenes.length;
-      let currentIndex = 0;
-      let isAnimating = false;
+- [ ] **Step 1: Verify the selector and event listeners**
+  Confirm that `const panes = document.querySelectorAll('.svc-desc-pane');` in `js/site.js` works exactly as before. Since it uses document-wide querying, nesting changes won't break the selectors, but we must verify that all transitions function smoothly under ScrollTrigger.
 
-      // Desktop Pinning logic
-      const initScrollShowcase = () => {
-        const isMobile = window.innerWidth <= 860;
-        
-        if (isMobile) {
-          // Fallback to mobile scroll/swipe behavior
-          scenes.forEach((s, i) => {
-            s.style.transform = '';
-            s.style.opacity = '';
-            s.style.pointerEvents = '';
-          });
-          return;
-        }
+- [ ] **Step 2: Confirm server responds status code 200**
+  Run verification code: `node -e "require('http').get('http://localhost:3000/', res => console.log(res.statusCode))"`.
 
-        // Create main ScrollTrigger
-        const st = ScrollTrigger.create({
-          trigger: "#services",
-          start: "top top",
-          end: "+=3200", // Scroll track length
-          pin: true,
-          scrub: 0.5,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            const index = Math.min(total - 1, Math.floor(progress * total));
-            
-            if (index !== currentIndex && !isAnimating) {
-              goToScene(index);
-            }
-
-            // Sync vertical timeline progress bars
-            cards.forEach((card, i) => {
-              const fill = card.querySelector('.svc-card__progress-fill');
-              if (fill) {
-                const startRange = i / total;
-                const endRange = (i + 1) / total;
-                let pct = 0;
-                
-                if (progress > startRange && progress <= endRange) {
-                  pct = (progress - startRange) / (endRange - startRange);
-                } else if (progress > endRange) {
-                  pct = 1;
-                }
-                gsap.set(fill, { height: `${pct * 100}%` });
-              }
-            });
-          }
-        });
-
-        // Sync click events to scroll target
-        cards.forEach((card, i) => {
-          card.addEventListener('click', () => {
-            const rangeStart = i / total;
-            const scrollPos = st.start + rangeStart * (st.end - st.start) + 20;
-            gsap.to(window, {
-              scrollTo: scrollPos,
-              duration: 1.1,
-              ease: "power3.inOut"
-            });
-          });
-        });
-      };
-
-      const goToScene = (index) => {
-        isAnimating = true;
-        currentIndex = index;
-
-        // Toggle dots active class
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
-
-        // Toggle cards active class
-        cards.forEach((card, i) => card.classList.toggle('is-active', i === currentIndex));
-
-        // Transition description panes
-        panes.forEach((pane, i) => {
-          const isActive = i === currentIndex;
-          if (isActive) {
-            pane.style.display = 'flex';
-            gsap.fromTo(pane, 
-              { opacity: 0, y: 15 },
-              { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
-            );
-          } else {
-            pane.style.display = 'none';
-          }
-        });
-
-        // Transition media scenes (Cinematic scale down camera motion)
-        scenes.forEach((scene, i) => {
-          const isActive = i === currentIndex;
-          scene.classList.toggle('is-active', isActive);
-          
-          if (isActive) {
-            const media = scene.querySelector('.svc-scene__media');
-            if (media) {
-              gsap.fromTo(media,
-                { scale: 1.12, filter: 'brightness(0.7)' },
-                { scale: 1.0, filter: 'brightness(1)', duration: 1.2, ease: 'power2.out' }
-              );
-            }
-          }
-        });
-
-        // Small timeout to prevent overlapping scroll animations
-        setTimeout(() => { isAnimating = false; }, 200);
-      };
-
-      // Run on DOM load
-      initScrollShowcase();
-      
-      // Update on resize
-      window.addEventListener('resize', () => {
-        ScrollTrigger.refresh();
-      });
-    }
-  ```
-
-- [ ] **Step 2: Check compiler outputs and verify page runs 200**
-  Run local connectivity command: `node -e "require('http').get('http://localhost:3000/', res => console.log(res.statusCode))"`.
-
-- [ ] **Step 3: Commit js/site.js changes**
-  Run:
-  ```bash
-  git add js/site.js
-  git commit -m "feat(client): implement ScrollTrigger pinning and cinematic camera zooms for services"
-  ```
+- [ ] **Step 3: Commit Task 3 if changes are made**

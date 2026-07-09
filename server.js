@@ -293,12 +293,12 @@ function handleImproveText(req, res) {
         try { data = JSON.parse(body) || {}; } catch { /* ignore */ }
         let text = String(data.text || '').slice(0, 1500).trim();
         
-        let promptInstruction = "Tu es un rédacteur professionnel pour Purity Agency (agence digitale à Charleroi en Belgique). Reformule, structure et améliore de façon impactante et professionnelle le besoin de ce client pour son projet de site web, de SEO ou d'automatisation.\n\nTu dois STRICTEMENT structurer ta réponse dans ce format exact :\n🎯 Objectif : [Une phrase courte et impactante décrivant le but principal du projet]\n🛠️ Besoins clés :\n- [Besoin technique ou fonctionnel 1]\n- [Besoin technique ou fonctionnel 2]\n- [Besoin technique ou fonctionnel 3]\n\nSois direct et professionnel. N'utilise pas d'introduction, de salutations ni de commentaires externes. Réponds uniquement avec le texte structuré de son besoin.";
+        let promptInstruction = "Tu es un expert en stratégie digitale et un copywriter d'élite pour Purity Agency. Ta mission est de réécrire les notes du client pour les sublimer.\n\nInstructions clés :\n1. Rédige à la première personne du singulier ('Je souhaite...', 'Mon projet consiste à...').\n2. Le ton doit être extrêmement professionnel, inspirant, moderne et tourné vers la performance.\n3. Reste concis et percutant (entre 2 et 4 phrases fluides).\n4. Ne fais AUCUNE liste à puces, n'utilise AUCUN emoji, ne mets pas de titres ou de labels.\n5. Sublime ses idées en y ajoutant du vocabulaire premium adapté aux standards du web moderne (SEO, UX, conversion, automatisation) sans inventer de fausses fonctionnalités.\n\nRéponds uniquement avec le texte sublimé, sans introduction ni commentaires.";
         let userPrompt = text;
         
         if (!text) {
-            promptInstruction = "Tu es un assistant d'idéation pour Purity Agency. L'utilisateur a cliqué sur 'Améliorer avec l'IA' mais n'a rien saisi dans sa description de besoins.\n\nGénère une proposition de brief type de projet digital haut de gamme (site internet ou automatisation) à personnaliser, rédigé à la première personne ('Je souhaite...').\n\nTu dois STRICTEMENT structurer ta réponse dans ce format exact :\n🎯 Objectif : [Une proposition d'objectif de projet inspirante à compléter, par exemple : 'Lancer un site internet d'agence immobilière moderne pour capter des leads locaux.']\n🛠️ Besoins clés :\n- [Proposition de besoin clé 1 à personnaliser]\n- [Proposition de besoin clé 2 à personnaliser]\n- [Proposition de besoin clé 3 à personnaliser]\n\nSois direct et professionnel. Réponds uniquement avec le texte structuré, sans introduction ni commentaires.";
-            userPrompt = "Génère un exemple de brief à personnaliser.";
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'empty' }));
         }
         
         const payload = JSON.stringify({

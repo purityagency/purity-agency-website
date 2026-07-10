@@ -325,344 +325,164 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 1b. SERVICES : Scroll-Driven Showcase with GSAP ScrollTrigger ---
-  const svcShowcase = document.querySelector('.svc-showcase');
-  if (svcShowcase) {
-    const scenes = svcShowcase.querySelectorAll('.svc-scene');
-    const dots = svcShowcase.querySelectorAll('.svc-dot');
-    const cards = document.querySelectorAll('.svc-card');
-    const panes = document.querySelectorAll('.svc-desc-pane');
-    const total = scenes.length;
+  // --- 1b. SERVICES : 3D Carousel ---
+  const initServicesCarousel = () => {
+    const carousel = document.querySelector('.svc-carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.svc-carousel__track');
+    const cards = Array.from(carousel.querySelectorAll('.svc-card'));
+    const dots = Array.from(carousel.querySelectorAll('.svc-carousel__dot'));
+    const total = cards.length;
     let currentIndex = 0;
-    let isAnimating = false;
-    let scrollTriggerInstance = null;
+    let isTransitioning = false;
 
-    const goToScene = (index, triggerScroll = false) => {
-      if (index < 0 || index >= total) return;
-      currentIndex = index;
+    // Dimensions augmentées selon la demande utilisateur
+    const cardWidth = 440;
+    const gap = 56; // 3.5rem = 56px
 
-      // Update dots active state
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+    const goToCard = (index, animate = true) => {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) return; // scroll-snap natif sur mobile
 
-      // Update cards active state
-      cards.forEach((card, i) => card.classList.toggle('is-active', i === currentIndex));
+      // Loop circulaire pour l'index
+      index = ((index % total) + total) % total;
+      
+      // Calcul du décalage pour centrer la card active
+      const offset = -index * (cardWidth + gap);
+      
+      if (animate) {
+        gsap.to(track, {
+          x: offset,
+          duration: 0.6,
+          ease: 'power3.out'
+        });
+      } else {
+        gsap.set(track, { x: offset });
+      }
 
-      // Transition description panes
-      panes.forEach((pane, i) => {
-        const isActive = i === currentIndex;
-        pane.classList.toggle('is-active', isActive);
-        if (isActive) {
-          pane.style.display = 'flex';
-          gsap.killTweensOf(pane);
-          gsap.fromTo(pane, 
-            { opacity: 0, y: 15 },
-            { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
-          );
+      cards.forEach((card, i) => {
+        const distance = Math.abs(i - index);
+        
+        let scale = 1;
+        let opacity = 1;
+        let rotateY = 0;
+        let z = 0;
+
+        if (distance > 0) {
+          scale = 0.90; // un peu plus petit sur les côtés pour marquer le contraste
+          opacity = 0.55;
+          rotateY = i < index ? 10 : -10; // angle 3D légèrement accentué
+          z = -80;
+        }
+
+        if (animate) {
+          gsap.to(card, {
+            scale: scale,
+            opacity: opacity,
+            rotationY: rotateY,
+            z: z,
+            duration: 0.5,
+            ease: 'power2.out'
+          });
         } else {
-          pane.style.display = 'none';
-        }
-      });
-
-      // Transition scenes on desktop (cinematic scale and brightness)
-      const isMobile = window.innerWidth <= 860;
-      scenes.forEach((scene, i) => {
-        const isActive = i === currentIndex;
-        scene.classList.toggle('is-active', isActive);
-        
-        if (!isMobile) {
-          scene.style.transform = '';
-          scene.style.opacity = '';
-          scene.style.pointerEvents = '';
-          scene.style.setProperty('--offset', i - currentIndex);
-
-          if (isActive) {
-            const media = scene.querySelector('.svc-scene__media');
-            if (media) {
-              gsap.killTweensOf(media);
-              gsap.fromTo(media,
-                { scale: 1.12, filter: 'brightness(0.7)' },
-                { scale: 1.0, filter: 'brightness(1)', duration: 1.2, ease: 'power2.out' }
-              );
-            }
-          }
-        }
-      });
-
-      // If requested (e.g. from dot or card click on desktop), scroll page to matching range
-      if (triggerScroll && scrollTriggerInstance && !isMobile) {
-        isAnimating = true;
-        const rangeStart = currentIndex / total;
-        const scrollPos = scrollTriggerInstance.start + rangeStart * (scrollTriggerInstance.end - scrollTriggerInstance.start) + 20;
-        gsap.to(window, {
-          scrollTo: scrollPos,
-          duration: 1.0,
-          ease: "power3.inOut",
-          onComplete: () => {
-            setTimeout(() => { isAnimating = false; }, 50);
-          }
-        });
-      }
-    };
-
-    const initScrollShowcase = () => {
-      const isMobile = window.innerWidth <= 860;
-
-      if (scrollTriggerInstance) {
-        scrollTriggerInstance.kill();
-        scrollTriggerInstance = null;
-      }
-
-      if (isMobile) {
-        // Clear desktop transforms
-        scenes.forEach((s) => {
-          s.style.transform = '';
-          s.style.opacity = '';
-          s.style.pointerEvents = '';
-        });
-        
-        // Reset progress fills on cards
-        cards.forEach(card => {
-          const fill = card.querySelector('.svc-card__progress-fill');
-          if (fill) gsap.set(fill, { height: '' });
-        });
-        return;
-      }
-
-      // Initialize ScrollTrigger on desktop
-      scrollTriggerInstance = ScrollTrigger.create({
-        trigger: "#services",
-        start: "top top",
-        end: "+=3200", // Height of scroll track
-        pin: true,
-        scrub: 0.5,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const index = Math.min(total - 1, Math.floor(progress * total));
-          
-          if (index !== currentIndex && !isAnimating) {
-            goToScene(index);
-          }
-
-          // Sync vertical timelines
-          cards.forEach((card, i) => {
-            const fill = card.querySelector('.svc-card__progress-fill');
-            if (fill) {
-              const startRange = i / total;
-              const endRange = (i + 1) / total;
-              let pct = 0;
-              
-              if (progress > startRange && progress <= endRange) {
-                pct = (progress - startRange) / (endRange - startRange);
-              } else if (progress > endRange) {
-                pct = 1;
-              }
-              gsap.set(fill, { height: `${pct * 100}%` });
-            }
+          gsap.set(card, {
+            scale: scale,
+            opacity: opacity,
+            rotationY: rotateY,
+            z: z
           });
         }
+
+        card.classList.toggle('is-active', i === index);
       });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+      });
+
+      currentIndex = index;
     };
 
-    // Run setup
-    initScrollShowcase();
-
-    // Click handler for desktop cards
-    cards.forEach((card, i) => {
-      card.addEventListener('click', () => {
-        const isMobile = window.innerWidth <= 860;
-        if (!isMobile) {
-          goToScene(i, true);
-        }
-      });
-    });
-
-    // Click handler for dots
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        const isMobile = window.innerWidth <= 860;
-        if (!isMobile) {
-          goToScene(i, true);
-        } else {
-          const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
-          if (mobileScreen && scenes[i]) {
-            mobileScreen.scrollTo({ left: scenes[i].offsetLeft, behavior: 'smooth' });
-          }
-        }
-      });
-    });
-
-    // Touch swipe handler for tablet screens (> 768px but <= 860px)
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const screen = svcShowcase.querySelector('.svc-showcase__screen');
-    if (screen) {
-      screen.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, {passive: true});
-
-      screen.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        const isMobile = window.innerWidth <= 860;
-        if (isMobile) {
-          if (touchEndX < touchStartX - 40 && currentIndex < total - 1) {
-            const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
-            if (mobileScreen && scenes[currentIndex + 1]) {
-              mobileScreen.scrollTo({ left: scenes[currentIndex + 1].offsetLeft, behavior: 'smooth' });
-            }
-          }
-          if (touchEndX > touchStartX + 40 && currentIndex > 0) {
-            const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
-            if (mobileScreen && scenes[currentIndex - 1]) {
-              mobileScreen.scrollTo({ left: scenes[currentIndex - 1].offsetLeft, behavior: 'smooth' });
-            }
-          }
-        }
-      }, {passive: true});
-    }
-
-    // Mobile scroll-snap carousel: IntersectionObserver syncs currentIndex from scroll position
-    const mobileScreen = svcShowcase.querySelector('.svc-showcase__screen');
-    const mobileBarFill = document.querySelector('.svc-mobile-bar__fill');
-    if (mobileScreen && scenes.length) {
-      const snapObs = new IntersectionObserver((entries) => {
-        const isMobile = window.innerWidth <= 860;
-        if (!isMobile) return;
+    // Interception du scroll dans la zone du carrousel
+    carousel.addEventListener('wheel', (e) => {
+      if (window.innerWidth <= 768) return;
+      
+      if (Math.abs(e.deltaY) > 5) {
+        e.preventDefault();
+        if (isTransitioning) return;
         
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const idx = Array.from(scenes).indexOf(entry.target);
-          if (idx === -1 || idx === currentIndex) return;
-          goToScene(idx);
-          if (mobileBarFill) mobileBarFill.style.width = ((idx + 1) / total * 100) + '%';
-        });
-      }, { root: mobileScreen, threshold: 0.6 });
-      scenes.forEach(s => snapObs.observe(s));
-      if (mobileBarFill) mobileBarFill.style.width = (1 / total * 100) + '%';
-    }
-
-    // --- 1c. iOS Bottom Sheet drawer logic ---
-    const drawer = document.getElementById('svc-drawer');
-    const drawerClose = document.getElementById('svc-drawer-close');
-    const drawerOverlay = document.getElementById('svc-drawer-overlay');
-    const drawerBody = document.getElementById('svc-drawer-body');
-    const drawerPanel = drawer ? drawer.querySelector('.svc-drawer__panel') : null;
-
-    const openDrawer = (sceneElement) => {
-      if (!drawer || !drawerBody || !sceneElement) return;
-      
-      // Clone structure and build a rich detail presentation inside the drawer
-      const media = sceneElement.querySelector('.svc-scene__media');
-      const content = sceneElement.querySelector('.svc-scene__content');
-      
-      if (!content) return;
-      
-      let htmlContent = '';
-      
-      // Media header
-      if (media) {
-        const bgUrl = media.style.backgroundImage;
-        htmlContent += `<div class="svc-drawer__media" style="background-image: ${bgUrl}"></div>`;
+        isTransitioning = true;
+        const direction = Math.sign(e.deltaY);
+        goToCard(currentIndex + direction);
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 500); // Temps anti-rebond
       }
-      
-      // Clone title (stripping inline style adjustments)
-      const title = content.querySelector('.svc-scene__title');
-      if (title) {
-        htmlContent += `<h3 class="svc-drawer__title">${title.innerHTML}</h3>`;
-      }
-      
-      // Lead text
-      const lead = content.querySelector('.svc-scene__lead');
-      if (lead) {
-        htmlContent += `<p class="svc-drawer__lead">${lead.innerHTML}</p>`;
-      }
-      
-      // Tags
-      const tags = content.querySelector('.svc-scene__tags');
-      if (tags) {
-        htmlContent += `<div class="svc-drawer__tags">${tags.innerHTML}</div>`;
-      }
-      
-      // Actions/CTAs
-      const actions = content.querySelector('.svc-scene__actions');
-      if (actions) {
-        htmlContent += `<div class="svc-drawer__actions">${actions.innerHTML}</div>`;
-      }
-      
-      drawerBody.innerHTML = htmlContent;
-      
-      // Show drawer
-      drawer.style.display = 'flex';
-      drawer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden'; // block parent scroll
-      
-      // Force layout and trigger CSS transition
-      setTimeout(() => {
-        drawer.classList.add('is-active');
-      }, 10);
-    };
+    }, { passive: false });
 
-    const closeDrawer = () => {
-      if (!drawer) return;
-      drawer.classList.remove('is-active');
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        drawer.style.display = 'none';
-        drawer.setAttribute('aria-hidden', 'true');
-      }, 450); // Match transition speed
-    };
-
-    if (drawerClose && drawerOverlay) {
-      drawerClose.addEventListener('click', closeDrawer);
-      drawerOverlay.addEventListener('click', closeDrawer);
-    }
-
-    // Touch swipe-down behavior to close bottom sheet
-    if (drawerPanel) {
-      let drawerStartY = 0;
-      let drawerCurrentY = 0;
-      
-      drawerPanel.addEventListener('touchstart', e => {
-        drawerStartY = e.touches[0].clientY;
-      }, {passive: true});
-      
-      drawerPanel.addEventListener('touchmove', e => {
-        drawerCurrentY = e.touches[0].clientY;
-        const deltaY = drawerCurrentY - drawerStartY;
-        if (deltaY > 0) {
-          // Drag down effect
-          drawerPanel.style.transform = `translateY(${deltaY}px)`;
-        }
-      }, {passive: true});
-      
-      drawerPanel.addEventListener('touchend', e => {
-        const deltaY = drawerCurrentY - drawerStartY;
-        drawerPanel.style.transform = '';
-        if (deltaY > 120) {
-          closeDrawer();
-        }
+    // Clic sur les dots
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToCard(idx);
       });
-    }
-
-    // Open sheet when clicking on the active scene card (mobile only)
-    scenes.forEach((scene) => {
-      scene.addEventListener('click', e => {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile && scene.classList.contains('is-active')) {
-          // If they didn't tap on a link/button inside
-          if (!e.target.closest('a, button')) {
-            openDrawer(scene);
-          }
-        }
-      });
-      scene.style.cursor = 'pointer';
     });
 
-    // Handle resize
+    // Clic sur les cards
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) return; // Lien natif sur mobile
+
+        if (idx !== currentIndex) {
+          e.preventDefault();
+          goToCard(idx);
+          return;
+        }
+
+        // Clic sur la card active -> plongée transition 3D
+        e.preventDefault();
+        const href = card.getAttribute('data-href');
+        
+        gsap.timeline()
+          .to(card, {
+            scale: 2.5,
+            z: 400,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.in'
+          })
+          .to(cards.filter(c => c !== card), {
+            opacity: 0,
+            scale: 0.7,
+            duration: 0.4
+          }, '<')
+          .to(carousel, {
+            filter: 'blur(20px)',
+            opacity: 0,
+            duration: 0.4
+          }, '<0.2')
+          .call(() => {
+            window.location.href = href;
+          });
+      });
+    });
+
+    // Init positions
+    goToCard(0, false);
+
+    // Adaptatif sur resize
     window.addEventListener('resize', () => {
-      initScrollShowcase();
-      ScrollTrigger.refresh();
+      if (window.innerWidth > 768) {
+        goToCard(currentIndex, false);
+      } else {
+        gsap.set(track, { clearProps: 'all' });
+        cards.forEach(card => gsap.set(card, { clearProps: 'all' }));
+      }
     });
-  }
+  };
+
+  initServicesCarousel();
 
 
   // --- Kinetic typography (constat) : lignes qui montent au scroll ---

@@ -337,8 +337,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let isTransitioning = false;
 
-    // Dimensions augmentées selon la demande utilisateur
-    const cardWidth = 440;
+    // Dimensions réduites pour mini-cards compactes
+    const cardWidth = 340;
     const gap = 56; // 3.5rem = 56px
 
     const goToCard = (index, animate = true) => {

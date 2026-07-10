@@ -1687,6 +1687,24 @@ kbd {
 }
 .footer__wa-link:hover { opacity: 0.75; }
 
+/* sticky-booking WhatsApp link */
+.sticky-booking__wa {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(37,211,102,.35);
+  color: #25D366;
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background .2s, border-color .2s;
+}
+.sticky-booking__wa:hover { background: rgba(37,211,102,.1); border-color: #25D366; }
+.sticky-booking__wa svg { flex-shrink: 0; }
+
 /* ═══ MOBILE NAV COEXISTENCE ═══
    mobile-nav-bar: bottom 16px, height 64px → occupe 16–80px.
    Chat et sticky-booking doivent être au-dessus (≥88px).
@@ -2836,18 +2854,22 @@ textarea {
   transform: translateY(-4px);
 }
 
-.svc-card__category {
-  display: block;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 700;
-  color: var(--c-accent, #7C3AED);
-  margin-bottom: 0.5rem;
+.svc-card__icon {
+  color: #fff;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+.svc-card__icon svg {
+  stroke-width: 1.5;
 }
 
 .svc-card h3 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
   margin-bottom: 0.6rem;
   color: #fff;
   font-family: var(--font-head);
@@ -2856,8 +2878,13 @@ textarea {
 .svc-card p {
   font-size: 0.85rem;
   line-height: 1.5;
-  color: var(--c-fg-muted);
+  color: rgba(255, 255, 255, 0.65);
   margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Video Component */
@@ -2900,28 +2927,38 @@ textarea {
   50% { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
 }
 
-/* CTA Show/Hide */
-.svc-card__cta {
+/* Button Show/Hide on Hover */
+.svc-card__btn {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   margin-top: auto;
   align-self: flex-start;
   font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.svc-card:hover .svc-card__cta {
+.svc-card:hover .svc-card__btn {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: auto;
+}
+
+.svc-card__btn svg {
+  transition: transform 0.3s ease;
+}
+
+.svc-card:hover .svc-card__btn svg {
+  transform: translateX(4px);
 }
 
 /* Dots */

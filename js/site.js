@@ -365,9 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let isTransitioning = false;
 
-    // Dimensions fixes adaptées pour carrousel déporté
-    const cardWidth = 460;
-    const gap = 128; // 8rem = 128px
+    // Dimensions adaptées pour mini-cards épurées
+    const cardWidth = 380;
+    const gap = 80; // 5rem = 80px
 
     const goToCard = (index, animate = true) => {
       const isMobile = window.innerWidth <= 768;
@@ -436,9 +436,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // la navigation du carrousel se fait uniquement aux flèches / dots.
 
 
-    // Flèches prev/next (sans autoplay)
-    const prevBtn = carousel.querySelector('.svc-carousel__arrow--prev');
-    const nextBtn = carousel.querySelector('.svc-carousel__arrow--next');
+    // Flèches prev/next (sélectionnées sur document car déplacées en dehors du wrap)
+    const prevBtn = document.querySelector('.svc-carousel__arrow--prev');
+    const nextBtn = document.querySelector('.svc-carousel__arrow--next');
     if (prevBtn) prevBtn.addEventListener('click', () => { goToCard(currentIndex - 1); });
     if (nextBtn) nextBtn.addEventListener('click', () => { goToCard(currentIndex + 1); });
 

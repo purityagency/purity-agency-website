@@ -3089,15 +3089,15 @@ textarea {
   perspective: 1800px !important;
 }
 
-/* --- Track — cartes 460px, gap 8rem (128px) --- */
+/* --- Track — cartes 380px, gap 5rem (80px) --- */
 .svc-carousel__track {
-  gap: 8rem !important;
-  padding: 0 calc(50% - 230px) !important; /* centrer card 460px */
+  gap: 5rem !important;
+  padding: 0 calc(50% - 190px) !important; /* centrer card 380px */
 }
 
-/* --- Card — grande, transparente, contour blanc, glow au hover/active --- */
+/* --- Card — transparente, contour blanc, glow au hover/active --- */
 .svc-card {
-  width: 460px !important;
+  width: 380px !important;
   background: rgba(255, 255, 255, 0.018) !important;
   border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 28px !important;
@@ -3286,8 +3286,8 @@ textarea {
   color: #fff !important;
   transform: translateY(-50%) scale(1.15) !important;
 }
-.svc-carousel__arrow--prev { left: max(1.5rem, calc(50% - 880px)) !important; }
-.svc-carousel__arrow--next { right: max(1.5rem, calc(50% - 880px)) !important; }
+.svc-carousel__arrow--prev { left: max(1.5rem, calc(50% - 710px)) !important; }
+.svc-carousel__arrow--next { right: max(1.5rem, calc(50% - 710px)) !important; }
 @media (max-width: 1024px) {
   .svc-carousel__arrow--prev { left: 1rem !important; }
   .svc-carousel__arrow--next { right: 1rem !important; }

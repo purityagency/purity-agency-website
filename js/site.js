@@ -280,23 +280,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Hero Parallax (GSAP) ---
-  const heroImg = document.querySelector('.hero__img');
-  const heroText = document.querySelector('.hero__text-col');
-  
-  if (heroImg && heroText) {
-    // Léger parallax interne au cadre (scale, ne sort pas du cadre)
-    gsap.fromTo(heroImg,
-      { scale: 1.06 },
-      {
-        scale: 1.12, ease: "none",
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+  // --- Hero BG : vidéo ou image selon contexte ---
+  const heroBgVideo = document.querySelector('.hero__bg-video');
+  const heroText    = document.querySelector('.hero__text-col');
+  const isMobile    = window.innerWidth <= 768;
+
+  if (heroBgVideo) {
+    if (prefersReduced || isMobile) {
+      // Reduced motion ou mobile → image de fallback, pas de vidéo
+      heroBgVideo.style.display = 'none';
+      const fallback = heroBgVideo.querySelector('img');
+      if (fallback) {
+        fallback.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+        heroBgVideo.parentElement.appendChild(fallback);
       }
-    );
+    } else {
+      // Desktop + pas de reduced motion → fade-in au canplay
+      gsap.set(heroBgVideo, { opacity: 0, scale: 1.04 });
+
+      const onReady = () => {
+        gsap.to(heroBgVideo, {
+          opacity: 1, scale: 1,
+          duration: 1.4, ease: 'power2.out'
+        });
+      };
+
+      if (heroBgVideo.readyState >= 3) {
+        onReady();
+      } else {
+        heroBgVideo.addEventListener('canplay', onReady, { once: true });
+        // Fallback : si la vidéo ne charge pas en 4s, afficher quand même
+        setTimeout(() => { gsap.set(heroBgVideo, { opacity: 1, scale: 1 }); }, 4000);
+      }
+
+      // Parallax scroll sur la vidéo
+      gsap.to(heroBgVideo, {
+        scale: 1.1, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+  }
+
+  if (heroText) {
     gsap.to(heroText, {
-      y: 40,
-      ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+      y: 40, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
   }
 
@@ -337,9 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let isTransitioning = false;
 
-    // Dimensions réduites pour mini-cards compactes
-    const cardWidth = 340;
-    const gap = 56; // 3.5rem = 56px
+    // Dimensions grandes pour le redesign 3-cards
+    const cardWidth = 460;
+    const gap = 88; // 5.5rem = 88px
 
     const goToCard = (index, animate = true) => {
       const isMobile = window.innerWidth <= 768;
@@ -404,23 +432,46 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex = index;
     };
 
-    // Interception du scroll dans la zone du carrousel
-    carousel.addEventListener('wheel', (e) => {
-      if (window.innerWidth <= 768) return;
-      
-      if (Math.abs(e.deltaY) > 5) {
-        e.preventDefault();
-        if (isTransitioning) return;
-        
-        isTransitioning = true;
-        const direction = Math.sign(e.deltaY);
-        goToCard(currentIndex + direction);
-        
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 500); // Temps anti-rebond
-      }
+    // Scroll carousel uniquement quand la souris est sur une card
+    let overCard = false;
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => { overCard = true; });
+      card.addEventListener('mouseleave', () => { overCard = false; });
+    });
+    if (track) {
+      track.addEventListener('mouseenter', () => { overCard = true; });
+      track.addEventListener('mouseleave', () => { overCard = false; });
+    }
+    window.addEventListener('wheel', (e) => {
+      if (!overCard || window.innerWidth <= 768) return;
+      e.preventDefault();
+      if (isTransitioning || Math.abs(e.deltaY) <= 5) return;
+      isTransitioning = true;
+      goToCard(currentIndex + Math.sign(e.deltaY));
+      setTimeout(() => { isTransitioning = false; }, 500);
     }, { passive: false });
+
+    // Auto-rotation toutes les 4.5s (pause au hover)
+    let autoTimer = null;
+    function startAuto() {
+      if (window.innerWidth <= 768) return;
+      if (autoTimer) return; // Évite les minuteurs multiples
+      autoTimer = setInterval(() => {
+        goToCard(currentIndex + 1);
+      }, 4500);
+    }
+    function stopAuto() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    // Flèches prev/next
+    const prevBtn = carousel.querySelector('.svc-carousel__arrow--prev');
+    const nextBtn = carousel.querySelector('.svc-carousel__arrow--next');
+    if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); goToCard(currentIndex - 1); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); goToCard(currentIndex + 1); startAuto(); });
 
     // Clic sur les dots
     dots.forEach((dot, idx) => {
@@ -470,6 +521,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Init positions
     goToCard(0, false);
+
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    startAuto();
 
     // Adaptatif sur resize
     window.addEventListener('resize', () => {

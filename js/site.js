@@ -435,27 +435,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pas d'interception du scroll : la molette garde son comportement normal,
     // la navigation du carrousel se fait uniquement aux flèches / dots.
 
-    // Auto-rotation toutes les 4.5s (pause au hover)
-    let autoTimer = null;
-    function startAuto() {
-      if (window.innerWidth <= 768) return;
-      if (autoTimer) return; // Évite les minuteurs multiples
-      autoTimer = setInterval(() => {
-        goToCard(currentIndex + 1);
-      }, 4500);
-    }
-    function stopAuto() {
-      if (autoTimer) {
-        clearInterval(autoTimer);
-        autoTimer = null;
-      }
-    }
 
-    // Flèches prev/next
+    // Flèches prev/next (sans autoplay)
     const prevBtn = carousel.querySelector('.svc-carousel__arrow--prev');
     const nextBtn = carousel.querySelector('.svc-carousel__arrow--next');
-    if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); goToCard(currentIndex - 1); startAuto(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); goToCard(currentIndex + 1); startAuto(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { goToCard(currentIndex - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { goToCard(currentIndex + 1); });
 
     // Clic sur les dots
     dots.forEach((dot, idx) => {
@@ -507,9 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
     goToCard(0, false);
 
 
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
-    startAuto();
+
 
     // Adaptatif sur resize
     window.addEventListener('resize', () => {

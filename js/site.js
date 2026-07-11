@@ -365,9 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let isTransitioning = false;
 
-    // Dimensions grandes pour le redesign 3-cards
+    // Dimensions fixes adaptées pour carrousel déporté
     const cardWidth = 460;
-    const gap = 88; // 5.5rem = 88px
+    const gap = 128; // 8rem = 128px
 
     const goToCard = (index, animate = true) => {
       const isMobile = window.innerWidth <= 768;
@@ -432,24 +432,8 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex = index;
     };
 
-    // Scroll carousel uniquement quand la souris est sur une card
-    let overCard = false;
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', () => { overCard = true; });
-      card.addEventListener('mouseleave', () => { overCard = false; });
-    });
-    if (track) {
-      track.addEventListener('mouseenter', () => { overCard = true; });
-      track.addEventListener('mouseleave', () => { overCard = false; });
-    }
-    window.addEventListener('wheel', (e) => {
-      if (!overCard || window.innerWidth <= 768) return;
-      e.preventDefault();
-      if (isTransitioning || Math.abs(e.deltaY) <= 5) return;
-      isTransitioning = true;
-      goToCard(currentIndex + Math.sign(e.deltaY));
-      setTimeout(() => { isTransitioning = false; }, 500);
-    }, { passive: false });
+    // Pas d'interception du scroll : la molette garde son comportement normal,
+    // la navigation du carrousel se fait uniquement aux flèches / dots.
 
     // Auto-rotation toutes les 4.5s (pause au hover)
     let autoTimer = null;
@@ -530,6 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adaptatif sur resize
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) {
+        computeDims();
         goToCard(currentIndex, false);
       } else {
         gsap.set(track, { clearProps: 'all' });

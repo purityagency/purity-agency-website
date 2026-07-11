@@ -3082,16 +3082,16 @@ textarea {
   z-index: 2 !important;
 }
 
-/* --- Track wrapper — clippé : exactement 3 cartes visibles --- */
+/* --- Track wrapper — visible pour afficher les cartes sur le côté --- */
 .svc-carousel__track-wrapper {
-  overflow: hidden !important;
+  overflow: visible !important;
   padding: 3.5rem 0 !important;
   perspective: 1800px !important;
 }
 
-/* --- Track — cartes 460px, gap 88px --- */
+/* --- Track — cartes 460px, gap 8rem (128px) --- */
 .svc-carousel__track {
-  gap: 5.5rem !important; /* 88px */
+  gap: 8rem !important;
   padding: 0 calc(50% - 230px) !important; /* centrer card 460px */
 }
 

@@ -3082,9 +3082,11 @@ textarea {
   z-index: 2 !important;
 }
 
-/* --- Track wrapper — visible pour afficher les cartes sur le côté --- */
+/* --- Track wrapper — clippé pour n'afficher que 3 cartes visibles (3 * 380px + 2 * 80px = 1300px) --- */
 .svc-carousel__track-wrapper {
-  overflow: visible !important;
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
   padding: 3.5rem 0 !important;
   perspective: 1800px !important;
 }

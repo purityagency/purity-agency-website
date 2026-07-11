@@ -3082,12 +3082,12 @@ textarea {
   z-index: 2 !important;
 }
 
-/* --- Track wrapper — clippé pour n'afficher que 3 cartes visibles (3 * 380px + 2 * 80px = 1300px) --- */
+/* --- Track wrapper — clippé à 1400px pour n'avoir que 3 cartes, tout en évitant de couper le glow/3D des bords --- */
 .svc-carousel__track-wrapper {
-  max-width: 1300px !important;
+  max-width: 1400px !important;
   margin: 0 auto !important;
   overflow: hidden !important;
-  padding: 3.5rem 0 !important;
+  padding: 5rem 0 !important;
   perspective: 1800px !important;
 }
 

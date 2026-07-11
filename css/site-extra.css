@@ -2204,7 +2204,7 @@ kbd {
 /* 50/50 main grid split on desktop */
 @media (min-width: 861px) {
   #services {
-    height: 100vh !important;
+    height: auto !important;
     min-height: 100vh !important;
     display: flex;
     align-items: center;
@@ -3042,25 +3042,20 @@ textarea {
    SERVICES REDESIGN — Hollow title 3D + Cards transparentes large + Glow
    ========================================================================== */
 
+/* Titre section — normal, solide, bien visible au-dessus du carrousel */
 .svc__title {
-  font-size: clamp(6rem, 18vw, 13rem) !important; /* Un chouïa plus compact sur les très grands écrans */
-  font-weight: 900 !important;
-  letter-spacing: -0.04em !important;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
-  color: transparent !important;
-  text-shadow: none;
-  transform: none;
-  opacity: 1;
-  display: block;
-  line-height: 1 !important;
-  margin-bottom: 0 !important;
-  pointer-events: none;
-  position: absolute;
-  left: 50%;
-  z-index: 0;
-  top: 58%; /* Descendre le titre fantôme pour s'éloigner du bandeau défilant */
-  translate: -50% -50%;
-  white-space: nowrap;
+  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  color: #fff !important;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
+  position: static;
+  translate: none;
+  line-height: 1.04 !important;
+  margin-bottom: 0.5rem !important;
+  text-align: center;
+  white-space: normal;
 }
 
 /* Section — position relative pour contenir le titre absolu */
@@ -3087,8 +3082,9 @@ textarea {
   z-index: 2 !important;
 }
 
-/* --- Track wrapper — plus d'espace, perspective renforcée --- */
+/* --- Track wrapper — clippé : exactement 3 cartes visibles --- */
 .svc-carousel__track-wrapper {
+  overflow: hidden !important;
   padding: 3.5rem 0 !important;
   perspective: 1800px !important;
 }
@@ -3202,6 +3198,19 @@ textarea {
   object-position: center;
 }
 
+/* --- Fondu bas du hero → section services (transition douce) --- */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(160px, 28vh, 320px);
+  background: linear-gradient(to bottom, transparent 0%, rgba(6, 3, 9, 0.65) 55%, var(--c-bg) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* --- Liste de services réels --- */
 .svc-card__features {
   list-style: none !important;
@@ -3252,23 +3261,38 @@ textarea {
   min-height: 700px !important;
 }
 
-/* --- Flèches de navigation --- */
+/* --- Flèches de navigation — simples flèches fines sans rond, déportées aux bords --- */
 .svc-carousel__arrow {
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  z-index: 10;
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  color: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  transition: color 0.2s;
+  position: absolute !important;
+  top: 50% !important;
+  translate: 0 -50% !important;
+  z-index: 15 !important;
+  background: none !important;
+  border: none !important;
+  padding: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease, transform 0.3s ease !important;
 }
-.svc-carousel__arrow:hover { color: #fff; }
-.svc-carousel__arrow--prev { left: 0.5rem; }
-.svc-carousel__arrow--next { right: 0.5rem; }
-@media (max-width: 768px) { .svc-carousel__arrow { display: none; } }
+.svc-carousel__arrow svg {
+  width: 28px !important;
+  height: 28px !important;
+  stroke-width: 1.5 !important;
+}
+.svc-carousel__arrow:hover {
+  color: #fff !important;
+  transform: translateY(-50%) scale(1.15) !important;
+}
+.svc-carousel__arrow--prev { left: 1rem !important; }
+.svc-carousel__arrow--next { right: 1rem !important; }
+@media (max-width: 1024px) {
+  .svc-carousel__arrow--prev { left: 0.5rem !important; }
+  .svc-carousel__arrow--next { right: 0.5rem !important; }
+}
+@media (max-width: 768px) { .svc-carousel__arrow { display: none !important; } }
 
 /* --- Bouton — visible sur active aussi --- */
 .svc-card.is-active .svc-card__btn {
@@ -3279,12 +3303,9 @@ textarea {
 /* Mobile — retour compact */
 @media (max-width: 768px) {
   .svc__title {
-    font-size: clamp(2.8rem, 10vw, 4rem) !important;
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.88);
-    text-shadow:
-      1px 2px 0 rgba(124, 58, 237, 0.45),
-      2px 4px 0 rgba(100, 30, 220, 0.25),
-      4px 6px 20px rgba(124, 58, 237, 0.2);
+    font-size: clamp(2.2rem, 9vw, 3.2rem) !important;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
     transform: none;
   }
   .svc-card {

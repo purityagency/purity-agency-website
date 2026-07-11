@@ -3042,9 +3042,8 @@ textarea {
    SERVICES REDESIGN — Hollow title 3D + Cards transparentes large + Glow
    ========================================================================== */
 
-/* --- Titre "Nos services" — texte contour creux avec profondeur 3D --- */
 .svc__title {
-  font-size: clamp(6rem, 18vw, 16rem) !important;
+  font-size: clamp(6rem, 18vw, 13rem) !important; /* Un chouïa plus compact sur les très grands écrans */
   font-weight: 900 !important;
   letter-spacing: -0.04em !important;
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
@@ -3058,11 +3057,10 @@ textarea {
   pointer-events: none;
   position: absolute;
   left: 50%;
-  translate: -50% 0;
-  white-space: nowrap;
   z-index: 0;
-  top: 50%;
+  top: 58%; /* Descendre le titre fantôme pour s'éloigner du bandeau défilant */
   translate: -50% -50%;
+  white-space: nowrap;
 }
 
 /* Section — position relative pour contenir le titre absolu */
@@ -3183,7 +3181,7 @@ textarea {
 
 /* --- Espace entre ticker et section services --- */
 .marquee + #services {
-  margin-top: clamp(10rem, 16vw, 16rem) !important;
+  margin-top: 2.5rem !important;
 }
 
 /* --- Hero content indent + centrage vertical --- */

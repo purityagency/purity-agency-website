@@ -3181,6 +3181,29 @@ textarea {
   color: #fff !important;
 }
 
+/* --- Espace entre ticker et section services --- */
+.marquee + #services {
+  margin-top: clamp(10rem, 16vw, 16rem) !important;
+}
+
+/* --- Hero content indent + centrage vertical --- */
+.hero__content {
+  padding-left: clamp(2rem, 8%, 7rem) !important;
+  justify-content: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* --- Hero bg video --- */
+.hero__bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* --- Liste de services réels --- */
 .svc-card__features {
   list-style: none !important;
@@ -3268,6 +3291,128 @@ textarea {
   }
   .svc-card {
     width: 85vw !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   TARIFS — REDESIGN LAYOUT
+══════════════════════════════════════════════════ */
+
+/* Grille 12 colonnes asymétrique */
+.briques-grid {
+  grid-template-columns: repeat(12, 1fr) !important;
+  gap: 1.5rem !important;
+}
+
+/* Row 1 : Présence large + Acquisition */
+.briques-grid > article:nth-child(1) { grid-column: 1 / span 7 !important; grid-row: 1 !important; }
+.briques-grid > article:nth-child(2) { grid-column: 8 / span 5 !important; grid-row: 1 !important; }
+
+/* Row 2 : Auto&IA + Studio côte à côte */
+.briques-grid > article:nth-child(3) { grid-column: 1 / span 6 !important; grid-row: 2 !important; }
+.briques-grid > article:nth-child(5) { grid-column: 7 / span 6 !important; grid-row: 2 !important; }
+
+/* Row 3 : Sur-mesure + Maintenance */
+.briques-subgrid > article:nth-child(1) { grid-column: 1 / span 6 !important; grid-row: 3 !important; }
+.briques-subgrid > article:nth-child(2) { grid-column: 7 / span 6 !important; grid-row: 3 !important; }
+
+/* Card — espace & hover */
+.brique-card {
+  padding: 2rem 2rem !important;
+  border-radius: 28px !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease !important;
+}
+.brique-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(167, 139, 250, 0.3) !important;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(124, 58, 237, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Catégorie — masqué */
+.brique-card__category {
+  display: none !important;
+}
+
+/* H3 — dominant, centré, blanc */
+.brique-card h3 {
+  font-size: 1.5rem !important;
+  line-height: 1.15 !important;
+  margin-bottom: 0.45rem !important;
+  color: #fff !important;
+  text-align: center !important;
+}
+
+/* Intro texte header */
+.brique-card__header p {
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  line-height: 1.5 !important;
+}
+
+/* Items — plus d'espace */
+.brique-list li {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.8rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  gap: 0.25rem !important;
+}
+
+/* Prix — plus grand, dominant */
+.brique-price {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+}
+
+/* Nom service */
+.brique-item-row .brique-name,
+.brique-list li > .brique-name {
+  font-size: 0.93rem !important;
+  font-weight: 600 !important;
+}
+
+/* Note — pill subtle */
+.brique-note {
+  display: inline-block !important;
+  font-size: 0.7rem !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 999px !important;
+  padding: 0.1rem 0.65rem !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Description — lisible */
+.brique-desc {
+  font-size: 0.82rem !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  line-height: 1.55 !important;
+  margin-top: 0.4rem !important;
+}
+.brique-desc strong {
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+/* Mobile — stack */
+@media (max-width: 900px) {
+  .briques-grid { grid-template-columns: 1fr !important; }
+  .briques-grid > article:nth-child(1),
+  .briques-grid > article:nth-child(2),
+  .briques-grid > article:nth-child(3),
+  .briques-grid > article:nth-child(5) {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+  .briques-subgrid > article:nth-child(1),
+  .briques-subgrid > article:nth-child(2) {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
   }
 }
 

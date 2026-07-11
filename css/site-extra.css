@@ -3286,8 +3286,8 @@ textarea {
   color: #fff !important;
   transform: translateY(-50%) scale(1.15) !important;
 }
-.svc-carousel__arrow--prev { left: max(2rem, calc(50% - 900px)) !important; }
-.svc-carousel__arrow--next { right: max(2rem, calc(50% - 900px)) !important; }
+.svc-carousel__arrow--prev { left: max(1.5rem, calc(50% - 880px)) !important; }
+.svc-carousel__arrow--next { right: max(1.5rem, calc(50% - 880px)) !important; }
 @media (max-width: 1024px) {
   .svc-carousel__arrow--prev { left: 1rem !important; }
   .svc-carousel__arrow--next { right: 1rem !important; }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commande confirmée — Purity Agency</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/site-extra.css">
+<link rel="stylesheet" href="css/confirm.css">
+</head>
+<body class="page-confirm">
+<div class="confirm-wrap">
+  <a href="/" class="confirm-logo">PURITY<span class="confirm-logo-dot">.</span></a>
+  <div class="confirm-card" id="confirm-card">
+    <div class="confirm-glow">
+      <div class="confirm-check-ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="confirm-check-icon" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+    </div>
+    <h1 class="confirm-title">Commande confirmée !</h1>
+    <p class="confirm-sub">Votre acompte a bien été reçu. Notre équipe vous contacte sous <strong>24 h</strong> pour lancer le kickoff.</p>
+    <div class="confirm-order-id" id="confirm-order-id"></div>
+    <div class="confirm-next-steps">
+      <h2>Prochaines étapes</h2>
+      <ol>
+        <li><span class="confirm-step-num">1</span><div><strong>Appel de lancement</strong><p>Nous planifions un appel de 30 min pour valider votre brief.</p></div></li>
+        <li><span class="confirm-step-num">2</span><div><strong>Maquettes &amp; design</strong><p>Premières maquettes en 5 à 7 jours ouvrés.</p></div></li>
+        <li><span class="confirm-step-num">3</span><div><strong>Développement &amp; livraison</strong><p>Mise en ligne et accompagnement inclus dans le pack.</p></div></li>
+      </ol>
+    </div>
+    <div class="confirm-cta-group">
+      <a href="#" id="confirm-dashboard-link" class="btn-confirm-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Suivre ma commande →
+      </a>
+      <a href="/" class="btn-confirm-ghost">Retour à l'accueil</a>
+    </div>
+  </div>
+  <div class="confirm-card confirm-card--demo" id="confirm-demo" style="display:none;">
+    <h1 class="confirm-title" style="color:rgba(255,255,255,0.5)">Mode démonstration</h1>
+    <p class="confirm-sub">Stripe n'est pas encore configuré. La commande a été enregistrée.</p>
+    <div class="confirm-order-id" id="confirm-demo-order-id"></div>
+    <a href="/" class="btn-confirm-ghost" style="margin-top:1.5rem;display:block;text-align:center;">← Retour à l'accueil</a>
+  </div>
+</div>
+<script src="js/commande-confirmee.js" defer></script>
+</body>
+</html>

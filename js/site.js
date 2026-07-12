@@ -483,6 +483,49 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // ── Drag / Swipe (souris & tactile desktop) ──
+    const wrapper = carousel.querySelector('.svc-carousel__track-wrapper');
+    let dragStartX = 0;
+    let isDragging = false;
+    let dragMoved = false; // vrai seulement si mouvement significatif
+    const DRAG_THRESHOLD = 60;
+    const MOVE_MIN = 12; // px avant de considérer comme drag
+
+    wrapper.addEventListener('mousedown', (e) => {
+      if (window.innerWidth <= 768) return;
+      if (e.button !== 0) return;
+      isDragging = true;
+      dragMoved = false;
+      dragStartX = e.clientX;
+      wrapper.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const delta = e.clientX - dragStartX;
+      if (Math.abs(delta) > MOVE_MIN) dragMoved = true;
+      if (dragMoved) gsap.set(track, { x: -currentIndex * (cardWidth + gap) + delta });
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      wrapper.style.cursor = 'grab';
+      if (!dragMoved) return; // simple clic — ne pas interférer
+      const delta = e.clientX - dragStartX;
+      if (Math.abs(delta) > DRAG_THRESHOLD) {
+        goToCard(delta < 0 ? currentIndex + 1 : currentIndex - 1);
+      } else {
+        goToCard(currentIndex);
+      }
+    });
+
+    // Bloque click seulement si l'user a vraiment dragué
+    wrapper.addEventListener('click', (e) => {
+      if (dragMoved) { dragMoved = false; e.preventDefault(); e.stopPropagation(); }
+    }, true);
+
     // Init positions
     goToCard(0, false);
 

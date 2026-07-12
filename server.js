@@ -705,7 +705,7 @@ function handleOrderCreate(req, res) {
         const pack = PACK_DATA[sector];
         const id   = 'ord_' + Date.now() + '_' + crypto.randomBytes(3).toString('hex');
         const dashboardToken = makeDashboardToken(id);
-        const baseUrl = process.env.BASE_URL || 'https://purity-agency.be';
+        const baseUrl = process.env.BASE_URL || `http://${req.headers.host}`;
 
         const order = {
             id, sector,

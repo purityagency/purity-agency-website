@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suivi de commande — Purity Agency</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/site-extra.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="page-dashboard">
+<header class="dash-header">
+  <a href="/" class="dash-logo">PURITY<span class="dash-logo-dot">.</span></a>
+  <span class="dash-header-label">Espace client</span>
+</header>
+<main class="dash-main">
+  <div class="dash-state" id="dash-loading"><div class="dash-spinner" aria-hidden="true"></div><p>Chargement…</p></div>
+  <div class="dash-state dash-state--error" id="dash-error" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <h2>Accès non autorisé</h2>
+    <p>Lien invalide ou expiré. Consultez votre email de confirmation.</p>
+    <a href="/" class="dash-back-link">← Accueil</a>
+  </div>
+  <div class="dash-state" id="dash-pending" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <h2>Paiement en attente</h2>
+    <p>Dashboard activé dès confirmation du paiement.</p>
+    <a href="/" class="dash-back-link">← Accueil</a>
+  </div>
+  <div id="dash-content" style="display:none;">
+    <div class="dash-order-header">
+      <div class="dash-order-info">
+        <span class="dash-pack-badge" id="dash-pack-name"></span>
+        <h1 class="dash-order-title" id="dash-client-name">Votre projet</h1>
+        <p class="dash-order-meta">Commande <span id="dash-order-id-short"></span> — <span id="dash-order-date"></span></p>
+      </div>
+      <div class="dash-order-amounts">
+        <div class="dash-amount-item"><span class="dash-amount-label">Acompte payé</span><span class="dash-amount-val dash-amount-val--paid" id="dash-deposit">—</span></div>
+        <div class="dash-amount-item"><span class="dash-amount-label">Solde livraison</span><span class="dash-amount-val" id="dash-remaining">—</span></div>
+      </div>
+    </div>
+    <section class="dash-timeline-section">
+      <h2 class="dash-section-title">Avancement du projet</h2>
+      <div class="dash-timeline" id="dash-timeline" role="list">
+        <div class="dash-stage" data-stage="paid" role="listitem"><div class="dash-stage-indicator"><div class="dash-stage-dot"></div><div class="dash-stage-line"></div></div><div class="dash-stage-content"><h3 class="dash-stage-title">Commande &amp; Paiement</h3><p class="dash-stage-desc">Acompte 30% reçu. Dossier ouvert.</p></div></div>
+        <div class="dash-stage" data-stage="kickoff" role="listitem"><div class="dash-stage-indicator"><div class="dash-stage-dot"></div><div class="dash-stage-line"></div></div><div class="dash-stage-content"><h3 class="dash-stage-title">Kickoff</h3><p class="dash-stage-desc">Appel de lancement pour valider votre brief.</p></div></div>
+        <div class="dash-stage" data-stage="design" role="listitem"><div class="dash-stage-indicator"><div class="dash-stage-dot"></div><div class="dash-stage-line"></div></div><div class="dash-stage-content"><h3 class="dash-stage-title">Design &amp; Maquettes</h3><p class="dash-stage-desc">Création des visuels et identité du site.</p></div></div>
+        <div class="dash-stage" data-stage="developpement" role="listitem"><div class="dash-stage-indicator"><div class="dash-stage-dot"></div><div class="dash-stage-line"></div></div><div class="dash-stage-content"><h3 class="dash-stage-title">Développement</h3><p class="dash-stage-desc">Intégration, fonctionnalités et SEO.</p></div></div>
+        <div class="dash-stage" data-stage="livraison" role="listitem"><div class="dash-stage-indicator"><div class="dash-stage-dot"></div><div class="dash-stage-line"></div></div><div class="dash-stage-content"><h3 class="dash-stage-title">Livraison &amp; Mise en ligne</h3><p class="dash-stage-desc">Site en ligne. Solde à régler.</p></div></div>
+        <div class="dash-stage" data-stage="maintenance" role="listitem"><div class="dash-stage-indicator"><div class="dash-stage-dot"></div></div><div class="dash-stage-content"><h3 class="dash-stage-title">Suivi &amp; Maintenance</h3><p class="dash-stage-desc">Accompagnement mensuel inclus.</p></div></div>
+      </div>
+    </section>
+    <div class="dash-contact-card">
+      <div><h3>Une question ?</h3><p>Répondez à l'email de confirmation ou écrivez-nous.</p></div>
+      <a href="mailto:contact@purity-agency.be" class="dash-contact-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contact@purity-agency.be
+      </a>
+    </div>
+  </div>
+</main>
+<script src="js/dashboard.js" defer></script>
+</body>
+</html>

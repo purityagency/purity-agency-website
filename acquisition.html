@@ -278,23 +278,23 @@
       <h2 data-i18n="acq.packs.h2">La visibilité se construit <span class="grad">sur la durée.</span></h2>
     </div>
     <div class="dp-packs__grid">
-      <a class="dp-pack" href="index.html#tarifs" data-reveal>
-        <span class="dp-pack__name" data-i18n="acq.pack1.name">Site Complet</span>
+      <a class="dp-pack order-trigger" href="#" data-service="complet" data-reveal>
+        <span class="dp-pack__name" data-i18n="acq.pack1.name">Site Complet & Business</span>
         <span class="dp-pack__price">2&nbsp;490<small>&nbsp;€</small></span>
         <span class="dp-pack__desc" data-i18n="acq.pack1.desc">Inclut un SEO poussé, travaillé page par page, pour remonter durablement.</span>
-        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.see">Voir le pack →</span>
+        <span class="dp-pack__arrow">Commander en direct →</span>
       </a>
-      <a class="dp-pack" href="#contact" data-reveal style="--d:.06s">
-        <span class="dp-pack__name" data-i18n="acq.pack2.name">SEO &amp; Publicité</span>
-        <span class="dp-pack__price" data-i18n="acq.pack2.price">Sur&nbsp;mesure</span>
-        <span class="dp-pack__desc" data-i18n="acq.pack2.desc">Campagnes Google &amp; Meta, référencement local. On chiffre selon votre objectif.</span>
-        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.devis">Demander un devis →</span>
+      <a class="dp-pack order-trigger" href="#" data-service="seolocal" data-reveal style="--d:.06s">
+        <span class="dp-pack__name">SEO Local &amp; Maps</span>
+        <span class="dp-pack__price">490<small>&nbsp;€</small></span>
+        <span class="dp-pack__desc">Audit, netlinking local et optimisation de votre fiche Google My Business.</span>
+        <span class="dp-pack__arrow">Commander en direct →</span>
       </a>
-      <a class="dp-pack" href="index.html#tarifs" data-reveal style="--d:.12s">
-        <span class="dp-pack__name" data-i18n="dp.pack.accomp.name">Accompagnement</span>
-        <span class="dp-pack__price" data-i18n="dp.pack.accomp.price">dès 89<small>&nbsp;€/mois</small></span>
-        <span class="dp-pack__desc" data-i18n="acq.pack3.desc">On suit, on optimise, on relance vos campagnes au fil des mois.</span>
-        <span class="dp-pack__arrow" data-i18n="dp.pack.arrow.see_short">Voir →</span>
+      <a class="dp-pack order-trigger" href="#" data-service="googleads" data-reveal style="--d:.12s">
+        <span class="dp-pack__name">Campagne Google Ads</span>
+        <span class="dp-pack__price">690<small>&nbsp;€</small></span>
+        <span class="dp-pack__desc">Création d\'annonces, sélection de mots-clés clés en main pour générer des appels.</span>
+        <span class="dp-pack__arrow">Commander en direct →</span>
       </a>
     </div>
   </section>
@@ -334,8 +334,22 @@
     </div>
     <div class="dp-faq__list" data-reveal>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span data-i18n="acq.faq1.q">En combien de temps je vois des résultats ?</span><i></i></button>
-        <div class="dp-faq__a"><div data-i18n="acq.faq1.a">La publicité peut ramener des demandes en quelques jours. Le référencement naturel est plus lent — quelques semaines à quelques mois — mais il dure dans le temps sans payer chaque clic. On combine souvent les deux.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span>Sous quel délai puis-je espérer observer des retours sur mon investissement ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Pour les campagnes publicitaires payantes (Google Ads, Meta), les premières demandes de devis ou appels qualifiés se matérialisent généralement dès les premières 48 heures suivant le lancement. Pour le référencement naturel (SEO local), la montée en puissance est progressive : les premiers gains durables se mesurent sous 60 à 90 jours, mais s'installent à long terme sans aucun frais par clic.</div></div>
+      </div>
+      <div class="dp-faq__item">
+        <button class="dp-faq__q" aria-expanded="false"><span>Quel budget publicitaire mensuel minimum dois-je prévoir ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Pour cibler efficacement la Wallonie et obtenir des conversions régulières, nous recommandons un budget de diffusion minimal de 300 €/mois (alloué directement aux régies Google ou Meta). Notre mission est d'optimiser chaque euro dépensé pour réduire en permanence le coût d'acquisition de vos prospects.</div></div>
+      </div>
+      <div class="dp-faq__item">
+        <button class="dp-faq__q" aria-expanded="false"><span>Comment puis-je mesurer précisément la rentabilité de mes campagnes ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Nous installons un plan de tracking complet pour enregistrer uniquement les actions de valeur : appels directs générés, rendez-vous planifiés et formulaires de devis soumis. Vos rapports mensuels mesurent des prospects concrets et le coût exact par lead, sans métrique de vanité.</div></div>
+      </div>
+      <div class="dp-faq__item">
+        <button class="dp-faq__q" aria-expanded="false"><span>Mon site web actuel n'est pas performant. Faut-il d'abord le modifier ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Amener du trafic payant vers un site lent ou inadapté au mobile est une perte de budget. Si votre site actuel ne convertit pas, nous recommandons de concevoir d'abord une Landing Page dédiée (490 €) axée à 100% sur la conversion pour sécuriser le retour sur investissement de vos futures campagnes.</div></div>
+      </div>
+    </div></div>
       </div>
       <div class="dp-faq__item">
         <button class="dp-faq__q" aria-expanded="false"><span data-i18n="acq.faq2.q">Combien faut-il mettre en publicité ?</span><i></i></button>
@@ -482,6 +496,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="js/detail.js" defer></script>
+<script src="js/order-modal.js" defer></script>
 <!-- Barre de Navigation Basse Mobile -->
 <nav class="mobile-nav-bar" aria-label="Navigation mobile">
   <a href="index.html#hero" class="mobile-nav-item" data-section="hero">

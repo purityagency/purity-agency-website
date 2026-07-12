@@ -282,23 +282,23 @@
       <h2>L'automatisation s'ajoute à <span class="grad">votre site.</span></h2>
     </div>
     <div class="dp-packs__grid">
-      <a class="dp-pack" href="index.html#tarifs" data-reveal>
-        <span class="dp-pack__name">Site Complet</span>
+      <a class="dp-pack order-trigger" href="#" data-service="complet" data-reveal>
+        <span class="dp-pack__name">Site Complet & Business</span>
         <span class="dp-pack__price">2&nbsp;490<small>&nbsp;€</small></span>
         <span class="dp-pack__desc">Inclut déjà une première automatisation (réponse auto, prise de contact intelligente).</span>
-        <span class="dp-pack__arrow">Voir le pack →</span>
+        <span class="dp-pack__arrow">Commander en direct →</span>
       </a>
-      <a class="dp-pack" href="#contact" data-reveal style="--d:.06s">
-        <span class="dp-pack__name">Automatisation &amp; IA</span>
-        <span class="dp-pack__price">Sur&nbsp;mesure</span>
-        <span class="dp-pack__desc">On chiffre selon ce que vous voulez automatiser. Devis gratuit, sans engagement.</span>
-        <span class="dp-pack__arrow">Demander un devis →</span>
+      <a class="dp-pack order-trigger" href="#" data-service="calendar" data-reveal style="--d:.06s">
+        <span class="dp-pack__name">Automatisation Calendrier</span>
+        <span class="dp-pack__price">390<small>&nbsp;€</small></span>
+        <span class="dp-pack__desc">Agenda synchronisé, rappels automatiques SMS/Email anti-no-show.</span>
+        <span class="dp-pack__arrow">Commander en direct →</span>
       </a>
-      <a class="dp-pack" href="index.html#tarifs" data-reveal style="--d:.12s">
-        <span class="dp-pack__name">Accompagnement</span>
-        <span class="dp-pack__price">dès 89<small>&nbsp;€/mois</small></span>
-        <span class="dp-pack__desc">On garde votre IA à jour, on l'améliore au fil du temps.</span>
-        <span class="dp-pack__arrow">Voir →</span>
+      <a class="dp-pack order-trigger" href="#" data-service="botia" data-reveal style="--d:.12s">
+        <span class="dp-pack__name">Bot IA SAV &amp; WhatsApp</span>
+        <span class="dp-pack__price">890<small>&nbsp;€</small></span>
+        <span class="dp-pack__desc">Assistant IA entraîné sur vos fichiers pour WhatsApp &amp; site web.</span>
+        <span class="dp-pack__arrow">Commander en direct →</span>
       </a>
     </div>
   </section>
@@ -338,8 +338,22 @@
     </div>
     <div class="dp-faq__list" data-reveal>
       <div class="dp-faq__item">
-        <button class="dp-faq__q" aria-expanded="false"><span>L'IA va-t-elle parler à ma place, façon robot ?</span><i></i></button>
-        <div class="dp-faq__a"><div>Non. On règle son ton sur le vôtre, et vous validez les réponses types. Le client ressent un service rapide et humain, pas un robot. Pour tout ce qui sort du cadre, c'est vous qui prenez la main.</div></div>
+        <button class="dp-faq__q" aria-expanded="false"><span>L'agent IA ou le chatbot ne risque-t-il pas de donner de fausses informations à mes clients ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Non. Nos assistants intelligents n'inventent aucune information : ils sont configurés en circuit fermé (technologie RAG) et entraînés exclusivement sur votre FAQ, vos tarifs et vos documents officiels. Si un prospect formule une question hors de ce périmètre de connaissances, l'IA lui propose poliment de lui laisser ses coordonnées pour que vous preniez le relais manuellement.</div></div>
+      </div>
+      <div class="dp-faq__item">
+        <button class="dp-faq__q" aria-expanded="false"><span>Puis-je reprendre le contrôle d'une conversation WhatsApp gérée par l'IA à tout moment ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Absolument. Vous gardez un accès total à votre boîte de réception. Dès qu'un prospect nécessite une intervention personnalisée ou que vous décidez de lui répondre vous-même, l'assistant se met en veille pour ce contact afin de vous laisser le contrôle exclusif de la conversation.</div></div>
+      </div>
+      <div class="dp-faq__item">
+        <button class="dp-faq__q" aria-expanded="false"><span>Est-il nécessaire de modifier mon numéro de téléphone actuel pour installer WhatsApp IA ?</span><i></i></button>
+        <div class="dp-faq__a"><div>Non. Nous intégrons l'agent intelligent directement sur votre numéro de téléphone professionnel ou WhatsApp Business existant via les API officielles. Vos clients conservent le même canal de contact et vos coordonnées habituelles sans aucune interruption de service.</div></div>
+      </div>
+      <div class="dp-faq__item">
+        <button class="dp-faq__q" aria-expanded="false"><span>En quoi l'automatisation d'agenda réduit-elle concrètement le taux de rendez-vous manqués ?</span><i></i></button>
+        <div class="dp-faq__a"><div>En synchronisant votre agenda avec des rappels multicanaux automatisés (e-mail à J-2 et SMS personnalisé à H-3), nous divisons par deux les oublis involontaires. De plus, nous pouvons intégrer une prise d'acompte ou une empreinte de carte bancaire sécurisée au moment de la réservation pour éliminer définitivement les no-shows.</div></div>
+      </div>
+    </div></div>
       </div>
       <div class="dp-faq__item">
         <button class="dp-faq__q" aria-expanded="false"><span>Et si je veux reprendre la main sur une conversation ?</span><i></i></button>
@@ -489,6 +503,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="js/detail.js" defer></script>
+<script src="js/order-modal.js" defer></script>
 <!-- Barre de Navigation Basse Mobile -->
 <nav class="mobile-nav-bar" aria-label="Navigation mobile">
   <a href="index.html#hero" class="mobile-nav-item" data-section="hero">

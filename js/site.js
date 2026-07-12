@@ -313,11 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { gsap.set(heroBgVideo, { opacity: 1, scale: 1 }); }, 4000);
       }
 
-      // Parallax scroll sur la vidéo
-      gsap.to(heroBgVideo, {
-        scale: 1.1, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-      });
     }
   }
 

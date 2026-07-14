@@ -1141,8 +1141,10 @@ const server = http.createServer((req, res) => {
         return res.end();
     }
 
-    // Pages HTML spéciales (sans extension dans l'URL)
-    if (urlPath === '/login') { urlPath = '/login.html'; }
+    if (urlPath === '/login') {
+        res.writeHead(302, { 'Location': clientPortalUrl() + '/login' });
+        return res.end();
+    }
     if (urlPath === '/commande-confirmee') { urlPath = '/commande-confirmee.html'; }
 
     if (urlPath === '/') urlPath = '/index.html';

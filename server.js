@@ -29,7 +29,7 @@ function stripeWebhookSecret() {
 function dashboardSecret() {
     if (process.env.DASHBOARD_SECRET) return process.env.DASHBOARD_SECRET.trim();
     try { return fs.readFileSync(path.join(SECRETS_DIR, '.dashboard-secret'), 'utf8').trim(); }
-    catch { return 'purity_fallback_secret_dev_only'; }
+    catch { return ''; }
 }
 function makeDashboardToken(orderId) {
     return crypto.createHmac('sha256', dashboardSecret()).update(orderId).digest('hex');
@@ -107,6 +107,26 @@ const SECURITY_HEADERS = {
 };
 function setSecurityHeaders(res) {
     for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
+}
+
+function isPlaceholderSecret(value, prefix) {
+    return !value || value.startsWith(prefix + '_PLACEHOLDER');
+}
+function baseUrl() {
+    const value = (process.env.BASE_URL || '').trim();
+    return /^https:\/\/[^/\s]+$/i.test(value) ? value : '';
+}
+function isBookingConfigured() {
+    const serviceAccount = googleServiceAccount();
+    return Boolean(BOOKING.calendarId && serviceAccount?.client_email && serviceAccount?.private_key);
+}
+function isStripeCheckoutConfigured() {
+    const key = stripeKey();
+    return Boolean(key && !isPlaceholderSecret(key, 'sk_test') && !isPlaceholderSecret(key, 'sk_live'));
+}
+function isStripeWebhookConfigured() {
+    const secret = stripeWebhookSecret();
+    return Boolean(secret && !secret.startsWith('whsec_PLACEHOLDER'));
 }
 
 /* ── Origin check (bloque les requêtes cross-origin sur les APIs) ── */
@@ -577,10 +597,9 @@ function handleAvailability(req, res, query) {
         return res.end(JSON.stringify({ slots: [] }));
     }
     
-    // DEMO MODE: Si pas de calendarId configuré, on renvoie simplement les créneaux trouvés sans appeler Google
-    if (!BOOKING.calendarId) {
-        res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-        return res.end(JSON.stringify({ slots: slots.map(s => s.toISOString()) }));
+    if (!isBookingConfigured()) {
+        res.writeHead(503, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+        return res.end(JSON.stringify({ error: 'booking_not_configured' }));
     }
     getGoogleToken((err, token) => {
         if (err) { console.error('[booking] token', err.message); res.writeHead(502, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify({ error: 'auth' })); }
@@ -622,10 +641,9 @@ function handleBook(req, res) {
         if (startMs < Date.now() + BOOKING.minNoticeMinutes * 60000) {
             res.writeHead(409, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify({ error: 'too_soon' }));
         }
-        if (!BOOKING.calendarId) {
-            // Mode DÉMO : on simule un succès
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ ok: true, start: new Date(startMs).toISOString(), htmlLink: '#' }));
+        if (!isBookingConfigured()) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'booking_not_configured' }));
         }
 
         getGoogleToken((err, token) => {
@@ -704,8 +722,16 @@ function handleOrderCreate(req, res) {
 
         const pack = PACK_DATA[sector];
         const id   = 'ord_' + Date.now() + '_' + crypto.randomBytes(3).toString('hex');
+        const appBaseUrl = baseUrl();
+        if (!appBaseUrl) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'base_url_not_configured' }));
+        }
+        if (!dashboardSecret()) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'dashboard_secret_not_configured' }));
+        }
         const dashboardToken = makeDashboardToken(id);
-        const baseUrl = process.env.BASE_URL || `http://${req.headers.host}`;
 
         const order = {
             id, sector,
@@ -716,7 +742,7 @@ function handleOrderCreate(req, res) {
             createdAt: new Date().toISOString(),
             stripeSessionId: '',
             dashboardToken,
-            dashboardUrl: `${baseUrl}/dashboard?order=${id}&token=${dashboardToken}`,
+            dashboardUrl: `${appBaseUrl}/dashboard?order=${id}&token=${dashboardToken}`,
         };
 
         // Toujours sauvegarder avant d'appeler Stripe (0 commande perdue)
@@ -728,10 +754,9 @@ function handleOrderCreate(req, res) {
         logLead({ name, email, phone, activity: sector, need: `[COMMANDE] ${pack.pack} — ${pack.deposit}€ acompte` });
 
         const key = stripeKey();
-        if (!key || key.startsWith('sk_test_PLACEHOLDER')) {
-            // Mode DÉMO : simuler une session Stripe
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ sessionUrl: `${baseUrl}/commande-confirmee?order=${id}&demo=1` }));
+        if (!isStripeCheckoutConfigured()) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'stripe_not_configured' }));
         }
 
         try {
@@ -752,8 +777,8 @@ function handleOrderCreate(req, res) {
                 }],
                 mode: 'payment',
                 customer_email: email,
-                success_url: `${baseUrl}/commande-confirmee?order=${id}&session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${baseUrl}/#tarifs`,
+                success_url: `${appBaseUrl}/commande-confirmee?order=${id}&session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${appBaseUrl}/#tarifs`,
                 metadata: { orderId: id },
             });
 
@@ -780,17 +805,13 @@ function handleStripeWebhook(req, res) {
         const secret = stripeWebhookSecret();
         let event;
         try {
-            if (!secret || secret.startsWith('whsec_PLACEHOLDER')) {
-                // Mode démo : parse sans vérification
-                event = JSON.parse(rawBody.toString());
-            } else {
-                const Stripe = require('stripe');
-                const stripe = Stripe(stripeKey());
-                event = stripe.webhooks.constructEvent(rawBody, sig, secret);
-            }
+            if (!isStripeWebhookConfigured()) throw new Error('stripe_webhook_not_configured');
+            const Stripe = require('stripe');
+            const stripe = Stripe(stripeKey());
+            event = stripe.webhooks.constructEvent(rawBody, sig, secret);
         } catch (e) {
             console.error('[webhook] signature', e.message);
-            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.writeHead(e.message === 'stripe_webhook_not_configured' ? 503 : 400, { 'Content-Type': 'text/plain' });
             return res.end('Webhook signature invalid');
         }
 
@@ -860,6 +881,87 @@ function handleOrderGet(req, res, orderId, token) {
     res.end(JSON.stringify(safe));
 }
 
+/* ── Client : login via email (magic link) ── */
+function handleClientLogin(req, res) {
+    if (rateLimited(req)) { res.writeHead(429, { 'Retry-After': '60' }); return res.end(); }
+    let body = '';
+    req.on('data', c => { body += c; if (body.length > 1000) req.destroy(); });
+    req.on('end', () => {
+        let data = {}; try { data = JSON.parse(body) || {}; } catch { /* ignore */ }
+        const email = String(data.email || '').slice(0, 200).trim().toLowerCase();
+        
+        if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'invalid_email' }));
+        }
+
+        let matchedOrder = null;
+        try {
+            if (fs.existsSync(ORDERS_DIR)) {
+                const files = fs.readdirSync(ORDERS_DIR).filter(f => f.endsWith('.json') && f !== '.gitkeep');
+                const orders = files.map(f => {
+                    try { return JSON.parse(fs.readFileSync(path.join(ORDERS_DIR, f), 'utf8')); }
+                    catch { return null; }
+                }).filter(Boolean).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                matchedOrder = orders.find(o => o.email && o.email.toLowerCase() === email);
+            }
+        } catch (e) {
+            console.error('[client_login] read orders', e.message);
+        }
+
+        if (matchedOrder) {
+            const resendApiKey = resendKey();
+            if (resendApiKey) {
+                const appBaseUrl = process.env.APP_URL || `http://${req.headers.host}`;
+                const magicLink = `${appBaseUrl}/dashboard.html?order=${matchedOrder.id}&token=${matchedOrder.token}`;
+                
+                const html = `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
+                    <h2 style="color: #7C3AED;">Purity Agency</h2>
+                    <p>Bonjour ${escapeHtml(matchedOrder.clientName || '')},</p>
+                    <p>Voici votre lien d'accès magique pour vous connecter à votre Espace Client :</p>
+                    <p style="margin: 2rem 0;">
+                        <a href="${magicLink}" style="background-color: #7C3AED; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 99px; font-weight: bold;">Accéder à mon tableau de bord</a>
+                    </p>
+                    <p>Ce lien est personnel et sécurisé. Si vous n'avez pas demandé cet accès, vous pouvez ignorer cet e-mail.</p>
+                </div>`;
+                
+                const payload = JSON.stringify({
+                    from: CONTACT_FROM,
+                    to: [email],
+                    subject: 'Votre lien magique Espace Client',
+                    html
+                });
+                
+                const rreq = https.request({
+                    method: 'POST',
+                    hostname: 'api.resend.com',
+                    path: '/emails',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Content-Length': Buffer.byteLength(payload),
+                        'Authorization': `Bearer ${resendApiKey}`
+                    }
+                }, rres => {
+                    let d = ''; rres.on('data', x => d += x);
+                    rres.on('end', () => {
+                        if (rres.statusCode >= 400) console.error('[client_login] resend failed', rres.statusCode, d);
+                    });
+                });
+                rreq.on('error', e => console.error('[client_login] resend error', e.message));
+                rreq.write(payload);
+                rreq.end();
+            } else {
+                console.warn('[client_login] No resend API key configured to send magic link');
+            }
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true }));
+    });
+}
+
 /* ── Admin : login ── */
 function handleAdminLogin(req, res) {
     let body = '';
@@ -881,7 +983,8 @@ function handleAdminLogin(req, res) {
         }
         const token = crypto.randomBytes(32).toString('hex');
         ADMIN_SESSIONS.set(token, { at: Date.now() });
-        res.setHeader('Set-Cookie', `admin_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=86400`);
+        const secureFlag = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+        res.setHeader('Set-Cookie', `admin_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=86400${secureFlag}`);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
     });
@@ -981,7 +1084,17 @@ const server = http.createServer((req, res) => {
     // Health check (monitoring / load balancer)
     if (urlPath === '/health') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ status: 'ok', ts: Date.now() }));
+        return res.end(JSON.stringify({
+            status: 'ok',
+            ts: Date.now(),
+            config: {
+                baseUrl: Boolean(baseUrl()),
+                dashboardSecret: Boolean(dashboardSecret()),
+                stripeCheckout: isStripeCheckoutConfigured(),
+                stripeWebhook: isStripeWebhookConfigured(),
+                booking: isBookingConfigured(),
+            },
+        }));
     }
 
     // API : assistant IA (proxy Gemini) — même origine uniquement
@@ -1047,6 +1160,13 @@ const server = http.createServer((req, res) => {
             const query = new URLSearchParams(req.url.split('?')[1] || '');
             return handleOrderGet(req, res, orderMatch[1], query.get('token') || '');
         }
+    }
+
+    // POST /api/client/login
+    if (urlPath === '/api/client/login') {
+        if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
+        if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
+        return handleClientLogin(req, res);
     }
 
     // POST /api/admin/login

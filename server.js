@@ -26,45 +26,6 @@ function stripeWebhookSecret() {
 }
 
 /* ── Dashboard HMAC token ── */
-function dashboardSecret() {
-    if (process.env.DASHBOARD_SECRET) return process.env.DASHBOARD_SECRET.trim();
-    try { return fs.readFileSync(path.join(SECRETS_DIR, '.dashboard-secret'), 'utf8').trim(); }
-    catch { return ''; }
-}
-function makeDashboardToken(orderId) {
-    return crypto.createHmac('sha256', dashboardSecret()).update(orderId).digest('hex');
-}
-function validDashboardToken(orderId, token) {
-    if (!token || token.length !== 64) return false;
-    try {
-        const expected = Buffer.from(makeDashboardToken(orderId), 'hex');
-        const actual = Buffer.from(token, 'hex');
-        if (expected.length !== actual.length) return false;
-        return crypto.timingSafeEqual(expected, actual);
-    } catch { return false; }
-}
-
-/* ── Admin session (in-memory, redémarre si le serveur redémarre) ── */
-const ADMIN_SESSIONS = new Map();
-setInterval(() => {
-    const cutoff = Date.now() - 24 * 3600 * 1000;
-    for (const [k, v] of ADMIN_SESSIONS) if (v.at < cutoff) ADMIN_SESSIONS.delete(k);
-}, 3600 * 1000).unref();
-
-function getAdminSession(req) {
-    const cookie = req.headers['cookie'] || '';
-    const m = cookie.match(/admin_session=([a-f0-9]{64})/);
-    return m ? ADMIN_SESSIONS.has(m[1]) : false;
-}
-
-function adminPasswordHash() {
-    try {
-        const raw = fs.readFileSync(path.join(SECRETS_DIR, '.admin-password'), 'utf8');
-        const line = raw.split('\n').find(l => l.trim() && !l.startsWith('#'));
-        return line ? line.trim() : '';
-    } catch { return ''; }
-}
-
 /* ── Pack data (prix en euros, acompte 30%) ── */
 const PACK_DATA = {
     coiffure:  { name: 'Coiffure & Beauté',      pack: 'Pack Agenda Plein',       price: 1290, deposit: 387, remaining: 903,  monthly: 69 },
@@ -127,6 +88,52 @@ function isStripeCheckoutConfigured() {
 function isStripeWebhookConfigured() {
     const secret = stripeWebhookSecret();
     return Boolean(secret && !secret.startsWith('whsec_PLACEHOLDER'));
+}
+
+function clientPortalUrl() {
+    const value = (process.env.CLIENT_PORTAL_URL || '').trim();
+    if (/^https?:\/\/[^/\s]+(?::\d+)?$/i.test(value)) return value;
+    return process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+}
+
+function internalApiSecret() {
+    if (process.env.INTERNAL_API_SECRET) return process.env.INTERNAL_API_SECRET.trim();
+    try { return fs.readFileSync(path.join(SECRETS_DIR, '.internal-api-secret'), 'utf8').trim(); }
+    catch { return ''; }
+}
+
+function provisionPortalClient(order) {
+    const portalUrl = clientPortalUrl();
+    if (!portalUrl) return;
+    const internalSecret = internalApiSecret();
+    if (!internalSecret) return;
+
+    const endpoint = new URL('/api/internal/provision', portalUrl);
+    const payload = JSON.stringify({
+        email: order.email,
+        name: order.clientName || order.company,
+        projectName: order.pack
+    });
+    const lib = endpoint.protocol === 'https:' ? https : http;
+
+    const req = lib.request({
+        method: 'POST',
+        hostname: endpoint.hostname,
+        port: endpoint.port || (endpoint.protocol === 'https:' ? 443 : 80),
+        path: endpoint.pathname,
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(payload),
+            'Authorization': `Bearer ${internalSecret}`
+        }
+    }, res => {
+        let d = ''; res.on('data', x => d += x); res.on('end', () => {
+            if (res.statusCode >= 400) console.error('[provision] failed', res.statusCode, d.slice(0, 300));
+        });
+    });
+    req.on('error', e => console.error('[provision] network error', e.message));
+    req.write(payload);
+    req.end();
 }
 
 /* ── Origin check (bloque les requêtes cross-origin sur les APIs) ── */
@@ -599,7 +606,7 @@ function handleAvailability(req, res, query) {
     
     if (!isBookingConfigured()) {
         res.writeHead(503, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-        return res.end(JSON.stringify({ error: 'booking_not_configured' }));
+        return res.end(JSON.stringify({ error: 'not_configured' }));
     }
     getGoogleToken((err, token) => {
         if (err) { console.error('[booking] token', err.message); res.writeHead(502, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify({ error: 'auth' })); }
@@ -643,7 +650,7 @@ function handleBook(req, res) {
         }
         if (!isBookingConfigured()) {
             res.writeHead(503, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'booking_not_configured' }));
+            return res.end(JSON.stringify({ error: 'not_configured' }));
         }
 
         getGoogleToken((err, token) => {
@@ -727,12 +734,6 @@ function handleOrderCreate(req, res) {
             res.writeHead(503, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ error: 'base_url_not_configured' }));
         }
-        if (!dashboardSecret()) {
-            res.writeHead(503, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'dashboard_secret_not_configured' }));
-        }
-        const dashboardToken = makeDashboardToken(id);
-
         const order = {
             id, sector,
             pack: pack.pack, name: pack.name,
@@ -741,8 +742,7 @@ function handleOrderCreate(req, res) {
             status: 'pending',
             createdAt: new Date().toISOString(),
             stripeSessionId: '',
-            dashboardToken,
-            dashboardUrl: `${appBaseUrl}/dashboard?order=${id}&token=${dashboardToken}`,
+            dashboardUrl: `${appBaseUrl}/login`,
         };
 
         // Toujours sauvegarder avant d'appeler Stripe (0 commande perdue)
@@ -825,6 +825,8 @@ function handleStripeWebhook(req, res) {
                 order.stripePaymentIntent = session.payment_intent || '';
                 writeOrder(order);
 
+                provisionPortalClient(order);
+
                 // Email de confirmation au client
                 const resendApiKey = resendKey();
                 if (resendApiKey) {
@@ -894,71 +896,46 @@ function handleClientLogin(req, res) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ error: 'invalid_email' }));
         }
-
-        let matchedOrder = null;
-        try {
-            if (fs.existsSync(ORDERS_DIR)) {
-                const files = fs.readdirSync(ORDERS_DIR).filter(f => f.endsWith('.json') && f !== '.gitkeep');
-                const orders = files.map(f => {
-                    try { return JSON.parse(fs.readFileSync(path.join(ORDERS_DIR, f), 'utf8')); }
-                    catch { return null; }
-                }).filter(Boolean).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                
-                matchedOrder = orders.find(o => o.email && o.email.toLowerCase() === email);
-            }
-        } catch (e) {
-            console.error('[client_login] read orders', e.message);
+        const portalUrl = clientPortalUrl();
+        if (!portalUrl) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'client_portal_not_configured' }));
         }
 
-        if (matchedOrder) {
-            const resendApiKey = resendKey();
-            if (resendApiKey) {
-                const appBaseUrl = process.env.APP_URL || `http://${req.headers.host}`;
-                const magicLink = `${appBaseUrl}/dashboard.html?order=${matchedOrder.id}&token=${matchedOrder.token}`;
-                
-                const html = `
-                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
-                    <h2 style="color: #7C3AED;">Purity Agency</h2>
-                    <p>Bonjour ${escapeHtml(matchedOrder.clientName || '')},</p>
-                    <p>Voici votre lien d'accès magique pour vous connecter à votre Espace Client :</p>
-                    <p style="margin: 2rem 0;">
-                        <a href="${magicLink}" style="background-color: #7C3AED; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 99px; font-weight: bold;">Accéder à mon tableau de bord</a>
-                    </p>
-                    <p>Ce lien est personnel et sécurisé. Si vous n'avez pas demandé cet accès, vous pouvez ignorer cet e-mail.</p>
-                </div>`;
-                
-                const payload = JSON.stringify({
-                    from: CONTACT_FROM,
-                    to: [email],
-                    subject: 'Votre lien magique Espace Client',
-                    html
-                });
-                
-                const rreq = https.request({
-                    method: 'POST',
-                    hostname: 'api.resend.com',
-                    path: '/emails',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Content-Length': Buffer.byteLength(payload),
-                        'Authorization': `Bearer ${resendApiKey}`
-                    }
-                }, rres => {
-                    let d = ''; rres.on('data', x => d += x);
-                    rres.on('end', () => {
-                        if (rres.statusCode >= 400) console.error('[client_login] resend failed', rres.statusCode, d);
-                    });
-                });
-                rreq.on('error', e => console.error('[client_login] resend error', e.message));
-                rreq.write(payload);
-                rreq.end();
-            } else {
-                console.warn('[client_login] No resend API key configured to send magic link');
-            }
-        }
+        const endpoint = new URL('/api/client-login', portalUrl);
+        const payload = JSON.stringify({ email });
+        const lib = endpoint.protocol === 'https:' ? https : http;
 
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: true }));
+        const proxyReq = lib.request({
+            method: 'POST',
+            hostname: endpoint.hostname,
+            port: endpoint.port || (endpoint.protocol === 'https:' ? 443 : 80),
+            path: endpoint.pathname,
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(payload),
+            },
+        }, proxyRes => {
+            let proxyData = '';
+            proxyRes.on('data', x => proxyData += x);
+            proxyRes.on('end', () => {
+                if (proxyRes.statusCode >= 400) {
+                    console.error('[client_login] portal', proxyRes.statusCode, proxyData.slice(0, 300));
+                    res.writeHead(502, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ error: 'portal_unavailable' }));
+                }
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ ok: true }));
+            });
+        });
+
+        proxyReq.on('error', e => {
+            console.error('[client_login] portal network', e.message);
+            res.writeHead(502, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'portal_unavailable' }));
+        });
+        proxyReq.write(payload);
+        proxyReq.end();
     });
 }
 
@@ -1151,17 +1128,6 @@ const server = http.createServer((req, res) => {
         return handleStripeWebhook(req, res);
     }
 
-    // GET /api/order/:id?token=HMAC
-    {
-        const orderMatch = urlPath.match(/^\/api\/order\/(ord_[0-9]+_[a-z0-9]{6})$/);
-        if (orderMatch) {
-            if (req.method !== 'GET') { res.writeHead(405); return res.end('Method Not Allowed'); }
-            if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
-            const query = new URLSearchParams(req.url.split('?')[1] || '');
-            return handleOrderGet(req, res, orderMatch[1], query.get('token') || '');
-        }
-    }
-
     // POST /api/client/login
     if (urlPath === '/api/client/login') {
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
@@ -1169,35 +1135,15 @@ const server = http.createServer((req, res) => {
         return handleClientLogin(req, res);
     }
 
-    // POST /api/admin/login
-    if (urlPath === '/api/admin/login') {
-        if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
-        if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
-        if (rateLimited(req)) { res.writeHead(429, { 'Retry-After': '60' }); return res.end(); }
-        return handleAdminLogin(req, res);
-    }
-
-    // GET /api/admin/orders
-    if (urlPath === '/api/admin/orders') {
-        if (req.method !== 'GET') { res.writeHead(405); return res.end('Method Not Allowed'); }
-        if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
-        return handleAdminOrders(req, res);
-    }
-
-    // POST /api/admin/order/:id/status
-    {
-        const statusMatch = urlPath.match(/^\/api\/admin\/order\/(ord_[0-9]+_[a-z0-9]{6})\/status$/);
-        if (statusMatch) {
-            if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
-            if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
-            return handleAdminOrderStatus(req, res, statusMatch[1]);
-        }
+    // Redirections pour dashboard et admin (supprimés) vers login
+    if (urlPath === '/dashboard' || urlPath === '/dashboard.html' || urlPath === '/admin' || urlPath === '/admin.html') {
+        res.writeHead(301, { 'Location': '/login' });
+        return res.end();
     }
 
     // Pages HTML spéciales (sans extension dans l'URL)
-    if (urlPath === '/dashboard') { urlPath = '/dashboard.html'; }
+    if (urlPath === '/login') { urlPath = '/login.html'; }
     if (urlPath === '/commande-confirmee') { urlPath = '/commande-confirmee.html'; }
-    if (urlPath === '/admin') { urlPath = '/admin.html'; }
 
     if (urlPath === '/') urlPath = '/index.html';
 

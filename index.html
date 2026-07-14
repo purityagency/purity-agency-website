@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agence Web Charleroi — Sites, SEO & IA pour PME | Purity Agency</title>
 <meta name="description" content="Votre site, votre visibilité Google et vos automatisations IA — livrés en 7 jours, à partir de 490 €. Purity Agency accompagne les PME et indépendants de Charleroi et toute la Wallonie.">
@@ -60,6 +61,7 @@
     <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
     <a href="blog.html" data-i18n="nav.blog">Blog</a>
     <a href="#contact" data-i18n="nav.contact">Contact</a>
+    <a href="http://localhost:3000/login" style="color: var(--c-accent); font-weight: 500;">Espace Client <svg style="display:inline-block; width:14px; height:14px; margin-left:4px; vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </nav>
   <div class="nav__actions">
     <!-- Sélecteur de langue -->
@@ -101,6 +103,7 @@
     <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
     <a href="blog.html" data-i18n="nav.blog">Blog</a>
     <a href="#contact" data-i18n="nav.contact">Contact</a>
+    <a href="http://localhost:3000/login" style="color: var(--c-accent); font-weight: 500;">Espace Client <svg style="display:inline-block; width:14px; height:14px; margin-left:4px; vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <a href="#booking" class="btn btn--accent" style="margin-top: .5rem;">📅 Réserver un appel</a>
   </nav>
 </div>
@@ -546,7 +549,7 @@
               <li>
                 <div class="brique-item-row">
                   <span class="brique-name">Refonte de site existant</span>
-                  <span class="brique-price">sur devis</span>
+                  <a href="#contact" class="brique-price sur-devis-link contact-preselect" data-contact-preselect="Site web / Refonte" style="color:var(--c-accent); text-decoration:none; display:flex; align-items:center;">sur devis <svg style="width:14px;height:14px;margin-left:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
                 </div>
                 <p class="brique-desc">Audit, optimisation vitesse, redesign. <strong>Sans repartir de zéro</strong> si la base est saine.</p>
               </li>
@@ -1488,5 +1491,15 @@
   </a>
 </nav>
 
+<script>
+function preselectContact(serviceName) {
+  const formTab = document.getElementById('tab-form');
+  if (formTab) formTab.click();
+  setTimeout(() => {
+    const chip = document.querySelector(`.activity-chip[data-value="${serviceName}"]`);
+    if (chip) chip.click();
+  }, 100);
+}
+</script>
 </body>
 </html>

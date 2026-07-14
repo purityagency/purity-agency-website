@@ -1837,3 +1837,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+// --- Gestion du preselect contact (depuis bouton 'sur devis') ---
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.contact-preselect').forEach(el => {
+    el.addEventListener('click', (e) => {
+      const serviceName = el.getAttribute('data-contact-preselect');
+      const formTab = document.getElementById('tab-form');
+      if (formTab) formTab.click();
+      setTimeout(() => {
+        const chip = document.querySelector(.activity-chip[data-value="${serviceName}"]);
+        if (chip) chip.click();
+      }, 100);
+    });
+  });
+});

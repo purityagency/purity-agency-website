@@ -26,10 +26,11 @@ L'application sera divisée en domaines métiers indépendants pour garantir son
 
 ## 4. Modèle de Données (Core Schema)
 *   **User** : `id`, `email`, `role`, `name`, `createdAt`.
-*   **Project** : `id`, `clientId` (relation User), `name`, `status`, `progress`, `estimatedDelivery`.
-*   **Stage** : `id`, `projectId`, `title`, `description`, `status` (PENDING, ACTIVE, COMPLETED), `orderIndex`.
+*   **Project** : `id`, `clientId` (relation User), `name`, `status`, `estimatedDelivery`. (Progression calculée dynamiquement).
+*   **Stage** : `id`, `projectId`, `title`, `description`, `status` (PENDING, IN_PROGRESS, WAITING_CLIENT, BLOCKED, REVIEW, COMPLETED), `orderIndex`.
 *   **Message** : `id`, `stageId` (optionnel), `authorId`, `content`, `createdAt`.
-*   **Document** : `id`, `projectId`, `type` (INVOICE, ASSET, CONTRACT), `url`, `uploadedBy`.
+*   **Document** : `id`, `projectId`, `type` (INVOICE, ASSET, CONTRACT), `url`, `filename`, `filesize`, `mimeType`, `uploadedBy`, `uploadedAt`.
+*   **Payment** : `id`, `projectId`, `amount`, `status`, `type` (QUOTE, INVOICE, PAYMENT), `createdAt`.
 
 ## 5. Expérience Utilisateur (UX)
 - **Minimalisme & Premium :** Esthétique "Liquid Glass", fond noir (`#060309`), accents violets (`#7C3AED`), pas de surcharge cognitive.

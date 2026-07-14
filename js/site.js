@@ -1846,7 +1846,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formTab = document.getElementById('tab-form');
       if (formTab) formTab.click();
       setTimeout(() => {
-        const chip = document.querySelector(.activity-chip[data-value="${serviceName}"]);
+        const chip = document.querySelector(`.activity-chip[data-value="${serviceName}"]`);
         if (chip) chip.click();
       }, 100);
     });

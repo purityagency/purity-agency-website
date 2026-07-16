@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta property="og:image" content="https://purity-agency.be/assets/logo.png">
 <title>Votre site ne convertit pas : 7 raisons fréquentes (et solutions) | Purity Agency</title>
-<meta name="description" content="Du trafic mais peu d'appels ou de demandes ? Les 7 fuites les plus courantes d'un site web — vitesse, message, mobile, confiance, appel à l'action — et comment les corriger une par une.">
+<meta name="description" content="Audit de conversion web : 7 erreurs techniques et UX qui détruisent votre ROI, et comment transformer votre site en machine d'acquisition B2B.">
 <link rel="canonical" href="https://purity-agency.be/article-site-ne-convertit-pas.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <meta property="og:title" content="Votre site ne convertit pas : 7 raisons fréquentes (et solutions)">
-<meta property="og:description" content="Les 7 fuites les plus courantes d'un site web, et comment les corriger une par une.">
+<meta property="og:description" content="Audit de conversion web : 7 erreurs techniques et UX qui détruisent votre ROI, et comment transformer votre site en machine d'acquisition B2B.">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="fr_BE">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
@@ -49,16 +49,44 @@
   </nav>
 </div>
 
+  <div class="scroll-progress-container"><div class="scroll-progress-bar" id="scrollBar"></div></div>
+<script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("scrollBar").style.width = scrolled + "%";
+  });
+</script>
+
   <main>
-    <article class="article">
-      <a class="back-link" href="blog.html">… Tous les articles</a>
-      <header class="article-hero">
-        <p class="eyebrow">Conversion</p>
-        <h1>Votre site ne convertit pas : 7 raisons fréquentes (et comment y remédier)</h1>
-        <p class="article-meta">11 min de lecture · Mis à jour en juin 2026</p>
+      <header class="article-hero--premium">
+        <div class="article-hero__inner">
+          <div class="article-hero__content">
+            <p class="eyebrow">Conversion</p>
+            <h1>Votre site ne convertit pas : 7 raisons fréquentes (et comment y remédier)</h1>
+            <div class="article-meta">
+               <span>11 min de lecture · Mis à jour en juin 2026</span>
+            </div>
+          </div>
+          <div class="article-hero__visual">
+            <div class="glass-abstract">
+              <div class="viz-glass-node" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center">
+                <i class="viz-orb viz-orb--accent" style="width:150px; height:150px; filter:blur(40px)"></i>
+                <i class="viz-geometric-cross" style="width:60px; height:60px; color:rgba(255,255,255,0.8)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
-      <div class="prose">
+      <div class="article-layout">
+        <aside class="article-sidebar">
+          <a class="back-link" href="blog.html">← Tous les articles</a>
+        </aside>
+        
+        <article class="article-content">
+          <div class="prose">
         <p class="lead">Vous avez des visiteurs, mais peu d'appels, peu de demandes de devis, peu de ventes. Frustrant — surtout quand le site a coûté du temps et de l'argent. La bonne nouvelle : un site qui ne convertit pas a presque toujours des raisons identifiables. Voici les sept fuites les plus courantes, et comment les colmater.</p>
 
         <h2>1. Il est trop lent</h2>
@@ -94,13 +122,13 @@
         <h2>Par où commencer ?</h2>
         <p>Reprenez ces sept points et notez honnêtement où vous en êtes. Le plus souvent, deux ou trois fuites expliquent l'essentiel du problème — et les corriger ne demande pas de tout refaire. Si vous ne savez pas par quel bout commencer, un regard extérieur permet souvent de repérer en quelques minutes ce qui vous échappe parce que vous le voyez tous les jours.</p>
       </div>
-    </article>
-
-    <aside class="article-cta">
+          <aside class="article-cta">
       <h2>On audite votre site, vous repartez avec des pistes.</h2>
       <p>20 minutes pour passer votre site au crible et identifier vos principales fuites de conversion. Gratuit, sans engagement.</p>
       <a class="btn btn--accent" href="index.html#contact"><span>Réserver mon appel gratuit</span></a>
     </aside>
+        </article>
+      </div>
   </main>
 
   <footer id="footer">

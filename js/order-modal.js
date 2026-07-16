@@ -8,10 +8,17 @@
   // 1. CATALOGUE COMPLET DES SERVICES
   var SERVICES = {
     // ── Présence en ligne (presence.html) ──
+    'googlebiz': {
+      id: 'googlebiz',
+      name: 'Fiche Google Business (Setup)',
+      price: 290,
+      engage: 'Paiement unique pour le setup complet',
+      features: ['Création/optimisation complète de la fiche Google Business', 'Optimisation des mots-clés locaux', 'Stratégie de collecte d\'avis Google', 'Catégories et attributs configurés']
+    },
     'landing': {
       id: 'landing',
       name: 'Landing Page',
-      price: 390,
+      price: 490,
       engage: 'Acompte de 50 % à la commande, solde à la livraison',
       features: ['Création d\'une page unique ultra-optimisée', 'Intégration d\'un formulaire de contact/devis', 'Adaptation mobile-first réactive', 'Mise en place du tracking analytics', 'SEO technique de base']
     },
@@ -20,21 +27,21 @@
       name: 'Site Vitrine Pro',
       price: 1490,
       engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Site complet de 5 pages sur-mesure', 'Identité visuelle adaptée et soignée', 'Optimisation SEO locale poussée', 'Fiche Google My Business configurée', 'Formation d\'administration autonome (30 min)']
+      features: ['Site complet de 5 pages sur-mesure', 'Identité visuelle adaptée et soignée', 'Optimisation SEO locale poussée', 'Fiche Google My Business configurée', 'Livret de prise en main et tutoriels inclus']
     },
     'complet': {
       id: 'complet',
       name: 'Site Complet & Business',
       price: 2490,
       engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Site vitrine étendu avec blog/actualités', 'Automatisation d\'un premier outil (rendez-vous ou avis)', 'SEO avancé sur-mesure', 'Intégration newsletter et réseaux sociaux', 'Formation d\'administration avancée (30 min)']
+      features: ['Site vitrine étendu avec blog/actualités', 'Automatisation d\'un premier outil (rendez-vous ou avis)', 'SEO avancé sur-mesure', 'Intégration newsletter et réseaux sociaux', 'Guides détaillés et vidéos tutorielles inclus']
     },
     'ecommerce': {
       id: 'ecommerce',
       name: 'Boutique E-commerce',
       price: 3800,
       engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Boutique en ligne complète (jusqu\'à 50 produits)', 'Système de paiement Stripe & Bancontact sécurisé', 'Gestion des stocks et commandes automatisée', 'Emails de confirmation et factures automatiques', 'Formation complète à la gestion de boutique (30 min)']
+      features: ['Boutique en ligne complète (jusqu\'à 50 produits)', 'Système de paiement Stripe & Bancontact sécurisé', 'Gestion des stocks et commandes automatisée', 'Emails de confirmation et factures automatiques', 'Livret d\'utilisation complet pour gérer votre boutique']
     },
 
     // ── Acquisition Clients (acquisition.html) ──
@@ -80,7 +87,7 @@
       name: 'Workflow Entreprise',
       price: 1990,
       engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Cartographie de vos flux actuels', 'Automatisation des tâches répétitives (Make/Zapier)', 'Liaison automatisée Devis -> Facture -> Relance', 'Formation d\'utilisation pour vos équipes']
+      features: ['Cartographie de vos flux actuels', 'Automatisation des tâches répétitives (Make/Zapier)', 'Liaison automatisée Devis -> Facture -> Relance', 'Documentation et guides vidéo pour vos équipes']
     },
 
     // ── Outils sur-mesure (outils.html) ──
@@ -123,10 +130,10 @@
 
   // 2. INJECTION DYNAMIQUE DE L'HTML DU MODAL
   function injectModalHTML() {
-    if (document.getElementById('ob-modal')) return;
+    if (document.getElementById('order-modal')) return;
 
     var modalDiv = document.createElement('div');
-    modalDiv.id = 'ob-modal';
+    modalDiv.id = 'order-modal';
     modalDiv.className = 'ob-modal';
     modalDiv.setAttribute('role', 'dialog');
     modalDiv.setAttribute('aria-modal', 'true');
@@ -167,7 +174,7 @@
               
               '<div class="ob-form">' +
                 '<div class="ob-form__row">' +
-                  '<div class="ob-field"><label for="ob-f-company">Entreprise <span class="ob-req">*</span></label><input type="text" id="ob-f-company" placeholder="Ex: Menuiserie Dupont" required></div>' +
+                  '<div class="ob-field"><label for="ob-svc-company">Entreprise <span class="ob-req">*</span></label><input type="text" id="ob-svc-company" placeholder="Ex: Menuiserie Dupont" required></div>' +
                   '<div class="ob-field"><label for="ob-f-tva">N° de TVA (facultatif)</label><input type="text" id="ob-f-tva" placeholder="Ex: BE 0123.456.789"></div>' +
                 '</div>' +
                 '<div class="ob-form__row">' +
@@ -191,8 +198,8 @@
           '<div class="ob-panel" data-step="3" hidden>' +
             '<div class="ob-panel__inner">' +
               '<span class="ob-eyebrow">Étape 3 sur 4 · Planification</span>' +
-              '<h2 class="ob-h2">Votre créneau de livraison &amp; formation</h2>' +
-              '<p class="ob-sub">Votre projet sera prêt à J+5. Choisissez votre heure de livraison et formation (30 min d\'appel visio).</p>' +
+              '<h2 class="ob-h2">Votre appel de livraison</h2>' +
+              '<p class="ob-sub">Votre projet sera prêt à J+5. Choisissez votre heure pour l\'appel de remise du projet et de vos guides (15 min en visio).</p>' +
               
               '<div class="ob-date-recap">' +
                 '<span class="ob-date-recap__label">Date cible de livraison (J+5 ouvrés) :</span>' +
@@ -222,8 +229,8 @@
                   '<div class="ob-field"><label for="ob-f-lastname">Nom <span class="ob-req">*</span></label><input type="text" id="ob-f-lastname" required autocomplete="family-name"></div>' +
                 '</div>' +
                 '<div class="ob-form__row">' +
-                  '<div class="ob-field"><label for="ob-f-email">E-mail de contact <span class="ob-req">*</span></label><input type="email" id="ob-f-email" required autocomplete="email"></div>' +
-                  '<div class="ob-field"><label for="ob-f-phone">Téléphone <span class="ob-req">*</span></label><input type="tel" id="ob-f-phone" required autocomplete="tel"></div>' +
+                  '<div class="ob-field"><label for="ob-svc-email">E-mail de contact <span class="ob-req">*</span></label><input type="email" id="ob-svc-email" required autocomplete="email"></div>' +
+                  '<div class="ob-field"><label for="ob-svc-phone">Téléphone <span class="ob-req">*</span></label><input type="tel" id="ob-svc-phone" required autocomplete="tel"></div>' +
                 '</div>' +
                 '<div class="ob-field"><label for="ob-f-address">Adresse de facturation <span class="ob-req">*</span></label><input type="text" id="ob-f-address" placeholder="Rue, N°, Code Postal, Ville" required>' +
                 '</div>' +
@@ -274,7 +281,7 @@
 
   // 3. LOGIQUE GLOBALE & NAVIGATION
   function showPanel(step, fromRight) {
-    var modal = document.getElementById('ob-modal');
+    var modal = document.getElementById('order-modal');
     if (!modal) return;
 
     var panels = modal.querySelectorAll('.ob-panel');
@@ -426,7 +433,7 @@
     selectedDateTime = null;
     currentStep = 1;
 
-    var modal = document.getElementById('ob-modal');
+    var modal = document.getElementById('order-modal');
     var shell = modal.querySelector('.ob-shell');
     var title = document.getElementById('ob-modal-title');
     if (title) title.innerHTML = 'Commander : <em>' + service.name + '</em>';
@@ -465,7 +472,7 @@
   }
 
   function closeOrderModal() {
-    var modal = document.getElementById('ob-modal');
+    var modal = document.getElementById('order-modal');
     if (!modal) return;
 
     var shell = modal.querySelector('.ob-shell');
@@ -487,7 +494,7 @@
 
   // 5. GESTION DES CLICS & FORMULAIRE
   function setupEventHandlers() {
-    var modal = document.getElementById('ob-modal');
+    var modal = document.getElementById('order-modal');
     if (!modal) return;
 
     // Close buttons
@@ -512,7 +519,7 @@
     var next2 = document.getElementById('ob-next-2');
     if (next2) {
       next2.onclick = function () {
-        var comp = document.getElementById('ob-f-company').value.trim();
+        var comp = document.getElementById('ob-svc-company').value.trim();
         var sector = document.getElementById('ob-f-sector').value.trim();
         var goals = document.getElementById('ob-f-goals').value.trim();
 
@@ -559,44 +566,66 @@
         var targetDate = getTargetDateJ5();
         var formattedRdv = formatFrenchDate(targetDate) + ' à ' + selectedDateTime;
 
+        var errorBox = document.getElementById('ob-form-error');
+        if (errorBox) errorBox.hidden = true;
+
+        var company = document.getElementById('ob-svc-company').value.trim();
+        var tva = document.getElementById('ob-f-tva').value.trim();
+        var sector = document.getElementById('ob-f-sector').value.trim();
+        var goals = document.getElementById('ob-f-goals').value.trim();
+        var style = document.getElementById('ob-f-style').value.trim();
+        var inspiration = document.getElementById('ob-f-inspiration').value.trim();
+        var firstname = document.getElementById('ob-f-firstname').value.trim();
+        var lastname = document.getElementById('ob-f-lastname').value.trim();
+        var email = document.getElementById('ob-svc-email').value.trim();
+        var phone = document.getElementById('ob-svc-phone').value.trim();
+        var address = document.getElementById('ob-f-address').value.trim();
+
+        var optionNames = OPTIONS.filter(function (opt) { return selectedOptions[opt.id]; })
+          .map(function (opt) { return opt.name; });
+
+        var needLines = [
+          'Commande directe : ' + currentService.name + ' (' + currentService.price + ' €, ' + currentService.engage + ')',
+          optionNames.length ? 'Options : ' + optionNames.join(', ') : null,
+          'Entreprise : ' + (company || '—') + (tva ? ' — TVA ' + tva : ''),
+          'Objectif du site : ' + (goals || '—'),
+          style ? 'Ambiance/couleurs souhaitées : ' + style : null,
+          inspiration ? 'Inspiration : ' + inspiration : null,
+          'Adresse de facturation : ' + (address || '—'),
+          'Créneau d\'appel de livraison choisi : ' + formattedRdv
+        ].filter(Boolean);
+
         var payload = {
-          service: currentService.id,
-          serviceName: currentService.name,
-          options: selectedOptions,
-          brief: {
-            company: document.getElementById('ob-f-company').value,
-            tva: document.getElementById('ob-f-tva').value,
-            sector: document.getElementById('ob-f-sector').value,
-            goals: document.getElementById('ob-f-goals').value,
-            style: document.getElementById('ob-f-style').value,
-            inspiration: document.getElementById('ob-f-inspiration').value
-          },
-          rdvDelivery: formattedRdv,
-          contact: {
-            firstname: document.getElementById('ob-f-firstname').value,
-            lastname: document.getElementById('ob-f-lastname').value,
-            email: document.getElementById('ob-f-email').value,
-            phone: document.getElementById('ob-f-phone').value,
-            address: document.getElementById('ob-f-address').value
-          }
+          name: (firstname + ' ' + lastname).trim(),
+          email: email,
+          phone: phone,
+          activity: sector,
+          need: needLines.join('\n')
         };
 
-        fetch('/api/order/create', {
+        fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         })
-          .then(function (res) { return res.json(); })
-          .then(function () {
-            var displayRdv = document.getElementById('ob-success-date-time-display');
-            if (displayRdv) displayRdv.textContent = formattedRdv;
-            goToStep(5, true);
+          .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (result) {
+            if (result.ok && result.data && result.data.ok) {
+              var displayRdv = document.getElementById('ob-success-date-time-display');
+              if (displayRdv) displayRdv.textContent = formattedRdv;
+              goToStep(5, true);
+              return;
+            }
+            if (errorBox) {
+              errorBox.textContent = 'Votre demande n\'a pas pu être enregistrée. Vérifiez vos coordonnées ou contactez-nous directement.';
+              errorBox.hidden = false;
+            }
           })
           .catch(function () {
-            // Fallback en cas d'erreur de serveur ou offline
-            var displayRdv = document.getElementById('ob-success-date-time-display');
-            if (displayRdv) displayRdv.textContent = formattedRdv;
-            goToStep(5, true);
+            if (errorBox) {
+              errorBox.textContent = 'Connexion impossible. Vérifiez votre réseau et réessayez.';
+              errorBox.hidden = false;
+            }
           })
           .finally(function () {
             if (btn) btn.disabled = false;

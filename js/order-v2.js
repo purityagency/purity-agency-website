@@ -196,7 +196,7 @@
                         '<option value="juridique">Juridique & Notariat</option>',
                         '<option value="comptable">Comptabilité & Finance</option>',
                         '<option value="evenement">Événementiel</option>',
-                        '<option value="formation">Formation & Éducation</option>',
+                        '<option value="b2b">Services B2B & Conseil</option>',
                         '<option value="fitness">Fitness & Sport</option>',
                         '<option value="auto">Automobile & Garage</option>',
                         '<option value="autre">Autre</option>',

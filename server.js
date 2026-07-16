@@ -47,7 +47,21 @@ function writeOrder(order) {
     fs.mkdirSync(ORDERS_DIR, { recursive: true });
     fs.writeFileSync(path.join(ORDERS_DIR, order.id + '.json'), JSON.stringify(order, null, 2), 'utf8');
 }
-const VALID_STATUSES = ['pending', 'paid', 'kickoff', 'design', 'developpement', 'livraison', 'maintenance', 'termine'];
+function findOrderBySubscription(subscriptionId) {
+    if (!subscriptionId) return null;
+    try {
+        fs.mkdirSync(ORDERS_DIR, { recursive: true });
+        const files = fs.readdirSync(ORDERS_DIR).filter(f => f.endsWith('.json'));
+        for (const f of files) {
+            try {
+                const order = JSON.parse(fs.readFileSync(path.join(ORDERS_DIR, f), 'utf8'));
+                if (order.stripeSubscriptionId === subscriptionId) return order;
+            } catch { /* fichier corrompu, on ignore */ }
+        }
+    } catch { /* dossier absent */ }
+    return null;
+}
+const VALID_STATUSES = ['pending', 'paid', 'kickoff', 'design', 'developpement', 'livraison', 'maintenance', 'termine', 'annule', 'rembourse'];
 
 /* ── Security headers (appliqués à chaque réponse) ── */
 const SECURITY_HEADERS = {
@@ -112,7 +126,13 @@ function provisionPortalClient(order) {
     const payload = JSON.stringify({
         email: order.email,
         name: order.clientName || order.company,
-        projectName: order.pack
+        projectName: order.pack,
+        orderId: order.id,
+        sector: order.sector,
+        totalPrice: order.price,
+        depositAmount: order.deposit,
+        remainingAmount: order.remaining,
+        monthlyAmount: order.monthly,
     });
     const lib = endpoint.protocol === 'https:' ? https : http;
 
@@ -473,7 +493,7 @@ function handleContact(req, res) {
    ══════════════════════════════════════════════════════════════════════════ */
 const BOOKING = {
     // ID du calendrier : e-mail du calendrier partagé avec le compte de service
-    calendarId: process.env.BOOKING_CALENDAR_ID || '',
+    calendarId: process.env.BOOKING_CALENDAR_ID || 'contact.purityagency@gmail.com',
     timezone: process.env.BOOKING_TZ || 'Europe/Brussels',
     slotMinutes: 15,          // durée d'un créneau
     minNoticeMinutes: 120,    // pas de RDV à moins de 2 h
@@ -605,8 +625,9 @@ function handleAvailability(req, res, query) {
     }
     
     if (!isBookingConfigured()) {
-        res.writeHead(503, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-        return res.end(JSON.stringify({ error: 'not_configured' }));
+        // Mode dégradé : on renvoie tous les créneaux sans vérifier l'agenda Google
+        res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+        return res.end(JSON.stringify({ slots: slots.map(s => s.toISOString()) }));
     }
     getGoogleToken((err, token) => {
         if (err) { console.error('[booking] token', err.message); res.writeHead(502, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify({ error: 'auth' })); }
@@ -649,8 +670,42 @@ function handleBook(req, res) {
             res.writeHead(409, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify({ error: 'too_soon' }));
         }
         if (!isBookingConfigured()) {
-            res.writeHead(503, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'not_configured' }));
+            // Mode dégradé : on enregistre le lead (qui sera notifié par email si Resend est configuré)
+            logLead({ name, email, phone, activity: '', need: '[RDV (Mode Simple)] ' + new Date(startMs).toISOString() + (need ? ' — ' + need : '') });
+            
+            const rkey = resendKey();
+            if (rkey) {
+                const icsDate = d => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                const startDt = new Date(startMs);
+                const endDt = new Date(startMs + BOOKING.slotMinutes * 60000);
+                const icsContent = [
+                    'BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT',
+                    `DTSTART:${icsDate(startDt)}`, `DTEND:${icsDate(endDt)}`,
+                    `SUMMARY:Appel Purity — ${name}`,
+                    `DESCRIPTION:${phone ? 'Téléphone: ' + phone + '\\n' : ''}${need ? 'Besoin: ' + need : ''}`,
+                    'END:VEVENT', 'END:VCALENDAR'
+                ].join('\r\n');
+                const html = `<h2>Nouveau RDV (Mode Simple) — Purity Agency</h2>
+<p><strong>Heure :</strong> ${startDt.toLocaleString('fr-FR', { timeZone: BOOKING.timezone })}</p>
+<p><strong>Nom :</strong> ${escapeHtml(name)}<br>
+<strong>E-mail :</strong> ${escapeHtml(email)}<br>
+<strong>Téléphone :</strong> ${escapeHtml(phone || '—')}</p>
+<p><strong>Besoin :</strong><br>${escapeHtml(need).replace(/\\n/g, '<br>')}</p>
+<p><em>💡 Ouvrez ce mail sur votre téléphone et touchez la pièce jointe (.ics) pour l'ajouter à votre calendrier.</em></p>`;
+                const payload = JSON.stringify({
+                    from: CONTACT_FROM, to: [CONTACT_TO], reply_to: email,
+                    subject: `📅 Nouveau RDV — ${name}`, html,
+                    attachments: [{ filename: 'rendez-vous.ics', content: Buffer.from(icsContent).toString('base64') }]
+                });
+                const rreq = https.request({
+                    method: 'POST', hostname: 'api.resend.com', path: '/emails',
+                    headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload), 'Authorization': `Bearer ${rkey}` },
+                });
+                rreq.on('error', () => {}); rreq.write(payload); rreq.end();
+            }
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ ok: true, start: new Date(startMs).toISOString(), htmlLink: '' }));
         }
 
         getGoogleToken((err, token) => {
@@ -762,24 +817,46 @@ function handleOrderCreate(req, res) {
         try {
             const Stripe = require('stripe');
             const stripe = Stripe(key);
-            const session = await stripe.checkout.sessions.create({
-                payment_method_types: ['card'],
-                line_items: [{
+
+            const lineItems = [{
+                price_data: {
+                    currency: 'eur',
+                    product_data: {
+                        name: `Acompte — ${pack.pack}`,
+                        description: `30 % sur ${pack.price} € — Purity Agency (petite entreprise, régime de la franchise, TVA non applicable)`,
+                    },
+                    unit_amount: pack.deposit * 100,
+                },
+                quantity: 1,
+            }];
+
+            // Abonnement mensuel du pack (suivi/maintenance) facturé automatiquement via Stripe,
+            // en plus de l'acompte ponctuel — même session, mode 'subscription' accepte les deux.
+            const hasMonthly = Number(pack.monthly) > 0;
+            if (hasMonthly) {
+                lineItems.push({
                     price_data: {
                         currency: 'eur',
                         product_data: {
-                            name: `Acompte — ${pack.pack}`,
-                            description: `30% sur ${pack.price} € HT — Purity Agency`,
+                            name: `Suivi mensuel — ${pack.pack}`,
+                            description: 'Sans engagement, résiliable à tout moment — Purity Agency',
                         },
-                        unit_amount: pack.deposit * 100,
+                        unit_amount: pack.monthly * 100,
+                        recurring: { interval: 'month' },
                     },
                     quantity: 1,
-                }],
-                mode: 'payment',
+                });
+            }
+
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items: lineItems,
+                mode: hasMonthly ? 'subscription' : 'payment',
                 customer_email: email,
                 success_url: `${appBaseUrl}/commande-confirmee?order=${id}&session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${appBaseUrl}/#tarifs`,
                 metadata: { orderId: id },
+                subscription_data: hasMonthly ? { metadata: { orderId: id } } : undefined,
             });
 
             // Mettre à jour l'ordre avec l'ID de session Stripe
@@ -823,6 +900,7 @@ function handleStripeWebhook(req, res) {
                 order.status = 'paid';
                 order.paidAt = new Date().toISOString();
                 order.stripePaymentIntent = session.payment_intent || '';
+                order.stripeSubscriptionId = session.subscription || '';
                 writeOrder(order);
 
                 provisionPortalClient(order);
@@ -853,6 +931,27 @@ function handleStripeWebhook(req, res) {
 
                 // Notif interne
                 logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[PAYÉ] ${order.pack} — ${order.deposit}€` });
+            }
+        }
+
+        // Échec de prélèvement du suivi mensuel — visibilité immédiate, pas de traitement auto (dunning laissé à Stripe)
+        if (event.type === 'invoice.payment_failed') {
+            const invoice = event.data.object;
+            const order = findOrderBySubscription(invoice.subscription || '');
+            if (order) {
+                logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[ÉCHEC PRÉLÈVEMENT] Suivi mensuel — ${order.pack}` });
+            }
+        }
+
+        // Abonnement résilié (client ou échecs répétés) — reflète l'état réel dans le dossier de commande
+        if (event.type === 'customer.subscription.deleted') {
+            const subscription = event.data.object;
+            const order = findOrderBySubscription(subscription.id || '');
+            if (order && order.status !== 'termine') {
+                order.status = 'annule';
+                order.updatedAt = new Date().toISOString();
+                writeOrder(order);
+                logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[ABONNEMENT RÉSILIÉ] Suivi mensuel — ${order.pack}` });
             }
         }
 

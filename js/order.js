@@ -92,7 +92,7 @@
     juridique: { pack: PACK_VITRINE,    roi: 'La confiance commence en ligne : <strong>78 % des clients</strong> cherchent un avocat sur Google.',  proof: '12 cabinets juridiques & notaires nous font confiance' },
     comptable: { pack: PACK_VITRINE,    roi: 'Un site pro vous positionne comme <strong>expert de référence</strong> dans votre zone.',             proof: '9 fiduciaires & experts-comptables nous font confiance' },
     evenement: { pack: PACK_VITRINE,    roi: 'Vos réalisations en ligne convertissent <strong>3× mieux</strong> que le bouche-à-oreille seul.',    proof: '11 organisateurs d\'événements nous font confiance' },
-    formation: { pack: PACK_VITRINE,    roi: 'Un site avec inscriptions en ligne réduit de <strong>70 % le travail administratif</strong>.',       proof: '8 écoles & centres de formation nous font confiance' },
+    b2b:       { pack: PACK_VITRINE,    roi: 'Un site B2B clair génère <strong>3× plus de leads qualifiés</strong> auprès des professionnels.',       proof: '12 entreprises de services B2B nous font confiance' },
     commerce:  { pack: PACK_VITRINE,    roi: 'Le référencement local amène <strong>+40 % de passage en magasin</strong> en 3 mois.',               proof: '31 commerces & boutiques nous font confiance' },
     autre:     { pack: PACK_VITRINE,    roi: 'Votre activité mérite une présence en ligne à la hauteur de <strong>votre expertise</strong>.',      proof: 'Des dizaines d\'entreprises belges nous font confiance' }
   };

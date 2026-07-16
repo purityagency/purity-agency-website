@@ -50,6 +50,26 @@ html {
   color: var(--c-fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.5) var(--c-bg);
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+  border: 3px solid var(--c-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-accent);
 }
 
 body {
@@ -1559,9 +1579,6 @@ header::before {
     font-size: 0.92rem;
     white-space: nowrap;
   }
-  .svc-card__body {
-    display: none !important;
-  }
   .svc-showcase-col {
     position: relative;
     top: 0;
@@ -3055,8 +3072,6 @@ footer {
   .bento, .why-grid, .promises, .pricing, .pricing-extra-row, .contact-grid { grid-template-columns: 1fr; }
   .step { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .step h3 { width: 100%; }
-  
-  #chat-panel { width: calc(100vw - 2rem); left: 1rem; bottom: 80px; }
 }
 
 /* ==========================================================================
@@ -4714,13 +4729,12 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 /* Positionnement chatbot sur mobile pour éviter de chevaucher la TabBar */
 @media (max-width: 860px) {
   .chat {
-    bottom: 96px !important;
-    right: 16px !important;
+    bottom: 96px;
+    right: 16px;
   }
   .chat__panel {
-    bottom: 96px !important;
-    right: 16px !important;
-    width: calc(100% - 32px) !important;
+    bottom: 80px !important;
+    width: calc(100vw - 32px) !important;
     max-width: 380px !important;
   }
 

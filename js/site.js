@@ -1765,6 +1765,17 @@ document.addEventListener('DOMContentLoaded', () => {
     checkHashOnLoad();
   }
 
+  // --- Scroll progress bar for article pages ---
+  const scrollBar = document.getElementById("scrollBar");
+  if (scrollBar) {
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      scrollBar.style.width = scrolled + "%";
+    });
+  }
+
   // Onboarding modal géré par js/order.js
 });
 

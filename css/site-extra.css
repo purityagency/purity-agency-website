@@ -3517,10 +3517,10 @@ textarea {
 .briques-subgrid > article:nth-child(1) { grid-column: 1 / span 6 !important; grid-row: 3 !important; }
 .briques-subgrid > article:nth-child(2) { grid-column: 7 / span 6 !important; grid-row: 3 !important; }
 
-/* Card — espace & hover */
+/* Card — dense, pensée pour tenir sur un seul écran par onglet */
 .brique-card {
-  padding: 1.5rem 1.4rem !important;
-  border-radius: 22px !important;
+  padding: 1.1rem 1.2rem !important;
+  border-radius: 18px !important;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease !important;
@@ -3541,26 +3541,37 @@ textarea {
 
 /* H3 — dominant, centré, blanc */
 .brique-card h3 {
-  font-size: 1.2rem !important;
+  font-size: 1.05rem !important;
   line-height: 1.2 !important;
-  margin-bottom: 0.35rem !important;
+  margin-bottom: 0.2rem !important;
   color: #fff !important;
   text-align: center !important;
 }
 
-/* Intro texte header */
+/* Intro texte header — 1 ligne, condensée */
 .brique-card__header p {
-  font-size: 0.85rem !important;
-  color: rgba(255, 255, 255, 0.55) !important;
-  line-height: 1.5 !important;
+  font-size: 0.76rem !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 1.35 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.brique-card__header {
+  margin-bottom: 0.6rem !important;
+  padding-bottom: 0.5rem !important;
 }
 
-/* Items — espace mesuré */
+/* Items — denses, une ligne nom/prix + 1 ligne de contexte max */
 .brique-list li {
-  padding-top: 0.55rem !important;
-  padding-bottom: 0.6rem !important;
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
-  gap: 0.2rem !important;
+  gap: 0.1rem !important;
+}
+.brique-list {
+  gap: 0 !important;
 }
 
 /* Prix — visible sans dominer */
@@ -3588,12 +3599,16 @@ textarea {
   margin-top: 0.2rem !important;
 }
 
-/* Description — lisible */
+/* Description — 1 ligne, condensée pour que toute la grille tienne sans scroll excessif */
 .brique-desc {
-  font-size: 0.76rem !important;
-  color: rgba(255, 255, 255, 0.65) !important;
-  line-height: 1.5 !important;
-  margin-top: 0.35rem !important;
+  font-size: 0.72rem !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  line-height: 1.4 !important;
+  margin-top: 0.2rem !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .brique-desc strong {
   color: #fff !important;

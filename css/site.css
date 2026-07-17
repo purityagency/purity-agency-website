@@ -1356,7 +1356,7 @@ header::before {
 
 /* ── Section unifiée "Ce qu'on fait pour vous" ── */
 .svc-section {
-  padding-block: clamp(4rem, 8vw, 8rem);
+  padding-block: clamp(3rem, 5vw, 5rem);
   background: var(--c-bg);
   position: relative;
   z-index: 1;
@@ -4149,7 +4149,7 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 
 .contact-booking-section {
   position: relative;
-  padding-block: clamp(4rem, 10vh, 8rem);
+  padding-block: clamp(3rem, 6vh, 5rem);
 }
 
 .cb-tabs-container {

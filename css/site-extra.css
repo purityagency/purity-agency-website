@@ -3083,7 +3083,7 @@ textarea {
 #services.svc {
   position: relative !important;
   overflow: hidden !important;
-  padding-top: 5rem !important;
+  padding-top: 3rem !important;
 }
 
 /* Stat — masqué, le titre fantôme suffit */
@@ -3108,7 +3108,7 @@ textarea {
   max-width: 1400px !important;
   margin: 0 auto !important;
   overflow: hidden !important;
-  padding: 5rem 0 !important;
+  padding: 2rem 0 !important;
   perspective: 1800px !important;
 }
 

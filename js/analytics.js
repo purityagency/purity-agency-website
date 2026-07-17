@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  var POSTHOG_KEY = 'phc_REPLACE_ME';
+  var POSTHOG_KEY = 'phc_oVFkr5t5XgPkTARGy3KiBcwa6V77zNcmsftSnUjSBPpB';
   var POSTHOG_HOST = 'https://eu.i.posthog.com';
 
   if (!POSTHOG_KEY || POSTHOG_KEY === 'phc_REPLACE_ME') return;

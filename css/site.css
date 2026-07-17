@@ -20,8 +20,8 @@
   --s-sm: 0.5rem;
   --s-md: 1rem;
   --s-lg: 2rem;
-  --s-xl: 4rem;
-  --s-xxl: 8rem;
+  --s-xl: clamp(2rem, 4vh, 2.8rem);
+  --s-xxl: clamp(3.5rem, 6vh, 4.8rem);
 
   /* Layout */
   --nav-h: 80px;
@@ -134,12 +134,12 @@ em {
 }
 
 h2 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
   margin-bottom: var(--s-md);
 }
 
 h3 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
   margin-bottom: var(--s-sm);
 }
 
@@ -489,9 +489,9 @@ header::before {
   z-index: -1;
 }
 .nav--hidden { transform: translateY(-100%); }
-.nav__links { display: flex; gap: 2rem; }
-.nav__links a { font-weight: 500; font-size: 0.9rem; color: #fff; transition: opacity var(--t-fast); }
-.nav__links a:hover { opacity: 0.7; }
+.nav__links { display: flex; align-items: center; gap: 1.8rem; }
+.nav__links > a { font-weight: 500; font-size: 0.95rem; color: rgba(255,255,255,0.7); transition: color 0.2s ease; }
+.nav__links > a:hover { color: #fff; }
 .nav__cta {
   font-size: 0.85rem;
   padding: 0.6rem 1.3rem;
@@ -1786,7 +1786,7 @@ header::before {
 .why2 {
   position: relative;
   z-index: 1;
-  padding: clamp(4rem, 10vh, 8rem) 0;
+  padding: clamp(2.5rem, 6vh, 4.5rem) 0;
   overflow: hidden;
 }
 .why2__wrap {
@@ -1821,8 +1821,8 @@ header::before {
 .why2__item {
   position: relative;
   display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.5rem);
-  min-height: 46vh;
-  padding: 2rem 0;
+  min-height: 32vh;
+  padding: 1.5rem 0;
   border-top: 1px solid var(--c-border);
   opacity: 0.35;
   transition: opacity .5s var(--t-slow, ease);
@@ -3652,8 +3652,8 @@ footer {
 /* ONGLET 2 : PACKS METIER */
 .packs-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
   margin-bottom: var(--s-lg);
 }
 .pack-card {

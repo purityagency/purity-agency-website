@@ -141,6 +141,62 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateROI();
   }
 
+  // --- Header Navigation Dropdowns ---
+  const dropdownItems = document.querySelectorAll('.nav__item');
+
+  dropdownItems.forEach(item => {
+    const trigger = item.querySelector('.nav__dropdown-trigger');
+    
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isExpanded = item.classList.contains('js-expanded');
+        
+        // Close all other dropdowns
+        dropdownItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('js-expanded');
+            otherItem.querySelector('.nav__dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current dropdown
+        if (isExpanded) {
+          item.classList.remove('js-expanded');
+          trigger.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('js-expanded');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+
+  // Prevent clicks inside dropdown menus from closing them
+  document.querySelectorAll('.nav__dropdown-menu').forEach(menu => {
+    menu.addEventListener('click', (e) => e.stopPropagation());
+  });
+
+  // Close dropdowns on click outside
+  document.addEventListener('click', () => {
+    dropdownItems.forEach(item => {
+      item.classList.remove('js-expanded');
+      item.querySelector('.nav__dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Escape key closes open dropdowns
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdownItems.forEach(item => {
+        item.classList.remove('js-expanded');
+        item.querySelector('.nav__dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
   // --- Injection des tentacules par section (DA Purity) ---
   if (window.innerWidth >= 1100) {
     const shouldHaveTentacles = (sec) => {

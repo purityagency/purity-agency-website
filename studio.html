@@ -19,8 +19,8 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="css/site.css">
-<link rel="stylesheet" href="css/site-extra.css">
+<link rel="stylesheet" href="css/site.css?v=2">
+<link rel="stylesheet" href="css/site-extra.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Dois-je organiser un shooting pour obtenir des visuels haut de gamme ?","acceptedAnswer":{"@type":"Answer","text":"Non. Notre studio maîtrise les outils d'IA générative couplés à la post-production classique (Photoshop, After Effects). Nous créons des compositions hyper-réalistes et des ambiances studio premium sans les coûts logistiques d'un shooting traditionnel."}},{"@type":"Question","name":"Quels sont vos délais pour la création de contenu ?","acceptedAnswer":{"@type":"Answer","text":"La direction artistique (branding/logo) demande 5 jours ouvrés. Les visuels publicitaires et posts sociaux sont livrés en 48h, et le motion design (Reels/vidéos) en 72h. Notre flux de production garantit une réactivité maximale."}},{"@type":"Question","name":"Que comprend exactement le pack de contenu mensuel ?","acceptedAnswer":{"@type":"Answer","text":"Une livraison clé en main le 1er du mois : 8 à 12 contenus (visuels statiques, carrousels ou vidéos courtes), incluant le copywriting stratégique et la recherche de hashtags. Vous pilotez la validation, nous exécutons la production."}},{"@type":"Question","name":"Le rendu des visuels IA risque-t-il de paraître artificiel ?","acceptedAnswer":{"@type":"Answer","text":"L'IA n'est qu'un outil dans notre pipeline. Chaque asset généré est rigoureusement retouché, étalonné et intégré à votre charte graphique par nos directeurs artistiques. Le rendu final est indistinguable d'une photographie studio haut de gamme."}}]}</script>
 <script src="js/analytics.js" defer></script>
 </head>
@@ -30,15 +30,125 @@
 <div id="cursor-dot" class="cursor-dot"></div>
 
 <header id="nav">
-  <a class="nav__logo" href="index.html" aria-label="Purity Agency — accueil"><img src="assets/logo.webp" alt="Purity Agency" width="600" height="600" loading="eager" decoding="async"></a>
+  <a class="nav__logo nav__logo--text" href="index.html#hero" aria-label="Purity Agency — accueil"><span class="nav__logo-name">PURITY</span><span class="nav__logo-sub">AGENCY</span></a>
   <nav class="nav__links">
-    <a href="index.html#services">Services</a>
-    <a href="index.html#methode">Méthode</a>
-    <a href="index.html#tarifs">Tarifs</a>
-    <a href="blog.html">Blog</a>
-    <a href="index.html#contact">Contact</a>
+    <!-- Dropdown Services -->
+    <div class="nav__item">
+      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.services">Services</span>
+        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="nav__dropdown-menu">
+        <div class="nav__dropdown-grid">
+          <a href="presence.html">
+            <strong>Présence en Ligne</strong>
+            <span>Site vitrine, e-commerce, design premium.</span>
+          </a>
+          <a href="acquisition.html">
+            <strong>Acquisition Clients</strong>
+            <span>SEO, Google Ads, campagnes locales.</span>
+          </a>
+          <a href="automatisation.html">
+            <strong>Automatisation &amp; IA</strong>
+            <span>Flux de travail, agents intelligents.</span>
+          </a>
+          <a href="outils.html">
+            <strong>Outils Métier</strong>
+            <span>Applications sur-mesure, CRM, ERP.</span>
+          </a>
+          <a href="studio.html">
+            <strong>Purity Studio</strong>
+            <span>Design de marque, charte graphique, branding.</span>
+          </a>
+          <a href="hebergement.html">
+            <strong>Hébergement &amp; Sécu</strong>
+            <span>Serveurs ultra-rapides, audits de sécurité.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simple Link Méthode -->
+    <a href="index.html#methode" class="nav__link" data-i18n="nav.methode">Méthode</a>
+
+    <!-- Simple Link Pourquoi Nous -->
+    <a href="index.html#preuve" class="nav__link" data-i18n="nav.pourquoi">Pourquoi nous</a>
+
+    <!-- Dropdown Tarifs -->
+    <div class="nav__item">
+      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.tarifs">Tarifs</span>
+        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="nav__dropdown-menu nav__dropdown-menu--small">
+        <div class="nav__dropdown-grid">
+          <a href="index.html#tarifs">
+            <strong>Grille Tarifaire</strong>
+            <span>Nos forfaits clairs et transparents.</span>
+          </a>
+          <a href="index.html#roi-calculator">
+            <strong>Simulateur ROI</strong>
+            <span>Estimez vos gains publicitaires en direct.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdown Blog -->
+    <div class="nav__item">
+      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.blog">Blog</span>
+        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="nav__dropdown-menu nav__dropdown-menu--medium">
+        <div class="nav__dropdown-grid">
+          <a href="blog.html">
+            <strong>Tout le Blog</strong>
+            <span>Nos analyses, guides et actualités.</span>
+          </a>
+          <a href="article-prix-site-web-belgique.html">
+            <strong>Prix d'un Site Web</strong>
+            <span>Combien coûte réellement un site en Belgique ?</span>
+          </a>
+          <a href="article-cheques-entreprises-wallonie.html">
+            <strong>Chèques Entreprises</strong>
+            <span>Financez jusqu'à 50% de votre projet.</span>
+          </a>
+          <a href="article-seo-local-wallonie.html">
+            <strong>SEO Local</strong>
+            <span>Faites décoller votre commerce en Wallonie.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdown Contact -->
+    <div class="nav__item">
+      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav.contact">Contact</span>
+        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="nav__dropdown-menu nav__dropdown-menu--small">
+        <div class="nav__dropdown-grid">
+          <a href="index.html#contact">
+            <strong>Nous Contacter</strong>
+            <span>Formulaire d'échange et coordonnées directes.</span>
+          </a>
+          <a href="index.html#booking">
+            <strong>Prendre Rendez-vous</strong>
+            <span>Réservez un appel de qualification gratuit.</span>
+          </a>
+          <a href="mailto:contact@purity-agency.be">
+            <strong>Par E-mail</strong>
+            <span>contact@purity-agency.be</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </nav>
-  <div class="langsel" id="langsel">
+
+  <div class="nav__actions">
+    <div class="langsel" id="langsel">
     <button class="langsel__btn" id="langsel-btn" aria-haspopup="listbox" aria-expanded="false">
       <span class="langsel__flag" data-flag><img src="assets/flags/fr.svg" alt="FR" width="20" height="15"></span>
       <span class="langsel__code" data-code>FR</span>
@@ -53,8 +163,10 @@
       </ul>
     </div>
   </div>
-  <a class="nav__cta lg" href="index.html#booking">Réserver un appel</a>
-  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <a class="nav__cta lg" href="index.html#booking">
+    <a class="nav__cta lg" href="index.html#booking" data-i18n="nav.cta">Réserver un appel</a>
+  </div>
+  <button class="nav__burger" data-i18n-aria="burger.aria" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
 </header>
 
 <div id="mobile-menu" class="mob" hidden>

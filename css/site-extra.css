@@ -3519,8 +3519,8 @@ textarea {
 
 /* Card — espace & hover */
 .brique-card {
-  padding: 2rem 2rem !important;
-  border-radius: 28px !important;
+  padding: 1.5rem 1.4rem !important;
+  border-radius: 22px !important;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease !important;
@@ -3541,9 +3541,9 @@ textarea {
 
 /* H3 — dominant, centré, blanc */
 .brique-card h3 {
-  font-size: 1.5rem !important;
-  line-height: 1.15 !important;
-  margin-bottom: 0.45rem !important;
+  font-size: 1.2rem !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.35rem !important;
   color: #fff !important;
   text-align: center !important;
 }
@@ -3555,17 +3555,17 @@ textarea {
   line-height: 1.5 !important;
 }
 
-/* Items — plus d'espace */
+/* Items — espace mesuré */
 .brique-list li {
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.8rem !important;
+  padding-top: 0.55rem !important;
+  padding-bottom: 0.6rem !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
-  gap: 0.25rem !important;
+  gap: 0.2rem !important;
 }
 
-/* Prix — plus grand, dominant */
+/* Prix — visible sans dominer */
 .brique-price {
-  font-size: 1.05rem !important;
+  font-size: 0.92rem !important;
   font-weight: 700 !important;
   color: #fff !important;
 }
@@ -3573,27 +3573,27 @@ textarea {
 /* Nom service */
 .brique-item-row .brique-name,
 .brique-list li > .brique-name {
-  font-size: 0.93rem !important;
+  font-size: 0.85rem !important;
   font-weight: 600 !important;
 }
 
 /* Note — pill subtle */
 .brique-note {
   display: inline-block !important;
-  font-size: 0.7rem !important;
+  font-size: 0.66rem !important;
   color: rgba(255, 255, 255, 0.45) !important;
   background: rgba(255, 255, 255, 0.05) !important;
   border-radius: 999px !important;
-  padding: 0.1rem 0.65rem !important;
-  margin-top: 0.25rem !important;
+  padding: 0.1rem 0.6rem !important;
+  margin-top: 0.2rem !important;
 }
 
 /* Description — lisible */
 .brique-desc {
-  font-size: 0.82rem !important;
+  font-size: 0.76rem !important;
   color: rgba(255, 255, 255, 0.65) !important;
-  line-height: 1.55 !important;
-  margin-top: 0.4rem !important;
+  line-height: 1.5 !important;
+  margin-top: 0.35rem !important;
 }
 .brique-desc strong {
   color: #fff !important;
@@ -5041,4 +5041,180 @@ textarea {
     gap: 2.5rem;
   }
 }
+
+/* ==========================================================================
+   DROPDOWN NAVIGATION IN HEADER (PREMIUM LIQUID GLASS)
+   ========================================================================== */
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__link {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover,
+.nav__item.is-active .nav__link {
+  color: #fff;
+}
+
+.nav__dropdown-icon {
+  width: 10px;
+  height: 10px;
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav__item.is-active .nav__dropdown-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown Menu styling (Liquid Glass) */
+.nav__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 480px;
+  background: rgba(8, 5, 16, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.1rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s ease;
+  z-index: 999;
+}
+
+.nav__dropdown-menu--medium {
+  width: 320px;
+}
+
+.nav__dropdown-menu--small {
+  width: 255px;
+}
+
+/* Dropdown visible only via JS click toggle (js-expanded) */
+.nav__item.js-expanded .nav__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(2px);
+}
+
+.nav__dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.nav__dropdown-menu--medium .nav__dropdown-grid,
+.nav__dropdown-menu--small .nav__dropdown-grid {
+  grid-template-columns: 1fr;
+}
+
+.nav__dropdown-menu a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent;
+  color: #fff !important;
+  text-decoration: none;
+  text-align: left;
+}
+
+.nav__dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav__dropdown-menu a strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--font-head);
+}
+
+.nav__dropdown-menu a span {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+/* Mobile responsive navigation overrides */
+@media (max-width: 860px) {
+  .nav__links {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  
+  .nav__dropdown-menu {
+    position: static;
+    transform: none !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.02);
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin-top: 0.25rem;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .nav__item.js-expanded .nav__dropdown-menu {
+    display: block;
+  }
+
+  .nav__dropdown-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  
+  .nav__dropdown-icon {
+    margin-left: auto;
+  }
+  
+  .nav__link {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+  }
+}
+
 

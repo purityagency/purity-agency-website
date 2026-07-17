@@ -1874,7 +1874,7 @@ header::before {
 }
 
 /* ─── MÉTHODE — scrollytelling pictos ─── */
-.method { position: relative; z-index: 1; padding: clamp(4rem,10vh,8rem) 0; overflow: hidden; }
+.method { position: relative; z-index: 1; padding: clamp(3rem,6vh,5rem) 0; overflow: hidden; }
 .mtrack {
   position: relative;
   display: grid;
@@ -2139,12 +2139,13 @@ header::before {
 .faq__q {
   width: 100%;
   text-align: left;
-  padding: var(--s-lg) 0;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   font-family: var(--font-head);
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   font-style: normal;
   color: var(--c-fg);
 }
@@ -2170,7 +2171,7 @@ header::before {
 }
 .faq__q[aria-expanded="true"] + .faq__a { grid-template-rows: 1fr; }
 .faq__a > div { overflow: hidden; }
-.faq__a p { padding-bottom: var(--s-lg); }
+.faq__a p { padding-bottom: 1.1rem; font-size: 0.92rem; line-height: 1.5; }
 
 /* Contact */
 .contact-grid {
@@ -2212,7 +2213,7 @@ header::before {
 /* ── Footer premium ── */
 footer {
   position: relative;
-  padding: clamp(4rem, 7vw, 6rem) 0 clamp(2rem, 4vw, 3rem);
+  padding: clamp(2.5rem, 4vw, 4rem) 0 clamp(1.5rem, 3vw, 2.2rem);
   margin-top: var(--s-xxl);
   border-top: 1px solid var(--c-border);
   overflow: hidden;
@@ -2254,10 +2255,10 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 2.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
-  padding-bottom: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   border-bottom: 1px solid var(--c-border);
 }
 .footer__cta-left { display: flex; flex-direction: column; gap: 1rem; }

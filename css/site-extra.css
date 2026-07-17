@@ -3505,15 +3505,15 @@ textarea {
   gap: 1.5rem !important;
 }
 
-/* Row 1 : les 4 premières briques côte à côte */
+/* Row 1 : les 4 premières briques côte à côte (Purity Studio prend la place d'Outils Métier) */
 .briques-grid > article:nth-child(1) { grid-column: 1 / span 3 !important; grid-row: 1 !important; }
 .briques-grid > article:nth-child(2) { grid-column: 4 / span 3 !important; grid-row: 1 !important; }
 .briques-grid > article:nth-child(3) { grid-column: 7 / span 3 !important; grid-row: 1 !important; }
-.briques-subgrid > article:nth-child(1) { grid-column: 10 / span 3 !important; grid-row: 1 !important; }
+.briques-grid > article:nth-child(5) { grid-column: 10 / span 3 !important; grid-row: 1 !important; }
 
 /* Row 2 : les 2 dernières, centrées, grande marge de chaque côté */
 .briques-subgrid > article:nth-child(2) { grid-column: 3 / span 4 !important; grid-row: 2 !important; }
-.briques-grid > article:nth-child(5) { grid-column: 7 / span 4 !important; grid-row: 2 !important; }
+.briques-subgrid > article:nth-child(1) { grid-column: 7 / span 4 !important; grid-row: 2 !important; }
 
 /* Card — dense, pensée pour tenir sur un seul écran par onglet */
 .brique-card {

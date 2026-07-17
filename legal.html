@@ -31,6 +31,7 @@ p{margin-bottom:.9rem;font-size:.98rem}
 nav.toc{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
 footer{margin-top:clamp(3rem,6vw,5rem);padding-top:2rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--fg-3);text-transform:uppercase}
 </style>
+<script src="js/analytics.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -76,14 +77,17 @@ footer{margin-top:clamp(3rem,6vw,5rem);padding-top:2rem;border-top:1px solid var
 
   <section id="cookies">
     <h2>Politique de cookies</h2>
-    <p>Ce site n'utilise <strong>aucun cookie publicitaire, aucun traceur analytique ni aucun outil de profilage</strong>.</p>
+    <p>Ce site n'utilise <strong>aucun cookie publicitaire, aucun traceur tiers ni aucun outil de profilage</strong>.</p>
+    <h3>Mesure d'audience</h3>
+    <p>Nous utilisons <strong>PostHog</strong> (hébergé dans l'Union européenne) pour mesurer la fréquentation et l'usage du site à des fins purement statistiques internes&nbsp;: pages visitées, clics sur les boutons principaux. Cette mesure ne dépose <strong>aucun cookie</strong> — un identifiant anonyme est stocké dans votre navigateur (<code>localStorage</code>), sans lien avec votre identité, jamais partagé ni revendu, et n'alimente aucune publicité ciblée.</p>
     <h3>Stockage strictement fonctionnel</h3>
     <p>Nous utilisons le stockage local de votre navigateur (<code>localStorage</code> / <code>sessionStorage</code>) uniquement pour des besoins techniques, exemptés de consentement&nbsp;:</p>
     <ul style="margin:0 0 .9rem 1.2rem">
       <li><code>purity_lang</code> — mémorise la langue que vous avez choisie&nbsp;;</li>
       <li><code>purity_cookie_notice</code> — mémorise que vous avez vu la présente notice&nbsp;;</li>
       <li><code>octomask_teaser_seen</code> / <code>octomask_badge_seen</code> — évitent de réafficher la bulle et le badge d'accueil du chatbot&nbsp;;</li>
-      <li><code>chatLeadSent</code> — évite l'envoi en double d'une même demande via le chatbot.</li>
+      <li><code>chatLeadSent</code> — évite l'envoi en double d'une même demande via le chatbot&nbsp;;</li>
+      <li><code>purity_aid</code> — identifiant anonyme pour la mesure d'audience (voir «&nbsp;Mesure d'audience&nbsp;» ci-dessus).</li>
     </ul>
     <h3>Réservation en ligne — aucun tiers dans votre navigateur</h3>
     <p>Notre calendrier de réservation est <strong>hébergé par nos soins</strong>. Lorsque vous réservez, votre navigateur ne communique qu'avec notre propre serveur&nbsp;; c'est <strong>notre serveur</strong> qui inscrit ensuite le rendez-vous dans Google&nbsp;Calendar. Aucun cookie tiers ni script externe n'est donc chargé dans votre navigateur pour cette fonction. Les données du rendez-vous (nom, e-mail, créneau) sont traitées par Google&nbsp;Calendar en tant que sous-traitant (voir «&nbsp;Destinataires &amp; sous-traitants&nbsp;» ci-dessus).</p>

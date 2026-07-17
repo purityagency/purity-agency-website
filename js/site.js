@@ -62,6 +62,85 @@ window.addEventListener('load', () => {
 let _i18nDict = {};
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Google Ads ROI Calculator ---
+  const roiBudget = document.getElementById('roi-budget');
+  const roiConversion = document.getElementById('roi-conversion');
+  const roiBasket = document.getElementById('roi-basket');
+
+  if (roiBudget && roiConversion && roiBasket) {
+    const valBudget = document.getElementById('roi-val-budget');
+    const valConversion = document.getElementById('roi-val-conversion');
+    const valBasket = document.getElementById('roi-val-basket');
+
+    const resTraffic = document.getElementById('roi-res-traffic');
+    const resSales = document.getElementById('roi-res-sales');
+    const resRevenue = document.getElementById('roi-res-revenue');
+    const resProfit = document.getElementById('roi-res-profit');
+    const resPercent = document.getElementById('roi-res-percent');
+
+    const CPC = 0.85; // Belgian average CPC
+
+    const updateSliderFill = (input) => {
+      const min = parseFloat(input.min) || 0;
+      const max = parseFloat(input.max) || 100;
+      const val = parseFloat(input.value) || 0;
+      const percent = ((val - min) / (max - min)) * 100;
+      input.style.background = `linear-gradient(to right, var(--c-accent, #A855F7) ${percent}%, rgba(255, 255, 255, 0.08) ${percent}%)`;
+    };
+
+    const formatCurrency = (val) => {
+      return Math.round(val).toLocaleString('fr-BE') + ' €';
+    };
+
+    const calculateROI = () => {
+      const budget = parseFloat(roiBudget.value) || 0;
+      const conversion = parseFloat(roiConversion.value) || 0;
+      const basket = parseFloat(roiBasket.value) || 0;
+
+      // Calculations
+      const traffic = budget / CPC;
+      const sales = traffic * (conversion / 100);
+      const revenue = sales * basket;
+      const profit = revenue - budget;
+      const multiplier = budget > 0 ? (revenue / budget).toFixed(1) : '0.0';
+
+      // Update Slider Values Text
+      if (valBudget) valBudget.textContent = budget.toLocaleString('fr-BE') + ' €';
+      if (valConversion) valConversion.textContent = conversion.toFixed(1) + ' %';
+      if (valBasket) valBasket.textContent = basket.toLocaleString('fr-BE') + ' €';
+
+      // Update Results
+      if (resTraffic) resTraffic.textContent = Math.round(traffic).toLocaleString('fr-BE');
+      if (resSales) resSales.textContent = sales.toFixed(1);
+      if (resRevenue) resRevenue.textContent = formatCurrency(revenue);
+      
+      if (resProfit) {
+        resProfit.textContent = (profit >= 0 ? '+' : '') + formatCurrency(profit);
+        resProfit.style.color = profit >= 0 ? '#10B981' : '#EF4444';
+      }
+      
+      if (resPercent) {
+        resPercent.textContent = multiplier + 'x';
+        resPercent.style.background = profit >= 0 ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)';
+        resPercent.style.borderColor = profit >= 0 ? 'rgba(16, 185, 129, 0.25)' : 'rgba(239, 68, 68, 0.25)';
+        resPercent.style.color = profit >= 0 ? '#34D399' : '#F87171';
+      }
+    };
+
+    // Listeners
+    [roiBudget, roiConversion, roiBasket].forEach(input => {
+      input.addEventListener('input', () => {
+        calculateROI();
+        updateSliderFill(input);
+      });
+      // Initial fill
+      updateSliderFill(input);
+    });
+
+    // Initial calculation
+    calculateROI();
+  }
+
   // --- Injection des tentacules par section (DA Purity) ---
   if (window.innerWidth >= 1100) {
     const shouldHaveTentacles = (sec) => {

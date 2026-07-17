@@ -4762,3 +4762,283 @@ textarea {
   .dp-hero__ctas { flex-direction: column; }
   .dp-hero__ctas .btn { width: 100%; justify-content: center; }
 }
+
+/* ==========================================================================
+   GOOGLE ADS ROI CALCULATOR (PREMIUM GLASSMORPHISM & ANTI-SLOP STYLE)
+   ========================================================================== */
+
+.sec--roi {
+  position: relative;
+  z-index: 2;
+}
+
+.sec--roi .sec-head h2 {
+  text-wrap: balance;
+}
+
+.sec--roi .sec-head__lead {
+  text-wrap: pretty;
+}
+
+.roi-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  margin-top: 3.5rem;
+}
+
+.roi-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 0.5rem;
+}
+
+.roi-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.roi-field__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.9rem;
+}
+
+.roi-field__label {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.roi-field__value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--c-accent-bright, #C084FC);
+  font-family: var(--font-head);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.roi-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.roi-input-wrapper input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  cursor: pointer;
+}
+
+.roi-input-wrapper input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c-accent, #7C3AED);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 12px 2px rgba(124, 58, 237, 0.5);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s;
+}
+
+.roi-input-wrapper input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--c-accent-bright, #C084FC);
+}
+
+.roi-input-wrapper input[type=range]::-webkit-slider-thumb:active {
+  transform: scale(1.08);
+}
+
+.roi-input-wrapper input[type=range]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c-accent, #7C3AED);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 12px 2px rgba(124, 58, 237, 0.5);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s;
+}
+
+.roi-input-wrapper input[type=range]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  background: var(--c-accent-bright, #C084FC);
+}
+
+.roi-input-wrapper input[type=range]::-moz-range-thumb:active {
+  transform: scale(1.08);
+}
+
+.roi-field__ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+}
+
+/* Results panel (Liquid Glass) */
+.roi-results {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px; /* Outer Radius */
+  padding: 2.2rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform var(--t-med, 0.3s) ease, border-color var(--t-med, 0.3s) ease;
+}
+
+.roi-results:hover {
+  border-color: rgba(124, 58, 237, 0.15);
+  transform: translateY(-2px);
+}
+
+.roi-results__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+}
+
+.roi-results__header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--font-head);
+  letter-spacing: 0.5px;
+  text-wrap: balance;
+}
+
+.roi-cpc-badge {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.roi-results__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.roi-res-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px; /* Concentric Inner Radius = Outer 24px - padding ≈ 12px */
+  padding: 1.1rem;
+  transition: border-color var(--t-med, 0.3s) ease, background-color var(--t-med, 0.3s) ease;
+}
+
+.roi-res-item:hover {
+  border-color: rgba(124, 58, 237, 0.15);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.roi-res-label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.roi-res-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-head);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.roi-res-item--highlight {
+  grid-column: 1 / -1;
+  background: rgba(124, 58, 237, 0.03);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+}
+
+.roi-res-item--highlight:hover {
+  background: rgba(124, 58, 237, 0.05);
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+.roi-res-item--highlight .roi-res-val {
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.roi-res-item--roi {
+  grid-column: 1 / -1;
+  background: rgba(16, 185, 129, 0.02);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  padding: 1.2rem;
+}
+
+.roi-res-item--roi:hover {
+  background: rgba(16, 185, 129, 0.04);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.roi-res-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.roi-res-item--roi .roi-res-val {
+  color: #10B981; /* Green success profit color */
+  font-size: 1.8rem;
+}
+
+.roi-badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #34D399;
+  border-radius: 8px;
+  padding: 0.35rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-head);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.roi-cta-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Responsive grid layout */
+@media (max-width: 768px) {
+  .roi-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+

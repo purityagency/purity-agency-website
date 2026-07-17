@@ -27,7 +27,7 @@
 {"@type":"Question","name":"Quels sont vos engagements de livraison ?","acceptedAnswer":{"@type":"Answer","text":"Le respect des délais est inscrit dans notre contrat. Landing page : 5 jours ouvrés. Site vitrine : 7 jours ouvrés après validation de votre brief. Systèmes métier complexes : sprints hebdomadaires avec démo à chaque étape. Tout retard non justifié de notre part entraîne une pénalité financière contractuelle à votre avantage."}},
 {"@type":"Question","name":"Est-ce que je suis propriétaire de tout ce que vous créez ?","acceptedAnswer":{"@type":"Answer","text":"Oui, à 100 %. Code source, nom de domaine, bases de données, comptes d'hébergement : tout est à votre nom. Aucun verrou technique, aucun abonnement captif. Notre maintenance mensuelle est sans engagement et résiliable à tout moment. Vous pouvez partir avec l'intégralité de votre projet quand vous voulez."}},
 {"@type":"Question","name":"Je ne suis pas à l'aise avec le numérique. Comment ça se passe ?","acceptedAnswer":{"@type":"Answer","text":"C'est justement notre métier. 42 % des PME belges citent le manque de compétences numériques comme premier frein à leur digitalisation. Chaque projet inclut un livret de prise en main détaillé et des tutoriels vidéo courts enregistrés directement sur votre interface. Vous êtes autonome dès le premier jour."}},
-{"@type":"Question","name":"Comment garantissez-vous la conformité RGPD et la protection des données ?","acceptedAnswer":{"@type":"Answer","text":"Toutes nos architectures respectent le RGPD : chiffrement des données, hébergement sur serveurs européens, consentement explicite documenté. Nous n'installons aucun traceur publicitaire intrusif — ce qui accélère le chargement de vos pages et vous dispense des bannières de cookies complexes. Nos agents IA respectent également l'AI Act européen (transparence obligatoire dès août 2026)."}},
+{"@type":"Question","name":"Comment garantissez-vous la conformité RGPD et la protection des données ?","acceptedAnswer":{"@type":"Answer","text":"Toutes nos architectures respectent le RGPD : chiffrement des données, hébergement sur serveurs européens, consentement explicite documenté. Nous n'installons aucun cookie publicitaire ni traceur tiers — seule une mesure d'audience anonyme et sans cookie (PostHog, hébergé en UE) nous aide à améliorer le site. Nos agents IA respectent également l'AI Act européen (transparence obligatoire dès août 2026)."}},
 {"@type":"Question","name":"Je peux commencer petit ou je dois prendre un pack complet ?","acceptedAnswer":{"@type":"Answer","text":"On fonctionne en briques modulaires. Vous pouvez démarrer avec une landing page à 490 €, un système de réservation à 390 €, ou un agent IA sur un seul canal. Vous ajoutez des briques au fil de votre croissance et de vos besoins. Zéro engagement sur des services dont vous n'avez pas besoin aujourd'hui."}}
 ]}
 </script>
@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/site-extra.css">
+<script src="js/analytics.js" defer></script>
 </head>
 <body>
 
@@ -336,6 +337,102 @@
   </div>
 </section>
 
+<hr class="sec-divider" aria-hidden="true">
+
+<!-- ═══ ESTIMATEUR ROI GOOGLE ADS ═══ -->
+<section id="roi-calculator" class="sec sec--roi">
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head text-center" data-reveal>
+      <span class="tag lg">Simulateur ROI</span>
+      <h2>Estimez votre <em>retour sur investissement</em></h2>
+      <p class="sec-head__lead">Ajustez les curseurs ci-dessous pour estimer l'impact d'une campagne d'acquisition Google Ads sur votre chiffre d'affaires.</p>
+    </div>
+
+    <div class="roi-grid" data-reveal>
+      <!-- Sliders column -->
+      <div class="roi-sliders">
+        <!-- Budget -->
+        <div class="roi-field">
+          <div class="roi-field__header">
+            <span class="roi-field__label">Budget Publicitaire Mensuel</span>
+            <span class="roi-field__value" id="roi-val-budget">2 500 €</span>
+          </div>
+          <div class="roi-input-wrapper">
+            <input type="range" id="roi-budget" min="500" max="10000" step="100" value="2500" aria-label="Budget Publicitaire Mensuel">
+          </div>
+          <div class="roi-field__ticks">
+            <span>500 €</span>
+            <span>5 000 €</span>
+            <span>10 000 €</span>
+          </div>
+        </div>
+
+        <!-- Taux de conversion -->
+        <div class="roi-field">
+          <div class="roi-field__header">
+            <span class="roi-field__label">Taux de Conversion estimé</span>
+            <span class="roi-field__value" id="roi-val-conversion">2.5 %</span>
+          </div>
+          <div class="roi-input-wrapper">
+            <input type="range" id="roi-conversion" min="0.5" max="10" step="0.1" value="2.5" aria-label="Taux de Conversion">
+          </div>
+          <div class="roi-field__ticks">
+            <span>0.5 %</span>
+            <span>5.0 %</span>
+            <span>10.0 %</span>
+          </div>
+        </div>
+
+        <!-- Panier moyen -->
+        <div class="roi-field">
+          <div class="roi-field__header">
+            <span class="roi-field__label">Panier Moyen par Client</span>
+            <span class="roi-field__value" id="roi-val-basket">150 €</span>
+          </div>
+          <div class="roi-input-wrapper">
+            <input type="range" id="roi-basket" min="10" max="2000" step="10" value="150" aria-label="Panier Moyen">
+          </div>
+          <div class="roi-field__ticks">
+            <span>10 €</span>
+            <span>1 000 €</span>
+            <span>2 000 €</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results column (Liquid Glass style) -->
+      <div class="roi-results">
+        <div class="roi-results__header">
+          <h3>Performances Estimées</h3>
+          <span class="roi-cpc-badge">CPC moyen : 0,85 €</span>
+        </div>
+        <div class="roi-results__grid">
+          <div class="roi-res-item">
+            <span class="roi-res-label">Visiteurs / mois</span>
+            <span class="roi-res-val" id="roi-res-traffic">2 941</span>
+          </div>
+          <div class="roi-res-item">
+            <span class="roi-res-label">Ventes / mois</span>
+            <span class="roi-res-val" id="roi-res-sales">73.5</span>
+          </div>
+          <div class="roi-res-item roi-res-item--highlight">
+            <span class="roi-res-label">Chiffre d'Affaires Mensuel</span>
+            <span class="roi-res-val" id="roi-res-revenue">11 025 €</span>
+          </div>
+          <div class="roi-res-item roi-res-item--roi">
+            <span class="roi-res-label">Bénéfice &amp; Retour (ROI)</span>
+            <div class="roi-res-row">
+              <span class="roi-res-val" id="roi-res-profit">8 525 €</span>
+              <span class="roi-badge" id="roi-res-percent">4.4x</span>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn--accent roi-cta-btn">Réclamer mon audit gratuit</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <hr class="sec-divider" aria-hidden="true">
 
@@ -835,7 +932,7 @@
         <button class="faq__q" aria-expanded="false"><span>Comment garantissez-vous la conformité RGPD et la protection des données&nbsp;?</span><i></i></button>
         <div class="faq__a">
           <div>
-            <p>Toutes nos architectures respectent le RGPD&nbsp;: chiffrement des données, hébergement sur serveurs européens, consentement explicite documenté. Nous n'installons aucun traceur publicitaire intrusif — ce qui accélère le chargement de vos pages et vous dispense des bannières de cookies complexes. Nos agents IA respectent également l'AI Act européen (transparence obligatoire dès août&nbsp;2026).</p>
+            <p>Toutes nos architectures respectent le RGPD&nbsp;: chiffrement des données, hébergement sur serveurs européens, consentement explicite documenté. Nous n'installons aucun cookie publicitaire ni traceur tiers — seule une mesure d'audience anonyme et sans cookie (PostHog, hébergé en UE) nous aide à améliorer le site. Nos agents IA respectent également l'AI Act européen (transparence obligatoire dès août&nbsp;2026).</p>
           </div>
         </div>
       </div>
@@ -1444,7 +1541,7 @@
 
 <!-- Notice cookies (RGPD / ePrivacy) — aucun traceur, stockage strictement fonctionnel -->
 <div id="cookie-banner" class="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Information cookies">
-  <p data-i18n="cookie.text">Ce site n'utilise <strong>aucun cookie publicitaire ni traceur analytique</strong>, et aucun contenu tiers n'est chargé dans votre navigateur. Seul un stockage strictement fonctionnel est utilisé (langue, préférences). <a href="legal.html#cookies">En savoir plus</a></p>
+  <p data-i18n="cookie.text">Ce site n'utilise <strong>aucun cookie publicitaire ni traceur tiers</strong>. Une mesure d'audience anonyme, sans cookie (PostHog, UE), nous aide à améliorer le site. <a href="legal.html#cookies">En savoir plus</a></p>
   <div class="cookie-banner__actions">
     <button id="cookie-accept" class="btn btn--accent" data-i18n="cookie.accept">Compris</button>
   </div>

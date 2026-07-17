@@ -982,61 +982,6 @@ function handleOrderGet(req, res, orderId, token) {
     res.end(JSON.stringify(safe));
 }
 
-/* ── Client : login via email (magic link) ── */
-function handleClientLogin(req, res) {
-    if (rateLimited(req)) { res.writeHead(429, { 'Retry-After': '60' }); return res.end(); }
-    let body = '';
-    req.on('data', c => { body += c; if (body.length > 1000) req.destroy(); });
-    req.on('end', () => {
-        let data = {}; try { data = JSON.parse(body) || {}; } catch { /* ignore */ }
-        const email = String(data.email || '').slice(0, 200).trim().toLowerCase();
-        
-        if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-            res.writeHead(400, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'invalid_email' }));
-        }
-        const portalUrl = clientPortalUrl();
-        if (!portalUrl) {
-            res.writeHead(503, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'client_portal_not_configured' }));
-        }
-
-        const endpoint = new URL('/api/client-login', portalUrl);
-        const payload = JSON.stringify({ email });
-        const lib = endpoint.protocol === 'https:' ? https : http;
-
-        const proxyReq = lib.request({
-            method: 'POST',
-            hostname: endpoint.hostname,
-            port: endpoint.port || (endpoint.protocol === 'https:' ? 443 : 80),
-            path: endpoint.pathname,
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(payload),
-            },
-        }, proxyRes => {
-            let proxyData = '';
-            proxyRes.on('data', x => proxyData += x);
-            proxyRes.on('end', () => {
-                if (proxyRes.statusCode >= 400) {
-                    console.error('[client_login] portal', proxyRes.statusCode, proxyData.slice(0, 300));
-                    res.writeHead(502, { 'Content-Type': 'application/json' });
-                    return res.end(JSON.stringify({ error: 'portal_unavailable' }));
-                }
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ ok: true }));
-            });
-        });
-
-        proxyReq.on('error', e => {
-            console.error('[client_login] portal network', e.message);
-            res.writeHead(502, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'portal_unavailable' }));
-        });
-        proxyReq.write(payload);
-        proxyReq.end();
-    });
-}
 
 /* ── Admin : login ── */
 function handleAdminLogin(req, res) {
@@ -1227,12 +1172,6 @@ const server = http.createServer((req, res) => {
         return handleStripeWebhook(req, res);
     }
 
-    // POST /api/client/login
-    if (urlPath === '/api/client/login') {
-        if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
-        if (!isOriginAllowed(req)) { res.writeHead(403); return res.end('Forbidden'); }
-        return handleClientLogin(req, res);
-    }
 
     // Redirections pour dashboard et admin (supprimés) vers login
     if (urlPath === '/dashboard' || urlPath === '/dashboard.html' || urlPath === '/admin' || urlPath === '/admin.html') {

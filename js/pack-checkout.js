@@ -91,6 +91,8 @@
     modal.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
 
+    if (window.PurityFocusTrap) window.PurityFocusTrap.attach(modal.querySelector('.ob-shell'));
+
     if (typeof gsap !== 'undefined') {
       gsap.fromTo(modal.querySelector('.ob-shell'),
         { opacity: 0, y: 20, scale: 0.97 },
@@ -101,6 +103,7 @@
 
   function closeModal() {
     if (!modal) return;
+    if (window.PurityFocusTrap) window.PurityFocusTrap.release();
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';

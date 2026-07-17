@@ -463,6 +463,8 @@
     // Raccorder les boutons retour et navigation
     setupEventHandlers();
 
+    if (window.PurityFocusTrap) window.PurityFocusTrap.attach(shell);
+
     if (typeof gsap !== 'undefined') {
       gsap.fromTo(shell,
         { opacity: 0, y: 30, scale: 0.96 },
@@ -474,6 +476,8 @@
   function closeOrderModal() {
     var modal = document.getElementById('order-modal');
     if (!modal) return;
+
+    if (window.PurityFocusTrap) window.PurityFocusTrap.release();
 
     var shell = modal.querySelector('.ob-shell');
     if (typeof gsap !== 'undefined') {

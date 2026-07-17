@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agence Web Charleroi — Sites, SEO & IA pour PME | Purity Agency</title>
-<meta name="description" content="Votre site, votre visibilité Google et vos automatisations IA — livrés en 7 jours, à partir de 490 €. Purity Agency accompagne les PME et indépendants de Charleroi et toute la Wallonie.">
+<meta name="description" content="Votre site, votre visibilité Google et vos automatisations IA — livrés en 7 jours, à partir de 490 €. Purity Agency accompagne les PME de Wallonie.">
 <meta name="theme-color" content="#060309">
 <link rel="canonical" href="https://purity-agency.be/">
 <meta property="og:title" content="Purity Agency — Sites, automatisation & IA pour indépendants et PME">
@@ -153,7 +153,7 @@
       <p class="svc__stat" data-reveal data-i18n="probleme.stat">76&nbsp;% des Wallons achètent en ligne. Seules 28&nbsp;% des PME wallonnes y vendent. <em>Cet écart, c'est votre opportunité.</em></p>
     </div>
 
-    <div class="svc-carousel" data-reveal style="--d:.15s">
+    <div class="svc-carousel" data-reveal style="--d:.15s" role="region" aria-roledescription="carrousel" aria-label="Nos services">
       <div class="svc-carousel__track-wrapper">
         <div class="svc-carousel__track">
           
@@ -270,13 +270,13 @@
         </div>
       </div>
 
-      <div class="svc-carousel__dots">
-        <button class="svc-carousel__dot is-active" data-index="0" aria-label="Service 1"></button>
-        <button class="svc-carousel__dot" data-index="1" aria-label="Service 2"></button>
-        <button class="svc-carousel__dot" data-index="2" aria-label="Service 3"></button>
-        <button class="svc-carousel__dot" data-index="3" aria-label="Service 4"></button>
-        <button class="svc-carousel__dot" data-index="4" aria-label="Service 5"></button>
-        <button class="svc-carousel__dot" data-index="5" aria-label="Service 6"></button>
+      <div class="svc-carousel__dots" role="tablist" aria-label="Aller à un service">
+        <button class="svc-carousel__dot is-active" data-index="0" role="tab" aria-selected="true" aria-label="Présence en ligne"></button>
+        <button class="svc-carousel__dot" data-index="1" role="tab" aria-selected="false" aria-label="Acquisition clients"></button>
+        <button class="svc-carousel__dot" data-index="2" role="tab" aria-selected="false" aria-label="Automatisation et IA"></button>
+        <button class="svc-carousel__dot" data-index="3" role="tab" aria-selected="false" aria-label="Applications métier"></button>
+        <button class="svc-carousel__dot" data-index="4" role="tab" aria-selected="false" aria-label="Purity Studio"></button>
+        <button class="svc-carousel__dot" data-index="5" role="tab" aria-selected="false" aria-label="Hébergement et sécurité"></button>
       </div>
     </div>
   </div>
@@ -1165,10 +1165,11 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js" integrity="sha384-dUEYjN2xd8Wk4WIZYrCpK7Ww7+r/LVtVebVp8skuwm9bKGoVo2bZrWuA79w8TI+v" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/site.js" defer></script>
+<script src="js/focus-trap.js" defer></script>
 <script src="js/order-modal.js" defer></script>
 <script src="js/pack-checkout.js" defer></script>
 

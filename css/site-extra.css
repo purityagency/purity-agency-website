@@ -3518,14 +3518,19 @@ textarea {
 /* Positionnement par data-slot (stable, indépendant de l'ordre DOM/nesting —
    l'ordre DOM correspond maintenant à l'ordre visuel pour un focus/lecture cohérent) */
 /* Row 1 : les 4 premières briques côte à côte */
-.briques-grid [data-slot="1"] { grid-column: 1 / span 3 !important; grid-row: 1 !important; }
-.briques-grid [data-slot="2"] { grid-column: 4 / span 3 !important; grid-row: 1 !important; }
-.briques-grid [data-slot="3"] { grid-column: 7 / span 3 !important; grid-row: 1 !important; }
-.briques-grid [data-slot="4"] { grid-column: 10 / span 3 !important; grid-row: 1 !important; }
+.briques-grid [data-slot="1"] { grid-column: 1 / span 3 !important; grid-row: 1 !important; --vc: 124, 58, 237; } /* Présence */
+.briques-grid [data-slot="2"] { grid-column: 4 / span 3 !important; grid-row: 1 !important; --vc: 56, 189, 248; } /* Acquisition */
+.briques-grid [data-slot="3"] { grid-column: 7 / span 3 !important; grid-row: 1 !important; --vc: 167, 139, 250; } /* Automatisation */
+.briques-grid [data-slot="4"] { grid-column: 10 / span 3 !important; grid-row: 1 !important; --vc: 251, 146, 60; } /* Studio */
 
 /* Row 2 : les 2 dernières, centrées, grande marge de chaque côté */
-.briques-grid [data-slot="5"] { grid-column: 3 / span 4 !important; grid-row: 2 !important; }
-.briques-grid [data-slot="6"] { grid-column: 7 / span 4 !important; grid-row: 2 !important; }
+.briques-grid [data-slot="5"] { grid-column: 3 / span 4 !important; grid-row: 2 !important; --vc: 99, 102, 241; } /* Accompagnement */
+.briques-grid [data-slot="6"] { grid-column: 7 / span 4 !important; grid-row: 2 !important; --vc: 52, 211, 153; } /* Outils Métier */
+
+/* Packs métiers — ajout de variables de couleurs spécifiques */
+.packs-grid article:nth-child(1) { --vc: 236, 72, 153; } /* Pack 1 - Rose */
+.packs-grid article:nth-child(2) { --vc: 234, 179, 8; }  /* Pack 2 - Jaune */
+.packs-grid article:nth-child(3) { --vc: 239, 68, 68; }  /* Pack 3 - Rouge */
 
 /* Card — dense, pensée pour tenir sur un seul écran par onglet */
 .brique-card {
@@ -3535,12 +3540,17 @@ textarea {
               box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease !important;
 }
+
+.brique-price {
+  color: rgb(var(--vc, 255, 255, 255)) !important;
+}
+
 .brique-card:hover {
   transform: translateY(-4px) !important;
-  border-color: rgba(167, 139, 250, 0.3) !important;
+  border-color: rgba(var(--vc, 167, 139, 250), 0.3) !important;
   box-shadow:
     0 24px 64px rgba(0, 0, 0, 0.55),
-    0 0 50px rgba(124, 58, 237, 0.1),
+    0 0 50px rgba(var(--vc, 124, 58, 237), 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
@@ -5241,26 +5251,64 @@ textarea {
 .faq-contact-split {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  align-items: start !important;
+  align-items: stretch !important;
   gap: 0 !important;
+  position: relative;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+/* Séparateur central en dégradé (s'estompe aux bords) plutôt qu'un trait plein
+   plaqué contre le contenu — lit comme une mise en page pensée, pas un artefact. */
+.faq-contact-split::before {
+  content: '';
+  position: absolute;
+  top: 6%;
+  bottom: 6%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--c-border) 18%, var(--c-border) 82%, transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 .faq-contact-split #faq {
   grid-column: 2 !important;
   grid-row: 1 !important;
-  align-self: stretch !important;
-  border-left: 1px solid var(--c-border) !important;
+  padding-left: clamp(1.5rem, 3vw, 3rem) !important;
 }
 .faq-contact-split #contact {
   grid-column: 1 !important;
   grid-row: 1 !important;
+  padding-right: clamp(1.5rem, 3vw, 3rem) !important;
+  position: relative;
+}
+/* Léger lavis violet (même accent que le reste du site, pas une nouvelle couleur)
+   côté Contact seulement — guide l'œil vers l'action principale sans dominer. */
+.faq-contact-split #contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 55% at 25% 15%, rgba(168, 85, 247, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 @media (max-width: 1024px) {
   .faq-contact-split {
     grid-template-columns: 1fr !important;
+    border-top: none;
+    border-bottom: none;
   }
-  .faq-contact-split #faq { grid-column: 1 !important; grid-row: 1 !important; }
-  .faq-contact-split #contact { grid-column: 1 !important; grid-row: 2 !important; }
+  .faq-contact-split::before { display: none; }
+  .faq-contact-split #faq {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    padding-left: 0 !important;
+  }
+  .faq-contact-split #contact {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    padding-right: 0 !important;
+  }
 }
 
 

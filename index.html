@@ -36,7 +36,7 @@
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="css/site.css?v=16">
-<link rel="stylesheet" href="css/site-extra.css?v=16">
+<link rel="stylesheet" href="css/site-extra.css?v=17">
 <script src="js/analytics.js" defer></script>
 </head>
 <body>
@@ -768,37 +768,37 @@
               <p>Visuels, vidéos & identité générés par IA — livrés en 48h, au niveau d'une prod studio.</p>
             </div>
             <ul class="brique-list">
-              <li>
+              <li class="brique-item order-trigger" data-service="studio-visuels">
                 <div class="brique-item-row">
                   <span class="brique-name">Visuels Produit & Marque</span>
                   <span class="brique-price">dès 190 €</span>
                 </div>
                 <span class="brique-note">20 visuels retouchés, livrés en 24h</span>
-                <p class="brique-desc"><strong>Photos produit, portraits, ambiances</strong> générés par IA sur mesure — sans studio, sans attente, sans surcoût.</p>
+                <p class="brique-desc"><strong>Photos produit, portraits, ambiances</strong> générés par IA sur mesure — sans studio, sans attente, sans surcoût. <span class="brique-order-hint">Commander en direct →</span></p>
               </li>
-              <li>
+              <li class="brique-item order-trigger" data-service="studio-videos">
                 <div class="brique-item-row">
                   <span class="brique-name">Vidéos & Reels IA</span>
                   <span class="brique-price">dès 290 €</span>
                 </div>
                 <span class="brique-note">3 à 5 vidéos prêtes à publier, sous-titres inclus</span>
-                <p class="brique-desc"><strong>Reels, Shorts, Stories</strong> générés et montés — formats réseaux optimisés, ton de marque, zéro tournage.</p>
+                <p class="brique-desc"><strong>Reels, Shorts, Stories</strong> générés et montés — formats réseaux optimisés, ton de marque, zéro tournage. <span class="brique-order-hint">Commander en direct →</span></p>
               </li>
-              <li>
+              <li class="brique-item order-trigger" data-service="studio-identite">
                 <div class="brique-item-row">
                   <span class="brique-name">Identité Visuelle</span>
                   <span class="brique-price">dès 490 €</span>
                 </div>
                 <span class="brique-note">Logo, charte, palette, typographie, supports</span>
-                <p class="brique-desc"><strong>Logo, couleurs, typographie</strong> — une identité cohérente générée et affinée avec vous, livrée en 48h.</p>
+                <p class="brique-desc"><strong>Logo, couleurs, typographie</strong> — une identité cohérente générée et affinée avec vous, livrée en 48h. <span class="brique-order-hint">Commander en direct →</span></p>
               </li>
-              <li>
+              <li class="brique-item order-trigger" data-service="studio-mensuel">
                 <div class="brique-item-row">
                   <span class="brique-name">Contenu Mensuel IA</span>
                   <span class="brique-price">dès 249 €/mois</span>
                 </div>
                 <span class="brique-note">12 visuels + 4 vidéos/mois, stratégie incluse</span>
-                <p class="brique-desc"><strong>12 posts + 4 Reels</strong> livrés chaque mois, prêts à publier. Cohérence visuelle garantie, zéro effort de votre côté.</p>
+                <p class="brique-desc"><strong>12 posts + 4 Reels</strong> livrés chaque mois, prêts à publier. Cohérence visuelle garantie, zéro effort de votre côté. <span class="brique-order-hint">Commander en direct →</span></p>
               </li>
             </ul>
           </article>
@@ -812,10 +812,12 @@
                 <p data-i18n="briqueE.p">La sécurité et l'optimisation continue de vos outils digitaux.</p>
               </div>
               <ul class="brique-list">
-                <li>
-                  <span class="brique-name">Support & Maintenance</span>
-                  <span class="brique-price">89 – 390 €/mois</span>
-                  <p class="brique-desc"><strong>Mises à jour, sécurité, sauvegardes quotidiennes</strong> + assistance prioritaire. Votre site ne tombe jamais.</p>
+                <li class="brique-item order-trigger" data-service="maintenance">
+                  <div class="brique-item-row">
+                    <span class="brique-name">Support & Maintenance</span>
+                    <span class="brique-price">89 – 390 €/mois</span>
+                  </div>
+                  <p class="brique-desc"><strong>Mises à jour, sécurité, sauvegardes quotidiennes</strong> + assistance prioritaire. Votre site ne tombe jamais. <span class="brique-order-hint">Commander en direct →</span></p>
                 </li>
               </ul>
             </article>
@@ -841,7 +843,7 @@
 
       <!-- ONGLET 2 : PACKS MÉTIER (Offre phare verticalisée) -->
       <div class="tarifs-pane" id="pane-packs" role="tabpanel" aria-labelledby="tab-packs" aria-hidden="true" style="display: none;">
-        <div class="briques-grid">
+        <div class="packs-grid">
           
           <!-- Pack Coiffure -->
           <article class="brique-card lg" data-reveal>

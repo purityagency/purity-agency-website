@@ -4796,7 +4796,7 @@ textarea {
 .roi-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(1rem, 2vw, 2rem);
   align-items: start;
   margin-top: 1.75rem;
 }
@@ -4821,13 +4821,13 @@ textarea {
 }
 
 .roi-field__label {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.75);
 }
 
 .roi-field__value {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--c-accent-bright, #C084FC);
   font-family: var(--font-head);

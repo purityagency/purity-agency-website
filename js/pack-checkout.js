@@ -24,8 +24,8 @@
   var ERROR_MESSAGES = {
     invalid_sector: 'Secteur invalide. Rechargez la page et réessayez.',
     invalid_contact: 'Merci de vérifier votre nom et votre adresse e-mail.',
-    stripe_not_configured: 'Le paiement en ligne n\'est pas encore configuré. Contactez-nous directement pour démarrer ce pack.',
-    stripe_error: 'Le service de paiement a rencontré une erreur. Réessayez dans un instant.',
+    mollie_not_configured: 'Le paiement en ligne n\'est pas encore configuré. Contactez-nous directement pour démarrer ce pack.',
+    mollie_error: 'Le service de paiement a rencontré une erreur. Réessayez dans un instant.',
     storage: 'Une erreur technique est survenue. Réessayez dans un instant.',
     base_url_not_configured: 'Configuration serveur incomplète. Contactez-nous directement pour démarrer ce pack.'
   };

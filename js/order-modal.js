@@ -41,7 +41,7 @@
       name: 'Boutique E-commerce',
       price: 3800,
       engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Boutique en ligne complète (jusqu\'à 50 produits)', 'Système de paiement Stripe & Bancontact sécurisé', 'Gestion des stocks et commandes automatisée', 'Emails de confirmation et factures automatiques', 'Livret d\'utilisation complet pour gérer votre boutique']
+      features: ['Boutique en ligne complète (jusqu\'à 50 produits)', 'Système de paiement Mollie & Bancontact sécurisé', 'Gestion des stocks et commandes automatisée', 'Emails de confirmation et factures automatiques', 'Livret d\'utilisation complet pour gérer votre boutique']
     },
 
     // ── Acquisition Clients (acquisition.html) ──

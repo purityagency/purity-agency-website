@@ -13,16 +13,38 @@ const SECRETS_DIR = path.join(ROOT, '..', 'secrets');
 
 const ORDERS_DIR = path.join(__dirname, '..', 'data', 'orders');
 
-/* ── Stripe (côté serveur uniquement — pas de Stripe.js frontend) ── */
-function stripeKey() {
-    if (process.env.STRIPE_SECRET_KEY) return process.env.STRIPE_SECRET_KEY.trim();
-    try { return fs.readFileSync(path.join(SECRETS_DIR, '.stripe-key'), 'utf8').trim(); }
+/* ── Mollie (côté serveur uniquement) ── */
+function mollieKey() {
+    if (process.env.MOLLIE_API_KEY) return process.env.MOLLIE_API_KEY.trim();
+    try { return fs.readFileSync(path.join(SECRETS_DIR, '.mollie-key'), 'utf8').trim(); }
     catch { return ''; }
 }
-function stripeWebhookSecret() {
-    if (process.env.STRIPE_WEBHOOK_SECRET) return process.env.STRIPE_WEBHOOK_SECRET.trim();
-    try { return fs.readFileSync(path.join(SECRETS_DIR, '.stripe-webhook-secret'), 'utf8').trim(); }
-    catch { return ''; }
+function mollieRequest(method, apiPath, body) {
+    return new Promise((resolve, reject) => {
+        const payload = body ? JSON.stringify(body) : '';
+        const req = https.request({
+            method,
+            hostname: 'api.mollie.com',
+            path: `/v2${apiPath}`,
+            headers: {
+                'Authorization': `Bearer ${mollieKey()}`,
+                'Content-Type': 'application/json',
+                ...(payload ? { 'Content-Length': Buffer.byteLength(payload) } : {}),
+            },
+        }, res => {
+            let data = '';
+            res.on('data', c => data += c);
+            res.on('end', () => {
+                let parsed = {};
+                try { parsed = JSON.parse(data || '{}'); } catch { /* réponse vide */ }
+                if (res.statusCode >= 400) return reject(new Error(parsed.detail || `mollie_http_${res.statusCode}`));
+                resolve(parsed);
+            });
+        });
+        req.on('error', reject);
+        if (payload) req.write(payload);
+        req.end();
+    });
 }
 
 /* ── Dashboard HMAC token ── */
@@ -55,7 +77,21 @@ function findOrderBySubscription(subscriptionId) {
         for (const f of files) {
             try {
                 const order = JSON.parse(fs.readFileSync(path.join(ORDERS_DIR, f), 'utf8'));
-                if (order.stripeSubscriptionId === subscriptionId) return order;
+                if (order.mollieSubscriptionId === subscriptionId) return order;
+            } catch { /* fichier corrompu, on ignore */ }
+        }
+    } catch { /* dossier absent */ }
+    return null;
+}
+function findOrderByMolliePayment(paymentId) {
+    if (!paymentId) return null;
+    try {
+        fs.mkdirSync(ORDERS_DIR, { recursive: true });
+        const files = fs.readdirSync(ORDERS_DIR).filter(f => f.endsWith('.json'));
+        for (const f of files) {
+            try {
+                const order = JSON.parse(fs.readFileSync(path.join(ORDERS_DIR, f), 'utf8'));
+                if (order.molliePaymentId === paymentId) return order;
             } catch { /* fichier corrompu, on ignore */ }
         }
     } catch { /* dossier absent */ }
@@ -95,13 +131,9 @@ function isBookingConfigured() {
     const serviceAccount = googleServiceAccount();
     return Boolean(BOOKING.calendarId && serviceAccount?.client_email && serviceAccount?.private_key);
 }
-function isStripeCheckoutConfigured() {
-    const key = stripeKey();
-    return Boolean(key && !isPlaceholderSecret(key, 'sk_test') && !isPlaceholderSecret(key, 'sk_live'));
-}
-function isStripeWebhookConfigured() {
-    const secret = stripeWebhookSecret();
-    return Boolean(secret && !secret.startsWith('whsec_PLACEHOLDER'));
+function isMollieConfigured() {
+    const key = mollieKey();
+    return Boolean(key && (key.startsWith('live_') || key.startsWith('test_')));
 }
 
 function clientPortalUrl() {
@@ -751,7 +783,7 @@ function handleBook(req, res) {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   COMMANDE PACKS — Création commande + session Stripe Checkout
+   COMMANDE PACKS — Création commande + paiement Mollie Checkout
    ══════════════════════════════════════════════════════════════════════════ */
 function handleOrderCreate(req, res) {
     if (rateLimited(req)) { res.writeHead(429, { 'Retry-After': '60' }); return res.end(); }
@@ -789,6 +821,7 @@ function handleOrderCreate(req, res) {
             res.writeHead(503, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ error: 'base_url_not_configured' }));
         }
+        const hasMonthly = Number(pack.monthly) > 0;
         const order = {
             id, sector,
             pack: pack.pack, name: pack.name,
@@ -796,11 +829,13 @@ function handleOrderCreate(req, res) {
             clientName: name, company, email, phone,
             status: 'pending',
             createdAt: new Date().toISOString(),
-            stripeSessionId: '',
+            molliePaymentId: '',
+            mollieCustomerId: '',
+            mollieSubscriptionId: '',
             dashboardUrl: `${appBaseUrl}/login`,
         };
 
-        // Toujours sauvegarder avant d'appeler Stripe (0 commande perdue)
+        // Toujours sauvegarder avant d'appeler Mollie (0 commande perdue)
         try { writeOrder(order); } catch (e) {
             console.error('[order] write', e.message);
             res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -808,102 +843,93 @@ function handleOrderCreate(req, res) {
         }
         logLead({ name, email, phone, activity: sector, need: `[COMMANDE] ${pack.pack} — ${pack.deposit}€ acompte` });
 
-        const key = stripeKey();
-        if (!isStripeCheckoutConfigured()) {
+        if (!isMollieConfigured()) {
             res.writeHead(503, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'stripe_not_configured' }));
+            return res.end(JSON.stringify({ error: 'mollie_not_configured' }));
         }
 
         try {
-            const Stripe = require('stripe');
-            const stripe = Stripe(key);
+            const webhookUrl = `${appBaseUrl}/api/mollie/webhook`;
+            const redirectUrl = `${appBaseUrl}/commande-confirmee?order=${id}`;
 
-            const lineItems = [{
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: `Acompte — ${pack.pack}`,
-                        description: `30 % sur ${pack.price} € — Purity Agency (petite entreprise, régime de la franchise, TVA non applicable)`,
-                    },
-                    unit_amount: pack.deposit * 100,
-                },
-                quantity: 1,
-            }];
-
-            // Abonnement mensuel du pack (suivi/maintenance) facturé automatiquement via Stripe,
-            // en plus de l'acompte ponctuel — même session, mode 'subscription' accepte les deux.
-            const hasMonthly = Number(pack.monthly) > 0;
+            let mollieCustomerId = '';
             if (hasMonthly) {
-                lineItems.push({
-                    price_data: {
-                        currency: 'eur',
-                        product_data: {
-                            name: `Suivi mensuel — ${pack.pack}`,
-                            description: 'Sans engagement, résiliable à tout moment — Purity Agency',
-                        },
-                        unit_amount: pack.monthly * 100,
-                        recurring: { interval: 'month' },
-                    },
-                    quantity: 1,
-                });
+                // Un client Mollie est requis pour créer l'abonnement mensuel après le premier paiement
+                const customer = await mollieRequest('POST', '/customers', { name, email });
+                mollieCustomerId = customer.id;
             }
 
-            const session = await stripe.checkout.sessions.create({
-                payment_method_types: ['card'],
-                line_items: lineItems,
-                mode: hasMonthly ? 'subscription' : 'payment',
-                customer_email: email,
-                success_url: `${appBaseUrl}/commande-confirmee?order=${id}&session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${appBaseUrl}/#tarifs`,
+            const payment = await mollieRequest('POST', '/payments', {
+                amount: { currency: 'EUR', value: (pack.deposit).toFixed(2) },
+                description: `Acompte — ${pack.pack} (Purity Agency)`,
+                redirectUrl,
+                webhookUrl,
                 metadata: { orderId: id },
-                subscription_data: hasMonthly ? { metadata: { orderId: id } } : undefined,
+                ...(mollieCustomerId ? { customerId: mollieCustomerId, sequenceType: 'first' } : {}),
             });
 
-            // Mettre à jour l'ordre avec l'ID de session Stripe
-            order.stripeSessionId = session.id;
+            order.molliePaymentId = payment.id;
+            order.mollieCustomerId = mollieCustomerId;
             writeOrder(order);
 
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ sessionUrl: session.url }));
+            res.end(JSON.stringify({ sessionUrl: payment._links.checkout.href }));
         } catch (e) {
-            console.error('[order] stripe', e.message);
+            console.error('[order] mollie', e.message);
             res.writeHead(502, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'stripe_error' }));
+            res.end(JSON.stringify({ error: 'mollie_error' }));
         }
     });
 }
 
-/* ── Webhook Stripe (vérifie signature, met à jour statut + envoie email) ── */
-function handleStripeWebhook(req, res) {
-    const sig = req.headers['stripe-signature'] || '';
-    let rawBody = Buffer.alloc(0);
-    req.on('data', chunk => { rawBody = Buffer.concat([rawBody, chunk]); if (rawBody.length > 65536) req.destroy(); });
+/* ── Webhook Mollie (Mollie n'envoie qu'un id, on refetch le paiement via l'API pour vérifier) ── */
+function handleMollieWebhook(req, res) {
+    let body = '';
+    req.on('data', c => { body += c; if (body.length > 4000) req.destroy(); });
     req.on('end', async () => {
-        const secret = stripeWebhookSecret();
-        let event;
-        try {
-            if (!isStripeWebhookConfigured()) throw new Error('stripe_webhook_not_configured');
-            const Stripe = require('stripe');
-            const stripe = Stripe(stripeKey());
-            event = stripe.webhooks.constructEvent(rawBody, sig, secret);
-        } catch (e) {
-            console.error('[webhook] signature', e.message);
-            res.writeHead(e.message === 'stripe_webhook_not_configured' ? 503 : 400, { 'Content-Type': 'text/plain' });
-            return res.end('Webhook signature invalid');
+        const params = new URLSearchParams(body);
+        const paymentId = params.get('id') || '';
+        if (!paymentId) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            return res.end('missing id');
         }
 
-        if (event.type === 'checkout.session.completed') {
-            const session = event.data.object;
-            const orderId = session.metadata?.orderId || '';
-            const order = readOrder(orderId);
-            if (order && order.status === 'pending') {
+        let payment;
+        try {
+            payment = await mollieRequest('GET', `/payments/${encodeURIComponent(paymentId)}`);
+        } catch (e) {
+            console.error('[webhook] mollie fetch', e.message);
+            res.writeHead(502, { 'Content-Type': 'text/plain' });
+            return res.end('fetch failed');
+        }
+
+        const orderId = payment.metadata?.orderId || '';
+        const order = orderId ? readOrder(orderId) : findOrderByMolliePayment(paymentId);
+
+        if (order && payment.status === 'paid') {
+            if (order.status === 'pending') {
                 order.status = 'paid';
                 order.paidAt = new Date().toISOString();
-                order.stripePaymentIntent = session.payment_intent || '';
-                order.stripeSubscriptionId = session.subscription || '';
                 writeOrder(order);
 
                 provisionPortalClient(order);
+
+                // Abonnement mensuel : créé après confirmation du premier paiement (mandat validé)
+                if (order.mollieCustomerId && Number(order.monthly) > 0 && !order.mollieSubscriptionId) {
+                    try {
+                        const appBaseUrl = baseUrl();
+                        const subscription = await mollieRequest('POST', `/customers/${encodeURIComponent(order.mollieCustomerId)}/subscriptions`, {
+                            amount: { currency: 'EUR', value: Number(order.monthly).toFixed(2) },
+                            interval: '1 month',
+                            description: `Suivi mensuel — ${order.pack}`,
+                            webhookUrl: `${appBaseUrl}/api/mollie/webhook`,
+                        });
+                        order.mollieSubscriptionId = subscription.id;
+                        writeOrder(order);
+                    } catch (e) {
+                        console.error('[webhook] mollie subscription', e.message);
+                    }
+                }
 
                 // Email de confirmation au client
                 const resendApiKey = resendKey();
@@ -934,25 +960,9 @@ function handleStripeWebhook(req, res) {
             }
         }
 
-        // Échec de prélèvement du suivi mensuel — visibilité immédiate, pas de traitement auto (dunning laissé à Stripe)
-        if (event.type === 'invoice.payment_failed') {
-            const invoice = event.data.object;
-            const order = findOrderBySubscription(invoice.subscription || '');
-            if (order) {
-                logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[ÉCHEC PRÉLÈVEMENT] Suivi mensuel — ${order.pack}` });
-            }
-        }
-
-        // Abonnement résilié (client ou échecs répétés) — reflète l'état réel dans le dossier de commande
-        if (event.type === 'customer.subscription.deleted') {
-            const subscription = event.data.object;
-            const order = findOrderBySubscription(subscription.id || '');
-            if (order && order.status !== 'termine') {
-                order.status = 'annule';
-                order.updatedAt = new Date().toISOString();
-                writeOrder(order);
-                logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[ABONNEMENT RÉSILIÉ] Suivi mensuel — ${order.pack}` });
-            }
+        // Échec d'un prélèvement récurrent (suivi mensuel)
+        if (order && payment.sequenceType === 'recurring' && ['failed', 'expired', 'canceled'].includes(payment.status)) {
+            logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[ÉCHEC PRÉLÈVEMENT] Suivi mensuel — ${order.pack}` });
         }
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -1111,8 +1121,7 @@ const server = http.createServer((req, res) => {
             config: {
                 baseUrl: Boolean(baseUrl()),
                 dashboardSecret: Boolean(dashboardSecret()),
-                stripeCheckout: isStripeCheckoutConfigured(),
-                stripeWebhook: isStripeWebhookConfigured(),
+                mollieCheckout: isMollieConfigured(),
                 booking: isBookingConfigured(),
             },
         }));
@@ -1166,10 +1175,10 @@ const server = http.createServer((req, res) => {
         return handleOrderCreate(req, res);
     }
 
-    // POST /api/stripe/webhook (pas de check origine — vient de Stripe)
-    if (urlPath === '/api/stripe/webhook') {
+    // POST /api/mollie/webhook (pas de check origine — vient de Mollie ; on refetch le paiement côté serveur)
+    if (urlPath === '/api/mollie/webhook') {
         if (req.method !== 'POST') { res.writeHead(405); return res.end('Method Not Allowed'); }
-        return handleStripeWebhook(req, res);
+        return handleMollieWebhook(req, res);
     }
 
 

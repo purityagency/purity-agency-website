@@ -35,8 +35,8 @@
 <link rel="preload" href="assets/hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="css/site.css?v=12">
-<link rel="stylesheet" href="css/site-extra.css?v=12">
+<link rel="stylesheet" href="css/site.css?v=16">
+<link rel="stylesheet" href="css/site-extra.css?v=16">
 <script src="js/analytics.js" defer></script>
 </head>
 <body>
@@ -630,7 +630,7 @@
         <div class="briques-grid">
           
           <!-- Présence -->
-          <article class="brique-card lg" data-reveal>
+          <article class="brique-card lg" data-reveal data-slot="1">
             <div class="brique-card__header">
               <span class="brique-card__category" data-i18n="briqueA.cat">Présence</span>
               <h3 data-i18n="briqueA.h3">Être trouvé & crédible</h3>
@@ -691,7 +691,7 @@
           </article>
 
           <!-- Acquisition -->
-          <article class="brique-card lg" data-reveal style="--d:.08s">
+          <article class="brique-card lg" data-reveal data-slot="2" style="--d:.08s">
             <div class="brique-card__header">
               <span class="brique-card__category" data-i18n="briqueB.cat">Acquisition</span>
               <h3 data-i18n="briqueB.h3">Générer des clients</h3>
@@ -726,7 +726,7 @@
           </article>
 
           <!-- Automatisation & IA -->
-          <article class="brique-card lg" data-reveal style="--d:.16s">
+          <article class="brique-card lg" data-reveal data-slot="3" style="--d:.16s">
             <div class="brique-card__header">
               <span class="brique-card__category" data-i18n="briqueC.cat">Automatisation & IA</span>
               <h3 data-i18n="briqueC.h3">Gagner du temps</h3>
@@ -760,41 +760,8 @@
             </ul>
           </article>
 
-          <!-- Sur-mesure & Récurrent -->
-          <div class="briques-subgrid">
-            <article class="brique-card lg" data-reveal style="--d:.24s">
-              <div class="brique-card__header">
-                <span class="brique-card__category" data-i18n="briqueD.cat">Sur-mesure</span>
-                <h3 data-i18n="briqueD.h3">Outils Métier</h3>
-                <p data-i18n="briqueD.p">Applications sur mesure adaptées à votre fonctionnement.</p>
-              </div>
-              <ul class="brique-list">
-                <li class="brique-item order-trigger" data-service="crm">
-                  <span class="brique-name">CRM &amp; Suivi Client</span>
-                  <span class="brique-price">1 490 €</span>
-                  <p class="brique-desc"><strong>Suivi client, planning, portail</strong> — un outil CRM fluide taillé pour votre métier, pas un template générique. <span class="brique-order-hint">Commander en direct →</span></p>
-                </li>
-              </ul>
-            </article>
-
-            <article class="brique-card lg" data-reveal style="--d:.32s">
-              <div class="brique-card__header">
-                <span class="brique-card__category" data-i18n="briqueE.cat">Accompagnement</span>
-                <h3 data-i18n="briqueE.h3">Maintenance & Évolutions</h3>
-                <p data-i18n="briqueE.p">La sécurité et l'optimisation continue de vos outils digitaux.</p>
-              </div>
-              <ul class="brique-list">
-                <li>
-                  <span class="brique-name">Support & Maintenance</span>
-                  <span class="brique-price">89 – 390 €/mois</span>
-                  <p class="brique-desc"><strong>Mises à jour, sécurité, sauvegardes quotidiennes</strong> + assistance prioritaire. Votre site ne tombe jamais.</p>
-                </li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- Purity Studio -->
-          <article class="brique-card lg" data-reveal style="--d:.4s">
+          <!-- Purity Studio (4e de la rangée 1 — ordre DOM = ordre visuel, cf. data-slot) -->
+          <article class="brique-card lg" data-reveal data-slot="4" style="--d:.24s">
             <div class="brique-card__header">
               <span class="brique-card__category">Studio IA</span>
               <h3>Purity Studio</h3>
@@ -836,87 +803,260 @@
             </ul>
           </article>
 
+          <!-- Maintenance + Outils Métier (rangée 2 — ordre DOM = ordre visuel gauche→droite) -->
+          <div class="briques-subgrid">
+            <article class="brique-card lg" data-reveal data-slot="5" style="--d:.32s">
+              <div class="brique-card__header">
+                <span class="brique-card__category" data-i18n="briqueE.cat">Accompagnement</span>
+                <h3 data-i18n="briqueE.h3">Maintenance & Évolutions</h3>
+                <p data-i18n="briqueE.p">La sécurité et l'optimisation continue de vos outils digitaux.</p>
+              </div>
+              <ul class="brique-list">
+                <li>
+                  <span class="brique-name">Support & Maintenance</span>
+                  <span class="brique-price">89 – 390 €/mois</span>
+                  <p class="brique-desc"><strong>Mises à jour, sécurité, sauvegardes quotidiennes</strong> + assistance prioritaire. Votre site ne tombe jamais.</p>
+                </li>
+              </ul>
+            </article>
+
+            <article class="brique-card lg" data-reveal data-slot="6" style="--d:.4s">
+              <div class="brique-card__header">
+                <span class="brique-card__category" data-i18n="briqueD.cat">Sur-mesure</span>
+                <h3 data-i18n="briqueD.h3">Outils Métier</h3>
+                <p data-i18n="briqueD.p">Applications sur mesure adaptées à votre fonctionnement.</p>
+              </div>
+              <ul class="brique-list">
+                <li class="brique-item order-trigger" data-service="crm">
+                  <span class="brique-name">CRM &amp; Suivi Client</span>
+                  <span class="brique-price">1 490 €</span>
+                  <p class="brique-desc"><strong>Suivi client, planning, portail</strong> — un outil CRM fluide taillé pour votre métier, pas un template générique. <span class="brique-order-hint">Commander en direct →</span></p>
+                </li>
+              </ul>
+            </article>
+          </div>
+
         </div>
       </div>
 
       <!-- ONGLET 2 : PACKS MÉTIER (Offre phare verticalisée) -->
       <div class="tarifs-pane" id="pane-packs" role="tabpanel" aria-labelledby="tab-packs" aria-hidden="true" style="display: none;">
-        <div class="packs-grid">
+        <div class="briques-grid">
           
           <!-- Pack Coiffure -->
-          <article class="pack-card lg" data-reveal>
-            <div class="pack-card__header">
-              <span class="pack-tag" data-i18n="pack1.tag">Agenda Plein</span>
+          <article class="brique-card lg" data-reveal>
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack1.tag">Agenda Plein</span>
               <h3 data-i18n="pack1.h3">Coiffure & Beauté</h3>
-              <div class="pack-price">~1 290 € <span class="pack-recurring">+ 69 €/mois</span></div>
+              <p data-i18n="pack1.target">Coiffeurs, barbiers, instituts de beauté, ongleries, esthétique.</p>
             </div>
-            <div class="pack-body">
-              <p class="pack-pitch" data-i18n="pack1.pitch">Réservation en ligne 24/7 + rappels automatiques anti no-show + récolte d'avis Google automatisée.</p>
-              <div class="pack-roi">
-                <strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack1.roi">Un salon perd en moyenne 2 500 € à 5 000 €/mois en rendez-vous manqués. Ce pack résout la douleur dès le premier mois.</span>
-              </div>
-              <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack1.target">Coiffeurs, barbiers, instituts de beauté, ongleries, esthétique.</span></p>
-            </div>
-            <div class="pack-footer">
-              <a href="javascript:void(0)" class="btn btn--white btn--full ob-trigger" data-open-ob="coiffure" data-i18n="pack.cta">Activer ce pack</a>
-            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="coiffure">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 290 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 69 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Réservation en ligne 24/7 + rappels automatiques anti no-show + récolte d'avis Google automatisée.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack1.roi">Un salon perd en moyenne 2 500 € à 5 000 €/mois en rendez-vous manqués. Ce pack résout la douleur dès le premier mois.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
           </article>
 
           <!-- Pack Artisan -->
-          <article class="pack-card lg" data-reveal style="--d:.08s">
-            <div class="pack-card__header">
-              <span class="pack-tag" data-i18n="pack2.tag">Zéro Appel Perdu</span>
+          <article class="brique-card lg" data-reveal style="--d:.08s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack2.tag">Zéro Appel Perdu</span>
               <h3 data-i18n="pack2.h3">Artisan & Bâtiment</h3>
-              <div class="pack-price">~1 490 € <span class="pack-recurring">+ 79 €/mois</span></div>
+              <p data-i18n="pack2.target">Plombiers, électriciens, chauffagistes, menuisiers, rénovation.</p>
             </div>
-            <div class="pack-body">
-              <p class="pack-pitch" data-i18n="pack2.pitch">Présence Google locale + capteur d'appels manqués intelligent + agent WhatsApp automatisé + devis rapides.</p>
-              <div class="pack-roi">
-                <strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack2.roi">62 % des appels aux artisans ne sont pas décrochés. Ce pack capte instantanément les clients au lieu de les laisser partir chez un concurrent.</span>
-              </div>
-              <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack2.target">Plombiers, électriciens, chauffagistes, menuisiers, rénovation.</span></p>
-            </div>
-            <div class="pack-footer">
-              <a href="javascript:void(0)" class="btn btn--white btn--full ob-trigger" data-open-ob="artisan" data-i18n="pack.cta">Activer ce pack</a>
-            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="artisan">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 490 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 79 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Présence Google locale + capteur d'appels manqués intelligent + agent WhatsApp automatisé + devis rapides.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack2.roi">62 % des appels aux artisans ne sont pas décrochés. Ce pack capte instantanément les clients au lieu de les laisser partir chez un concurrent.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
           </article>
 
           <!-- Pack HoReCa -->
-          <article class="pack-card lg" data-reveal style="--d:.16s">
-            <div class="pack-card__header">
-              <span class="pack-tag" data-i18n="pack3.tag">Toujours Ouvert</span>
+          <article class="brique-card lg" data-reveal style="--d:.16s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack3.tag">Toujours Ouvert</span>
               <h3 data-i18n="pack3.h3">HoReCa & Restauration</h3>
-              <div class="pack-price">~1 490 € <span class="pack-recurring">+ 79 €/mois</span></div>
+              <p data-i18n="pack3.target">Restaurants, traiteurs, bars, food trucks.</p>
             </div>
-            <div class="pack-body">
-              <p class="pack-pitch" data-i18n="pack3.pitch">Présence Google + module de réservation ou commande en ligne + récolte automatique d'avis + synchronisation réseaux.</p>
-              <div class="pack-roi">
-                <strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack3.roi">30 % à 50 % des réservations se font en dehors des heures d'ouverture. Sans système, ces clients sont perdus.</span>
-              </div>
-              <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack3.target">Restaurants, traiteurs, bars, food trucks.</span></p>
-            </div>
-            <div class="pack-footer">
-              <a href="javascript:void(0)" class="btn btn--white btn--full ob-trigger" data-open-ob="horeca" data-i18n="pack.cta">Activer ce pack</a>
-            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="horeca">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 490 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 79 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Présence Google + module de réservation ou commande en ligne + récolte automatique d'avis + synchronisation réseaux.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack3.roi">30 % à 50 % des réservations se font en dehors des heures d'ouverture. Sans système, ces clients sont perdus.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
           </article>
 
           <!-- Pack Praticien -->
-          <article class="pack-card lg" data-reveal style="--d:.24s">
-            <div class="pack-card__header">
-              <span class="pack-tag" data-i18n="pack4.tag">Cabinet Serein</span>
+          <article class="brique-card lg" data-reveal style="--d:.24s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack4.tag">Cabinet Serein</span>
               <h3 data-i18n="pack4.h3">Praticien & Bien-être</h3>
-              <div class="pack-price">~1 290 € <span class="pack-recurring">+ 69 €/mois</span></div>
+              <p data-i18n="pack4.target">Kinés, ostéopathes, coachs, thérapeutes, esthétique médicale.</p>
             </div>
-            <div class="pack-body">
-              <p class="pack-pitch" data-i18n="pack4.pitch">Réservation en ligne + rappels SMS + acompte sécurisé anti-désistement + portail patient ultra-simple.</p>
-              <div class="pack-roi">
-                <strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack4.roi">Le no-show est la bête noire des praticiens. Les rappels SMS diminuent les oublis de 40 %, et l'acompte réduit le no-show de 65 %.</span>
-              </div>
-              <p class="pack-target"><strong data-i18n="pack.target_label">Cible :</strong> <span data-i18n="pack4.target">Kinés, ostéopathes, coachs, thérapeutes, esthétique médicale.</span></p>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="praticien">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 290 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 69 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Réservation en ligne + rappels SMS + acompte sécurisé anti-désistement + portail patient ultra-simple.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack4.roi">Le no-show est la bête noire des praticiens. Les rappels SMS diminuent les oublis de 40 %, et l'acompte réduit le no-show de 65 %.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Immobilier -->
+          <article class="brique-card lg" data-reveal style="--d:.32s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack5.tag">Génération Leads</span>
+              <h3 data-i18n="pack5.h3">Immobilier</h3>
+              <p data-i18n="pack5.target">Agences immobilières, chasseurs de biens, courtiers.</p>
             </div>
-            <div class="pack-footer">
-              <a href="javascript:void(0)" class="btn btn--white btn--full ob-trigger" data-open-ob="praticien" data-i18n="pack.cta">Activer ce pack</a>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="immobilier">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 890 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 99 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Passerelle API vers vos logiciels (Whise, etc.) + module d'estimation en ligne + capture de mandats automatisée.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack5.roi">Un seul mandat exclusif capté via le site rentabilise l'investissement sur l'année.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Avocats -->
+          <article class="brique-card lg" data-reveal style="--d:.4s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack6.tag">Autorité & Confiance</span>
+              <h3 data-i18n="pack6.h3">Avocats & Juridique</h3>
+              <p data-i18n="pack6.target">Cabinets d'avocats, notaires, huissiers, juristes.</p>
             </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="avocat">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 590 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 89 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Design institutionnel premium + prise de rendez-vous sécurisée + espace documentaire crypté + SEO spécialisé.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack6.roi">La première impression détermine le choix du conseil. Un site qui inspire confiance augmente la conversion de 40 %.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Boutiques Physiques -->
+          <article class="brique-card lg" data-reveal style="--d:.48s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack7.tag">Drive-to-Store</span>
+              <h3 data-i18n="pack7.h3">Commerces & Retail</h3>
+              <p data-i18n="pack7.target">Boutiques de vêtements, épiceries fines, fleuristes, opticiens.</p>
+            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="commerce">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 390 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 79 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Catalogue vitrine synchronisé (sans e-commerce complexe) + Click & Collect + campagnes SMS de fidélisation.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack7.roi">Générer du trafic en magasin via la visibilité locale coûte 3x moins cher que l'acquisition e-commerce pure.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Fitness -->
+          <article class="brique-card lg" data-reveal style="--d:.56s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack8.tag">Abonnements Récurrents</span>
+              <h3 data-i18n="pack8.h3">Sport & Fitness</h3>
+              <p data-i18n="pack8.target">Salles de sport, studios yoga/pilates, coachs indépendants.</p>
+            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="fitness">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 490 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 89 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Vente d'abonnements en ligne + planning interactif des cours + gestion des listes d'attente automatisée.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack8.roi">Automatiser la gestion des cours fait gagner jusqu'à 15h/semaine. L'inscription fluide augmente les ventes de 25 %.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Consultants -->
+          <article class="brique-card lg" data-reveal style="--d:.64s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack9.tag">Positionnement Expert</span>
+              <h3 data-i18n="pack9.h3">Consulting & B2B</h3>
+              <p data-i18n="pack9.target">Consultants, formateurs, agences, services B2B.</p>
+            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="consulting">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 690 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 79 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Système de capture de leads (Lead Magnet) + intégration CRM + blog d'expertise SEO + tunnel de vente.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack9.roi">Transformer les visiteurs en prospects qualifiés automatiquement alimente votre pipeline sans prospection à froid.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Formation -->
+          <article class="brique-card lg" data-reveal style="--d:.72s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack10.tag">E-learning & Inscriptions</span>
+              <h3 data-i18n="pack10.h3">Centres de Formation</h3>
+              <p data-i18n="pack10.target">Auto-écoles, centres de formation, formateurs indépendants.</p>
+            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="formation">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~2 490 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 129 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Catalogue de formations dynamique + inscriptions en ligne sécurisées + espace membres LMS intégré.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack10.roi">Un LMS propriétaire supprime les commissions des plateformes tierces et valorise votre actif numérique.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Garages -->
+          <article class="brique-card lg" data-reveal style="--d:.8s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack11.tag">Atelier Rempli</span>
+              <h3 data-i18n="pack11.h3">Garages & Auto</h3>
+              <p data-i18n="pack11.target">Garagistes, carrosseries, concessionnaires indépendants, detailing.</p>
+            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="garage">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 390 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 69 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Demande de devis structurée en ligne + module de prise de RDV atelier + catalogue véhicules d'occasion.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack11.roi">Filtrer les demandes par des formulaires précis fait gagner un temps précieux aux mécaniciens à l'atelier.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pack Finance -->
+          <article class="brique-card lg" data-reveal style="--d:.88s">
+            <div class="brique-card__header">
+              <span class="brique-card__category" data-i18n="pack12.tag">Sécurité & Clientèle</span>
+              <h3 data-i18n="pack12.h3">Experts-Comptables</h3>
+              <p data-i18n="pack12.target">Fiduciaires, experts-comptables, conseillers financiers.</p>
+            </div>
+            <ul class="brique-list">
+              <li class="brique-item ob-trigger" data-open-ob="finance">
+                <div class="brique-item-row">
+                  <span class="brique-name">Pack Complet</span>
+                  <span class="brique-price">~1 690 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 89 €/mois</span></span>
+                </div>
+                <p class="brique-desc">Portail client pour dépôt de documents sécurisé + intégration avec vos outils comptables + SEO B2B ciblé.<br><br><strong data-i18n="pack.roi_label">Justification ROI :</strong> <span data-i18n="pack12.roi">Centraliser les échanges documentaires réduit les erreurs et les relances manuelles de 50 %.</span> <span class="brique-order-hint" data-i18n="pack.cta">Activer ce pack →</span></p>
+              </li>
+            </ul>
           </article>
 
         </div>

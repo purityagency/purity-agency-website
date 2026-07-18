@@ -32,7 +32,7 @@
   background: var(--c-accent, #A855F7);
 }
 
-.page-title { font-family: var(--font-head); font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; margin-bottom: 1.2rem; letter-spacing: -0.02em; text-wrap: balance; }
+.page-title { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; margin-bottom: 1.2rem; letter-spacing: -0.02em; text-wrap: balance; }
 .page-lead { color: rgba(255, 255, 255, 0.5); font-size: 1.15rem; max-width: 58ch; margin: 0 auto; line-height: 1.6; text-wrap: pretty; }
 
 /* Grid Blog (Bento Style) */
@@ -126,7 +126,7 @@
 .article-hero__content { z-index: 1; }
 .article-hero__content h1 {
   font-family: var(--font-head);
-  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.05; margin: 1.5rem 0;
   letter-spacing: -0.02em;
   color: #fff;
@@ -1954,7 +1954,9 @@
    CALENDRIER DE RÉSERVATION MAISON (backend Google Calendar, zéro tiers navigateur)
    ========================================================================== */
 .booking {
+  width: 100%;
   max-width: 720px;
+  min-width: 0;
   margin: 0 auto;
   border: 1px solid rgba(124, 58, 237, .22);
   border-radius: 20px;
@@ -1964,6 +1966,7 @@
   box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   padding: clamp(1.2rem, 2.5vw, 2rem);
   min-height: 420px;
+  box-sizing: border-box;
 }
 
 /* Sélecteur de jours (bande horizontale) */
@@ -2613,7 +2616,7 @@ textarea {
 .dp-numbers__val {
   display: block;
   font-family: var(--font-head);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800; line-height: 1;
   letter-spacing: -0.05em; color: #fff;
   margin-bottom: .6rem;
@@ -2695,7 +2698,7 @@ textarea {
   width: 90%; max-width: var(--w-max, 1280px); margin: 0 auto 2.5rem;
 }
 .dp-steps__head h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
   line-height: 1.1; letter-spacing: -.03em;
 }
 .dp-steps__grid {
@@ -2794,6 +2797,8 @@ textarea {
   width: 100%;
   margin-top: 3rem;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
 }
 
 .svc-carousel__track-wrapper {
@@ -2819,7 +2824,11 @@ textarea {
   padding: 0 calc(50% - 170px); /* Centrage sur la card active de 340px */
 }
 
-/* Card - Style brique-card hérité */
+/* Card - Style brique-card hérité
+   NOTE : ce box-shadow (et ceux des 2 blocs .svc-card suivants) sont écrasés
+   par le bloc plus bas ligne ~3276 (teinte --vc par service) qui gagne en
+   dernier dans la cascade. Ne pas modifier le shadow ici en pensant que ça
+   change le rendu — éditer le bloc ligne ~3276. */
 .svc-card {
   padding: 0;
   display: flex;
@@ -2832,9 +2841,9 @@ textarea {
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: 
-    border-color 0.4s ease, 
-    box-shadow 0.4s ease, 
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.4s ease;
   cursor: pointer;
@@ -3010,7 +3019,8 @@ textarea {
   display: flex;
   justify-content: center;
   gap: 0.6rem;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
+  order: -1;
 }
 
 .svc-carousel__dot {
@@ -3065,7 +3075,7 @@ textarea {
 
 /* Titre section — normal, solide, bien visible au-dessus du carrousel */
 .svc__title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
   font-weight: 600 !important;
   letter-spacing: -0.03em !important;
   color: #fff !important;
@@ -3505,15 +3515,17 @@ textarea {
   gap: 1.5rem !important;
 }
 
-/* Row 1 : les 4 premières briques côte à côte (Purity Studio prend la place d'Outils Métier) */
-.briques-grid > article:nth-child(1) { grid-column: 1 / span 3 !important; grid-row: 1 !important; }
-.briques-grid > article:nth-child(2) { grid-column: 4 / span 3 !important; grid-row: 1 !important; }
-.briques-grid > article:nth-child(3) { grid-column: 7 / span 3 !important; grid-row: 1 !important; }
-.briques-grid > article:nth-child(5) { grid-column: 10 / span 3 !important; grid-row: 1 !important; }
+/* Positionnement par data-slot (stable, indépendant de l'ordre DOM/nesting —
+   l'ordre DOM correspond maintenant à l'ordre visuel pour un focus/lecture cohérent) */
+/* Row 1 : les 4 premières briques côte à côte */
+.briques-grid [data-slot="1"] { grid-column: 1 / span 3 !important; grid-row: 1 !important; }
+.briques-grid [data-slot="2"] { grid-column: 4 / span 3 !important; grid-row: 1 !important; }
+.briques-grid [data-slot="3"] { grid-column: 7 / span 3 !important; grid-row: 1 !important; }
+.briques-grid [data-slot="4"] { grid-column: 10 / span 3 !important; grid-row: 1 !important; }
 
 /* Row 2 : les 2 dernières, centrées, grande marge de chaque côté */
-.briques-subgrid > article:nth-child(2) { grid-column: 3 / span 4 !important; grid-row: 2 !important; }
-.briques-subgrid > article:nth-child(1) { grid-column: 7 / span 4 !important; grid-row: 2 !important; }
+.briques-grid [data-slot="5"] { grid-column: 3 / span 4 !important; grid-row: 2 !important; }
+.briques-grid [data-slot="6"] { grid-column: 7 / span 4 !important; grid-row: 2 !important; }
 
 /* Card — dense, pensée pour tenir sur un seul écran par onglet */
 .brique-card {
@@ -3597,14 +3609,15 @@ textarea {
   margin-top: 0.2rem !important;
 }
 
-/* Description — 1 ligne, condensée pour que toute la grille tienne sans scroll excessif */
+/* Description — 2 lignes max : certains items terminent leur phrase par une
+   condition de prix (ex. budget pub minimum) qu'un clamp à 1 ligne cachait. */
 .brique-desc {
   font-size: 0.72rem !important;
   color: rgba(255, 255, 255, 0.6) !important;
   line-height: 1.4 !important;
   margin-top: 0.2rem !important;
   display: -webkit-box !important;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -3616,15 +3629,7 @@ textarea {
 /* Mobile — stack */
 @media (max-width: 900px) {
   .briques-grid { grid-template-columns: 1fr !important; }
-  .briques-grid > article:nth-child(1),
-  .briques-grid > article:nth-child(2),
-  .briques-grid > article:nth-child(3),
-  .briques-grid > article:nth-child(5) {
-    grid-column: 1 / -1 !important;
-    grid-row: auto !important;
-  }
-  .briques-subgrid > article:nth-child(1),
-  .briques-subgrid > article:nth-child(2) {
+  .briques-grid [data-slot] {
     grid-column: 1 / -1 !important;
     grid-row: auto !important;
   }
@@ -4533,7 +4538,7 @@ textarea {
 }
 
 .dp-briques__head h2 {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.5rem;
@@ -4714,7 +4719,7 @@ textarea {
 }
 .dp-testimonials__inner { width: 90%; max-width: var(--w-max,1200px); margin: 0 auto; }
 .dp-testimonials__head { margin-bottom: 2.5rem; }
-.dp-testimonials__head h2 { font-size: clamp(1.75rem,3.5vw,2.6rem); }
+.dp-testimonials__head h2 { font-size: clamp(1.5rem,3vw,2.2rem); }
 .dp-testimonials__grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
   background: rgba(255,255,255,.06);
@@ -5242,6 +5247,8 @@ textarea {
 .faq-contact-split #faq {
   grid-column: 2 !important;
   grid-row: 1 !important;
+  align-self: stretch !important;
+  border-left: 1px solid var(--c-border) !important;
 }
 .faq-contact-split #contact {
   grid-column: 1 !important;

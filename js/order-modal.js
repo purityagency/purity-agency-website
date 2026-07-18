@@ -114,13 +114,52 @@
     }
   };
 
-  // OPTIONS ET SUPPLÉMENTS DISPONIBLES
-  var OPTIONS = [
-    { id: 'opt_textes', name: 'Rédaction professionnelle des textes', price: 290, desc: 'Nous rédigeons l\'intégralité des contenus pour maximiser vos ventes.' },
-    { id: 'opt_logo', name: 'Création de logo & identité visuelle', price: 390, desc: 'Logo vectoriel moderne, charte graphique et palette de couleurs.' },
-    { id: 'opt_photos', name: 'Reportage photo & vidéo pro (Wallonie)', price: 490, desc: 'Séance sur site pour capturer des visuels authentiques.' },
-    { id: 'opt_maintenance', name: 'Support & maintenance (mensuel)', price: 49, desc: 'Mises à jour de sécurité et modifications rapides incluses.', isMonthly: true }
-  ];
+  // OPTIONS ET SUPPLÉMENTS DISPONIBLES PAR CATÉGORIE
+  var OPTIONS_CAT = {
+    web: [
+      { id: 'opt_textes', name: 'Rédaction professionnelle des textes', price: 290, desc: 'Nous rédigeons l\'intégralité des contenus pour maximiser vos ventes.' },
+      { id: 'opt_logo', name: 'Création de logo & identité visuelle', price: 390, desc: 'Logo vectoriel moderne, charte graphique et palette de couleurs.' },
+      { id: 'opt_photos', name: 'Reportage photo & vidéo pro (Wallonie)', price: 490, desc: 'Séance sur site pour capturer des visuels authentiques.' },
+      { id: 'opt_maintenance', name: 'Support & maintenance (mensuel)', price: 49, desc: 'Mises à jour de sécurité et modifications rapides incluses.', isMonthly: true }
+    ],
+    acquisition: [
+      { id: 'opt_copy', name: 'Copywriting publicitaire', price: 190, desc: 'Création de textes percutants pour vos annonces.' },
+      { id: 'opt_retarget', name: 'Setup Retargeting (Pixel)', price: 290, desc: 'Configuration du reciblage publicitaire (Meta/Google).' },
+      { id: 'opt_report', name: 'Rapport analytique mensuel', price: 49, desc: 'Tableau de bord personnalisé mis à jour chaque mois.', isMonthly: true },
+      { id: 'opt_bot', name: 'Bot IA de qualification', price: 890, desc: 'Bot intelligent pour qualifier les prospects entrants.' }
+    ],
+    auto: [
+      { id: 'opt_audit', name: 'Audit complet des processus', price: 390, desc: 'Analyse de vos flux pour identifier de nouvelles automatisations.' },
+      { id: 'opt_formation', name: 'Formation équipe (Visio)', price: 290, desc: 'Formation de votre équipe à la maîtrise des nouveaux outils.' },
+      { id: 'opt_crm_sync', name: 'Synchronisation CRM avancée', price: 490, desc: 'Connexion de l\'automatisation à votre outil métier existant.' },
+      { id: 'opt_maint_tech', name: 'Maintenance technique (mensuel)', price: 49, desc: 'Surveillance et ajustement de vos automatisations.', isMonthly: true }
+    ],
+    studio: [
+      { id: 'opt_express', name: 'Livraison express (J+3)', price: 190, desc: 'Traitement prioritaire de votre demande en 3 jours ouvrés.' },
+      { id: 'opt_declinaison', name: 'Déclinaison formats (Reels/TikTok)', price: 150, desc: 'Adaptation de vos visuels/vidéos pour tous les réseaux.' },
+      { id: 'opt_source', name: 'Fichiers sources complets', price: 90, desc: 'Remise des fichiers de travail originaux (PSD, AI, AEP).' },
+      { id: 'opt_revision', name: 'Tour de révision supplémentaire', price: 79, desc: 'Modifications additionnelles après validation finale.' }
+    ],
+    support: [
+      { id: 'opt_priority', name: 'Support Prioritaire 24/7', price: 99, desc: 'Ligne directe WhatsApp avec notre équipe technique.', isMonthly: true },
+      { id: 'opt_backup', name: 'Sauvegardes quotidiennes externalisées', price: 29, desc: 'Sécurisation maximale avec rétention de 30 jours.', isMonthly: true },
+      { id: 'opt_monitoring', name: 'Monitoring de disponibilité (Uptime)', price: 19, desc: 'Alerte instantanée en cas de coupure de vos services.', isMonthly: true },
+      { id: 'opt_audit_sec', name: 'Audit de sécurité annuel', price: 290, desc: 'Test d\'intrusion et rapport complet des failles potentielles.' }
+    ]
+  };
+
+  function getOptionsForService(serviceId) {
+    var map = {
+      'googlebiz': 'web', 'landing': 'web', 'vitrine': 'web', 'complet': 'web', 'ecommerce': 'web',
+      'seolocal': 'acquisition', 'googleads': 'acquisition', 'tunnel': 'acquisition',
+      'calendar': 'auto', 'botia': 'auto', 'workflow': 'auto',
+      'crm': 'auto', 'dashboard': 'auto', 'appcomplete': 'auto',
+      'studio-visuels': 'studio', 'studio-videos': 'studio', 'studio-identite': 'studio', 'studio-mensuel': 'studio',
+      'maintenance': 'support', 'emailpro': 'support'
+    };
+    var cat = map[serviceId] || 'web';
+    return OPTIONS_CAT[cat];
+  }
 
   var currentService = null;
   var selectedOptions = {};
@@ -345,7 +384,9 @@
     var basePrice = currentService.price;
     var totalPrice = basePrice;
 
-    OPTIONS.forEach(function (opt) {
+    var currentOptions = getOptionsForService(currentService.id);
+
+    currentOptions.forEach(function (opt) {
       if (selectedOptions[opt.id]) {
         totalPrice += opt.price;
       }
@@ -367,17 +408,19 @@
     if (!container) return;
     container.innerHTML = '';
 
-    OPTIONS.forEach(function (opt) {
+    var currentOptions = getOptionsForService(currentService.id);
+
+    currentOptions.forEach(function (opt) {
       var item = document.createElement('div');
       item.className = 'ob-opt-card' + (selectedOptions[opt.id] ? ' is-selected' : '');
       item.dataset.optionId = opt.id;
 
       item.innerHTML = 
         '<div class="ob-opt-card__meta">' +
-          '<span class="ob-opt-card__name">' + opt.name + '</span>' +
+          '<span class="ob-opt-card__name" data-i18n="modal.' + opt.id + '.name">' + opt.name + '</span>' +
           '<span class="ob-opt-card__price">+' + opt.price + ' €' + (opt.isMonthly ? '/mois' : '') + '</span>' +
         '</div>' +
-        '<p class="ob-opt-card__desc">' + opt.desc + '</p>';
+        '<p class="ob-opt-card__desc" data-i18n="modal.' + opt.id + '.desc">' + opt.desc + '</p>';
 
       item.addEventListener('click', function () {
         selectedOptions[opt.id] = !selectedOptions[opt.id];
@@ -387,6 +430,11 @@
 
       container.appendChild(item);
     });
+    
+    // Appliquer les traductions sur les nouveaux éléments générés si la langue n'est pas le français
+    if (window.applyDict && window.currentLang && window.currentLang !== 'fr') {
+        window.applyDict(window.currentLang);
+    }
   }
 
   // CONSTRUIRE LES CRÉNEAUX DE RDV

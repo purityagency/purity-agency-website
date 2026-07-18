@@ -1378,20 +1378,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
 
-    const applyDict = (dict) => {
-      _i18nDict = dict;
+    window.applyDict = (dict) => {
+      window._i18nDict = dict;
+      
+      // Update basic texts
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] != null) el.innerHTML = dict[key];
       });
+      
+      // Update ARIA labels
       document.querySelectorAll('[data-i18n-aria]').forEach(el => {
         const key = el.getAttribute('data-i18n-aria');
         if (dict[key] != null) el.setAttribute('aria-label', dict[key].replace(/<[^>]+>/g, ''));
       });
+      
+      // Update Placeholders
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         if (dict[key] != null) el.setAttribute('placeholder', dict[key].replace(/<[^>]+>/g, ''));
       });
+
+      // Update Titles attributes
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (dict[key] != null) el.setAttribute('title', dict[key].replace(/<[^>]+>/g, ''));
+      });
+
+      // Update Meta / Document Title
+      if (dict['meta.title']) {
+        document.title = dict['meta.title'].replace(/<[^>]+>/g, '');
+      }
+      if (dict['meta.desc']) {
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', dict['meta.desc'].replace(/<[^>]+>/g, ''));
+      }
+      
+      // Update lang tag
+      const activeLang = document.getElementById('langsel-btn')?.innerText.trim().toLowerCase() || 'fr';
+      document.documentElement.lang = activeLang;
+
       if (typeof window.refreshOnboardingFeatures === 'function') {
         window.refreshOnboardingFeatures();
       }
@@ -1407,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!res.ok) throw new Error('i18n fetch failed: ' + res.status);
           dictCache[code] = await res.json();
         }
-        applyDict(dictCache[code]);
+        window.applyDict(dictCache[code]);
       } catch (err) {
         console.warn('[i18n] Impossible de charger la langue', code, err);
         if (userInitiated) return; // on n'affiche pas un site à moitié traduit

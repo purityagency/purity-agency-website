@@ -10,7 +10,15 @@
     coiffure:  { name: 'Coiffure & Beauté',     pack: 'Pack Agenda Plein',       price: 1290, deposit: 387, monthly: 69 },
     artisan:   { name: 'Artisan & Bâtiment',    pack: 'Pack Zéro Appel Perdu',   price: 1490, deposit: 447, monthly: 79 },
     horeca:    { name: 'HoReCa & Restauration', pack: 'Pack Toujours Ouvert',    price: 1490, deposit: 447, monthly: 79 },
-    praticien: { name: 'Praticien & Bien-être', pack: 'Pack Cabinet Serein',     price: 1290, deposit: 387, monthly: 69 }
+    praticien: { name: 'Praticien & Bien-être', pack: 'Pack Cabinet Serein',     price: 1290, deposit: 387, monthly: 69 },
+    immobilier:{ name: 'Immobilier',            pack: 'Pack Agence Digitale',    price: 1490, deposit: 447, monthly: 79 },
+    avocat:    { name: 'Avocats & Juridique',   pack: 'Pack Cabinet Moderne',    price: 1490, deposit: 447, monthly: 79 },
+    commerce:  { name: 'Commerces & Retail',    pack: 'Pack Click & Collect',    price: 1990, deposit: 597, monthly: 99 },
+    fitness:   { name: 'Salles de Sport',       pack: 'Pack Membres Pro',        price: 1490, deposit: 447, monthly: 79 },
+    consulting:{ name: 'Consultants & B2B',     pack: 'Pack Expert Autorité',    price: 1290, deposit: 387, monthly: 69 },
+    formation: { name: 'Formateurs & Coachs',   pack: 'Pack Académie',           price: 1990, deposit: 597, monthly: 99 },
+    garage:    { name: 'Garages & Concessions', pack: 'Pack Atelier Connecté',   price: 1490, deposit: 447, monthly: 79 },
+    finance:   { name: 'Finance & Assurance',   pack: 'Pack Confiance Pro',      price: 1490, deposit: 447, monthly: 79 }
   };
 
   var ERROR_MESSAGES = {
@@ -42,15 +50,15 @@
         '<div class="ob-stage">' +
           '<div class="ob-panel" data-step="1">' +
             '<div class="ob-panel__inner">' +
-              '<span class="ob-eyebrow">Activer le pack</span>' +
+              '<span class="ob-eyebrow" data-i18n="modal.step1.eyebrow">Activer le pack</span>' +
               '<h2 class="ob-h2" id="pk-title">Pack</h2>' +
               '<p class="ob-sub" id="pk-sub"></p>' +
               '<form id="pk-form" class="ob-form">' +
-                '<div class="ob-field"><label for="pk-name">Nom complet <span class="ob-req">*</span></label><input type="text" id="pk-name" required autocomplete="name"></div>' +
-                '<div class="ob-field"><label for="pk-company">Entreprise (facultatif)</label><input type="text" id="pk-company" autocomplete="organization"></div>' +
+                '<div class="ob-field"><label for="pk-name"><span data-i18n="modal.form.name">Nom complet</span> <span class="ob-req">*</span></label><input type="text" id="pk-name" required autocomplete="name"></div>' +
+                '<div class="ob-field"><label for="pk-company"><span data-i18n="modal.form.company">Entreprise</span> <span data-i18n="modal.form.tva">(facultatif)</span></label><input type="text" id="pk-company" autocomplete="organization"></div>' +
                 '<div class="ob-form__row">' +
-                  '<div class="ob-field"><label for="pk-email">E-mail <span class="ob-req">*</span></label><input type="email" id="pk-email" required autocomplete="email"></div>' +
-                  '<div class="ob-field"><label for="pk-phone">Téléphone <span class="ob-req">*</span></label><input type="tel" id="pk-phone" required autocomplete="tel"></div>' +
+                  '<div class="ob-field"><label for="pk-email"><span data-i18n="modal.form.email">E-mail</span> <span class="ob-req">*</span></label><input type="email" id="pk-email" required autocomplete="email"></div>' +
+                  '<div class="ob-field"><label for="pk-phone"><span data-i18n="modal.form.phone">Téléphone</span> <span class="ob-req">*</span></label><input type="tel" id="pk-phone" required autocomplete="tel"></div>' +
                 '</div>' +
                 '<input type="text" name="website_verification" id="pk-hp" style="position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">' +
                 '<div id="pk-error" class="ob-form__error" hidden></div>' +
@@ -62,6 +70,7 @@
       '</div>';
 
     document.body.appendChild(div);
+    if(window.applyDict) window.applyDict();
 
     modal = div;
     form = div.querySelector('#pk-form');

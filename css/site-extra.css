@@ -2906,6 +2906,11 @@ textarea {
   margin-bottom: 0.6rem;
   color: #fff;
   font-family: var(--font-head);
+  transition: color 0.3s ease;
+}
+
+.svc-card:hover h3 {
+  color: rgb(var(--vc));
 }
 
 .svc-card p {
@@ -3528,14 +3533,28 @@ textarea {
 .briques-grid [data-slot="6"] { grid-column: 7 / span 4 !important; grid-row: 2 !important; --vc: 52, 211, 153; } /* Outils Métier */
 
 /* Packs métiers — ajout de variables de couleurs spécifiques */
-.packs-grid article:nth-child(1) { --vc: 236, 72, 153; } /* Pack 1 - Rose */
-.packs-grid article:nth-child(2) { --vc: 234, 179, 8; }  /* Pack 2 - Jaune */
-.packs-grid article:nth-child(3) { --vc: 239, 68, 68; }  /* Pack 3 - Rouge */
+.packs-grid article:nth-child(1) { --vc: 236, 72, 153; } /* Rose */
+.packs-grid article:nth-child(2) { --vc: 234, 179, 8; }  /* Jaune */
+.packs-grid article:nth-child(3) { --vc: 239, 68, 68; }  /* Rouge */
+.packs-grid article:nth-child(4) { --vc: 6, 182, 212; }  /* Cyan */
+.packs-grid article:nth-child(5) { --vc: 34, 197, 94; }  /* Vert */
+.packs-grid article:nth-child(6) { --vc: 139, 92, 246; } /* Violet */
+.packs-grid article:nth-child(7) { --vc: 249, 115, 22; } /* Orange */
+.packs-grid article:nth-child(8) { --vc: 99, 102, 241; } /* Indigo */
+.packs-grid article:nth-child(9) { --vc: 20, 184, 166; } /* Teal */
+.packs-grid article:nth-child(10) { --vc: 244, 63, 94; } /* Rose foncé */
+.packs-grid article:nth-child(11) { --vc: 132, 204, 22; } /* Lime */
+.packs-grid article:nth-child(12) { --vc: 59, 130, 246; } /* Bleu */
 
 /* Card — dense, pensée pour tenir sur un seul écran par onglet */
 .brique-card {
   padding: 1.1rem 1.2rem !important;
   border-radius: 18px !important;
+  border: 1px solid rgba(var(--vc, 255, 255, 255), 0.2) !important;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(var(--vc, 255, 255, 255), 0.1),
+    inset 0 0 20px rgba(var(--vc, 255, 255, 255), 0.05) !important;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease !important;
@@ -3547,11 +3566,20 @@ textarea {
 
 .brique-card:hover {
   transform: translateY(-4px) !important;
-  border-color: rgba(var(--vc, 167, 139, 250), 0.3) !important;
+  border-color: rgba(var(--vc, 255, 255, 255), 0.4) !important;
   box-shadow:
     0 24px 64px rgba(0, 0, 0, 0.55),
-    0 0 50px rgba(var(--vc, 124, 58, 237), 0.1),
+    0 0 60px rgba(var(--vc, 255, 255, 255), 0.15),
+    inset 0 0 30px rgba(var(--vc, 255, 255, 255), 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.brique-card h3 {
+  transition: color 0.3s ease;
+}
+
+.brique-card:hover h3 {
+  color: rgb(var(--vc, 255, 255, 255)) !important;
 }
 
 /* Catégorie — masqué */

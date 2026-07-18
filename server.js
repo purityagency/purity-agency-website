@@ -1120,7 +1120,6 @@ const server = http.createServer((req, res) => {
             ts: Date.now(),
             config: {
                 baseUrl: Boolean(baseUrl()),
-                dashboardSecret: Boolean(dashboardSecret()),
                 mollieCheckout: isMollieConfigured(),
                 booking: isBookingConfigured(),
             },

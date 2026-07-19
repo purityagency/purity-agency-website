@@ -1639,8 +1639,19 @@
     flex-wrap: nowrap;
     gap: 0.75rem;
   }
-  .sticky-booking__text span {
+  /* ≤560px le texte poussait le CTA et la croix hors-écran (croix à x=434
+     sur un viewport de 375px : bandeau infermable). On ne garde que les
+     boutons — le libellé est redondant avec le texte du CTA lui-même. */
+  .sticky-booking__text {
     display: none;
+  }
+  .sticky-booking__btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+  }
+  .sticky-booking__close {
+    flex-shrink: 0;
   }
 }
 
@@ -1745,6 +1756,12 @@
   /* UX-3 — chatbot au-dessus de la nav + dégagé des CTAs hero */
   .chat {
     bottom: 96px;
+  }
+
+  /* Quand le bandeau sticky-booking est affiché (88–150px), la bulle chat
+     monte d'un cran pour ne pas s'asseoir dessus */
+  body:has(.sticky-booking:not([hidden])) .chat {
+    bottom: 162px;
   }
 }
 
@@ -1916,10 +1933,9 @@
 .btn--ghost:hover { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .5); }
 
 /* ≤860px : la mobile-nav-bar (z 999, bottom 16px, h 64px) recouvrait le bouton
-   "Compris" (z 950) — bannière et bulle chat remontées au-dessus de la barre */
+   "Compris" (z 950) — bannière remontée au-dessus de la barre d'onglets */
 @media (max-width: 860px) {
   .cookie-banner { bottom: 96px; }
-  .chat { bottom: 96px; }
 }
 @media (max-width: 560px) {
   .cookie-banner { flex-direction: column; align-items: stretch; text-align: left; }

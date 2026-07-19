@@ -12,7 +12,7 @@ const bookingRouter = require('./routes/booking');
 const paymentRouter = require('./routes/payment');
 
 const PORT = env.PORT;
-const ROOT = path.join(env.ROOT, 'purity-agency-site');
+const ROOT = env.ROOT;
 
 const ALLOWED_ORIGINS = new Set([
   'https://purity-agency.be',

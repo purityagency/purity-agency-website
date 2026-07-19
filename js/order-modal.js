@@ -316,6 +316,7 @@
                 '</div>' +
                 '<div class="ob-field"><label for="ob-f-address">Adresse de facturation <span class="ob-req">*</span></label><input type="text" id="ob-f-address" placeholder="Rue, N°, Code Postal, Ville" required>' +
                 '</div>' +
+                '<input type="text" name="website_verification" id="ob-hp" style="position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">' +
                 
                 '<div id="ob-form-error" class="ob-form__error" hidden></div>' +
                 
@@ -729,6 +730,9 @@
     if (form) {
       form.onsubmit = function (e) {
         e.preventDefault();
+
+        var hp = document.getElementById('ob-hp');
+        if (hp && hp.value.trim()) return; // Honeypot anti-spam
 
         var btn = document.getElementById('ob-submit-btn');
         var txt = btn.querySelector('.ob-submit__txt');

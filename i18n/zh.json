@@ -96,7 +96,7 @@
   "promise3.h3": "高端品质，否则重做",
   "promise3.p": "如果结果不够高端，我们重做。我们的名誉在此。",
   "promise4.h3": "单一对接人",
-  "promise4.p": "一个人全程跟进您的项目，随时可联系，对您的需求了如指掌。",
+  "promise4.p": "Purity 创始人 Amir Kebiyeb 亲自监控和验证项目的每个阶段。",
   "tarifs.tag": "价格",
   "tarifs.title": "透明定价。公开展示。<br><em>绝无意外。</em>",
   "tarifs.lead": "从您需要的地方开始。随时扩展。",
@@ -1208,5 +1208,7 @@
   "modal.opt_monitoring.name": "可用性监控（正常运行时间）",
   "modal.opt_monitoring.desc": "服务中断时立即发出警报。",
   "modal.opt_audit_sec.name": "年度安全审计",
-  "modal.opt_audit_sec.desc": "渗透测试和潜在漏洞的完整报告。"
+  "modal.opt_audit_sec.desc": "渗透测试和潜在漏洞的完整报告。",
+  "preuve.quote": "“Purity ONE 的创建是为了向瓦隆独立人士提供最好的网络和人工智能自动化，满足大型团体的要求，但又不会显得缓慢。”",
+  "preuve.author": "— 阿米尔·科比耶布，创始人"
 }

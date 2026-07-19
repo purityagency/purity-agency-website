@@ -174,6 +174,10 @@ function startServer() {
     }
 
     // Routing
+    if (urlPath === '/health') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ status: 'ok', ts: Date.now() }));
+    }
     if (contactRouter.handleRoute(req, res, urlPath)) return;
     if (bookingRouter.handleRoute(req, res, urlPath)) return;
     if (paymentRouter.handleRoute(req, res, urlPath)) return;

@@ -476,8 +476,10 @@
     });
     
     // Appliquer les traductions sur les nouveaux éléments générés si la langue n'est pas le français
+    // (applyDict sans argument réutilise le dictionnaire déjà chargé — window.currentLang
+    // est un code langue, pas un dictionnaire, ça n'a jamais dû lui être passé directement)
     if (window.applyDict && window.currentLang && window.currentLang !== 'fr') {
-        window.applyDict(window.currentLang);
+        window.applyDict();
     }
   }
 

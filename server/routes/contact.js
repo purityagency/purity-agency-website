@@ -1,28 +1,36 @@
 const contactController = require('../controllers/contact.controller');
 
 function handleRoute(req, res, urlPath) {
+  // Contrôleurs async (req.on('data'...)) : on retourne `true` nous-mêmes dès
+  // que l'URL matche, leur valeur de retour réelle n'est jamais `true`/false.
   if (urlPath === '/api/contact') {
     if (req.method !== 'POST') {
       res.writeHead(405);
-      return res.end('Method Not Allowed');
+      res.end('Method Not Allowed');
+      return true;
     }
-    return contactController.handleContact(req, res);
+    contactController.handleContact(req, res);
+    return true;
   }
 
   if (urlPath === '/api/chat') {
     if (req.method !== 'POST') {
       res.writeHead(405);
-      return res.end('Method Not Allowed');
+      res.end('Method Not Allowed');
+      return true;
     }
-    return contactController.handleChat(req, res);
+    contactController.handleChat(req, res);
+    return true;
   }
 
   if (urlPath === '/api/improve-text') {
     if (req.method !== 'POST') {
       res.writeHead(405);
-      return res.end('Method Not Allowed');
+      res.end('Method Not Allowed');
+      return true;
     }
-    return contactController.handleImproveText(req, res);
+    contactController.handleImproveText(req, res);
+    return true;
   }
 
   return false;

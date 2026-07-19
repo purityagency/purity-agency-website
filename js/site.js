@@ -1379,8 +1379,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
 
     window.applyDict = (dict) => {
+      // Appelée sans argument (ou avec un code langue au lieu d'un dictionnaire)
+      // par du HTML injecté dynamiquement (modals de commande) qui veut juste
+      // réappliquer la langue déjà active — on retombe sur le dernier dict connu.
+      if (!dict || typeof dict !== 'object') dict = window._i18nDict;
+      if (!dict) return;
       window._i18nDict = dict;
-      
+
       // Update basic texts
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');

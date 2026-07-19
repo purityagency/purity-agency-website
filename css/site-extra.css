@@ -3599,6 +3599,10 @@ textarea {
 .packs-grid article:nth-child(10) { --vc: 244, 63, 94; } /* Rose foncé */
 .packs-grid article:nth-child(11) { --vc: 132, 204, 22; } /* Lime */
 .packs-grid article:nth-child(12) { --vc: 59, 130, 246; } /* Bleu */
+.packs-grid article:nth-child(13) { --vc: 217, 70, 239; } /* Fuchsia */
+.packs-grid article:nth-child(14) { --vc: 251, 146, 60; } /* Orange clair */
+.packs-grid article:nth-child(15) { --vc: 168, 85, 247; } /* Violet clair */
+.packs-grid article:nth-child(16) { --vc: 74, 222, 128; } /* Vert clair */
 
 /* Card — dense, pensée pour tenir sur un seul écran par onglet */
 .brique-card {

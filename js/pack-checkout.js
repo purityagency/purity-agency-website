@@ -18,7 +18,11 @@
     consulting:{ name: 'Consultants & B2B',     pack: 'Pack Expert Autorité',    price: 1290, deposit: 387, monthly: 69 },
     formation: { name: 'Formateurs & Coachs',   pack: 'Pack Académie',           price: 1990, deposit: 597, monthly: 99 },
     garage:    { name: 'Garages & Concessions', pack: 'Pack Atelier Connecté',   price: 1490, deposit: 447, monthly: 79 },
-    finance:   { name: 'Finance & Assurance',   pack: 'Pack Confiance Pro',      price: 1490, deposit: 447, monthly: 79 }
+    finance:   { name: 'Finance & Assurance',   pack: 'Pack Confiance Pro',      price: 1490, deposit: 447, monthly: 79 },
+    photo:       { name: 'Photographes & Vidéastes', pack: 'Pack Complet',       price: 1390, deposit: 417, monthly: 59 },
+    veterinaire: { name: 'Santé Animale',            pack: 'Pack Complet',       price: 1490, deposit: 447, monthly: 79 },
+    architecte:  { name: 'Architectes & Déco',       pack: 'Pack Complet',       price: 1890, deposit: 567, monthly: 89 },
+    domicile:    { name: 'Aide à la Personne',       pack: 'Pack Complet',       price: 1490, deposit: 447, monthly: 79 }
   };
 
   var ERROR_MESSAGES = {

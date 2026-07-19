@@ -1,21 +1,26 @@
 const bookingController = require('../controllers/booking.controller');
 
 function handleRoute(req, res, urlPath) {
+  // Contrôleurs async : on retourne `true` nous-mêmes dès que l'URL matche.
   if (urlPath === '/api/availability') {
     if (req.method !== 'GET') {
       res.writeHead(405);
-      return res.end('Method Not Allowed');
+      res.end('Method Not Allowed');
+      return true;
     }
     const query = new URLSearchParams(req.url.split('?')[1] || '');
-    return bookingController.handleAvailability(req, res, query);
+    bookingController.handleAvailability(req, res, query);
+    return true;
   }
 
   if (urlPath === '/api/book') {
     if (req.method !== 'POST') {
       res.writeHead(405);
-      return res.end('Method Not Allowed');
+      res.end('Method Not Allowed');
+      return true;
     }
-    return bookingController.handleBook(req, res);
+    bookingController.handleBook(req, res);
+    return true;
   }
 
   return false;

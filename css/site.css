@@ -5049,23 +5049,4 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
 }
 
 /* Make Pack Cards (with a single item) fully clickable over the entire card */
-.brique-card:has(.brique-list .brique-item:only-child) {
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
-}
-.brique-card:has(.brique-list .brique-item:only-child):hover {
-  transform: scale(0.98);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-.brique-card:has(.brique-list .brique-item:only-child) .brique-item {
-  position: static; /* Let the ::after stretch to the .brique-card (which is relative) */
-}
-.brique-card:has(.brique-list .brique-item:only-child) .brique-item::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-}
+/* Hack removed for exact match with briques */

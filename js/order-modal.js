@@ -233,24 +233,21 @@
             '</div>' +
           '</div>' +
 
-          // ── ÉTAPE 3 : PLANIFICATION J+5 ──
+          // ── ÉTAPE 3 : PLANIFICATION ──
           '<div class="ob-panel" data-step="3" hidden>' +
             '<div class="ob-panel__inner">' +
-              '<span class="ob-eyebrow">Étape 3 sur 4 · Planification</span>' +
-              '<h2 class="ob-h2">Votre appel de livraison</h2>' +
-              '<p class="ob-sub">Votre projet sera prêt à J+5. Choisissez votre heure pour l\'appel de remise du projet et de vos guides (15 min en visio).</p>' +
+              '<span class="ob-eyebrow" data-i18n="modal.step3.eyebrow">Étape 3 sur 4 · Planification</span>' +
+              '<h2 class="ob-h2" data-i18n="modal.step3.title">Votre appel de lancement / livraison</h2>' +
+              '<p class="ob-sub" data-i18n="modal.step3.desc">Choisissez la date et l\'heure de votre appel en visioconférence avec votre expert dédié.</p>' +
               
-              '<div class="ob-date-recap">' +
-                '<span class="ob-date-recap__label">Date cible de livraison (J+5 ouvrés) :</span>' +
-                '<strong class="ob-date-recap__value" id="ob-target-date-display">-</strong>' +
-              '</div>' +
+              '<div class="ob-date-carousel" id="ob-date-carousel"></div>' +
               
-              '<div class="ob-other-label">Créneaux horaires disponibles (30 minutes)</div>' +
+              '<div class="ob-other-label" data-i18n="modal.step3.time">Créneaux horaires disponibles (Heure de Bruxelles/Paris)</div>' +
               '<div class="ob-time-grid" id="ob-time-slots-container"></div>' +
               
               '<div class="ob-btn-row">' +
-                '<button type="button" class="ob-back" id="ob-back-3">← Retour au brief</button>' +
-                '<button type="button" class="ob-submit" id="ob-next-3" style="width: auto; margin-top:0;" disabled>Suivant : Facturation →</button>' +
+                '<button type="button" class="ob-back" id="ob-back-3" data-i18n="modal.btn.back2">← Retour au brief</button>' +
+                '<button type="button" class="ob-submit" id="ob-next-3" style="width: auto; margin-top:0;" disabled data-i18n="modal.btn.next3">Suivant : Coordonnées →</button>' +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -438,17 +435,96 @@
   }
 
   // CONSTRUIRE LES CRÉNEAUX DE RDV
-  function buildTimeSlots() {
+  var selectedDateStr = null;
+
+  function buildDateCarousel() {
+    var container = document.getElementById('ob-date-carousel');
+    if (!container) return;
+    container.innerHTML = '';
+
+    var dates = [];
+    var d = new Date();
+    d.setDate(d.getDate() + 1); // Démarre demain
+    
+    while(dates.length < 10) { // 10 jours ouvrés
+      var dayIndex = d.getDay();
+      if (dayIndex !== 0 && dayIndex !== 6) { 
+        dates.push(new Date(d));
+      }
+      d.setDate(d.getDate() + 1);
+    }
+
+    var lang = window.currentLang || 'fr';
+    var locale = (lang === 'en') ? 'en-US' : lang + '-' + lang.toUpperCase();
+
+    dates.forEach(function (date, index) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'ob-date-btn' + (index === 0 ? ' is-active' : '');
+
+      var dayName = new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(date);
+      var dayNum = new Intl.DateTimeFormat(locale, { day: '2-digit' }).format(date);
+      var monthName = new Intl.DateTimeFormat(locale, { month: 'short' }).format(date);
+
+      btn.innerHTML = 
+        '<span class="ob-date-btn__day">' + dayName + '</span>' +
+        '<span class="ob-date-btn__num">' + dayNum + '</span>' +
+        '<span class="ob-date-btn__month">' + monthName + '</span>';
+
+      btn.addEventListener('click', function () {
+        container.querySelectorAll('.ob-date-btn').forEach(function(b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        selectedDateStr = date.toISOString().split('T')[0];
+        
+        // Reset selected time
+        selectedDateTime = null;
+        var nextBtn = document.getElementById('ob-next-3');
+        if (nextBtn) nextBtn.disabled = true;
+
+        buildTimeSlotsForDate(selectedDateStr);
+      });
+
+      container.appendChild(btn);
+
+      if (index === 0) {
+        selectedDateStr = date.toISOString().split('T')[0];
+      }
+    });
+
+    buildTimeSlotsForDate(selectedDateStr);
+  }
+
+  function getSeededRandom(seedStr) {
+    var hash = 0;
+    for (var i = 0; i < seedStr.length; i++) {
+      hash = ((hash << 5) - hash) + seedStr.charCodeAt(i);
+      hash = hash & hash;
+    }
+    var x = Math.sin(hash++) * 10000;
+    return x - Math.floor(x);
+  }
+
+  function buildTimeSlotsForDate(dateStr) {
     var container = document.getElementById('ob-time-slots-container');
     if (!container) return;
     container.innerHTML = '';
 
-    var slots = [
-      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-      '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'
+    // Liste logique de créneaux avec des pauses de 30 min (ex: call de 1h + 30m pause)
+    var allSlots = [
+      '09:00', '10:30', '11:00', '13:30', '14:00', '15:30', '16:00', '17:30'
     ];
 
-    slots.forEach(function (time) {
+    // On utilise un seed basé sur la date pour que les dispos soient stables le même jour
+    var seed = getSeededRandom(dateStr);
+    
+    // Garder aléatoirement 4 à 6 créneaux par jour pour faire plus réaliste
+    var availableSlots = allSlots.filter(function(slot, i) {
+      return getSeededRandom(dateStr + slot) > 0.4; 
+    });
+
+    if (availableSlots.length === 0) availableSlots = ['10:30', '14:00']; // Fallback minimum
+
+    availableSlots.forEach(function (time) {
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'ob-time-btn';
@@ -459,7 +535,13 @@
           b.classList.remove('is-active');
         });
         btn.classList.add('is-active');
-        selectedDateTime = time;
+        
+        // On combine la date choisie et l'heure
+        var d = new Date(dateStr);
+        var locale = window.currentLang === 'en' ? 'en-US' : (window.currentLang || 'fr');
+        var fullDateStr = new Intl.DateTimeFormat(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+        
+        selectedDateTime = fullDateStr + ' à ' + time;
 
         var nextBtn = document.getElementById('ob-next-3');
         if (nextBtn) nextBtn.disabled = false;
@@ -493,13 +575,8 @@
     buildOptionsList();
     updatePrices();
 
-    // Calcul de la date J+5
-    var targetDate = getTargetDateJ5();
-    var formattedDate = formatFrenchDate(targetDate);
-    var dateDisplay = document.getElementById('ob-target-date-display');
-    if (dateDisplay) dateDisplay.textContent = formattedDate;
-
-    buildTimeSlots();
+    // Init Date Carousel
+    buildDateCarousel();
 
     var next3 = document.getElementById('ob-next-3');
     if (next3) next3.disabled = true;

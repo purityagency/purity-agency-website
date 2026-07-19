@@ -1583,6 +1583,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Construit les ~14 prochains jours (hors week-end géré côté serveur : jours vides = aucun créneau)
     const buildDays = () => {
+      // Autoriser le scroll horizontal avec la molette de la souris
+      daysEl.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          daysEl.scrollLeft += e.deltaY;
+        }
+      });
+
       const today = new Date(); today.setHours(0, 0, 0, 0);
       for (let i = 0; i < 14; i++) {
         const d = new Date(today.getTime() + i * 86400000);

@@ -1915,6 +1915,12 @@
 }
 .btn--ghost:hover { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .5); }
 
+/* ≤860px : la mobile-nav-bar (z 999, bottom 16px, h 64px) recouvrait le bouton
+   "Compris" (z 950) — bannière et bulle chat remontées au-dessus de la barre */
+@media (max-width: 860px) {
+  .cookie-banner { bottom: 96px; }
+  .chat { bottom: 96px; }
+}
 @media (max-width: 560px) {
   .cookie-banner { flex-direction: column; align-items: stretch; text-align: left; }
   .cookie-banner__actions { justify-content: stretch; }
@@ -3126,6 +3132,15 @@ textarea {
   padding: 2rem 0 !important;
   perspective: 1800px !important;
 }
+/* Mobile : le overflow:hidden !important ci-dessus tuait le swipe scroll-snap
+   (déclaré après le bloc mobile de la ligne ~3050, il gagnait la cascade) */
+@media (max-width: 768px) {
+  .svc-carousel__track-wrapper {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    perspective: none !important;
+  }
+}
 
 /* --- Track — cartes 380px, gap 5rem (80px) --- */
 .svc-carousel__track {
@@ -3882,6 +3897,7 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   padding: 0.65rem;
+  min-height: 44px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
   font-weight: 600;
@@ -3896,10 +3912,67 @@ textarea {
 }
 
 .ob-time-btn.is-active {
-  background: #fff;
-  border-color: transparent;
-  color: #000;
+  background: #7C3AED;
+  border-color: #7C3AED;
+  color: #fff;
   font-weight: 700;
+}
+
+.ob-date-carousel {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+.ob-date-carousel::-webkit-scrollbar {
+  height: 4px;
+}
+.ob-date-carousel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+.ob-date-btn {
+  flex: 0 0 auto;
+  min-width: 70px;
+  padding: 0.8rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ob-date-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+.ob-date-btn.is-active {
+  background: #7C3AED;
+  border-color: #7C3AED;
+  color: #fff;
+}
+.ob-date-btn__day {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
+}
+.ob-date-btn__num {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.ob-date-btn__month {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.8;
 }
 
 @media (max-width: 640px) {
@@ -5227,13 +5300,13 @@ textarea {
   text-wrap: pretty;
 }
 
-/* Mobile responsive navigation overrides */
+/* Mobile responsive navigation overrides
+   ≤860px : la mobile-nav-bar (barre d'onglets en bas) remplace toute la nav
+   du header — le mega-menu doit disparaître, sinon il s'empile sur le hero
+   (site-extra.css charge après site.css et écraserait son display:none). */
 @media (max-width: 860px) {
   .nav__links {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    gap: 0.75rem;
+    display: none;
   }
   
   .nav__dropdown-menu {

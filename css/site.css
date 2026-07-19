@@ -381,6 +381,7 @@ p {
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
+  min-height: 44px;
   font-weight: 500;
   text-align: center;
   border-radius: 99px;
@@ -1421,26 +1422,28 @@ header {
 }
 
 .svc-card {
-  padding: 1rem 1.2rem;
-  border-radius: 20px;
+  padding: 1.5rem 1.8rem;
+  border-radius: 24px;
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255, 255, 255, 0.015);
   transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, transform 0.3s;
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 .svc-card::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.005));
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.005));
   pointer-events: none;
 }
 .svc-card:hover {
   border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .svc-card.is-active {
   border-color: rgba(124, 58, 237, 0.5);
@@ -1451,13 +1454,13 @@ header {
 .svc-card__header {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.4rem;
   width: 100%;
 }
 
 .svc-card__ico {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(0, 0, 0, 0.25);
@@ -1469,8 +1472,8 @@ header {
   flex-shrink: 0;
 }
 .svc-card__ico svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   stroke: currentColor;
   stroke-width: 1.5;
   transition: all 0.4s ease;
@@ -1478,6 +1481,7 @@ header {
 .svc-card:hover .svc-card__ico {
   border-color: rgba(255, 255, 255, 0.3);
   color: #fff;
+  background: rgba(255, 255, 255, 0.05);
 }
 .svc-card.is-active .svc-card__ico {
   border-color: var(--c-accent);
@@ -1489,11 +1493,12 @@ header {
 
 .svc-card h3 {
   font-family: var(--font-head);
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
   transition: color 0.3s;
   margin: 0;
+  text-wrap: balance;
 }
 .svc-card:hover h3,
 .svc-card.is-active h3 {
@@ -1508,11 +1513,12 @@ header {
   height: 0;
 }
 .svc-card__body p {
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: var(--c-fg-muted);
   margin-bottom: 0.8rem;
   margin-top: 0;
+  text-wrap: pretty;
 }
 
 /* Barre de progression */
@@ -3007,7 +3013,12 @@ footer {
     object-position: center !important;
   }
   .hero__scrim {
-    background: linear-gradient(to top, rgba(6,3,9,0.98) 0%, rgba(6,3,9,0.7) 55%, rgba(6,3,9,0.4) 100%) !important;
+    /* Mobile : la maquette de fond passe derrière le titre — scrim bien plus
+       dense qu'en desktop sinon son texte (adresse, boutons) concurrence le H1 */
+    background: linear-gradient(to top, rgba(6,3,9,0.99) 0%, rgba(6,3,9,0.92) 45%, rgba(6,3,9,0.78) 100%) !important;
+  }
+  .hero__img {
+    opacity: 0.5 !important;
   }
   .hero__content {
     align-items: center !important;
@@ -3529,7 +3540,7 @@ footer {
 .briques-grid > article:nth-child(5) { grid-column: 4 / span 2; }
 
 .brique-card {
-  padding: 1.8rem 1.3rem;
+  padding: 2rem 1.8rem;
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.045);
@@ -3570,15 +3581,17 @@ footer {
   margin-bottom: var(--s-sm);
 }
 .brique-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 0.4rem;
   color: #fff;
   font-family: var(--font-head);
+  text-wrap: balance;
 }
 .brique-card p {
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 1.05rem;
+  line-height: 1.5;
   color: var(--c-fg-muted);
+  text-wrap: pretty;
 }
 .brique-list {
   list-style: none;
@@ -3653,7 +3666,7 @@ footer {
   margin-bottom: var(--s-lg);
 }
 .pack-card {
-  padding: 1.4rem 1.1rem;
+  padding: 1.8rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3701,10 +3714,11 @@ footer {
   margin-bottom: var(--s-sm);
 }
 .pack-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 0.4rem;
   color: #fff;
   font-family: var(--font-head);
+  text-wrap: balance;
 }
 .pack-price {
   font-family: var(--font-head);
@@ -3718,7 +3732,7 @@ footer {
 }
 .pack-recurring {
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   color: var(--c-fg-muted);
   font-weight: 500;
   margin-top: 0.1rem;
@@ -3728,38 +3742,41 @@ footer {
   flex-grow: 1;
 }
 .pack-pitch {
-  font-size: 0.82rem;
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 0.7rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-wrap: pretty;
 }
 .pack-roi {
   background: rgba(255, 255, 255, 0.02);
   border: none;
   border-left: 3px solid var(--c-accent);
   border-radius: 4px;
-  padding: 0.55rem 0.8rem;
-  font-size: 0.76rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0.7rem 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-wrap: pretty;
 }
 .pack-target {
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.92);
-  line-height: 1.4;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-wrap: pretty;
 }
 .btn--full {
   width: 100%;

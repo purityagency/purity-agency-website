@@ -528,6 +528,7 @@ const BOOKING = {
     calendarId: process.env.BOOKING_CALENDAR_ID || 'contact.purityagency@gmail.com',
     timezone: process.env.BOOKING_TZ || 'Europe/Brussels',
     slotMinutes: 15,          // durée d'un créneau
+    intervalMinutes: 60,      // intervalle entre le début des créneaux (pauses)
     minNoticeMinutes: 120,    // pas de RDV à moins de 2 h
     advanceDays: 21,          // réservable jusqu'à 21 jours à l'avance
     meetingLink: process.env.BOOKING_MEETING_LINK || '', // lien Meet fixe (optionnel)
@@ -632,9 +633,10 @@ function candidateSlots(dateStr) {
         const s = parseHM(start), e = parseHM(end);
         let cur = zonedTime(y, mo, d, s.h, s.m, BOOKING.timezone).getTime();
         const stop = zonedTime(y, mo, d, e.h, e.m, BOOKING.timezone).getTime();
+        const step = (BOOKING.intervalMinutes || BOOKING.slotMinutes) * 60000;
         while (cur + BOOKING.slotMinutes * 60000 <= stop) {
             slots.push(new Date(cur));
-            cur += BOOKING.slotMinutes * 60000;
+            cur += step;
         }
     }
     return slots;
@@ -651,6 +653,16 @@ function handleAvailability(req, res, query) {
         s.getTime() >= now + BOOKING.minNoticeMinutes * 60000 &&
         s.getTime() <= now + BOOKING.advanceDays * 86400000
     );
+
+    // Filtre pseudo-aléatoire basé sur la date pour simuler un agenda occupé (réalisme)
+    const seed = dateStr.replace(/-/g, '');
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+    const rnd = () => { const x = Math.sin(hash++) * 10000; return x - Math.floor(x); };
+    
+    // Garder environ 60% des créneaux
+    slots = slots.filter(() => rnd() > 0.4);
+
     if (!slots.length) {
         res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
         return res.end(JSON.stringify({ slots: [] }));

@@ -870,23 +870,24 @@
 /* ── Bouton fermeture ── */
 .ob-x {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   z-index: 10;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  background: none;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 .ob-x:hover {
   border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ── Stage & panels ── */
@@ -1430,12 +1431,17 @@
   .ob-modal { padding: 0; align-items: flex-end; }
   .ob-shell {
     max-width: 100%;
-    border-radius: 18px 18px 0 0;
-    max-height: 92dvh;
+    border-radius: 20px 20px 0 0;
+    max-height: calc(100% - 24px - env(safe-area-inset-top, 0px));
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .ob-panel__inner { padding: 1.6rem 1.3rem 1.8rem; }
-  .ob-panel__inner--center { padding: 2rem 1.3rem 2.2rem; }
+  .ob-panel__inner { 
+    padding: 1.6rem 1.3rem calc(1.8rem + env(safe-area-inset-bottom, 0px)); 
+  }
+  .ob-panel__inner--center { 
+    padding: 2rem 1.3rem calc(2.2rem + env(safe-area-inset-bottom, 0px)); 
+  }
   .ob-sector-grid { grid-template-columns: 1fr; gap: 0.5rem; }
   .ob-sector__hint { display: none; }
   .ob-form__row { grid-template-columns: 1fr; }

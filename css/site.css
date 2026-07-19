@@ -20,8 +20,8 @@
   --s-sm: 0.4rem;
   --s-md: 0.8rem;
   --s-lg: 1.5rem;
-  --s-xl: clamp(1.4rem, 2.5vh, 2rem);
-  --s-xxl: clamp(2rem, 4vh, 3rem);
+  --s-xl: clamp(2rem, 4vh, 3.5rem);
+  --s-xxl: clamp(4rem, 8vh, 6rem);
 
   /* Layout */
   --nav-h: 80px;

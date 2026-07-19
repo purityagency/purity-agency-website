@@ -111,6 +111,52 @@
       price: 3990,
       engage: 'Sur devis détaillé selon cahier des charges',
       features: ['Architecture sur-mesure et sécurisée', 'Base de données robuste et évolutive', 'Espace client ou collaborateur dédié', 'Intégration d\'API tierces complexes']
+    },
+
+    // ── Briques index.html (Présence & Accompagnement) ──
+    'emailpro': {
+      id: 'emailpro',
+      name: 'Pack E-mail Pro + Domaine',
+      price: 90,
+      engage: 'Paiement unique, configuration complète incluse',
+      features: ['Adresse @votremarque.be professionnelle', 'Hébergement e-mail sécurisé', 'Configuration anti-spam (SPF, DKIM, DMARC)', 'Accès webmail + synchronisation mobile']
+    },
+    'maintenance': {
+      id: 'maintenance',
+      name: 'Support & Maintenance',
+      price: 89,
+      engage: 'Mensuel sans engagement, résiliable à tout moment',
+      features: ['Mises à jour de sécurité continues', 'Sauvegardes quotidiennes externalisées', 'Assistance prioritaire par e-mail et WhatsApp', 'Petites évolutions incluses chaque mois']
+    },
+
+    // ── Purity Studio (index.html) ──
+    'studio-visuels': {
+      id: 'studio-visuels',
+      name: 'Visuels Produit & Marque',
+      price: 190,
+      engage: 'Paiement unique par lot de visuels',
+      features: ['20 visuels retouchés, livrés en 24h', 'Photos produit, portraits et ambiances', 'Génération IA sur mesure, ton de marque respecté', 'Formats optimisés web et réseaux sociaux']
+    },
+    'studio-videos': {
+      id: 'studio-videos',
+      name: 'Vidéos & Reels IA',
+      price: 290,
+      engage: 'Paiement unique par lot de vidéos',
+      features: ['3 à 5 vidéos prêtes à publier', 'Sous-titres et habillage inclus', 'Formats Reels, Shorts et Stories optimisés', 'Zéro tournage nécessaire de votre côté']
+    },
+    'studio-identite': {
+      id: 'studio-identite',
+      name: 'Identité Visuelle',
+      price: 490,
+      engage: 'Acompte de 50 % à la commande, solde à la livraison',
+      features: ['Logo et déclinaisons complètes', 'Charte graphique, palette et typographies', 'Supports de base (cartes, en-têtes, réseaux)', 'Livraison en 48h, révisions incluses']
+    },
+    'studio-mensuel': {
+      id: 'studio-mensuel',
+      name: 'Contenu Mensuel IA',
+      price: 249,
+      engage: 'Mensuel sans engagement, résiliable à tout moment',
+      features: ['12 visuels prêts à publier chaque mois', '4 vidéos Reels/Shorts incluses', 'Stratégie de contenu et calendrier fournis', 'Cohérence visuelle garantie sur tous vos canaux']
     }
   };
 

@@ -54,6 +54,45 @@ const PACK_DATA = {
     artisan:   { name: 'Artisan & Bâtiment',      pack: 'Pack Zéro Appel Perdu',   price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
     horeca:    { name: 'HoReCa & Restauration',   pack: 'Pack Toujours Ouvert',    price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
     praticien: { name: 'Praticien & Bien-être',   pack: 'Pack Cabinet Serein',     price: 1290, deposit: 387, remaining: 903,  monthly: 69 },
+    immobilier:{ name: 'Immobilier',              pack: 'Pack Agence Digitale',    price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+    avocat:    { name: 'Avocats & Juridique',     pack: 'Pack Cabinet Moderne',    price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+    commerce:  { name: 'Commerces & Retail',      pack: 'Pack Click & Collect',    price: 1990, deposit: 597, remaining: 1393, monthly: 99 },
+    fitness:   { name: 'Salles de Sport',         pack: 'Pack Membres Pro',        price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+    consulting:{ name: 'Consultants & B2B',       pack: 'Pack Expert Autorité',    price: 1290, deposit: 387, remaining: 903,  monthly: 69 },
+    formation: { name: 'Formateurs & Coachs',     pack: 'Pack Académie',           price: 1990, deposit: 597, remaining: 1393, monthly: 99 },
+    garage:    { name: 'Garages & Concessions',   pack: 'Pack Atelier Connecté',   price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+    finance:   { name: 'Finance & Assurance',     pack: 'Pack Confiance Pro',      price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+};
+
+/* ── Briques à la carte (tunnel order-v2 des pages détail) — prix source de
+      vérité côté serveur, le priceId du front n'est jamais utilisé ── */
+const BRIQUE_DATA = {
+    'landing':         { name: 'Landing Page',              price: 390,  mode: 'once'  },
+    'vitrine':         { name: 'Site Vitrine',              price: 1490, mode: 'once'  },
+    'complet':         { name: 'Site Complet',              price: 2490, mode: 'once'  },
+    'ecommerce':       { name: 'E-commerce',                price: 3490, mode: 'once'  },
+    'google-biz':      { name: 'Fiche Google Business',     price: 290,  mode: 'once'  },
+    'email-pro':       { name: 'Email Professionnel',       price: 90,   mode: 'once'  },
+    'seo-local':       { name: 'SEO Local',                 price: 490,  mode: 'month' },
+    'pub-google':      { name: 'Pub Google / Meta',         price: 390,  mode: 'month' },
+    'visuels-rs':      { name: 'Pack Visuels Réseaux',      price: 290,  mode: 'month' },
+    'contenu-mensuel': { name: 'Contenu Mensuel',           price: 390,  mode: 'month' },
+    'ia-n1':           { name: 'IA N1 – Réponses auto',     price: 290,  mode: 'once'  },
+    'ia-n2':           { name: 'IA N2 – Réservation',       price: 490,  mode: 'once'  },
+    'ia-n3':           { name: 'IA N3 – Sur-mesure',        price: 990,  mode: 'once'  },
+    'email-sms':       { name: 'Séquences Email / SMS',     price: 290,  mode: 'once'  },
+    'facturation':     { name: 'Facturation Peppol',        price: 390,  mode: 'once'  },
+    'app-metier':      { name: 'Application Métier',        price: 2490, mode: 'once'  },
+    'maintenance':     { name: 'Maintenance Mensuelle',     price: 149,  mode: 'month' },
+    'identite':        { name: 'Identité Visuelle',         price: 690,  mode: 'once'  },
+    'visuels-graph':   { name: 'Visuels & Photos',          price: 290,  mode: 'once'  },
+    'videos':          { name: 'Vidéos & Contenus',         price: 490,  mode: 'once'  },
+    'pack-booking':    { name: 'Pack Booking Pro',          price: 249,  mode: 'month' },
+    'pack-visibilite': { name: 'Pack Visibilité Locale',    price: 179,  mode: 'month' },
+    'pack-resto':      { name: 'Pack Resto & Table',        price: 199,  mode: 'month' },
+    'pack-vitrine':    { name: 'Pack Vitrine Pro',          price: 149,  mode: 'month' },
+    'hebergement':     { name: 'Hébergement Pro',           price: 49,   mode: 'month' },
+    'monitoring':      { name: 'Monitoring & Alertes 24/7', price: 29,   mode: 'month' },
 };
 
 /* ── Ordre JSON helpers ── */
@@ -811,22 +850,46 @@ function handleOrderCreate(req, res) {
             return res.end(JSON.stringify({ ok: true }));
         }
 
-        const sector  = String(data.sector  || '').trim().toLowerCase();
-        const name    = String(data.name    || '').slice(0, 200).trim();
-        const email   = String(data.email   || '').slice(0, 200).trim();
-        const phone   = String(data.phone   || '').slice(0, 60).trim();
-        const company = String(data.company || '').slice(0, 200).trim();
+        // Deux tunnels partagent cette route : les Packs Métier (sector) et
+        // les briques à la carte des pages détail (serviceId + intake).
+        const briqueId = String(data.serviceId || '').trim().toLowerCase();
+        const intake   = (data.intake && typeof data.intake === 'object') ? data.intake : {};
 
-        if (!PACK_DATA[sector]) {
-            res.writeHead(400, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'invalid_sector' }));
+        let sector, name, email, phone, company, pack;
+
+        if (briqueId) {
+            const brique = BRIQUE_DATA[briqueId];
+            if (!brique) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'invalid_sector' }));
+            }
+            sector  = 'brique:' + briqueId;
+            name    = (String(intake.fname || '').trim() + ' ' + String(intake.lname || '').trim()).trim().slice(0, 200);
+            email   = String(intake.email || '').slice(0, 200).trim();
+            phone   = String(intake.phone || '').slice(0, 60).trim();
+            company = String(intake.business_name || '').slice(0, 200).trim();
+            // Brique one-shot : plein tarif encaissé maintenant, pas de solde.
+            // Brique mensuelle : 1er mois encaissé maintenant, abonnement créé
+            // au webhook avec démarrage à M+1 (sinon double facturation du mois 1).
+            const monthly = brique.mode === 'month' ? brique.price : 0;
+            pack = { name: brique.name, pack: brique.name, price: brique.price, deposit: brique.price, remaining: 0, monthly };
+        } else {
+            sector  = String(data.sector  || '').trim().toLowerCase();
+            name    = String(data.name    || '').slice(0, 200).trim();
+            email   = String(data.email   || '').slice(0, 200).trim();
+            phone   = String(data.phone   || '').slice(0, 60).trim();
+            company = String(data.company || '').slice(0, 200).trim();
+            if (!PACK_DATA[sector]) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'invalid_sector' }));
+            }
+            pack = PACK_DATA[sector];
         }
+
         if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ error: 'invalid_contact' }));
         }
-
-        const pack = PACK_DATA[sector];
         const id   = 'ord_' + Date.now() + '_' + crypto.randomBytes(3).toString('hex');
         const appBaseUrl = baseUrl();
         if (!appBaseUrl) {
@@ -846,6 +909,8 @@ function handleOrderCreate(req, res) {
             mollieSubscriptionId: '',
             dashboardUrl: `${appBaseUrl}/login`,
         };
+        // Brief projet du tunnel briques — conservé pour le kickoff
+        if (briqueId) order.intake = intake;
 
         // Toujours sauvegarder avant d'appeler Mollie (0 commande perdue)
         try { writeOrder(order); } catch (e) {
@@ -930,12 +995,22 @@ function handleMollieWebhook(req, res) {
                 if (order.mollieCustomerId && Number(order.monthly) > 0 && !order.mollieSubscriptionId) {
                     try {
                         const appBaseUrl = baseUrl();
-                        const subscription = await mollieRequest('POST', `/customers/${encodeURIComponent(order.mollieCustomerId)}/subscriptions`, {
+                        const subPayload = {
                             amount: { currency: 'EUR', value: Number(order.monthly).toFixed(2) },
                             interval: '1 month',
                             description: `Suivi mensuel — ${order.pack}`,
                             webhookUrl: `${appBaseUrl}/api/mollie/webhook`,
-                        });
+                        };
+                        // Brique mensuelle : le paiement initial EST le 1er mois
+                        // (deposit === monthly) — l'abonnement démarre à M+1 pour
+                        // ne pas facturer le mois 1 deux fois. Pour les Packs
+                        // (acompte ≠ mensuel), le suivi démarre immédiatement.
+                        if (Number(order.deposit) === Number(order.monthly)) {
+                            const d = new Date();
+                            d.setMonth(d.getMonth() + 1);
+                            subPayload.startDate = d.toISOString().slice(0, 10);
+                        }
+                        const subscription = await mollieRequest('POST', `/customers/${encodeURIComponent(order.mollieCustomerId)}/subscriptions`, subPayload);
                         order.mollieSubscriptionId = subscription.id;
                         writeOrder(order);
                     } catch (e) {
@@ -948,7 +1023,7 @@ function handleMollieWebhook(req, res) {
                 if (resendApiKey) {
                     const html = `<h2>Commande confirmée — Purity Agency</h2>
 <p>Bonjour ${escapeHtml(order.clientName)},</p>
-<p>Votre acompte de <strong>${order.deposit} €</strong> pour le <strong>${escapeHtml(order.pack)}</strong> a bien été reçu.</p>
+<p>Votre ${Number(order.remaining) > 0 ? 'acompte' : 'paiement'} de <strong>${order.deposit} €</strong> pour <strong>${escapeHtml(order.pack)}</strong> a bien été reçu.</p>
 <p><strong>Suivez l'avancement de votre projet :</strong><br>
 <a href="${escapeHtml(order.dashboardUrl)}" style="color:#7c3aed;">${escapeHtml(order.dashboardUrl)}</a></p>
 <p>Notre équipe vous contacte sous 24 h pour lancer le kickoff.</p>

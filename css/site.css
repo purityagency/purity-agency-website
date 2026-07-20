@@ -1613,6 +1613,7 @@ header {
     flex-direction: row !important;
     overflow-x: scroll !important;
     overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
     scroll-snap-type: x mandatory !important;
     scroll-behavior: smooth !important;
     scrollbar-width: none !important;
@@ -4778,6 +4779,7 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   .briques-grid, .packs-grid {
     display: flex !important;
     overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     scroll-snap-type: x mandatory !important;
     gap: 16px !important;
     padding: 16px var(--s-md) !important;

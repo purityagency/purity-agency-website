@@ -137,6 +137,15 @@ function handleOrderCreate(req, res) {
       pack = mollieService.PACK_DATA[sector];
     }
 
+    // Brief business collecté à l'étape 2 du tunnel Packs Métier (facultatif,
+    // absent pour le tunnel briques qui a son propre `intake`)
+    const brief = (data.brief && typeof data.brief === 'object') ? {
+      business_name: String(data.brief.business_name || '').slice(0, 200).trim(),
+      city: String(data.brief.city || '').slice(0, 200).trim(),
+      existing_site: String(data.brief.existing_site || '').slice(0, 30).trim(),
+      goal: String(data.brief.goal || '').slice(0, 300).trim()
+    } : null;
+
     if (!name || !validator.isValidEmail(email)) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid_contact' }));
@@ -171,6 +180,7 @@ function handleOrderCreate(req, res) {
       dashboardUrl: `${appBaseUrl}/login`
     };
     if (briqueId) order.intake = intake;
+    if (brief) order.brief = brief;
 
     try {
       ordersRepo.writeOrder(order);

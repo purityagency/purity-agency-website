@@ -21,7 +21,10 @@ const PACK_DATA = {
   photo:       { name: 'Photographes & Vidéastes', pack: 'Pack Complet', price: 1390, deposit: 417, remaining: 973,  monthly: 59 },
   veterinaire: { name: 'Santé Animale',            pack: 'Pack Complet', price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
   architecte:  { name: 'Architectes & Déco',       pack: 'Pack Complet', price: 1890, deposit: 567, remaining: 1323, monthly: 89 },
-  domicile:    { name: 'Aide à la Personne',       pack: 'Pack Complet', price: 1490, deposit: 447, remaining: 1043, monthly: 79 }
+  domicile:    { name: 'Aide à la Personne',       pack: 'Pack Complet', price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+  // TEMPORAIRE — test manuel de paiement réel Mollie à 0.01€, sans bouton
+  // sur le site (aucun risque visiteur). À retirer après vérification.
+  _test001: { name: 'Test paiement', pack: 'Test 1 centime', price: 0.01, deposit: 0.01, remaining: 0, monthly: 0 }
 };
 
 function isMollieConfigured() {

@@ -96,7 +96,7 @@
   "promise3.h3": "Premium, oder wir machen es neu",
   "promise3.p": "Wenn das Ergebnis nicht premium wirkt, arbeiten wir es nach. Es ist unser Name, der darauf steht.",
   "promise4.h3": "Ein fester Ansprechpartner",
-  "promise4.p": "Amir Kebiyeb, Gründer von Purity, überwacht und validiert persönlich jede Phase Ihres Projekts.",
+  "promise4.p": "Amir Kebiyeb, Gründer der Purity Agency, überwacht und validiert persönlich jede Phase Ihres Projekts.",
   "tarifs.tag": "Preise",
   "tarifs.title": "Klare Preise. Offen einsehbar.<br><em>Keine Überraschungen.</em>",
   "tarifs.lead": "Wir starten dort, wo Sie es brauchen. Sie steigern, wann immer Sie wollen.",
@@ -1287,7 +1287,5 @@
   "modal.opt_monitoring.name": "Verfügbarkeitsüberwachung (Uptime)",
   "modal.opt_monitoring.desc": "Sofortige Benachrichtigung bei einem Serviceausfall.",
   "modal.opt_audit_sec.name": "Jährliches Sicherheitsaudit",
-  "modal.opt_audit_sec.desc": "Penetrationstests und vollständige Meldung potenzieller Schwachstellen.",
-  "preuve.quote": "„Purity ONE wurde geschaffen, um wallonischen Unabhängigen das Beste aus dem Web und der KI-Automatisierung zu bieten, mit den Anforderungen großer Gruppen, aber ohne deren Langsamkeit.“",
-  "preuve.author": "— Amir Kebiyeb, Gründer"
+  "modal.opt_audit_sec.desc": "Penetrationstests und vollständige Meldung potenzieller Schwachstellen."
 }

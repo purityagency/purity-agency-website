@@ -121,6 +121,31 @@
                 '</div>' +
                 '<div class="ob-field"><label for="pk-goal">Votre priorité n°1 avec ce pack <span class="ob-req">*</span></label><input type="text" id="pk-goal" placeholder="Ex: Recevoir plus de réservations en ligne" required></div>' +
 
+                '<div class="ob-addons-sec" style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.08);">' +
+                  '<label style="font-weight:600;font-size:0.9rem;color:#fff;display:block;margin-bottom:0.6rem;">Personnalisez votre pack avec nos briques recommandées :</label>' +
+                  '<div class="ob-addon-item" style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;margin-bottom:0.5rem;">' +
+                    '<label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#eee;">' +
+                      '<input type="checkbox" class="pk-addon-chk" data-price="490" data-deposit="147" data-monthly="39" data-name="Standard IA 24/7">' +
+                      '<span><strong>Standard IA 24/7</strong> — Réponses & prise de RDV auto</span>' +
+                    '</label>' +
+                    '<span style="font-size:0.8rem;font-weight:600;color:#7c3aed;">+147 € aujourd\'hui</span>' +
+                  '</div>' +
+                  '<div class="ob-addon-item" style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;margin-bottom:0.5rem;">' +
+                    '<label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#eee;">' +
+                      '<input type="checkbox" class="pk-addon-chk" data-price="290" data-deposit="87" data-monthly="0" data-name="Domination Google Maps">' +
+                      '<span><strong>Domination Google Maps</strong> — SEO Local Wallonie</span>' +
+                    '</label>' +
+                    '<span style="font-size:0.8rem;font-weight:600;color:#7c3aed;">+87 € aujourd\'hui</span>' +
+                  '</div>' +
+                  '<div class="ob-addon-item" style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;margin-bottom:0.5rem;">' +
+                    '<label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.84rem;color:#eee;">' +
+                      '<input type="checkbox" class="pk-addon-chk" data-price="390" data-deposit="117" data-monthly="0" data-name="Identité Visual 2026">' +
+                      '<span><strong>Identité Visuelle Liquid Glass</strong> — Logo & Charte</span>' +
+                    '</label>' +
+                    '<span style="font-size:0.8rem;font-weight:600;color:#7c3aed;">+117 € aujourd\'hui</span>' +
+                  '</div>' +
+                '</div>' +
+
                 '<div class="ob-btn-row">' +
                   '<button type="button" class="ob-back" id="pk-back-2">← Retour</button>' +
                   '<button type="button" class="ob-submit" id="pk-next-2" style="width:auto;margin-top:0;">Suivant : Coordonnées →</button>' +

@@ -108,7 +108,7 @@
   "promise3.h3": "Premium, of we doen het over",
   "promise3.p": "Als het resultaat niet premium aanvoelt, werken we het bij. Het is onze naam die erop staat.",
   "promise4.h3": "Eén vast aanspreekpunt",
-  "promise4.p": "Amir Kebiyeb, oprichter van Purity, monitort en valideert persoonlijk elke fase van uw project.",
+  "promise4.p": "Amir Kebiyeb, oprichter van Purity Agency, monitort en valideert persoonlijk elke fase van uw project.",
   "tarifs.tag": "Tarieven",
   "tarifs.title": "Duidelijke prijzen. Zichtbaar.<br><em>Zonder verrassingen.</em>",
   "tarifs.lead": "We starten waar u het nodig heeft. U schaalt op wanneer u wilt.",
@@ -1287,7 +1287,5 @@
   "modal.opt_monitoring.name": "Beschikbaarheidsmonitoring (uptime)",
   "modal.opt_monitoring.desc": "Directe waarschuwing bij een servicestoring.",
   "modal.opt_audit_sec.name": "Jaarlijkse beveiligingsaudit",
-  "modal.opt_audit_sec.desc": "Penetratietests en volledige rapportage van potentiële kwetsbaarheden.",
-  "preuve.quote": "“Purity ONE is gemaakt om het beste van internet en AI-automatisering aan te bieden aan Waalse onafhankelijken, met de eisen van grote groepen, maar zonder hun traagheid. »",
-  "preuve.author": "– Amir Kebiyeb, oprichter"
+  "modal.opt_audit_sec.desc": "Penetratietests en volledige rapportage van potentiële kwetsbaarheden."
 }

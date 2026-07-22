@@ -162,6 +162,8 @@ function handleStaticRequest(req, res, urlPath) {
   });
 }
 
+const sentinelService = require('./services/sentinel.service');
+
 function startServer() {
   const server = http.createServer((req, res) => {
     security.applySecurityHeaders(res);
@@ -174,10 +176,22 @@ function startServer() {
     }
 
     // Routing
-    if (urlPath === '/health') {
+    if (urlPath === '/health' || urlPath === '/api/health') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      return res.end(JSON.stringify({ status: 'ok', ts: Date.now() }));
+      return res.end(JSON.stringify({ status: 'ok', ts: Date.now(), service: 'Purity Sentinel Agent v1.0' }));
     }
+
+    if (urlPath === '/api/sentinel/status') {
+      sentinelService.runFullAudit(PORT).then(audit => {
+        res.writeHead(audit.healthy ? 200 : 500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(audit));
+      }).catch(err => {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      });
+      return;
+    }
+
     if (contactRouter.handleRoute(req, res, urlPath)) return;
     if (bookingRouter.handleRoute(req, res, urlPath)) return;
     if (paymentRouter.handleRoute(req, res, urlPath)) return;
@@ -204,6 +218,7 @@ function startServer() {
 
   server.listen(PORT, '0.0.0.0', () => {
     logger.info(`Worker ${process.pid} listening on port ${PORT}`);
+    sentinelService.startSentinelAgent(PORT);
   });
 }
 

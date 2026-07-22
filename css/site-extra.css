@@ -5516,3 +5516,56 @@ textarea {
 .pk-price-row--total strong { font-size: 0.95rem; }
 
 .pk-trust { margin-bottom: 1.3rem; }
+
+/* ==========================================================================
+   HEADER DROPDOWN HIGH-CONTRAST OVERRIDES (100% READABLE WHITE & PURPLE HOVER)
+   ========================================================================== */
+.nav__dropdown-menu {
+  background: rgba(8, 4, 18, 0.98) !important;
+  border: 1px solid rgba(124, 58, 237, 0.35) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(124, 58, 237, 0.2) !important;
+}
+
+.nav__dropdown-menu a {
+  padding: 0.75rem 0.9rem !important;
+  border-radius: 10px !important;
+}
+
+.nav__dropdown-menu a:hover {
+  background: rgba(124, 58, 237, 0.16) !important;
+  border-color: rgba(124, 58, 237, 0.4) !important;
+}
+
+/* Force all title elements to 100% solid white */
+.nav__dropdown-menu a strong,
+.nav__dropdown-menu a strong *,
+.nav__dropdown-menu a strong span {
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  line-height: 1.3 !important;
+}
+
+/* Force all description elements to 88% bright readable white */
+.nav__dropdown-menu a span,
+.nav__dropdown-menu a span *,
+.nav__dropdown-menu a > span span {
+  font-size: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  opacity: 1 !important;
+  line-height: 1.45 !important;
+}
+
+/* Hover accent colors */
+.nav__dropdown-menu a:hover strong,
+.nav__dropdown-menu a:hover strong *,
+.nav__dropdown-menu a:hover strong span {
+  color: #C084FC !important;
+}
+
+.nav__dropdown-menu a:hover span,
+.nav__dropdown-menu a:hover span *,
+.nav__dropdown-menu a:hover > span span {
+  color: #FFFFFF !important;
+}

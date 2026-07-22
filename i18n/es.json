@@ -96,7 +96,7 @@
   "promise3.h3": "Premium, o lo rehacemos",
   "promise3.p": "Si el resultado no es premium, lo retrabajamos. Nuestro nombre está en juego.",
   "promise4.h3": "Interlocutor único",
-  "promise4.p": "Amir Kebiyeb, fundador de Purity, supervisa y valida personalmente cada etapa de su proyecto.",
+  "promise4.p": "Amir Kebiyeb, fundador de Purity Agency, supervisa y valida personalmente cada etapa de su proyecto.",
   "tarifs.tag": "Tarifas",
   "tarifs.title": "Precios claros. Publicados.<br><em>Sin sorpresas.</em>",
   "tarifs.lead": "Empezamos donde lo necesitas. Escalas cuando quieres.",
@@ -1287,7 +1287,5 @@
   "modal.opt_monitoring.name": "Monitoreo de disponibilidad (tiempo de actividad)",
   "modal.opt_monitoring.desc": "Alerta instantánea en caso de una interrupción del servicio.",
   "modal.opt_audit_sec.name": "Auditoría anual de seguridad",
-  "modal.opt_audit_sec.desc": "Pruebas de penetración e informes completos de posibles vulnerabilidades.",
-  "preuve.quote": "“Purity ONE nació para ofrecer lo mejor de la web y la automatización de la IA a los independientes valones, con las exigencias de los grandes grupos pero sin su lentitud. »",
-  "preuve.author": "— Amir Kebiyeb, fundador"
+  "modal.opt_audit_sec.desc": "Pruebas de penetración e informes completos de posibles vulnerabilidades."
 }

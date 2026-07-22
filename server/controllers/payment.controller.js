@@ -283,17 +283,28 @@ function handleMollieWebhook(req, res) {
           }
         }
 
-        const html = `<h2>Commande confirmée — Purity Agency</h2>
-<p>Bonjour ${validator.escapeHtml(order.clientName)},</p>
-<p>Votre ${Number(order.remaining) > 0 ? 'acompte' : 'paiement'} de <strong>${order.deposit} €</strong> pour <strong>${validator.escapeHtml(order.pack)}</strong> a bien été reçu.</p>
-<p><strong>Suivez l'avancement de votre projet :</strong><br>
-<a href="${validator.escapeHtml(order.dashboardUrl)}" style="color:#7c3aed;">${validator.escapeHtml(order.dashboardUrl)}</a></p>
-<p>Notre équipe vous contacte sous 24 h pour lancer le kickoff.</p>
-<p style="color:#666;">— L'équipe Purity Agency</p>`;
+        const companyLine = order.company ? `<br><strong>Entreprise :</strong> ${validator.escapeHtml(order.company)}` : '';
+        const bceLine = order.bce ? `<br><strong>N° BCE / TVA :</strong> ${validator.escapeHtml(validator.formatBCE(order.bce))}` : '';
+
+        const html = `<div style="font-family: Arial, sans-serif; color: #111; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #222; background: #09060e;">
+<h2 style="color: #7c3aed; margin-top: 0;">Reçu de Commande — Purity Agency</h2>
+<p style="color: #ddd;">Bonjour <strong>${validator.escapeHtml(order.clientName)}</strong>,</p>
+<p style="color: #ddd;">Votre ${Number(order.remaining) > 0 ? 'acompte' : 'paiement'} de <strong style="color: #fff;">${order.deposit} €</strong> pour <strong>${validator.escapeHtml(order.pack)}</strong> a bien été confirmé.</p>
+<div style="background: rgba(124, 58, 237, 0.1); border-left: 3px solid #7c3aed; padding: 12px 16px; margin: 20px 0; color: #eee;">
+  <strong>Détails du projet :</strong> ${validator.escapeHtml(order.pack)}${companyLine}${bceLine}<br>
+  <strong>Référence commande :</strong> <code>${validator.escapeHtml(order.id)}</code>
+</div>
+<p style="color: #ddd;"><strong>Espace Client dédié :</strong><br>
+<a href="${validator.escapeHtml(order.dashboardUrl)}" style="color: #7c3aed; text-decoration: underline;">${validator.escapeHtml(order.dashboardUrl)}</a></p>
+<p style="color: #aaa; font-size: 0.85rem; margin-top: 30px; border-top: 1px solid #333; padding-top: 15px;">
+  Purity Agency — BCE 1036.775.590 — Charleroi, Wallonie, Belgique<br>
+  <em>${validator.VAT_FRANCHISE_MENTION}</em>
+</p>
+</div>`;
 
         resendService.sendEmail({
           to: [order.email],
-          subject: `Commande confirmée — ${order.pack}`,
+          subject: `Confirmation de commande — ${order.pack} (Ref: ${order.id})`,
           html
         }).catch(err => logger.error('[webhook] resend email fail', err));
 

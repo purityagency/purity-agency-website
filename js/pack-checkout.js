@@ -139,7 +139,7 @@
               '<form id="pk-form" class="ob-form">' +
                 '<div class="ob-form__row">' +
                   '<div class="ob-field"><label for="pk-name">Nom complet <span class="ob-req">*</span></label><input type="text" id="pk-name" required autocomplete="name"></div>' +
-                  '<div class="ob-field"><label for="pk-company">N° de TVA <span data-i18n="modal.form.tva">(facultatif)</span></label><input type="text" id="pk-company" placeholder="Ex: BE 0123.456.789" autocomplete="off"></div>' +
+                  '<div class="ob-field"><label for="pk-company">N° BCE / TVA <span style="font-size:0.75rem;opacity:0.75;">(facultatif — émission directe du reçu B2B)</span></label><input type="text" id="pk-company" placeholder="Ex: 0123.456.789 ou BE0123456789" autocomplete="off"></div>' +
                 '</div>' +
                 '<div class="ob-form__row">' +
                   '<div class="ob-field"><label for="pk-email">E-mail <span class="ob-req">*</span></label><input type="email" id="pk-email" required autocomplete="email"></div>' +

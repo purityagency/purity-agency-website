@@ -580,12 +580,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prevBtn) prevBtn.addEventListener('click', () => { goToCard(currentIndex - 1); });
     if (nextBtn) nextBtn.addEventListener('click', () => { goToCard(currentIndex + 1); });
 
-    // Clic sur les dots
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        goToCard(idx);
-      });
-    });
+    // Synchronisation active card/dot lors du swipe tactile mobile
+    const trackWrapper = carousel.querySelector('.svc-carousel__track-wrapper');
+    if (trackWrapper) {
+      trackWrapper.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) return;
+        const wrapperCenter = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
+        let closestIdx = 0;
+        let minDistance = Infinity;
+
+        cards.forEach((card, idx) => {
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const dist = Math.abs(cardCenter - wrapperCenter);
+          if (dist < minDistance) {
+            minDistance = dist;
+            closestIdx = idx;
+          }
+        });
+
+        cards.forEach((card, idx) => {
+          card.classList.toggle('is-active', idx === closestIdx);
+        });
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('is-active', idx === closestIdx);
+        });
+      }, { passive: true });
+    }
 
     // Clic sur les cards
     cards.forEach((card, idx) => {

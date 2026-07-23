@@ -3173,23 +3173,52 @@ textarea {
 }
 /* Mobile : le overflow:hidden !important ci-dessus tuait le swipe scroll-snap
    (déclaré après le bloc mobile de la ligne ~3050, il gagnait la cascade) */
+/* Mobile : scroll horizontal fluide & scroll-snap natif */
 @media (max-width: 768px) {
   .svc-carousel__track-wrapper {
     overflow-x: auto !important;
     overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    padding: 1.5rem 0 !important;
+    scrollbar-width: none !important;
     perspective: none !important;
+  }
+  .svc-carousel__track-wrapper::-webkit-scrollbar {
+    display: none !important;
+  }
+  .svc-carousel__track {
+    display: flex !important;
+    gap: 1.25rem !important;
+    padding: 0 1.25rem !important;
+    width: max-content !important;
+    transform: none !important;
+  }
+  .svc-card {
+    width: calc(85vw - 1rem) !important;
+    max-width: 340px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
-/* --- Track — cartes 380px, gap 5rem (80px) --- */
-.svc-carousel__track {
-  gap: 5rem !important;
-  padding: 0 calc(50% - 190px) !important; /* centrer card 380px */
+/* --- Track — cartes 380px, gap 5rem (80px) sur Desktop --- */
+@media (min-width: 769px) {
+  .svc-carousel__track {
+    gap: 5rem !important;
+    padding: 0 calc(50% - 190px) !important; /* centrer card 380px */
+  }
+  .svc-card {
+    width: 380px !important;
+  }
 }
 
 /* --- Card — transparente, contour blanc, glow au hover/active --- */
 .svc-card {
-  width: 380px !important;
   background: rgba(255, 255, 255, 0.018) !important;
   border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 28px !important;

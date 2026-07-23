@@ -3389,14 +3389,14 @@ textarea {
   transform: scaleX(1);
 }
 
-/* ── ZONE 1 — Visual Header ── */
+/* ── ZONE 1 — En-tête éditorial (plus d'icône SVG générique) ── */
 .svc-card__top {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.6rem;
-  padding: 1.3rem 1.6rem 0.9rem;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.5rem;
+  padding: 1.4rem 1.6rem 1rem;
   position: relative;
   z-index: 1;
   /* Gradient ambiant teinté */
@@ -3419,35 +3419,19 @@ textarea {
   mix-blend-mode: overlay;
 }
 
-/* --- Icon chip — enlarged with glow backdrop --- */
-.svc-card__top .svc-card__icon {
-  width: 56px !important;
-  height: 56px !important;
-  border-radius: 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: rgba(var(--vc), 0.14) !important;
-  border: 1px solid rgba(var(--vc), 0.3) !important;
-  box-shadow: 0 4px 16px rgba(var(--vc), 0.15);
-  opacity: 1 !important;
-  color: rgb(var(--vc)) !important;
-  margin-bottom: 0 !important;
-  flex-shrink: 0;
-  transition-property: background-color, border-color, transform, box-shadow;
-  transition-duration: 0.35s;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+/* --- Repère numéroté (remplace l'icône SVG générique) --- */
+.svc-card__index {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(var(--vc), 0.85);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.svc-card__top .svc-card__icon svg {
-  width: 24px !important;
-  height: 24px !important;
-}
-.svc-card:hover .svc-card__top .svc-card__icon,
-.svc-card.is-active .svc-card__top .svc-card__icon {
-  background: rgba(var(--vc), 0.22) !important;
-  border-color: rgba(var(--vc), 0.5) !important;
-  box-shadow: 0 6px 24px rgba(var(--vc), 0.25);
-  transform: translateY(-3px);
+.svc-card:hover .svc-card__index,
+.svc-card.is-active .svc-card__index {
+  color: rgb(var(--vc));
 }
 
 /* --- Title in header --- */
@@ -3467,51 +3451,54 @@ textarea {
   align-items: flex-start !important;
 }
 
-/* Feature list → tag/chip layout */
+/* Liste de fonctionnalités — typographie sobre, pas de badges/pills */
 .svc-card__features {
   list-style: none !important;
   padding: 0 !important;
-  margin: 0 0 0.8rem 0 !important;
+  margin: 0 0 1rem 0 !important;
   display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 0.4rem !important;
+  flex-direction: column !important;
   width: 100% !important;
   text-align: left !important;
   grid-template-columns: none !important;
 }
 
 .svc-card__features li {
-  font-size: 0.78rem !important;
+  font-size: 0.82rem !important;
   font-weight: 500 !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  padding: 0.3rem 0.75rem !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  padding: 0.55rem 0 !important;
   position: relative !important;
-  line-height: 1.35 !important;
-  background: rgba(var(--vc), 0.08) !important;
-  border: 1px solid rgba(var(--vc), 0.2) !important;
-  border-radius: 99px !important;
-  padding-left: 0.75rem !important;
-  transition-property: background-color, border-color;
-  transition-duration: 0.25s;
-  transition-timing-function: ease;
+  line-height: 1.4 !important;
+  padding-left: 1.1rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  transition: color 0.25s ease;
+}
+.svc-card__features li:first-child {
+  border-top: none !important;
+  padding-top: 0 !important;
 }
 
-/* Remove the old ::before marker — tags don't need bullets */
+/* Petit trait vertical teinté au lieu d'un glyphe/bullet générique */
 .svc-card__features li::before {
-  content: none !important;
-  display: none !important;
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.85rem !important;
+  width: 0.5rem !important;
+  height: 1px !important;
+  background: rgba(var(--vc), 0.7) !important;
+  display: block !important;
 }
 
-/* Tag hover — subtle brighten */
 .svc-card:hover .svc-card__features li,
 .svc-card.is-active .svc-card__features li {
-  background: rgba(var(--vc), 0.13) !important;
-  border-color: rgba(var(--vc), 0.32) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
 }
 
 /* Separator between features and copy */
 .svc-card__features + p {
-  padding-top: 0.8rem !important;
+  padding-top: 0.9rem !important;
   border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
   margin-top: 0 !important;
 }

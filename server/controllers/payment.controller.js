@@ -41,7 +41,7 @@ const BRIQUE_DATA = {
 function clientPortalUrl() {
   const value = (process.env.CLIENT_PORTAL_URL || '').trim();
   if (/^https?:\/\/[^/\s]+(?::\d+)?$/i.test(value)) return value;
-  return process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+  return process.env.NODE_ENV === 'production' ? 'https://app.purity-agency.be' : 'http://localhost:3001';
 }
 
 function provisionPortalClient(order) {

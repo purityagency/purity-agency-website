@@ -174,9 +174,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Prevent clicks inside dropdown menus from closing them
+  // Close dropdown menu when clicking a link inside it, prevent closing on non-link clicks
   document.querySelectorAll('.nav__dropdown-menu').forEach(menu => {
-    menu.addEventListener('click', (e) => e.stopPropagation());
+    menu.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (link) {
+        dropdownItems.forEach(item => {
+          item.classList.remove('js-expanded');
+          item.querySelector('.nav__dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      } else {
+        e.stopPropagation();
+      }
+    });
   });
 
   // Close dropdowns on click outside

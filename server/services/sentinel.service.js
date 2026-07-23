@@ -122,7 +122,7 @@ function pushTelemetryToPurityOS(auditResult) {
 
 async function runFullAudit(port = env.PORT) {
   const metrics = getSystemMetrics();
-  const routesToProbe = ['/', '/api/health', '/hebergement.html', '/automatisation.html', '/legal.html'];
+  const routesToProbe = ['/', '/api/health', '/blog.html', '/commande-confirmee.html', '/legal.html'];
   const probeResults = [];
 
   for (const route of routesToProbe) {

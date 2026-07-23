@@ -254,7 +254,13 @@ function handleMollieWebhook(req, res) {
     const order = orderId ? ordersRepo.readOrder(orderId) : ordersRepo.findOrderByMolliePayment(paymentId);
 
     if (order && payment.status === 'paid') {
-      if (order.status === 'pending') {
+      const processingAt = order.webhookProcessingAt ? Date.parse(order.webhookProcessingAt) : 0;
+      const processingFresh = processingAt > 0 && (Date.now() - processingAt) < 10 * 60 * 1000;
+      if (order.status === 'pending' && !processingFresh) {
+        // Durable idempotency guard: duplicate Mollie deliveries cannot re-provision
+        // while the first delivery is still executing.
+        order.webhookProcessingAt = new Date().toISOString();
+        ordersRepo.writeOrder(order);
         order.status = 'paid';
         order.paidAt = new Date().toISOString();
         ordersRepo.writeOrder(order);

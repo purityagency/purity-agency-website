@@ -204,6 +204,18 @@ function startServer() {
       return res.end();
     }
 
+    // Anciennes pages détail par service, retirées le 23/07/2026 au profit
+    // de la section Tarifs unique (Briques + Packs Métier, mêmes modals de
+    // commande). Redirect 301 pour préserver le référencement déjà indexé.
+    const RETIRED_SERVICE_PAGES = new Set([
+      '/presence.html', '/acquisition.html', '/automatisation.html',
+      '/outils.html', '/studio.html', '/hebergement.html'
+    ]);
+    if (RETIRED_SERVICE_PAGES.has(urlPath)) {
+      res.writeHead(301, { 'Location': '/#tarifs' });
+      return res.end();
+    }
+
     if (urlPath === '/login') {
       res.writeHead(302, { 'Location': paymentRouter.clientPortalUrl() + '/login' });
       return res.end();

@@ -3463,82 +3463,85 @@ textarea {
   grid-template-columns: none !important;
 }
 
-.svc-card__features li {
-  font-size: 0.82rem !important;
-  font-weight: 500 !important;
-  color: rgba(255, 255, 255, 0.78) !important;
-  padding: 0.55rem 0 !important;
-  position: relative !important;
-  line-height: 1.4 !important;
-  padding-left: 1.1rem !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
-  transition: color 0.25s ease;
+/* ── ZONE 2bis — Le chiffre-choc remplace l'icône : c'est la preuve
+   qui fait le travail visuel, pas une décoration ── */
+.svc-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgb(var(--vc));
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.7rem;
 }
-.svc-card__features li:first-child {
-  border-top: none !important;
-  padding-top: 0 !important;
+.svc-card__stat-unit {
+  font-size: 1.3rem;
+  font-weight: 700;
+  opacity: 0.85;
 }
-
-/* Petit trait vertical teinté au lieu d'un glyphe/bullet générique */
-.svc-card__features li::before {
-  content: '' !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 0.85rem !important;
-  width: 0.5rem !important;
-  height: 1px !important;
-  background: rgba(var(--vc), 0.7) !important;
-  display: block !important;
-}
-
-.svc-card:hover .svc-card__features li,
-.svc-card.is-active .svc-card__features li {
-  color: rgba(255, 255, 255, 0.92) !important;
+/* Variante phrase : quand il n'y a pas de vraie statistique à montrer,
+   pas de chiffre inventé — une formule courte dans le même emplacement */
+.svc-card__stat--phrase {
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
-/* Separator between features and copy */
-.svc-card__features + p {
-  padding-top: 0.9rem !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
-  margin-top: 0 !important;
+.svc-card__lede {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  line-height: 1.35 !important;
+  margin-bottom: 0.7rem !important;
+  text-align: left !important;
+  text-wrap: balance;
 }
 
 /* Description paragraph — constrained */
-.svc-card p {
+.svc-card__detail {
   font-size: 0.82rem !important;
   color: rgba(255, 255, 255, 0.55) !important;
-  margin-bottom: 0.9rem !important;
+  margin-bottom: 1.1rem !important;
   text-align: left !important;
-  line-height: 1.45 !important;
+  line-height: 1.5 !important;
   text-wrap: pretty;
   display: -webkit-box !important;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ── ZONE 3 — CTA Button (hero-style btn--accent) ── */
-.svc-card__cta.btn.btn--accent {
+/* ── ZONE 3 — Lien texte (plus de bouton plein répété 6 fois) ── */
+.svc-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   margin-top: auto;
   align-self: flex-start;
-  padding: 0.7rem 1.8rem !important;
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.03em;
-  border-radius: 99px !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.8) !important;
-  background: transparent !important;
-  color: #fff !important;
-  opacity: 1 !important;
-  transform: none !important;
-  transition-property: border-color, box-shadow, transform;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition-property: color, gap;
   transition-duration: 0.25s;
   transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.svc-card__cta.btn.btn--accent:hover {
-  border-color: rgba(var(--vc), 0.9) !important;
-  box-shadow: 0 0 20px rgba(var(--vc), 0.4), 0 0 6px rgba(var(--vc), 0.2) !important;
-  transform: scale(1.03) !important;
+.svc-card__link span[aria-hidden] {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.svc-card__link:hover,
+.svc-card.is-active .svc-card__link {
+  color: rgb(var(--vc));
+  gap: 0.6rem;
+}
+.svc-card__link:hover span[aria-hidden] {
+  transform: translateX(2px);
 }
 .svc-card__cta.btn.btn--accent:active {
   transform: scale(0.96) !important;

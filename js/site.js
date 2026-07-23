@@ -1815,7 +1815,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Onboarding modal géré par js/order.js
+  // Onboarding modal géré par le tunnel de commande actif
 });
 
 // --- Custom Glow Cursor (Mauve lueur sous la souris normale) ---

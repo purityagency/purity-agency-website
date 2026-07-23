@@ -642,7 +642,6 @@
 
     var payload = {
       serviceId:    currentService,
-      priceId:      b.stripe,
       mode:         b.mode === 'month' ? 'subscription' : 'payment',
       deliveryDate: chosenDate ? chosenDate.toISOString().split('T')[0] : null,
       deliverySlot: chosenSlot,

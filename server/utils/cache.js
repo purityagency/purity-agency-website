@@ -26,7 +26,7 @@ function getCachedFile(filePath) {
 
 // Watch directory for changes and invalidate cache automatically
 function watchDirectory(dirPath) {
-  fs.watch(dirPath, { recursive: true }, (eventType, filename) => {
+  const invalidate = (eventType, filename) => {
     if (filename) {
       const fullPath = path.join(dirPath, filename);
       if (cache.has(fullPath)) {
@@ -34,7 +34,15 @@ function watchDirectory(dirPath) {
         cache.delete(fullPath);
       }
     }
-  });
+  };
+  try {
+    fs.watch(dirPath, { recursive: true }, invalidate);
+  } catch (err) {
+    logger.warn(`Recursive cache watch unavailable for ${dirPath}: ${err.message}`);
+    try { fs.watch(dirPath, invalidate); } catch (fallbackErr) {
+      logger.warn(`Cache watch unavailable for ${dirPath}: ${fallbackErr.message}`);
+    }
+  }
 }
 
 module.exports = {

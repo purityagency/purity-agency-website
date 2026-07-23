@@ -26,15 +26,17 @@ function isOriginAllowed(req) {
   const referer = req.headers['referer'] || '';
   if (!origin && !referer) return true;
   if (ALLOWED_ORIGINS.has(origin)) return true;
-  for (const allowed of ALLOWED_ORIGINS) {
-    if (referer.startsWith(allowed)) return true;
+  try {
+    if (ALLOWED_ORIGINS.has(new URL(referer).origin)) return true;
+  } catch {
+    return false;
   }
   return false;
 }
 
 const BLOCKED_FILES = new Set(['server.js', 'leads.log']);
 const BLOCKED_EXTENSIONS = new Set(['.png']);
-const PNG_EXCEPTIONS = new Set(['logo.png', 'service5.png']);
+const PNG_EXCEPTIONS = new Set(['logo.png']);
 
 const MIME = {
   '.html' : 'text/html; charset=utf-8',
@@ -223,7 +225,7 @@ function startServer() {
 }
 
 // Production Clustering
-if (cluster.isMaster && process.env.NODE_ENV === 'production') {
+if (cluster.isMaster && process.env.NODE_ENV === 'production' && process.env.ENABLE_CLUSTER === 'true') {
   const numCPUs = os.cpus().length;
   logger.info(`Master ${process.pid} starting ${numCPUs} workers...`);
   for (let i = 0; i < numCPUs; i++) {

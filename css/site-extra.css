@@ -3064,11 +3064,12 @@ textarea {
   transform: translateY(0);
 }
 
-/* Dots */
+/* Dots — pill-style indicator (iOS/Stripe-inspired) */
 .svc-carousel__dots {
   display: flex;
   justify-content: center;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 2rem;
   order: -1;
 }
@@ -3077,47 +3078,28 @@ textarea {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
   cursor: pointer;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  padding: 0;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s ease;
 }
 
 .svc-carousel__dot.is-active {
-  background: rgba(124, 58, 237, 0.8);
-  border-color: rgba(167, 139, 250, 0.9);
-  box-shadow: 0 0 8px rgba(124, 58, 237, 0.8), 0 0 16px rgba(124, 58, 237, 0.4);
-  transform: scale(1.3);
+  width: 24px;
+  border-radius: 4px;
+  background: var(--c-accent, rgba(124, 58, 237, 0.9));
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.6), 0 0 4px rgba(124, 58, 237, 0.3);
+}
+.svc-carousel__dot:hover:not(.is-active) {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.2);
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .svc-carousel__track-wrapper {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 1rem 0;
-    scrollbar-width: none;
-  }
-  .svc-carousel__track-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-  .svc-carousel__track {
-    padding: 0 1.5rem;
-    gap: 1.5rem;
-    transform: none !important;
-  }
-  .svc-card {
-    width: calc(100vw - 3rem);
-    scroll-snap-align: center;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .svc-card__cta {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
-}
+/* Mobile responsive — consolidated below at line ~3174 */
 
 /* ==========================================================================
    SERVICES REDESIGN — Hollow title 3D + Cards transparentes large + Glow
@@ -3171,38 +3153,128 @@ textarea {
   padding: 2rem 0 !important;
   perspective: 1800px !important;
 }
-/* Mobile : le overflow:hidden !important ci-dessus tuait le swipe scroll-snap
-   (déclaré après le bloc mobile de la ligne ~3050, il gagnait la cascade) */
-/* Mobile : scroll horizontal fluide & scroll-snap natif */
+/* ══════════════════════════════════════════════════════════════════════
+   MOBILE CAROUSEL — AUTHORITATIVE BLOCK (single source of truth)
+   iOS-grade scroll-snap, card peek, depth parallax, pill dots
+   ══════════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  /* ── Section spacing tightened for mobile ── */
+  #services.svc {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .svc__header {
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* ── Track wrapper — native scroll-snap ── */
   .svc-carousel__track-wrapper {
     overflow-x: auto !important;
     overflow-y: hidden !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-x !important;
-    padding: 1.5rem 0 !important;
+    padding: 1rem 0 !important;
     scrollbar-width: none !important;
     perspective: none !important;
+    max-width: 100vw !important;
   }
   .svc-carousel__track-wrapper::-webkit-scrollbar {
     display: none !important;
   }
+
+  /* ── Track — horizontal flex, side padding for peek ── */
   .svc-carousel__track {
     display: flex !important;
-    gap: 1.25rem !important;
-    padding: 0 1.25rem !important;
+    flex-direction: row !important;
+    gap: 0.875rem !important;
+    /* 6vw left padding = half of 12vw gap so first card peeks from edge */
+    padding: 0 6vw !important;
     width: max-content !important;
     transform: none !important;
   }
+
+  /* ── Cards — uniform size, snap to center, depth transitions ── */
   .svc-card {
-    width: calc(85vw - 1rem) !important;
-    max-width: 340px !important;
+    width: 82vw !important;
+    max-width: 360px !important;
+    min-height: 0 !important;
     flex-shrink: 0 !important;
     scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
+    /* Default dimmed state — active card overrides below */
+    opacity: 0.5 !important;
+    transform: scale(0.92) !important;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease !important;
+    transform-style: flat !important;
+    will-change: transform, opacity !important;
+  }
+
+  /* ── Active card — full size, full opacity, glow ── */
+  .svc-card.is-active {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    border-color: rgba(var(--vc), 0.45) !important;
+    box-shadow:
+      0 0 0 1px rgba(var(--vc), 0.2),
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* ── CTA always visible on mobile ── */
+  .svc-card__cta,
+  .svc-card__btn {
     opacity: 1 !important;
     transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  /* ── Links always visible on mobile ── */
+  .svc-card__link {
+    color: rgb(var(--vc)) !important;
+  }
+
+  /* ── Card body tighter padding on mobile ── */
+  .svc-card__body {
+    padding: 1rem 1.2rem 1.1rem !important;
+  }
+  .svc-card__top {
+    padding: 1.1rem 1.2rem 0.8rem !important;
+  }
+  .svc-card__top h3 {
+    font-size: 1.15rem !important;
+  }
+  .svc-card__stat {
+    font-size: 2.2rem !important;
+  }
+  .svc-card__stat--phrase {
+    font-size: 1.15rem !important;
+  }
+  .svc-card__lede {
+    font-size: 0.92rem !important;
+  }
+  .svc-card__detail {
+    font-size: 0.78rem !important;
+    -webkit-line-clamp: 4 !important;
+  }
+
+  /* ── Dots — pill indicator, below cards ── */
+  .svc-carousel__dots {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+    gap: 0.4rem !important;
+  }
+  .svc-carousel__dot {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  .svc-carousel__dot.is-active {
+    width: 20px !important;
+    height: 6px !important;
+    border-radius: 3px !important;
   }
 }
 
@@ -3342,17 +3414,14 @@ textarea {
 }
 @media (max-width: 768px) { .svc-carousel__arrow { display: none !important; } }
 
-/* Mobile — retour compact */
+/* Mobile — title compact (card sizing consolidated in authoritative block above) */
 @media (max-width: 768px) {
   .svc__title {
-    font-size: clamp(2.2rem, 9vw, 3.2rem) !important;
+    font-size: clamp(1.8rem, 8vw, 2.6rem) !important;
     -webkit-text-stroke: 0;
     text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
     transform: none;
-  }
-  .svc-card {
-    width: 85vw !important;
-    min-height: 0 !important;
+    margin-bottom: 0.25rem !important;
   }
 }
 
@@ -3576,11 +3645,13 @@ textarea {
   transform: scale(0.96) !important;
 }
 
-/* ── Carousel dot — tinted active ── */
+/* ── Carousel dot — tinted active (pill style) ── */
 .svc-carousel__dot.is-active {
-  background: var(--c-accent) !important;
-  border-color: var(--c-accent-bright) !important;
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18) !important;
+  width: 24px;
+  border-radius: 4px;
+  background: var(--c-accent, rgba(124, 58, 237, 0.9)) !important;
+  border: none !important;
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.5), 0 0 4px rgba(124, 58, 237, 0.25) !important;
 }
 
 /* ══════════════════════════════════════════════════

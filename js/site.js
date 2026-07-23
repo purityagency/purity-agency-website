@@ -583,7 +583,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Synchronisation active card/dot lors du swipe tactile mobile
     const trackWrapper = carousel.querySelector('.svc-carousel__track-wrapper');
     if (trackWrapper) {
-      trackWrapper.addEventListener('scroll', () => {
+      let scrollRaf = 0;
+      const syncMobileActive = () => {
         if (window.innerWidth > 768) return;
         const wrapperCenter = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
         let closestIdx = 0;
@@ -598,14 +599,37 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        cards.forEach((card, idx) => {
-          card.classList.toggle('is-active', idx === closestIdx);
-        });
+        if (closestIdx !== currentIndex) {
+          currentIndex = closestIdx;
+          cards.forEach((card, idx) => {
+            card.classList.toggle('is-active', idx === closestIdx);
+          });
+          dots.forEach((dot, idx) => {
+            dot.classList.toggle('is-active', idx === closestIdx);
+          });
+        }
+      };
 
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle('is-active', idx === closestIdx);
-        });
+      trackWrapper.addEventListener('scroll', () => {
+        cancelAnimationFrame(scrollRaf);
+        scrollRaf = requestAnimationFrame(syncMobileActive);
       }, { passive: true });
+
+      // Dot tap-to-scroll on mobile (smooth scroll to card)
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          if (window.innerWidth > 768) {
+            // Desktop: use GSAP goToCard
+            goToCard(idx);
+            return;
+          }
+          // Mobile: smooth-scroll the wrapper so card snaps into view
+          const targetCard = cards[idx];
+          if (!targetCard) return;
+          const scrollTarget = targetCard.offsetLeft - (trackWrapper.clientWidth - targetCard.clientWidth) / 2;
+          trackWrapper.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+        });
+      });
     }
 
     // Clic sur les cards

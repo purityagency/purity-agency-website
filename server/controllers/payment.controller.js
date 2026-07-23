@@ -46,9 +46,9 @@ function clientPortalUrl() {
 
 function provisionPortalClient(order) {
   const portalUrl = clientPortalUrl();
-  if (!portalUrl) return;
+  if (!portalUrl) return Promise.reject(new Error('portal_url_missing'));
   const internalSecret = env.INTERNAL_API_SECRET;
-  if (!internalSecret) return;
+  if (!internalSecret) return Promise.reject(new Error('internal_secret_missing'));
 
   const endpoint = new URL('/api/internal/provision', portalUrl);
   const payload = JSON.stringify({
@@ -64,6 +64,7 @@ function provisionPortalClient(order) {
   });
   const lib = endpoint.protocol === 'https:' ? https : http;
 
+  return new Promise((resolve, reject) => {
   const req = lib.request({
     method: 'POST',
     hostname: endpoint.hostname,
@@ -78,14 +79,14 @@ function provisionPortalClient(order) {
     let d = '';
     res.on('data', x => d += x);
     res.on('end', () => {
-      if (res.statusCode >= 400) {
-        logger.error('[provision] failed', new Error(`Status ${res.statusCode}: ${d}`));
-      }
+      if (res.statusCode >= 400) return reject(new Error(`Status ${res.statusCode}: ${d}`));
+      resolve(d);
     });
   });
-  req.on('error', e => logger.error('[provision] network error', e));
+  req.on('error', reject);
   req.write(payload);
   req.end();
+  });
 }
 
 function handleOrderCreate(req, res) {
@@ -265,7 +266,18 @@ function handleMollieWebhook(req, res) {
         order.paidAt = new Date().toISOString();
         ordersRepo.writeOrder(order);
 
-        provisionPortalClient(order);
+        order.provisioningStatus = 'pending';
+        ordersRepo.writeOrder(order);
+        provisionPortalClient(order).then(() => {
+          order.provisioningStatus = 'completed';
+          order.provisionedAt = new Date().toISOString();
+          ordersRepo.writeOrder(order);
+        }).catch(err => {
+          order.provisioningStatus = 'failed';
+          order.provisioningError = err.message;
+          ordersRepo.writeOrder(order);
+          logger.error('[provision] failed', err);
+        });
 
         if (order.mollieCustomerId && Number(order.monthly) > 0 && !order.mollieSubscriptionId) {
           try {

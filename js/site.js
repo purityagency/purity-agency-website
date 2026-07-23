@@ -564,8 +564,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Pas d'interception du scroll : la molette garde son comportement normal,
     // la navigation du carrousel se fait uniquement aux flèches / dots.
-
-
     // Flèches prev/next (sélectionnées sur document car déplacées en dehors du wrap)
     const prevBtn = document.querySelector('.svc-carousel__arrow--prev');
     const nextBtn = document.querySelector('.svc-carousel__arrow--next');
@@ -590,31 +588,54 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // Clic sur la card active -> plongée transition 3D
+        // Clic sur la card active
         e.preventDefault();
-        const href = card.getAttribute('data-href');
-        
-        gsap.timeline()
-          .to(card, {
-            scale: 2.5,
-            z: 400,
-            opacity: 0,
-            duration: 0.6,
-            ease: 'power3.in'
-          })
-          .to(cards.filter(c => c !== card), {
-            opacity: 0,
-            scale: 0.7,
-            duration: 0.4
-          }, '<')
-          .to(carousel, {
-            filter: 'blur(20px)',
-            opacity: 0,
-            duration: 0.4
-          }, '<0.2')
-          .call(() => {
-            window.location.href = href;
-          });
+        const href = card.getAttribute('data-href') || card.getAttribute('href') || '#tarifs';
+        const isAnchor = href && (href.startsWith('#') || href.includes('#tarifs') || href.startsWith('/#'));
+
+        if (isAnchor) {
+          const targetId = href.indexOf('#') !== -1 ? href.substring(href.indexOf('#')) : '#tarifs';
+          const targetEl = document.querySelector(targetId);
+          
+          gsap.timeline()
+            .to(card, { scale: 1.08, duration: 0.15, ease: 'power2.out' })
+            .to(card, { scale: 1, duration: 0.15, ease: 'power2.in' })
+            .call(() => {
+              if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+                history.pushState(null, '', targetId);
+              } else {
+                window.location.href = href;
+              }
+              // Restaurer l'état du carrousel et des cards pour qu'elles restent visibles au scroll retour
+              gsap.set(carousel, { filter: 'none', opacity: 1 });
+              cards.forEach(c => gsap.set(c, { opacity: 1, scale: 1, rotationY: 0, z: 0 }));
+              goToCard(currentIndex, false);
+            });
+        } else {
+          // Plongée transition 3D pour changement de page externe
+          gsap.timeline()
+            .to(card, {
+              scale: 2.5,
+              z: 400,
+              opacity: 0,
+              duration: 0.6,
+              ease: 'power3.in'
+            })
+            .to(cards.filter(c => c !== card), {
+              opacity: 0,
+              scale: 0.7,
+              duration: 0.4
+            }, '<')
+            .to(carousel, {
+              filter: 'blur(20px)',
+              opacity: 0,
+              duration: 0.4
+            }, '<0.2')
+            .call(() => {
+              window.location.href = href;
+            });
+        }
       });
     });
 

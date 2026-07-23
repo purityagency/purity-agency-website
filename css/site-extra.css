@@ -5559,3 +5559,17 @@ textarea {
 .nav__dropdown-menu a:hover > span span {
   color: #FFFFFF !important;
 }
+
+/* WhatsApp Item Special Accent */
+.nav__dropdown-menu a.nav__wa-item strong,
+.nav__dropdown-menu a.nav__wa-item strong * {
+  color: #25D366 !important;
+}
+.nav__dropdown-menu a.nav__wa-item:hover {
+  background: rgba(37, 211, 102, 0.14) !important;
+  border-color: rgba(37, 211, 102, 0.4) !important;
+}
+.nav__dropdown-menu a.nav__wa-item:hover strong,
+.nav__dropdown-menu a.nav__wa-item:hover strong * {
+  color: #4ADE80 !important;
+}

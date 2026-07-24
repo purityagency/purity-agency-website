@@ -4722,6 +4722,9 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
 }
 
 @media (max-width: 860px) {
+  body {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+  }
   .mobile-nav-bar {
     transform: translateX(-50%) translateY(0);
   }

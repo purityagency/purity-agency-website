@@ -483,7 +483,7 @@ p {
   margin-right: -13px;       /* annule l'espace de fin pour aligner le bord droit */
   color: var(--c-fg);
 }
-header {
+header#nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--nav-h);

@@ -87,7 +87,7 @@ function handleBook(req, res) {
     }
 
     const startMs = Date.parse(start);
-    if (!name || !validator.isValidEmail(email) || !company || !startMs) {
+    if (!name || !validator.isValidEmail(email) || !phone || !company || !startMs) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid' }));
     }

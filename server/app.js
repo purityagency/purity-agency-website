@@ -71,7 +71,12 @@ function isServable(filePath) {
 
 function handleStaticRequest(req, res, urlPath) {
   if (urlPath === '/') urlPath = '/index.html';
-  if (urlPath === '/commande-confirmee') urlPath = '/commande-confirmee.html';
+  if (!path.extname(urlPath)) {
+    const candidateHtml = path.join(ROOT, urlPath + '.html');
+    if (fs.existsSync(candidateHtml)) {
+      urlPath = urlPath + '.html';
+    }
+  }
 
   const decodedPath = decodeURIComponent(urlPath);
   const filePath = path.normalize(path.join(ROOT, decodedPath));

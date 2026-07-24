@@ -1752,7 +1752,8 @@ document.addEventListener('DOMContentLoaded', () => {
             name: formEl.querySelector('#bk-name').value.trim(),
             email: formEl.querySelector('#bk-email').value.trim(),
             phone: formEl.querySelector('#bk-phone').value.trim(),
-            need: formEl.querySelector('#bk-need').value.trim(),
+            company: formEl.querySelector('#bk-company').value.trim(),
+            companyWebsite: formEl.querySelector('#bk-website-url').value.trim(),
             website_verification: formEl.querySelector('#bk-website').value,
           }),
         });

@@ -77,7 +77,8 @@ function handleBook(req, res) {
     const name = String(data.name || '').slice(0, 200).trim();
     const email = String(data.email || '').slice(0, 200).trim();
     const phone = String(data.phone || '').slice(0, 60).trim();
-    const need = String(data.need || '').slice(0, 2000).trim();
+    const company = String(data.company || '').slice(0, 200).trim();
+    const companyWebsite = String(data.companyWebsite || '').slice(0, 300).trim();
     const honeypot = String(data.website_verification || '').trim();
 
     if (honeypot) {
@@ -86,7 +87,7 @@ function handleBook(req, res) {
     }
 
     const startMs = Date.parse(start);
-    if (!name || !validator.isValidEmail(email) || !startMs) {
+    if (!name || !validator.isValidEmail(email) || !company || !startMs) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid' }));
     }
@@ -95,8 +96,10 @@ function handleBook(req, res) {
       return res.end(JSON.stringify({ error: 'too_soon' }));
     }
 
+    const detailNeed = `Entreprise : ${company}` + (companyWebsite ? ` — Site : ${companyWebsite}` : '');
+
     if (!googleService.isBookingConfigured()) {
-      ordersRepo.logLead({ name, email, phone, activity: '', need: '[RDV (Mode Simple)] ' + new Date(startMs).toISOString() + (need ? ' — ' + need : '') });
+      ordersRepo.logLead({ name, email, phone, activity: company, need: '[RDV (Mode Simple)] ' + new Date(startMs).toISOString() + ' — ' + detailNeed });
 
       if (env.RESEND_API_KEY) {
         const icsDate = d => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
@@ -105,8 +108,8 @@ function handleBook(req, res) {
         const icsContent = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT',
           `DTSTART:${icsDate(startDt)}`, `DTEND:${icsDate(endDt)}`,
-          `SUMMARY:Appel Purity — ${name}`,
-          `DESCRIPTION:${phone ? 'Téléphone: ' + phone + '\\n' : ''}${need ? 'Besoin: ' + need : ''}`,
+          `SUMMARY:Appel Purity — ${name} (${company})`,
+          `DESCRIPTION:Entreprise: ${company}\\nTéléphone: ${phone || '—'}\\nSite: ${companyWebsite || '—'}`,
           'END:VEVENT', 'END:VCALENDAR'
         ].join('\r\n');
 
@@ -115,13 +118,14 @@ function handleBook(req, res) {
 <p><strong>Nom :</strong> ${validator.escapeHtml(name)}<br>
 <strong>E-mail :</strong> ${validator.escapeHtml(email)}<br>
 <strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}</p>
-<p><strong>Besoin :</strong><br>${validator.escapeHtml(need).replace(/\\n/g, '<br>')}</p>
+<p><strong>Entreprise :</strong> ${validator.escapeHtml(company)}<br>
+<strong>Site internet actuel :</strong> ${companyWebsite ? `<a href="${validator.escapeHtml(companyWebsite)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : '—'}</p>
 <p><em>💡 Ouvrez ce mail sur votre téléphone et touchez la pièce jointe (.ics) pour l\'ajouter à votre calendrier.</em></p>`;
 
         resendService.sendEmail({
           to: env.CONTACT_TO,
           replyTo: email,
-          subject: `📅 Nouveau RDV — ${name}`,
+          subject: `📅 Nouveau RDV — ${name} (${company})`,
           html,
           attachments: [{ filename: 'rendez-vous.ics', content: Buffer.from(icsContent).toString('base64') }]
         }).catch(err => logger.error('[booking] simple mode email error', err));
@@ -155,15 +159,16 @@ function handleBook(req, res) {
           return res.end(JSON.stringify({ error: 'taken' }));
         }
 
-        const descLines = [
-          'Appel stratégique de 15 min — Purity Agency.',
+         const descLines = [
+          'Appel de diagnostic offert de 15 min — Purity Agency.',
+          `Entreprise : ${company}`,
+          companyWebsite ? 'Site internet : ' + companyWebsite : '',
           phone ? 'Téléphone : ' + phone : '',
-          need ? 'Besoin : ' + need : '',
           googleService.BOOKING.meetingLink ? 'Lien visio : ' + googleService.BOOKING.meetingLink : ''
         ].filter(Boolean);
 
         const event = {
-          summary: 'Appel Purity — ' + name,
+          summary: `Appel Purity — ${name} (${company})`,
           description: descLines.join('\n'),
           start: { dateTime: new Date(startMs).toISOString(), timeZone: googleService.BOOKING.timezone },
           end: { dateTime: new Date(endMs).toISOString(), timeZone: googleService.BOOKING.timezone },
@@ -175,7 +180,7 @@ function handleBook(req, res) {
         googleService.calApi('POST',
           `/calendar/v3/calendars/${encodeURIComponent(googleService.BOOKING.calendarId)}/events?sendUpdates=all`,
           token, event, (e3, ev) => {
-            ordersRepo.logLead({ name, email, phone, activity: '', need: '[RDV] ' + new Date(startMs).toISOString() + (need ? ' — ' + need : '') });
+            ordersRepo.logLead({ name, email, phone, activity: company, need: '[RDV] ' + new Date(startMs).toISOString() + ' — ' + detailNeed });
             if (e3) {
               logger.error('[booking] insert event error', e3);
               res.writeHead(502, { 'Content-Type': 'application/json' });

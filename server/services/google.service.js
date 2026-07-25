@@ -25,12 +25,13 @@ function isBookingConfigured() {
   return Boolean(BOOKING.calendarId && sa?.client_email && sa?.private_key);
 }
 
-let _gTokenCache = { token: '', exp: 0 };
+const _gTokenCache = {}; // keyed by scope
 
-function getGoogleToken(cb) {
+function getGoogleToken(cb, scope = 'https://www.googleapis.com/auth/calendar') {
   const now = Date.now();
-  if (_gTokenCache.token && now < _gTokenCache.exp - 60000) {
-    return cb(null, _gTokenCache.token);
+  const cached = _gTokenCache[scope];
+  if (cached && now < cached.exp - 60000) {
+    return cb(null, cached.token);
   }
 
   const sa = env.googleServiceAccount;
@@ -42,7 +43,7 @@ function getGoogleToken(cb) {
   const enc = o => Buffer.from(JSON.stringify(o)).toString('base64url');
   const unsigned = enc({ alg: 'RS256', typ: 'JWT' }) + '.' + enc({
     iss: sa.client_email,
-    scope: 'https://www.googleapis.com/auth/calendar',
+    scope,
     aud: 'https://oauth2.googleapis.com/token',
     iat,
     exp: iat + 3600
@@ -71,7 +72,7 @@ function getGoogleToken(cb) {
       try {
         const j = JSON.parse(d);
         if (j.access_token) {
-          _gTokenCache = { token: j.access_token, exp: now + j.expires_in * 1000 };
+          _gTokenCache[scope] = { token: j.access_token, exp: now + j.expires_in * 1000 };
           return cb(null, j.access_token);
         }
         cb(new Error('token_error: ' + d.slice(0, 200)));

@@ -22,14 +22,17 @@ const GEMINI_API_KEY = (process.env.GEMINI_API_KEY || readSecretFile('.gemini-ke
 
 let googleServiceAccount = null;
 try {
-  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
-    googleServiceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON || process.env.GOOGLE_SERVICE_ACCOUNT;
+  if (raw) {
+    googleServiceAccount = JSON.parse(raw);
   } else {
     googleServiceAccount = JSON.parse(fs.readFileSync(path.join(SECRETS_DIR, '.google-service-account.json'), 'utf8'));
   }
 } catch (err) {
   // Graceful fallback if google service account is missing
 }
+
+const GCP_REGION = process.env.GCP_REGION || 'us-central1';
 
 const CONTACT_FROM = 'Purity Agency <hello@purity-agency.be>';
 const CONTACT_TO = 'hello@purity-agency.be';
@@ -43,6 +46,7 @@ module.exports = {
   INTERNAL_API_SECRET,
   GEMINI_API_KEY,
   googleServiceAccount,
+  GCP_REGION,
   CONTACT_FROM,
   CONTACT_TO,
   BASE_URL

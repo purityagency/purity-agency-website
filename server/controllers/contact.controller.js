@@ -5,8 +5,41 @@ const validator = require('../utils/validator');
 const ordersRepo = require('../repositories/orders.repository');
 const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
+const googleService = require('../services/google.service');
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
+
+// Vertex AI generateContent — avoids the "user location not supported" geo-block
+// that the plain Gemini API key hits from cloud/datacenter IPs (e.g. Render EU).
+function callVertexGenerateContent(payload, cb) {
+  const sa = env.googleServiceAccount;
+  if (!sa || !sa.project_id) {
+    return cb(new Error('no_service_account'));
+  }
+  googleService.getGoogleToken((err, token) => {
+    if (err) return cb(err);
+    const body = JSON.stringify(payload);
+    const region = env.GCP_REGION;
+    const greq = https.request({
+      method: 'POST',
+      hostname: `${region}-aiplatform.googleapis.com`,
+      path: `/v1/projects/${sa.project_id}/locations/${region}/publishers/google/models/${GEMINI_MODEL}:generateContent`,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    }, gres => {
+      let data = '';
+      gres.on('data', d => data += d);
+      gres.on('end', () => cb(null, { statusCode: gres.statusCode, data }));
+    });
+    greq.on('error', cb);
+    greq.write(body);
+    greq.end();
+  }, VERTEX_SCOPE);
+}
 
 const SYSTEM_PROMPT = `Tu es OctoMask, la personne qui accueille les visiteurs chez Purity Agency, une agence digitale à Charleroi (Wallonie). Tu n'es PAS un bot générique : tu parles comme un vrai membre de l'équipe, quelqu'un de sympa, franc et qui connaît son métier. Français, vouvoiement.
 
@@ -119,8 +152,7 @@ function handleChat(req, res) {
     return res.end(JSON.stringify({ error: 'rate_limited' }));
   }
 
-  const key = env.GEMINI_API_KEY;
-  if (!key) {
+  if (!env.googleServiceAccount) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }
@@ -138,51 +170,32 @@ function handleChat(req, res) {
       return res.end(JSON.stringify({ error: 'empty' }));
     }
 
-    const payload = JSON.stringify({
+    callVertexGenerateContent({
       system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
       contents,
       generationConfig: { maxOutputTokens: 600, temperature: 0.85, topP: 0.95 }
-    });
-
-    const greq = https.request({
-      method: 'POST',
-      hostname: 'generativelanguage.googleapis.com',
-      path: `/v1beta/models/${GEMINI_MODEL}:generateContent`,
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(payload),
-        'x-goog-api-key': key
+    }, (err, result) => {
+      if (err) {
+        logger.error('[chat] network error', err);
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'network' }));
       }
-    }, gres => {
-      let data = '';
-      gres.on('data', d => data += d);
-      gres.on('end', () => {
-        let reply = '';
-        try { reply = (JSON.parse(data).candidates?.[0]?.content?.parts || []).map(p => p.text).join('').trim(); }
-        catch (err) { /* ignore */ }
-        if (gres.statusCode >= 400 || !reply) {
-          logger.error('[chat] upstream error', new Error(`Status ${gres.statusCode}: ${data}`));
-          res.writeHead(502, { 'Content-Type': 'application/json' });
-          return res.end(JSON.stringify({ error: 'upstream', status: gres.statusCode }));
-        }
-        res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-        res.end(JSON.stringify({ reply }));
-      });
+      let reply = '';
+      try { reply = (JSON.parse(result.data).candidates?.[0]?.content?.parts || []).map(p => p.text).join('').trim(); }
+      catch (e) { /* ignore */ }
+      if (result.statusCode >= 400 || !reply) {
+        logger.error('[chat] upstream error', new Error(`Status ${result.statusCode}: ${result.data}`));
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'upstream', status: result.statusCode }));
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+      res.end(JSON.stringify({ reply }));
     });
-
-    greq.on('error', e => {
-      logger.error('[chat] network error', e);
-      res.writeHead(502, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'network' }));
-    });
-    greq.write(payload);
-    greq.end();
   });
 }
 
 function handleImproveText(req, res) {
-  const key = env.GEMINI_API_KEY;
-  if (!key) {
+  if (!env.googleServiceAccount) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }
@@ -201,43 +214,25 @@ function handleImproveText(req, res) {
       return res.end(JSON.stringify({ error: 'empty' }));
     }
 
-    const payload = JSON.stringify({
+    callVertexGenerateContent({
       system_instruction: { parts: [{ text: promptInstruction }] },
       contents: [{ role: 'user', parts: [{ text }] }],
       generationConfig: { maxOutputTokens: 1500, temperature: 0.7, topP: 0.9 }
-    });
-
-    const greq = https.request({
-      method: 'POST',
-      hostname: 'generativelanguage.googleapis.com',
-      path: `/v1beta/models/${GEMINI_MODEL}:generateContent`,
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(payload),
-        'x-goog-api-key': key
+    }, (err, result) => {
+      if (err) {
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'network' }));
       }
-    }, gres => {
-      let resData = '';
-      gres.on('data', d => resData += d);
-      gres.on('end', () => {
-        let reply = '';
-        try { reply = (JSON.parse(resData).candidates?.[0]?.content?.parts || []).map(p => p.text).join('').trim(); }
-        catch (err) { /* ignore */ }
-        if (gres.statusCode >= 400 || !reply) {
-          res.writeHead(502, { 'Content-Type': 'application/json' });
-          return res.end(JSON.stringify({ error: 'gemini' }));
-        }
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: true, text: reply }));
-      });
+      let reply = '';
+      try { reply = (JSON.parse(result.data).candidates?.[0]?.content?.parts || []).map(p => p.text).join('').trim(); }
+      catch (e) { /* ignore */ }
+      if (result.statusCode >= 400 || !reply) {
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'gemini' }));
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true, text: reply }));
     });
-
-    greq.on('error', e => {
-      res.writeHead(502, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'network' }));
-    });
-    greq.write(payload);
-    greq.end();
   });
 }
 

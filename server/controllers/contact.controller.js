@@ -6,6 +6,7 @@ const ordersRepo = require('../repositories/orders.repository');
 const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
 const googleService = require('../services/google.service');
+const purityosService = require('../services/purityos.service');
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
@@ -128,6 +129,16 @@ function handleContact(req, res) {
 <strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}<br>
 <strong>Activité :</strong> ${validator.escapeHtml(activity || '—')}</p>
 <p><strong>Besoin :</strong><br>${validator.escapeHtml(need).replace(/\n/g, '<br>')}</p>`;
+
+    purityosService.notifyEvent({
+      type: 'LEAD',
+      name,
+      email,
+      phone,
+      company: activity,
+      summary: need.slice(0, 200),
+      payload: { activity, need }
+    });
 
     try {
       await resendService.sendEmail({

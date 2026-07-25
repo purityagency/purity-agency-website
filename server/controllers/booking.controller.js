@@ -4,6 +4,7 @@ const validator = require('../utils/validator');
 const googleService = require('../services/google.service');
 const resendService = require('../services/resend.service');
 const ordersRepo = require('../repositories/orders.repository');
+const purityosService = require('../services/purityos.service');
 
 function handleAvailability(req, res, query) {
   const dateStr = (query.get('date') || '').slice(0, 10);
@@ -100,6 +101,15 @@ function handleBook(req, res) {
 
     if (!googleService.isBookingConfigured()) {
       ordersRepo.logLead({ name, email, phone, activity: company, need: '[RDV (Mode Simple)] ' + new Date(startMs).toISOString() + ' — ' + detailNeed });
+      purityosService.notifyEvent({
+        type: 'BOOKING',
+        name,
+        email,
+        phone,
+        company,
+        summary: `RDV le ${new Date(startMs).toLocaleString('fr-FR', { timeZone: googleService.BOOKING.timezone })}`,
+        payload: { start: new Date(startMs).toISOString(), company, companyWebsite }
+      });
 
       if (env.RESEND_API_KEY) {
         const icsDate = d => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
@@ -186,6 +196,16 @@ function handleBook(req, res) {
               res.writeHead(502, { 'Content-Type': 'application/json' });
               return res.end(JSON.stringify({ error: 'insert' }));
             }
+
+            purityosService.notifyEvent({
+              type: 'BOOKING',
+              name,
+              email,
+              phone,
+              company,
+              summary: `RDV le ${new Date(startMs).toLocaleString('fr-FR', { timeZone: googleService.BOOKING.timezone })}`,
+              payload: { start: new Date(startMs).toISOString(), company, companyWebsite, htmlLink: ev.htmlLink || '' }
+            });
 
             if (env.RESEND_API_KEY) {
               const startDt = new Date(startMs);

@@ -131,7 +131,7 @@ function handleContact(req, res) {
 
     try {
       await resendService.sendEmail({
-        to: env.CONTACT_TO,
+        to: env.NOTIFY_EMAILS,
         replyTo: email,
         subject: `Nouveau lead — ${name}`,
         html

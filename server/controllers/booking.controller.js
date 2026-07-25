@@ -87,7 +87,7 @@ function handleBook(req, res) {
     }
 
     const startMs = Date.parse(start);
-    if (!name || !validator.isValidEmail(email) || !phone || !company || !startMs) {
+    if (!name || !validator.isValidEmail(email) || !phone || (!company && !companyWebsite) || !startMs) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid' }));
     }
@@ -108,8 +108,8 @@ function handleBook(req, res) {
         const icsContent = [
           'BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT',
           `DTSTART:${icsDate(startDt)}`, `DTEND:${icsDate(endDt)}`,
-          `SUMMARY:Appel Purity — ${name} (${company})`,
-          `DESCRIPTION:Entreprise: ${company}\\nTéléphone: ${phone || '—'}\\nSite: ${companyWebsite || '—'}`,
+          `SUMMARY:Appel Purity — ${name} (${company || companyWebsite})`,
+          `DESCRIPTION:Entreprise: ${company || '—'}\\nTéléphone: ${phone || '—'}\\nSite: ${companyWebsite || '—'}`,
           'END:VEVENT', 'END:VCALENDAR'
         ].join('\r\n');
 
@@ -118,14 +118,14 @@ function handleBook(req, res) {
 <p><strong>Nom :</strong> ${validator.escapeHtml(name)}<br>
 <strong>E-mail :</strong> ${validator.escapeHtml(email)}<br>
 <strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}</p>
-<p><strong>Entreprise :</strong> ${validator.escapeHtml(company)}<br>
+<p><strong>Entreprise :</strong> ${validator.escapeHtml(company || '—')}<br>
 <strong>Site internet actuel :</strong> ${companyWebsite ? `<a href="${validator.escapeHtml(companyWebsite)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : '—'}</p>
 <p><em>💡 Ouvrez ce mail sur votre téléphone et touchez la pièce jointe (.ics) pour l\'ajouter à votre calendrier.</em></p>`;
 
         resendService.sendEmail({
-          to: env.CONTACT_TO,
+          to: env.NOTIFY_EMAILS,
           replyTo: email,
-          subject: `📅 Nouveau RDV — ${name} (${company})`,
+          subject: `📅 Nouveau RDV — ${name} (${company || companyWebsite})`,
           html,
           attachments: [{ filename: 'rendez-vous.ics', content: Buffer.from(icsContent).toString('base64') }]
         }).catch(err => logger.error('[booking] simple mode email error', err));
@@ -161,14 +161,14 @@ function handleBook(req, res) {
 
          const descLines = [
           'Appel de diagnostic offert de 15 min — Purity Agency.',
-          `Entreprise : ${company}`,
+          `Entreprise : ${company || '—'}`,
           companyWebsite ? 'Site internet : ' + companyWebsite : '',
           phone ? 'Téléphone : ' + phone : '',
           googleService.BOOKING.meetingLink ? 'Lien visio : ' + googleService.BOOKING.meetingLink : ''
         ].filter(Boolean);
 
         const event = {
-          summary: `Appel Purity — ${name} (${company})`,
+          summary: `Appel Purity — ${name} (${company || companyWebsite})`,
           description: descLines.join('\n'),
           start: { dateTime: new Date(startMs).toISOString(), timeZone: googleService.BOOKING.timezone },
           end: { dateTime: new Date(endMs).toISOString(), timeZone: googleService.BOOKING.timezone },
@@ -186,6 +186,26 @@ function handleBook(req, res) {
               res.writeHead(502, { 'Content-Type': 'application/json' });
               return res.end(JSON.stringify({ error: 'insert' }));
             }
+
+            if (env.RESEND_API_KEY) {
+              const startDt = new Date(startMs);
+              const html = `<h2>Nouveau RDV — Purity Agency</h2>
+<p><strong>Heure :</strong> ${startDt.toLocaleString('fr-FR', { timeZone: googleService.BOOKING.timezone })}</p>
+<p><strong>Nom :</strong> ${validator.escapeHtml(name)}<br>
+<strong>E-mail :</strong> ${validator.escapeHtml(email)}<br>
+<strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}</p>
+<p><strong>Entreprise :</strong> ${validator.escapeHtml(company || '—')}<br>
+<strong>Site internet actuel :</strong> ${companyWebsite ? `<a href="${validator.escapeHtml(companyWebsite)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : '—'}</p>
+${ev.htmlLink ? `<p><a href="${validator.escapeHtml(ev.htmlLink)}" target="_blank">Voir dans Google Calendar</a></p>` : ''}`;
+
+              resendService.sendEmail({
+                to: env.NOTIFY_EMAILS,
+                replyTo: email,
+                subject: `📅 Nouveau RDV — ${name} (${company || companyWebsite})`,
+                html
+              }).catch(err => logger.error('[booking] real mode email error', err));
+            }
+
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ ok: true, start: new Date(startMs).toISOString(), htmlLink: ev.htmlLink || '' }));
           });

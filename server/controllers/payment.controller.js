@@ -10,38 +10,42 @@ const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
 
 const BRIQUE_DATA = {
-  'landing':         { name: 'Landing Page',              price: 390,  mode: 'once'  },
-  'vitrine':         { name: 'Site Vitrine',              price: 1490, mode: 'once'  },
-  'complet':         { name: 'Site Complet',              price: 2490, mode: 'once'  },
-  'ecommerce':       { name: 'E-commerce',                price: 3490, mode: 'once'  },
-  'google-biz':      { name: 'Fiche Google Business',     price: 290,  mode: 'once'  },
-  'email-pro':       { name: 'Email Professionnel',       price: 90,   mode: 'once'  },
-  'seo-local':       { name: 'SEO Local',                 price: 490,  mode: 'month' },
-  'pub-google':      { name: 'Pub Google / Meta',         price: 390,  mode: 'month' },
-  'visuels-rs':      { name: 'Pack Visuels Réseaux',      price: 290,  mode: 'month' },
-  'contenu-mensuel': { name: 'Contenu Mensuel',           price: 390,  mode: 'month' },
-  'ia-n1':           { name: 'IA N1 – Réponses auto',     price: 290,  mode: 'once'  },
-  'ia-n2':           { name: 'IA N2 – Réservation',       price: 490,  mode: 'once'  },
-  'ia-n3':           { name: 'IA N3 – Sur-mesure',        price: 990,  mode: 'once'  },
-  'email-sms':       { name: 'Séquences Email / SMS',     price: 290,  mode: 'once'  },
-  'facturation':     { name: 'Facturation Peppol',        price: 390,  mode: 'once'  },
-  'app-metier':      { name: 'Application Métier',        price: 2490, mode: 'once'  },
-  'maintenance':     { name: 'Maintenance Mensuelle',     price: 149,  mode: 'month' },
-  'identite':        { name: 'Identité Visuelle',         price: 690,  mode: 'once'  },
-  'visuels-graph':   { name: 'Visuels & Photos',          price: 290,  mode: 'once'  },
-  'videos':          { name: 'Vidéos & Contenus',         price: 490,  mode: 'once'  },
-  'pack-booking':    { name: 'Pack Booking Pro',          price: 249,  mode: 'month' },
-  'pack-visibilite': { name: 'Pack Visibilité Locale',    price: 179,  mode: 'month' },
-  'pack-resto':      { name: 'Pack Resto & Table',        price: 199,  mode: 'month' },
-  'pack-vitrine':    { name: 'Pack Vitrine Pro',          price: 149,  mode: 'month' },
-  'hebergement':     { name: 'Hébergement Pro',           price: 49,   mode: 'month' },
-  'monitoring':      { name: 'Monitoring & Alertes 24/7', price: 29,   mode: 'month' }
+  'm01': { name: 'Diagnostic Digital',             price: 0,    mode: 'once' },
+  'm02': { name: 'Feuille de Route Stratégique',   price: 490,  mode: 'once' },
+  'm03': { name: 'Page Essentielle',               price: 490,  mode: 'once' },
+  'm04': { name: 'Site Vitrine (5 pages)',         price: 1490, mode: 'once' },
+  'm05': { name: 'Site Complet (10+ pages)',       price: 2490, mode: 'once' },
+  'm06': { name: 'Boutique en Ligne',              price: 3990, mode: 'once' },
+  'm07': { name: 'Refonte & Modernisation',        price: 890,  mode: 'once' },
+  'm08': { name: 'Fiche Google Business',          price: 290,  mode: 'once' },
+  'm09': { name: 'Identité Visuelle',              price: 590,  mode: 'once' },
+  'm10': { name: 'Visuels Produit',                price: 290,  mode: 'once' },
+  'm11': { name: 'Vidéos & Reels',                 price: 390,  mode: 'once' },
+  'm12': { name: 'Rédaction Web & Blog',           price: 290,  mode: 'once' },
+  'm13': { name: 'Référencement Local (SEO)',      price: 590,  mode: 'once' },
+  'm14': { name: 'Publicité Digitale',             price: 490,  mode: 'once' },
+  'm15': { name: 'Campagnes Email & SMS',          price: 790,  mode: 'once' },
+  'm16': { name: 'Réseaux Sociaux',                price: 290,  mode: 'once' },
+  'm17': { name: 'Réservation en Ligne',           price: 390,  mode: 'once' },
+  'm18': { name: 'Gestion Client (CRM)',           price: 990,  mode: 'once' },
+  'm19': { name: 'Portail Client Sécurisé',        price: 690,  mode: 'once' },
+  'm20': { name: 'Réputation & Avis',              price: 290,  mode: 'once' },
+  'm21': { name: 'Pilote Automatique — Essentiel', price: 490,  mode: 'once' },
+  'm22': { name: 'Pilote Automatique — Business',  price: 990,  mode: 'once' },
+  'm23': { name: 'Pilote Automatique — Intégral',  price: 1990, mode: 'once' },
+  'm24-ess': { name: 'Maintenance Essentielle',    price: 79,   mode: 'month' },
+  'm24-biz': { name: 'Maintenance Business',       price: 149,  mode: 'month' },
+  'm24-pro': { name: 'Maintenance Premium',        price: 249,  mode: 'month' },
+  'm25': { name: 'Formation & Prise en Main',      price: 290,  mode: 'once' },
+  'm26': { name: 'Conseil Stratégique',            price: 149,  mode: 'month' },
+  'm27': { name: 'Application Métier',             price: 2990, mode: 'once' },
+  'm28': { name: 'Intégrations & Connexions',      price: 490,  mode: 'once' }
 };
 
 function clientPortalUrl() {
   const value = (process.env.CLIENT_PORTAL_URL || '').trim();
   if (/^https?:\/\/[^/\s]+(?::\d+)?$/i.test(value)) return value;
-  return process.env.NODE_ENV === 'production' ? 'https://app.purity-agency.be' : 'http://localhost:3001';
+  return process.env.NODE_ENV === 'production' ? 'https://os.purity-agency.be' : 'http://localhost:3001';
 }
 
 function provisionPortalClient(order) {
@@ -325,6 +329,21 @@ function handleMollieWebhook(req, res) {
           subject: `Confirmation de commande — ${order.pack} (Ref: ${order.id})`,
           html
         }).catch(err => logger.error('[webhook] resend email fail', err));
+
+        const adminHtml = `<h2>Nouvelle commande payée — Purity Agency</h2>
+<p><strong>Client :</strong> ${validator.escapeHtml(order.clientName)}<br>
+<strong>E-mail :</strong> ${validator.escapeHtml(order.email)}<br>
+<strong>Téléphone :</strong> ${validator.escapeHtml(order.phone || '—')}${companyLine}${bceLine}</p>
+<p><strong>Offre :</strong> ${validator.escapeHtml(order.pack)}<br>
+<strong>Acompte payé :</strong> ${order.deposit} €${Number(order.remaining) > 0 ? ` (reste ${order.remaining} €)` : ''}${Number(order.monthly) > 0 ? `<br><strong>Suivi mensuel :</strong> ${order.monthly} €/mois` : ''}<br>
+<strong>Référence :</strong> <code>${validator.escapeHtml(order.id)}</code></p>`;
+
+        resendService.sendEmail({
+          to: env.NOTIFY_EMAILS,
+          replyTo: order.email,
+          subject: `💰 Nouvelle commande payée — ${order.pack} (${order.clientName})`,
+          html: adminHtml
+        }).catch(err => logger.error('[webhook] admin notify email fail', err));
 
         ordersRepo.logLead({ name: order.clientName, email: order.email, phone: order.phone || '', activity: order.sector, need: `[PAYÉ] ${order.pack} — ${order.deposit}€` });
       }

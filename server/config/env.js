@@ -36,6 +36,8 @@ const GCP_REGION = process.env.GCP_REGION || 'us-central1';
 
 const CONTACT_FROM = 'Purity Agency <hello@purity-agency.be>';
 const CONTACT_TO = 'hello@purity-agency.be';
+// Adresses notifiées pour toute activité entrante : commande, RDV, question/lead.
+const NOTIFY_EMAILS = ['amir.jobpro@gmail.com', 'contact@purity-agency.be'];
 const BASE_URL = process.env.BASE_URL || 'https://purity-agency-website.onrender.com';
 
 module.exports = {
@@ -49,5 +51,6 @@ module.exports = {
   GCP_REGION,
   CONTACT_FROM,
   CONTACT_TO,
+  NOTIFY_EMAILS,
   BASE_URL
 };

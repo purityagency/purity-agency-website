@@ -6,7 +6,7 @@ const logger = require('../utils/logger');
 function portalUrl() {
   const value = (process.env.CLIENT_PORTAL_URL || '').trim();
   if (/^https?:\/\/[^/\s]+(?::\d+)?$/i.test(value)) return value;
-  return process.env.NODE_ENV === 'production' ? 'https://os.purity-agency.be' : 'http://localhost:3001';
+  return process.env.NODE_ENV === 'production' ? 'https://app.purity-agency.be' : 'http://localhost:3001';
 }
 
 // Notifie Purity OS (boîte de réception admin) qu'un lead/RDV/commande vient
@@ -38,8 +38,14 @@ function notifyEvent({ type, name, email, phone, company, summary, payload }) {
         'Authorization': `Bearer ${secret}`
       }
     }, res => {
-      res.on('data', () => {});
-      res.on('end', () => resolve());
+      let data = '';
+      res.on('data', d => data += d);
+      res.on('end', () => {
+        if (res.statusCode >= 400) {
+          logger.error('[purityos] notifyEvent upstream error', new Error(`Status ${res.statusCode}: ${data.slice(0, 300)}`));
+        }
+        resolve();
+      });
     });
 
     req.on('error', err => {

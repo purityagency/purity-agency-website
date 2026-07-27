@@ -823,30 +823,55 @@
         ].filter(Boolean);
 
         var payload = {
+          serviceId: currentService.id,
           name: (firstname + ' ' + lastname).trim(),
           email: email,
           phone: phone,
-          activity: sector,
-          need: needLines.join('\n')
+          bce: tva,
+          intake: {
+            fname: firstname,
+            lname: lastname,
+            email: email,
+            phone: phone,
+            business_name: company,
+            tva: tva,
+            address: address,
+            sector: sector,
+            goals: goals,
+            style: style,
+            inspiration: inspiration,
+            formattedRdv: formattedRdv
+          }
         };
 
-        fetch('/api/contact', {
+        fetch('/api/order/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         })
           .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
           .then(function (result) {
-            if (result.ok && result.data && result.data.ok) {
+            if (result.ok && result.data && result.data.sessionUrl) {
+              window.location.href = result.data.sessionUrl;
+              return;
+            }
+            // Fallback lead log si Mollie est en mode hors-ligne
+            fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: payload.name, email: payload.email, phone: payload.phone,
+                activity: sector, need: needLines.join('\n')
+              })
+            }).then(function() {
               var displayRdv = document.getElementById('ob-success-date-time-display');
               if (displayRdv) displayRdv.textContent = formattedRdv;
               goToStep(5, true);
-              return;
-            }
-            if (errorBox) {
-              errorBox.textContent = 'Votre demande n\'a pas pu être enregistrée. Vérifiez vos coordonnées ou contactez-nous directement.';
-              errorBox.hidden = false;
-            }
+            }).catch(function() {
+              var displayRdv = document.getElementById('ob-success-date-time-display');
+              if (displayRdv) displayRdv.textContent = formattedRdv;
+              goToStep(5, true);
+            });
           })
           .catch(function () {
             if (errorBox) {

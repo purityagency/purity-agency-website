@@ -113,6 +113,12 @@ function handleOrderCreate(req, res) {
 
     const briqueId = String(data.serviceId || '').trim().toLowerCase();
     const intake = (data.intake && typeof data.intake === 'object') ? data.intake : {};
+    const bceRaw = String(data.bce || intake.tva || intake.bce || '').trim();
+    if (bceRaw && !validator.isValidBCE(bceRaw)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'invalid_bce' }));
+    }
+    const bceFormatted = bceRaw ? validator.formatBCE(bceRaw) : '';
 
     let sector, name, email, phone, company, pack;
 
@@ -139,7 +145,40 @@ function handleOrderCreate(req, res) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'invalid_sector' }));
       }
-      pack = mollieService.PACK_DATA[sector];
+      pack = Object.assign({}, mollieService.PACK_DATA[sector]);
+    }
+
+    // Modal Payment Mode Option (100% full vs 50% deposit)
+    const paymentMode = String(data.paymentMode || '').trim();
+    if (paymentMode === 'full') {
+      pack.deposit = pack.price;
+      pack.remaining = 0;
+    } else if (paymentMode === 'deposit50') {
+      pack.deposit = Math.round(pack.price * 0.5);
+      pack.remaining = pack.price - pack.deposit;
+    }
+
+    // Options Additionnelles (Addons)
+    const optionsList = Array.isArray(data.options) ? data.options : [];
+    if (optionsList.length > 0) {
+      let addonPriceTotal = 0;
+      optionsList.forEach(opt => {
+        if (opt && typeof opt.price === 'number' && opt.price > 0) {
+          addonPriceTotal += opt.price;
+        }
+      });
+      if (addonPriceTotal > 0) {
+        pack.price += addonPriceTotal;
+        if (paymentMode === 'full') {
+          pack.deposit += addonPriceTotal;
+        } else if (paymentMode === 'deposit50') {
+          const addonDeposit = Math.round(addonPriceTotal * 0.5);
+          pack.deposit += addonDeposit;
+          pack.remaining = pack.price - pack.deposit;
+        } else {
+          pack.deposit += addonPriceTotal;
+        }
+      }
     }
 
     // Brief business collecté à l'étape 2 du tunnel Packs Métier (facultatif,
@@ -175,8 +214,11 @@ function handleOrderCreate(req, res) {
       monthly: pack.monthly,
       clientName: name,
       company,
+      bce: bceFormatted,
       email,
       phone,
+      paymentMode,
+      options: optionsList,
       status: 'pending',
       createdAt: new Date().toISOString(),
       molliePaymentId: '',

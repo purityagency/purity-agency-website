@@ -5248,78 +5248,78 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
 
 .parcours-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 20px;
-  padding: 1.8rem 1.25rem 1.4rem;
+  background: rgba(12, 6, 22, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 2rem 1.35rem 1.6rem;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .parcours-card:hover {
-  background: rgba(124, 58, 237, 0.05);
-  border-color: rgba(124, 58, 237, 0.35);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 58, 237, 0.15);
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 0 25px rgba(124, 58, 237, 0.2);
 }
 
 .parcours-card.is-active {
-  background: rgba(124, 58, 237, 0.12);
-  border-color: rgba(124, 58, 237, 0.6);
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.25) 0%, rgba(14, 7, 28, 0.95) 100%);
+  border-color: #7C3AED;
+  box-shadow: 0 0 35px rgba(124, 58, 237, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .parcours-card__badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 0.2rem 0.6rem;
-  border-radius: 99px;
-  background: rgba(124, 58, 237, 0.4);
+  top: 14px;
+  right: 14px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: #7C3AED;
   border: 1px solid rgba(168, 85, 247, 0.6);
   color: #ffffff;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
 .parcours-card__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.25);
-  color: var(--c-accent-bright, #A855F7);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #c4a1ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .parcours-card.is-active .parcours-card__icon {
-  background: rgba(124, 58, 237, 0.3);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(168, 85, 247, 0.25));
   border-color: rgba(168, 85, 247, 0.6);
   color: #ffffff;
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
 }
 
 .parcours-card h3 {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.7rem;
   line-height: 1.3;
 }
 
 .parcours-card p {
-  font-size: 0.83rem;
-  color: var(--c-fg-muted, rgba(255, 255, 255, 0.6));
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  font-size: 0.84rem;
+  color: var(--c-fg-muted, rgba(255, 255, 255, 0.65));
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
   flex-grow: 1;
 }
 
@@ -5334,6 +5334,7 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
 
 .parcours-card.is-active .parcours-card__time {
   color: #c4a1ff;
+  font-weight: 600;
 }
 
 /* Bottom Callout Bar */
@@ -5342,12 +5343,12 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 1.5rem 2.2rem;
+  background: rgba(12, 6, 22, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .parcours-cta-bar__info {

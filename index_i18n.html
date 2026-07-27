@@ -35,8 +35,8 @@
 <link rel="preload" href="assets/hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="css/site.css?v=70">
-<link rel="stylesheet" href="css/site-extra.css?v=70">
+<link rel="stylesheet" href="css/site.css?v=80">
+<link rel="stylesheet" href="css/site-extra.css?v=80">
 <script src="js/analytics.js" defer></script>
 </head>
 <body>
@@ -123,14 +123,8 @@
         </div>
       </div>
     </div>
-
-    <a href="/login" target="_blank" rel="noopener" class="nav__link" style="color: var(--c-accent); font-weight: 500;"><span data-i18n="gen_text_90">Espace Client </span><svg style="display:inline-block; width:14px; height:14px; margin-left:4px; vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </nav>
   <div class="nav__actions">
-    <a href="/login" target="_blank" rel="noopener" class="nav__mobile-portal" aria-label="Espace Client">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-      <span>Espace Client</span>
-    </a>
     <!-- Sélecteur de langue -->
     <div class="langsel" id="langsel">
       <button class="langsel__btn" id="langsel-btn" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langsel.aria" aria-label="Choisir la langue" data-i18n-aria="gen_aria_2">
@@ -1714,26 +1708,26 @@
   </div>
 </div>
 
-<!-- Barre de Navigation Basse Mobile -->
-<nav class="mobile-nav-bar" aria-label="Navigation mobile" data-i18n-aria="gen_aria_34">
+<!-- Barre de Navigation Basse Flottante (Liquid Glass Dock) -->
+<nav class="mobile-nav-bar" aria-label="Navigation rapide" data-i18n-aria="gen_aria_34">
   <a href="#hero" class="mobile-nav-item is-active" data-section="hero">
-    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
     <span class="mobile-nav-label"><span data-i18n="gen_text_627">Accueil</span></span>
   </a>
   <a href="#services" class="mobile-nav-item" data-section="services">
-    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
     <span class="mobile-nav-label"><span data-i18n="gen_text_628">Services</span></span>
   </a>
-  <a href="/login" target="_blank" rel="noopener" class="mobile-nav-item mobile-nav-item--portal" data-section="portal">
-    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-    <span class="mobile-nav-label"><span>Espace Client</span></span>
+  <a href="/login" target="_blank" rel="noopener" class="mobile-nav-item mobile-nav-item--portal" data-section="portal" aria-label="Accéder à l'Espace Client Purity OS">
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+    <span class="mobile-nav-label">Espace Client</span>
   </a>
   <a href="#tarifs" class="mobile-nav-item" data-section="tarifs">
-    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>
     <span class="mobile-nav-label"><span data-i18n="gen_text_629">Tarifs</span></span>
   </a>
   <a href="#contact" class="mobile-nav-item" data-section="contact">
-    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <span class="mobile-nav-label"><span data-i18n="gen_text_630">Contact</span></span>
   </a>
 </nav>

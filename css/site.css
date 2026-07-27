@@ -4755,25 +4755,32 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   text-align: center;
 }
 
-/* TabBar Mobile */
+/* ==========================================================================
+   BARRE DE NAVIGATION BASSE FLOTTANTE — LIQUID GLASS DOCK 2026-2027
+   ========================================================================== */
 .mobile-nav-bar {
   position: fixed;
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%) translateY(120%);
-  width: calc(100% - 32px);
-  max-width: 400px;
-  height: 64px;
-  background: rgba(6, 3, 9, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 32px;
+  width: calc(100% - 28px);
+  max-width: 440px;
+  height: 66px;
+  background: rgba(10, 5, 18, 0.75);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 99px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  z-index: 999;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  padding: 0 8px;
+  z-index: 9999;
+  box-shadow: 
+    0 20px 48px rgba(0, 0, 0, 0.8), 
+    0 0 25px rgba(124, 58, 237, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -4790,94 +4797,112 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   }
 }
 
-/* Mobile Top Header Portal Pill */
-.nav__mobile-portal {
-  display: none;
-}
-@media (max-width: 860px) {
-  .nav__mobile-portal {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0.4rem 0.8rem;
-    border-radius: 99px;
-    background: rgba(124, 58, 237, 0.18);
-    border: 1px solid rgba(124, 58, 237, 0.45);
-    color: #c4a1ff;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 0 14px rgba(124, 58, 237, 0.25);
-    transition: all 0.2s ease;
-    margin-right: 0.3rem;
-  }
-  .nav__mobile-portal:active {
-    transform: scale(0.95);
-  }
-}
-
-/* Mobile Bottom TabBar Mauve Portal Widget */
-.mobile-nav-item--portal {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.45), rgba(168, 85, 247, 0.25)) !important;
-  border: 1.5px solid rgba(168, 85, 247, 0.6) !important;
-  border-radius: 20px !important;
-  padding: 5px 11px !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 16px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  margin: 0 2px;
-}
-.mobile-nav-item--portal .mobile-nav-icon {
-  stroke: #ffffff !important;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) !important;
-}
-.mobile-nav-item--portal .mobile-nav-label {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 9.5px !important;
-  letter-spacing: 0.2px;
-}
-.mobile-nav-item--portal:active {
-  transform: scale(0.94) !important;
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.65), rgba(168, 85, 247, 0.4)) !important;
-}
-
 .mobile-nav-item {
+  position: relative;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgba(255, 255, 255, 0.5);
+  justify-content: center;
+  gap: 3px;
+  height: 52px;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  font-size: 10px;
-  gap: 4px;
-  transition: color 0.3s;
-  position: relative;
-  padding: 8px 12px;
-}
-
-.mobile-nav-item:hover, .mobile-nav-item.is-active {
-  color: #ffffff;
+  border-radius: 99px;
+  padding: 4px 6px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mobile-nav-icon {
   width: 20px;
   height: 20px;
-  transition: transform 0.3s;
+  stroke: rgba(255, 255, 255, 0.65);
+  transition: all 0.25s ease;
 }
 
+.mobile-nav-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.25s ease;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item.is-active {
+  color: #ffffff;
+}
+
+.mobile-nav-item:hover .mobile-nav-icon,
 .mobile-nav-item.is-active .mobile-nav-icon {
-  transform: scale(1.1);
-  stroke: #7C3AED;
+  stroke: var(--c-accent-bright, #A855F7);
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.8));
 }
 
-.mobile-nav-item::after {
+.mobile-nav-item:hover .mobile-nav-label,
+.mobile-nav-item.is-active .mobile-nav-label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.mobile-nav-item.is-active::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 4px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7C3AED;
+  background: var(--c-accent-bright, #A855F7);
+  box-shadow: 0 0 8px var(--c-accent-bright);
+}
+
+/* WIDGET VIOLET HIGHLIGHT : ESPACE CLIENT */
+.mobile-nav-item--portal {
+  flex: 1.28;
+  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 99px !important;
+  height: 46px !important;
+  padding: 0 10px !important;
+  margin: 0 3px;
+  color: #ffffff !important;
+  box-shadow: 
+    0 0 20px rgba(124, 58, 237, 0.65), 
+    0 4px 14px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+  flex-direction: row !important;
+  gap: 6px !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.mobile-nav-item--portal .mobile-nav-icon {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: #ffffff !important;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9)) !important;
+}
+
+.mobile-nav-item--portal .mobile-nav-label {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.25px !important;
+  white-space: nowrap;
+}
+
+.mobile-nav-item--portal:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 28px rgba(168, 85, 247, 0.85), 
+    0 6px 18px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+.mobile-nav-item--portal:active {
+  transform: scale(0.96);
+}
   opacity: 0;
   transform: scale(0);
   transition: opacity 0.3s, transform 0.3s;

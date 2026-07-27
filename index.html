@@ -479,68 +479,141 @@
 
 <hr class="sec-divider" aria-hidden="true">
 
-<!-- ═══ MÉTHODE — scrollytelling pictos ═══ -->
-<section id="methode" class="method">
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+<!-- ═══ VOTRE PARCOURS (MÉTHODE) ═══ -->
+<section id="methode" class="sec sec--parcours">
   <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="tag lg"><span data-i18n="gen_text_186">Votre Parcours</span></span>
-      <h2>Comment ça fonctionne <em>vraiment.</em></h2>
-      <p class="sec-head__lead">De la commande à la mise en production sous 7 jours. Zéro tunnel opaque, un parcours client limpide.</p>
-    </div>
     
-    <div class="timeline-journey" data-reveal>
-      <div class="timeline-journey__track"></div>
+    <!-- En-tête de section -->
+    <div class="parcours-head" data-reveal>
+      <span class="parcours-tag">
+        <span class="parcours-tag__dot"></span>
+        VOTRE PARCOURS
+      </span>
+      <h2>Un parcours simple.<br><strong>Zéro friction, <em>100% clair.</em></strong></h2>
+      <p class="parcours-lead">De la commande à la mise en production sous 7 jours.<br>Transparence totale à chaque étape.</p>
+    </div>
+
+    <!-- Piste de Timeline avec étapes -->
+    <div class="parcours-timeline" data-reveal>
       
-      <div class="timeline-step">
-        <div class="timeline-step__header">
-          <span class="timeline-step__num">01</span>
+      <!-- Ligne de piste horizontale -->
+      <div class="parcours-track">
+        <div class="parcours-track__dot" style="left: 8.33%;"><span>01</span></div>
+        <div class="parcours-track__dot" style="left: 25%;"><span>02</span></div>
+        <div class="parcours-track__dot" style="left: 41.66%;"><span>03</span></div>
+        <div class="parcours-track__dot" style="left: 58.33%;"><span>04</span></div>
+        <div class="parcours-track__dot" style="left: 75%;"><span>05</span></div>
+        <div class="parcours-track__dot" style="left: 91.66%;"><span>06</span></div>
+      </div>
+
+      <!-- Grille des 6 cartes d'étapes -->
+      <div class="parcours-grid">
+        
+        <!-- Étape 1 (Active avec badge En Cours) -->
+        <div class="parcours-card is-active">
+          <div class="parcours-card__badge">EN COURS</div>
+          <div class="parcours-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          </div>
           <h3>Vous commandez</h3>
+          <p>Sélectionnez vos modules et activez votre pack métier. Prix fixes, sans engagement.</p>
+          <div class="parcours-card__time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>5 min</span>
+          </div>
         </div>
-        <p>Sélectionnez vos modules dans notre catalogue de briques ou activez un pack métier. Prix fixes, sans engagement.</p>
-      </div>
 
-      <div class="timeline-step">
-        <div class="timeline-step__header">
-          <span class="timeline-step__num">02</span>
-          <h3>Brief de 3 minutes</h3>
+        <!-- Étape 2 -->
+        <div class="parcours-card">
+          <div class="parcours-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Brief express</h3>
+          <p>Un questionnaire structuré de 3 minutes pour comprendre vos objectifs et vos besoins.</p>
+          <div class="parcours-card__time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>3 min</span>
+          </div>
         </div>
-        <p>Un questionnaire fluide et structuré pour capter votre univers de marque, vos accès et vos besoins opérationnels.</p>
-      </div>
 
-      <div class="timeline-step">
-        <div class="timeline-step__header">
-          <span class="timeline-step__num">03</span>
-          <h3>Espace Client Purity OS</h3>
-          <span class="timeline-step__badge">Instantané</span>
+        <!-- Étape 3 -->
+        <div class="parcours-card">
+          <div class="parcours-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.71 1.26-1.5 1.5-2.5l-2-2c-1 .24-1.79.79-2.5 1.5z"/><path d="M15 9l-3 3"/><path d="M9 15l3-3"/><path d="M13 3l-2 2 4 4 2-2a2 2 0 0 0 0-2.83l-1.17-1.17a2 2 0 0 0-2.83 0z"/><path d="m14 11 3 3"/></svg>
+          </div>
+          <h3>Production</h3>
+          <p>Nos experts conçoivent vos modules en parallèle. Suivi en temps réel.</p>
+          <div class="parcours-card__time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>1 à 5 jours</span>
+          </div>
         </div>
-        <p>Votre portail sécurisé est généré. Vous y suivez la feuille de route, importez vos fichiers et voyez l'avancement en temps réel.</p>
-      </div>
 
-      <div class="timeline-step">
-        <div class="timeline-step__header">
-          <span class="timeline-step__num">04</span>
-          <h3>Développement &amp; DA</h3>
+        <!-- Étape 4 -->
+        <div class="parcours-card">
+          <div class="parcours-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Tests &amp; validation</h3>
+          <p>Vous testez chaque brique dans votre espace dédié. Feedback rapide, ajustements.</p>
+          <div class="parcours-card__time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>1 jour</span>
+          </div>
         </div>
-        <p>Nos ingénieurs et designers construisent vos modules. Chaque sprint est inspectable directement depuis votre espace.</p>
-      </div>
 
-      <div class="timeline-step">
-        <div class="timeline-step__header">
-          <span class="timeline-step__num">05</span>
-          <h3>Validation brique par brique</h3>
+        <!-- Étape 5 -->
+        <div class="parcours-card">
+          <div class="parcours-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          </div>
+          <h3>Mise en ligne</h3>
+          <p>Votre solution est déployée, connectée et optimisée pour la performance.</p>
+          <div class="parcours-card__time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Quelques heures</span>
+          </div>
         </div>
-        <p>Vous testez et validez individuellement chaque interface et chaque automatisation au fur et à mesure de leur déploiement.</p>
-      </div>
 
-      <div class="timeline-step">
-        <div class="timeline-step__header">
-          <span class="timeline-step__num">06</span>
-          <h3>Livraison sous 7 jours</h3>
+        <!-- Étape 6 -->
+        <div class="parcours-card">
+          <div class="parcours-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Livraison &amp; support</h3>
+          <p>Vous êtes livré sous 7 jours. Support dédié et évolutions disponibles.</p>
+          <div class="parcours-card__time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3z"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span>En continu</span>
+          </div>
         </div>
-        <p>Vos systèmes sont connectés et prêts. Vous êtes propriétaire à 100 % de votre code, de vos bases de données et de vos comptes.</p>
+
       </div>
     </div>
+
+    <!-- Bannière d'appel basse -->
+    <div class="parcours-cta-bar" data-reveal>
+      <div class="parcours-cta-bar__info">
+        <div class="parcours-cta-bar__avatar">
+          <img src="assets/logo.webp" alt="Octo" width="36" height="36">
+        </div>
+        <div class="parcours-cta-bar__text">
+          <strong>Besoin d'un échange avant de commencer ?</strong>
+          <span>Réservez un appel gratuit de 15 min avec Amir.</span>
+        </div>
+      </div>
+      <div class="parcours-cta-bar__actions">
+        <a href="https://wa.me/32465368265" target="_blank" rel="noopener" class="btn btn--wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.205 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.127z"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="#booking" class="btn btn--accent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Réservez un appel</span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 

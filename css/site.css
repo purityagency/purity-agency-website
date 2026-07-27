@@ -5141,8 +5141,322 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
 }
 
 /* ==========================================================================
-   TIMELINE JOURNEY (6-stage timeline)
+   SECTION VOTRE PARCOURS (Redesign 2026-2027)
    ========================================================================== */
+.sec--parcours {
+  padding-top: var(--s-xxl);
+  padding-bottom: var(--s-xxl);
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, rgba(124, 58, 237, 0.04), transparent 70%);
+}
+
+.parcours-head {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.parcours-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1rem;
+  border-radius: 99px;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: #c4a1ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.parcours-tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-accent-bright, #A855F7);
+  box-shadow: 0 0 8px var(--c-accent-bright);
+}
+
+.parcours-head h2 {
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-family: var(--font-head);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.parcours-head h2 strong {
+  font-weight: 700;
+}
+
+.parcours-head h2 em {
+  font-style: normal;
+  color: var(--c-accent-bright, #A855F7);
+}
+
+.parcours-lead {
+  color: var(--c-fg-muted, rgba(255, 255, 255, 0.65));
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Timeline & Track */
+.parcours-timeline {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.parcours-track {
+  position: relative;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 4% 2.5rem;
+}
+
+.parcours-track__dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #060309;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.parcours-track__dot span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.parcours-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.parcours-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 1.8rem 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.parcours-card:hover {
+  background: rgba(124, 58, 237, 0.05);
+  border-color: rgba(124, 58, 237, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 58, 237, 0.15);
+}
+
+.parcours-card.is-active {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.6);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.parcours-card__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  background: rgba(124, 58, 237, 0.4);
+  border: 1px solid rgba(168, 85, 247, 0.6);
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.parcours-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  color: var(--c-accent-bright, #A855F7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.parcours-card.is-active .parcours-card__icon {
+  background: rgba(124, 58, 237, 0.3);
+  border-color: rgba(168, 85, 247, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+}
+
+.parcours-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.parcours-card p {
+  font-size: 0.83rem;
+  color: var(--c-fg-muted, rgba(255, 255, 255, 0.6));
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.parcours-card__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.parcours-card.is-active .parcours-card__time {
+  color: #c4a1ff;
+}
+
+/* Bottom Callout Bar */
+.parcours-cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.parcours-cta-bar__info {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.parcours-cta-bar__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.parcours-cta-bar__avatar img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.parcours-cta-bar__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.parcours-cta-bar__text strong {
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.parcours-cta-bar__text span {
+  color: var(--c-fg-muted, rgba(255, 255, 255, 0.6));
+  font-size: 0.85rem;
+}
+
+.parcours-cta-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.btn--wa {
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  color: #25D366;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn--wa:hover {
+  background: rgba(37, 211, 102, 0.2);
+  border-color: rgba(37, 211, 102, 0.5);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .parcours-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .parcours-track {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .parcours-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .parcours-cta-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .parcours-cta-bar__info {
+    flex-direction: column;
+    text-align: center;
+  }
+  .parcours-cta-bar__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .parcours-cta-bar__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Legacy Timeline Journey fallback reset */
 .timeline-journey {
   position: relative;
   display: grid;

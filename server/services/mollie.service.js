@@ -6,22 +6,22 @@ const logger = require('../utils/logger');
 // Packs Métier). Ne jamais renommer une clé ici sans mettre à jour le HTML —
 // un mismatch renvoie 'invalid_sector' et casse silencieusement le bouton.
 const PACK_DATA = {
-  coiffure:   { name: 'Coiffure & Beauté',      pack: 'Pack Agenda Plein',       price: 1290, deposit: 387, remaining: 903,  monthly: 69 },
-  artisan:    { name: 'Artisan & Bâtiment',     pack: 'Pack Zéro Appel Perdu',   price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  horeca:     { name: 'HoReCa & Restauration',  pack: 'Pack Toujours Ouvert',    price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  praticien:  { name: 'Praticien & Bien-être',  pack: 'Pack Cabinet Serein',     price: 1290, deposit: 387, remaining: 903,  monthly: 69 },
-  immobilier: { name: 'Immobilier',             pack: 'Pack Agence Digitale',    price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  avocat:     { name: 'Avocats & Juridique',    pack: 'Pack Cabinet Moderne',    price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  commerce:   { name: 'Commerces & Retail',     pack: 'Pack Click & Collect',    price: 1990, deposit: 597, remaining: 1393, monthly: 99 },
-  fitness:    { name: 'Salles de Sport',        pack: 'Pack Membres Pro',        price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  consulting: { name: 'Consultants & B2B',      pack: 'Pack Expert Autorité',    price: 1290, deposit: 387, remaining: 903,  monthly: 69 },
-  formation:  { name: 'Formateurs & Coachs',    pack: 'Pack Académie',           price: 1990, deposit: 597, remaining: 1393, monthly: 99 },
-  garage:     { name: 'Garages & Concessions',  pack: 'Pack Atelier Connecté',   price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  finance:    { name: 'Finance & Assurance',    pack: 'Pack Confiance Pro',      price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  photo:       { name: 'Photographes & Vidéastes', pack: 'Pack Complet', price: 1390, deposit: 417, remaining: 973,  monthly: 59 },
-  veterinaire: { name: 'Santé Animale',            pack: 'Pack Complet', price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
-  architecte:  { name: 'Architectes & Déco',       pack: 'Pack Complet', price: 1890, deposit: 567, remaining: 1323, monthly: 89 },
-  domicile:    { name: 'Aide à la Personne',       pack: 'Pack Complet', price: 1490, deposit: 447, remaining: 1043, monthly: 79 }
+  coiffure:    { name: 'Coiffure & Beauté',        pack: 'Pack Agenda Plein',       price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+  artisan:     { name: 'Artisan & Bâtiment',       pack: 'Pack Chantier Assuré',    price: 1890, deposit: 567, remaining: 1323, monthly: 99 },
+  horeca:      { name: 'HoReCa & Restauration',    pack: 'Pack Salle Comble',       price: 1890, deposit: 567, remaining: 1323, monthly: 99 },
+  praticien:   { name: 'Praticien & Bien-être',    pack: 'Pack Cabinet Serein',     price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+  immobilier:  { name: 'Immobilier',               pack: 'Pack Mandat Capté',       price: 2890, deposit: 867, remaining: 2023, monthly: 149 },
+  avocat:      { name: 'Professions Juridiques',   pack: 'Pack Autorité Établie',   price: 2290, deposit: 687, remaining: 1603, monthly: 129 },
+  commerce:    { name: 'Commerces & Retail',       pack: 'Pack Vitrine Active',     price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+  fitness:     { name: 'Sport & Fitness',          pack: 'Pack Abonnés Fidèles',    price: 1890, deposit: 567, remaining: 1323, monthly: 99 },
+  consulting:  { name: 'Consulting & B2B',         pack: 'Pack Pipeline Rempli',    price: 2290, deposit: 687, remaining: 1603, monthly: 129 },
+  formation:   { name: 'Centres de Formation',     pack: 'Pack Classe Complète',    price: 2890, deposit: 867, remaining: 2023, monthly: 149 },
+  garage:      { name: 'Garages & Auto',           pack: 'Pack Atelier Rempli',     price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+  finance:     { name: 'Experts-Comptables',       pack: 'Pack Dossiers en Ordre',  price: 2290, deposit: 687, remaining: 1603, monthly: 129 },
+  photo:       { name: 'Photographes & Créatifs',  pack: 'Pack Portfolio Vivant',   price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
+  veterinaire: { name: 'Santé Animale',            pack: 'Pack Clinique Connectée', price: 1890, deposit: 567, remaining: 1323, monthly: 99 },
+  architecte:  { name: 'Architectes & Design',     pack: 'Pack Projet Signé',       price: 2290, deposit: 687, remaining: 1603, monthly: 129 },
+  domicile:    { name: 'Services à la Personne',   pack: 'Pack Lien de Confiance',  price: 1890, deposit: 567, remaining: 1323, monthly: 99 }
 };
 
 function isMollieConfigured() {

@@ -380,6 +380,20 @@ document.addEventListener('DOMContentLoaded', () => {
   mobMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
     if (burger.getAttribute('aria-expanded') === 'true') toggleMenu();
   }));
+
+  // Reset menu on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 960 && burger.getAttribute('aria-expanded') === 'true') {
+      toggleMenu();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+      toggleMenu();
+    }
+  });
   }
 
   // --- Scroll Reveal Blocks (GSAP) ---
@@ -1740,6 +1754,14 @@ document.addEventListener('DOMContentLoaded', () => {
     formEl.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearError();
+      
+      const companyVal = formEl.querySelector('#bk-company').value.trim();
+      const websiteVal = formEl.querySelector('#bk-website-url').value.trim();
+      if (!companyVal && !websiteVal) {
+        showError(_i18nDict['booking.err_company_or_website'] || 'Veuillez indiquer le nom de votre entreprise ou votre site web.');
+        return;
+      }
+
       const submitBtn = formEl.querySelector('#booking-submit');
       const original = submitBtn.textContent;
       submitBtn.disabled = true;
@@ -2113,4 +2135,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 100);
     });
   });
+});
+
+// --- Switcher d'onglets pour la section Preuve Directe ---
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.preuve-tab');
+  const panes = document.querySelectorAll('.preuve-pane');
+
+  if (tabs.length && panes.length) {
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-target');
+
+        // Toggle tabs
+        tabs.forEach(t => {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Toggle panes
+        panes.forEach(pane => {
+          if (pane.getAttribute('id') === targetId) {
+            pane.style.display = 'block';
+            pane.setAttribute('aria-hidden', 'false');
+          } else {
+            pane.style.display = 'none';
+            pane.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        // Refresh GSAP ScrollTrigger if present
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+      });
+    });
+  }
 });

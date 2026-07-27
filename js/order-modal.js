@@ -5,159 +5,195 @@
 (function () {
   'use strict';
 
-  // 1. CATALOGUE COMPLET DES SERVICES
+  // ── CATALOGUE V2.0 — 28 modules · 8 catégories ──────────────────────────────
   var SERVICES = {
-    // ── Présence en ligne (presence.html) ──
-    'googlebiz': {
-      id: 'googlebiz',
-      name: 'Fiche Google Business (Setup)',
-      price: 290,
-      engage: 'Paiement unique pour le setup complet',
-      features: ['Création/optimisation complète de la fiche Google Business', 'Optimisation des mots-clés locaux', 'Stratégie de collecte d\'avis Google', 'Catégories et attributs configurés']
+    // 01 — Diagnostic & Stratégie
+    'm01': {
+      id: 'm01', name: 'Diagnostic Digital', price: 0,
+      engage: 'Gratuit — valeur estimée : 290 €',
+      features: ['Analyse du site actuel (design, vitesse, mobile, SEO)', 'Audit de la fiche Google Business', 'Analyse concurrentielle rapide (3 concurrents)', 'Rapport PDF personnalisé + score de maturité digitale', '3 recommandations prioritaires chiffrées']
     },
-    'landing': {
-      id: 'landing',
-      name: 'Landing Page',
-      price: 490,
-      engage: 'Acompte de 50 % à la commande, solde à la livraison',
-      features: ['Création d\'une page unique ultra-optimisée', 'Intégration d\'un formulaire de contact/devis', 'Adaptation mobile-first réactive', 'Mise en place du tracking analytics', 'SEO technique de base']
-    },
-    'vitrine': {
-      id: 'vitrine',
-      name: 'Site Vitrine Pro',
-      price: 1490,
-      engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Site complet de 5 pages sur-mesure', 'Identité visuelle adaptée et soignée', 'Optimisation SEO locale poussée', 'Fiche Google My Business configurée', 'Livret de prise en main et tutoriels inclus']
-    },
-    'complet': {
-      id: 'complet',
-      name: 'Site Complet & Business',
-      price: 2490,
-      engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Site vitrine étendu avec blog/actualités', 'Automatisation d\'un premier outil (rendez-vous ou avis)', 'SEO avancé sur-mesure', 'Intégration newsletter et réseaux sociaux', 'Guides détaillés et vidéos tutorielles inclus']
-    },
-    'ecommerce': {
-      id: 'ecommerce',
-      name: 'Boutique E-commerce',
-      price: 3800,
-      engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Boutique en ligne complète (jusqu\'à 50 produits)', 'Système de paiement Mollie & Bancontact sécurisé', 'Gestion des stocks et commandes automatisée', 'Emails de confirmation et factures automatiques', 'Livret d\'utilisation complet pour gérer votre boutique']
+    'm02': {
+      id: 'm02', name: 'Feuille de Route Stratégique', price: 490,
+      engage: '100 % à la commande',
+      features: ['Entretien approfondi (1h30)', 'Plan d\'action priorisé sur 6 à 12 mois', 'Matrice impact vs effort', 'Budget prévisionnel avec phasage', 'Déduit du projet si signé dans les 30 jours']
     },
 
-    // ── Acquisition Clients (acquisition.html) ──
-    'seolocal': {
-      id: 'seolocal',
-      name: 'SEO Local & Maps',
-      price: 490,
-      engage: 'Paiement unique pour l\'optimisation complète',
-      features: ['Audit complet des positions locales', 'Optimisation structurelle de votre fiche Google', 'Campagne de netlinking local ciblée', 'Suivi mensuel des positions pendant 3 mois']
+    // 02 — Présence Digitale
+    'm03': {
+      id: 'm03', name: 'Page Essentielle', price: 490,
+      engage: '100 % à la commande',
+      features: ['Design personnalisé (jamais de template)', 'Structure de conversion éprouvée (hero, bénéfices, CTA)', 'Responsive mobile/tablette', 'Formulaire de contact ou réservation', 'Optimisation vitesse > 90/100 + analytics']
     },
-    'googleads': {
-      id: 'googleads',
-      name: 'Campagne Google Ads',
-      price: 690,
-      engage: 'Frais de setup de campagne, budget pub en direct',
-      features: ['Recherche et sélection des mots-clés rentables', 'Rédaction d\'annonces ultra-attractives', 'Configuration complète du compte & tracking', 'Optimisation continue pendant le 1er mois']
+    'm04': {
+      id: 'm04', name: 'Site Vitrine', price: 1490,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['5 pages sur-mesure (jamais de template générique)', 'Responsive mobile et tablette', 'Optimisation SEO locale (balises, vitesse, structure)', 'Formulaire de contact sécurisé + analytics', 'Formation prise en main (1h)']
     },
-    'tunnel': {
-      id: 'tunnel',
-      name: 'Tunnel & Emailing',
-      price: 1290,
-      engage: 'Acompte de 50 % à la commande, solde à la livraison',
-      features: ['Tunnel de vente ultra-performant (landing + offre)', 'Séquence d\'emailing automatique (5 emails)', 'Intégration avec votre outil CRM existant', 'A/B testing pour maximiser la conversion']
+    'm05': {
+      id: 'm05', name: 'Site Complet', price: 2490,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Jusqu\'à 10 pages + blog avec catégories', 'Référencement avancé (sitemap, schema.org, maillage)', 'Intégration réseaux sociaux + page FAQ', '2 articles de blog initiaux rédigés', 'Formation étendue (2h)']
     },
-
-    // ── Automatisation & IA (automatisation.html) ──
-    'calendar': {
-      id: 'calendar',
-      name: 'Automatisation Calendrier',
-      price: 390,
-      engage: 'Configuration et liaison complètes clés en main',
-      features: ['Liaison de votre agenda (Google/Outlook)', 'Prise de rendez-vous automatique via site web', 'Rappels automatiques par SMS/Email anti-no-show', 'Synchronisation avec votre CRM']
+    'm06': {
+      id: 'm06', name: 'Boutique en Ligne', price: 3990,
+      engage: '40 % à la commande, 30 % à mi-parcours, 30 % à la livraison',
+      features: ['Design e-commerce personnalisé', 'Catalogue jusqu\'à 50 produits', 'Paiement sécurisé (Stripe/Mollie/Bancontact)', 'Gestion stocks, commandes et livraisons', 'Formation gestion boutique (2h)']
     },
-    'botia': {
-      id: 'botia',
-      name: 'Bot IA SAV & WhatsApp',
-      price: 890,
-      engage: 'Configuration, entraînement IA et intégration inclus',
-      features: ['Bot entraîné sur vos documents et FAQ', 'Intégration directe sur WhatsApp ou votre site', 'Qualification automatique des demandes clients', 'Relais vers un humain en cas de besoin']
+    'm07': {
+      id: 'm07', name: 'Refonte & Modernisation', price: 890,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Audit UX/UI du site existant', 'Migration et restructuration du contenu', 'Nouveau design responsive', 'Redirections 301 (conservation du référencement)', 'Formation prise en main incluse']
     },
-    'workflow': {
-      id: 'workflow',
-      name: 'Workflow Entreprise',
-      price: 1990,
-      engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Cartographie de vos flux actuels', 'Automatisation des tâches répétitives (Make/Zapier)', 'Liaison automatisée Devis -> Facture -> Relance', 'Documentation et guides vidéo pour vos équipes']
+    'm08': {
+      id: 'm08', name: 'Fiche Google Business', price: 290,
+      engage: '100 % à la commande',
+      features: ['Création ou réclamation de la fiche', 'Optimisation complète (catégories, description, mots-clés locaux)', 'Upload de 10 photos optimisées', '3 premières publications Google', 'Guide de bonnes pratiques PDF']
     },
 
-    // ── Outils sur-mesure (outils.html) ──
-    'crm': {
-      id: 'crm',
-      name: 'CRM & Suivi Client Épuré',
-      price: 1490,
-      engage: 'Acompte de 50 % à la commande, solde à la livraison',
-      features: ['Fichier client centralisé et épuré', 'Suivi du pipe commercial et des affaires', 'Modèles d\'emails et de devis intégrés', 'Statistiques de conversion en temps réel']
+    // 03 — Identité & Contenu
+    'm09': {
+      id: 'm09', name: 'Identité Visuelle', price: 590,
+      engage: '100 % à la commande',
+      features: ['3 propositions de logo', 'Palette de couleurs + couple typographique', 'Charte graphique PDF (4-6 pages)', 'Fichiers sources (SVG, PNG, PDF)', 'Déclinaisons (favicon, réseaux sociaux, signature email)']
     },
-    'dashboard': {
-      id: 'dashboard',
-      name: 'Dashboard de Gestion',
-      price: 2490,
-      engage: 'Acompte de 30 % à la commande, solde à la livraison',
-      features: ['Tableau de bord sur-mesure de votre activité', 'Rapports financiers et opérationnels automatisés', 'Connexion sécurisée avec vos outils existants', 'Interface épurée, fluide et lisible']
+    'm10': {
+      id: 'm10', name: 'Visuels Produit & Marque — Purity Studio', price: 290,
+      engage: '100 % à la commande',
+      features: ['20 visuels retouchés et optimisés', 'Formats adaptés (web, Instagram, Facebook, LinkedIn)', 'Retouche et mise en situation IA', 'Livraison haute résolution', 'Version web optimisée de chaque visuel']
     },
-    'appcomplete': {
-      id: 'appcomplete',
-      name: 'Application Métier Complète',
-      price: 3990,
-      engage: 'Sur devis détaillé selon cahier des charges',
-      features: ['Architecture sur-mesure et sécurisée', 'Base de données robuste et évolutive', 'Espace client ou collaborateur dédié', 'Intégration d\'API tierces complexes']
+    'm11': {
+      id: 'm11', name: 'Vidéos & Reels — Purity Studio', price: 390,
+      engage: '100 % à la commande',
+      features: ['5 vidéos/Reels montées (15-60 sec)', 'Sous-titres intégrés + musique libre de droits', 'Formats 9:16 et 1:1', '1 cycle de retouches inclus', 'Prêt à publier sur Instagram, TikTok, LinkedIn']
     },
-
-    // ── Briques index.html (Présence & Accompagnement) ──
-    'emailpro': {
-      id: 'emailpro',
-      name: 'Pack E-mail Pro + Domaine',
-      price: 90,
-      engage: 'Paiement unique, configuration complète incluse',
-      features: ['Adresse @votremarque.be professionnelle', 'Hébergement e-mail sécurisé', 'Configuration anti-spam (SPF, DKIM, DMARC)', 'Accès webmail + synchronisation mobile']
-    },
-    'maintenance': {
-      id: 'maintenance',
-      name: 'Support & Maintenance',
-      price: 89,
-      engage: 'Mensuel sans engagement, résiliable à tout moment',
-      features: ['Mises à jour de sécurité continues', 'Sauvegardes quotidiennes externalisées', 'Assistance prioritaire par e-mail et WhatsApp', 'Petites évolutions incluses chaque mois']
+    'm12': {
+      id: 'm12', name: 'Rédaction Web & Blog', price: 290,
+      engage: '100 % à la commande',
+      features: ['5 pages ou articles rédigés (500-800 mots)', 'Optimisation SEO (mots-clés, balises, méta-descriptions)', 'Structure web optimale (titres, sous-titres, CTA)', '1 cycle de corrections inclus', 'Recommandations de mots-clés associés']
     },
 
-    // ── Purity Studio (index.html) ──
-    'studio-visuels': {
-      id: 'studio-visuels',
-      name: 'Visuels Produit & Marque',
-      price: 190,
-      engage: 'Paiement unique par lot de visuels',
-      features: ['20 visuels retouchés, livrés en 24h', 'Photos produit, portraits et ambiances', 'Génération IA sur mesure, ton de marque respecté', 'Formats optimisés web et réseaux sociaux']
+    // 04 — Acquisition & Croissance
+    'm13': {
+      id: 'm13', name: 'Référencement Local (SEO)', price: 590,
+      engage: '100 % à la commande pour le setup',
+      features: ['Audit SEO technique complet', 'Recherche de 20-30 mots-clés locaux', 'Optimisation on-page complète', '3 pages locales optimisées créées', 'Calendrier éditorial + rapport de positionnement initial']
     },
-    'studio-videos': {
-      id: 'studio-videos',
-      name: 'Vidéos & Reels IA',
-      price: 290,
-      engage: 'Paiement unique par lot de vidéos',
-      features: ['3 à 5 vidéos prêtes à publier', 'Sous-titres et habillage inclus', 'Formats Reels, Shorts et Stories optimisés', 'Zéro tournage nécessaire de votre côté']
+    'm14': {
+      id: 'm14', name: 'Publicité Digitale', price: 490,
+      engage: '100 % à la commande pour le setup',
+      features: ['Stratégie publicitaire (objectifs, ciblage, budget)', 'Création des campagnes (Google Search ou Meta)', '2-3 visuels publicitaires créés', 'Configuration du suivi de conversions', 'Optimisation initiale (2 premières semaines)']
     },
-    'studio-identite': {
-      id: 'studio-identite',
-      name: 'Identité Visuelle',
-      price: 490,
-      engage: 'Acompte de 50 % à la commande, solde à la livraison',
-      features: ['Logo et déclinaisons complètes', 'Charte graphique, palette et typographies', 'Supports de base (cartes, en-têtes, réseaux)', 'Livraison en 48h, révisions incluses']
+    'm15': {
+      id: 'm15', name: 'Campagnes Email & SMS', price: 790,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Configuration plateforme (Brevo ou équivalent)', '2 templates email + 3 séquences automatisées', 'Bienvenue, relance, fidélisation — prêts à l\'emploi', 'Première campagne envoyée', 'Formation utilisation (1h)']
     },
-    'studio-mensuel': {
-      id: 'studio-mensuel',
-      name: 'Contenu Mensuel IA',
-      price: 249,
-      engage: 'Mensuel sans engagement, résiliable à tout moment',
-      features: ['12 visuels prêts à publier chaque mois', '4 vidéos Reels/Shorts incluses', 'Stratégie de contenu et calendrier fournis', 'Cohérence visuelle garantie sur tous vos canaux']
-    }
+    'm16': {
+      id: 'm16', name: 'Gestion des Réseaux Sociaux', price: 290,
+      engage: '100 % à la commande pour le setup',
+      features: ['Audit de la présence sociale actuelle', 'Stratégie éditoriale (ton, thèmes, fréquence)', 'Calendrier éditorial mensuel', '12 publications + 4 Reels/mois (abonnement)', 'Rapport de performance mensuel']
+    },
+
+    // 05 — Relation Client
+    'm17': {
+      id: 'm17', name: 'Réservation en Ligne', price: 390,
+      engage: '100 % à la commande',
+      features: ['Créneaux personnalisables par service', 'Synchronisation Google Calendar', 'Confirmation automatique par email', 'Rappels automatiques (J-1 + H-2)', 'Formation utilisation (30 min)']
+    },
+    'm18': {
+      id: 'm18', name: 'Gestion Client (CRM)', price: 990,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Configuration CRM + import base clients existante', 'Pipeline de suivi des prospects', 'Automatisation des rappels et tâches', 'Tableaux de bord personnalisés', 'Formation utilisation (1h)']
+    },
+    'm19': {
+      id: 'm19', name: 'Portail Client Sécurisé', price: 690,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Authentification sécurisée par login', 'Interface de dépôt/téléchargement de documents', 'Notifications automatiques (document disponible)', 'Organisation par dossiers + chiffrement des données', 'Responsive mobile — Formation (30 min)']
+    },
+    'm20': {
+      id: 'm20', name: 'Réputation & Avis en Ligne', price: 290,
+      engage: '100 % à la commande',
+      features: ['Collecte automatisée d\'avis Google après chaque prestation', 'Tableau de bord de suivi de la réputation', 'Alerte instantanée en cas d\'avis négatif', '5 suggestions de réponse personnalisées', 'Formation (20 min)']
+    },
+
+    // 06 — Automatisation & IA
+    'm21': {
+      id: 'm21', name: 'Pilote Automatique — Essentiel', price: 490,
+      engage: '100 % à la commande',
+      features: ['1 workflow automatisé sur 1 canal (email ou SMS)', 'Déclencheur personnalisé (après RDV, après achat…)', 'Configuration et test complet', 'Monitoring du workflow', 'Formation (15 min)']
+    },
+    'm22': {
+      id: 'm22', name: 'Pilote Automatique — Business', price: 990,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Jusqu\'à 3 workflows multi-canal', 'Chatbot intelligent sur le site (FAQ, capture de leads)', 'Réservation en ligne avec rappels multi-canal', 'Synchronisation agenda Google Calendar', 'Tableau de bord des automatisations']
+    },
+    'm23': {
+      id: 'm23', name: 'Pilote Automatique — Intégral', price: 1990,
+      engage: '50 % à la commande, 50 % à la livraison',
+      features: ['Workflows illimités + intégrations avancées', 'Assistant IA entraîné sur vos données', 'Qualification et scoring automatique des leads', 'Connexion CRM, comptabilité et outils métier', 'Support dédié + rapports mensuels']
+    },
+
+    // 07 — Accompagnement
+    'm24-ess': {
+      id: 'm24-ess', name: 'Maintenance Essentielle', price: 79,
+      engage: 'Mensuel — engagement 12 mois',
+      features: ['Hébergement sécurisé + sauvegardes quotidiennes', 'Certificat SSL + mises à jour techniques', 'Monitoring 24/7', 'Support email (réponse sous 48h)']
+    },
+    'm24-biz': {
+      id: 'm24-biz', name: 'Maintenance Business', price: 149,
+      engage: 'Mensuel — engagement 12 mois',
+      features: ['Tout le niveau Essentiel inclus', '2h de modifications mineures/mois', 'Support prioritaire (réponse sous 24h)', 'Rapport de performance mensuel + gestion fiche Google']
+    },
+    'm24-pro': {
+      id: 'm24-pro', name: 'Maintenance Premium', price: 249,
+      engage: 'Mensuel — engagement 12 mois',
+      features: ['Tout le niveau Business inclus', '5h de modifications/mois', 'Support téléphonique + session stratégie trimestrielle (30 min)', 'Optimisation SEO continue']
+    },
+    'm25': {
+      id: 'm25', name: 'Formation & Prise en Main', price: 290,
+      engage: '100 % à la commande',
+      features: ['Formation personnalisée (2h en visio)', 'Prise en main de votre site, CRM ou automatisation', 'Guide récapitulatif PDF livré', 'Replay de la session disponible', '1 session de questions/réponses J+30 incluse']
+    },
+    'm26': {
+      id: 'm26', name: 'Conseil Stratégique', price: 190,
+      engage: '100 % à la commande (session) ou mensuel',
+      features: ['Session stratégique 1h (analyse + recommandations)', 'Suivi des indicateurs et alertes opportunités', 'Plan d\'action mensuel priorisé', 'Accès WhatsApp direct pour questions rapides', 'Rapport stratégique mensuel']
+    },
+
+    // 08 — Solutions Sur Mesure
+    'm27': {
+      id: 'm27', name: 'Application Métier', price: 2990,
+      engage: '40 % à la commande, 30 % à mi-parcours, 30 % à la livraison',
+      features: ['Architecture sur-mesure selon cahier des charges', 'Base de données robuste et évolutive', 'Espace client ou collaborateur dédié', 'Intégrations API tierces incluses', 'Documentation et formation équipe']
+    },
+    'm28': {
+      id: 'm28', name: 'Intégrations & Connexions', price: 490,
+      engage: '100 % à la commande',
+      features: ['Connexion entre vos logiciels existants (CRM, compta, agenda)', 'Synchronisation bidirectionnelle des données', 'Webhooks et API personnalisés', 'Tests complets et documentation technique', 'Support post-déploiement (30 jours)']
+    },
+
+    // ── Alias legacy (compatibilité boutons HTML existants) ──────────────────
+    'googlebiz':      { id: 'm08', name: 'Fiche Google Business', price: 290, engage: '100 % à la commande', features: ['Optimisation complète de la fiche', 'Catégories, photos, publications', 'Formation incluse (30 min)'] },
+    'landing':        { id: 'm03', name: 'Page Essentielle', price: 490, engage: '100 % à la commande', features: ['Design personnalisé', 'Formulaire de conversion', 'Responsive + analytics'] },
+    'vitrine':        { id: 'm04', name: 'Site Vitrine', price: 1490, engage: '50 % à la commande, 50 % à la livraison', features: ['5 pages sur-mesure', 'SEO local', 'Formation (1h)'] },
+    'complet':        { id: 'm05', name: 'Site Complet', price: 2490, engage: '50 % à la commande, 50 % à la livraison', features: ['10+ pages + blog', 'SEO avancé', 'Formation (2h)'] },
+    'ecommerce':      { id: 'm06', name: 'Boutique en Ligne', price: 3990, engage: '40 % à la commande, 30 % à mi-parcours, 30 % à la livraison', features: ['50 produits', 'Paiement sécurisé', 'Formation gestion (2h)'] },
+    'seolocal':       { id: 'm13', name: 'Référencement Local (SEO)', price: 590, engage: '100 % à la commande', features: ['Audit SEO complet', '3 pages locales', 'Calendrier éditorial'] },
+    'googleads':      { id: 'm14', name: 'Publicité Digitale', price: 490, engage: '100 % à la commande', features: ['Campagnes Google/Meta', '3 visuels publicitaires', 'Optimisation 2 semaines'] },
+    'tunnel':         { id: 'm15', name: 'Campagnes Email & SMS', price: 790, engage: '50 % à la commande, 50 % à la livraison', features: ['Plateforme configurée', '3 séquences automatisées', 'Première campagne envoyée'] },
+    'calendar':       { id: 'm17', name: 'Réservation en Ligne', price: 390, engage: '100 % à la commande', features: ['Créneaux personnalisables', 'Rappels automatiques', 'Synchro Google Calendar'] },
+    'botia':          { id: 'm22', name: 'Pilote Automatique — Business', price: 990, engage: '50 % à la commande, 50 % à la livraison', features: ['Chatbot intelligent', '3 workflows multi-canal', 'Réservation intégrée'] },
+    'workflow':       { id: 'm23', name: 'Pilote Automatique — Intégral', price: 1990, engage: '50 % à la commande, 50 % à la livraison', features: ['Workflows illimités', 'Assistant IA entraîné', 'Connexion CRM + compta'] },
+    'crm':            { id: 'm18', name: 'Gestion Client (CRM)', price: 990, engage: '50 % à la commande, 50 % à la livraison', features: ['CRM configuré', 'Pipeline de vente', 'Formation (1h)'] },
+    'dashboard':      { id: 'm27', name: 'Application Métier', price: 2990, engage: '40 % à la commande, 30 % à mi-parcours, 30 % à la livraison', features: ['Architecture sur-mesure', 'Base de données', 'Intégrations API'] },
+    'appcomplete':    { id: 'm27', name: 'Application Métier', price: 2990, engage: '40 % à la commande, 30 % à mi-parcours, 30 % à la livraison', features: ['Architecture sur-mesure', 'Espace client', 'Documentation complète'] },
+    'maintenance':    { id: 'm24-biz', name: 'Maintenance Business', price: 149, engage: 'Mensuel — engagement 12 mois', features: ['2h de modifs/mois', 'Support prioritaire 24h', 'Rapport mensuel'] },
+    'studio-visuels': { id: 'm10', name: 'Visuels Produit & Marque', price: 290, engage: '100 % à la commande', features: ['20 visuels retouchés', 'Formats web et réseaux', 'Livraison HD'] },
+    'studio-videos':  { id: 'm11', name: 'Vidéos & Reels', price: 390, engage: '100 % à la commande', features: ['5 vidéos/Reels', 'Sous-titres inclus', 'Formats 9:16 et 1:1'] },
+    'studio-identite':{ id: 'm09', name: 'Identité Visuelle', price: 590, engage: '100 % à la commande', features: ['3 propositions logo', 'Charte graphique', 'Fichiers sources SVG/PNG'] },
+    'studio-mensuel': { id: 'm16', name: 'Gestion des Réseaux Sociaux', price: 349, engage: 'Mensuel sans engagement minimum', features: ['12 publications/mois', '4 Reels/mois', 'Rapport de performance'] },
+    'emailpro':       { id: 'm28', name: 'Intégrations & Connexions', price: 490, engage: '100 % à la commande', features: ['Email @votremarque.be', 'Configuration anti-spam complète', 'Accès webmail + mobile'] }
   };
 
   // OPTIONS ET SUPPLÉMENTS DISPONIBLES PAR CATÉGORIE
@@ -196,12 +232,22 @@
 
   function getOptionsForService(serviceId) {
     var map = {
+      // Legacy aliases
       'googlebiz': 'web', 'landing': 'web', 'vitrine': 'web', 'complet': 'web', 'ecommerce': 'web',
       'seolocal': 'acquisition', 'googleads': 'acquisition', 'tunnel': 'acquisition',
       'calendar': 'auto', 'botia': 'auto', 'workflow': 'auto',
       'crm': 'auto', 'dashboard': 'auto', 'appcomplete': 'auto',
       'studio-visuels': 'studio', 'studio-videos': 'studio', 'studio-identite': 'studio', 'studio-mensuel': 'studio',
-      'maintenance': 'support', 'emailpro': 'support'
+      'maintenance': 'support', 'emailpro': 'support',
+      // V2 modules
+      'm01': 'web', 'm02': 'web',
+      'm03': 'web', 'm04': 'web', 'm05': 'web', 'm06': 'web', 'm07': 'web', 'm08': 'web',
+      'm09': 'studio', 'm10': 'studio', 'm11': 'studio', 'm12': 'studio',
+      'm13': 'acquisition', 'm14': 'acquisition', 'm15': 'acquisition', 'm16': 'studio',
+      'm17': 'auto', 'm18': 'auto', 'm19': 'auto', 'm20': 'auto',
+      'm21': 'auto', 'm22': 'auto', 'm23': 'auto',
+      'm24-ess': 'support', 'm24-biz': 'support', 'm24-pro': 'support', 'm25': 'support', 'm26': 'support',
+      'm27': 'auto', 'm28': 'auto'
     };
     var cat = map[serviceId] || 'web';
     return OPTIONS_CAT[cat];

@@ -498,12 +498,14 @@
       
       <!-- Ligne de piste horizontale -->
       <div class="parcours-track">
-        <div class="parcours-track__dot" style="left: 8.33%;"><span>01</span></div>
-        <div class="parcours-track__dot" style="left: 25%;"><span>02</span></div>
-        <div class="parcours-track__dot" style="left: 41.66%;"><span>03</span></div>
-        <div class="parcours-track__dot" style="left: 58.33%;"><span>04</span></div>
-        <div class="parcours-track__dot" style="left: 75%;"><span>05</span></div>
-        <div class="parcours-track__dot" style="left: 91.66%;"><span>06</span></div>
+        <div class="parcours-track__line"></div>
+        <div class="parcours-track__progress"></div>
+        <div class="parcours-track__dot is-active" data-step="1" style="left: 8.33%;"><span>01</span></div>
+        <div class="parcours-track__dot" data-step="2" style="left: 25%;"><span>02</span></div>
+        <div class="parcours-track__dot" data-step="3" style="left: 41.66%;"><span>03</span></div>
+        <div class="parcours-track__dot" data-step="4" style="left: 58.33%;"><span>04</span></div>
+        <div class="parcours-track__dot" data-step="5" style="left: 75%;"><span>05</span></div>
+        <div class="parcours-track__dot" data-step="6" style="left: 91.66%;"><span>06</span></div>
       </div>
 
       <!-- Grille des 6 cartes d'étapes -->
@@ -1674,7 +1676,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js" integrity="sha384-dUEYjN2xd8Wk4WIZYrCpK7Ww7+r/LVtVebVp8skuwm9bKGoVo2bZrWuA79w8TI+v" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/site.js?v=29" defer></script>
+<script src="js/site.js?v=60" defer></script>
 <script src="js/focus-trap.js" defer></script>
 <script src="js/order-modal.js?v=3" defer></script>
 <script src="js/pack-checkout.js?v=4" defer></script>

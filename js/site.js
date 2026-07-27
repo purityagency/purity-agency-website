@@ -416,6 +416,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- SECTION VOTRE PARCOURS (High-End Motion & Micro-Interactions) ---
+  (function initParcoursMotion() {
+    const parcoursSec = document.querySelector('.sec--parcours');
+    if (!parcoursSec || typeof gsap === 'undefined') return;
+
+    const trackProgress = parcoursSec.querySelector('.parcours-track__progress');
+    const dots = parcoursSec.querySelectorAll('.parcours-track__dot');
+    const cards = parcoursSec.querySelectorAll('.parcours-card');
+    const dotPercentages = ['8.33%', '25%', '41.66%', '58.33%', '75%', '91.66%'];
+
+    // 1. Staggered Scroll-Triggered Reveal
+    if (typeof ScrollTrigger !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.fromTo(cards, 
+        { y: 35, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".parcours-grid",
+            start: "top 82%",
+            once: true
+          }
+        }
+      );
+    }
+
+    // 2. Interactive Step Activation on Hover/Click
+    function setActiveStep(index) {
+      cards.forEach((c, i) => {
+        if (i === index) {
+          c.classList.add('is-active');
+        } else {
+          c.classList.remove('is-active');
+        }
+      });
+
+      dots.forEach((d, i) => {
+        if (i === index) {
+          d.classList.add('is-active');
+        } else {
+          d.classList.remove('is-active');
+        }
+      });
+
+      if (trackProgress && dotPercentages[index]) {
+        trackProgress.style.width = dotPercentages[index];
+      }
+    }
+
+    cards.forEach((card, index) => {
+      card.addEventListener('mouseenter', () => {
+        setActiveStep(index);
+        const icon = card.querySelector('.parcours-card__icon');
+        if (icon && typeof gsap !== 'undefined') {
+          gsap.to(icon, { scale: 1.15, rotation: 5, duration: 0.3, ease: "back.out(2)" });
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        const icon = card.querySelector('.parcours-card__icon');
+        if (icon && typeof gsap !== 'undefined') {
+          gsap.to(icon, { scale: 1, rotation: 0, duration: 0.3, ease: "power2.out" });
+        }
+      });
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        setActiveStep(index);
+      });
+    });
+  })();
+
   // --- Scroll Text Reveal (GSAP Scrubbing) ---
   gsap.utils.toArray('[data-scroll-text]').forEach(el => {
     const text = el.innerText;

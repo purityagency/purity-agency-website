@@ -5213,17 +5213,35 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
 
 .parcours-track {
   position: relative;
-  height: 2px;
+  height: 3px;
+  margin: 0 4% 3rem;
+}
+
+.parcours-track__line {
+  position: absolute;
+  inset: 0;
   background: rgba(255, 255, 255, 0.08);
-  margin: 0 4% 2.5rem;
+  border-radius: 99px;
+}
+
+.parcours-track__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 16.66%;
+  background: linear-gradient(90deg, #7C3AED, #A855F7);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .parcours-track__dot {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #060309;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -5231,13 +5249,32 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
 .parcours-track__dot span {
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+}
+
+.parcours-track__dot:hover {
+  border-color: #7C3AED;
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.5);
+}
+
+.parcours-track__dot.is-active {
+  background: #7C3AED;
+  border-color: #A855F7;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.9);
+}
+
+.parcours-track__dot.is-active span {
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .parcours-grid {

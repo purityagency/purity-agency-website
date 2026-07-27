@@ -1303,10 +1303,30 @@ document.addEventListener('DOMContentLoaded', () => {
   let chatMemory = []; // Stocke l'historique pour l'IA
   let chatLeadSent = sessionStorage.getItem('chatLeadSent') === '1'; // un seul lead capturé par session
 
+  const safeFormatChatMarkdown = (rawText) => {
+    if (!rawText) return '';
+    let text = String(rawText)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+    text = text.replace(/\n/g, '<br>');
+    return text;
+  };
+
   const addMsg = (text, type = 'sys') => {
     const d = document.createElement('div');
     d.className = `msg msg--${type}`;
-    d.textContent = text;
+    if (type === 'sys') {
+      d.innerHTML = safeFormatChatMarkdown(text);
+    } else {
+      d.textContent = text;
+    }
     chatLog.appendChild(d);
     chatLog.scrollTop = chatLog.scrollHeight;
   };
@@ -1392,6 +1412,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (chatForm) {
     chatForm.addEventListener('submit', handleChatSubmit);
   }
+
+  // Handle click on top suggestion chips
+  const chatChipBtns = document.querySelectorAll('.chat__chip');
+  chatChipBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-query');
+      if (q && chatInput && chatForm) {
+        chatInput.value = q;
+        chatForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      }
+    });
+  });
 
   const chatBadge = document.getElementById('chat-badge');
   if (chatBadge) {

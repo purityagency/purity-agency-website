@@ -35,8 +35,8 @@
 <link rel="preload" href="assets/hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="css/site.css?v=50">
-<link rel="stylesheet" href="css/site-extra.css?v=50">
+<link rel="stylesheet" href="css/site.css?v=70">
+<link rel="stylesheet" href="css/site-extra.css?v=70">
 <script src="js/analytics.js" defer></script>
 </head>
 <body>
@@ -1662,7 +1662,12 @@
       </div>
       <a href="#contact" class="btn btn--accent chat__meet-btn" style="padding: 6px 12px; font-size: 0.85rem; border-radius: 12px; height: auto; text-decoration: none;" data-i18n="chat.meet_btn"><span data-i18n="gen_text_566">Réserver</span></a>
     </div>
-    <div id="chat-log" class="chat__log"></div>
+    <div id="chat-suggestions" class="chat__suggestions">
+      <button type="button" class="chat__chip" data-query="Quels sont vos tarifs pour un site web ?">💡 Tarifs</button>
+      <button type="button" class="chat__chip" data-query="Quels sont vos délais de livraison ?">⚡ Délais (7j)</button>
+      <button type="button" class="chat__chip" data-query="Comment réserver un appel de 15 min ?">📅 Appel 15 min</button>
+      <button type="button" class="chat__chip" data-query="Proposez-vous des packs métier ?">🚀 Packs Métier</button>
+    </div>
     <form id="chat-form" class="chat__form">
       <input type="text" id="chat-input" class="chat__input" data-i18n-placeholder="chat.placeholder" placeholder="Posez votre question..." autocomplete="off">
       <button type="submit" id="chat-submit" class="chat__submit" data-i18n-aria="chat.aria_send" aria-label="Envoyer" data-i18n-aria="gen_aria_31">

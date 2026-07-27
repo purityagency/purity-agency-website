@@ -2837,7 +2837,42 @@ footer {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.chat__status::before {
+/* Suggestion Chips Chatbot */
+.chat__suggestions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: rgba(12, 6, 22, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chat__suggestions::-webkit-scrollbar {
+  display: none;
+}
+
+.chat__chip {
+  flex-shrink: 0;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: #c4a1ff;
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.chat__chip:hover {
+  background: rgba(124, 58, 237, 0.28);
+  border-color: rgba(168, 85, 247, 0.6);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
   content: '';
   width: 6px;
   height: 6px;

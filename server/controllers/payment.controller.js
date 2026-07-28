@@ -85,6 +85,9 @@ function provisionPortalClient(order) {
     remainingAmount: order.remaining,
     monthlyAmount: order.monthly
   });
+  const timestamp = new Date().toISOString();
+  const signature = crypto.createHmac('sha256', internalSecret).update(timestamp + '.' + payload).digest('hex');
+
   const lib = endpoint.protocol === 'https:' ? https : http;
 
   return new Promise((resolve, reject) => {
@@ -96,7 +99,9 @@ function provisionPortalClient(order) {
     headers: {
       'Content-Type': 'application/json',
       'Content-Length': Buffer.byteLength(payload),
-      'Authorization': `Bearer ${internalSecret}`
+      'Authorization': `Bearer ${internalSecret}`,
+      'X-Purity-Timestamp': timestamp,
+      'X-Purity-Signature': signature
     }
   }, res => {
     let d = '';

@@ -13,16 +13,23 @@ const _jumpTop = () => {
 _jumpTop();
 
 // --- Loader dismiss (bulletproof) ---
+// Durée plancher : même sur un chargement instantané (cache), le splash reste
+// visible assez longtemps pour se lire comme une intro travaillée, pas un flash.
+const LOADER_MIN_MS = 900;
+const _loaderStart = performance.now();
 const _dismissLoader = () => {
   const loader = document.getElementById('loader');
   if (!loader || loader.dataset.dismissed) return;
   loader.dataset.dismissed = '1';
   const fill = loader.querySelector('.loader__fill');
-  if (fill) fill.style.width = '100%';
+  const wait = Math.max(0, LOADER_MIN_MS - (performance.now() - _loaderStart));
   setTimeout(() => {
-    loader.classList.add('is-done');
-    setTimeout(() => loader.remove(), 600);
-  }, 300);
+    if (fill) fill.style.width = '100%';
+    setTimeout(() => {
+      loader.classList.add('is-done');
+      setTimeout(() => loader.remove(), 700);
+    }, 380);
+  }, wait);
 };
 // Failsafe : le loader disparaît dans tous les cas après 3s max
 setTimeout(_dismissLoader, 3000);
@@ -515,14 +522,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Hero BG : vidéo ou image selon contexte ---
+  // --- Hero BG : vidéo (desktop + mobile), image statique seulement si
+  // prefers-reduced-motion. La CSS (.hero__bg-video) est déjà full-bleed
+  // cover sur tous les breakpoints, donc aucune adaptation de taille requise. ---
   const heroBgVideo = document.querySelector('.hero__bg-video');
   const heroText    = document.querySelector('.hero__text-col');
-  const isMobile    = window.innerWidth <= 768;
 
   if (heroBgVideo) {
-    if (prefersReduced || isMobile) {
-      // Reduced motion ou mobile → image de fallback, pas de vidéo
+    if (prefersReduced) {
+      // Reduced motion → image de fallback, pas de vidéo
       heroBgVideo.style.display = 'none';
       const fallback = heroBgVideo.querySelector('img');
       if (fallback) {
@@ -530,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heroBgVideo.parentElement.appendChild(fallback);
       }
     } else {
-      // Desktop + pas de reduced motion → fade-in au canplay
+      // Fade-in au canplay (desktop et mobile)
       gsap.set(heroBgVideo, { opacity: 0, scale: 1.04 });
 
       const onReady = () => {

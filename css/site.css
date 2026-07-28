@@ -2493,7 +2493,7 @@ footer {
 }
 .loader__logo {
   font-family: var(--font-head);
-  font-size: clamp(2.4rem, 5vw, 3.25rem);
+  font-size: clamp(1.9rem, 9vw, 3.25rem);
   font-weight: 650;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2502,14 +2502,14 @@ footer {
 }
 .loader__logo span {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.62em;
   font-weight: 500;
   vertical-align: super;
   margin-left: 6px;
   color: var(--c-fg-muted);
 }
 .loader__bar {
-  width: 160px;
+  width: clamp(110px, 32vw, 160px);
   height: 2px;
   background: rgba(255,255,255,0.1);
   border-radius: 2px;
@@ -2528,6 +2528,14 @@ footer {
   from { opacity: 0; transform: translateY(10px); filter: blur(6px); }
   to   { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
+
+/* Mobile : marge de sécurité horizontale, l'animation reste bien visible
+   (translateY/blur perceptibles à cette échelle, pas juste un fondu plat) */
+@media (max-width: 480px) {
+  .loader { gap: 1.8rem; padding: 0 1.5rem; }
+  .loader__logo { letter-spacing: 0.1em; text-align: center; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .loader { transition: opacity 0.3s ease; }
   .loader__logo, .loader__bar { animation: none; }

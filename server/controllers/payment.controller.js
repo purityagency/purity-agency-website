@@ -9,7 +9,11 @@ const mollieService = require('../services/mollie.service');
 const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
 
-const BRIQUE_DATA = {
+const fs = require('fs');
+const path = require('path');
+
+// Single Source of Truth : Chargement dynamique du catalogue officiel (/docs/business/CATALOG.json)
+let BRIQUE_DATA = {
   'm01': { name: 'Diagnostic Digital',             price: 0,    mode: 'once' },
   'm02': { name: 'Feuille de Route Stratégique',   price: 490,  mode: 'once' },
   'm03': { name: 'Page Essentielle',               price: 490,  mode: 'once' },
@@ -41,6 +45,21 @@ const BRIQUE_DATA = {
   'm27': { name: 'Application Métier',             price: 2990, mode: 'once' },
   'm28': { name: 'Intégrations & Connexions',      price: 490,  mode: 'once' }
 };
+
+try {
+  const catalogPath = path.join(env.ROOT, '..', 'docs', 'business', 'CATALOG.json');
+  if (fs.existsSync(catalogPath)) {
+    const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+    if (catalog && catalog.briques) {
+      Object.keys(catalog.briques).forEach(key => {
+        const item = catalog.briques[key];
+        BRIQUE_DATA[key] = { name: item.name, price: item.price, mode: item.mode };
+      });
+    }
+  }
+} catch (err) {
+  logger.warn('[PaymentController] CATALOG.json load fallback used', err);
+}
 
 function clientPortalUrl() {
   const value = (process.env.CLIENT_PORTAL_URL || '').trim();

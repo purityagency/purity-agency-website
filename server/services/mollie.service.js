@@ -2,10 +2,11 @@ const https = require('https');
 const env = require('../config/env');
 const logger = require('../utils/logger');
 
-// Clés strictement alignées sur les data-open-ob="..." de index.html (12 briques
-// Packs Métier). Ne jamais renommer une clé ici sans mettre à jour le HTML —
-// un mismatch renvoie 'invalid_sector' et casse silencieusement le bouton.
-const PACK_DATA = {
+const fs = require('fs');
+const path = require('path');
+
+// Single Source of Truth : Chargement dynamique du catalogue officiel (/docs/business/CATALOG.json)
+let PACK_DATA = {
   coiffure:    { name: 'Coiffure & Beauté',        pack: 'Pack Agenda Plein',       price: 1490, deposit: 447, remaining: 1043, monthly: 79 },
   artisan:     { name: 'Artisan & Bâtiment',       pack: 'Pack Chantier Assuré',    price: 1890, deposit: 567, remaining: 1323, monthly: 99 },
   horeca:      { name: 'HoReCa & Restauration',    pack: 'Pack Salle Comble',       price: 1890, deposit: 567, remaining: 1323, monthly: 99 },
@@ -23,6 +24,28 @@ const PACK_DATA = {
   architecte:  { name: 'Architectes & Design',     pack: 'Pack Projet Signé',       price: 2290, deposit: 687, remaining: 1603, monthly: 129 },
   domicile:    { name: 'Services à la Personne',   pack: 'Pack Lien de Confiance',  price: 1890, deposit: 567, remaining: 1323, monthly: 99 }
 };
+
+try {
+  const catalogPath = path.join(env.ROOT, '..', 'docs', 'business', 'CATALOG.json');
+  if (fs.existsSync(catalogPath)) {
+    const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+    if (catalog && catalog.packs) {
+      Object.keys(catalog.packs).forEach(key => {
+        const item = catalog.packs[key];
+        PACK_DATA[key] = {
+          name: item.name,
+          pack: item.pack,
+          price: item.price,
+          deposit: item.deposit,
+          remaining: item.price - item.deposit,
+          monthly: item.monthly
+        };
+      });
+    }
+  }
+} catch (err) {
+  logger.warn('[Mollie] CATALOG.json load fallback used', err);
+}
 
 function isMollieConfigured() {
   const key = env.MOLLIE_API_KEY;

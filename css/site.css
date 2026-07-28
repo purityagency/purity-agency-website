@@ -459,30 +459,43 @@ p {
   transform: scale(1.05);
   filter: drop-shadow(0 4px 18px rgba(124,58,237,.5));
 }
-/* Logo texte (PURITY / AGENCY) — aligné maquette */
+/* Logo texte (PURITY / AGENCY) — wordmark maison, cohérent nav/footer/loader.
+   Tracking en em (pas en px) : reste correct quel que soit le nombre de
+   caractères, y compris quand la marque est traduite (ex. DE "REINHEIT /
+   AGENTUR", NL "ZUIVERHEID / AGENTSCHAP" — bien plus longs que PURITY/AGENCY,
+   l'ancien calibrage en pixels fixes cassait l'alignement dans ces langues). */
 .nav__logo--text {
   flex-direction: column;
   align-items: flex-start;
   line-height: 1;
-  gap: 2px;
+  gap: 3px;
   text-decoration: none;
   transition: transform var(--t-fast);
 }
 .nav__logo--text:hover { transform: scale(1.03); }
+.nav__logo-name,
+.nav__logo-sub,
+.footer__logo-name,
+.footer__logo-sub,
+.loader__logo {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1;
+}
 .nav__logo-name {
   font-family: var(--font-head);
-  font-weight: 700;
+  font-weight: 650;
   font-size: 1.5rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   color: #fff;
 }
 .nav__logo-sub {
   font-family: var(--font-head);
-  font-weight: 500;
-  font-size: 0.62rem;
-  letter-spacing: 13px;      /* calibré pour que AGENCY fasse exactement la largeur de PURITY */
-  margin-right: -13px;       /* annule l'espace de fin pour aligner le bord droit */
-  color: var(--c-fg);
+  font-weight: 550;
+  font-size: 0.64rem;
+  letter-spacing: 0.42em;
+  margin-right: -0.42em;   /* annule l'espace fantôme après le dernier caractère */
+  color: var(--c-fg-muted); /* hiérarchie : le nom porte le contraste, le sous-libellé s'efface */
 }
 header#nav {
   position: fixed;
@@ -2384,8 +2397,8 @@ footer {
 
 /* Colonne marque */
 .footer__logo { display: inline-flex; flex-direction: column; line-height: 1; gap: 3px; margin-bottom: 0.85rem; }
-.footer__logo-name { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.18em; color: #fff; }
-.footer__logo-sub { font-family: var(--font-head); font-weight: 500; font-size: 0.6rem; letter-spacing: 0.44em; color: var(--c-fg-muted); }
+.footer__logo-name { font-family: var(--font-head); font-weight: 650; font-size: 1.5rem; letter-spacing: 0.12em; color: #fff; }
+.footer__logo-sub { font-family: var(--font-head); font-weight: 550; font-size: 0.64rem; letter-spacing: 0.42em; margin-right: -0.42em; color: var(--c-fg-muted); }
 .footer__pitch { color: var(--c-fg-muted); font-size: 0.88rem; line-height: 1.65; max-width: 36ch; margin-bottom: 1.4rem; }
 .footer__location {
   display: flex;
@@ -2481,15 +2494,16 @@ footer {
 .loader__logo {
   font-family: var(--font-head);
   font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--c-fg);
 }
 .loader__logo span {
   font-family: var(--font-body);
   font-size: 0.8rem;
   vertical-align: super;
-  margin-left: 2px;
+  margin-left: 4px;
 }
 .loader__bar {
   width: 120px;

@@ -860,6 +860,89 @@
   .nav__actions { gap: 0.5rem; }
   .langsel__menu { right: 0; }
 }
+
+/* ============================================================
+   ESPACE CLIENT — bouton header (secondaire, sous le CTA)
+   Médaillon nested + lift haptique. Zéro glow, zéro glass IA.
+   ============================================================ */
+.nav__portal {
+  --portal-r: 999px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(255,255,255,0.68);
+  padding: 0.4rem 1rem 0.4rem 0.4rem;
+  border-radius: var(--portal-r);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.02);
+  transition: color 0.35s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.35s cubic-bezier(0.16,1,0.3,1),
+              background-color 0.35s cubic-bezier(0.16,1,0.3,1),
+              transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.nav__portal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex: none;
+  background: rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: background-color 0.35s cubic-bezier(0.16,1,0.3,1),
+              transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.nav__portal svg { width: 13px; height: 13px; flex: none; }
+
+.nav__portal:hover,
+.nav__portal:focus-visible {
+  color: #fff;
+  border-color: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-1px);
+}
+.nav__portal:hover .nav__portal-icon,
+.nav__portal:focus-visible .nav__portal-icon {
+  background: rgba(255,255,255,0.14);
+  transform: translateX(1px);
+}
+.nav__portal:active {
+  transform: translateY(0) scale(0.97);
+}
+.nav__portal:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+}
+
+/* Mobile : médaillon seul, cible tactile 44px (a11y) */
+@media (max-width: 900px) {
+  .nav__portal {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+    background: transparent;
+    border-color: rgba(255,255,255,0.14);
+  }
+  .nav__portal-icon { width: 30px; height: 30px; }
+  .nav__portal .nav__portal-label { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__portal,
+  .nav__portal-icon { transition: none; }
+  .nav__portal:hover,
+  .nav__portal:focus-visible,
+  .nav__portal:active { transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .langsel__menu, .langsel__chev, .langsel__list li { transition: none; animation: none; }
 }
@@ -935,7 +1018,11 @@
   transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Bouton fermeture ── */
+/* ── Bouton fermeture ──
+   Référence partagée par tous les modals du site : même médaillon 44px
+   (cible tactile a11y), même hairline, même hover. #ord2-close reprend
+   ces tokens plus bas (contexte de mise en page différent : inline dans
+   un header au lieu d'un overlay absolu). */
 .ob-x {
   position: absolute;
   top: 0.75rem;
@@ -950,13 +1037,16 @@
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1),
+              color 0.2s cubic-bezier(0.16,1,0.3,1),
+              background-color 0.2s cubic-bezier(0.16,1,0.3,1);
 }
 .ob-x:hover {
   border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
 }
+.ob-x:active { transform: scale(0.94); }
 
 /* ── Stage & panels ── */
 .ob-stage { position: relative; }
@@ -3983,9 +4073,8 @@ textarea {
 }
 
 .ob-opt-card.is-selected {
-  background: rgba(124, 58, 237, 0.06);
-  border-color: rgba(124, 58, 237, 0.45);
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.08);
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.5);
 }
 
 .ob-opt-card__meta {
@@ -4096,8 +4185,8 @@ textarea {
 }
 
 .ob-time-btn.is-active {
-  background: #7C3AED;
-  border-color: #7C3AED;
+  background: rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.55);
   color: #fff;
   font-weight: 700;
 }
@@ -4137,8 +4226,8 @@ textarea {
   color: #fff;
 }
 .ob-date-btn.is-active {
-  background: #7C3AED;
-  border-color: #7C3AED;
+  background: rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.55);
   color: #fff;
 }
 .ob-date-btn__day {
@@ -4219,11 +4308,13 @@ textarea {
    TUNNEL COMMANDE V2 — order-v2.js
    ═══════════════════════════════════════════════════ */
 
-/* ── Modal container ── */
+/* ── Modal container ──
+   Même matériau que .ob-modal (onboarding) : verre noir + blur, même
+   z-index tier, même easing d'entrée. Un seul langage de modal sur le site. */
 #ord2-modal {
   position: fixed;
   inset: 0;
-  z-index: 9000;
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4231,7 +4322,7 @@ textarea {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.22s, visibility 0.22s;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #ord2-modal.is-open {
@@ -4243,17 +4334,20 @@ textarea {
 #ord2-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(6, 3, 9, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 #ord2-shell {
   position: relative;
   z-index: 1;
-  background: #111;
+  background: rgba(6, 3, 9, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  border-radius: 24px;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.8);
   width: 100%;
   max-width: 640px;
   max-height: 90vh;
@@ -4274,8 +4368,8 @@ textarea {
 
 #ord2-prog-track {
   flex: 1;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -4285,30 +4379,34 @@ textarea {
   background: #fff;
   border-radius: 99px;
   width: 0%;
-  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 #ord2-close {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: transparent;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1),
+              color 0.2s cubic-bezier(0.16,1,0.3,1),
+              background-color 0.2s cubic-bezier(0.16,1,0.3,1);
   flex-shrink: 0;
 }
 
 #ord2-close svg { width: 14px; height: 14px; }
 
 #ord2-close:hover {
+  border-color: rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
+#ord2-close:active { transform: scale(0.94); }
 
 /* ── Panels ── */
 .ord2-panel {
@@ -4658,9 +4756,9 @@ textarea {
 }
 
 .ord2-slot.is-selected {
-  background: #fff;
-  border-color: #fff;
-  color: #111;
+  background: rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.55);
+  color: #fff;
   font-weight: 600;
 }
 
@@ -4760,10 +4858,12 @@ textarea {
   padding: 0.75rem 1.5rem;
   font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 11px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s, opacity 0.2s, transform 0.15s;
+  transition: background 0.2s cubic-bezier(0.16,1,0.3,1),
+              opacity 0.2s cubic-bezier(0.16,1,0.3,1),
+              transform 0.15s cubic-bezier(0.16,1,0.3,1);
   font-family: inherit;
   white-space: nowrap;
 }
@@ -4776,7 +4876,7 @@ textarea {
   width: 100%;
 }
 
-.ord2-btn--primary:hover { background: #e8e8e8; }
+.ord2-btn--primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
 .ord2-btn--primary.is-loading {
   opacity: 0.6;
@@ -4927,13 +5027,29 @@ textarea {
 
 .dp-brique:hover .dp-brique__cta { color: #fff; }
 
-/* ── Responsive ── */
+/* ── Responsive ──
+   Même comportement bottom-sheet que .ob-modal : ancré en bas, coins
+   arrondis en haut seulement, safe-area iOS. */
 @media (max-width: 600px) {
-  .ord2-panel__inner { padding: 1.25rem 1rem 2rem; }
+  #ord2-modal { padding: 0; align-items: flex-end; }
+  #ord2-shell {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    max-height: calc(100% - 24px - env(safe-area-inset-top, 0px));
+  }
+  .ord2-panel__inner { padding: 1.25rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px)); }
+  .ord2-panel__inner--center { padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); }
   .ord2-field-row { flex-direction: column; }
   .ord2-actions--split { flex-direction: column-reverse; }
   .ord2-btn--ghost { width: 100%; }
+  /* 16px minimum — sous ce seuil, iOS Safari zoome automatiquement au focus */
+  .ord2-field input, .ord2-field select, .ord2-field textarea { font-size: 16px; }
   .dp-briques__grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ord2-modal, #ord2-prog-fill, .ob-opt-card, .ob-time-btn, .ob-date-btn,
+  .ord2-choice-btn, .ord2-btn, .ord2-slot { transition: none; }
 }
 
 /* ==========================================================================

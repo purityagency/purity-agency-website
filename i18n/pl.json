@@ -1287,5 +1287,6 @@
   "modal.opt_monitoring.name": "Monitorowanie dostępności (Uptime)",
   "modal.opt_monitoring.desc": "Natychmiastowe powiadomienie w przypadku awarii usługi.",
   "modal.opt_audit_sec.name": "Coroczny audyt bezpieczeństwa",
-  "modal.opt_audit_sec.desc": "Testy penetracyjne i pełne raportowanie potencjalnych podatności."
+  "modal.opt_audit_sec.desc": "Testy penetracyjne i pełne raportowanie potencjalnych podatności.",
+  "gen_aria_35": "Zamknij menu"
 }

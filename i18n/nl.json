@@ -1287,5 +1287,6 @@
   "modal.opt_monitoring.name": "Beschikbaarheidsmonitoring (uptime)",
   "modal.opt_monitoring.desc": "Directe waarschuwing bij een servicestoring.",
   "modal.opt_audit_sec.name": "Jaarlijkse beveiligingsaudit",
-  "modal.opt_audit_sec.desc": "Penetratietests en volledige rapportage van potentiële kwetsbaarheden."
+  "modal.opt_audit_sec.desc": "Penetratietests en volledige rapportage van potentiële kwetsbaarheden.",
+  "gen_aria_35": "Menu sluiten"
 }

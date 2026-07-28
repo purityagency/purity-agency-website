@@ -387,6 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
   mobMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
     if (burger.getAttribute('aria-expanded') === 'true') toggleMenu();
   }));
+  const mobClose = mobMenu.querySelector('.mob__close');
+  if (mobClose) mobClose.addEventListener('click', () => {
+    if (burger.getAttribute('aria-expanded') === 'true') toggleMenu();
+  });
 
   // Reset menu on resize to desktop
   window.addEventListener('resize', () => {
@@ -2052,35 +2056,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeBtn && stickyBanner) {
     closeBtn.addEventListener('click', () => { stickyBanner.hidden = true; });
   }
-});
-
-// Scrollspy pour la TabBar Mobile
-document.addEventListener('DOMContentLoaded', () => {
-  const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
-  const sections = document.querySelectorAll('section[id], header[id]');
-
-  function updateActiveNavItem() {
-    let currentSectionId = 'hero';
-    const scrollPos = window.scrollY + window.innerHeight / 3;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentSectionId = section.getAttribute('id');
-      }
-    });
-
-    mobileNavItems.forEach(item => {
-      item.classList.remove('is-active');
-      if (item.getAttribute('data-section') === currentSectionId) {
-        item.classList.add('is-active');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', updateActiveNavItem, { passive: true });
-  updateActiveNavItem();
 });
 
 // Swipe tactile Services

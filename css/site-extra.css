@@ -1906,26 +1906,23 @@
 .sticky-booking__wa:hover { background: rgba(37,211,102,.1); border-color: #25D366; }
 .sticky-booking__wa svg { flex-shrink: 0; }
 
-/* ═══ MOBILE NAV COEXISTENCE ═══
-   mobile-nav-bar: bottom 16px, height 64px → occupe 16–80px.
-   Chat et sticky-booking doivent être au-dessus (≥88px).
-   ============================================================ */
+/* ═══ COEXISTENCE MOBILE : chat + bandeau sticky-booking ═══
+   Plus de dock en bas depuis le passage au menu hamburger plein écran :
+   les deux éléments flottent près du bord réel, safe-area iOS incluse. */
 @media (max-width: 860px) {
-  /* UX-4 — sticky-booking flotte au-dessus de la nav mobile */
   .sticky-booking {
-    bottom: 88px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     border-radius: 16px;
   }
 
-  /* UX-3 — chatbot au-dessus de la nav + dégagé des CTAs hero */
   .chat {
-    bottom: 96px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   }
 
-  /* Quand le bandeau sticky-booking est affiché (88–150px), la bulle chat
-     monte d'un cran pour ne pas s'asseoir dessus */
+  /* Quand le bandeau sticky-booking est affiché, la bulle chat monte d'un
+     cran pour ne pas s'asseoir dessus */
   body:has(.sticky-booking:not([hidden])) .chat {
-    bottom: 162px;
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -2096,10 +2093,8 @@
 }
 .btn--ghost:hover { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .5); }
 
-/* ≤860px : la mobile-nav-bar (z 999, bottom 16px, h 64px) recouvrait le bouton
-   "Compris" (z 950) — bannière remontée au-dessus de la barre d'onglets */
 @media (max-width: 860px) {
-  .cookie-banner { bottom: 96px; }
+  .cookie-banner { bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
 }
 @media (max-width: 560px) {
   .cookie-banner { flex-direction: column; align-items: stretch; text-align: left; }
@@ -5601,8 +5596,8 @@ textarea {
 }
 
 /* Mobile responsive navigation overrides
-   ≤860px : la mobile-nav-bar (barre d'onglets en bas) remplace toute la nav
-   du header — le mega-menu doit disparaître, sinon il s'empile sur le hero
+   ≤860px : le menu hamburger plein écran remplace toute la nav du header —
+   le mega-menu doit disparaître, sinon il s'empile sur le hero
    (site-extra.css charge après site.css et écraserait son display:none). */
 @media (max-width: 860px) {
   .nav__links {

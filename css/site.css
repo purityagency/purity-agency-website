@@ -3102,26 +3102,16 @@ footer {
 @media (max-width: 768px) {
   .nav__links, .nav__cta { display: none; }
   .nav__burger { display: flex; }
-  
-  #mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: rgba(6,3,9,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    z-index: 999; display: flex; align-items: center; justify-content: center;
-  }
-  #mobile-menu nav { display: flex; flex-direction: column; gap: 2rem; text-align: center; }
-  #mobile-menu a { font-size: 1.5rem; font-family: var(--font-head); text-decoration: none; color: #fff; padding: 10px; min-height: 44px; display: inline-flex; justify-content: center; align-items: center; }
 
   .hero__img {
     object-fit: cover !important;
     object-position: center !important;
   }
   .hero__scrim {
-    /* Mobile : la maquette de fond passe derrière le titre — scrim bien plus
-       dense qu'en desktop sinon son texte (adresse, boutons) concurrence le H1 */
-    background: linear-gradient(to top, rgba(6,3,9,0.99) 0%, rgba(6,3,9,0.92) 45%, rgba(6,3,9,0.78) 100%) !important;
-  }
-  .hero__img {
-    opacity: 0.5 !important;
+    /* Assez dense pour garder le texte lisible, assez léger pour que la
+       vidéo de fond reste visible et perceptible en mouvement (avant : 0.99
+       à 0.78, la vidéo tournait mais restait pratiquement invisible). */
+    background: linear-gradient(to top, rgba(6,3,9,0.9) 0%, rgba(6,3,9,0.72) 45%, rgba(6,3,9,0.5) 100%) !important;
   }
   .hero {
     min-height: auto;
@@ -3175,14 +3165,101 @@ footer {
     font-size: 0.8rem !important;
   }
   .hero__scroll { display: none !important; }
+
+  /* ── Menu mobile plein écran (hamburger) ──
+     Même matériau glass que les modals du site : fond quasi-noir + blur,
+     cohérent avec .ob-modal/.ob-shell établis ailleurs. */
   .mob {
-    position: fixed; inset: 0; background: var(--c-bg); z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(6, 3, 9, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1.5rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .mob:not([hidden]) { opacity: 1; pointer-events: auto; }
-  .mob nav { display: flex; flex-direction: column; align-items: center; gap: 2rem; font-family: var(--font-head); font-size: 2.2rem; font-weight: 500; }
-  
+
+  .mob__close {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 1.1rem);
+    right: 1.25rem;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1),
+                color 0.2s cubic-bezier(0.16,1,0.3,1),
+                background-color 0.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mob__close:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .mob__close:active { transform: scale(0.94); }
+  .mob__close svg { width: 16px; height: 16px; }
+
+  .mob nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4.5rem 1.75rem 1rem;
+    font-family: var(--font-head);
+  }
+  .mob nav a {
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: color 0.2s cubic-bezier(0.16,1,0.3,1),
+                padding-left 0.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mob nav a:active { color: var(--c-accent-bright, #A855F7); padding-left: 0.4rem; }
+  .mob nav a:last-of-type { border-bottom: none; }
+
+  /* Liens secondaires (WhatsApp, Espace Client) : registre plus discret */
+  .mob nav a[href^="https://wa.me"],
+  .mob nav a[href="/login"] {
+    font-size: 1.05rem;
+    font-weight: 500;
+    min-height: 52px;
+  }
+
+  /* CTA final : pilule pleine, cohérente avec .btn--accent */
+  .mob nav a.btn {
+    margin-top: 1.25rem;
+    border-bottom: none;
+    min-height: 56px;
+    font-size: 1rem;
+    justify-content: center;
+  }
+
   .bento, .why-grid, .promises, .pricing, .pricing-extra-row, .contact-grid { grid-template-columns: 1fr; }
   .step { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .step h3 { width: 100%; }
@@ -4791,168 +4868,10 @@ a:hover .viz-arrow-line, .svc-scene__more:hover .viz-arrow-line {
   text-align: center;
 }
 
-/* ==========================================================================
-   BARRE DE NAVIGATION BASSE FLOTTANTE — LIQUID GLASS DOCK 2026-2027
-   ========================================================================== */
-.mobile-nav-bar {
-  position: fixed;
-  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  left: 50%;
-  transform: translateX(-50%) translateY(120%);
-  width: calc(100% - 28px);
-  max-width: 440px;
-  height: 66px;
-  background: rgba(10, 5, 18, 0.75);
-  backdrop-filter: blur(28px) saturate(1.8);
-  -webkit-backdrop-filter: blur(28px) saturate(1.8);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 99px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 8px;
-  z-index: 9999;
-  box-shadow: 
-    0 20px 48px rgba(0, 0, 0, 0.8), 
-    0 0 25px rgba(124, 58, 237, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (max-width: 860px) {
-  body {
-    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .mobile-nav-bar {
-    transform: translateX(-50%) translateY(0);
-  }
-  /* Cacher le menu burger existant du top header */
-  .nav__burger, .mob {
-    display: none !important;
-  }
-}
-
-.mobile-nav-item {
-  position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  height: 52px;
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  border-radius: 99px;
-  padding: 4px 6px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mobile-nav-icon {
-  width: 20px;
-  height: 20px;
-  stroke: rgba(255, 255, 255, 0.65);
-  transition: all 0.25s ease;
-}
-
-.mobile-nav-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  color: rgba(255, 255, 255, 0.65);
-  transition: all 0.25s ease;
-}
-
-.mobile-nav-item:hover,
-.mobile-nav-item.is-active {
-  color: #ffffff;
-}
-
-.mobile-nav-item:hover .mobile-nav-icon,
-.mobile-nav-item.is-active .mobile-nav-icon {
-  stroke: var(--c-accent-bright, #A855F7);
-  transform: translateY(-1px);
-  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.8));
-}
-
-.mobile-nav-item:hover .mobile-nav-label,
-.mobile-nav-item.is-active .mobile-nav-label {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.mobile-nav-item.is-active::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--c-accent-bright, #A855F7);
-  box-shadow: 0 0 8px var(--c-accent-bright);
-}
-
-/* WIDGET VIOLET HIGHLIGHT : ESPACE CLIENT */
-.mobile-nav-item--portal {
-  flex: 1.28;
-  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  border-radius: 99px !important;
-  height: 46px !important;
-  padding: 0 10px !important;
-  margin: 0 3px;
-  color: #ffffff !important;
-  box-shadow: 
-    0 0 20px rgba(124, 58, 237, 0.65), 
-    0 4px 14px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
-  flex-direction: row !important;
-  gap: 6px !important;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.mobile-nav-item--portal .mobile-nav-icon {
-  width: 16px !important;
-  height: 16px !important;
-  stroke: #ffffff !important;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9)) !important;
-}
-
-.mobile-nav-item--portal .mobile-nav-label {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 10.5px !important;
-  letter-spacing: 0.25px !important;
-  white-space: nowrap;
-}
-
-.mobile-nav-item--portal:hover {
-  transform: scale(1.05);
-  box-shadow: 
-    0 0 28px rgba(168, 85, 247, 0.85), 
-    0 6px 18px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
-}
-
-.mobile-nav-item--portal:active {
-  transform: scale(0.96);
-}
-  opacity: 0;
-  transform: scale(0);
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.mobile-nav-item.is-active::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Positionnement chatbot sur mobile pour éviter de chevaucher la TabBar */
+/* Positionnement chatbot sur mobile */
 @media (max-width: 860px) {
   .chat {
-    bottom: 96px;
+    bottom: 20px;
     right: 16px;
   }
   .chat__panel {
@@ -5025,21 +4944,15 @@ img, .svc-scene__media, .pack-card__media, .detail-hero__media {
 }
 
 /* 5. Transitions explicites (Pas de transition: all) */
-.mobile-nav-item, .svc-dot, .btn, .brique-card, .pack-card, .chat__toggle {
+.svc-dot, .btn, .brique-card, .pack-card, .chat__toggle {
   transition-property: transform, opacity, background-color, border-color, box-shadow, color;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 6. Effet de clic tactile (Tactile Active State) */
-.mobile-nav-item:active, .btn:active, .svc-dot:active, .tarifs-tab:active {
+.btn:active, .svc-dot:active, .tarifs-tab:active {
   transform: scale(0.95);
-}
-
-/* 7. Cohérence des angles arrondis imbriqués (Concentric Radius) */
-/* Parent border-radius: 32px (mobile-nav-bar) -> Enfant mobile-nav-item a 8px de padding -> Radius interne = 24px */
-.mobile-nav-item {
-  border-radius: 24px;
 }
 
 /* 8. Adaptations avancées des pages de détails (services) sur mobile */

@@ -1287,5 +1287,6 @@
   "modal.opt_monitoring.name": "Availability monitoring (Uptime)",
   "modal.opt_monitoring.desc": "Instant alert in the event of a service outage.",
   "modal.opt_audit_sec.name": "Annual security audit",
-  "modal.opt_audit_sec.desc": "Penetration testing and full reporting of potential vulnerabilities."
+  "modal.opt_audit_sec.desc": "Penetration testing and full reporting of potential vulnerabilities.",
+  "gen_aria_35": "Close menu"
 }

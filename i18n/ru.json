@@ -1287,5 +1287,6 @@
   "sticky.btn": "Забронировать сейчас",
   "booking.ai_improve": "Улучшить с помощью ИИ",
   "booking.ai_optimizing": "Улучшение…",
-  "booking.ai_err": "Не удалось связаться с ИИ OctoMask в данный момент."
+  "booking.ai_err": "Не удалось связаться с ИИ OctoMask в данный момент.",
+  "gen_aria_35": "Закрыть меню"
 }

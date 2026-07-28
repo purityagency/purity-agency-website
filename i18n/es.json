@@ -1287,5 +1287,6 @@
   "modal.opt_monitoring.name": "Monitoreo de disponibilidad (tiempo de actividad)",
   "modal.opt_monitoring.desc": "Alerta instantánea en caso de una interrupción del servicio.",
   "modal.opt_audit_sec.name": "Auditoría anual de seguridad",
-  "modal.opt_audit_sec.desc": "Pruebas de penetración e informes completos de posibles vulnerabilidades."
+  "modal.opt_audit_sec.desc": "Pruebas de penetración e informes completos de posibles vulnerabilidades.",
+  "gen_aria_35": "Cerrar menú"
 }

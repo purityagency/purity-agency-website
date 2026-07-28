@@ -1287,5 +1287,6 @@
   "sticky.btn": "立即预约",
   "booking.ai_improve": "用 AI 优化",
   "booking.ai_optimizing": "优化中…",
-  "booking.ai_err": "暂时无法连接 OctoMask 的 AI 服务。"
+  "booking.ai_err": "暂时无法连接 OctoMask 的 AI 服务。",
+  "gen_aria_35": "关闭菜单"
 }

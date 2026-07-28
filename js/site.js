@@ -545,7 +545,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Fade-in au canplay (desktop et mobile)
       gsap.set(heroBgVideo, { opacity: 0, scale: 1.04 });
 
+      // L'attribut autoplay seul est bloqué par certains navigateurs
+      // (surtout mobile) même avec muted+playsinline : on force play().
+      const tryPlay = () => { heroBgVideo.play().catch(() => {}); };
+
       const onReady = () => {
+        tryPlay();
         gsap.to(heroBgVideo, {
           opacity: 1, scale: 1,
           duration: 1.4, ease: 'power2.out'
@@ -560,6 +565,26 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { gsap.set(heroBgVideo, { opacity: 1, scale: 1 }); }, 4000);
       }
 
+      // Filet de sécurité : si le navigateur a quand même bloqué play(),
+      // le premier geste de l'utilisateur (scroll/tap) débloque la lecture.
+      const retryPlayOnGesture = () => {
+        if (heroBgVideo.paused) tryPlay();
+      };
+      ['touchstart', 'pointerdown', 'scroll'].forEach(evt =>
+        window.addEventListener(evt, retryPlayOnGesture, { once: true, passive: true })
+      );
+
+      // Les navigateurs mobiles mettent en pause la vidéo quand le hero
+      // sort du viewport (économie batterie) sans forcément la relancer
+      // au retour : on la relance nous-mêmes.
+      if ('IntersectionObserver' in window) {
+        const heroVisibilityObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && heroBgVideo.paused) tryPlay();
+          });
+        }, { threshold: 0.1 });
+        heroVisibilityObserver.observe(heroBgVideo);
+      }
     }
   }
 

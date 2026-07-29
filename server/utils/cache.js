@@ -12,9 +12,19 @@ function getCachedFile(filePath) {
   }
 
   try {
+    const stat = fs.statSync(filePath);
+    if (stat.size > 2 * 1024 * 1024) { // Do not cache files larger than 2MB
+      return null;
+    }
+    
+    if (cache.size > 500) {
+      // Very basic eviction if we have too many cached items
+      cache.clear();
+    }
+
     const raw = fs.readFileSync(filePath);
     const gzip = zlib.gzipSync(raw, { level: 6 });
-    const fileObj = { raw, gzip, mtime: fs.statSync(filePath).mtimeMs };
+    const fileObj = { raw, gzip, mtime: stat.mtimeMs };
     
     cache.set(filePath, fileObj);
     return fileObj;

@@ -8,6 +8,7 @@ const ordersRepo = require('../repositories/orders.repository');
 const mollieService = require('../services/mollie.service');
 const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
+const purityosService = require('../services/purityos.service');
 
 const fs = require('fs');
 const path = require('path');
@@ -335,6 +336,16 @@ function handleMollieWebhook(req, res) {
         order.status = 'paid';
         order.paidAt = new Date().toISOString();
         ordersRepo.writeOrder(order);
+
+        purityosService.notifyEvent({
+          type: 'ORDER',
+          name: order.clientName || order.company || order.email,
+          email: order.email,
+          phone: order.phone,
+          company: order.company,
+          summary: `Commande payée : ${order.pack} (${order.amount} €)`,
+          payload: order
+        });
 
         order.provisioningStatus = 'pending';
         ordersRepo.writeOrder(order);

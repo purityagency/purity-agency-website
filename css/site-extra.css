@@ -3368,8 +3368,8 @@ textarea {
 
   /* ── Cards — uniform size, snap to center, depth transitions ── */
   .svc-card {
-    width: 82vw !important;
-    max-width: 360px !important;
+    width: 75vw !important;
+    max-width: 310px !important;
     min-height: 0 !important;
     flex-shrink: 0 !important;
     scroll-snap-align: center !important;
@@ -3411,26 +3411,26 @@ textarea {
 
   /* ── Card body tighter padding on mobile ── */
   .svc-card__body {
-    padding: 1rem 1.2rem 1.1rem !important;
+    padding: 0.8rem 1rem 1rem !important;
   }
   .svc-card__top {
-    padding: 1.1rem 1.2rem 0.8rem !important;
+    padding: 1rem 1rem 0.6rem !important;
   }
   .svc-card__top h3 {
-    font-size: 1.15rem !important;
+    font-size: 1.05rem !important;
   }
   .svc-card__stat {
-    font-size: 2.2rem !important;
+    font-size: 1.8rem !important;
   }
   .svc-card__stat--phrase {
-    font-size: 1.15rem !important;
+    font-size: 1rem !important;
   }
   .svc-card__lede {
-    font-size: 0.92rem !important;
+    font-size: 0.85rem !important;
   }
   .svc-card__detail {
-    font-size: 0.78rem !important;
-    -webkit-line-clamp: 4 !important;
+    font-size: 0.72rem !important;
+    -webkit-line-clamp: 3 !important;
   }
 
   /* ── Dots — pill indicator, below cards ── */

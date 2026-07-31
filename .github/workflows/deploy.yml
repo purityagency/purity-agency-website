@@ -1,0 +1,27 @@
+name: Deploy to Production VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            # Aller dans le dossier du site
+            cd ${{ secrets.VPS_PROJECT_PATH }}
+            
+            # Tirer les dernières modifications
+            git pull origin main
+            
+            # Redémarrer le serveur Node.js (Ajuste "server" par le nom de ton process PM2 si nécessaire)
+            # Si tu utilises pm2 :
+            pm2 restart all || node server/app.js &

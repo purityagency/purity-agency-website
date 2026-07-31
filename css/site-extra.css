@@ -6083,3 +6083,23 @@ textarea {
   .svc-sec__n { font-size: 2rem; }
   .svc-extras { flex-direction: column; }
 }
+
+/* ==========================================================================
+   SERVICES BACKGROUND SCI-FI (FADE IN/OUT)
+   ========================================================================== */
+.svc-bg-scifi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/bg-sci-fi.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1; /* Derrière les cartes (.wrap = z-index:2) mais au-dessus des tentacules (z-index:0) */
+  opacity: 0.35;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  pointer-events: none;
+}

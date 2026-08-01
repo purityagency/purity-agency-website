@@ -36,7 +36,7 @@ function isOriginAllowed(req) {
 
 const BLOCKED_FILES = new Set(['server.js', 'leads.log']);
 const BLOCKED_EXTENSIONS = new Set(['.png']);
-const PNG_EXCEPTIONS = new Set(['logo.png', 'qr-purity-hub.png']);
+const PNG_EXCEPTIONS = new Set(['logo.png', 'qr-purity-hub.png', 'bg-sci-fi.png']);
 
 const MIME = {
   '.html' : 'text/html; charset=utf-8',

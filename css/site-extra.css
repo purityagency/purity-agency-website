@@ -6025,27 +6025,30 @@ textarea {
 }
 
 /* ==========================================================================
-   SERVICES BACKGROUND SCI-FI (FADE IN/OUT)
+   SERVICES BACKGROUND SCI-FI (PARALLAX)
    ========================================================================== */
+
+/* Le parent clip l'image fixe aux limites de la section */
+#services.svc-section {
+  background: transparent !important;
+  overflow: clip;
+}
+
+/* L'image est fixée au viewport → vrai parallax.
+   overflow:clip sur le parent la masque en dehors de la section. */
 .svc-bg-scifi {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-image: url('../assets/bg-sci-fi.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Effet parallax */
   z-index: 0;
-  opacity: 0.55;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
   pointer-events: none;
-}
-
-/* Force la section services à avoir un fond transparent pour laisser voir bg-sci-fi */
-#services.svc-section {
-  background: transparent !important;
 }

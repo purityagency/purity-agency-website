@@ -3050,24 +3050,28 @@ textarea {
   padding: 0;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
   position: relative;
   overflow: hidden;
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02);
   transition:
     border-color 0.4s ease,
     box-shadow 0.4s ease,
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.4s ease,
     opacity 0.4s ease;
   cursor: pointer;
-  width: 340px; /* Mini-card compacte et élancée */
+  width: 340px;
   flex-shrink: 0;
   transform-style: preserve-3d;
-  will-change: transform, opacity;
+  will-change: transform, opacity, background;
 }
 
 .svc-card::before {
@@ -3110,7 +3114,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.85;
+  pointer-events: none;
 }
 
 .svc-card__icon svg {
@@ -3140,76 +3144,6 @@ textarea {
   max-height: none;
 }
 
-/* Video Component — glassmorphic */
-.svc-card__video {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  /* Base glassmorphic */
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(124, 58, 237, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 65%, rgba(99, 39, 207, 0.12) 0%, transparent 55%),
-    rgba(10, 6, 18, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Per-card color accent on video */
-.svc-card__video--presence   { --vc: 124,58,237; }
-.svc-card__video--acquisition { --vc: 56,189,248; }
-.svc-card__video--auto        { --vc: 167,139,250; }
-.svc-card__video--outils      { --vc: 52,211,153; }
-.svc-card__video--studio      { --vc: 251,146,60; }
-.svc-card__video--hebergement { --vc: 99,102,241; }
-
-[class*="svc-card__video--"] {
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(var(--vc), 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 65%, rgba(var(--vc), 0.12) 0%, transparent 55%),
-    rgba(10, 6, 18, 0.55);
-}
-
-/* Subtle grid overlay */
-.svc-card__video::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
-}
-
-.svc-card__video-play {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-  opacity: 0.7;
-}
-
-.svc-card__video-play svg {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 1.5;
-  stroke-linejoin: round;
-  width: 32px;
-  height: 32px;
-}
-
-.svc-card:hover .svc-card__video-play {
-  opacity: 1;
-  transform: scale(1.15);
-}
 
 /* Button — glassmorphic, hidden by default */
 .svc-card__btn {
@@ -6103,8 +6037,9 @@ textarea {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 1; /* Derrière les cartes (.wrap = z-index:2) mais au-dessus des tentacules (z-index:0) */
-  opacity: 0.35;
+  background-attachment: fixed; /* Effet parallax */
+  z-index: -1; /* Derrière les tentacules (0) et les cartes (2) */
+  opacity: 0.65;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
   pointer-events: none;

@@ -3368,8 +3368,8 @@ textarea {
 
   /* ── Cards — uniform size, snap to center, depth transitions ── */
   .svc-card {
-    width: 65vw !important;
-    max-width: 260px !important;
+    width: 70vw !important;
+    max-width: 280px !important;
     min-height: 0 !important;
     flex-shrink: 0 !important;
     scroll-snap-align: center !important;
@@ -3430,7 +3430,13 @@ textarea {
   }
   .svc-card__detail {
     font-size: 0.65rem !important;
-    -webkit-line-clamp: 3 !important;
+    -webkit-line-clamp: 2 !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  /* ── Shrink height via video aspect-ratio ── */
+  .svc-card__video {
+    aspect-ratio: 21 / 9 !important;
   }
 
   /* ── Dots — pill indicator, below cards ── */

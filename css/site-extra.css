@@ -6038,9 +6038,14 @@ textarea {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; /* Effet parallax */
-  z-index: -1; /* Derrière les tentacules (0) et les cartes (2) */
-  opacity: 0.65;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  z-index: 0;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
   pointer-events: none;
+}
+
+/* Force la section services à avoir un fond transparent pour laisser voir bg-sci-fi */
+#services.svc-section {
+  background: transparent !important;
 }

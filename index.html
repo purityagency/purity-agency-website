@@ -35,8 +35,8 @@
 <link rel="preload" href="assets/hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="css/site.css?v=88">
-<link rel="stylesheet" href="css/site-extra.css?v=88">
+<link rel="stylesheet" href="css/site.css?v=89">
+<link rel="stylesheet" href="css/site-extra.css?v=89">
 <script src="js/analytics.js" defer></script>
 </head>
 <body>
@@ -87,7 +87,6 @@
       <div class="nav__dropdown-menu nav__dropdown-menu--small">
         <div class="nav__dropdown-grid">
           <a href="#tarifs"><strong><span data-i18n="gen_text_70">Grille Tarifaire</span></strong><span><span data-i18n="gen_text_71">Nos forfaits clairs et transparents.</span></span></a>
-          <a href="#roi-calculator"><strong><span data-i18n="gen_text_72">Simulateur ROI</span></strong><span><span data-i18n="gen_text_73">Estimez vos gains publicitaires en direct.</span></span></a>
         </div>
       </div>
     </div>
@@ -378,103 +377,6 @@
         <span class="b2__label" data-i18n="stat4.label"><span data-i18n="gen_text_170">Vous êtes propriétaire de tout : code, domaine, comptes.</span></span>
       </article>
 
-    </div>
-  </div>
-</section>
-
-<hr class="sec-divider" aria-hidden="true">
-
-<!-- ═══ ESTIMATEUR ROI GOOGLE ADS ═══ -->
-<section id="roi-calculator" class="sec sec--roi">
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="sec-head text-center" data-reveal>
-      <span class="tag lg"><span data-i18n="gen_text_171">Simulateur ROI</span></span>
-      <h2><span data-i18n="gen_text_172">Estimez votre </span><em><span data-i18n="gen_text_173">retour sur investissement</span></em></h2>
-      <p class="sec-head__lead"><span data-i18n="gen_text_174">Ajustez les curseurs ci-dessous pour estimer l'impact d'une campagne d'acquisition Google Ads sur votre chiffre d'affaires.</span></p>
-    </div>
-
-    <div class="roi-grid" data-reveal>
-      <!-- Sliders column -->
-      <div class="roi-sliders">
-        <!-- Budget -->
-        <div class="roi-field">
-          <div class="roi-field__header">
-            <span class="roi-field__label"><span data-i18n="gen_text_175">Budget Publicitaire Mensuel</span></span>
-            <span class="roi-field__value" id="roi-val-budget">2 500 €</span>
-          </div>
-          <div class="roi-input-wrapper">
-            <input type="range" id="roi-budget" min="500" max="10000" step="100" value="2500" aria-label="Budget Publicitaire Mensuel" data-i18n-aria="gen_aria_16">
-          </div>
-          <div class="roi-field__ticks">
-            <span>500 €</span>
-            <span>5 000 €</span>
-            <span>10 000 €</span>
-          </div>
-        </div>
-
-        <!-- Taux de conversion -->
-        <div class="roi-field">
-          <div class="roi-field__header">
-            <span class="roi-field__label"><span data-i18n="gen_text_176">Taux de Conversion estimé</span></span>
-            <span class="roi-field__value" id="roi-val-conversion">2.5 %</span>
-          </div>
-          <div class="roi-input-wrapper">
-            <input type="range" id="roi-conversion" min="0.5" max="10" step="0.1" value="2.5" aria-label="Taux de Conversion" data-i18n-aria="gen_aria_17">
-          </div>
-          <div class="roi-field__ticks">
-            <span>0.5 %</span>
-            <span>5.0 %</span>
-            <span>10.0 %</span>
-          </div>
-        </div>
-
-        <!-- Panier moyen -->
-        <div class="roi-field">
-          <div class="roi-field__header">
-            <span class="roi-field__label"><span data-i18n="gen_text_177">Panier Moyen par Client</span></span>
-            <span class="roi-field__value" id="roi-val-basket">150 €</span>
-          </div>
-          <div class="roi-input-wrapper">
-            <input type="range" id="roi-basket" min="10" max="2000" step="10" value="150" aria-label="Panier Moyen" data-i18n-aria="gen_aria_18">
-          </div>
-          <div class="roi-field__ticks">
-            <span>10 €</span>
-            <span>1 000 €</span>
-            <span>2 000 €</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Results column (Liquid Glass style) -->
-      <div class="roi-results">
-        <div class="roi-results__header">
-          <h3><span data-i18n="gen_text_178">Performances Estimées</span></h3>
-          <span class="roi-cpc-badge"><span data-i18n="gen_text_179">CPC moyen : 0,85 €</span></span>
-        </div>
-        <div class="roi-results__grid">
-          <div class="roi-res-item">
-            <span class="roi-res-label"><span data-i18n="gen_text_180">Visiteurs / mois</span></span>
-            <span class="roi-res-val" id="roi-res-traffic">2 941</span>
-          </div>
-          <div class="roi-res-item">
-            <span class="roi-res-label"><span data-i18n="gen_text_181">Ventes / mois</span></span>
-            <span class="roi-res-val" id="roi-res-sales">73.5</span>
-          </div>
-          <div class="roi-res-item roi-res-item--highlight">
-            <span class="roi-res-label"><span data-i18n="gen_text_182">Chiffre d'Affaires Mensuel</span></span>
-            <span class="roi-res-val" id="roi-res-revenue">11 025 €</span>
-          </div>
-          <div class="roi-res-item roi-res-item--roi">
-            <span class="roi-res-label"><span data-i18n="gen_text_183">Bénéfice &amp; Retour (ROI)</span></span>
-            <div class="roi-res-row">
-              <span class="roi-res-val" id="roi-res-profit">8 525 €</span>
-              <span class="roi-badge" id="roi-res-percent"><span data-i18n="gen_text_184">4.4x</span></span>
-            </div>
-          </div>
-        </div>
-        <a href="#contact" class="btn btn--accent roi-cta-btn"><span data-i18n="gen_text_185">Réclamer mon audit gratuit</span></a>
-      </div>
     </div>
   </div>
 </section>

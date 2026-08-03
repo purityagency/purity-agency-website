@@ -82,7 +82,18 @@ function checkRoute(port, routePath) {
 
 const https = require('https');
 
+/**
+ * Envoie le résultat d'un audit à Purity OS — UNIQUEMENT quand une anomalie
+ * est détectée. Un audit sain toutes les 5 minutes (24/7) ne mérite pas une
+ * ligne dans la boîte de réception d'un humain : avant ce correctif
+ * (2026-08-03), CHAQUE audit (sain ou non) créait un Event "SYSTEM" jamais
+ * marqué traité — 1007 lignes de bruit accumulées en quelques jours,
+ * rendant le compteur "Nouvelles demandes" du dashboard inutilisable, plus
+ * un vrai appel API + écriture DB gaspillé toutes les 5 minutes pour rien.
+ */
 function pushTelemetryToPurityOS(auditResult) {
+  if (auditResult.healthy) return
+
   const portalUrl = (process.env.CLIENT_PORTAL_URL || '').trim();
   const internalSecret = env.INTERNAL_API_SECRET;
   if (!portalUrl || !internalSecret) return;

@@ -1,0 +1,16 @@
+{
+  "name": "Purity Agency",
+  "short_name": "Purity",
+  "description": "Agence web et IA à Charleroi. Sites web, SEO Local et automatisation pour les PME.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#060309",
+  "theme_color": "#060309",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

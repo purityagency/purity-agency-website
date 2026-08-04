@@ -189,6 +189,12 @@ function startServer() {
     }
 
     if (urlPath === '/api/sentinel/status') {
+      const authHeader = req.headers['authorization'] || '';
+      const token = authHeader.replace('Bearer ', '').trim();
+      if (!token || token !== env.INTERNAL_API_SECRET) {
+        res.writeHead(401, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Unauthorized' }));
+      }
       sentinelService.runFullAudit(PORT).then(audit => {
         res.writeHead(audit.healthy ? 200 : 500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(audit));

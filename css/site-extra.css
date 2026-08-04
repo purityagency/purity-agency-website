@@ -6037,7 +6037,7 @@ textarea {
 #services.svc-section {
   background:
     linear-gradient(to bottom, #060309 0%, transparent 15%, transparent 85%, #060309 100%),
-    url('../assets/bg-sci-fi.png') center / cover no-repeat fixed !important;
+    url('../assets/bg-sci-fi.webp') center / cover no-repeat fixed !important;
 }
 
 /* La div .svc-bg-scifi n'est plus nécessaire mais on la cache proprement */

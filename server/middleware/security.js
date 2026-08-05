@@ -9,7 +9,12 @@ const SECURITY_HEADERS = {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self'",
-    "connect-src 'self' https://api.posthog.com https://eu.posthog.com",
+    // eu.i.posthog.com est le vrai domaine d'ingestion des events (pas
+    // seulement eu.posthog.com) — sans lui, CHAQUE event PostHog était
+    // bloqué par la CSP en silence (finding 2026-08-05, confirmé par
+    // "errors-in-console" dans l'audit PageSpeed : la mesure d'audience
+    // ne fonctionnait pas du tout depuis sa mise en place).
+    "connect-src 'self' https://api.posthog.com https://eu.posthog.com https://eu.i.posthog.com",
     "frame-src 'self'",
     "base-uri 'self'",
     "form-action 'self'",

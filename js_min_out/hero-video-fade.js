@@ -1,0 +1,1 @@
+!function(){var e=document.querySelector(".hero__bg-video");function n(){e.classList.add("is-ready")}e&&(e.readyState>=3?n():e.addEventListener("playing",n,{once:!0}))}();

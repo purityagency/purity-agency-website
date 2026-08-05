@@ -3492,9 +3492,12 @@ textarea {
   aspect-ratio: 16 / 11 !important;
 }
 
-/* --- Card — hauteur min --- */
+/* --- Card — hauteur min ---
+   Était 540px alors que le contenu réel (carte active) ne fait que
+   ~429px de haut, laissant un grand vide sous le texte (signalé
+   2026-08-05). Ajusté à la hauteur réelle + marge de confort. */
 .svc-card {
-  min-height: 540px !important;
+  min-height: 470px !important;
 }
 
 /* --- Flèches de navigation — simples flèches fines sans rond, déportées aux bords --- */

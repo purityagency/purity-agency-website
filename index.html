@@ -57,19 +57,14 @@
 </noscript>
 <script src="js/analytics.js" defer></script>
 <!--
-  GSAP + site.js remontés depuis la fin du <body> (finding PageSpeed
-  2026-08-05) : en defer, l'ordre et le timing d'EXÉCUTION ne dépendent
-  pas de la position dans le document (toujours après le parsing complet),
-  mais le TÉLÉCHARGEMENT si — placés en fin de document de 1600+ lignes,
-  le navigateur ne les découvrait qu'après avoir parsé tout le HTML.
+  GSAP + site.js (~200Ko) chargés dynamiquement via js/lazy-boot.js
+  (finding PageSpeed 2026-08-05, round 3) : même remontés en <head> et
+  différés en exécution (rounds précédents), leur simple téléchargement +
+  parsing sous throttling CPU retardait la peinture du hero. lazy-boot.js
+  ne les injecte qu'une fois le thread principal libre, ou immédiatement
+  au premier clic/touch/scroll pour ne jamais bloquer une interaction.
 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js" integrity="sha384-dUEYjN2xd8Wk4WIZYrCpK7Ww7+r/LVtVebVp8skuwm9bKGoVo2bZrWuA79w8TI+v" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-<script src="js/site.js?v=61" defer></script>
-<script src="js/focus-trap.js" defer></script>
-<script src="js/order-modal.js?v=80" defer></script>
-<script src="js/pack-checkout.js?v=80" defer></script>
+<script src="js/lazy-boot.js" defer></script>
 </head>
 <body>
 

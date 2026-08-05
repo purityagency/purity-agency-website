@@ -1,1 +1,0 @@
-!function(){for(var e=document.querySelectorAll('link[rel="stylesheet"][media="print"]'),l=0;l<e.length;l++)(function(e){e.sheet?e.media="all":e.addEventListener("load",function(){e.media="all"})})(e[l])}();

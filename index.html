@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;">
-<style>html.i18n-pending body{visibility:hidden}</style>
+<style>html.i18n-pending body{visibility:hidden}
+/* CSS critique du loader plein écran, en inline pour ne PAS dépendre du
+   chargement différé de site.css (media=print -> all). Avant ce correctif,
+   le loader n'était pas position:fixed tant que site.css n'avait pas fini
+   de charger : passage brutal d'un <div> de flux normal à un overlay plein
+   écran une fois le CSS actif, compté comme un CLS massif (jusqu'à 1.0+
+   sur certains runs, finding PageSpeed 2026-08-06). Doit rester identique
+   à la règle .loader de site.css. */
+#loader{position:fixed;inset:0;z-index:9999;background:#060309;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.25rem}
+#loader.is-done{visibility:hidden;pointer-events:none}
+</style>
 <script src="js/i18n-gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="meta.title">Agence Web Charleroi — Sites, SEO & IA pour PME | Purity Agency</title>

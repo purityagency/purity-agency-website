@@ -50,12 +50,26 @@
 <link rel="preload" href="css/site-extra.css?v=91" as="style">
 <link rel="stylesheet" href="css/site.css?v=91" media="print">
 <link rel="stylesheet" href="css/site-extra.css?v=91" media="print">
-<script src="js/css-swap.js"></script>
+<script src="js/css-swap.js" defer></script>
 <noscript>
   <link rel="stylesheet" href="css/site.css?v=91">
   <link rel="stylesheet" href="css/site-extra.css?v=91">
 </noscript>
 <script src="js/analytics.js" defer></script>
+<!--
+  GSAP + site.js remontés depuis la fin du <body> (finding PageSpeed
+  2026-08-05) : en defer, l'ordre et le timing d'EXÉCUTION ne dépendent
+  pas de la position dans le document (toujours après le parsing complet),
+  mais le TÉLÉCHARGEMENT si — placés en fin de document de 1600+ lignes,
+  le navigateur ne les découvrait qu'après avoir parsé tout le HTML.
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js" integrity="sha384-dUEYjN2xd8Wk4WIZYrCpK7Ww7+r/LVtVebVp8skuwm9bKGoVo2bZrWuA79w8TI+v" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="js/site.js?v=61" defer></script>
+<script src="js/focus-trap.js" defer></script>
+<script src="js/order-modal.js?v=80" defer></script>
+<script src="js/pack-checkout.js?v=80" defer></script>
 </head>
 <body>
 
@@ -1611,14 +1625,6 @@
     <p class="chat__disclaimer" data-i18n="chat.disclaimer"><span data-i18n="gen_text_567">Assistant IA (Google Gemini). Évitez les données sensibles. </span><a href="legal.html#confidentialite"><span data-i18n="gen_text_568">Confidentialité</span></a></p>
   </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js" integrity="sha384-dUEYjN2xd8Wk4WIZYrCpK7Ww7+r/LVtVebVp8skuwm9bKGoVo2bZrWuA79w8TI+v" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-<script src="js/site.js?v=61" defer></script>
-<script src="js/focus-trap.js" defer></script>
-<script src="js/order-modal.js?v=80" defer></script>
-<script src="js/pack-checkout.js?v=80" defer></script>
 
           </div>
 

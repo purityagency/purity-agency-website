@@ -50,21 +50,20 @@
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <!--
-  site.css et site-extra.css (344 Kio à eux deux) bloquaient le rendu —
-  Lighthouse chiffrait ~2s d'économie possible (audit du 2026-08-05).
-  Chargement non-bloquant via le pattern preload+swap : le CSS se
-  télécharge sans attendre, s'applique dès qu'il est prêt. <noscript>
-  garde le comportement classique si JS est désactivé.
+  site.css et site-extra.css redevenus bloquants (round précédent : media=print
+  + swap JS pour gagner ~2s de rendu, finding 2026-08-05). Annulé le
+  2026-08-06 : cette technique EST la cause racine du CLS intermittent
+  (0 à 1.7 selon les runs) qui a résisté à plusieurs correctifs ciblés —
+  entre le premier paint (sans site.css actif) et le swap vers media=all,
+  N'IMPORTE QUEL élément du hero (loader, image LCP, pseudo-éléments...)
+  rendait sans son style final puis se repositionnait brutalement une fois
+  le CSS actif. Corriger élément par élément était voué à l'échec : un
+  nouvel élément non stylé apparaissait à chaque run. CLS correct et stable
+  vaut mieux que ~150-300ms de render-blocking sur un fichier CSS qui,
+  de toute façon, est nécessaire pour peindre quoi que ce soit d'utile.
 -->
-<link rel="preload" href="css/site.css?v=91" as="style">
-<link rel="preload" href="css/site-extra.css?v=91" as="style">
-<link rel="stylesheet" href="css/site.css?v=91" media="print">
-<link rel="stylesheet" href="css/site-extra.css?v=91" media="print">
-<script src="js/css-swap.js"></script>
-<noscript>
-  <link rel="stylesheet" href="css/site.css?v=91">
-  <link rel="stylesheet" href="css/site-extra.css?v=91">
-</noscript>
+<link rel="stylesheet" href="css/site.css?v=91">
+<link rel="stylesheet" href="css/site-extra.css?v=91">
 <script src="js/analytics.js" defer></script>
 <!--
   GSAP + site.js (~200Ko) chargés dynamiquement via js/lazy-boot.js

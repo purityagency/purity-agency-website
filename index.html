@@ -46,6 +46,11 @@
 </script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
+<!-- Connexion anticipée au CDN GSAP (chargé en différé par js/lazy-boot.js) :
+     le handshake DNS+TLS est fait d'avance, donc GSAP arrive plus vite une
+     fois le thread principal libre. Aucun impact sur le rendu/CLS. -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="preload" href="assets/hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
 <link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">

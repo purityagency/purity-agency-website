@@ -8,7 +8,7 @@ const rateLimit = require('../middleware/rate-limit');
 const googleService = require('../services/google.service');
 const purityosService = require('../services/purityos.service');
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
 const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
 // Vertex AI generateContent — avoids the "user location not supported" geo-block

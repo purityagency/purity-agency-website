@@ -8,7 +8,7 @@ const rateLimit = require('../middleware/rate-limit');
 const googleService = require('../services/google.service');
 const purityosService = require('../services/purityos.service');
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
 // Vertex AI generateContent — avoids the "user location not supported" geo-block
@@ -16,7 +16,24 @@ const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 function callVertexGenerateContent(payload, cb) {
   const sa = env.googleServiceAccount;
   if (!sa || !sa.project_id) {
-    return cb(new Error('no_service_account'));
+    if (!env.GEMINI_API_KEY) return cb(new Error('no_service_account_and_no_api_key'));
+    const body = JSON.stringify(payload);
+    const greq = https.request({
+      method: 'POST',
+      hostname: 'generativelanguage.googleapis.com',
+      path: `/v1beta/models/${GEMINI_MODEL}:generateContent?key=${env.GEMINI_API_KEY}`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    }, gres => {
+      let data = '';
+      gres.on('data', d => data += d);
+      gres.on('end', () => cb(null, { statusCode: gres.statusCode, data }));
+    });
+    greq.on('error', cb);
+    greq.write(body);
+    return greq.end();
   }
   googleService.getGoogleToken((err, token) => {
     if (err) return cb(err);
@@ -191,7 +208,7 @@ function handleChat(req, res) {
     return res.end(JSON.stringify({ error: 'rate_limited' }));
   }
 
-  if (!env.googleServiceAccount) {
+  if (!env.googleServiceAccount && !env.GEMINI_API_KEY) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }
@@ -256,7 +273,7 @@ function handleImproveText(req, res) {
     return res.end(JSON.stringify({ error: 'rate_limited' }));
   }
 
-  if (!env.googleServiceAccount) {
+  if (!env.googleServiceAccount && !env.GEMINI_API_KEY) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }

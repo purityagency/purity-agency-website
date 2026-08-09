@@ -101,14 +101,36 @@ PROTOCOLE DE CAPTURE (IMPORTANT) : lorsque tu disposes du contact, termine ta r�
 Règles de la balise : uniquement quand tu as un nom + (email OU phone) ; champs inconnus = chaîne vide ""; JSON valide sur une seule ligne ; n'en émets qu'UNE par conversation (sauf correction explicite). Le texte AVANT la balise reste une phrase de confirmation humaine ("Parfait Marie, c'est noté ✅ — on vous écrit sous 24 h."). Ne mentionne JAMAIS la balise ni le mot "LEAD" au visiteur.
 
 Objectif secondaire si le visiteur refuse de laisser ses coordonnées : l'inviter à écrire à contact@purity-agency.be.
-Règles de vérité : n'invente jamais de témoignages ou de chiffres non sourcés. Présente Purity Agency comme une agence d'élite fondée par Amir Kebiyeb, structurée sous forme de collectif d'experts en développement et IA. Reste concis (2 à 4 phrases), chaleureux, vouvoiement systématique, français.`;
+Règles de vérité : n'invente jamais de témoignages ou de chiffres non sourcés. Présente Purity Agency comme une agence d'élite fondée par Amir Kebiyeb, structurée sous forme de collectif d'experts en développement et IA. Reste concis (2 à 4 phrases), chaleureux, vouvoiement systématique, français.
+
+IMPORTANT FORMAT : Réponds UNIQUEMENT en texte brut. AUCUN formatage Markdown, pas de gras (**), pas d'italique (*), pas de listes à puces. Juste du texte normal.`;
 
 function handleContact(req, res) {
+  if (rateLimit.rateLimited(req)) {
+    res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+    return res.end(JSON.stringify({ error: 'rate_limited' }));
+  }
+
   let body = '';
-  req.on('data', c => { body += c; if (body.length > 12000) req.destroy(); });
+  let tooLarge = false;
+  req.on('data', c => { 
+    if (tooLarge) return;
+    body += c; 
+    if (body.length > 12000) {
+      tooLarge = true;
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'payload_too_large' }));
+    }
+  });
   req.on('end', async () => {
+    if (tooLarge) return;
     let data = {};
-    try { data = JSON.parse(body) || {}; } catch (err) { /* ignore */ }
+    try { 
+      data = JSON.parse(body) || {}; 
+    } catch (err) { 
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'invalid_json' }));
+    }
     const name = String(data.name || '').slice(0, 200).trim();
     const email = String(data.email || '').slice(0, 200).trim();
     const phone = String(data.phone || '').slice(0, 60).trim();
@@ -164,7 +186,7 @@ function handleContact(req, res) {
 }
 
 function handleChat(req, res) {
-  if (rateLimit.rateLimited(req)) {
+  if (rateLimit.rateLimitedChat(req)) {
     res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
     return res.end(JSON.stringify({ error: 'rate_limited' }));
   }
@@ -175,13 +197,30 @@ function handleChat(req, res) {
   }
 
   let body = '';
-  req.on('data', c => { body += c; if (body.length > 24000) req.destroy(); });
+  let tooLarge = false;
+  req.on('data', c => { 
+    if (tooLarge) return;
+    body += c; 
+    if (body.length > 24000) {
+      tooLarge = true;
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'payload_too_large' }));
+    }
+  });
   req.on('end', () => {
+    if (tooLarge) return;
     let messages = [];
-    try { messages = JSON.parse(body).messages || []; } catch (err) { /* ignore */ }
-    const contents = messages.slice(-12)
-      .filter(m => m && m.text)
-      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: String(m.text).slice(0, 2000) }] }));
+    try { 
+      const parsed = JSON.parse(body);
+      messages = parsed.messages || []; 
+      if (!Array.isArray(messages)) messages = [];
+    } catch (err) { 
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'invalid_json' }));
+    }
+    const contents = messages.slice(-6)
+      .filter(m => m && m.text && typeof m.text === 'string')
+      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.text.slice(0, 500) }] }));
     if (!contents.length) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'empty' }));
@@ -190,7 +229,7 @@ function handleChat(req, res) {
     callVertexGenerateContent({
       system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
       contents,
-      generationConfig: { maxOutputTokens: 600, temperature: 0.85, topP: 0.95 }
+      generationConfig: { maxOutputTokens: 400, temperature: 0.85, topP: 0.95 }
     }, (err, result) => {
       if (err) {
         logger.error('[chat] network error', err);
@@ -212,16 +251,36 @@ function handleChat(req, res) {
 }
 
 function handleImproveText(req, res) {
+  if (rateLimit.rateLimitedChat(req)) {
+    res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+    return res.end(JSON.stringify({ error: 'rate_limited' }));
+  }
+
   if (!env.googleServiceAccount) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }
 
   let body = '';
-  req.on('data', c => { body += c; if (body.length > 8000) req.destroy(); });
+  let tooLarge = false;
+  req.on('data', c => { 
+    if (tooLarge) return;
+    body += c; 
+    if (body.length > 8000) {
+      tooLarge = true;
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'payload_too_large' }));
+    }
+  });
   req.on('end', () => {
+    if (tooLarge) return;
     let data = {};
-    try { data = JSON.parse(body) || {}; } catch (err) { /* ignore */ }
+    try { 
+      data = JSON.parse(body) || {}; 
+    } catch (err) { 
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'invalid_json' }));
+    }
     let text = String(data.text || '').slice(0, 1500).trim();
 
     let promptInstruction = "Tu es un expert en stratégie digitale et un copywriter d'élite pour Purity Agency. Ta mission est de réécrire les notes du client pour les sublimer.\n\nInstructions clés :\n1. Rédige à la première personne du singulier ('Je souhaite...', 'Mon projet consiste à...').\n2. Le ton doit être extrêmement professionnel, inspirant, moderne et tourné vers la performance.\n3. Reste concis et percutant (entre 2 et 4 phrases fluides).\n4. Ne fais AUCUNE liste à puces, n'utilise AUCUN emoji, ne mets pas de titres ou de labels.\n5. Sublime ses idées en y ajoutant du vocabulaire premium adapté aux standards du web moderne (SEO, UX, conversion, automatisation) sans inventer de fausses fonctionnalités.\n\nRéponds uniquement avec le texte sublimé, sans introduction ni commentaires.";

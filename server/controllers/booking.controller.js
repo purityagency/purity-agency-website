@@ -5,8 +5,14 @@ const googleService = require('../services/google.service');
 const resendService = require('../services/resend.service');
 const ordersRepo = require('../repositories/orders.repository');
 const purityosService = require('../services/purityos.service');
+const rateLimit = require('../middleware/rate-limit');
 
 function handleAvailability(req, res, query) {
+  if (rateLimit.rateLimited(req)) {
+    res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+    return res.end(JSON.stringify({ error: 'rate_limited' }));
+  }
+
   const dateStr = (query.get('date') || '').slice(0, 10);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -69,11 +75,31 @@ function handleAvailability(req, res, query) {
 }
 
 function handleBook(req, res) {
+  if (rateLimit.rateLimited(req)) {
+    res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+    return res.end(JSON.stringify({ error: 'rate_limited' }));
+  }
+
   let body = '';
-  req.on('data', c => { body += c; if (body.length > 8000) req.destroy(); });
+  let tooLarge = false;
+  req.on('data', c => { 
+    if (tooLarge) return;
+    body += c; 
+    if (body.length > 8000) {
+      tooLarge = true;
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'payload_too_large' }));
+    }
+  });
   req.on('end', () => {
+    if (tooLarge) return;
     let data = {};
-    try { data = JSON.parse(body) || {}; } catch (err) { /* ignore */ }
+    try { 
+      data = JSON.parse(body) || {}; 
+    } catch (err) { 
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'invalid_json' }));
+    }
     const start = String(data.start || '').trim();
     const name = String(data.name || '').slice(0, 200).trim();
     const email = String(data.email || '').slice(0, 200).trim();

@@ -125,10 +125,25 @@ function handleOrderCreate(req, res) {
   }
 
   let body = '';
-  req.on('data', c => { body += c; if (body.length > 4000) req.destroy(); });
+  let tooLarge = false;
+  req.on('data', c => { 
+    if (tooLarge) return;
+    body += c; 
+    if (body.length > 4000) {
+      tooLarge = true;
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'payload_too_large' }));
+    }
+  });
   req.on('end', async () => {
+    if (tooLarge) return;
     let data = {};
-    try { data = JSON.parse(body) || {}; } catch (err) { /* ignore */ }
+    try { 
+      data = JSON.parse(body) || {}; 
+    } catch (err) { 
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'invalid_json' }));
+    }
 
     // Honeypot check
     if (String(data.website_verification || '').trim()) {
@@ -255,7 +270,7 @@ function handleOrderCreate(req, res) {
     if (brief) order.brief = brief;
 
     try {
-      ordersRepo.writeOrder(order);
+      await ordersRepo.writeOrder(order);
     } catch (e) {
       logger.error('[order] write storage error', e);
       res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -290,7 +305,7 @@ function handleOrderCreate(req, res) {
 
       order.molliePaymentId = payment.id;
       order.mollieCustomerId = mollieCustomerId;
-      ordersRepo.writeOrder(order);
+      await ordersRepo.writeOrder(order);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ sessionUrl: payment._links.checkout.href }));
@@ -303,9 +318,24 @@ function handleOrderCreate(req, res) {
 }
 
 function handleMollieWebhook(req, res) {
+  if (rateLimit.rateLimited(req)) {
+    res.writeHead(429, { 'Retry-After': '60' });
+    return res.end();
+  }
+
   let body = '';
-  req.on('data', c => { body += c; if (body.length > 4000) req.destroy(); });
+  let tooLarge = false;
+  req.on('data', c => { 
+    if (tooLarge) return;
+    body += c; 
+    if (body.length > 4000) {
+      tooLarge = true;
+      res.writeHead(413, { 'Content-Type': 'text/plain' });
+      res.end('payload_too_large');
+    }
+  });
   req.on('end', async () => {
+    if (tooLarge) return;
     const params = new URLSearchParams(body);
     const paymentId = params.get('id') || '';
     if (!paymentId) {
@@ -323,7 +353,7 @@ function handleMollieWebhook(req, res) {
     }
 
     const orderId = payment.metadata?.orderId || '';
-    const order = orderId ? ordersRepo.readOrder(orderId) : ordersRepo.findOrderByMolliePayment(paymentId);
+    const order = orderId ? await ordersRepo.readOrder(orderId) : await ordersRepo.findOrderByMolliePayment(paymentId);
 
     if (order && payment.status === 'paid') {
       const processingAt = order.webhookProcessingAt ? Date.parse(order.webhookProcessingAt) : 0;
@@ -332,10 +362,10 @@ function handleMollieWebhook(req, res) {
         // Durable idempotency guard: duplicate Mollie deliveries cannot re-provision
         // while the first delivery is still executing.
         order.webhookProcessingAt = new Date().toISOString();
-        ordersRepo.writeOrder(order);
+        await ordersRepo.writeOrder(order);
         order.status = 'paid';
         order.paidAt = new Date().toISOString();
-        ordersRepo.writeOrder(order);
+        await ordersRepo.writeOrder(order);
 
         purityosService.notifyEvent({
           type: 'ORDER',
@@ -348,15 +378,15 @@ function handleMollieWebhook(req, res) {
         });
 
         order.provisioningStatus = 'pending';
-        ordersRepo.writeOrder(order);
-        provisionPortalClient(order).then(() => {
+        await ordersRepo.writeOrder(order);
+        provisionPortalClient(order).then(async () => {
           order.provisioningStatus = 'completed';
           order.provisionedAt = new Date().toISOString();
-          ordersRepo.writeOrder(order);
-        }).catch(err => {
+          await ordersRepo.writeOrder(order);
+        }).catch(async err => {
           order.provisioningStatus = 'failed';
           order.provisioningError = err.message;
-          ordersRepo.writeOrder(order);
+          await ordersRepo.writeOrder(order);
           logger.error('[provision] failed', err);
         });
 
@@ -376,7 +406,7 @@ function handleMollieWebhook(req, res) {
             }
             const subscription = await mollieService.mollieRequest('POST', `/customers/${encodeURIComponent(order.mollieCustomerId)}/subscriptions`, subPayload);
             order.mollieSubscriptionId = subscription.id;
-            ordersRepo.writeOrder(order);
+            await ordersRepo.writeOrder(order);
           } catch (e) {
             logger.error('[webhook] mollie subscription creation error', e);
           }

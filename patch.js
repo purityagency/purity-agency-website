@@ -1,1 +1,0 @@
-const fs=require('fs');let c=fs.readFileSync('js/site.js','utf8');c=c.replace('}const D=document.getElementById("chat")', '});onDomReady(()=>{const D=document.getElementById("chat")');fs.writeFileSync('js/site_test.js',c);

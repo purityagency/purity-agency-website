@@ -3,6 +3,7 @@
     "start": "node server/app.js"
   },
   "dependencies": {
+    "googleapis": "^174.0.1",
     "jsdom": "^29.1.1"
   }
 }

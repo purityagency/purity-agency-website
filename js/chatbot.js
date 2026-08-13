@@ -14,6 +14,7 @@
     const chatSubmit = document.getElementById('chat-submit');
     const chatBadge = document.getElementById('chat-badge');
     const chatTeaser = document.getElementById('chat-teaser');
+    const chatCloseBtn = document.getElementById('chat-close-btn');
 
     if (!chatContainer || !chatToggle || !chatPanel || !chatLog || !chatForm || !chatInput || !chatSubmit) {
       return;
@@ -204,6 +205,17 @@
           }
           
           if (replyText) {
+            // Check for navigation commands
+            const navMatch = replyText.match(/\[NAV:([\w-]+)\]/i);
+            if (navMatch) {
+              const targetId = navMatch[1];
+              replyText = replyText.replace(/\[NAV:[\w-]+\]/i, '').trim();
+              const targetSection = document.getElementById(targetId);
+              if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+
             appendMessage(replyText, 'sys');
             messages.push({ role: 'model', text: replyText });
             if (messages.length > 20) messages = messages.slice(-20);
@@ -316,6 +328,10 @@
       }
     });
 
+    if (chatCloseBtn) {
+      chatCloseBtn.addEventListener('click', toggleChat);
+    }
+
     if (chatBadge) {
       try {
         if (sessionStorage.getItem('octomask_badge_seen')) chatBadge.hidden = true;
@@ -338,88 +354,68 @@
       }, 5000);
     }
 
-    // Drag logic for desktop
-    let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
-    
-    function startDrag(e) {
-      if (window.innerWidth <= 860) return; // Disable drag on mobile
-      const evt = e.touches ? e.touches[0] : e;
-      isDragging = false;
-      startX = evt.clientX;
-      startY = evt.clientY;
-      const rect = chatContainer.getBoundingClientRect();
-      initialLeft = rect.left;
-      initialTop = rect.top;
-      
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchmove', drag, { passive: false });
-      document.addEventListener('touchend', stopDrag);
-    }
-    
-    function drag(e) {
-      const evt = e.touches ? e.touches[0] : e;
-      const dx = evt.clientX - startX;
-      const dy = evt.clientY - startY;
-      
-      if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
-        isDragging = true;
-        chatContainer.classList.add('is-dragging');
-      }
-      
-      if (isDragging) {
-        if (e.cancelable) e.preventDefault();
-        const cw = chatContainer.offsetWidth;
-        const ch = chatContainer.offsetHeight;
-        let newX = Math.min(Math.max(0, initialLeft + dx), window.innerWidth - cw);
-        let newY = Math.min(Math.max(0, initialTop + dy), window.innerHeight - ch);
-        
-        chatContainer.style.left = newX + 'px';
-        chatContainer.style.top = newY + 'px';
-        chatContainer.style.right = 'auto';
-        chatContainer.style.bottom = 'auto';
-      }
-    }
-    
-    function stopDrag() {
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('mouseup', stopDrag);
-      document.removeEventListener('touchmove', drag);
-      document.removeEventListener('touchend', stopDrag);
-      
-      if (isDragging) {
-        const cw = chatContainer.offsetWidth;
-        const ch = chatContainer.offsetHeight;
-        const rect = chatContainer.getBoundingClientRect();
-        const margin = 20;
-        const isLeft = (rect.left + cw/2) < (window.innerWidth / 2);
-        let newY = Math.min(Math.max(margin, rect.top), window.innerHeight - ch - margin);
-        
-        chatContainer.classList.remove('is-dragging');
-        chatContainer.style.top = newY + 'px';
-        chatContainer.style.bottom = 'auto';
-        chatContainer.style.right = 'auto';
-        chatContainer.style.left = (isLeft ? margin : window.innerWidth - cw - margin) + 'px';
-        chatContainer.dataset.side = isLeft ? 'left' : 'right';
-      } else {
-        chatContainer.classList.remove('is-dragging');
-      }
-      
-      // Delay resetting isDragging so click event can check it
-      setTimeout(() => { isDragging = false; }, 50);
-    }
-
-    chatToggle.addEventListener('mousedown', startDrag);
-    chatToggle.addEventListener('touchstart', startDrag, { passive: true });
-    
     chatToggle.addEventListener('click', (e) => {
-      if (isDragging) {
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
+      e.preventDefault();
       toggleChat();
     });
+
+    // Context Awareness Logic
+    let currentContext = '';
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          const sectionId = entry.target.id;
+          if (sectionId && sectionId !== currentContext) {
+            currentContext = sectionId;
+            updateChatContext(sectionId);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('section[id]').forEach(section => {
+      observer.observe(section);
+    });
+
+    function updateChatContext(sectionId) {
+      if (!isOpen) return; // Only push context if chat is open to avoid spam
+      
+      const contextMessages = {
+        'acquisition': { title: 'Acquisition Client', content: 'Je vois que vous regardez nos services d\'acquisition. Voulez-vous voir des études de cas de nos clients ?', action: 'Voir les cas' },
+        'studio': { title: 'Purity Studio', content: 'Intéressé par l\'automatisation ? Nous pouvons faire un audit de vos processus actuels.', action: 'Audit gratuit' },
+        'tarifs': { title: 'Tarification Flexible', content: 'Nous proposons des forfaits et des projets sur mesure. Quel est votre budget estimé ?', action: 'Voir forfaits' },
+      };
+
+      const msg = contextMessages[sectionId];
+      if (msg) {
+        // Add context widget to chat
+        const widgetHtml = `
+          <div class="chat-widget">
+            <div class="chat-widget__title">💡 Context: ${msg.title}</div>
+            <div class="chat-widget__content">${msg.content}</div>
+            <a href="#" class="chat-widget__action chat__chip" data-query="${msg.action}">${msg.action}</a>
+          </div>
+        `;
+        
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'msg msg--sys';
+        msgDiv.innerHTML = widgetHtml;
+        chatLog.appendChild(msgDiv);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        
+        // Re-bind chip clicks for the new widget
+        msgDiv.querySelectorAll('.chat__chip').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const query = btn.getAttribute('data-query');
+            if (query && chatInput && chatForm) {
+              chatInput.value = query;
+              chatForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+            }
+          });
+        });
+      }
+    }
 
     // Auto-open logic based on sessionStorage or URL hash
     if (sessionStorage.getItem('octomask_messages') && window.innerWidth > 860) {

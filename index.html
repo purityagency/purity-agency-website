@@ -1620,24 +1620,19 @@
 </footer>
 
 <!-- Chatbot OctoMask -->
-<div id="chat" class="chat" data-side="right">
-  <div id="chat-teaser" class="chat__teaser" hidden>
-    <button class="chat__teaser-close" data-i18n-aria="teaser.close_aria" aria-label="Fermer" data-i18n-aria="gen_aria_28">✕</button>
-    <span class="chat__teaser-wave">👋</span>
-    <p data-i18n="teaser.text"><span data-i18n="gen_text_562">Un projet en tête ?</span><br><strong><span data-i18n="gen_text_563">Parlons-en — c'est gratuit.</span></strong></p>
-  </div>
-  <button id="chat-toggle" class="chat__toggle" data-i18n-aria="chat.aria_open" aria-label="Ouvrir le chat" data-i18n-aria="gen_aria_29">
-    <video class="chat__avatar" data-src="assets/octomask-floating.mp4" preload="none" muted loop autoplay playsinline disablepictureinpicture></video>
-    <span class="chat-close" aria-hidden="true">✕.</span>
-    <span id="chat-badge" class="chat__badge" aria-hidden="true">1</span>
-  </button>
-  <div id="chat-panel" class="chat__panel" role="dialog" data-i18n-aria="chat.aria_dialog" aria-label="Assistant Purity" data-i18n-aria="gen_aria_30" hidden>
+<button id="chat-toggle" class="chat__toggle" data-i18n-aria="chat.aria_open" aria-label="Ouvrir le chat">
+  <video class="chat__avatar" data-src="assets/octomask-floating.mp4" preload="none" muted loop autoplay playsinline disablepictureinpicture></video>
+  <span id="chat-badge" class="chat__badge" aria-hidden="true">1</span>
+</button>
+
+<div id="chat" class="chat">
+  <div id="chat-panel" class="chat__panel" role="dialog" aria-label="Assistant Purity">
     <div class="chat__header">
       <div class="chat__header-info">
         <div class="chat__title" data-i18n="chat.title"><span data-i18n="gen_text_564">OctoMask IA</span></div>
-        <div class="chat__status" data-i18n="chat.status"><span data-i18n="gen_text_565">En ligne</span></div>
+        <div class="chat__status" data-i18n="chat.status"><span data-i18n="gen_text_565">Agent Opérationnel</span></div>
       </div>
-      <a href="#contact" class="btn btn--accent chat__meet-btn" style="padding: 6px 12px; font-size: 0.85rem; border-radius: 12px; height: auto; text-decoration: none;" data-i18n="chat.meet_btn"><span data-i18n="gen_text_566">Réserver</span></a>
+      <button class="chat__close" id="chat-close-btn" aria-label="Fermer le chat">✕</button>
     </div>
     <div id="chat-log" class="chat__log"></div>
     <div id="chat-suggestions" class="chat__suggestions">
@@ -1648,11 +1643,11 @@
     </div>
     <form id="chat-form" class="chat__form">
       <input type="text" id="chat-input" class="chat__input" data-i18n-placeholder="chat.placeholder" placeholder="Posez votre question..." autocomplete="off">
-      <button type="submit" id="chat-submit" class="chat__submit" data-i18n-aria="chat.aria_send" aria-label="Envoyer" data-i18n-aria="gen_aria_31">
+      <button type="submit" id="chat-submit" class="chat__submit" data-i18n-aria="chat.aria_send" aria-label="Envoyer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       </button>
     </form>
-    <p class="chat__disclaimer" data-i18n="chat.disclaimer"><span data-i18n="gen_text_567">Assistant IA (Google Gemini). Évitez les données sensibles. </span><a href="legal.html#confidentialite"><span data-i18n="gen_text_568">Confidentialité</span></a></p>
+    <p class="chat__disclaimer" data-i18n="chat.disclaimer"><span data-i18n="gen_text_567">Agent Sécurisé. </span><a href="legal.html#confidentialite"><span data-i18n="gen_text_568">Confidentialité</span></a></p>
   </div>
 </div>
 

@@ -1,5 +1,10 @@
 (function() {
   function initChatbot() {
+    document.querySelectorAll("video.chat__avatar[data-src]").forEach((e) => {
+      e.src = e.dataset.src;
+      e.play().catch(() => {});
+    });
+
     const chatContainer = document.getElementById('chat');
     const chatToggle = document.getElementById('chat-toggle');
     const chatPanel = document.getElementById('chat-panel');

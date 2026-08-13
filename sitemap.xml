@@ -9,4 +9,11 @@
   <url><loc>https://purity-agency.be/article-seo-local-wallonie.html</loc><lastmod>2026-08-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://purity-agency.be/article-ia-pme-belgique.html</loc><lastmod>2026-08-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://purity-agency.be/article-site-ne-convertit-pas.html</loc><lastmod>2026-08-13</lastmod><priority>0.6</priority></url>
+
+  <url>
+    <loc>https://purity-agency.be/automatisation-ia-pme-wallonie.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

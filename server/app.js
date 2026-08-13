@@ -97,7 +97,9 @@ function handleStaticRequest(req, res, urlPath) {
 
     // Cache headers
     const lastModified = stat.mtime.toUTCString();
-    const cacheControl = ['.html', '.css', '.js', '.json'].includes(ext)
+    // .xml / .txt (sitemap, robots, llms) doivent rester FRAIS : les moteurs les
+    // relisent souvent. Un cache immutable d'1 an les figeait (drift SEO).
+    const cacheControl = ['.html', '.css', '.js', '.json', '.xml', '.txt'].includes(ext)
       ? 'no-cache'
       : 'public, max-age=31536000, immutable';
 

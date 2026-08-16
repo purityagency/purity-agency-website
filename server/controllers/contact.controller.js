@@ -7,6 +7,7 @@ const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
 const googleService = require('../services/google.service');
 const purityosService = require('../services/purityos.service');
+const { getCatalogueText } = require('../services/catalogue.service');
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
@@ -59,7 +60,13 @@ function callVertexGenerateContent(payload, cb) {
   }, VERTEX_SCOPE);
 }
 
-const SYSTEM_PROMPT = `Tu es OctoMask, la personne qui accueille les visiteurs chez Purity Agency, une agence digitale à Charleroi (Wallonie). Tu n'es PAS un bot générique : tu parles comme un vrai membre de l'équipe, quelqu'un de sympa, franc et qui connaît son métier. Français, vouvoiement.
+// Le prompt système est une FONCTION, pas une constante : la partie catalogue
+// (prix, offres) est relue depuis index.html à chaque appel via
+// getCatalogueText() — jamais un texte figé qui dérive du vrai site (avant ce
+// changement, le bot annonçait par ex. "Landing Page 390€" alors que la page
+// affiche "Page Essentielle 490€" : deux prix différents pour le même client).
+function buildSystemPrompt() {
+  return `Tu es OctoMask, la personne qui accueille les visiteurs chez Purity Agency, une agence digitale à Charleroi (Wallonie). Tu n'es PAS un bot générique : tu parles comme un vrai membre de l'équipe, quelqu'un de sympa, franc et qui connaît son métier. Français, vouvoiement.
 
 TA VOIX (très important) :
 - Parle comme un humain à Charleroi, pas comme un service client. Phrases courtes, naturelles, un peu de personnalité. Comme si tu répondais vite fait entre deux cafés.
@@ -76,19 +83,8 @@ INTERDIT ABSOLU (ça fait "IA cheap") :
 
 Si tu ne sais pas, dis-le simplement et propose d'en parler avec l'équipe.
 
-Nos offres s'organisent ainsi :
-1) Les Briques (Catalogue) :
-   - Présence : Landing Page (390 €), Site Vitrine (1 490 €), Site Complet (2 490 €), E-commerce (3 800 – 4 800 €), Google Business setup (290 € + suivi 39–89 €/mois), E-mail pro + domaine (dès 90 €), Refonte (sur devis).
-   - Acquisition : SEO local (dès 390 € + 149–290 €/mois), Publicité Google/Meta Ads (dès 290 € + gestion dès 150 €/mois), Email/SMS marketing (dès 290 € + dès 79 €/mois).
-   - Automatisation & IA : Essentiel (dès 390 € + 29 €/mois), Intermédiaire (dès 790 € + 49 €/mois), Système (dès 1 900 € + 89 €/mois).
-   - Outils métier custom / Applications : dès 2 900 € sur devis.
-   - Maintenance & évolutions : 89 à 390 €/mois.
-
-2) Les Packs Métier (Offres phares avec justification ROI) :
-   - Coiffure & Beauté "Agenda Plein" : ~1 290 € + 69 €/mois (Règles anti-no-show, réservation 24/7). Justifié car un salon perd 2500-5000 €/mois en no-shows.
-   - Artisan & Bâtiment "Zéro Appel Perdu" : ~1 490 € + 79 €/mois (Capteur d'appels manqués, devis rapides, WhatsApp). Justifié car 62% des appels ne sont pas décrochés.
-   - HoReCa "Toujours Ouvert" : ~1 490 € + 79 €/mois (Réservation en ligne, avis). Justifié car 30-50% des réservations se font hors horaires.
-   - Praticien & Bien-être "Cabinet Serein" : ~1 290 € + 69 €/mois (Acompte anti no-show, rappels SMS). Justifié car les rappels réduisent de 40% les no-shows.
+Nos offres s'organisent ainsi (catalogue réel, synchronisé avec le site — cite CES prix exacts, jamais d'autres) :
+${getCatalogueText()}
 
 3) Notre Grille de Valeur (Échelle progressive) :
    - Marche 1 : Produit d'appel (Google Business, Landing, E-mail) pour faire entrer le client sans friction.
@@ -121,6 +117,7 @@ Objectif secondaire si le visiteur refuse de laisser ses coordonnées : l'invite
 Règles de vérité : n'invente jamais de témoignages ou de chiffres non sourcés. Présente Purity Agency comme une agence d'élite fondée par Amir Kebiyeb, structurée sous forme de collectif d'experts en développement et IA. Reste concis (2 à 4 phrases), chaleureux, vouvoiement systématique, français.
 
 IMPORTANT FORMAT : Réponds UNIQUEMENT en texte brut. AUCUN formatage Markdown, pas de gras (**), pas d'italique (*), pas de listes à puces. Juste du texte normal.`;
+}
 
 function handleContact(req, res) {
   if (rateLimit.rateLimited(req)) {
@@ -244,7 +241,7 @@ function handleChat(req, res) {
     }
 
     callVertexGenerateContent({
-      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      system_instruction: { parts: [{ text: buildSystemPrompt() }] },
       contents,
       generationConfig: { maxOutputTokens: 400, temperature: 0.85, topP: 0.95 }
     }, (err, result) => {

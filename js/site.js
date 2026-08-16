@@ -615,7 +615,7 @@ let _i18nDict = {};
       s(0, !1),
       window.addEventListener("resize", () => {
         window.innerWidth > 768
-          ? (computeDims(), s(r, !1))
+          ? s(r, !1)
           : (gsap.set(t, { clearProps: "all" }),
             n.forEach((e) => gsap.set(e, { clearProps: "all" })));
       }));
@@ -1143,6 +1143,12 @@ let _i18nDict = {};
   const F = document.getElementById("chat-teaser");
   if (F) {
     let e = !1;
+    // N/Y pilotaient l'ouverture du panneau de chat OctoMask — leur déclaration
+    // a disparu de ce fichier (elle existe encore, complète, dans
+    // scratch/old_site.js) pendant qu'une édition précédente ne gardait que ce
+    // bloc "teaser". Patch minimal ici pour stopper le crash JS sans deviner
+    // un comportement : cf. plans/ pour restaurer le vrai widget de chat.
+    const N = !1;
     const t = () => {
         e ||
           N ||
@@ -1161,7 +1167,7 @@ let _i18nDict = {};
       (e.stopPropagation(), n(!0));
     }),
       F.addEventListener("click", () => {
-        (n(!0), N || Y());
+        n(!0);
       }),
       setTimeout(t, 4e3),
       window.addEventListener(

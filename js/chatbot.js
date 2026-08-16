@@ -421,6 +421,16 @@
       toggleChat();
     });
 
+    // Bouton ✕ dans l'en-tête du panneau : sur mobile le panneau plein écran
+    // recouvre entièrement la bulle-bouton (donc sa croix aussi), la rendant
+    // injoignable au toucher — impossible de fermer le chat autrement.
+    const chatClose = document.getElementById('chat-close');
+    if (chatClose) {
+      chatClose.addEventListener('click', () => {
+        if (isOpen) toggleChat();
+      });
+    }
+
     // Auto-open logic based on sessionStorage or URL hash
     if (sessionStorage.getItem('octomask_messages') && window.innerWidth > 860) {
       // Don't auto open on mobile, but do on desktop if there are messages

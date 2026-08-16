@@ -76,9 +76,45 @@
       
       chatLog.appendChild(msgDiv);
       chatLog.scrollTop = chatLog.scrollHeight;
-      
+
       // Save state
       saveState();
+
+      return msgDiv;
+    }
+
+    // Révélation "machine à écrire" — purement visuelle, sur un message DÉJÀ
+    // construit et sauvegardé correctement par appendMessage() ci-dessus (ne
+    // touche ni au state ni au parsing markdown : parcourt juste les noeuds
+    // texte déjà en place dans l'ordre du document et les remplit
+    // progressivement). Le serveur ne stream pas (le tag [LEAD] doit être lu
+    // en entier avant l'envoi) ; ceci donne la fluidité perçue sans y toucher.
+    function revealTyping(msgDiv) {
+      if (!msgDiv) return;
+      const walker = document.createTreeWalker(msgDiv, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      let n;
+      while ((n = walker.nextNode())) nodes.push(n);
+      const fulls = nodes.map((node) => node.textContent);
+      nodes.forEach((node) => { node.textContent = ''; });
+
+      const totalChars = fulls.reduce((a, s) => a + s.length, 0);
+      if (!totalChars) return;
+      const stepChars = Math.max(2, Math.round(totalChars / 45));
+      let ni = 0;
+      const timer = setInterval(() => {
+        let remaining = stepChars;
+        while (remaining > 0 && ni < nodes.length) {
+          const full = fulls[ni];
+          const have = nodes[ni].textContent.length;
+          const take = Math.min(remaining, full.length - have);
+          nodes[ni].textContent += full.slice(have, have + take);
+          remaining -= take;
+          if (nodes[ni].textContent.length >= full.length) ni++;
+        }
+        chatLog.scrollTop = chatLog.scrollHeight;
+        if (ni >= nodes.length) clearInterval(timer);
+      }, 20);
     }
 
     function showTyping() {
@@ -204,7 +240,7 @@
           }
           
           if (replyText) {
-            appendMessage(replyText, 'sys');
+            revealTyping(appendMessage(replyText, 'sys'));
             messages.push({ role: 'model', text: replyText });
             if (messages.length > 20) messages = messages.slice(-20);
             saveState();
@@ -264,7 +300,7 @@
           if (!loadState()) {
             setTimeout(() => {
               const intro = "Bonjour ! 👋 Je filtre les premières demandes pour l'équipe Purity. Pour aller droit au but et vous faire gagner du temps : quel est le principal frein de votre activité aujourd'hui ?";
-              appendMessage(intro, 'sys');
+              revealTyping(appendMessage(intro, 'sys'));
               messages.push({ role: 'model', text: intro });
               saveState();
               

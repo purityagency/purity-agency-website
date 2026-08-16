@@ -18,10 +18,19 @@ right = left + min_dim
 bottom = top + min_dim
 square_img = img.crop((left, top, right, bottom))
 
+# Remove the near-black background (source photo is shot on black) via
+# flood fill from the corners, so exported icons/logos are transparent
+# instead of carrying an opaque black square (bug found 2026-08-16: SERP
+# favicon and GBP photo tiles rendered as solid black blobs).
+ImageDraw.floodfill(square_img, (0, 0), (0, 0, 0, 0), thresh=45)
+ImageDraw.floodfill(square_img, (square_img.width - 1, 0), (0, 0, 0, 0), thresh=45)
+ImageDraw.floodfill(square_img, (0, square_img.height - 1), (0, 0, 0, 0), thresh=45)
+ImageDraw.floodfill(square_img, (square_img.width - 1, square_img.height - 1), (0, 0, 0, 0), thresh=45)
+
 # 1. High-res logo.png (512x512)
 logo_512 = square_img.resize((512, 512), Image.Resampling.LANCZOS)
 logo_512.save(os.path.join(target_dir, "logo.png"), "PNG")
-logo_512.convert("RGB").save(os.path.join(target_dir, "logo.webp"), "WEBP")
+logo_512.save(os.path.join(target_dir, "logo.webp"), "WEBP")
 logo_512.save(os.path.join(target_dir, "octomask-logo.png"), "PNG")
 
 # 2. Apple touch icon (180x180)
@@ -32,8 +41,7 @@ apple_icon.save(os.path.join(target_dir, "apple-touch-icon.png"), "PNG")
 fav_192 = square_img.resize((192, 192), Image.Resampling.LANCZOS)
 fav_192.save(os.path.join(target_dir, "favicon.png"), "PNG")
 
-fav_48 = square_img.resize((48, 48), Image.Resampling.LANCZOS).convert("RGB")
-fav_48.save(os.path.join(target_dir, "favicon.ico"), format="ICO", sizes=[(48, 48)])
+logo_512.save(os.path.join(target_dir, "favicon.ico"), format="ICO", sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (192, 192)])
 
 # 4. OpenGraph share banner og-image.jpg (1200x630)
 og_bg = Image.new("RGB", (1200, 630), color=(6, 3, 9)) # #060309 dark background

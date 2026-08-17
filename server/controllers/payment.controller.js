@@ -119,6 +119,11 @@ function provisionPortalClient(order) {
 }
 
 function handleOrderCreate(req, res) {
+  if (!env.ORDERS_ENABLED) {
+    res.writeHead(503, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ error: 'orders_disabled' }));
+  }
+
   if (rateLimit.rateLimited(req)) {
     res.writeHead(429, { 'Retry-After': '60' });
     return res.end();

@@ -34,6 +34,13 @@ try {
 
 const GCP_REGION = process.env.GCP_REGION || 'us-central1';
 
+// Coupe-circuit commande/paiement en ligne : désactivé par défaut tant que la
+// capacité de livraison n'est pas prouvée sur un premier client réel (2026-08-17).
+// Remettre ORDERS_ENABLED=true sur Render pour réactiver le paiement direct
+// (Mollie) sans rien changer au code — l'infra (mollie.service, orders.repository,
+// provisioning) reste intacte, prête à scaler.
+const ORDERS_ENABLED = String(process.env.ORDERS_ENABLED || '').trim() === 'true';
+
 const CONTACT_FROM = 'Purity Agency <hello@purity-agency.be>';
 const CONTACT_TO = 'hello@purity-agency.be';
 // Adresses notifiées pour toute activité entrante : commande, RDV, question/lead.
@@ -52,5 +59,6 @@ module.exports = {
   CONTACT_FROM,
   CONTACT_TO,
   NOTIFY_EMAILS,
-  BASE_URL
+  BASE_URL,
+  ORDERS_ENABLED
 };

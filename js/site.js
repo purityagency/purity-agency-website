@@ -865,10 +865,23 @@ let _i18nDict = {};
     });
   });
   const A = document.querySelectorAll(".tarifs-tab"),
-    x = document.querySelectorAll(".tarifs-pane");
+    x = document.querySelectorAll(".tarifs-pane"),
+    tabInd = document.querySelector(".tarifs-tab-indicator");
+  function moveTabIndicator(tab, animate) {
+    if (!tabInd || !tab) return;
+    const pos = { x: tab.offsetLeft, width: tab.offsetWidth };
+    animate && !t
+      ? gsap.to(tabInd, { ...pos, duration: 0.45, ease: "power3.out" })
+      : gsap.set(tabInd, pos);
+  }
+  moveTabIndicator(document.querySelector(".tarifs-tab.is-active"), false);
+  window.addEventListener("resize", () =>
+    moveTabIndicator(document.querySelector(".tarifs-tab.is-active"), false),
+  );
   if (A.length && x.length) {
     A.forEach((e) => {
       e.addEventListener("click", () => {
+        moveTabIndicator(e, true);
         const n = e.dataset.target,
           o = document.getElementById(`pane-${n}`),
           a = document.querySelector(".tarifs-tab.is-active"),

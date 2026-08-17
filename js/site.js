@@ -310,6 +310,9 @@ let _i18nDict = {};
         }),
         t && a[e] && (t.style.width = a[e]));
     }
+    const canTilt = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    ).matches;
     ("undefined" == typeof ScrollTrigger ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
       gsap.fromTo(
@@ -341,16 +344,39 @@ let _i18nDict = {};
               ease: "back.out(2)",
             });
         }),
+          canTilt &&
+            e.addEventListener("mousemove", (ev) => {
+              const rect = e.getBoundingClientRect(),
+                px = (ev.clientX - rect.left) / rect.width - 0.5,
+                py = (ev.clientY - rect.top) / rect.height - 0.5;
+              gsap.to(e, {
+                rotationY: px * 8,
+                rotationX: py * -8,
+                y: -5,
+                transformPerspective: 900,
+                transformOrigin: "center",
+                duration: 0.5,
+                ease: "power2.out",
+              });
+            }),
           e.addEventListener("mouseleave", () => {
             const t = e.querySelector(".parcours-card__icon");
-            t &&
+            (t &&
               "undefined" != typeof gsap &&
               gsap.to(t, {
                 scale: 1,
                 rotation: 0,
                 duration: 0.3,
                 ease: "power2.out",
-              });
+              }),
+              canTilt &&
+                gsap.to(e, {
+                  rotationY: 0,
+                  rotationX: 0,
+                  y: 0,
+                  duration: 0.6,
+                  ease: "power3.out",
+                }));
           }));
       }),
       n.forEach((e, t) => {

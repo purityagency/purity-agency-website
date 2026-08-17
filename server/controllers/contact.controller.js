@@ -199,6 +199,45 @@ function handleContact(req, res) {
   });
 }
 
+// Extrait les montants en euros d'un texte ("490 €", "1 490€", "79 euros",
+// "79€/mois") en nombres normalisés (espaces/points milliers retirés).
+function extractEuroAmounts(text) {
+  const amounts = [];
+  const re = /(\d[\d\s.,]*)\s*(?:€|euros?\b)/gi;
+  let m;
+  while ((m = re.exec(text))) {
+    const digits = m[1].replace(/[\s.,](?=\d{3}\b)/g, '').replace(/[^\d]/g, '');
+    if (digits) amounts.push(parseInt(digits, 10));
+  }
+  return amounts;
+}
+
+// Garde-fou anti-hallucination de prix (audit sécurité 2026-08-17) : le
+// chatbot ne doit jamais annoncer un prix qui n'existe pas réellement dans
+// notre catalogue — un jailbreak du prompt système pourrait sinon lui faire
+// inventer un tarif et créer un litige commercial. On ne bloque pas la
+// réponse (risque de casser une réponse légitime qui additionne 2-3
+// modules), on journalise pour revue humaine si un montant ne colle à rien
+// de connu, seul ou en somme de deux montants whitelistés.
+function logIfPriceMismatch(reply) {
+  try {
+    const whitelist = new Set(extractEuroAmounts(buildSystemPrompt()));
+    const mentioned = extractEuroAmounts(reply);
+    const suspicious = mentioned.filter(amount => {
+      if (whitelist.has(amount)) return false;
+      for (const a of whitelist) {
+        if (whitelist.has(amount - a)) return false; // somme plausible de 2 modules réels
+      }
+      return true;
+    });
+    if (suspicious.length) {
+      logger.warn('[chat] prix potentiellement halluciné par le modèle', { suspicious, reply });
+    }
+  } catch (e) {
+    // Le garde-fou ne doit jamais faire planter le chat.
+  }
+}
+
 function handleChat(req, res) {
   if (rateLimit.rateLimitedChat(req)) {
     res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
@@ -258,6 +297,7 @@ function handleChat(req, res) {
         res.writeHead(502, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'upstream', status: result.statusCode }));
       }
+      logIfPriceMismatch(reply);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
       res.end(JSON.stringify({ reply }));
     });

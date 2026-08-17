@@ -204,6 +204,11 @@ function handleOrderCreate(req, res) {
     }
 
     // Options Additionnelles (Addons)
+    // TODO(sécurité, avant réactivation d'ORDERS_ENABLED) : opt.price et
+    // opt.name viennent tels quels du client, sans être recoupés avec le
+    // catalogue réel (CATALOG.json / getCatalogueText()) — un client pourrait
+    // faire apparaître une option fabriquée dans sa commande. Whitelist à
+    // ajouter ici avant de repasser en paiement direct.
     const optionsList = Array.isArray(data.options) ? data.options : [];
     if (optionsList.length > 0) {
       let addonPriceTotal = 0;

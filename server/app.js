@@ -1,6 +1,7 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 const cluster = require('cluster');
 const os = require('os');
 const env = require('./config/env');
@@ -20,6 +21,16 @@ const ALLOWED_ORIGINS = new Set([
   `http://localhost:${PORT}`,
   `http://127.0.0.1:${PORT}`
 ]);
+
+function timingSafeEqual(a, b) {
+  const bufA = Buffer.from(String(a));
+  const bufB = Buffer.from(String(b));
+  // Longueur inégale = comparaison directe (pas de secret à protéger, la
+  // longueur seule ne révèle rien d'exploitable) ; timingSafeEqual exige des
+  // buffers de même taille ou il throw.
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
 
 function isOriginAllowed(req) {
   const origin = req.headers['origin'] || '';
@@ -203,7 +214,7 @@ function startServer() {
     if (urlPath === '/api/sentinel/status') {
       const authHeader = req.headers['authorization'] || '';
       const token = authHeader.replace('Bearer ', '').trim();
-      if (!token || token !== env.INTERNAL_API_SECRET) {
+      if (!token || !env.INTERNAL_API_SECRET || !timingSafeEqual(token, env.INTERNAL_API_SECRET)) {
         res.writeHead(401, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'Unauthorized' }));
       }

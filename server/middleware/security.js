@@ -3,6 +3,10 @@ const SECURITY_HEADERS = {
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  // Défense en profondeur : Cloudflare force déjà HTTPS devant, mais sans cet
+  // en-tête posé par l'app elle-même, un accès direct au serveur d'origine
+  // (contournant Cloudflare) resterait servable en clair.
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
   'Content-Security-Policy': [
     "default-src 'self'",
     "script-src 'self' https://cdnjs.cloudflare.com",

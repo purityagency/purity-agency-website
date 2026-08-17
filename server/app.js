@@ -78,7 +78,17 @@ function handleStaticRequest(req, res, urlPath) {
     }
   }
 
-  const decodedPath = decodeURIComponent(urlPath);
+  let decodedPath;
+  try {
+    decodedPath = decodeURIComponent(urlPath);
+  } catch (err) {
+    res.writeHead(400);
+    return res.end('400 Bad Request');
+  }
+  if (decodedPath.indexOf('\0') !== -1) {
+    res.writeHead(400);
+    return res.end('400 Bad Request');
+  }
   const filePath = path.normalize(path.join(ROOT, decodedPath));
 
   if (!filePath.startsWith(ROOT) || !isServable(filePath)) {

@@ -106,6 +106,7 @@ function handleBook(req, res) {
     const phone = String(data.phone || '').slice(0, 60).trim();
     const company = String(data.company || '').slice(0, 200).trim();
     const companyWebsite = String(data.companyWebsite || '').slice(0, 300).trim();
+    const safeCompanyWebsiteUrl = validator.safeHttpUrl(companyWebsite);
     const honeypot = String(data.website_verification || '').trim();
 
     if (honeypot) {
@@ -155,7 +156,7 @@ function handleBook(req, res) {
 <strong>E-mail :</strong> ${validator.escapeHtml(email)}<br>
 <strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}</p>
 <p><strong>Entreprise :</strong> ${validator.escapeHtml(company || '—')}<br>
-<strong>Site internet actuel :</strong> ${companyWebsite ? `<a href="${validator.escapeHtml(companyWebsite)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : '—'}</p>
+<strong>Site internet actuel :</strong> ${companyWebsite ? (safeCompanyWebsiteUrl ? `<a href="${validator.escapeHtml(safeCompanyWebsiteUrl)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : validator.escapeHtml(companyWebsite)) : '—'}</p>
 <p><em>💡 Ouvrez ce mail sur votre téléphone et touchez la pièce jointe (.ics) pour l\'ajouter à votre calendrier.</em></p>`;
 
         resendService.sendEmail({
@@ -241,7 +242,7 @@ function handleBook(req, res) {
 <strong>E-mail :</strong> ${validator.escapeHtml(email)}<br>
 <strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}</p>
 <p><strong>Entreprise :</strong> ${validator.escapeHtml(company || '—')}<br>
-<strong>Site internet actuel :</strong> ${companyWebsite ? `<a href="${validator.escapeHtml(companyWebsite)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : '—'}</p>
+<strong>Site internet actuel :</strong> ${companyWebsite ? (safeCompanyWebsiteUrl ? `<a href="${validator.escapeHtml(safeCompanyWebsiteUrl)}" target="_blank">${validator.escapeHtml(companyWebsite)}</a>` : validator.escapeHtml(companyWebsite)) : '—'}</p>
 ${ev.htmlLink ? `<p><a href="${validator.escapeHtml(ev.htmlLink)}" target="_blank">Voir dans Google Calendar</a></p>` : ''}`;
 
               resendService.sendEmail({

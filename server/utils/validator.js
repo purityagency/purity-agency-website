@@ -25,10 +25,31 @@ function formatBCE(bce) {
 
 const VAT_FRANCHISE_MENTION = "Régime particulier de franchise des petites entreprises — TVA non applicable (Art. 56bis du CTVA).";
 
+// N'autorise que http(s) avant d'utiliser une URL fournie par un visiteur
+// (ex: "site web actuel" dans le formulaire de RDV) comme href dans un mail —
+// bloque javascript:/data:/autre scheme qui s'exécuterait à l'ouverture.
+function safeHttpUrl(url) {
+  const raw = String(url || '').trim();
+  if (!raw) return '';
+  // La plupart des visiteurs tapent "monsite.be" sans schéma — on retente en
+  // https:// avant d'abandonner, plutôt que de dégrader silencieusement en
+  // texte brut pour le cas le plus courant.
+  for (const candidate of [raw, `https://${raw}`]) {
+    try {
+      const parsed = new URL(candidate);
+      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return parsed.href;
+    } catch {
+      // essaie le candidat suivant
+    }
+  }
+  return '';
+}
+
 module.exports = {
   escapeHtml,
   isValidEmail,
   isValidBCE,
   formatBCE,
+  safeHttpUrl,
   VAT_FRANCHISE_MENTION
 };

@@ -229,6 +229,12 @@ function startServer() {
       return res.end();
     }
 
+    // Doublon de contenu avec agence-web-charleroi.html, retiré le 2026-08-17.
+    if (urlPath === '/automatisation-ia-pme-wallonie.html') {
+      res.writeHead(301, { 'Location': '/agence-web-charleroi.html' });
+      return res.end();
+    }
+
     if (urlPath === '/login') {
       res.writeHead(302, { 'Location': paymentRouter.clientPortalUrl() + '/login' });
       return res.end();

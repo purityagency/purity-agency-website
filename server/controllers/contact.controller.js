@@ -238,6 +238,40 @@ function logIfPriceMismatch(reply) {
   }
 }
 
+// gemini-2.5-* sont des modeles "a raisonnement" : les tokens de reflexion
+// interne (invisibles) sont DECOMPTES de maxOutputTokens. Avec un budget serre,
+// le modele epuisait son quota en reflechissant et la reponse visible etait
+// tronquee en plein milieu (finishReason MAX_TOKENS) — de facon intermittente,
+// selon la longueur de sa reflexion. Pire : quand la coupe tombait sur la balise
+// [LEAD]{...}[/LEAD], le lead etait purement et simplement perdu.
+// On desactive donc la reflexion (budget 0) sur les modeles flash, qui n'en ont
+// pas besoin pour une conversation commerciale. Les modeles "pro" imposent un
+// minimum de 128 tokens de reflexion : on le respecte au lieu de faire echouer
+// l'appel avec un 400.
+function thinkingConfigFor(model) {
+  return /flash/i.test(model) ? { thinkingBudget: 0 } : { thinkingBudget: 128 };
+}
+
+// Coupe le texte a la derniere phrase complete. Filet de securite : si malgre
+// tout le modele bute sur la limite, le visiteur voit une phrase finie plutot
+// qu'un mot coupe en deux — ce qui est illisible et decredibilise l'agence.
+function trimToLastSentence(text) {
+  const match = text.match(/^[\s\S]*[.!?…]/);
+  return match ? match[0].trim() : text;
+}
+
+// Extrait le texte ET le motif d'arret renvoye par Gemini. Jusqu'ici seul le
+// texte etait lu : une reponse tronquee arrivait au client comme une reponse
+// normale, sans aucune trace dans les logs.
+function parseGeminiResult(raw) {
+  const json = JSON.parse(raw);
+  const candidate = (json.candidates || [])[0] || {};
+  const text = ((candidate.content && candidate.content.parts) || [])
+    .filter(p => !p.thought)
+    .map(p => p.text || '').join('').trim();
+  return { text, finishReason: candidate.finishReason || '' };
+}
+
 function handleChat(req, res) {
   if (rateLimit.rateLimitedChat(req)) {
     res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
@@ -273,7 +307,7 @@ function handleChat(req, res) {
     }
     const contents = messages.slice(-6)
       .filter(m => m && m.text && typeof m.text === 'string')
-      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.text.slice(0, 500) }] }));
+      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.text.slice(0, m.role === 'model' ? 2000 : 500) }] }));
     if (!contents.length) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'empty' }));
@@ -282,7 +316,12 @@ function handleChat(req, res) {
     callVertexGenerateContent({
       system_instruction: { parts: [{ text: buildSystemPrompt() }] },
       contents,
-      generationConfig: { maxOutputTokens: 400, temperature: 0.85, topP: 0.95 }
+      generationConfig: {
+        maxOutputTokens: 2048,
+        temperature: 0.85,
+        topP: 0.95,
+        thinkingConfig: thinkingConfigFor(GEMINI_MODEL)
+      }
     }, (err, result) => {
       if (err) {
         logger.error('[chat] network error', err);
@@ -290,12 +329,31 @@ function handleChat(req, res) {
         return res.end(JSON.stringify({ error: 'network' }));
       }
       let reply = '';
-      try { reply = (JSON.parse(result.data).candidates?.[0]?.content?.parts || []).map(p => p.text).join('').trim(); }
+      let finishReason = '';
+      try {
+        const parsedReply = parseGeminiResult(result.data);
+        reply = parsedReply.text;
+        finishReason = parsedReply.finishReason;
+      }
       catch (e) { /* ignore */ }
       if (result.statusCode >= 400 || !reply) {
         logger.error('[chat] upstream error', new Error(`Status ${result.statusCode}: ${result.data}`));
         res.writeHead(502, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'upstream', status: result.statusCode }));
+      }
+      if (finishReason === 'MAX_TOKENS') {
+        // Ne doit plus arriver depuis thinkingBudget 0 + 1024 tokens, mais on
+        // trace : c'est le signal qu'il faut remonter la limite, et on nettoie
+        // la coupe pour que le visiteur ne voie pas un mot tranche en deux.
+        logger.warn('[chat] reponse tronquee par la limite de tokens', { reply });
+        reply = trimToLastSentence(reply);
+      }
+      // Une balise [LEAD] amputee de sa fermeture n'est pas reconnue par le
+      // client et s'affichait telle quelle au visiteur (le JSON brut de ses
+      // propres coordonnees dans la bulle). On la retire toujours.
+      if (reply.includes('[LEAD]') && !/\[\/LEAD\]/i.test(reply)) {
+        logger.warn('[chat] balise LEAD incomplete retiree', { reply });
+        reply = reply.replace(/\[LEAD\][\s\S]*$/i, '').trim();
       }
       logIfPriceMismatch(reply);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
@@ -347,7 +405,12 @@ function handleImproveText(req, res) {
     callVertexGenerateContent({
       system_instruction: { parts: [{ text: promptInstruction }] },
       contents: [{ role: 'user', parts: [{ text }] }],
-      generationConfig: { maxOutputTokens: 1500, temperature: 0.7, topP: 0.9 }
+      generationConfig: {
+        maxOutputTokens: 1500,
+        temperature: 0.7,
+        topP: 0.9,
+        thinkingConfig: thinkingConfigFor(GEMINI_MODEL)
+      }
     }, (err, result) => {
       if (err) {
         res.writeHead(502, { 'Content-Type': 'application/json' });

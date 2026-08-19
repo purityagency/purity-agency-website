@@ -197,8 +197,12 @@
       showTyping();
 
       try {
+        // 12 s etait trop court : la reponse n'est pas streamee, le serveur
+        // doit donc attendre la generation complete avant de repondre. Un abort
+        // premature affichait le message d'erreur reseau alors que la reponse
+        // arrivait juste apres.
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 12000);
+        const timeoutId = setTimeout(() => controller.abort(), 30000);
         
         const res = await fetch('/api/chat', {
           method: 'POST',

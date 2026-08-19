@@ -49,9 +49,15 @@ function getGoogleToken(cb, scope = 'https://www.googleapis.com/auth/calendar') 
     exp: iat + 3600
   });
 
+  // Selon la source du secret (variable d'env Render, JSON re-serialise), les
+  // sauts de ligne de la cle PEM arrivent parfois echappes en \\n litteral.
+  // OpenSSL rejette alors la cle (DECODER routines::unsupported) et TOUT l'appel
+  // Vertex / Calendar echoue. On normalise avant de signer.
+  const privateKey = String(sa.private_key).split(String.raw`\n`).join('\n');
+
   let signature;
   try {
-    signature = crypto.createSign('RSA-SHA256').update(unsigned).sign(sa.private_key, 'base64url');
+    signature = crypto.createSign('RSA-SHA256').update(unsigned).sign(privateKey, 'base64url');
   } catch (e) {
     return cb(e);
   }

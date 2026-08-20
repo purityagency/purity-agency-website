@@ -5,59 +5,37 @@ const validator = require('../utils/validator');
 const ordersRepo = require('../repositories/orders.repository');
 const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
-const googleService = require('../services/google.service');
 const purityosService = require('../services/purityos.service');
 const { getCatalogueText } = require('../services/catalogue.service');
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
-const VERTEX_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
-// Vertex AI generateContent — avoids the "user location not supported" geo-block
-// that the plain Gemini API key hits from cloud/datacenter IPs (e.g. Render EU).
-function callVertexGenerateContent(payload, cb) {
-  const sa = env.googleServiceAccount;
-  if (!sa || !sa.project_id) {
-    if (!env.GEMINI_API_KEY) return cb(new Error('no_service_account_and_no_api_key'));
-    const body = JSON.stringify(payload);
-    const greq = https.request({
-      method: 'POST',
-      hostname: 'generativelanguage.googleapis.com',
-      path: `/v1beta/models/${GEMINI_MODEL}:generateContent?key=${env.GEMINI_API_KEY}`,
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body)
-      }
-    }, gres => {
-      let data = '';
-      gres.on('data', d => data += d);
-      gres.on('end', () => cb(null, { statusCode: gres.statusCode, data }));
-    });
-    greq.on('error', cb);
-    greq.write(body);
-    return greq.end();
-  }
-  googleService.getGoogleToken((err, token) => {
-    if (err) return cb(err);
-    const body = JSON.stringify(payload);
-    const region = env.GCP_REGION;
-    const greq = https.request({
-      method: 'POST',
-      hostname: `${region}-aiplatform.googleapis.com`,
-      path: `/v1/projects/${sa.project_id}/locations/${region}/publishers/google/models/${GEMINI_MODEL}:generateContent`,
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body)
-      }
-    }, gres => {
-      let data = '';
-      gres.on('data', d => data += d);
-      gres.on('end', () => cb(null, { statusCode: gres.statusCode, data }));
-    });
-    greq.on('error', cb);
-    greq.write(body);
-    greq.end();
-  }, VERTEX_SCOPE);
+// Appel Gemini par cle API — la MEME cle que les agents purity-os
+// (GEMINI_API_KEY), pour n'avoir qu'un seul secret a faire tourner. La voie
+// Vertex / compte de service a ete retiree : elle imposait un second jeu
+// d'identifiants (signature JWT, projet GCP, region) pour le meme service.
+function callGemini(payload, cb) {
+  if (!env.GEMINI_API_KEY) return cb(new Error('no_api_key'));
+  const body = JSON.stringify(payload);
+  const greq = https.request({
+    method: 'POST',
+    hostname: 'generativelanguage.googleapis.com',
+    path: `/v1beta/models/${GEMINI_MODEL}:generateContent`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(body),
+      // La cle passe par l'en-tete, jamais dans l'URL : les query strings
+      // finissent dans les logs d'acces et les traces d'erreur.
+      'x-goog-api-key': env.GEMINI_API_KEY
+    }
+  }, gres => {
+    let data = '';
+    gres.on('data', d => data += d);
+    gres.on('end', () => cb(null, { statusCode: gres.statusCode, data }));
+  });
+  greq.on('error', cb);
+  greq.write(body);
+  greq.end();
 }
 
 // Le prompt système est une FONCTION, pas une constante : la partie catalogue
@@ -278,7 +256,7 @@ function handleChat(req, res) {
     return res.end(JSON.stringify({ error: 'rate_limited' }));
   }
 
-  if (!env.googleServiceAccount && !env.GEMINI_API_KEY) {
+  if (!env.GEMINI_API_KEY) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }
@@ -313,7 +291,7 @@ function handleChat(req, res) {
       return res.end(JSON.stringify({ error: 'empty' }));
     }
 
-    callVertexGenerateContent({
+    callGemini({
       system_instruction: { parts: [{ text: buildSystemPrompt() }] },
       contents,
       generationConfig: {
@@ -368,7 +346,7 @@ function handleImproveText(req, res) {
     return res.end(JSON.stringify({ error: 'rate_limited' }));
   }
 
-  if (!env.googleServiceAccount && !env.GEMINI_API_KEY) {
+  if (!env.GEMINI_API_KEY) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'no_key' }));
   }
@@ -402,7 +380,7 @@ function handleImproveText(req, res) {
       return res.end(JSON.stringify({ error: 'empty' }));
     }
 
-    callVertexGenerateContent({
+    callGemini({
       system_instruction: { parts: [{ text: promptInstruction }] },
       contents: [{ role: 'user', parts: [{ text }] }],
       generationConfig: {

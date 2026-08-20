@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const env = require('../config/env');
 const logger = require('../utils/logger');
 const rateLimit = require('../middleware/rate-limit');
+const purityosService = require('../services/purityos.service');
 const leadService = require('../services/lead.service');
 const { getCatalogueText } = require('../services/catalogue.service');
 
@@ -155,6 +156,33 @@ function extractEuroAmounts(text) {
   return amounts;
 }
 
+// Un prix inventé annoncé à un client est un litige commercial en puissance.
+// Le journaliser ne suffisait pas : personne ne lit les logs Render. L'alerte
+// remonte donc dans Purity OS, où Amir la voit. On ne bloque toujours PAS la
+// réponse : le calcul tolère la somme de deux modules réels, mais pas trois, et
+// couper une réponse légitime en pleine conversation coûterait plus cher qu'une
+// alerte à vérifier.
+const priceAlertsSent = new Map();
+const PRICE_ALERT_TTL_MS = 60 * 60 * 1000;
+
+function alertPriceMismatch(suspicious, reply) {
+  // Un même montant halluciné revient souvent plusieurs fois de suite : sans
+  // fenêtre, une seule dérive du modèle noierait la boîte de réception.
+  const key = suspicious.join(',');
+  const now = Date.now();
+  const last = priceAlertsSent.get(key);
+  if (last && now - last < PRICE_ALERT_TTL_MS) return;
+  priceAlertsSent.set(key, now);
+
+  logger.error('[chat] prix potentiellement halluciné par le modèle', new Error(`Montants inconnus du catalogue : ${suspicious.join(', ')} €`), { reply: reply.slice(0, 400) });
+
+  purityosService.notifyEvent({
+    type: 'SYSTEM',
+    summary: `Chatbot : prix hors catalogue annoncé (${suspicious.join(', ')} €)`,
+    payload: { suspicious, reply: reply.slice(0, 1000), source: 'chatbot OctoMask' }
+  });
+}
+
 // Garde-fou anti-hallucination de prix (audit sécurité 2026-08-17) : le
 // chatbot ne doit jamais annoncer un prix qui n'existe pas réellement dans
 // notre catalogue — un jailbreak du prompt système pourrait sinon lui faire
@@ -174,7 +202,7 @@ function logIfPriceMismatch(reply) {
       return true;
     });
     if (suspicious.length) {
-      logger.error('[chat] prix potentiellement halluciné par le modèle', new Error(`Montants inconnus du catalogue : ${suspicious.join(', ')} € — réponse : ${reply.slice(0, 400)}`));
+      alertPriceMismatch(suspicious, reply);
     }
   } catch (e) {
     // Le garde-fou ne doit jamais faire planter le chat.

@@ -15,6 +15,8 @@
 //
 // Désormais l'extraction et l'envoi se font côté serveur, et le navigateur
 // n'est plus sur le chemin critique.
+const fs = require('fs');
+const path = require('path');
 const logger = require('../utils/logger');
 const validator = require('../utils/validator');
 const env = require('../config/env');
@@ -57,24 +59,71 @@ function validateLead(input, { requireEmail = false } = {}) {
   return { ok: true, lead: { name, email, phone, activity, need } };
 }
 
-// Anti-doublon en mémoire. Le modèle peut ré-émettre la même balise à chaque
-// message d'une conversation ; sans ce filtre, une seule personne déclencherait
-// dix e-mails. Clé = coordonnées normalisées, donc un visiteur qui SE CORRIGE
-// ("pardon, c'est .be pas .com") produit une clé différente et passe bien —
-// l'ancien verrou « un lead par session » l'aurait définitivement bloqué.
+// Anti-doublon partagé par fichier. Le modèle peut ré-émettre la même balise à
+// chaque message d'une conversation ; sans ce filtre, une seule personne
+// déclencherait dix e-mails. Clé = coordonnées normalisées, donc un visiteur
+// qui SE CORRIGE ("pardon, c'est .be pas .com") produit une clé différente et
+// passe bien — l'ancien verrou « un lead par session » le bloquait pour de bon.
+//
+// Pourquoi un fichier et pas seulement une Map : app.js peut lancer plusieurs
+// workers (cluster), et chacun aurait sa propre Map — le même prospect passerait
+// alors autant de fois qu'il y a de workers. Le fichier leur sert de terrain
+// commun et survit en prime aux redémarrages de process. La Map reste en
+// première ligne, pour ne pas relire le disque à chaque message.
 const RECENT_TTL_MS = 30 * 60 * 1000;
+const DEDUPE_FILE = path.join(env.ROOT, '..', 'data', 'lead-dedupe.log');
+const MAX_LINES = 500;
 const recentLeads = new Map();
 
 function dedupeKey(lead) {
   return `${lead.email.toLowerCase()}|${lead.phone.replace(/[^\d]/g, '')}`;
 }
 
+function readRecentFromDisk() {
+  const now = Date.now();
+  const entries = [];
+  try {
+    const raw = fs.readFileSync(DEDUPE_FILE, 'utf8');
+    for (const line of raw.split('\n')) {
+      if (!line.trim()) continue;
+      try {
+        const entry = JSON.parse(line);
+        if (entry && entry.key && now - entry.at < RECENT_TTL_MS) entries.push(entry);
+      } catch (e) { /* ligne corrompue : on l'ignore */ }
+    }
+  } catch (e) {
+    // Fichier absent au premier lead : ce n'est pas une erreur.
+  }
+  return entries;
+}
+
 function isDuplicate(lead) {
   const key = dedupeKey(lead);
-  const seenAt = recentLeads.get(key);
   const now = Date.now();
+
+  const seenAt = recentLeads.get(key);
   if (seenAt && now - seenAt < RECENT_TTL_MS) return true;
+
+  const onDisk = readRecentFromDisk();
+  if (onDisk.some(entry => entry.key === key)) {
+    recentLeads.set(key, now);
+    return true;
+  }
+
   recentLeads.set(key, now);
+  try {
+    fs.mkdirSync(path.dirname(DEDUPE_FILE), { recursive: true });
+    if (onDisk.length >= MAX_LINES) {
+      // Compaction : on ne réécrit que ce qui est encore dans la fenêtre.
+      const kept = onDisk.map(e => JSON.stringify(e)).join('\n');
+      fs.writeFileSync(DEDUPE_FILE, kept + '\n');
+    }
+    fs.appendFileSync(DEDUPE_FILE, JSON.stringify({ key, at: now }) + '\n');
+  } catch (err) {
+    // Disque indisponible : on garde la Map en mémoire comme filet. Au pire un
+    // doublon d'e-mail — jamais un lead perdu, ce qui est le bon compromis.
+    logger.warn('[lead] anti-doublon non persisté sur disque', { error: String(err && err.message) });
+  }
   return false;
 }
 

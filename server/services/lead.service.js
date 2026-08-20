@@ -79,20 +79,22 @@ function dedupeKey(lead) {
   return `${lead.email.toLowerCase()}|${lead.phone.replace(/[^\d]/g, '')}`;
 }
 
-function readRecentFromDisk() {
+function readRawLines() {
+  try {
+    return fs.readFileSync(DEDUPE_FILE, 'utf8').split('\n').filter(l => l.trim());
+  } catch (e) {
+    return []; // fichier absent au premier lead : ce n'est pas une erreur
+  }
+}
+
+function parseRecent(lines) {
   const now = Date.now();
   const entries = [];
-  try {
-    const raw = fs.readFileSync(DEDUPE_FILE, 'utf8');
-    for (const line of raw.split('\n')) {
-      if (!line.trim()) continue;
-      try {
-        const entry = JSON.parse(line);
-        if (entry && entry.key && now - entry.at < RECENT_TTL_MS) entries.push(entry);
-      } catch (e) { /* ligne corrompue : on l'ignore */ }
-    }
-  } catch (e) {
-    // Fichier absent au premier lead : ce n'est pas une erreur.
+  for (const line of lines) {
+    try {
+      const entry = JSON.parse(line);
+      if (entry && entry.key && now - entry.at < RECENT_TTL_MS) entries.push(entry);
+    } catch (e) { /* ligne corrompue : on l'ignore */ }
   }
   return entries;
 }
@@ -104,7 +106,8 @@ function isDuplicate(lead) {
   const seenAt = recentLeads.get(key);
   if (seenAt && now - seenAt < RECENT_TTL_MS) return true;
 
-  const onDisk = readRecentFromDisk();
+  const lines = readRawLines();
+  const onDisk = parseRecent(lines);
   if (onDisk.some(entry => entry.key === key)) {
     recentLeads.set(key, now);
     return true;
@@ -113,10 +116,12 @@ function isDuplicate(lead) {
   recentLeads.set(key, now);
   try {
     fs.mkdirSync(path.dirname(DEDUPE_FILE), { recursive: true });
-    if (onDisk.length >= MAX_LINES) {
-      // Compaction : on ne réécrit que ce qui est encore dans la fenêtre.
-      const kept = onDisk.map(e => JSON.stringify(e)).join('\n');
-      fs.writeFileSync(DEDUPE_FILE, kept + '\n');
+    // La compaction se décide sur le nombre de lignes RÉELLES du fichier, pas
+    // sur les entrées encore valides : ce sont justement les lignes expirées qui
+    // s'accumulent, et les compter via `onDisk` (qui les exclut) revenait à ne
+    // jamais compacter — le fichier grossissait indéfiniment.
+    if (lines.length >= MAX_LINES) {
+      fs.writeFileSync(DEDUPE_FILE, onDisk.map(e => JSON.stringify(e)).join('\n') + '\n');
     }
     fs.appendFileSync(DEDUPE_FILE, JSON.stringify({ key, at: now }) + '\n');
   } catch (err) {

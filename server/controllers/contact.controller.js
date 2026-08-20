@@ -165,6 +165,13 @@ function extractEuroAmounts(text) {
 const priceAlertsSent = new Map();
 const PRICE_ALERT_TTL_MS = 60 * 60 * 1000;
 
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, at] of priceAlertsSent) {
+    if (now - at > PRICE_ALERT_TTL_MS) priceAlertsSent.delete(key);
+  }
+}, 30 * 60 * 1000).unref();
+
 function alertPriceMismatch(suspicious, reply) {
   // Un même montant halluciné revient souvent plusieurs fois de suite : sans
   // fenêtre, une seule dérive du modèle noierait la boîte de réception.
@@ -398,6 +405,19 @@ function handleChat(req, res) {
           // est un process persistant : la suite s'exécute bien après la réponse.
           leadService.deliverLead({ ...checked.lead, need }, 'chatbot OctoMask')
             .catch(e => logger.error('[chat] échec de transmission du lead', e));
+        }
+      }
+
+      if (!reply) {
+        if (extracted.lead) {
+          // Le lead est bien capté ; sans ce repli le visiteur verrait un
+          // message d'erreur réseau juste après avoir donné ses coordonnées.
+          logger.warn('[chat] réponse vide hors balise LEAD, message de confirmation par défaut');
+          reply = "Parfait, c'est noté — on revient vers vous sous 24 h.";
+        } else {
+          logger.error('[chat] réponse vide après nettoyage', new Error(raw.slice(0, 300)));
+          res.writeHead(502, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'upstream' }));
         }
       }
 

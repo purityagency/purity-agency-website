@@ -210,7 +210,7 @@
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages }),
+          body: JSON.stringify({ messages: messages.filter(m => !m.local) }),
           signal: controller.signal
         });
         clearTimeout(timeoutId);
@@ -292,7 +292,7 @@
             setTimeout(() => {
               const intro = "Bonjour ! 👋 Je filtre les premières demandes pour l'équipe Purity. Pour aller droit au but et vous faire gagner du temps : quel est le principal frein de votre activité aujourd'hui ?";
               revealTyping(appendMessage(intro, 'sys'));
-              messages.push({ role: 'model', text: intro });
+              messages.push({ role: 'model', text: intro, local: true });
               saveState();
               
               const suggestions = [

@@ -118,6 +118,7 @@ async function deliverLead(lead, source) {
       subject: `Nouveau lead — ${lead.name}`,
       html: buildHtml(lead, source)
     });
+    logger.info('[lead] transmis', { source, hasEmail: !!lead.email, hasPhone: !!lead.phone });
     return { ok: true, mode: 'sent' };
   } catch (err) {
     logger.error('[lead] envoi e-mail échoué, lead conservé dans le journal', err);

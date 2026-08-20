@@ -1,11 +1,9 @@
 const https = require('https');
+const crypto = require('crypto');
 const env = require('../config/env');
 const logger = require('../utils/logger');
-const validator = require('../utils/validator');
-const ordersRepo = require('../repositories/orders.repository');
-const resendService = require('../services/resend.service');
 const rateLimit = require('../middleware/rate-limit');
-const purityosService = require('../services/purityos.service');
+const leadService = require('../services/lead.service');
 const { getCatalogueText } = require('../services/catalogue.service');
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
@@ -105,9 +103,9 @@ function handleContact(req, res) {
 
   let body = '';
   let tooLarge = false;
-  req.on('data', c => { 
+  req.on('data', c => {
     if (tooLarge) return;
-    body += c; 
+    body += c;
     if (body.length > 12000) {
       tooLarge = true;
       res.writeHead(413, { 'Content-Type': 'application/json' });
@@ -117,63 +115,30 @@ function handleContact(req, res) {
   req.on('end', async () => {
     if (tooLarge) return;
     let data = {};
-    try { 
-      data = JSON.parse(body) || {}; 
-    } catch (err) { 
+    try {
+      data = JSON.parse(body) || {};
+    } catch (err) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid_json' }));
     }
-    const name = String(data.name || '').slice(0, 200).trim();
-    const email = String(data.email || '').slice(0, 200).trim();
-    const phone = String(data.phone || '').slice(0, 60).trim();
-    const activity = String(data.activity || '').slice(0, 200).trim();
-    const need = String(data.need || '').slice(0, 4000).trim();
-    const honeypot = String(data.website_verification || '').trim();
 
-    if (honeypot) {
+    if (String(data.website_verification || '').trim()) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ ok: true, mode: 'sent' }));
     }
 
-    if (!name || !validator.isValidEmail(email) || !need) {
+    // requireEmail: true — sur le formulaire, le champ est obligatoire côté UI ;
+    // un envoi sans e-mail y signale un bot, pas un prospect. Le chatbot, lui,
+    // passe par la même validation avec requireEmail à false.
+    const checked = leadService.validateLead(data, { requireEmail: true });
+    if (!checked.ok || !String(data.need || '').trim()) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid' }));
     }
 
-    const lead = { name, email, phone, activity, need };
-    ordersRepo.logLead(lead);
-
-    const html = `<h2>Nouveau lead — Purity Agency</h2>
-<p><strong>Nom :</strong> ${validator.escapeHtml(name)}<br>
-<strong>E-mail :</strong> ${validator.escapeHtml(email)}<br>
-<strong>Téléphone :</strong> ${validator.escapeHtml(phone || '—')}<br>
-<strong>Activité :</strong> ${validator.escapeHtml(activity || '—')}</p>
-<p><strong>Besoin :</strong><br>${validator.escapeHtml(need).replace(/\n/g, '<br>')}</p>`;
-
-    purityosService.notifyEvent({
-      type: 'LEAD',
-      name,
-      email,
-      phone,
-      company: activity,
-      summary: need.slice(0, 200),
-      payload: { activity, need }
-    });
-
-    try {
-      await resendService.sendEmail({
-        to: env.NOTIFY_EMAILS,
-        replyTo: email,
-        subject: `Nouveau lead — ${name}`,
-        html
-      });
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: true, mode: 'sent' }));
-    } catch (err) {
-      logger.error('[contact] email fail, fallback logged ok', err);
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: true, mode: 'logged_email_failed' }));
-    }
+    const result = await leadService.deliverLead(checked.lead, 'formulaire de contact');
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ ok: true, mode: result.mode }));
   });
 }
 
@@ -199,7 +164,7 @@ function extractEuroAmounts(text) {
 // de connu, seul ou en somme de deux montants whitelistés.
 function logIfPriceMismatch(reply) {
   try {
-    const whitelist = new Set(extractEuroAmounts(buildSystemPrompt()));
+    const whitelist = new Set(extractEuroAmounts(getCatalogueText()));
     const mentioned = extractEuroAmounts(reply);
     const suspicious = mentioned.filter(amount => {
       if (whitelist.has(amount)) return false;
@@ -209,7 +174,7 @@ function logIfPriceMismatch(reply) {
       return true;
     });
     if (suspicious.length) {
-      logger.warn('[chat] prix potentiellement halluciné par le modèle', { suspicious, reply });
+      logger.error('[chat] prix potentiellement halluciné par le modèle', new Error(`Montants inconnus du catalogue : ${suspicious.join(', ')} € — réponse : ${reply.slice(0, 400)}`));
     }
   } catch (e) {
     // Le garde-fou ne doit jamais faire planter le chat.
@@ -250,6 +215,52 @@ function parseGeminiResult(raw) {
   return { text, finishReason: candidate.finishReason || '' };
 }
 
+// L'historique de conversation est fourni par le NAVIGATEUR, y compris les
+// tours « model ». Sans contrôle, n'importe qui peut fabriquer des propos que
+// le bot n'a jamais tenus (« le pack est à 49 € garanti ») puis lui demander de
+// les confirmer. On signe donc chaque réponse en HMAC et on n'accepte dans
+// l'historique que les tours « model » qui présentent leur signature. Le
+// modèle avait résisté à l'attaque lors de l'audit, mais c'était sa prudence,
+// pas une garantie du code — et ça change à chaque version de modèle.
+function signReply(text) {
+  if (!env.INTERNAL_API_SECRET) return '';
+  return crypto.createHmac('sha256', env.INTERNAL_API_SECRET).update(text).digest('base64url');
+}
+
+function isAuthenticReply(text, sig) {
+  const expected = signReply(text);
+  // Pas de secret configuré (dev) : on n'a aucun moyen de vérifier, mieux vaut
+  // un chat qui fonctionne qu'un chat amnésique.
+  if (!expected) return true;
+  if (typeof sig !== 'string' || sig.length !== expected.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
+}
+
+// La balise de capture émise par le modèle. Elle ne doit JAMAIS atteindre le
+// navigateur : c'est un protocole interne, et l'exposer revient à publier le
+// mécanisme de capture (et le JSON des coordonnées) au visiteur.
+const LEAD_TAG = /\[LEAD\]\s*(\{[\s\S]*?\})\s*\[\/LEAD\]/i;
+
+function extractLead(reply) {
+  const match = reply.match(LEAD_TAG);
+  let lead = null;
+  if (match) {
+    try {
+      lead = JSON.parse(match[1]);
+    } catch (e) {
+      logger.warn('[chat] balise LEAD au JSON invalide', { raw: match[1].slice(0, 300) });
+    }
+  }
+  const cleaned = reply
+    .replace(LEAD_TAG, '')
+    // Reliquat d'une balise ouverte jamais fermée (réponse coupée) : sans ça,
+    // le visiteur voyait le JSON brut de ses propres coordonnées dans la bulle.
+    .replace(/\[LEAD\][\s\S]*$/i, '')
+    .replace(/\[\/?LEAD\]/gi, '')
+    .trim();
+  return { cleaned, lead };
+}
+
 function handleChat(req, res) {
   if (rateLimit.rateLimitedChat(req)) {
     res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
@@ -263,9 +274,9 @@ function handleChat(req, res) {
 
   let body = '';
   let tooLarge = false;
-  req.on('data', c => { 
+  req.on('data', c => {
     if (tooLarge) return;
-    body += c; 
+    body += c;
     if (body.length > 24000) {
       tooLarge = true;
       res.writeHead(413, { 'Content-Type': 'application/json' });
@@ -275,17 +286,32 @@ function handleChat(req, res) {
   req.on('end', () => {
     if (tooLarge) return;
     let messages = [];
-    try { 
+    try {
       const parsed = JSON.parse(body);
-      messages = parsed.messages || []; 
+      messages = parsed.messages || [];
       if (!Array.isArray(messages)) messages = [];
-    } catch (err) { 
+    } catch (err) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'invalid_json' }));
     }
-    const contents = messages.slice(-6)
-      .filter(m => m && m.text && typeof m.text === 'string')
-      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.text.slice(0, m.role === 'model' ? 2000 : 500) }] }));
+
+    let contents = messages.slice(-6)
+      .filter(m => m && typeof m.text === 'string' && m.text)
+      .filter(m => {
+        if (m.role !== 'model') return true;
+        if (isAuthenticReply(m.text, m.sig)) return true;
+        logger.warn('[chat] tour "model" non authentifié écarté de l historique');
+        return false;
+      })
+      .map(m => ({
+        role: m.role === 'model' ? 'model' : 'user',
+        parts: [{ text: m.text.slice(0, m.role === 'model' ? 2000 : 500) }]
+      }));
+
+    // Une fois les faux tours écartés, l'historique peut commencer par un tour
+    // « model » orphelin — que l'API refuse. On repart du premier tour user.
+    while (contents.length && contents[0].role === 'model') contents.shift();
+
     if (!contents.length) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'empty' }));
@@ -306,36 +332,50 @@ function handleChat(req, res) {
         res.writeHead(502, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'network' }));
       }
-      let reply = '';
+      let raw = '';
       let finishReason = '';
       try {
         const parsedReply = parseGeminiResult(result.data);
-        reply = parsedReply.text;
+        raw = parsedReply.text;
         finishReason = parsedReply.finishReason;
-      }
-      catch (e) { /* ignore */ }
-      if (result.statusCode >= 400 || !reply) {
+      } catch (e) { /* ignore */ }
+      if (result.statusCode >= 400 || !raw) {
         logger.error('[chat] upstream error', new Error(`Status ${result.statusCode}: ${result.data}`));
         res.writeHead(502, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'upstream', status: result.statusCode }));
       }
+
+      // L'extraction passe AVANT le rognage de troncature : la balise est en
+      // fin de message, la couper reviendrait à jeter le lead.
+      const extracted = extractLead(raw);
+      let reply = extracted.cleaned;
+
       if (finishReason === 'MAX_TOKENS') {
-        // Ne doit plus arriver depuis thinkingBudget 0 + 1024 tokens, mais on
-        // trace : c'est le signal qu'il faut remonter la limite, et on nettoie
-        // la coupe pour que le visiteur ne voie pas un mot tranche en deux.
         logger.warn('[chat] reponse tronquee par la limite de tokens', { reply });
         reply = trimToLastSentence(reply);
       }
-      // Une balise [LEAD] amputee de sa fermeture n'est pas reconnue par le
-      // client et s'affichait telle quelle au visiteur (le JSON brut de ses
-      // propres coordonnees dans la bulle). On la retire toujours.
-      if (reply.includes('[LEAD]') && !/\[\/LEAD\]/i.test(reply)) {
-        logger.warn('[chat] balise LEAD incomplete retiree', { reply });
-        reply = reply.replace(/\[LEAD\][\s\S]*$/i, '').trim();
+
+      if (extracted.lead) {
+        // requireEmail: false — le bot propose lui-même « e-mail OU téléphone ».
+        const checked = leadService.validateLead(extracted.lead, { requireEmail: false });
+        if (!checked.ok) {
+          logger.warn('[chat] lead rejeté par la validation', { reason: checked.reason });
+        } else if (leadService.isDuplicate(checked.lead)) {
+          logger.info('[chat] lead déjà transmis récemment, ignoré');
+        } else {
+          const need = `${checked.lead.need || 'Demande via chatbot'} [via chatbot OctoMask]`;
+          // Pas d'await : le lead est écrit sur disque de façon synchrone dans
+          // deliverLead avant toute I/O réseau, donc il ne peut plus être perdu,
+          // et le visiteur n'attend pas l'envoi de l'e-mail. Le serveur Render
+          // est un process persistant : la suite s'exécute bien après la réponse.
+          leadService.deliverLead({ ...checked.lead, need }, 'chatbot OctoMask')
+            .catch(e => logger.error('[chat] échec de transmission du lead', e));
+        }
       }
+
       logIfPriceMismatch(reply);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-      res.end(JSON.stringify({ reply }));
+      res.end(JSON.stringify({ reply, sig: signReply(reply) }));
     });
   });
 }

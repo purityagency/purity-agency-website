@@ -22,7 +22,6 @@
     let isOpen = false;
     let isDragging = false;
     let messages = [];
-    let leadSent = sessionStorage.getItem('chatLeadSent') === '1';
 
     // Virtual Keyboard / Safe Area handler for mobile
     function adjustForMobile() {
@@ -49,8 +48,11 @@
       msgDiv.className = `msg msg--${sender}`;
       
       if (sender === 'sys') {
-        // Safe markdown-like parsing without innerHTML
-        const parts = String(content).split(/(\*\*.*?\*\*|\*.*?\*|`.*?`|\n)/g);
+        // Les délimiteurs doivent coller au texte (\S) : sinon "un forfait 2 *
+        // 3 modules" partait en italique et perdait ses astérisques. Le prompt
+        // interdit le Markdown et le modèle obéit (mesuré : 0 gras sur 4
+        // réponses), ceci reste un filet pour le jour où il s'écarte.
+        const parts = String(content).split(/(\*\*\S(?:[\s\S]*?\S)?\*\*|\*\S(?:[\s\S]*?\S)?\*|`[^`]+`|\n)/g);
         parts.forEach(part => {
           if (part.startsWith('**') && part.endsWith('**')) {
             const strong = document.createElement('strong');
@@ -87,8 +89,9 @@
     // construit et sauvegardé correctement par appendMessage() ci-dessus (ne
     // touche ni au state ni au parsing markdown : parcourt juste les noeuds
     // texte déjà en place dans l'ordre du document et les remplit
-    // progressivement). Le serveur ne stream pas (le tag [LEAD] doit être lu
-    // en entier avant l'envoi) ; ceci donne la fluidité perçue sans y toucher.
+    // progressivement). Le serveur ne stream pas — il doit lire la réponse
+    // entière pour en extraire le lead avant de répondre ; ceci donne la
+    // fluidité perçue sans y toucher.
     function revealTyping(msgDiv) {
       if (!msgDiv) return;
       const walker = document.createTreeWalker(msgDiv, NodeFilter.SHOW_TEXT);
@@ -218,34 +221,18 @@
         removeTyping();
         
         if (data.reply) {
-          let replyText = data.reply;
-          const leadMatch = replyText.match(/\[LEAD\]\s*(\{[\s\S]*?\})\s*\[\/LEAD\]/i);
-          
-          if (leadMatch) {
-            replyText = replyText.replace(/\[LEAD\][\s\S]*?\[\/LEAD\]/i, '').trim();
-            try {
-              const leadData = JSON.parse(leadMatch[1]);
-              if (!leadSent && leadData && (leadData.email || leadData.phone) && leadData.name) {
-                leadSent = true;
-                sessionStorage.setItem('chatLeadSent', '1');
-                fetch('/api/contact', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    name: leadData.name || '',
-                    email: leadData.email || '',
-                    phone: leadData.phone || '',
-                    activity: leadData.activity || '',
-                    need: (leadData.need || '') + ' [via chatbot OctoMask]'
-                  })
-                }).catch(() => {});
-              }
-            } catch (e) {}
-          }
-          
+          // La balise [LEAD] et sa transmission sont désormais entièrement
+          // gérées côté serveur : le navigateur n'est plus sur le chemin
+          // critique d'un prospect. Un bloqueur, une erreur JS ou un onglet
+          // fermé dans la seconde ne peuvent plus faire disparaître un lead.
+          const replyText = data.reply;
           if (replyText) {
             revealTyping(appendMessage(replyText, 'sys'));
-            messages.push({ role: 'model', text: replyText });
+            // `sig` est le HMAC calculé par le serveur : il le renvoie avec la
+            // réponse et n'accepte dans l'historique que les tours « model »
+            // qui le présentent. Sans ça, n'importe qui pourrait forger des
+            // propos que le bot n'a jamais tenus puis lui faire confirmer.
+            messages.push({ role: 'model', text: replyText, sig: data.sig || '' });
             if (messages.length > 20) messages = messages.slice(-20);
             saveState();
           }

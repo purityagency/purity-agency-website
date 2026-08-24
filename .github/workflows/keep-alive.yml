@@ -1,0 +1,24 @@
+name: Keep Render awake
+
+# Le plan gratuit Render met le service en veille après ~15 min d'inactivité.
+# Un visiteur (ou Googlebot) qui arrive pendant ce sommeil attend 50+ secondes
+# — ça abîme l'indexation (Google classe la page "explorée, non indexée") et
+# l'expérience réelle. GitHub Actions est gratuit sur ce repo : on l'utilise
+# comme pinger toutes les 10 minutes, sous la barre des 15 min, sans payer un
+# passage au plan Render supérieur.
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping /api/health
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 55 https://purity-agency.be/api/health)
+          echo "HTTP $code"
+          if [ "$code" != "200" ]; then
+            echo "::warning::Réveil du service, code $code (normal si le site venait de dormir)"
+          fi

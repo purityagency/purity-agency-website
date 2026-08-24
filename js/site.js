@@ -1419,20 +1419,45 @@ let _i18nDict = {};
   }
   const G = document.getElementById("cookie-banner");
   if (G) {
-    let e = !1;
+    let e = "";
     try {
-      e = !!localStorage.getItem("purity_cookie_notice");
+      e = localStorage.getItem("purity_cookie_choice") || "";
     } catch {}
-    e ||
-      (G.removeAttribute("hidden"),
+    const consentUpdate = (granted) => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "consent_update",
+        _consent: {
+          analytics_storage: granted ? "granted" : "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        },
+      });
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          analytics_storage: granted ? "granted" : "denied",
+        });
+      }
+    };
+    const choose = (granted) => {
+      try {
+        localStorage.setItem("purity_cookie_choice", granted ? "granted" : "denied");
+      } catch {}
+      consentUpdate(granted);
+      G.setAttribute("hidden", "");
+    };
+    if (e) {
+      consentUpdate(e === "granted");
+    } else {
+      G.removeAttribute("hidden");
       document
         .getElementById("cookie-accept")
-        ?.addEventListener("click", () => {
-          try {
-            localStorage.setItem("purity_cookie_notice", "1");
-          } catch {}
-          G.setAttribute("hidden", "");
-        }));
+        ?.addEventListener("click", () => choose(true));
+      document
+        .getElementById("cookie-refuse")
+        ?.addEventListener("click", () => choose(false));
+    }
   }
   const Q = document.querySelector(".cb-tabs");
   if (Q) {

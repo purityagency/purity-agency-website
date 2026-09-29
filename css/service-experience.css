@@ -1,0 +1,352 @@
+/* Service priorities — four original scenes, no reuse of the hero film. */
+.solution-picker,
+.solutions__capabilities{display:none!important}
+
+.service-grid{
+  width:min(100%,1100px);
+  margin:clamp(2.6rem,5vw,4.5rem) auto 0;
+  gap:clamp(.8rem,1.6vw,1.15rem)
+}
+
+.service-card{
+  --scene-accent:#ffbf69;
+  isolation:isolate;
+  min-height:0;
+  border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 18px 45px rgba(34,18,58,.045);
+  transition:transform 360ms var(--ease-smooth),opacity 260ms var(--ease-smooth),border-color var(--t-normal) var(--ease-smooth),box-shadow var(--t-normal) var(--ease-smooth)
+}
+.service-card--time{--scene-accent:#84d5b3}
+.service-card--tools{--scene-accent:#91b4ff}
+.service-card--trust{--scene-accent:#efafd7}
+.service-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 35%,transparent);box-shadow:0 24px 58px rgba(44,20,75,.09)}
+.service-card[open]{grid-column:1/-1;transform:none;border-color:color-mix(in srgb,var(--accent) 28%,transparent);box-shadow:0 28px 64px rgba(44,20,75,.09)}
+
+/* Focus mode: the selected priority replaces the four-card chooser. The exit
+   of the other choices gives the expansion a readable transition, while the
+   page itself remains an ordinary, scrollable document. */
+.service-grid.is-focused .service-card.is-focused{grid-column:1/-1}
+.service-grid.is-focused:not(.is-settled) .service-card:not(.is-focused){opacity:0;pointer-events:none;transform:translateY(10px) scale(.985)}
+.service-grid.is-focused.is-settled .service-card:not(.is-focused),
+.service-grid.is-closing .service-card:not(.is-focused){display:none}
+.service-grid.is-focused.is-settled .service-card.is-focused{grid-column:1/-1}
+.service-grid.is-closing .service-card.is-focused{pointer-events:none}
+.service-grid.is-closing .service-card.is-focused>.service-card__body{display:grid;opacity:0;transform:translateY(-8px);pointer-events:none}
+.service-grid.is-restoring .service-card{opacity:0;pointer-events:none;transform:translateY(10px) scale(.985)}
+.service-grid.is-focused.is-settled .service-card.is-focused{animation:service-card-surface-in .3s cubic-bezier(.22,1,.36,1) both}
+
+.service-card summary{
+  position:relative;
+  display:flex;
+  min-height:clamp(20rem,31vw,25rem);
+  overflow:hidden;
+  flex-direction:column;
+  padding:clamp(1.45rem,2.8vw,2.2rem);
+  border-radius:inherit;
+  background:linear-gradient(135deg,#fff 0 57%,color-mix(in srgb,var(--scene-accent) 12%,#fff) 100%);
+  cursor:pointer;
+  will-change:transform;
+  transition:background-color var(--t-normal) var(--ease-smooth),transform var(--t-fast) var(--ease-smooth)
+}
+.service-card[open] summary{min-height:clamp(11.5rem,17vw,14rem);border-radius:22px 22px 0 0}
+.service-card summary:focus-visible{outline:3px solid var(--accent);outline-offset:-5px}
+.service-card summary:active{transform:scale(.998)}
+
+.service-card__index{
+  position:relative;
+  z-index:2;
+  color:var(--accent-deep)!important;
+  font-size:.75rem!important;
+  font-weight:700!important;
+  letter-spacing:.075em!important;
+  text-transform:uppercase
+}
+.service-card h3{
+  position:relative;
+  z-index:2;
+  /* The illustration has a reserved zone at the right: copy never has to
+     compete with it to remain readable. */
+  max-width:9ch;
+  margin:.75rem 0 0;
+  font-size:clamp(2rem,3.45vw,3.15rem);
+  line-height:.98;
+  letter-spacing:-.048em;
+  text-wrap:balance
+}
+
+.service-card__visual{
+  position:absolute;
+  z-index:1;
+  right:-4%;
+  bottom:7%;
+  width:51%;
+  pointer-events:none;
+  transform-origin:78% 70%;
+  transition:transform var(--t-slow) var(--ease-smooth)
+}
+.service-card__visual svg{display:block;width:100%;height:auto;overflow:visible}
+.service-card:hover .service-card__visual,.service-card[open] .service-card__visual{transform:translate3d(-5px,-3px,0) scale(1.018)}
+.service-card[open] .service-card__visual{right:2%;bottom:-6%;width:36%}
+
+.service-tentacle{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:25;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:1;
+  stroke-dashoffset:.09;
+  transition:stroke-dashoffset var(--t-slow) var(--ease-smooth)
+}
+.service-card:hover .service-tentacle,.service-card[open] .service-tentacle{stroke-dashoffset:0}
+.service-tentacle__light{fill:none;stroke:#b98bd1;stroke-width:5;stroke-linecap:round;opacity:.85}
+.service-suckers circle{fill:#fff;stroke:var(--accent-deep);stroke-width:2}
+.service-people circle,.service-people path{fill:#fff;stroke:var(--ink);stroke-width:3}
+.service-people circle:first-child{fill:var(--scene-accent)}
+.service-signal{fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.service-object{fill:color-mix(in srgb,var(--scene-accent) 45%,#fff);stroke:var(--ink);stroke-width:3}
+.service-object__line{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.service-task rect:first-child{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+.service-task path{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.service-task rect:last-child{fill:var(--ink)}
+.service-board rect{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+.service-board rect:nth-child(2),.service-board rect:nth-child(3){fill:color-mix(in srgb,var(--scene-accent) 42%,#fff)}
+.service-board__line{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.service-shield{fill:color-mix(in srgb,var(--scene-accent) 58%,#fff);stroke:var(--ink);stroke-width:3}
+.service-shield__mark{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.service-stars{fill:var(--accent)}
+
+.service-card__cue{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin-top:auto;
+  align-self:flex-start
+}
+.service-card__cue b{font-size:.9rem;font-weight:650}
+.service-card__cue i{
+  display:grid!important;
+  width:2.5rem!important;
+  height:2.5rem!important;
+  margin:0!important;
+  place-items:center;
+  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+  border-radius:50%;
+  background:var(--accent)!important;
+  color:#fff;
+  font-size:1.35rem!important;
+  font-style:normal;
+  line-height:1;
+  transition:transform var(--t-normal) var(--ease-smooth),background-color var(--t-normal) var(--ease-smooth)
+}
+.service-card[open] .service-card__cue i{transform:rotate(45deg);background:var(--ink)!important}
+/* Once the detail surface is open, the explicit return control below is the
+   only navigation needed. Keeping this closed-state cue would duplicate it. */
+.service-card[open] .service-card__cue{display:none}
+
+.service-card__body{
+  display:grid;
+  gap:.85rem;
+  padding:clamp(1.05rem,2vw,1.45rem) clamp(1.45rem,2.8vw,2.2rem) clamp(1.25rem,2.4vw,1.75rem);
+  border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent);
+  animation:service-body-in .32s cubic-bezier(.22,1,.36,1) .04s both
+}
+.service-card:not([open]) > .service-card__body{display:none}
+.service-card[open] > .service-card__body{display:grid}
+.service-card__body>p{margin:0;color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.075em;text-transform:uppercase}
+.service-card__back{
+  display:inline-flex;
+  width:max-content;
+  min-height:2.65rem;
+  align-items:center;
+  gap:.55rem;
+  margin:0 0 .1rem;
+  padding:0 .85rem;
+  border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));
+  border-radius:999px;
+  background:#fff;
+  color:var(--ink);
+  cursor:pointer;
+  font:inherit;
+  font-size:.82rem;
+  font-weight:700;
+  transition:background-color var(--t-fast) var(--ease-smooth),border-color var(--t-fast) var(--ease-smooth),color var(--t-fast) var(--ease-smooth),transform var(--t-fast) var(--ease-smooth)
+}
+.service-card__back span{color:var(--accent);font-size:1.1rem;line-height:1}
+.service-card__back:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,#fff);color:var(--accent-deep);transform:translateX(-2px)}
+.service-card__back:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 38%,transparent);outline-offset:3px}
+.service-card__services{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.service-card__services a{
+  display:flex;
+  min-height:4rem;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:.9rem 1rem .9rem 0;
+  border-bottom:1px solid var(--line);
+  color:var(--ink);
+  text-decoration:none;
+  transition:color var(--t-fast) var(--ease-smooth),transform var(--t-fast) var(--ease-smooth)
+}
+.service-card__services a:nth-child(odd){margin-right:1rem;border-right:1px solid var(--line);padding-right:1.2rem}
+.service-card__services a:nth-child(even){padding-left:.2rem}
+.service-card__services a:hover{color:var(--accent);transform:translateX(3px)}
+.service-card__services span{font-size:clamp(.92rem,1.45vw,1.05rem);font-weight:620;line-height:1.25}
+.service-card__services small{flex:none;color:var(--accent);font-size:.76rem;font-weight:700}
+.service-card__actions{display:flex;align-items:center;gap:.75rem;margin-top:.25rem}
+.service-card__actions>a{display:inline-flex;min-height:2.75rem;align-items:center;justify-content:center;padding:0 1rem;border:1px solid var(--line);border-radius:999px;color:var(--ink);font-size:.88rem;font-weight:650;text-decoration:none}
+.service-card__actions>a:hover{border-color:var(--accent);color:var(--accent)}
+.service-card__actions .service-card__primary{border-color:var(--accent);background:var(--accent);color:#fff}
+.service-card__actions .service-card__primary:hover{background:var(--accent-deep);color:#fff}
+
+/* Une carte ouverte devient la surface de décision : les raccourcis flottants
+   se retirent pour ne jamais masquer une offre ou son action. */
+body:has(.service-card[open]) .octo-float,
+body:has(.service-card[open]) .whatsapp-float,
+body:has(.service-card[open]) .octo__teaser,
+body.is-exploring-services .octo-float,
+body.is-exploring-services .whatsapp-float,
+body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-events:none}
+
+.service-card__pricing{
+  display:grid;
+  gap:.65rem;
+  margin-top:.35rem;
+  padding-top:1.05rem;
+  border-top:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));
+}
+.service-card__pricing-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.service-card__pricing-head strong{color:var(--accent-deep);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.service-card__pricing-head span{color:var(--muted);font-size:.75rem;line-height:1.35;text-align:right}
+.service-card__offers{display:grid;border-top:1px solid var(--line)}
+.service-offer-row{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(9rem,.65fr) auto;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
+.service-offer-row__copy{min-width:0}.service-offer-row__copy>strong{display:block;font-size:.95rem;line-height:1.15}.service-offer-row__copy p{max-width:50ch;margin:.28rem 0 0;color:var(--muted);font-size:.78rem;line-height:1.35}
+.service-offer-row__price{display:grid;justify-items:start;gap:.14rem;color:var(--accent-deep);font-variant-numeric:tabular-nums;line-height:1.05}.service-offer-row__price strong{font-size:1.05rem}.service-offer-row__price span,.service-offer-row__price small{color:var(--muted);font-size:.7rem;font-weight:650}.service-offer-row__price small{text-transform:uppercase;letter-spacing:.05em}
+.service-offer-row>a{justify-self:end;color:var(--ink);font-size:.78rem;font-weight:700;text-decoration-color:var(--accent);text-underline-offset:4px;white-space:nowrap}.service-offer-row>a span{color:var(--accent)}.service-offer-row>a:hover{color:var(--accent-deep)}
+.service-pricing-error{margin:0;padding:.8rem 0;color:var(--muted);font-size:.82rem;line-height:1.45}.service-pricing-error a{color:var(--accent-deep);font-weight:650}
+.service-card[open] .service-card__services a,
+.service-card[open] .service-offer-row{animation:service-row-in .32s cubic-bezier(.22,1,.36,1) both}
+.service-card[open] .service-card__services a:nth-child(2),
+.service-card[open] .service-offer-row:nth-child(2){animation-delay:.035s}
+.service-card[open] .service-card__services a:nth-child(3),
+.service-card[open] .service-offer-row:nth-child(3){animation-delay:.07s}
+.service-card[open] .service-card__services a:nth-child(4),
+.service-card[open] .service-offer-row:nth-child(4){animation-delay:.105s}
+.service-card[open] .service-offer-row:nth-child(5){animation-delay:.14s}
+
+@keyframes service-body-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes service-row-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes service-card-surface-in{from{opacity:.86;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+@media(max-width:760px){
+  .solutions__intro{margin-inline:auto;text-align:center}
+  .solutions__intro>p:last-child{margin-inline:auto}
+  .service-grid{grid-template-columns:1fr}
+  .service-card[open]{grid-column:auto}
+  .service-grid.is-focused.is-settled .service-card.is-focused{grid-column:auto}
+  .service-card summary{min-height:21rem}
+  .service-card[open] summary{min-height:14rem}
+  .service-card__visual{right:-1%;bottom:7%;width:45%}
+  .service-card[open] .service-card__visual{right:-5%;bottom:1%;width:42%}
+  .service-card h3{max-width:7.2ch;font-size:clamp(2rem,8.5vw,2.8rem)}
+  /* These two intentional two-line promises retain their original rhythm;
+     their scene begins lower, so widening them still leaves a clear zone. */
+  .service-card--clients h3,.service-card--time h3{max-width:11.5ch}
+  .service-card__services{grid-template-columns:1fr}
+  .service-card__services a:nth-child(odd){margin-right:0;border-right:0;padding-right:0}
+  .service-card__services a:nth-child(even){padding-left:0}
+  .service-card__pricing-head{align-items:flex-start;flex-direction:column;gap:.25rem}.service-card__pricing-head span{text-align:left}
+  .service-offer-row{grid-template-columns:minmax(0,1fr) auto;gap:.75rem}.service-offer-row>a{grid-column:2;grid-row:1;align-self:start}.service-offer-row__price{grid-column:1;grid-row:2}.service-offer-row__copy p{max-width:38ch}
+}
+
+@media(max-width:440px){
+  .solutions__intro>p:last-child{font-size:.98rem}
+  .service-card summary{min-height:19rem;padding:1.25rem}
+  .service-card[open] summary{min-height:13.25rem}
+  .service-card h3{max-width:7.2ch;font-size:clamp(1.8rem,9.6vw,2.35rem)}
+  .service-card--clients h3,.service-card--time h3{max-width:11.5ch}
+  .service-card__visual{right:-1%;bottom:7%;width:45%}
+  .service-card__cue b{font-size:.82rem}
+  .service-card__body{padding:1.2rem 1.25rem 1.35rem}
+  .service-card__services a{min-height:4rem}
+  .service-card__services small{display:none}
+  .service-card__actions{align-items:stretch;flex-direction:column}
+  .service-card__actions>a{width:100%}
+  .service-offer-row{grid-template-columns:1fr;gap:.55rem}.service-offer-row>a{grid-column:auto;grid-row:auto;justify-self:start}.service-offer-row__price{grid-column:auto;grid-row:auto;display:flex;align-items:baseline;gap:.35rem}.service-offer-row__price strong{font-size:1rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .service-card,.service-card summary,.service-card__visual,.service-tentacle,.service-card__cue i,.service-card__services a,.service-card__back{transition:none!important;transform:none!important}
+  .service-grid.is-focused:not(.is-settled) .service-card:not(.is-focused),.service-grid.is-closing .service-card.is-focused,.service-grid.is-restoring .service-card{filter:none;opacity:1}
+  .service-card__body,.service-card[open] .service-card__services a,.service-card[open] .service-offer-row{animation:service-body-fade .15s linear both}
+}
+.service-grid.is-motion-reduced .service-card,.service-grid.is-motion-reduced .service-card summary,.service-grid.is-motion-reduced .service-card__body,.service-grid.is-motion-reduced .service-card__services a,.service-grid.is-motion-reduced .service-offer-row{animation:none!important;transition:none!important}
+@keyframes service-body-fade{from{opacity:0}to{opacity:1}}
+
+/* Interaction polish — les cartes s'ouvrent comme une surface de décision,
+   pas comme un bloc qui pop. */
+.service-card{
+  transform-origin:center top;
+  transition:
+    transform 520ms cubic-bezier(.32,.72,0,1),
+    opacity 360ms cubic-bezier(.32,.72,0,1),
+    border-color 360ms cubic-bezier(.32,.72,0,1),
+    box-shadow 520ms cubic-bezier(.32,.72,0,1);
+}
+.service-card:hover{transform:translateY(-4px) scale(1.004)}
+.service-card summary{
+  transition:
+    background 520ms cubic-bezier(.32,.72,0,1),
+    transform 260ms cubic-bezier(.32,.72,0,1),
+    min-height 520ms cubic-bezier(.32,.72,0,1);
+}
+.service-card[open] summary{
+  background:
+    radial-gradient(circle at 85% 50%,color-mix(in srgb,var(--scene-accent) 18%,transparent),transparent 15rem),
+    linear-gradient(135deg,#fff 0 58%,color-mix(in srgb,var(--scene-accent) 11%,#fff) 100%);
+}
+.service-card__cue i,
+.service-card__back,
+.service-card__actions>a{
+  box-shadow:0 10px 26px rgba(44,20,75,.08);
+}
+.service-card__services a{
+  border-radius:14px;
+  transition:
+    background-color 280ms cubic-bezier(.32,.72,0,1),
+    color 260ms cubic-bezier(.32,.72,0,1),
+    transform 280ms cubic-bezier(.32,.72,0,1),
+    padding 280ms cubic-bezier(.32,.72,0,1);
+}
+.service-card__services a:hover,
+.service-card__services a:focus-visible{
+  background:color-mix(in srgb,var(--accent) 6%,#fff);
+  color:var(--accent-deep);
+  transform:translateX(4px);
+  padding-left:.8rem;
+}
+.service-card__services a:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 42%,transparent);
+  outline-offset:2px;
+}
+.service-offer-row{
+  border-radius:14px;
+  transition:background-color 260ms var(--ease-smooth),padding-inline 260ms var(--ease-smooth);
+}
+.service-offer-row:hover{
+  padding-inline:.7rem;
+  background:color-mix(in srgb,var(--accent) 5%,#fff);
+}
+
+@media(max-width:760px){
+  .service-card__services a:hover,
+  .service-card__services a:focus-visible{
+    transform:none;
+    padding-left:.8rem;
+  }
+  .service-card__visual{opacity:.94}
+}

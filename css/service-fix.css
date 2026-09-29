@@ -1,0 +1,2 @@
+/* Do not reuse the hero film inside the service cards. */
+.service-card,.service-card--time,.service-card--tools,.service-card--trust{background-image:none}

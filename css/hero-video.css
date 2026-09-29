@@ -1,0 +1,75 @@
+/* The film keeps its native aspect ratio; adjacent type is aligned to its word. */
+.hero{position:relative;isolation:isolate;overflow:clip}
+.hero__inner{width:100%}
+.hero-to-audit{position:relative;display:grid;place-items:center;height:clamp(2.75rem,5.5vw,4.5rem);overflow:hidden}
+.hero-to-audit__line{display:block;width:min(42vw,27rem);height:1px;background:color-mix(in srgb,var(--accent) 45%,transparent)}
+.hero-to-audit__pulse{position:absolute;width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 .38rem color-mix(in srgb,var(--accent) 10%,transparent)}
+@supports (animation-timeline:view()){
+  .hero-to-audit__line{opacity:.15;transform:scaleX(.22);transform-origin:left center;animation:hero-bridge-draw linear both;animation-timeline:view();animation-range:entry 10% cover 36%}
+  .hero-to-audit__pulse{opacity:0;transform:scale(.45);animation:hero-bridge-pulse linear both;animation-timeline:view();animation-range:entry 18% cover 42%}
+}
+@keyframes hero-bridge-draw{to{opacity:1;transform:scaleX(1)}}
+@keyframes hero-bridge-pulse{to{opacity:1;transform:scale(1)}}
+.hero__title{position:relative;z-index:2;isolation:isolate}
+.hero h1{font-size:clamp(2.3rem,5.2vw,6.6rem)}
+.hero__line{display:block;white-space:nowrap}
+.hero__lead{position:relative;left:50%;width:max-content;transform:translate(-50%,clamp(.45rem,1.35vw,1.6rem))}
+.hero__delivery{position:relative;height:clamp(8.2rem,13.7vw,10.5rem);margin:.08em 0;white-space:nowrap}
+.hero__consequence{position:relative;margin-top:0}
+.hero__exister{position:relative;display:inline-block}
+.hero__exister::after{content:"";position:absolute;left:.02em;right:.02em;bottom:-.07em;height:.07em;border-radius:999px;background:var(--accent);transform:scaleX(0);transform-origin:left center;animation:hero-underline-draw .9s cubic-bezier(.22,1,.36,1) .3s forwards}
+@keyframes hero-underline-draw{to{transform:scaleX(1)}}
+.hero__word{position:relative;display:inline-block;width:3.84em;height:.65em;vertical-align:baseline}
+.hero__delivered-clients{position:absolute;font-size:1em;line-height:1;white-space:nowrap;will-change:transform}
+.hero__source,.hero__poster{position:absolute;left:0;top:0;display:block;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
+.hero__source{visibility:hidden}
+.hero__poster{visibility:visible}
+.hero--ready .hero__source{visibility:visible}
+.hero--ready .hero__poster{visibility:hidden}
+.hero__inner>p,.hero__actions,.hero .rating{position:relative;z-index:2}
+.hero__motion-toggle{display:block;margin:1rem auto 0;padding:.35rem .6rem;border:0;background:none;color:var(--muted);font:inherit;font-size:.75rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;position:relative;z-index:2}
+.hero__motion-toggle[hidden]{display:none}
+.hero__motion-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+@media(max-width:767px){
+  .hero h1{font-size:clamp(1.4rem,6.6vw,2.55rem)}
+  .hero__source,.hero__poster{display:none!important}
+  .hero__delivery{
+    height:auto;
+    margin:.24em 0;
+    white-space:normal;
+    line-height:1.08
+  }
+  .hero__word{
+    width:auto;
+    height:auto;
+    margin-right:.16em;
+    color:var(--accent);
+    vertical-align:baseline
+  }
+  .hero__word::after{content:"ramener "}
+  .hero__delivered-clients{
+    position:static;
+    font-size:1em;
+    white-space:normal;
+    transform:none!important
+  }
+  .hero__motion-toggle{display:none!important}
+}
+@media(min-width:768px) and (max-width:1350px){
+  .hero__consequence{font-size:.84em;white-space:nowrap}
+}
+@media(min-width:768px){
+  /* The film owns the left edge. These two static lines share the film's
+     optical centre, so the headline reads as one three-line composition. */
+  .hero{--hero-optical-shift:0px}
+  .hero__lead{left:calc(50% - var(--hero-optical-shift));font-size:.87em}
+  .hero__consequence{font-size:.87em;transform:translateX(calc(var(--hero-optical-shift) * -1))}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero__source{visibility:hidden!important}
+  .hero__poster{visibility:visible!important}
+  .hero__motion-toggle{display:none}
+  .hero__exister::after{animation:none;transform:scaleX(1)}
+  .hero-to-audit__line{opacity:.7;transform:none;animation:none}
+  .hero-to-audit__pulse{opacity:1;transform:none;animation:none}
+}

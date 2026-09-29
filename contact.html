@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parler acquisition, outils métier ou automatisation à Charleroi | Purity Agency</title>
+<meta name="description" content="Écrivez votre besoin en une phrase, ou réservez directement un appel de 15 minutes, sans engagement.">
+<link rel="canonical" href="https://purity-agency.be/contact.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:locale" content="fr_BE"><meta property="og:title" content="Parler de votre besoin digital — Purity Agency"><meta property="og:description" content="Parlez-nous d’acquisition, de visibilité, d’outils métier ou d’automatisation à Charleroi.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
+<link rel="stylesheet" href="/css/app.css?v=9">
+<link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/contact.css?v=8">
+<link rel="stylesheet" href="/css/octomask.css?v=3">
+<link rel="stylesheet" href="/css/site-additions.css">
+</head>
+<body>
+
+<header class="header">
+  <a class="header__brand" href="/">
+    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
+    <span>Purity Agency</span>
+  </a>
+  <nav class="header__nav" aria-label="Principal">
+    <a href="/#services">Services</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html" aria-current="page">Contact</a>
+  </nav>
+
+  <button class="burger" type="button" command="toggle-popover" commandfor="menu"
+          aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span class="burger__box" aria-hidden="true">
+      <span class="burger__bar"></span>
+      <span class="burger__bar"></span>
+    </span>
+  </button>
+</header>
+
+<div id="menu" popover="auto" class="menu" aria-label="Menu">
+  <div class="menu__top">
+    <span class="menu__brand">
+      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
+      <span>Purity Agency</span>
+    </span>
+    <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
+      <span class="burger__box" aria-hidden="true">
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+      </span>
+    </button>
+  </div>
+  <nav class="menu__nav">
+    <a href="/#services" style="--i:0">Services</a>
+    <a href="/blog.html" style="--i:2">Blog</a>
+    <a href="/contact.html" style="--i:3">Contact</a>
+  </nav>
+  <div class="menu__foot" style="--i:4">
+    <a class="btn btn--primary" href="/contact.html">Parler de votre projet</a>
+    <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+  </div>
+</div>
+
+<main class="contact">
+  <div class="contact__inner">
+
+    <div class="contact__intro">
+      <h1 class="contact__title">Parlez-nous du système que votre activité mérite.</h1>
+      <p class="contact__lead">Une demande qui se perd, une activité difficile à trouver, une opération à automatiser ou un outil métier à créer : décrivez la situation en une phrase. Nous vous dirons franchement si Purity est la bonne solution.</p>
+    </div>
+
+    <div class="contact__cols">
+
+      <!-- Colonne message : un seul champ visible au depart, les suivants
+           n'apparaissent qu'une fois celui-ci rempli. -->
+      <section class="thread" aria-labelledby="thread-title">
+        <h2 class="col__title" id="thread-title">Expliquer votre situation</h2>
+
+        <form id="contact-form" novalidate>
+          <div class="thread__log" id="thread-log" aria-live="polite"></div>
+
+          <div class="ask" id="ask">
+            <label class="ask__label" for="field" id="ask-label">Votre projet, en une phrase</label>
+            <p class="ask__help" id="ask-help">Ce qui ne va pas aujourd'hui, ou ce que vous voulez obtenir.</p>
+
+            <div class="ask__row">
+              <textarea class="ask__input" id="field" name="field" rows="3"
+                        placeholder="Nous perdons du temps à suivre les demandes…"
+                        aria-describedby="ask-help"></textarea>
+              <button class="btn btn--primary ask__next" type="submit" id="ask-next">Continuer</button>
+            </div>
+            <p class="ask__error" id="ask-error" role="alert" hidden></p>
+          </div>
+
+          <ol class="progress" id="progress" aria-hidden="true">
+            <li class="progress__dot is-on"></li>
+            <li class="progress__dot"></li>
+            <li class="progress__dot"></li>
+            <li class="progress__dot"></li>
+          </ol>
+        </form>
+
+        <div class="thread__done" id="thread-done" hidden>
+          <h3 class="thread__done-title">C'est parti.</h3>
+          <p class="thread__done-text">Votre message nous est arrivé. Nous vous répondons sous 24 h ouvrées.</p>
+        </div>
+      </section>
+
+      <!-- Colonne agenda : creneaux reels tires du calendrier. -->
+      <section class="booking" aria-labelledby="booking-title">
+        <h2 class="col__title" id="booking-title">Ou choisir un échange de 15 minutes</h2>
+        <p class="booking__lead">On clarifie le besoin, le niveau de priorité et la prochaine étape. Sans engagement, sans devis forcé.</p>
+        <a class="booking__external" href="https://calendar.app.google/yybUurryQkpLmyCQ9" target="_blank" rel="noopener">Choisir directement un créneau dans l’agenda</a>
+
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div><a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt=""><span>purity agency</span></a><p>Acquisition, visibilité, outils métier et automatisation pour les indépendants et PME de Wallonie.</p></div>
+    <nav aria-label="Navigation secondaire"><h2>Explorer</h2><a href="/#services">Services</a><a href="/contact.html">Contact</a></nav>
+    <div><h2>Nous joindre</h2><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a><p>Boulevard Frans Dewandre 14<br>6000 Charleroi</p></div>
+  </div>
+  <div class="site-footer__legal"><span>© 2026 Purity Agency</span><span>BCE 1036.775.590 · TVA BE 1036.775.590</span><span>Franchise TVA, art. 56bis CTVA</span><a href="/legal.html">Légal</a><a href="/confidentialite.html">Confidentialité</a><a href="/cookies.html">Cookies</a><a href="/conditions-generales.html">CGV</a></div>
+</footer>
+
+<script src="/js/menu.js?v=2" defer></script>
+<script src="/js/contact.js?v=2" defer></script>
+<script src="/js/octomask.js" defer></script>
+</body>
+</html>

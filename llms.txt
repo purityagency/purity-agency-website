@@ -1,29 +1,13 @@
 # Purity Agency
 
-> Purity Agency is a digital transformation and AI automation agency based in Charleroi, Belgium, serving SMEs, freelancers, and artisans in Wallonia and Brussels.
+Agence web à Charleroi, Belgique. Purity Agency accompagne les indépendants et PME sur leur site web, leur visibilité locale et leurs automatisations utiles.
 
-## Core Information
-- **Name:** Purity Agency
-- **Location:** Charleroi, Hainaut, Belgium
-- **Phone / WhatsApp:** +32 465 36 82 65
-- **Email:** contact@purity-agency.be
-- **Website:** https://purity-agency.be/
-- **BCE / VAT:** 1036.775.590
-- **Primary Language:** French (fr_BE)
+## Pages principales
+- https://purity-agency.be/
+- https://purity-agency.be/contact.html
+- https://purity-agency.be/blog.html
 
-## Key Services
-- **Web Presence:** Custom, high-performance websites (Landing pages, Vitrine, E-commerce). Focus on mobile-first, Core Web Vitals, and premium "Liquid Glass" design.
-- **Client Acquisition:** Local SEO, Google Ads, and automated lead generation.
-- **AI Automation:** Custom AI agents, CRM/ERP integration, automated customer qualification via WhatsApp, 24/7 AI chatbots (AI Act compliant).
-- **Business Tools:** Custom internal applications to automate repetitive tasks.
-- **Branding (Purity Studio):** Brand identity, logo design, UI/UX.
-
-## Target Audience
-- SMEs (Petites et Moyennes Entreprises)
-- Artisans, freelancers, and local merchants in Wallonia (Charleroi, Namur, Liège, Mons) and Brussels.
-
-## Key Differentiators
-- **Chèques Entreprises:** Purity Agency assists clients in securing "Chèques Entreprises" from the Walloon Region, covering up to 50% of digital project costs.
-- **Speed & Performance:** Websites built without heavy frameworks (Vanilla HTML/CSS/JS) for maximum speed and SEO scoring.
-- **Ownership:** Clients own 100% of their code, domain, and data. No vendor lock-in.
-- **Commitment:** Strict delivery deadlines with financial penalties for unjustified delays.
+## Informations fiables
+- Les prix publics sont servis depuis le catalogue de la v2.
+- OctoMask est un assistant d’orientation : il ne confirme ni paiement ni réservation sans validation explicite.
+- Les conditions contractuelles sont précisées dans un devis ou contrat accepté.

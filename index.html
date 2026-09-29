@@ -1,1700 +1,405 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<!-- Google Tag Manager -->
-<script src="js/gtm.js" defer></script>
-<!-- End Google Tag Manager -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-src 'self' https://www.googletagmanager.com;">
-<style>html.i18n-pending body{visibility:hidden}
-/* CSS critique du loader plein écran, en inline pour ne PAS dépendre du
-   chargement différé de site.css (media=print -> all). Avant ce correctif,
-   le loader n'était pas position:fixed tant que site.css n'avait pas fini
-   de charger : passage brutal d'un <div> de flux normal à un overlay plein
-   écran une fois le CSS actif, compté comme un CLS massif (jusqu'à 1.0+
-   sur certains runs, finding PageSpeed 2026-08-06). Doit rester identique
-   à la règle .loader de site.css. */
-#loader{position:fixed;inset:0;z-index:9999;background:#060309;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.25rem}
-#loader.is-done{visibility:hidden;pointer-events:none}
-</style>
-<script src="js/i18n-gate.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="meta.title">Purity Agency — Création de site web en Wallonie, SEO & IA</title>
-<meta name="description" content="Création de sites web professionnels, référencement Google local et automatisations IA pour PME, artisans et indépendants en Wallonie & Bruxelles. Devis gratuit sous 24h.">
-<meta name="theme-color" content="#060309">
-<meta name="google-site-verification" content="1ac6d89d0906954dd19780b78fdcd45171159af5" />
-<link rel="canonical" href="https://purity-agency.be/">
-<meta property="og:title" content="Purity Agency — Sites web, SEO local & IA pour PME et indépendants">
-<meta property="og:description" content="Création de sites web modernes, référencement Google local et agents IA sur-mesure pour PME et commerçants en Wallonie & Bruxelles. Devis gratuit sous 24h.">
-<meta property="og:site_name" content="Purity Agency">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://purity-agency.be/">
-<meta property="og:image" content="https://purity-agency.be/assets/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Purity Agency — Agence Web & IA à Charleroi (Octomask)">
-<meta property="og:locale" content="fr_BE">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Purity Agency — Agence Web, SEO & IA pour PME en Wallonie">
-<meta name="twitter:description" content="Création de sites web professionnels, référencement Google local et automatisations IA pour PME et indépendants.">
-<meta name="twitter:image" content="https://purity-agency.be/assets/og-image.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solutions digitales pour indépendants et PME à Charleroi | Purity Agency</title>
+<meta name="description" content="Agence digitale à Charleroi : Purity modernise et optimise les PME avec sites, e-commerce, automatisation, IA, branding et outils métier.">
+<link rel="canonical" href="https://purity-agency.be/"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:locale" content="fr_BE"><meta property="og:title" content="Purity Agency — Moderniser et optimiser votre activité"><meta property="og:description" content="Solutions digitales claires pour PME et indépendants : sites, e-commerce, automatisation, IA, outils métier, branding et communication."><meta property="og:url" content="https://purity-agency.be/"><meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/assets/hero-tentacle-studio-v3-poster.png">
+<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
+<link rel="stylesheet" href="/css/app.css?v=9">
+<link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/audit.css?v=7">
+<link rel="stylesheet" href="/css/method.css?v=11">
+<link rel="stylesheet" href="/css/octomask.css?v=4">
+    <link rel="stylesheet" href="/css/hero-video.css?v=26">
+<link rel="stylesheet" href="/css/site-additions.css">
+<link rel="stylesheet" href="/css/service-grid.css">
+<link rel="stylesheet" href="/css/service-fix.css">
+<link rel="stylesheet" href="/css/service-experience.css?v=14">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","@id":"https://purity-agency.be/#website","url":"https://purity-agency.be/","name":"Purity Agency","publisher":{"@id":"https://purity-agency.be/#org"},"hasPart":[{"@type":"WebPage","name":"Services & Tarifs","url":"https://purity-agency.be/services.html"},{"@type":"WebPage","name":"Blog & Conseils PME","url":"https://purity-agency.be/blog.html"},{"@type":"WebPage","name":"Agence Web Charleroi","url":"https://purity-agency.be/agence-web-charleroi.html"},{"@type":"WebPage","name":"Mentions Légales","url":"https://purity-agency.be/legal.html"}]}
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Purity Agency",
+  "url": "https://purity-agency.be",
+  "email": "contact@purity-agency.be",
+  "areaServed": "Wallonie",
+  "address": { "@type": "PostalAddress", "streetAddress": "Boulevard Frans Dewandre 14", "postalCode": "6000", "addressLocality": "Charleroi", "addressRegion": "Hainaut", "addressCountry": "BE" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "5", "bestRating": "5" }
+}
 </script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ItemList","name":"Sitelinks Navigation","itemListElement":[{"@type":"SiteNavigationElement","position":1,"name":"Services & Tarifs","url":"https://purity-agency.be/services.html"},{"@type":"SiteNavigationElement","position":2,"name":"Blog & Conseils PME","url":"https://purity-agency.be/blog.html"},{"@type":"SiteNavigationElement","position":3,"name":"Agence Web Charleroi","url":"https://purity-agency.be/agence-web-charleroi.html"},{"@type":"SiteNavigationElement","position":4,"name":"Mentions Légales","url":"https://purity-agency.be/legal.html"}]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://purity-agency.be/#org","name":"Purity Agency","url":"https://purity-agency.be/","logo":"https://purity-agency.be/assets/logo.png","image":"https://purity-agency.be/assets/og-image.jpg","email":"contact@purity-agency.be","telephone":"+32465368265","description":"Agence digitale à Charleroi spécialisée dans la transformation numérique des PME, TPE et indépendants wallons : sites web performants, SEO local, automatisation IA et outils métier sur-mesure.","address":{"@type":"PostalAddress","streetAddress":"Charleroi","addressLocality":"Charleroi","postalCode":"6000","addressRegion":"Hainaut","addressCountry":"BE"},"geo":{"@type":"GeoCoordinates","latitude":50.4108,"longitude":4.4446},"areaServed":[{"@type":"City","name":"Charleroi"},{"@type":"City","name":"Namur"},{"@type":"City","name":"Liège"},{"@type":"City","name":"Mons"},{"@type":"City","name":"Bruxelles"},{"@type":"AdministrativeArea","name":"Wallonie"},{"@type":"Country","name":"Belgique"}],"priceRange":"€€","currenciesAccepted":"EUR","paymentAccepted":"Virement bancaire, carte bancaire","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"}],"hasMap":"https://maps.google.com/?q=Charleroi,+Belgique","sameAs":["https://www.instagram.com/purityagency.be/","https://www.linkedin.com/in/amir-kebiyeb-131395408/","https://www.facebook.com/profile.php?id=61591450695302"],"identifier":{"@type":"PropertyValue","propertyID":"BCE","value":"1036.775.590"},"knowsAbout":["création de site web","SEO local","automatisation des processus","intelligence artificielle pour PME","Google Business Profile","e-commerce Belgique","transformation digitale PME","chatbot IA","outils métier sur-mesure","Chèques Entreprises Wallonie","développement web Charleroi"]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"J'ai déjà un site web. En quoi Purity Agency ferait-il une vraie différence ?","acceptedAnswer":{"@type":"Answer","text":"88 % des utilisateurs mobiles qui font une recherche locale visitent ou appellent un commerce dans les 24 heures. Si votre site actuel ne se charge pas en moins de 2 secondes, n'est pas optimisé pour le mobile ou ne capture pas activement les demandes, il vous fait perdre des clients chaque jour. Nous concevons des sites qui convertissent : architecture mobile-first, Core Web Vitals optimisés, formulaires connectés à votre agenda en temps réel."}},
-{"@type":"Question","name":"Quelle est la différence entre vos automatisations IA et des outils comme Zapier ou ChatGPT ?","acceptedAnswer":{"@type":"Answer","text":"Les outils grand public sont génériques et fragiles : ils demandent du temps de configuration et cassent dès que quelque chose change. Nous développons des agents IA sur-mesure, intégrés directement à vos flux opérationnels (WhatsApp, CRM, Google Agenda). Ils sont entraînés exclusivement sur vos données — tarifs, FAQ, procédures — et qualifient vos prospects 24h/24 sans jamais inventer d'information. Conformes à l'AI Act européen (art. 50), ils informent clairement vos visiteurs qu'ils interagissent avec une intelligence artificielle."}},
-{"@type":"Question","name":"Comment fonctionne l'aide des Chèques Entreprises de la Région Wallonne ?","acceptedAnswer":{"@type":"Answer","text":"Les Chèques Entreprises du SPW Économie financent jusqu'à 50 % du montant HTVA de vos projets de transformation numérique, avec un plafond de 50 000 € sur 3 ans. Pour en bénéficier, votre entreprise doit être une PME wallonne et faire appel à un prestataire labellisé par l'AEI. Purity Agency n'est pas labellisée à ce jour : nos prestations ne sont donc pas éligibles à cette aide. Nos tarifs sont nets, sans dossier administratif ni délai d'instruction de 2 à 4 semaines."}},
-{"@type":"Question","name":"Quels sont vos engagements de livraison ?","acceptedAnswer":{"@type":"Answer","text":"Le respect des délais est inscrit dans notre contrat. Nos projets se livrent en 5 à 15 jours ouvrés selon la complexité, à compter de la réception de tous les éléments nécessaires de votre part (textes, visuels, accès). Systèmes métier complexes : sprints hebdomadaires avec démo à chaque étape. Tout retard non justifié de notre part entraîne une pénalité financière contractuelle à votre avantage."}},
-{"@type":"Question","name":"Est-ce que je suis propriétaire de tout ce que vous créez ?","acceptedAnswer":{"@type":"Answer","text":"Oui, à 100 %. Code source, nom de domaine, bases de données, comptes d'hébergement : tout est à votre nom. Aucun verrou technique, aucun abonnement captif. Notre maintenance mensuelle est sans engagement et résiliable à tout moment. Vous pouvez partir avec l'intégralité de votre projet quand vous voulez."}},
-{"@type":"Question","name":"Je ne suis pas à l'aise avec le numérique. Comment ça se passe ?","acceptedAnswer":{"@type":"Answer","text":"C'est justement notre métier. 42 % des PME belges citent le manque de compétences numériques comme premier frein à leur digitalisation. Chaque projet inclut un livret de prise en main détaillé et des tutoriels vidéo courts enregistrés directement sur votre interface. Vous êtes autonome dès le premier jour."}},
-{"@type":"Question","name":"Comment garantissez-vous la conformité RGPD et la protection des données ?","acceptedAnswer":{"@type":"Answer","text":"Toutes nos architectures respectent le RGPD : chiffrement des données, hébergement sur serveurs européens, consentement explicite documenté. Nous n'installons aucun cookie publicitaire ni traceur tiers — seule une mesure d'audience anonyme et sans cookie (PostHog, hébergé en UE) nous aide à améliorer le site. Nos agents IA respectent également l'AI Act européen (transparence obligatoire dès août 2026)."}},
-{"@type":"Question","name":"Je peux commencer petit ou je dois prendre un pack complet ?","acceptedAnswer":{"@type":"Answer","text":"On fonctionne en modules indépendants. Vous pouvez démarrer avec une Page Essentielle (490 €), un système de Réservation en Ligne (390 €), ou un Pilote Automatique Essentiel (490 €). Vous combinez les modules au fil de votre croissance. Zéro engagement sur des services dont vous n'avez pas besoin aujourd'hui."}}
-]}
-</script>
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="manifest" href="manifest.json">
-<!-- Connexion anticipée au CDN GSAP (chargé en différé par js/lazy-boot.js) :
-     le handshake DNS+TLS est fait d'avance, donc GSAP arrive plus vite une
-     fois le thread principal libre. Aucun impact sur le rendu/CLS. -->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-<link rel="preload" href="assets/hero-bg.webp" as="image" type="image/webp" media="(min-width: 769px)">
-<link rel="preload" href="assets/hero-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)">
-<link rel="stylesheet" href="/assets/fonts/fonts.css">
-<!--
-  site.css et site-extra.css redevenus bloquants (round précédent : media=print
-  + swap JS pour gagner ~2s de rendu, finding 2026-08-05). Annulé le
-  2026-08-06 : cette technique EST la cause racine du CLS intermittent
-  (0 à 1.7 selon les runs) qui a résisté à plusieurs correctifs ciblés —
-  entre le premier paint (sans site.css actif) et le swap vers media=all,
-  N'IMPORTE QUEL élément du hero (loader, image LCP, pseudo-éléments...)
-  rendait sans son style final puis se repositionnait brutalement une fois
-  le CSS actif. Corriger élément par élément était voué à l'échec : un
-  nouvel élément non stylé apparaissait à chaque run. CLS correct et stable
-  vaut mieux que ~150-300ms de render-blocking sur un fichier CSS qui,
-  de toute façon, est nécessaire pour peindre quoi que ce soit d'utile.
--->
-<link rel="stylesheet" href="css/site.css?v=91">
-<link rel="stylesheet" href="css/site-extra.css?v=91">
-<script src="js/analytics.js" defer></script>
-<!--
-  GSAP + site.js (~200Ko) chargés dynamiquement via js/lazy-boot.js
-  (finding PageSpeed 2026-08-05, round 3) : même remontés en <head> et
-  différés en exécution (rounds précédents), leur simple téléchargement +
-  parsing sous throttling CPU retardait la peinture du hero. lazy-boot.js
-  ne les injecte qu'une fois le thread principal libre, ou immédiatement
-  au premier clic/touch/scroll pour ne jamais bloquer une interaction.
--->
-<script src="js/lazy-boot.js" defer></script>
-<link rel="alternate" type="text/plain" href="https://purity-agency.be/llms.txt" />
-<link rel="preconnect" href="https://www.google-analytics.com">
 </head>
 <body>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <g id="five-stars">
+      <path d="M12 2.6l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 16.4 6.4 19.7l1.4-6.3L3 9.1l6.4-.6z"/>
+      <path d="M36 2.6l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L36 16.4l-5.6 3.3 1.4-6.3L27 9.1l6.4-.6z"/>
+      <path d="M60 2.6l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L60 16.4l-5.6 3.3 1.4-6.3L51 9.1l6.4-.6z"/>
+      <path d="M84 2.6l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L84 16.4l-5.6 3.3 1.4-6.3L75 9.1l6.4-.6z"/>
+      <path d="M108 2.6l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L108 16.4l-5.6 3.3 1.4-6.3L99 9.1l6.4-.6z"/>
+    </g>
+  </defs>
+</svg>
 
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W95H5T7D"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<!-- Loader -->
-<div id="loader" class="loader">
-  <span class="loader__logo"><span data-i18n="gen_text_51">Purity</span><span>®</span></span>
-  <div class="loader__bar"><div class="loader__fill"></div></div>
-</div>
-
-<!-- Custom Cursor -->
-<div id="cursor" class="cursor"></div>
-<div id="cursor-dot" class="cursor-dot"></div>
-
-<!-- ═══ NAV ═══ -->
-<header id="nav">
-  <a class="nav__logo nav__logo--text" href="#hero"><span class="nav__logo-name"><span data-i18n="gen_text_52">PURITY</span></span><span class="nav__logo-sub"><span data-i18n="gen_text_53">AGENCY</span></span></a>
-  <nav class="nav__links">
-    <!-- Dropdown Services -->
-    <div class="nav__item">
-      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-        <span data-i18n="nav.services"><span data-i18n="gen_text_54">Services</span></span>
-        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="nav__dropdown-menu">
-        <div class="nav__dropdown-grid">
-          <a href="services.html#presence"><strong><span data-i18n="gen_text_55">Présence en Ligne</span></strong><span><span data-i18n="gen_text_56">Site vitrine, e-commerce, design premium.</span></span></a>
-          <a href="services.html#acquisition"><strong><span data-i18n="gen_text_57">Acquisition Clients</span></strong><span><span data-i18n="gen_text_58">SEO, Google Ads, campagnes locales.</span></span></a>
-          <a href="services.html#automatisation"><strong><span data-i18n="gen_text_59">Automatisation &amp; IA</span></strong><span><span data-i18n="gen_text_60">Flux de travail, agents intelligents.</span></span></a>
-          <a href="services.html#metier"><strong><span data-i18n="gen_text_61">Outils Métier</span></strong><span><span data-i18n="gen_text_62">Applications sur-mesure, CRM, ERP.</span></span></a>
-          <a href="services.html#studio"><strong><span data-i18n="gen_text_63">Purity Studio</span></strong><span><span data-i18n="gen_text_64">Design de marque, charte graphique, branding.</span></span></a>
-          <a href="services.html#hebergement"><strong><span data-i18n="gen_text_65">Hébergement &amp; Sécu</span></strong><span><span data-i18n="gen_text_66">Serveurs ultra-rapides, audits de sécurité.</span></span></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Simple Links -->
-    <a href="#methode" class="nav__link" data-i18n="nav.methode"><span data-i18n="gen_text_67">Méthode</span></a>
-    <a href="#preuve" class="nav__link" data-i18n="nav.pourquoi"><span data-i18n="gen_text_68">Pourquoi nous</span></a>
-
-    <!-- Dropdown Tarifs -->
-    <div class="nav__item">
-      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-        <span data-i18n="nav.tarifs"><span data-i18n="gen_text_69">Tarifs</span></span>
-        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="nav__dropdown-menu nav__dropdown-menu--small">
-        <div class="nav__dropdown-grid">
-          <a href="#tarifs"><strong><span data-i18n="gen_text_70">Grille Tarifaire</span></strong><span><span data-i18n="gen_text_71">Nos forfaits clairs et transparents.</span></span></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Dropdown Blog -->
-    <div class="nav__item">
-      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-        <span data-i18n="nav.blog"><span data-i18n="gen_text_74">Blog</span></span>
-        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="nav__dropdown-menu nav__dropdown-menu--medium">
-        <div class="nav__dropdown-grid">
-          <a href="blog.html"><strong><span data-i18n="gen_text_75">Tout le Blog</span></strong><span><span data-i18n="gen_text_76">Nos analyses, guides et actualités.</span></span></a>
-          <a href="article-prix-site-web-belgique.html"><strong><span data-i18n="gen_text_77">Prix d'un Site Web</span></strong><span><span data-i18n="gen_text_78">Combien coûte réellement un site en Belgique ?</span></span></a>
-          <a href="article-cheques-entreprises-wallonie.html"><strong><span data-i18n="gen_text_79">Chèques Entreprises</span></strong><span><span data-i18n="gen_text_80">Financez jusqu'à 50% de votre projet.</span></span></a>
-          <a href="article-seo-local-wallonie.html"><strong><span data-i18n="gen_text_81">SEO Local</span></strong><span><span data-i18n="gen_text_82">Faites décoller votre commerce en Wallonie.</span></span></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Dropdown Contact -->
-    <div class="nav__item">
-      <button class="nav__link nav__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-        <span data-i18n="nav.contact"><span data-i18n="gen_text_83">Contact</span></span>
-        <svg class="nav__dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="nav__dropdown-menu nav__dropdown-menu--small">
-        <div class="nav__dropdown-grid">
-          <a href="https://wa.me/32465368265" target="_blank" rel="noopener" class="nav__wa-item"><strong><span style="color:#25D366; display:inline-flex; align-items:center; gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.205 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.127z"/></svg> WhatsApp Direct</span></strong><span>Chattez en direct avec notre équipe (+32 465 36 82 65).</span></a>
-          <a href="#contact"><strong><span data-i18n="gen_text_84">Nous Contacter</span></strong><span><span data-i18n="gen_text_85">Formulaire d'échange et coordonnées directes.</span></span></a>
-          <a href="#booking"><strong><span data-i18n="gen_text_86">Prendre Rendez-vous</span></strong><span><span data-i18n="gen_text_87">Réservez un appel de qualification gratuit.</span></span></a>
-          <a href="mailto:contact@purity-agency.be"><strong><span data-i18n="gen_text_88">Par E-mail</span></strong><span><span data-i18n="gen_text_89">contact@purity-agency.be</span></span></a>
-        </div>
-      </div>
-    </div>
+<header class="header">
+  <a class="header__brand" href="/">
+    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
+    <span>Purity Agency</span>
+  </a>
+  <nav class="header__nav" aria-label="Principal">
+    <a href="#services">Services</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
-  <div class="nav__actions">
-    <!-- Sélecteur de langue -->
-    <div class="langsel" id="langsel">
-      <button class="langsel__btn" id="langsel-btn" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langsel.aria" aria-label="Choisir la langue" data-i18n-aria="gen_aria_2">
-        <span class="langsel__flag" data-flag aria-hidden="true"><img src="/assets/flags/fr.svg" alt="" aria-hidden="true" width="18" height="12"></span>
-        <span class="langsel__code" data-code aria-hidden="true">FR</span>
-        <svg class="langsel__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="langsel__menu" id="langsel-menu" data-i18n-aria="gen_aria_3" hidden>
-        <div class="langsel__menu-head" data-i18n="langsel.title"><span data-i18n="gen_text_91">Langue</span></div>
-        <ul class="langsel__list" role="listbox" aria-label="Langues">
-          <li role="option" data-lang="fr" data-flag="/assets/flags/fr.svg" class="is-active"><span class="langsel__opt-flag"><img src="/assets/flags/fr.svg" alt="FR"></span><span class="langsel__opt-name"><span data-i18n="gen_text_92">Français</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="en" data-flag="/assets/flags/en.svg"><span class="langsel__opt-flag"><img src="/assets/flags/en.svg" alt="EN"></span><span class="langsel__opt-name"><span data-i18n="gen_text_93">English</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="nl" data-flag="/assets/flags/nl.svg"><span class="langsel__opt-flag"><img src="/assets/flags/nl.svg" alt="NL"></span><span class="langsel__opt-name"><span data-i18n="gen_text_94">Nederlands</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="de" data-flag="/assets/flags/de.svg"><span class="langsel__opt-flag"><img src="/assets/flags/de.svg" alt="DE"></span><span class="langsel__opt-name"><span data-i18n="gen_text_95">Deutsch</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="es" data-flag="/assets/flags/es.svg"><span class="langsel__opt-flag"><img src="/assets/flags/es.svg" alt="ES"></span><span class="langsel__opt-name"><span data-i18n="gen_text_96">Español</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="pt" data-flag="/assets/flags/pt.svg"><span class="langsel__opt-flag"><img src="/assets/flags/pt.svg" alt="PT"></span><span class="langsel__opt-name"><span data-i18n="gen_text_97">Português</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="it" data-flag="/assets/flags/it.svg"><span class="langsel__opt-flag"><img src="/assets/flags/it.svg" alt="IT"></span><span class="langsel__opt-name"><span data-i18n="gen_text_98">Italiano</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="pl" data-flag="/assets/flags/pl.svg"><span class="langsel__opt-flag"><img src="/assets/flags/pl.svg" alt="PL"></span><span class="langsel__opt-name"><span data-i18n="gen_text_99">Polski</span></span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="ru" data-flag="/assets/flags/ru.svg"><span class="langsel__opt-flag"><img src="/assets/flags/ru.svg" alt="RU"></span><span class="langsel__opt-name">Русский</span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="ar" data-flag="/assets/flags/ar.svg"><span class="langsel__opt-flag"><img src="/assets/flags/ar.svg" alt="AR"></span><span class="langsel__opt-name">العربية</span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="zh" data-flag="/assets/flags/zh.svg"><span class="langsel__opt-flag"><img src="/assets/flags/zh.svg" alt="ZH"></span><span class="langsel__opt-name">中文</span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-          <li role="option" data-lang="hi" data-flag="/assets/flags/hi.svg"><span class="langsel__opt-flag"><img src="/assets/flags/hi.svg" alt="HI"></span><span class="langsel__opt-name">हिन्दी</span><svg class="langsel__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></li>
-        </ul>
-      </div>
-    </div>
-    <a class="nav__portal" href="/login" aria-label="Espace Client" data-i18n-aria="gen_text_90">
-      <span class="nav__portal-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-      </span>
-      <span class="nav__portal-label" data-i18n="gen_text_90">Espace Client</span>
-    </a>
-    <a class="nav__cta lg" href="#booking" data-i18n="nav.cta"><span data-i18n="gen_text_100">Réserver un appel</span></a>
-  </div>
-  <button class="nav__burger" data-i18n-aria="burger.aria" aria-label="Menu" data-i18n-aria="gen_aria_4" aria-expanded="false"><span></span><span></span></button>
+
+  <button class="burger" type="button" command="toggle-popover" commandfor="menu"
+          aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span class="burger__box" aria-hidden="true">
+      <span class="burger__bar"></span>
+      <span class="burger__bar"></span>
+    </span>
+  </button>
 </header>
 
-<!-- Mobile -->
-<div id="mobile-menu" class="mob" hidden>
-  <button class="mob__close" type="button" aria-label="Fermer le menu" data-i18n-aria="gen_aria_35"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-  <nav>
-    <a href="#services" data-i18n="nav.services"><span data-i18n="gen_text_101">Services</span></a>
-    <a href="#methode" data-i18n="nav.methode"><span data-i18n="gen_text_102">Méthode</span></a>
-    <a href="#preuve" data-i18n="nav.pourquoi"><span data-i18n="gen_text_103">Pourquoi nous</span></a>
-    <a href="#tarifs" data-i18n="nav.tarifs"><span data-i18n="gen_text_104">Tarifs</span></a>
-    <a href="blog.html" data-i18n="nav.blog"><span data-i18n="gen_text_105">Blog</span></a>
-    <a href="#contact" data-i18n="nav.contact"><span data-i18n="gen_text_106">Contact</span></a>
-    <a href="https://wa.me/32465368265" target="_blank" rel="noopener" style="color: #25D366; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.205 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.127z"/></svg><span>WhatsApp (+32 465 36 82 65)</span></a>
-    <a href="/login" style="color: var(--c-accent); font-weight: 500;"><span data-i18n="gen_text_107">Espace Client </span><svg style="display:inline-block; width:14px; height:14px; margin-left:4px; vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a href="#booking" class="btn btn--accent" style="margin-top: .5rem;"><span data-i18n="gen_text_108">📅 Réserver un appel</span></a>
+<div id="menu" popover="auto" class="menu" aria-label="Menu">
+  <div class="menu__top">
+    <span class="menu__brand">
+      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
+      <span>Purity Agency</span>
+    </span>
+    <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
+      <span class="burger__box" aria-hidden="true">
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+      </span>
+    </button>
+  </div>
+
+  <nav class="menu__nav">
+    <a href="#services" style="--i:0">Services</a>
+    <a href="/blog.html" style="--i:1">Blog</a>
+    <a href="/contact.html" style="--i:2">Contact</a>
   </nav>
+  <div class="menu__foot" style="--i:3">
+    <a class="btn btn--primary" href="/contact.html">Parler de votre projet</a>
+    <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+  </div>
 </div>
 
 <main>
-
-<!-- ═══ HERO ═══ -->
-<section id="hero" class="hero">
-  <div class="hero__media">
-    <!--
-      L'image se peint immédiatement (élément LCP réel) ; la vidéo
-      apparaît en fondu par-dessus une fois prête (js/hero-video-fade.js).
-      Avant ce correctif (2026-08-05), l'<img> vivait DANS <video> comme
-      simple repli — jamais peinte dans un navigateur moderne, donc la
-      vidéo (2,0 Mo même compressée) était l'élément LCP : ~4s sur 4G lente.
-    -->
-    <picture>
-      <source media="(max-width: 768px)" srcset="assets/hero-bg-mobile.webp" type="image/webp">
-      <source srcset="assets/hero-bg.webp" type="image/webp">
-      <img src="assets/hero-bg.jpg" alt="" class="hero__img" fetchpriority="high" width="1672" height="941">
-    </picture>
-    <video class="hero__bg-video" poster="assets/hero-bg.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-      <source src="assets/OctoMask_designing_website_under…_202607100338.mp4" type="video/mp4">
-    </video>
-    <script src="js/hero-video-fade.js"></script>
-  </div>
-  <div class="hero__scrim"></div>
-  <div class="hero__content">
-    <div class="hero__text-col">
-      <h1 class="hero__title" data-reveal data-i18n="hero.title" style="--d:.1s">
-        Pendant que vous dormez,<br>votre entreprise continue de <em>vendre.</em>
-      </h1>
-      <p class="hero__sub" data-reveal data-i18n="hero.sub" style="--d:.2s">
-        Vos systèmes répondent aux clients, qualifient les leads, prennent des rendez-vous et développent votre activité 24h/24. <strong>Des solutions concrètes pour attirer, convertir et fidéliser vos clients en Wallonie.</strong>
-      </p>
-      <div class="hero__ctas" data-reveal style="--d:.3s">
-        <a href="#contact" class="btn btn--accent btn--lg" data-i18n="nav.cta"><span data-i18n="gen_text_114">Parlons de votre projet</span></a>
-        <a href="#services" class="btn btn--glass-strong" data-i18n="hero.cta2"><span data-i18n="gen_text_115">Découvrir nos systèmes</span></a>
-      </div>
-      <ul class="hero__proof" data-reveal style="--d:.4s">
-        <li data-i18n="hero.proof1"><span data-i18n="gen_text_116">Réponse sous 24&nbsp;h</span></li>
-        <li data-i18n="hero.proof2"><span data-i18n="gen_text_117">Sans engagement</span></li>
-        <li data-i18n="hero.proof3"><span data-i18n="gen_text_118">100&nbsp;% sécurisé</span></li>
-      </ul>
-    </div>
-  </div>
-  <a href="#services" class="hero__scroll" aria-label="Découvrir la suite" data-i18n-aria="gen_aria_5" data-reveal style="--d:.6s">
-    <span class="hero__scroll-label" data-i18n="hero.scroll"><span data-i18n="gen_text_119">Découvrir</span></span>
-    <span class="hero__scroll-mouse"><span></span></span>
-  </a>
-</section>
-
-
-<!-- ═══ LES SYSTÈMES QUE NOUS CONSTRUISONS ═══ -->
-<section id="services" class="svc svc-section sec--tentacles">
-  <div class="svc-bg-scifi"></div>
-  <div class="wrap">
-    <div class="svc__header">
-      <h2 class="svc__title" data-reveal><span data-i18n="gen_text_120">Les systèmes que nous construisons</span></h2>
-      <p class="svc__stat" data-reveal><span data-i18n="gen_text_121">76&nbsp;% des Wallons achètent en ligne. Seules 28&nbsp;% des PME wallonnes y vendent. </span><em><span data-i18n="gen_text_122">Cet écart, c'est votre opportunité de croissance.</span></em></p>
-    </div>
-
-    <div class="svc-carousel" data-reveal style="--d:.15s" role="region" aria-roledescription="carrousel" aria-label="Nos services" data-i18n-aria="gen_aria_6">
-      <div class="svc-carousel__track-wrapper">
-        <div class="svc-carousel__track">
-          
-          <article class="svc-card is-active" data-href="#tarifs" data-index="0">
-            <div class="svc-card__top">
-              <span class="svc-card__index" aria-hidden="true">01</span>
-              <h3 data-i18n="briqueA.cat"><span data-i18n="gen_text_123">Présence en ligne</span></h3>
-            </div>
-
-            <div class="svc-card__body">
-              <div class="svc-card__stat"><span data-i18n="gen_text_124">75</span><span class="svc-card__stat-unit">%</span></div>
-              <p class="svc-card__lede"><span data-i18n="gen_text_501">Votre site juge votre sérieux en 3 secondes.</span></p>
-              <p class="svc-card__detail"><span data-i18n="gen_text_128">C'est la part des visiteurs qui décident de vous faire confiance avant même de lire une ligne. Vitrine ou e-commerce, mobile-first, livré en quelques jours — pas en mois.</span></p>
-              <a class="svc-card__link" href="#tarifs"><span data-i18n="gen_text_129">Voir les tarifs</span><span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="svc-card" data-href="#tarifs" data-index="1">
-            <div class="svc-card__top">
-              <span class="svc-card__index" aria-hidden="true">02</span>
-              <h3 data-i18n="briqueB.cat"><span data-i18n="gen_text_130">Acquisition clients</span></h3>
-            </div>
-
-            <div class="svc-card__body">
-              <div class="svc-card__stat"><span data-i18n="gen_text_131">97</span><span class="svc-card__stat-unit">%</span></div>
-              <p class="svc-card__lede"><span data-i18n="gen_text_502">Vos concurrents encaissent vos clients à votre place.</span></p>
-              <p class="svc-card__detail"><span data-i18n="gen_text_135">C'est la part des clics qui vont aux 3 premiers résultats Google. En dessous, vous n'existez pas. SEO local, fiche Google Business, mots-clés ciblés Wallonie, suivi mensuel.</span></p>
-              <a class="svc-card__link" href="#tarifs"><span data-i18n="gen_text_136">Voir les tarifs</span><span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="svc-card" data-href="#tarifs" data-index="2">
-            <div class="svc-card__top">
-              <span class="svc-card__index" aria-hidden="true">03</span>
-              <h3 data-i18n="briqueC.cat"><span data-i18n="gen_text_137">Automatisation &amp; IA</span></h3>
-            </div>
-
-            <div class="svc-card__body">
-              <div class="svc-card__stat svc-card__stat--phrase"><span data-i18n="gen_text_503">Zéro relance oubliée</span></div>
-              <p class="svc-card__lede"><span data-i18n="gen_text_504">Une heure à répondre aux mails, c'est une heure de moins à facturer.</span></p>
-              <p class="svc-card__detail"><span data-i18n="gen_text_142">WhatsApp et mail traités automatiquement, devis relancés sans y penser, workflows connectés à vos outils existants (Make, n8n).</span></p>
-              <a class="svc-card__link" href="#tarifs"><span data-i18n="gen_text_143">Voir les tarifs</span><span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="svc-card" data-href="#tarifs" data-index="3">
-            <div class="svc-card__top">
-              <span class="svc-card__index" aria-hidden="true">04</span>
-              <h3 data-i18n="briqueD.cat"><span data-i18n="gen_text_144">Applications métier</span></h3>
-            </div>
-
-            <div class="svc-card__body">
-              <div class="svc-card__stat svc-card__stat--phrase"><span data-i18n="gen_text_505">Un seul outil, plus de doublons</span></div>
-              <p class="svc-card__lede"><span data-i18n="gen_text_506">Excel plante, les infos se perdent dans WhatsApp.</span></p>
-              <p class="svc-card__detail"><span data-i18n="gen_text_149">Personne ne sait où en est le dossier. Une application sur mesure centralise clients, stocks et plannings, avec tableau de bord et accès multi-utilisateurs.</span></p>
-              <a class="svc-card__link" href="#tarifs"><span data-i18n="gen_text_150">Voir les tarifs</span><span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="svc-card" data-href="#tarifs" data-index="4">
-            <div class="svc-card__top">
-              <span class="svc-card__index" aria-hidden="true">05</span>
-              <h3><span data-i18n="gen_text_151">Purity Studio</span></h3>
-            </div>
-
-            <div class="svc-card__body">
-              <div class="svc-card__stat"><span data-i18n="gen_text_507">48</span><span class="svc-card__stat-unit">h</span></div>
-              <p class="svc-card__lede"><span data-i18n="gen_text_508">Des visuels niveau studio, sans shooting.</span></p>
-              <p class="svc-card__detail"><span data-i18n="gen_text_156">Photos produit, vidéos et identité de marque générées par IA, livrées en 48h. Sans attente, sans surcoût de production.</span></p>
-              <a class="svc-card__link" href="#tarifs"><span data-i18n="gen_text_157">Voir les tarifs</span><span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="svc-card" data-href="#tarifs" data-index="5">
-            <div class="svc-card__top">
-              <span class="svc-card__index" aria-hidden="true">06</span>
-              <h3 data-i18n="briqueE.cat"><span data-i18n="gen_text_158">Hébergement &amp; Sécurité</span></h3>
-            </div>
-
-            <div class="svc-card__body">
-              <div class="svc-card__stat"><span aria-hidden="true">-</span><span data-i18n="gen_text_159">7</span><span class="svc-card__stat-unit">%</span></div>
-              <p class="svc-card__lede"><span data-i18n="gen_text_509">C'est le coût d'une seconde de lenteur.</span></p>
-              <p class="svc-card__detail"><span data-i18n="gen_text_163">Un site planté un vendredi soir, c'est un week-end de chiffre d'affaires à la poubelle. SSL, sauvegardes quotidiennes, monitoring 24h/24 : on intervient avant que vous ne voyiez rien.</span></p>
-              <a class="svc-card__link" href="#tarifs"><span data-i18n="gen_text_164">Voir les tarifs</span><span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-
-
-        </div>
+  <section class="hero">
+    <div class="hero__inner">
+      <h1 class="hero__title"><span class="hero__line hero__lead">Votre présence en ligne doit</span><span class="hero__line hero__delivery"><span class="hero__word"><span class="sr-only">ramener</span></span><span class="hero__delivered-clients">des clients, pas juste</span></span><span class="hero__line hero__consequence"><span class="hero__exister">exister</span>.</span></h1>
+              <video class="hero__source" data-src="/assets/hero-tentacle-studio-v3.webm" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+              <img class="hero__poster" src="/assets/hero-tentacle-studio-v3-poster.png" aria-hidden="true" alt="">
+      <p>Modernisation digitale, automatisation, IA utile et communication pour les PME et indépendants en Belgique. Un accompagnement clair, humain et orienté résultats.</p>
+      <div class="hero__actions">
+      <a class="btn btn--primary" href="/contact.html">Parler de votre projet</a>
+      <a class="btn btn--ghost" href="#services">Voir les solutions</a>
       </div>
 
-      <div class="svc-carousel__dots" role="tablist" aria-label="Aller à un service" data-i18n-aria="gen_aria_7">
-        <button class="svc-carousel__dot is-active" data-index="0" role="tab" aria-selected="true" aria-label="Présence en ligne" data-i18n-aria="gen_aria_8"></button>
-        <button class="svc-carousel__dot" data-index="1" role="tab" aria-selected="false" aria-label="Acquisition clients" data-i18n-aria="gen_aria_9"></button>
-        <button class="svc-carousel__dot" data-index="2" role="tab" aria-selected="false" aria-label="Automatisation et IA" data-i18n-aria="gen_aria_10"></button>
-        <button class="svc-carousel__dot" data-index="3" role="tab" aria-selected="false" aria-label="Applications métier" data-i18n-aria="gen_aria_11"></button>
-        <button class="svc-carousel__dot" data-index="4" role="tab" aria-selected="false" aria-label="Purity Studio" data-i18n-aria="gen_aria_12"></button>
-        <button class="svc-carousel__dot" data-index="5" role="tab" aria-selected="false" aria-label="Hébergement et sécurité" data-i18n-aria="gen_aria_13"></button>
-      </div>
+      <a class="rating" href="https://www.google.com/search?q=Purity+Agency+Charleroi+avis" target="_blank" rel="noopener"
+         aria-label="Note de 4,8 sur 5 sur Google, 5 avis. Voir la fiche Google">
+        <span class="faces" aria-hidden="true"><span class="face" data-i="1"></span><span class="face" data-i="2"></span><span class="face" data-i="3"></span><span class="face" data-i="4"></span><span class="face" data-i="5"></span></span>
+        <svg class="rating__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.46a5.52 5.52 0 0 1-2.4 3.62v3.01h3.88c2.27-2.09 3.58-5.17 3.58-8.82z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.96-1.08 7.94-2.91l-3.88-3.01c-1.08.72-2.45 1.15-4.06 1.15-3.13 0-5.78-2.11-6.73-4.95H1.26v3.11A11.995 11.995 0 0 0 12 24z"/>
+          <path fill="#FBBC05" d="M5.27 14.28a7.2 7.2 0 0 1 0-4.56V6.61H1.26a12 12 0 0 0 0 10.78l4.01-3.11z"/>
+          <path fill="#EA4335" d="M12 4.75c1.76 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.69 1.26 6.61l4.01 3.11C6.22 6.86 8.87 4.75 12 4.75z"/>
+        </svg>
+        <span class="stars" role="img" aria-hidden="true">
+          <span class="stars__fill" style="--score:96%">
+            <svg viewBox="0 0 120 24" aria-hidden="true"><use href="#five-stars"/></svg>
+          </span>
+          <svg class="stars__empty" viewBox="0 0 120 24" aria-hidden="true"><use href="#five-stars"/></svg>
+        </span>
+        <span class="rating__score">4,8</span>
+        <span class="rating__count">avis Google</span>
+      </a>
+
+      <button class="hero__motion-toggle" type="button" hidden aria-pressed="false">Mettre l’animation en pause</button>
     </div>
+  </section>
+
+  <div class="hero-to-audit" aria-hidden="true">
+    <span class="hero-to-audit__line"></span>
+    <span class="hero-to-audit__pulse"></span>
   </div>
 
-  <button class="svc-carousel__arrow svc-carousel__arrow--prev" aria-label="Service précédent" data-i18n-aria="gen_aria_14">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-  </button>
-  <button class="svc-carousel__arrow svc-carousel__arrow--next" aria-label="Service suivant" data-i18n-aria="gen_aria_15">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-  </button>
-</section>
+  <section class="audit" id="audit" aria-labelledby="audit-title">
+    <div class="audit__inner">
+      <div class="audit__copy">
+        <h2 class="audit__title" id="audit-title">Testez votre site gratuitement.</h2>
+        <p class="audit__lead">Recevez un diagnostic expert de vos points faibles : ce qui freine la confiance, la prise de contact et ce qu’il faudrait améliorer en priorité.</p>
 
-<hr class="sec-divider" aria-hidden="true">
-
-<!-- ═══ STATS BENTO ═══ -->
-<section class="sec sec--stats">
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="bento2">
-
-      <!-- 490 € — grande carte avec jauge -->
-      <article class="b2 b2--price" data-reveal>
-        <span class="b2__top" data-i18n="stat1.top"><span data-i18n="gen_text_165">Votre premier module</span></span>
-        <div class="b2__num"><span class="b2__count" data-count="490">0</span><small>€</small></div>
-        <span class="b2__label" data-i18n="stat1.label"><span data-i18n="gen_text_166">Votre première présence en ligne. Prix fixes. Sans surprise.</span></span>
-        <div class="b2__gauge"><span class="b2__gauge-fill"></span></div>
-        <div class="b2__gauge-legend"><span>490 €</span><span>3 990 €+</span></div>
-      </article>
-
-      <!-- 24 h — horloge -->
-      <article class="b2 b2--clock" data-reveal style="--d:.08s">
-        <div class="b2__clock" aria-hidden="true">
-          <span class="b2__hand b2__hand--h"></span>
-          <span class="b2__hand b2__hand--m"></span>
-          <span class="b2__dot"></span>
-        </div>
-        <div class="b2__num"><span class="b2__count" data-count="24">0</span><small>h</small></div>
-        <span class="b2__label" data-i18n="stat2.label"><span data-i18n="gen_text_167">Réponse garantie. Toujours.</span></span>
-      </article>
-
-      <!-- 0 € — gratuit -->
-      <article class="b2 b2--free" data-reveal style="--d:.16s">
-        <span class="b2__badge" data-i18n="stat3.badge"><span data-i18n="gen_text_168">Offert</span></span>
-        <div class="b2__num"><span class="b2__count" data-count="0">0</span><small>€</small></div>
-        <span class="b2__label" data-i18n="stat3.label"><span data-i18n="gen_text_169">Le premier échange. Sans engagement.</span></span>
-      </article>
-
-      <!-- 100 % — propriété totale -->
-      <article class="b2 b2--split" data-reveal style="--d:.24s">
-        <div class="b2__segs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        <div class="b2__num"><span class="b2__count" data-count="100">0</span><small>%</small></div>
-        <span class="b2__label" data-i18n="stat4.label"><span data-i18n="gen_text_170">Vous êtes propriétaire de tout : code, domaine, comptes.</span></span>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<hr class="sec-divider" aria-hidden="true">
-
-<!-- ═══ VOTRE PARCOURS (MÉTHODE) ═══ -->
-<section id="methode" class="sec sec--parcours">
-  <div class="wrap">
-    
-    <!-- En-tête de section -->
-    <div class="parcours-head" data-reveal>
-      <span class="parcours-tag">
-        <span class="parcours-tag__dot"></span>
-        VOTRE PARCOURS
-      </span>
-      <h2>Un parcours simple.<br><strong>Zéro friction, <em>100% clair.</em></strong></h2>
-      <p class="parcours-lead">De la commande à la mise en production en 5 à 15 jours ouvrés selon la complexité.<br>Transparence totale à chaque étape.</p>
-    </div>
-
-    <!-- Piste de Timeline avec étapes -->
-    <div class="parcours-timeline" data-reveal>
-      
-      <!-- Ligne de piste horizontale -->
-      <div class="parcours-track">
-        <div class="parcours-track__line"></div>
-        <div class="parcours-track__progress"></div>
-        <div class="parcours-track__dot is-active" data-step="1" style="left: 8.33%;"><span>01</span></div>
-        <div class="parcours-track__dot" data-step="2" style="left: 25%;"><span>02</span></div>
-        <div class="parcours-track__dot" data-step="3" style="left: 41.66%;"><span>03</span></div>
-        <div class="parcours-track__dot" data-step="4" style="left: 58.33%;"><span>04</span></div>
-        <div class="parcours-track__dot" data-step="5" style="left: 75%;"><span>05</span></div>
-        <div class="parcours-track__dot" data-step="6" style="left: 91.66%;"><span>06</span></div>
+        <form class="audit__form" id="audit-form" novalidate>
+          <label class="sr-only" for="audit-url">Adresse de votre site</label>
+          <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
+                 placeholder="votre-entreprise.be" aria-describedby="audit-hint">
+          <button class="btn btn--primary audit__submit" type="submit">Obtenir le diagnostic</button>
+        </form>
+        <p class="audit__hint" id="audit-hint">Gratuit, sans inscription. Votre adresse n’est pas utilisée à des fins commerciales.</p>
       </div>
 
-      <!-- Grille des 6 cartes d'étapes -->
-      <div class="parcours-grid">
-        
-        <!-- Étape 1 (Active avec badge En Cours) -->
-        <div class="parcours-card is-active">
-          <div class="parcours-card__badge">EN COURS</div>
-          <div class="parcours-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-          </div>
-          <h3>Vous commandez</h3>
-          <p>Sélectionnez vos modules et activez votre pack métier. Prix fixes, sans engagement.</p>
-          <div class="parcours-card__time">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>5 min</span>
-          </div>
-        </div>
-
-        <!-- Étape 2 -->
-        <div class="parcours-card">
-          <div class="parcours-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <h3>Brief express</h3>
-          <p>Un questionnaire structuré de 3 minutes pour comprendre vos objectifs et vos besoins.</p>
-          <div class="parcours-card__time">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>3 min</span>
-          </div>
-        </div>
-
-        <!-- Étape 3 -->
-        <div class="parcours-card">
-          <div class="parcours-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.71 1.26-1.5 1.5-2.5l-2-2c-1 .24-1.79.79-2.5 1.5z"/><path d="M15 9l-3 3"/><path d="M9 15l3-3"/><path d="M13 3l-2 2 4 4 2-2a2 2 0 0 0 0-2.83l-1.17-1.17a2 2 0 0 0-2.83 0z"/><path d="m14 11 3 3"/></svg>
-          </div>
-          <h3>Production</h3>
-          <p>Nos experts conçoivent vos modules en parallèle. Suivi en temps réel.</p>
-          <div class="parcours-card__time">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>1 à 5 jours</span>
-          </div>
-        </div>
-
-        <!-- Étape 4 -->
-        <div class="parcours-card">
-          <div class="parcours-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <h3>Tests &amp; validation</h3>
-          <p>Vous testez chaque brique dans votre espace dédié. Feedback rapide, ajustements.</p>
-          <div class="parcours-card__time">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>1 jour</span>
-          </div>
-        </div>
-
-        <!-- Étape 5 -->
-        <div class="parcours-card">
-          <div class="parcours-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-          </div>
-          <h3>Mise en ligne</h3>
-          <p>Votre solution est déployée, connectée et optimisée pour la performance.</p>
-          <div class="parcours-card__time">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Quelques heures</span>
-          </div>
-        </div>
-
-        <!-- Étape 6 -->
-        <div class="parcours-card">
-          <div class="parcours-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h3>Livraison &amp; support</h3>
-          <p>Vous êtes livré en 5 à 15 jours ouvrés selon la complexité. Support dédié et évolutions disponibles.</p>
-          <div class="parcours-card__time">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3z"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            <span>En continu</span>
-          </div>
-        </div>
-
-      </div>
+      <output class="audit__out" id="audit-out" aria-live="polite"></output>
     </div>
+  </section>
 
-  </div>
-</section>
 
-<hr class="sec-divider" aria-hidden="true">
 
-<!-- ═══ SECTION PREUVE VISUELLE DIRECTE (PORTAIL & WORKFLOWS) ═══ -->
-<section id="preuve-directe" class="sec sec--preuve-directe">
-  <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="tag lg">Preuves Concrètes</span>
-      <h2>Vos outils ne sont plus une promesse. <em>Voyez-les en action.</em></h2>
+  <section class="method" id="methode" aria-labelledby="method-title">
+    <div class="method-wave method-wave--top" aria-hidden="true">
+      <svg viewBox="0 0 1440 180" preserveAspectRatio="none" focusable="false">
+        <path class="method-wave__soft method-wave__soft--a" d="M0 0H1440V55C1308 25 1196 20 1068 52C926 88 815 92 682 55C535 15 420 23 286 63C170 98 80 94 0 62V0Z"/>
+        <path class="method-wave__soft method-wave__soft--b" d="M0 0H1440V82C1300 38 1192 37 1052 76C920 113 810 117 671 74C526 28 404 33 268 82C154 123 67 112 0 82V0Z"/>
+        <path class="method-wave__main" d="M0 0H1440V96C1320 54 1210 48 1070 88C930 128 804 132 662 88C518 44 396 48 258 98C148 138 62 126 0 96V0Z"/>
+      </svg>
     </div>
-
-    <!-- Navigation interne de la preuve -->
-    <div class="preuve-tabs" data-reveal>
-      <button class="preuve-tab is-active" data-target="preuve-purity-os">Le Portail Purity OS</button>
-      <button class="preuve-tab" data-target="preuve-avant-apres">Comparatif Avant / Après</button>
-      <button class="preuve-tab" data-target="preuve-workflow">Flux d'Automatisation</button>
-    </div>
-
-    <div class="preuve-content" data-reveal>
-      
-      <!-- Onglet 1 : Purity OS Customer Portal Mockup -->
-      <div class="preuve-pane is-active" id="preuve-purity-os">
-        
-        <!-- Purity OS Educational Feature Bar -->
-        <div class="pos-features">
-          <div class="pos-feat">
-            <div class="pos-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-            </div>
-            <div class="pos-feat__text">
-              <strong>Suivi en temps réel</strong>
-              <span>Visualisez l'avancement exact de votre projet sans relances ni stress.</span>
-            </div>
-          </div>
-
-          <div class="pos-feat">
-            <div class="pos-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="pos-feat__text">
-              <strong>Tout centralisé</strong>
-              <span>Livrables, maquettes et validations regroupés sur une seule interface.</span>
-            </div>
-          </div>
-
-          <div class="pos-feat">
-            <div class="pos-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="pos-feat__text">
-              <strong>Inclus d'office</strong>
-              <span>Votre portail client privé offert sur tous nos projets dès le premier jour.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="purity-os-laptop-wrap">
-          <img src="assets/purity-os-mockup.webp" alt="Purity OS Dashboard" class="purity-os-laptop-img" loading="lazy" width="1276" height="895">
-        </div>
+    <div class="method__inner">
+      <div class="method__content">
+        <h2 class="method__headline reveal" id="method-title" data-reveal>On commence par repérer ce qui freine votre activité.</h2>
+        <p class="method__lead">En 15 minutes, on regarde l’acquisition, l’organisation ou les outils qui vous ralentissent. Vous repartez avec une priorité claire, même si nous ne travaillons pas ensemble.</p>
+        <a class="method__cta" href="/contact.html">
+          <span class="method__cta-label">Faire le point 15 min</span>
+          <span class="method__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+            </svg>
+          </span>
+        </a>
+        <p class="method__reassurance">15 min, sans engagement.</p>
       </div>
 
-      <!-- Onglet 2 : Avant / Après -->
-      <div class="preuve-pane" id="preuve-avant-apres" style="display:none;">
-        <div class="aa-comparison">
-          <!-- Avant -->
-          <div class="aa-card aa-card--before">
-            <div class="aa-card__header">
-              <span class="aa-card__badge">Avant Purity</span>
-              <h3>Le Chaos Opérationnel</h3>
-            </div>
-            <ul class="aa-card__list">
-              <li>
-                <strong>62% d'appels manqués</strong>
-                <p>Vos prospects appellent pendant que vous êtes en rendez-vous, sur un chantier, ou en cuisine. Ils partent chez le concurrent.</p>
-              </li>
-              <li>
-                <strong>Devis envoyés sous 3 à 5 jours</strong>
-                <p>Vous devez rentrer chez vous le soir, ouvrir votre ordinateur et faire vos calculs manuellement sur Excel.</p>
-              </li>
-              <li>
-                <strong>Rendez-vous non honorés (No-shows)</strong>
-                <p>Vos clients oublient leurs rendez-vous car vous n'avez pas de système de rappel automatique par SMS.</p>
-              </li>
-              <li>
-                <strong>Relances manuelles oubliées</strong>
-                <p>Les propositions commerciales dorment dans votre boîte mail sans aucun suivi, faute de temps.</p>
-              </li>
-            </ul>
-          </div>
+      <div class="method__visual">
+        <span class="method__visual-orbit" aria-hidden="true"></span>
+        <img class="method__shot" src="/assets/reunion-4k.webp"
+             srcset="/assets/reunion-460.webp 460w, /assets/reunion.webp 760w, /assets/reunion-4k.webp 1520w"
+             sizes="(max-width: 860px) 300px, 460px"
+             width="1520" height="1634" loading="lazy" decoding="async"
+             alt="Deux personnes assises face à face autour d'une table de réunion, vues de dessus">
+      </div>
+    </div>
+    <div class="method-wave method-wave--bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 180" preserveAspectRatio="none" focusable="false">
+        <path class="method-wave__soft method-wave__soft--a" d="M0 180H1440V116C1320 78 1200 78 1068 116C930 156 814 154 676 114C532 72 420 76 286 118C172 154 78 150 0 112V180Z"/>
+        <path class="method-wave__soft method-wave__soft--b" d="M0 180H1440V92C1306 134 1190 136 1050 94C912 52 800 55 668 98C528 143 410 142 276 94C152 50 68 62 0 96V180Z"/>
+        <path class="method-wave__main" d="M0 180H1440V78C1318 118 1198 122 1060 78C918 33 796 39 660 84C520 130 404 132 270 84C150 41 64 52 0 84V180Z"/>
+      </svg>
+    </div>
+  </section>
 
-          <!-- Après -->
-          <div class="aa-card aa-card--after">
-            <div class="aa-card__header">
-              <span class="aa-card__badge">Après Purity</span>
-              <h3>L'Efficacité Automatisée</h3>
+  <section class="solutions" id="services" aria-labelledby="solutions-title">
+    <div class="solutions__inner">
+      <div class="solutions__intro">
+        <p class="section-kicker">Partons de votre priorité</p>
+        <h2 id="solutions-title">Qu’est-ce qui doit avancer maintenant&nbsp;?</h2>
+        <p>Choisissez ce qui doit progresser. Nous réunissons ensuite les bons leviers — présence, communication, organisation, outil ou automatisation — autour de votre réalité.</p>
+      </div>
+
+      <div class="service-grid" aria-label="Choisir un objectif">
+        <details class="service-card service-card--clients" name="service-priority">
+          <summary>
+            <span class="service-card__index">01 · Acquisition</span>
+            <h3>Je veux plus<br>de clients</h3>
+            <div class="service-card__visual" aria-hidden="true">
+              <svg viewBox="0 0 360 220" focusable="false">
+                <path class="service-tentacle" pathLength="1" d="M370 192C300 194 294 127 236 131c-55 4-57 52-111 45-37-5-57-29-88-22"/>
+                <path class="service-tentacle__light" d="M359 184c-52-1-60-43-100-47"/>
+                <g class="service-suckers"><circle cx="293" cy="172" r="5"/><circle cx="272" cy="153" r="4.5"/><circle cx="246" cy="143" r="4"/><circle cx="217" cy="146" r="3.5"/></g>
+                <g class="service-people"><circle cx="73" cy="67" r="17"/><path d="M42 112c3-23 16-35 31-35s29 12 32 35"/><circle cx="142" cy="50" r="13"/><path d="M119 84c2-18 12-27 23-27s21 9 23 27"/><circle cx="207" cy="72" r="13"/><path d="M184 106c2-18 12-27 23-27s21 9 23 27"/></g>
+                <path class="service-signal" d="m95 133 20 13 24-20"/>
+              </svg>
             </div>
-            <ul class="aa-card__list">
-              <li>
-                <strong>100% des appels qualifiés en 3 secondes</strong>
-                <p>Un agent WhatsApp IA prend le relais instantanément, répond aux questions fréquentes et envoie un lien de réservation.</p>
-              </li>
-              <li>
-                <strong>Devis instantanés et signature en ligne</strong>
-                <p>Votre outil métier génère les offres automatiquement selon vos grilles tarifaires et permet la signature électronique.</p>
-              </li>
-              <li>
-                <strong>No-shows réduits de 65%</strong>
-                <p>Des rappels automatisés par SMS et WhatsApp à J-1 et H-2 rappellent les rendez-vous avec option d'annulation simple.</p>
-              </li>
-              <li>
-                <strong>Pipeline de relances automatisé</strong>
-                <p>Votre CRM envoie un e-mail et un SMS poli de relance à J+2 et J+5. Votre taux de conversion augmente de 40%.</p>
-              </li>
-            </ul>
+            <span class="service-card__cue"><b>Voir les solutions</b><i aria-hidden="true">+</i></span>
+          </summary>
+          <div class="service-card__body">
+            <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
+            <p>Solutions possibles</p>
+            <div class="service-card__services">
+              <a href="/contact.html?service=seo-local"><span>Référencement local et fiche Google</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=campagnes"><span>Campagnes publicitaires ciblées</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=conversion"><span>Pages, site ou boutique qui convertissent</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=suivi-commercial"><span>Suivi des contacts et opportunités</span><small>Discuter ↗</small></a>
+            </div>
+            <div class="service-card__pricing" data-service-pricing="acquisition" aria-live="polite"><div class="service-card__pricing-head"><strong>Repères de prix</strong><span>Prix publics, ajustés au périmètre.</span></div><div class="service-card__offers"><p>Chargement des offres…</p></div></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=acquisition">Parler de cet objectif</a></div>
           </div>
+        </details>
+        <details class="service-card service-card--time" name="service-priority">
+          <summary>
+            <span class="service-card__index">02 · Automatisation</span>
+            <h3>Je veux gagner<br>du temps</h3>
+            <div class="service-card__visual" aria-hidden="true">
+              <svg viewBox="0 0 360 220" focusable="false">
+                <circle class="service-object" cx="119" cy="92" r="51"/><path class="service-object__line" d="M119 61v33l24 14"/><path class="service-signal" d="M87 31h64M68 51l-13-13M170 51l13-13"/>
+                <path class="service-tentacle" pathLength="1" d="M370 198c-85 2-83-72-143-65-42 5-38 43-78 47-31 3-41-18-57-25"/>
+                <path class="service-tentacle__light" d="M358 190c-61-3-70-44-112-49"/>
+                <g class="service-suckers"><circle cx="290" cy="177" r="5"/><circle cx="264" cy="157" r="4.5"/><circle cx="234" cy="145" r="4"/><circle cx="203" cy="150" r="3.5"/></g>
+                <g class="service-task"><rect x="207" y="39" width="89" height="28" rx="8"/><path d="m220 53 7 7 13-14"/><rect x="244" y="50" width="34" height="5" rx="2.5"/></g>
+              </svg>
+            </div>
+            <span class="service-card__cue"><b>Voir les solutions</b><i aria-hidden="true">+</i></span>
+          </summary>
+          <div class="service-card__body">
+            <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
+            <p>Solutions possibles</p>
+            <div class="service-card__services">
+              <a href="/contact.html?service=automatisation"><span>Automatisation des tâches répétitives</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=ia"><span>Agent IA encadré pour répondre et qualifier</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=agenda"><span>Prise de rendez-vous et rappels</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=relances"><span>Relances, e-mails et documents automatiques</span><small>Discuter ↗</small></a>
+            </div>
+            <div class="service-card__pricing" data-service-pricing="automatisation" aria-live="polite"><div class="service-card__pricing-head"><strong>Repères de prix</strong><span>Prix publics, maintenance comprise quand elle s’applique.</span></div><div class="service-card__offers"><p>Chargement des offres…</p></div></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=automatisation">Parler de cet objectif</a></div>
+          </div>
+        </details>
+        <details class="service-card service-card--tools" name="service-priority">
+          <summary>
+            <span class="service-card__index">03 · Organisation &amp; outils</span>
+            <h3>Je veux mieux<br>organiser<br>mon activité</h3>
+            <div class="service-card__visual" aria-hidden="true">
+              <svg viewBox="0 0 360 220" focusable="false">
+                <g class="service-board"><rect x="62" y="38" width="102" height="70" rx="12"/><rect x="176" y="38" width="64" height="70" rx="12"/><rect x="62" y="120" width="64" height="52" rx="12"/><rect x="138" y="120" width="102" height="52" rx="12"/></g>
+                <path class="service-board__line" d="M79 58h52M79 73h67M193 57h29M193 73h20M79 139h29M155 139h63M155 153h42"/>
+                <path class="service-tentacle" pathLength="1" d="M369 181c-66 7-69-30-103-32-25-1-31 21-51 32-27 14-62 4-73-20"/>
+                <path class="service-tentacle__light" d="M354 175c-43 2-56-18-83-20"/>
+                <g class="service-suckers"><circle cx="300" cy="164" r="5"/><circle cx="277" cy="157" r="4.5"/><circle cx="248" cy="158" r="4"/><circle cx="222" cy="174" r="3.5"/></g>
+              </svg>
+            </div>
+            <span class="service-card__cue"><b>Voir les solutions</b><i aria-hidden="true">+</i></span>
+          </summary>
+          <div class="service-card__body">
+            <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
+            <p>Solutions possibles</p>
+            <div class="service-card__services">
+              <a href="/contact.html?service=outil-metier"><span>Application ou outil métier sur mesure</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=crm"><span>CRM et suivi des clients</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=portail"><span>Espace équipe ou portail client</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=planning"><span>Planning, devis, stock et tâches</span><small>Discuter ↗</small></a>
+            </div>
+            <div class="service-card__pricing" data-service-pricing="outils" aria-live="polite"><div class="service-card__pricing-head"><strong>Repère de prix</strong><span>Le développement sur mesure se cadre après le diagnostic.</span></div><div class="service-card__offers"><p>Chargement de l’offre…</p></div></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=outil-metier">Parler de cet objectif</a></div>
+          </div>
+        </details>
+        <details class="service-card service-card--trust" name="service-priority">
+          <summary>
+            <span class="service-card__index">04 · Image &amp; confiance</span>
+            <h3>Je veux inspirer<br>davantage confiance</h3>
+            <div class="service-card__visual" aria-hidden="true">
+              <svg viewBox="0 0 360 220" focusable="false">
+                <path class="service-shield" d="M105 33 174 56v50c0 40-27 67-69 83-42-16-69-43-69-83V56Z"/><path class="service-shield__mark" d="m72 107 22 23 45-54"/>
+                <path class="service-tentacle" pathLength="1" d="M369 194c-72 5-88-49-141-41-39 6-42 43-87 45-30 1-51-16-68-28"/>
+                <path class="service-tentacle__light" d="M355 187c-49 0-69-29-105-30"/>
+                <g class="service-suckers"><circle cx="299" cy="179" r="5"/><circle cx="275" cy="164" r="4.5"/><circle cx="248" cy="158" r="4"/><circle cx="216" cy="166" r="3.5"/></g>
+                <g class="service-stars"><path d="m232 42 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/><path d="m282 79 4 9 9 4-9 4-4 9-4-9-9-4 9-4Z"/></g>
+              </svg>
+            </div>
+            <span class="service-card__cue"><b>Voir les solutions</b><i aria-hidden="true">+</i></span>
+          </summary>
+          <div class="service-card__body">
+            <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
+            <p>Solutions possibles</p>
+            <div class="service-card__services">
+              <a href="/contact.html?service=identite"><span>Positionnement et identité visuelle</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=studio"><span>Photo, vidéo et contenus de marque</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=application"><span>Site, boutique ou application professionnelle</span><small>Discuter ↗</small></a>
+              <a href="/contact.html?service=hebergement"><span>Hébergement, maintenance et sécurité</span><small>Discuter ↗</small></a>
+            </div>
+            <div class="service-card__pricing" data-service-pricing="visibilite" aria-live="polite"><div class="service-card__pricing-head"><strong>Repères de prix</strong><span>Des points d’entrée concrets pour être trouvé.</span></div><div class="service-card__offers"><p>Chargement des offres…</p></div></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=presence-marque">Parler de cet objectif</a></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="solution-picker" data-solution-picker>
+        <div class="solution-picker__choices" role="tablist" aria-label="Choisir une situation">
+          <button class="solution-choice is-selected" type="button" role="tab" aria-selected="true" aria-controls="solution-more-requests" id="solution-tab-more-requests" data-solution="more-requests"><span>Attirer plus de clients</span><small>Être trouvé et choisi</small></button>
+          <button class="solution-choice" type="button" role="tab" aria-selected="false" aria-controls="solution-save-time" id="solution-tab-save-time" data-solution="save-time" tabindex="-1"><span>Gagner du temps</span><small>Moins de tâches qui se répètent</small></button>
+          <button class="solution-choice" type="button" role="tab" aria-selected="false" aria-controls="solution-own-tool" id="solution-tab-own-tool" data-solution="own-tool" tabindex="-1"><span>Mieux organiser mon activité</span><small>Tout au bon endroit</small></button>
+          <button class="solution-choice" type="button" role="tab" aria-selected="false" aria-controls="solution-credible" id="solution-tab-credible" data-solution="credible" tabindex="-1"><span>Donner confiance</span><small>Une image à la hauteur</small></button>
         </div>
-      </div>
 
-      <!-- Onglet 3 : Workflow d'Automatisation Interactif -->
-      <div class="preuve-pane" id="preuve-workflow" style="display:none;">
-        <div class="workflow-visual">
-          <div class="workflow-visual__node" data-node="1">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="solution-stage">
+          <article class="solution-panel is-active" id="solution-more-requests" role="tabpanel" aria-labelledby="solution-tab-more-requests" data-solution-panel="more-requests">
+            <div class="solution-panel__copy"><p class="solution-panel__eyebrow">Exemple de configuration</p><h3>Un parcours local qui transforme une recherche en demande qualifiée.</h3><p>Pour une activité de service : clarifier l’offre, rendre les preuves visibles, capter la demande puis ne pas la laisser sans suite.</p><a class="solution-panel__link" href="/contact.html?solution=acquisition">Voir ce que cela pourrait donner chez vous <span aria-hidden="true">↗</span></a></div>
+            <div class="system-map system-map--requests" aria-label="Parcours type : recherche Google, page de service, message WhatsApp, suivi">
+              <div class="system-map__node"><b>G</b><strong>Recherche Google</strong><small>« service près de moi »</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>↗</b><strong>Page qui répond</strong><small>preuve, offre, action</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>◌</b><strong>Message reçu</strong><small>WhatsApp ou formulaire</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>✓</b><strong>Suivi utile</strong><small>sans laisser refroidir</small></div>
             </div>
-            <h4>1. Lead Entrant</h4>
-            <p>Formulaire site ou WhatsApp</p>
-          </div>
-          
-          <div class="workflow-visual__connector">
-            <span class="pulse-dot"></span>
-          </div>
-
-          <div class="workflow-visual__node" data-node="2">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            </div>
-            <h4>2. Agent IA Purity</h4>
-            <p>Qualification &amp; Réponses FAQ</p>
-          </div>
-
-          <div class="workflow-visual__connector">
-            <span class="pulse-dot"></span>
-          </div>
-
-          <div class="workflow-visual__node" data-node="3">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h4>3. Agenda Connecté</h4>
-            <p>Réservation &amp; SMS J-1</p>
-          </div>
-
-          <div class="workflow-visual__connector">
-            <span class="pulse-dot"></span>
-          </div>
-
-          <div class="workflow-visual__node" data-node="4">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h4>4. CRM Métier</h4>
-            <p>Fiche client &amp; Relances automatiques</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="sec-divider" aria-hidden="true">
-
-<!-- ═══ PREUVE / ENGAGEMENTS ═══ -->
-<section id="preuve" class="sec sec--tentacles">
-  <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="tag lg" data-i18n="preuve.tag"><span data-i18n="gen_text_197">Nos engagements</span></span>
-      <h2 data-i18n="preuve.title"><span data-i18n="gen_text_198">Ce sur quoi vous pouvez </span><em><span data-i18n="gen_text_199">compter.</span></em></h2>
-      <p class="sec-head__lead" data-i18n="preuve.lead"><span data-i18n="gen_text_200">Pas de promesses en l'air. Des engagements simples, qu'on tient sur chaque projet.</span></p>
-    </div>
-    <div class="promise-cards" data-reveal>
-      <div class="promise-card promise-card--featured"><span class="promise-card__orb" aria-hidden="true"></span><span class="promise-card__big">100 %</span><div class="promise-card__body"><h3 data-i18n="promise2.h3"><span data-i18n="gen_text_203">Prix annoncé d'avance</span></h3><p data-i18n="promise2.p"><span data-i18n="gen_text_204">Le montant est fixé avant de commencer. Jamais de surprise en fin de projet. Tous nos tarifs sont publics, page Tarifs ci-dessous.</span></p></div></div>
-      <div class="promise-card"><span class="promise-card__orb" aria-hidden="true"></span><span class="promise-card__big">0 €</span><h3 data-i18n="promise1.h3"><span data-i18n="gen_text_201">Premier échange</span></h3><p data-i18n="promise1.p"><span data-i18n="gen_text_202">Gratuit et sans engagement. On regarde votre situation, vous repartez avec des réponses.</span></p></div>
-      <div class="promise-card"><span class="promise-card__orb" aria-hidden="true"></span><span class="promise-card__big">★★★</span><h3 data-i18n="promise3.h3"><span data-i18n="gen_text_205">Premium, ou on recommence</span></h3><p data-i18n="promise3.p"><span data-i18n="gen_text_206">Si le rendu ne fait pas premium, on retravaille. C'est notre nom qui est dessus.</span></p></div>
-      <div class="promise-card"><span class="promise-card__orb" aria-hidden="true"></span><span class="promise-card__big">1</span><h3 data-i18n="promise4.h3"><span data-i18n="gen_text_207">Interlocuteur unique</span></h3><p data-i18n="promise4.p"><span data-i18n="gen_text_208">Une seule personne suit votre projet, joignable, qui connaît votre dossier par cœur.</span></p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TARIFS ═══ -->
-<section id="tarifs" class="sec">
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
-  <div class="wrap wrap--tarifs">
-    <div class="sec-head" data-reveal>
-      <span class="tag lg" data-i18n="tarifs.tag"><span data-i18n="gen_text_209">Tarifs</span></span>
-      <h2 data-i18n="tarifs.title"><span data-i18n="gen_text_210">Des prix clairs. Affichés.</span><br><em><span data-i18n="gen_text_211">Sans surprise.</span></em></h2>
-      <p class="sec-head__lead" data-i18n="tarifs.lead"><span data-i18n="gen_text_212">On commence là où vous en avez besoin. Vous montez quand vous voulez.</span></p>
-      <div class="cheques-banner">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span><strong><span data-i18n="gen_text_213">Chèques Entreprises wallon</span></strong><span data-i18n="gen_text_214"> — votre investissement peut être réduit jusqu'à </span><strong>50 %</strong><span data-i18n="gen_text_215"> via les aides SPW Économie. </span><a href="article-cheques-entreprises-wallonie.html" class="cheques-banner__link"><span data-i18n="gen_text_216">Comment en bénéficier →</span></a></span>
-      </div>
-    </div>
-    <!-- Sélecteur d'onglets interactif -->
-    <div class="tarifs-tabs-container" role="tablist" data-reveal style="--d:.1s">
-      <div class="tarifs-tabs">
-        <span class="tarifs-tab-indicator" aria-hidden="true"></span>
-        <button class="tarifs-tab is-active" id="tab-briques" data-target="briques" role="tab" aria-selected="true" aria-controls="pane-briques">
-          <svg class="tarifs-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px; opacity: 0.85;" aria-hidden="true">
-            <path d="M9 3H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM19 3h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2zM19 13h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span data-i18n="tab.briques"><span data-i18n="gen_text_217">Les Briques</span></span>
-        </button>
-        <button class="tarifs-tab" id="tab-packs" data-target="packs" role="tab" aria-selected="false" aria-controls="pane-packs">
-          <svg class="tarifs-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px; opacity: 0.85;" aria-hidden="true">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span data-i18n="tab.packs"><span data-i18n="gen_text_218">Packs Métier</span></span>
-        </button>
-      </div>
-      </div>
-
-    <!-- Conteneur des volets d'onglets -->
-    <div class="tarifs-panes">
-      
-      <!-- ONGLET 1 : LES BRIQUES (Catalogue horizontal) -->
-      <div class="tarifs-pane is-active" id="pane-briques" role="tabpanel" aria-labelledby="tab-briques">
-        <div class="briques-grid">
-          
-          <!-- Présence -->
-          <article class="brique-card lg" data-reveal data-slot="1">
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="briqueA.cat"><span data-i18n="gen_text_219">Présence</span></span>
-              <h3 data-i18n="briqueA.h3"><span data-i18n="gen_text_220">Être trouvé & crédible</span></h3>
-              <p data-i18n="briqueA.p"><span data-i18n="gen_text_221">Installer des fondations solides pour votre visibilité en ligne.</span></p>
-            </div>
-            <ul class="brique-list">
-              <li class="brique-item order-trigger" data-service="m03">
-                <div class="brique-item-row">
-                  <span class="brique-name">Page Essentielle</span>
-                  <span class="brique-price">490 €</span>
-                </div>
-                <p class="brique-desc"><strong>1 page haute conversion</strong> — design sur-mesure, formulaire, analytics. Idéale pour valider une offre ou lancer une promo. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m04">
-                <div class="brique-item-row">
-                  <span class="brique-name">Site Vitrine</span>
-                  <span class="brique-price">1 490 €</span>
-                </div>
-                <p class="brique-desc"><strong>5 pages sur-mesure</strong>, SEO local, responsive mobile, formation incluse. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m05">
-                <div class="brique-item-row">
-                  <span class="brique-name">Site Complet</span>
-                  <span class="brique-price">2 490 €</span>
-                </div>
-                <p class="brique-desc"><strong>Jusqu'à 10 pages + blog</strong>, référencement avancé, 2 articles initiaux rédigés, formation 2h. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m06">
-                <div class="brique-item-row">
-                  <span class="brique-name">Boutique en Ligne</span>
-                  <span class="brique-price">3 990 €</span>
-                </div>
-                <p class="brique-desc"><strong>Boutique complète</strong> — paiement sécurisé (Mollie/Bancontact), gestion stock, commandes, formation 2h. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m07">
-                <div class="brique-item-row">
-                  <span class="brique-name">Refonte & Modernisation</span>
-                  <span class="brique-price">890 €</span>
-                </div>
-                <p class="brique-desc"><strong>Audit UX + nouveau design</strong>, redirections 301 (SEO conservé), migration du contenu. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m08">
-                <div class="brique-item-row">
-                  <span class="brique-name">Fiche Google Business</span>
-                  <span class="brique-price">290 €</span>
-                </div>
-                <p class="brique-desc">Setup complet + <strong>optimisation mots-clés locaux</strong> + 10 photos + stratégie avis Google. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-            </ul>
+            <ul class="solution-modules" aria-label="Briques possibles"><li>Page ou parcours de conversion</li><li>SEO local et fiche Google</li><li>Campagne ciblée</li><li>Formulaire, WhatsApp ou agenda</li><li>Relance et suivi commercial</li></ul>
           </article>
 
-          <!-- Acquisition -->
-          <article class="brique-card lg" data-reveal data-slot="2" style="--d:.08s">
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="briqueB.cat"><span data-i18n="gen_text_257">Acquisition</span></span>
-              <h3 data-i18n="briqueB.h3"><span data-i18n="gen_text_258">Générer des clients</span></h3>
-              <p data-i18n="briqueB.p"><span data-i18n="gen_text_259">Capter l'attention et attirer vos prospects idéaux en Wallonie.</span></p>
+          <article class="solution-panel" id="solution-save-time" role="tabpanel" aria-labelledby="solution-tab-save-time" data-solution-panel="save-time" hidden>
+            <div class="solution-panel__copy"><p class="solution-panel__eyebrow">Exemple de configuration</p><h3>Un accueil qui répond, qualifie et garde une trace de chaque demande.</h3><p>Pour une équipe qui jongle entre appels, WhatsApp, e-mails et rendez-vous : les tâches répétitives sont organisées, l’humain reprend quand il faut décider.</p><a class="solution-panel__link" href="/contact.html?solution=automatisation">Cadrer un flux sur mesure <span aria-hidden="true">↗</span></a></div>
+            <div class="system-map" aria-label="Parcours type : message entrant, qualification, décision humaine, suivi">
+              <div class="system-map__node"><b>◌</b><strong>Message entrant</strong><small>mail, appel ou WhatsApp</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>?</b><strong>3 questions</strong><small>pour comprendre le besoin</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>◉</b><strong>Vous décidez</strong><small>au bon moment</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>✓</b><strong>Rien ne se perd</strong><small>suivi dans le bon outil</small></div>
             </div>
-            <ul class="brique-list">
-              <li class="brique-item order-trigger" data-service="m13">
-                <div class="brique-item-row">
-                  <span class="brique-name">Référencement Local (SEO)</span>
-                  <span class="brique-price">590 €</span>
-                </div>
-                <span class="brique-note">Suivi SEO continu : 149 €/mois</span>
-                <p class="brique-desc">Audit technique + 20-30 mots-clés locaux + 3 pages optimisées + <strong>résultats visibles en 90 jours</strong>. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m14">
-                <div class="brique-item-row">
-                  <span class="brique-name">Publicité Digitale</span>
-                  <span class="brique-price">490 €</span>
-                </div>
-                <span class="brique-note">Gestion mensuelle : 149 €/mois</span>
-                <p class="brique-desc">Campagnes <strong>Google Search ou Meta</strong> — ciblage Wallonie, 3 visuels créés, suivi des conversions. Budget diffusion recommandé : <strong>300 €/mois</strong>. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m15">
-                <div class="brique-item-row">
-                  <span class="brique-name">Campagnes Email & SMS</span>
-                  <span class="brique-price">790 €</span>
-                </div>
-                <span class="brique-note">Maintenance plateforme : 79 €/mois</span>
-                <p class="brique-desc">Plateforme configurée + 3 séquences automatisées (bienvenue, relance, fidélisation). <strong>Taux d'ouverture moyen : 38 %</strong>. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-            </ul>
+            <ul class="solution-modules" aria-label="Briques possibles"><li>Agent conversationnel encadré</li><li>Prise de rendez-vous</li><li>Relances utiles</li><li>Synchronisation CRM</li><li>Tableau de suivi</li></ul>
           </article>
 
-          <!-- Automatisation & IA -->
-          <article class="brique-card lg" data-reveal data-slot="3" style="--d:.16s">
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="briqueC.cat"><span data-i18n="gen_text_282">Automatisation & IA</span></span>
-              <h3 data-i18n="briqueC.h3"><span data-i18n="gen_text_283">Gagner du temps</span></h3>
-              <p data-i18n="briqueC.p"><span data-i18n="gen_text_284">Mettre la technologie au service de vos opérations quotidiennes.</span></p>
+          <article class="solution-panel" id="solution-own-tool" role="tabpanel" aria-labelledby="solution-tab-own-tool" data-solution-panel="own-tool" hidden>
+            <div class="solution-panel__copy"><p class="solution-panel__eyebrow">Exemple de configuration</p><h3>Un espace métier conçu autour de votre façon réelle de travailler.</h3><p>Quand les fichiers, messages et outils génériques créent des erreurs, l’application devient le point commun entre dossiers, équipe et clients.</p><a class="solution-panel__link" href="/contact.html?solution=outil-metier">Explorer un outil métier adapté <span aria-hidden="true">↗</span></a></div>
+            <div class="system-map" aria-label="Parcours type : dossier, équipe, client, pilotage">
+              <div class="system-map__node"><b>⌁</b><strong>Un dossier</strong><small>tout au même endroit</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>◎</b><strong>L’équipe agit</strong><small>sans double encodage</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>↗</b><strong>Le client suit</strong><small>dans son espace</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>▥</b><strong>Vous pilotez</strong><small>avec les bonnes infos</small></div>
             </div>
-            <ul class="brique-list">
-              <li class="brique-item order-trigger" data-service="m21">
-                <div class="brique-item-row">
-                  <span class="brique-name">Pilote Automatique — Essentiel</span>
-                  <span class="brique-price">490 €</span>
-                </div>
-                <span class="brique-note">Extension mensuelle : 39 €/mois</span>
-                <p class="brique-desc"><strong>1 workflow automatisé</strong> sur 1 canal — rappels RDV, avis Google, réponse WhatsApp. Déclencheur sur mesure. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m22">
-                <div class="brique-item-row">
-                  <span class="brique-name">Pilote Automatique — Business</span>
-                  <span class="brique-price">990 €</span>
-                </div>
-                <span class="brique-note">Extension mensuelle : 69 €/mois</span>
-                <p class="brique-desc"><strong>3 workflows multi-canal + chatbot IA</strong> + réservation connectée + synchro Google Calendar. Vos ventes tournent sans vous. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m23">
-                <div class="brique-item-row">
-                  <span class="brique-name">Pilote Automatique — Intégral</span>
-                  <span class="brique-price">1 990 €</span>
-                </div>
-                <span class="brique-note">Extension mensuelle : 119 €/mois</span>
-                <p class="brique-desc"><strong>Workflows illimités</strong> + assistant IA entraîné sur vos données + connexion CRM et comptabilité. Votre back-office tourne seul. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-            </ul>
+            <ul class="solution-modules" aria-label="Briques possibles"><li>CRM ou suivi de dossiers</li><li>Portail client</li><li>Devis, planning ou tâches</li><li>Application métier</li><li>Rôles, accès et indicateurs</li></ul>
           </article>
 
-          <!-- Purity Studio (4e de la rangée 1 — ordre DOM = ordre visuel, cf. data-slot) -->
-          <article class="brique-card lg" data-reveal data-slot="4" style="--d:.24s">
-            <div class="brique-card__header">
-              <span class="brique-card__category"><span data-i18n="gen_text_300">Studio IA</span></span>
-              <h3><span data-i18n="gen_text_301">Purity Studio</span></h3>
-              <p><span data-i18n="gen_text_302">Visuels, vidéos & identité générés par IA — livrés en 48h, au niveau d'une prod studio.</span></p>
+          <article class="solution-panel" id="solution-credible" role="tabpanel" aria-labelledby="solution-tab-credible" data-solution-panel="credible" hidden>
+            <div class="solution-panel__copy"><p class="solution-panel__eyebrow">Exemple de configuration</p><h3>Une présence cohérente, prête à porter votre croissance.</h3><p>Le fond comme la forme : identité, contenus, plateforme et suivi technique travaillent ensemble pour que chaque point de contact inspire confiance.</p><a class="solution-panel__link" href="/contact.html?solution=presence-marque">Parler de votre présence <span aria-hidden="true">↗</span></a></div>
+            <div class="system-map" aria-label="Parcours type : identité, contenus, plateforme, fiabilité">
+              <div class="system-map__node"><b>◈</b><strong>Une signature</strong><small>reconnaissable au premier regard</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>▣</b><strong>Des contenus</strong><small>qui rendent l’offre tangible</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>⌘</b><strong>Une plateforme</strong><small>rapide, claire, accessible</small></div><span class="system-map__line" aria-hidden="true"></span><div class="system-map__node"><b>✓</b><strong>Une base solide</strong><small>maintenue dans le temps</small></div>
             </div>
-            <ul class="brique-list">
-              <li class="brique-item order-trigger" data-service="m10">
-                <div class="brique-item-row">
-                  <span class="brique-name">Visuels Produit & Marque</span>
-                  <span class="brique-price">290 €</span>
-                </div>
-                <span class="brique-note">20 visuels retouchés, livrés en 48h</span>
-                <p class="brique-desc"><strong>Photos produit, portraits, ambiances</strong> générés par IA sur mesure — formats web et réseaux, HD. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m11">
-                <div class="brique-item-row">
-                  <span class="brique-name">Vidéos & Reels</span>
-                  <span class="brique-price">390 €</span>
-                </div>
-                <span class="brique-note">5 vidéos montées, sous-titres inclus, formats 9:16 et 1:1</span>
-                <p class="brique-desc"><strong>Reels, Shorts, Stories</strong> — montage, sous-titres, musique libre de droits. Zéro tournage. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m09">
-                <div class="brique-item-row">
-                  <span class="brique-name">Identité Visuelle</span>
-                  <span class="brique-price">590 €</span>
-                </div>
-                <span class="brique-note">Logo, charte graphique, palette, typographie — fichiers sources inclus</span>
-                <p class="brique-desc"><strong>3 propositions de logo</strong> + charte graphique PDF + fichiers SVG/PNG. Livraison en 48h. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-              <li class="brique-item order-trigger" data-service="m16">
-                <div class="brique-item-row">
-                  <span class="brique-name">Gestion des Réseaux Sociaux</span>
-                  <span class="brique-price">290 €</span>
-                </div>
-                <span class="brique-note">Abonnement contenu : 349 €/mois — 12 posts + 4 Reels</span>
-                <p class="brique-desc"><strong>Setup + stratégie éditoriale</strong> + calendrier mensuel. 12 publications + 4 Reels livrés chaque mois, prêts à publier. <span class="brique-order-hint">Demander un devis →</span></p>
-              </li>
-            </ul>
+            <ul class="solution-modules" aria-label="Briques possibles"><li>Positionnement et identité</li><li>Design, photo, vidéo et contenus</li><li>Site, e-commerce ou application</li><li>Hébergement et sauvegardes</li><li>Maintenance et sécurité</li></ul>
           </article>
-
-          <!-- Maintenance + Outils Métier (rangée 2 — ordre DOM = ordre visuel gauche→droite) -->
-          <div class="briques-subgrid">
-            <article class="brique-card lg" data-reveal data-slot="5" style="--d:.32s">
-              <div class="brique-card__header">
-                <span class="brique-card__category" data-i18n="briqueE.cat"><span data-i18n="gen_text_327">Accompagnement</span></span>
-                <h3 data-i18n="briqueE.h3"><span data-i18n="gen_text_328">Maintenance & Évolutions</span></h3>
-                <p data-i18n="briqueE.p"><span data-i18n="gen_text_329">La sécurité et l'optimisation continue de vos outils digitaux.</span></p>
-              </div>
-              <ul class="brique-list">
-                <li class="brique-item order-trigger" data-service="m24-ess">
-                  <div class="brique-item-row">
-                    <span class="brique-name">Maintenance Essentielle</span>
-                    <span class="brique-price">79 €/mois</span>
-                  </div>
-                  <p class="brique-desc"><strong>Hébergement + sauvegardes quotidiennes + SSL + monitoring 24/7</strong>. Support email réponse 48h. <span class="brique-order-hint">Demander un devis →</span></p>
-                </li>
-                <li class="brique-item order-trigger" data-service="m24-biz">
-                  <div class="brique-item-row">
-                    <span class="brique-name">Maintenance Business</span>
-                    <span class="brique-price">149 €/mois</span>
-                  </div>
-                  <p class="brique-desc"><strong>Tout l'Essentiel + 2h de modifs/mois</strong> + support prioritaire 24h + rapport mensuel + gestion fiche Google. <span class="brique-order-hint">Demander un devis →</span></p>
-                </li>
-                <li class="brique-item order-trigger" data-service="m24-pro">
-                  <div class="brique-item-row">
-                    <span class="brique-name">Maintenance Premium</span>
-                    <span class="brique-price">249 €/mois</span>
-                  </div>
-                  <p class="brique-desc"><strong>Tout le Business + 5h de modifs/mois</strong> + support téléphonique + session stratégie trimestrielle + SEO continu. <span class="brique-order-hint">Demander un devis →</span></p>
-                </li>
-              </ul>
-            </article>
-
-            <article class="brique-card lg" data-reveal data-slot="6" style="--d:.4s">
-              <div class="brique-card__header">
-                <span class="brique-card__category" data-i18n="briqueD.cat"><span data-i18n="gen_text_335">Sur-mesure</span></span>
-                <h3 data-i18n="briqueD.h3"><span data-i18n="gen_text_336">Outils Métier</span></h3>
-                <p data-i18n="briqueD.p"><span data-i18n="gen_text_337">Applications sur mesure adaptées à votre fonctionnement.</span></p>
-              </div>
-              <ul class="brique-list">
-                <li class="brique-item order-trigger" data-service="m18">
-                  <div class="brique-item-row">
-                    <span class="brique-name">Gestion Client (CRM)</span>
-                    <span class="brique-price">990 €</span>
-                  </div>
-                  <p class="brique-desc"><strong>CRM configuré + pipeline de vente</strong> + import base clients + rappels automatiques + tableaux de bord. Formation 1h incluse. <span class="brique-order-hint">Demander un devis →</span></p>
-                </li>
-                <li class="brique-item order-trigger" data-service="m19">
-                  <div class="brique-item-row">
-                    <span class="brique-name">Portail Client Sécurisé</span>
-                    <span class="brique-price">690 €</span>
-                  </div>
-                  <p class="brique-desc"><strong>Espace client chiffré</strong> — dépôt/téléchargement de documents, notifications automatiques, organisation par dossiers. <span class="brique-order-hint">Demander un devis →</span></p>
-                </li>
-              </ul>
-            </article>
-          </div>
-
         </div>
       </div>
 
-      <!-- ONGLET 2 : PACKS MÉTIER (Offre phare verticalisée) -->
-      <div class="tarifs-pane" id="pane-packs" role="tabpanel" aria-labelledby="tab-packs" aria-hidden="true" style="display: none;">
-        <div class="packs-grid">
-          
-          <!-- Pack Coiffure -->
-          <article class="brique-card lg" data-reveal>
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="pack1.tag"><span data-i18n="gen_text_342">Agenda Plein</span></span>
-              <h3 data-i18n="pack1.h3"><span data-i18n="gen_text_343">Coiffure & Beauté</span></h3>
-              <p data-i18n="pack1.target"><span data-i18n="gen_text_344">Coiffeurs, barbiers, instituts de beauté, ongleries, esthétique.</span></p>
-            </div>
-            <ul class="brique-list">
-              <li class="brique-item ob-trigger" data-open-ob="coiffure">
-                <div class="brique-item-row">
-                  <span class="brique-name"><span data-i18n="gen_text_345">Pack Complet</span></span>
-                  <span class="brique-price">1 490 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 79 €/mois</span></span>
-                </div>
-                <p class="brique-desc"><span data-i18n="gen_text_347">Réservation en ligne 24/7 + rappels automatiques anti no-show + récolte d'avis Google automatisée.</span><br><br><strong data-i18n="pack.roi_label"><span data-i18n="gen_text_348">Justification ROI :</span></strong> <span data-i18n="pack1.roi"><span data-i18n="gen_text_349">Un salon perd en moyenne 2 500 € à 5 000 €/mois en rendez-vous manqués. Ce pack résout la douleur dès le premier mois.</span></span> <span class="brique-order-hint" data-i18n="pack.cta"><span data-i18n="gen_text_350">Activer ce pack →</span></span></p>
-              </li>
-            </ul>
-          </article>
-
-          <!-- Pack Artisan -->
-          <article class="brique-card lg" data-reveal style="--d:.08s">
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="pack2.tag"><span data-i18n="gen_text_351">Zéro Appel Perdu</span></span>
-              <h3 data-i18n="pack2.h3"><span data-i18n="gen_text_352">Artisan & Bâtiment</span></h3>
-              <p data-i18n="pack2.target"><span data-i18n="gen_text_353">Plombiers, électriciens, chauffagistes, menuisiers, rénovation.</span></p>
-            </div>
-            <ul class="brique-list">
-              <li class="brique-item ob-trigger" data-open-ob="artisan">
-                <div class="brique-item-row">
-                  <span class="brique-name"><span data-i18n="gen_text_354">Pack Complet</span></span>
-                  <span class="brique-price">1 890 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 99 €/mois</span></span>
-                </div>
-                <p class="brique-desc"><span data-i18n="gen_text_356">Présence Google locale + capteur d'appels manqués intelligent + agent WhatsApp automatisé + devis rapides.</span><br><br><strong data-i18n="pack.roi_label"><span data-i18n="gen_text_357">Justification ROI :</span></strong> <span data-i18n="pack2.roi"><span data-i18n="gen_text_358">62 % des appels aux artisans ne sont pas décrochés. Ce pack capte instantanément les clients au lieu de les laisser partir chez un concurrent.</span></span> <span class="brique-order-hint" data-i18n="pack.cta"><span data-i18n="gen_text_359">Activer ce pack →</span></span></p>
-              </li>
-            </ul>
-          </article>
-
-          <!-- Pack HoReCa -->
-          <article class="brique-card lg" data-reveal style="--d:.16s">
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="pack3.tag"><span data-i18n="gen_text_360">Toujours Ouvert</span></span>
-              <h3 data-i18n="pack3.h3"><span data-i18n="gen_text_361">HoReCa & Restauration</span></h3>
-              <p data-i18n="pack3.target"><span data-i18n="gen_text_362">Restaurants, traiteurs, bars, food trucks.</span></p>
-            </div>
-            <ul class="brique-list">
-              <li class="brique-item ob-trigger" data-open-ob="horeca">
-                <div class="brique-item-row">
-                  <span class="brique-name"><span data-i18n="gen_text_363">Pack Complet</span></span>
-                  <span class="brique-price">1 890 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 99 €/mois</span></span>
-                </div>
-                <p class="brique-desc"><span data-i18n="gen_text_365">Présence Google + module de réservation ou commande en ligne + récolte automatique d'avis + synchronisation réseaux.</span><br><br><strong data-i18n="pack.roi_label"><span data-i18n="gen_text_366">Justification ROI :</span></strong> <span data-i18n="pack3.roi"><span data-i18n="gen_text_367">30 % à 50 % des réservations se font en dehors des heures d'ouverture. Sans système, ces clients sont perdus.</span></span> <span class="brique-order-hint" data-i18n="pack.cta"><span data-i18n="gen_text_368">Activer ce pack →</span></span></p>
-              </li>
-            </ul>
-          </article>
-
-          <!-- Pack Praticien -->
-          <article class="brique-card lg" data-reveal style="--d:.24s">
-            <div class="brique-card__header">
-              <span class="brique-card__category" data-i18n="pack4.tag"><span data-i18n="gen_text_369">Cabinet Serein</span></span>
-              <h3 data-i18n="pack4.h3"><span data-i18n="gen_text_370">Praticien & Bien-être</span></h3>
-              <p data-i18n="pack4.target"><span data-i18n="gen_text_371">Kinés, ostéopathes, coachs, thérapeutes, esthétique médicale.</span></p>
-            </div>
-            <ul class="brique-list">
-              <li class="brique-item ob-trigger" data-open-ob="praticien">
-                <div class="brique-item-row">
-                  <span class="brique-name"><span data-i18n="gen_text_372">Pack Complet</span></span>
-                  <span class="brique-price">1 490 € <span style="font-size: 0.75em; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">+ 79 €/mois</span></span>
-                </div>
-                <p class="brique-desc"><span data-i18n="gen_text_374">Réservation en ligne + rappels SMS + acompte sécurisé anti-désistement + portail patient ultra-simple.</span><br><br><strong data-i18n="pack.roi_label"><span data-i18n="gen_text_375">Justification ROI :</span></strong> <span data-i18n="pack4.roi"><span data-i18n="gen_text_376">Le no-show est la bête noire des praticiens. Les rappels SMS diminuent les oublis de 40 %, et l'acompte réduit le no-show de 65 %.</span></span> <span class="brique-order-hint" data-i18n="pack.cta"><span data-i18n="gen_text_377">Activer ce pack →</span></span></p>
-              </li>
-            </ul>
-          </article>
-
-          <!-- Pack Immobilier -->
-          <div class="packs-secondary-container" data-reveal style="--d:.32s">
-            <h3 class="packs-secondary-title">Autres packs métier spécialisés</h3>
-            <p class="packs-secondary-subtitle">Grilles calibrées sur vos objectifs opérationnels. Prix fixes tout inclus.</p>
-            
-            <div class="packs-secondary-list">
-              
-              <!-- Immobilier -->
-              <div class="pack-row ob-trigger" data-open-ob="immobilier">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Génération Leads</span>
-                  <h4 class="pack-row__name">Immobilier</h4>
-                  <p class="pack-row__desc">Passerelle API (Whise, etc.), module d'estimation de biens en ligne et capture de mandats automatisée.</p>
-                </div>
-                <div class="pack-row__price">2 890 € <span>+ 149 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Avocats & Juridique -->
-              <div class="pack-row ob-trigger" data-open-ob="avocat">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Autorité &amp; Confiance</span>
-                  <h4 class="pack-row__name">Avocats &amp; Juridique</h4>
-                  <p class="pack-row__desc">Design institutionnel prestige, prise de rendez-vous sécurisée et espace documentaire crypté.</p>
-                </div>
-                <div class="pack-row__price">2 290 € <span>+ 129 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Commerces & Retail -->
-              <div class="pack-row ob-trigger" data-open-ob="commerce">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Drive-to-Store</span>
-                  <h4 class="pack-row__name">Commerces &amp; Retail</h4>
-                  <p class="pack-row__desc">Catalogue vitrine synchronisé (sans e-commerce complexe), Click &amp; Collect et fidélisation SMS.</p>
-                </div>
-                <div class="pack-row__price">1 490 € <span>+ 79 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Sport & Fitness -->
-              <div class="pack-row ob-trigger" data-open-ob="fitness">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Abonnements Récurrents</span>
-                  <h4 class="pack-row__name">Sport &amp; Fitness</h4>
-                  <p class="pack-row__desc">Vente d'abonnements en ligne, planning de cours collectif et gestion automatique des listes d'attente.</p>
-                </div>
-                <div class="pack-row__price">1 890 € <span>+ 99 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Consulting & B2B -->
-              <div class="pack-row ob-trigger" data-open-ob="consulting">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Positionnement Expert</span>
-                  <h4 class="pack-row__name">Consulting &amp; B2B</h4>
-                  <p class="pack-row__desc">Capture de leads par contenu, tunnel de conversion, blog d'expertise SEO et intégration CRM.</p>
-                </div>
-                <div class="pack-row__price">2 290 € <span>+ 129 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Centres de Formation -->
-              <div class="pack-row ob-trigger" data-open-ob="formation">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">E-learning &amp; Inscriptions</span>
-                  <h4 class="pack-row__name">Centres de Formation</h4>
-                  <p class="pack-row__desc">Catalogue de formations dynamique, inscriptions en ligne sécurisées et LMS de cours intégré.</p>
-                </div>
-                <div class="pack-row__price">2 890 € <span>+ 149 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Garages & Auto -->
-              <div class="pack-row ob-trigger" data-open-ob="garage">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Atelier Rempli</span>
-                  <h4 class="pack-row__name">Garages &amp; Auto</h4>
-                  <p class="pack-row__desc">Formulaires de demande de devis structurés, module de réservation atelier et catalogue occasions.</p>
-                </div>
-                <div class="pack-row__price">1 490 € <span>+ 79 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Experts-Comptables -->
-              <div class="pack-row ob-trigger" data-open-ob="finance">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Sécurité &amp; Clientèle</span>
-                  <h4 class="pack-row__name">Experts-Comptables</h4>
-                  <p class="pack-row__desc">Portail client chiffré pour dépôts de pièces, intégration aux outils de compta et SEO local dédié.</p>
-                </div>
-                <div class="pack-row__price">2 290 € <span>+ 129 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Photographes -->
-              <div class="pack-row ob-trigger" data-open-ob="photo">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Portfolio &amp; Vente</span>
-                  <h4 class="pack-row__name">Photographes &amp; Vidéastes</h4>
-                  <p class="pack-row__desc">Galeries de livraison privées, sélection et validation en ligne, réservation directe de séances.</p>
-                </div>
-                <div class="pack-row__price">1 490 € <span>+ 79 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Vétérinaires -->
-              <div class="pack-row ob-trigger" data-open-ob="veterinaire">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Clinique Digitale</span>
-                  <h4 class="pack-row__name">Santé Animale</h4>
-                  <p class="pack-row__desc">Gestion d'urgence via chatbot qualifiant, rendez-vous automatisés et fiches de conseils santé.</p>
-                </div>
-                <div class="pack-row__price">1 890 € <span>+ 99 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Architectes -->
-              <div class="pack-row ob-trigger" data-open-ob="architecte">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Prestige &amp; Projets</span>
-                  <h4 class="pack-row__name">Architectes &amp; Déco</h4>
-                  <p class="pack-row__desc">Portfolio immersif grand format, formulaires d'estimation de budget projet et portail d'échange.</p>
-                </div>
-                <div class="pack-row__price">2 290 € <span>+ 129 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-              <!-- Services à la Personne -->
-              <div class="pack-row ob-trigger" data-open-ob="domicile">
-                <div class="pack-row__info">
-                  <span class="pack-row__tag">Confiance &amp; Humain</span>
-                  <h4 class="pack-row__name">Services à la Personne</h4>
-                  <p class="pack-row__desc">Double tunnel (devis clients / postulations nounous &amp; aides), signature de contrat en ligne.</p>
-                </div>
-                <div class="pack-row__price">1 890 € <span>+ 99 €/mois</span></div>
-                <span class="pack-row__action">Activer →</span>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    <!-- Mentions de bas de page & CTA global -->
-    <div class="sec-cta" data-reveal style="--d:.1s">
-      <p class="tva-mention" data-i18n="tarifs.tva"><span data-i18n="gen_text_450">Petite entreprise soumise au régime de la franchise — TVA non applicable, art. 56bis CTVA.</span></p>
-      <a href="#contact" class="btn btn--white btn--lg" data-i18n="tarifs.cta"><span data-i18n="gen_text_451">Démarrer votre projet</span></a>
-    </div>
-  </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT & FUNNEL ═══ -->
-<!-- ═══ FUSION CONTACT & BOOKING ═══ -->
-<section id="contact" class="sec contact-booking-section">
-  <!-- Anchor offset so that #booking scrolls here but activates the calendar tab -->
-  <div id="booking" class="anchor-offset" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
-  <div class="wrap">
-    
-    <div class="sec-head" data-reveal>
-      <span class="tag lg" data-i18n="contact.tag"><span data-i18n="gen_text_473">Contact & Réservation</span></span>
-      <h2 data-i18n="contact.title"><span data-i18n="gen_text_474">Votre présence peut commencer à travailler </span><em><span data-i18n="gen_text_475">dès cette semaine.</span></em></h2>
-      <p class="sec-head__lead" data-i18n="contact.lead"><span data-i18n="gen_text_476">Un échange stratégique offert ou un message rapide&nbsp;: choisissez l'option qui vous convient.</span></p>
-      <!-- Chiffre : contacter un prospect dans l'heure = ~7× plus de chances de le qualifier
-           — « The Short Life of Online Sales Leads », Harvard Business Review, 2011 (audit de 2 241 entreprises),
-           https://hbr.org/2011/03/the-short-life-of-online-sales-leads -->
-      <p class="sec-head__stat" data-reveal data-i18n="contact.stat"><span data-i18n="gen_text_477">Répondre dans l'heure multiplie par 7 vos chances de gagner un prospect. </span><em><span data-i18n="gen_text_478">C'est exactement ce qu'on installe chez vous.</span></em></p>
-    </div>
-
-    <!-- Commutateur d'onglets interactif -->
-    <div class="cb-tabs-container" data-reveal style="--d:.05s">
-      <div class="cb-tabs" role="tablist">
-        <button class="cb-tab is-active" id="tab-calendar" data-target="calendar" role="tab" aria-selected="true" aria-controls="pane-calendar">
-          <svg class="cb-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px; opacity: 0.85;" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="16" y1="2" x2="16" y2="6" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="8" y1="2" x2="8" y2="6" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="3" y1="10" x2="21" y2="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span data-i18n="tab.booking"><span data-i18n="gen_text_479">Réserver mon appel (15 min)</span></span>
-        </button>
-        <button class="cb-tab" id="tab-form" data-target="form" role="tab" aria-selected="false" aria-controls="pane-form">
-          <svg class="cb-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px; opacity: 0.85;" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span data-i18n="tab.message"><span data-i18n="gen_text_480">Nous écrire un message</span></span>
-        </button>
+      <div class="solutions__capabilities" aria-labelledby="capabilities-title">
+        <div><p class="section-kicker">En coulisses</p><h3 id="capabilities-title">Les expertises qui s’assemblent selon le besoin.</h3></div>
+        <p>Sites et e-commerce, acquisition, automatisation et IA, outils métier, branding, contenus, hébergement et sécurité. Les leviers se combinent selon ce qui rendra votre activité plus simple et plus rentable.</p>
       </div>
     </div>
+  </section>
 
-    <!-- Conteneur des volets -->
-    <div class="cb-panes">
-      
-      <!-- Onglet 1 : Calendrier -->
-      <div class="cb-pane is-active" id="pane-calendar" role="tabpanel" aria-labelledby="tab-calendar">
-        <div class="cb-pane-head">
-          <h3 class="cb-pane-title"><span data-i18n="gen_text_481">Réserver un appel gratuit</span></h3>
-          <p class="cb-pane-lead"><span data-i18n="gen_text_482">15 min de diagnostic offert. On identifie ensemble ce qui vous fait perdre des clients — et on vous dit comment y mettre fin.</span></p>
-        </div>
-        <div class="bk-embed-wrap" data-reveal style="--d:.1s">
-          <div class="bk-badges">
-            <span class="bk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="gen_text_483">Gratuit & sans engagement</span></span>
-            <span class="bk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="gen_text_484">15 minutes chrono</span></span>
-            <span class="bk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l-4 4-2-2"/><circle cx="12" cy="12" r="10"/></svg><span data-i18n="gen_text_485">Diagnostic offert</span></span>
-          </div>
-          <!-- Calendrier maison connecté à Google Calendar (backend /api). Zéro tiers côté navigateur. -->
-          <div id="booking-widget" class="booking">
-            <div class="booking__cal">
-              <div class="booking__days" id="booking-days"></div>
-              <div class="booking__slots-wrap">
-                <p class="booking__slots-label" id="booking-slots-label" data-i18n="booking.pick_day"><span data-i18n="gen_text_486">Choisissez un jour, puis un créneau&nbsp;:</span></p>
-                <div class="booking__slots" id="booking-slots"></div>
-              </div>
-            </div>
-
-            <!-- Étape 2 : confirmation des coordonnées -->
-            <form class="booking__form" id="booking-form" hidden>
-              <div style="position:absolute;left:-9999px;overflow:hidden;width:0;height:0" aria-hidden="true">
-                <label for="bk-website"><span data-i18n="gen_text_487">Ne pas remplir :</span></label>
-                <input type="text" id="bk-website" name="website_verification" tabindex="-1" autocomplete="off">
-              </div>
-              <p class="booking__form-when" id="booking-form-when"></p>
-              <div class="field"><input type="text" id="bk-name" name="name" placeholder=" " required autocomplete="name"><label for="bk-name" data-i18n="form.name"><span data-i18n="gen_text_488">Nom</span></label></div>
-              <div class="field"><input type="email" id="bk-email" name="email" placeholder=" " required autocomplete="email"><label for="bk-email" data-i18n="form.email"><span data-i18n="gen_text_489">E-mail</span></label></div>
-              <div class="field"><input type="tel" id="bk-phone" name="phone" placeholder=" " required autocomplete="tel"><label for="bk-phone" data-i18n="form.phone"><span data-i18n="gen_text_490">Téléphone</span></label></div>
-              <div class="field"><input type="text" id="bk-company" name="company" placeholder=" "><label for="bk-company"><span data-i18n="booking.company">Nom de l'entreprise</span></label></div>
-              <div class="field"><input type="url" id="bk-website-url" name="companyWebsite" placeholder=" "><label for="bk-website-url"><span data-i18n="booking.website">Site internet actuel</span></label></div>
-              <div class="booking__form-actions">
-                <button type="button" class="btn btn--ghost" id="booking-back" data-i18n="booking.back"><span data-i18n="gen_text_494">← Changer de créneau</span></button>
-                <button type="submit" class="btn btn--accent" id="booking-submit" data-i18n="booking.confirm"><span data-i18n="gen_text_495">Confirmer le rendez-vous</span></button>
-              </div>
-              <span class="form__privacy" data-i18n="booking.privacy"><span data-i18n="gen_text_496">En confirmant, vous acceptez que vos données servent à organiser ce rendez-vous, conformément à notre </span><a href="legal.html#confidentialite"><span data-i18n="gen_text_497">politique de confidentialité</span></a>.</span>
-            </form>
-
-            <!-- Étape 3 : succès -->
-            <div class="booking__done" id="booking-done" hidden>
-              <div class="booking__done-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <strong data-i18n="booking.done_title"><span data-i18n="gen_text_498">C'est réservé&nbsp;!</span></strong>
-              <p id="booking-done-when"></p>
-              <p class="booking__done-sub" data-i18n="booking.done_sub"><span data-i18n="gen_text_499">Vous recevez l'invitation par e-mail. À très vite&nbsp;!</span></p>
-              <div class="booking__done-cal" id="booking-done-cal" hidden>
-                <a id="bk-done-gcal" href="#" target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-i18n="gen_text_500">
-                  Google Calendar
-                </span></a>
-                <a id="bk-done-ics" href="#">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span data-i18n="gen_text_501">
-                  Télécharger (.ics)
-                </span></a>
-              </div>
-            </div>
-
-            <p class="booking__error" id="booking-error" hidden></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Séparateur desktop "ou" -->
-      <div class="cb-divider" aria-hidden="true"><span>ou</span></div>
-
-      <!-- Onglet 2 : Formulaire -->
-      <div class="cb-pane" id="pane-form" role="tabpanel" aria-labelledby="tab-form" style="display:none;">
-        <div class="cb-pane-head">
-          <h3 class="cb-pane-title"><span data-i18n="gen_text_502">Nous écrire un message</span></h3>
-          <p class="cb-pane-lead"><span data-i18n="gen_text_503">Un échange, gratuit, sans engagement. On regarde ensemble ce qui vous fait perdre des clients — et comment y mettre fin.</span></p>
-          <div class="contact-links">
-            <a href="mailto:contact@purity-agency.be"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span data-i18n="gen_text_504">contact@purity-agency.be</span></a>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="contact.location"><span data-i18n="gen_text_505">Charleroi & toute la Wallonie</span></span></div>
-          </div>
-        </div>
-          <form id="contact-form" class="form lg">
-            <!-- Honeypot anti-spam -->
-            <div style="position: absolute; left: -9999px; overflow: hidden; width: 0; height: 0;" aria-hidden="true">
-              <label for="f-website" data-i18n="form.honeypot_label"><span data-i18n="gen_text_506">Ne pas remplir :</span></label>
-              <input type="text" id="f-website" name="website_verification" tabindex="-1" autocomplete="off">
-            </div>
-            <div class="field"><input type="text" id="f-name" name="name" placeholder=" " required autocomplete="name"><label for="f-name" data-i18n="form.name"><span data-i18n="gen_text_507">Nom</span></label></div>
-            <div class="field"><input type="email" id="f-email" name="email" placeholder=" " required autocomplete="email"><label for="f-email" data-i18n="form.email"><span data-i18n="gen_text_508">E-mail</span></label></div>
-            <div class="field"><input type="tel" id="f-phone" name="phone" placeholder=" " autocomplete="tel"><label for="f-phone" data-i18n="form.phone"><span data-i18n="gen_text_509">Téléphone </span><small><span data-i18n="gen_text_510">(facultatif)</span></small></label></div>
-            <fieldset class="activity-chips">
-              <legend class="activity-chips__legend"><span data-i18n="gen_text_511">Votre besoin principal</span></legend>
-              <div class="activity-chips__list">
-                <button type="button" class="activity-chip" data-value="Site web / Refonte" data-hint="site"><span data-i18n="gen_text_512">Site web / Refonte</span></button>
-                <button type="button" class="activity-chip" data-value="Agent IA / Chatbot" data-hint="ia"><span data-i18n="gen_text_513">Agent IA / Chatbot</span></button>
-                <button type="button" class="activity-chip" data-value="Automatisation" data-hint="auto"><span data-i18n="gen_text_514">Automatisation</span></button>
-                <button type="button" class="activity-chip" data-value="Présence en ligne" data-hint="presence"><span data-i18n="gen_text_515">Présence en ligne</span></button>
-                <button type="button" class="activity-chip" data-value="Autre" data-hint="autre"><span data-i18n="gen_text_516">Autre</span></button>
-              </div>
-              <input type="hidden" id="f-activity" name="activity">
-            </fieldset>
-            <div class="field">
-              <textarea id="f-need" name="need" rows="4" placeholder=" " required></textarea>
-              <label for="f-need" data-i18n="form.need"><span data-i18n="gen_text_517">Votre besoin en quelques mots</span></label>
-              <p class="activity-hint" id="activity-hint" hidden></p>
-            </div>
-            <button type="submit" class="btn btn--white" data-i18n="form.submit"><span data-i18n="gen_text_518">Envoyer</span></button>
-            <span class="form__note" data-i18n="form.note"><span data-i18n="gen_text_519">Réponse garantie sous 24 h ouvrées.</span></span>
-            <span class="form__privacy" data-i18n="form.privacy"><span data-i18n="gen_text_520">En envoyant ce formulaire, vous acceptez que vos données soient utilisées pour traiter votre demande, conformément à notre </span><a href="legal.html#confidentialite"><span data-i18n="gen_text_521">politique de confidentialité</span></a>.</span>
-            <div class="form__sent">
-              <strong data-i18n="form.sent_title"><span data-i18n="gen_text_522">Message envoyé !</span></strong>
-              <span data-i18n="form.sent_sub" style="display:block; margin-bottom: 1rem;"><span data-i18n="gen_text_523">On revient vers vous très vite.</span></span>
-              
-              <!-- Carte de planification Meet -->
-              <div class="ob-calendar-invite-card" style="margin-top: 1rem; text-align: left;">
-                <h4 class="ob-invite-title" style="font-size: 1.05rem; margin-bottom: 0.4rem; color: #fff; font-family: var(--font-head);"><span data-i18n="gen_text_524">Bloquez votre appel stratégique</span></h4>
-                <p class="ob-invite-desc" style="font-size: 0.8rem; line-height: 1.4; color: var(--c-fg-muted); margin-bottom: 1rem;"><span data-i18n="gen_text_525">Planifiez dès maintenant votre échange stratégique de 15 minutes. Vos coordonnées seront pré-remplies.</span></p>
-                <a href="#" class="btn btn--white ob-btn-booking ob-glow-pulse" style="font-size:0.8rem; padding: 0.65rem 1.3rem; display: inline-block;"><span data-i18n="gen_text_526">Réserver mon créneau stratégique</span></a>
-              </div>
-            </div>
-          </form>
-      </div>
-
+  <section class="founder" aria-labelledby="founder-quote">
+    <div class="founder__inner">
+      <blockquote class="founder__quote founder__quote--letters" id="founder-quote">
+        <p><span data-founder-copy>“Une bonne agence ne devrait pas seulement savoir construire. Elle devrait savoir écouter, comprendre ce qui compte vraiment pour le client et avoir l’honnêteté de lui dire quand il existe une meilleure voie. C’est cette relation-là qu’on veut construire chez </span><span class="founder__agency" data-founder-copy>Purity Agency</span><span data-founder-copy>.”</span></p>
+      </blockquote>
+      <img class="founder__avatar" src="/assets/amir-avatar.webp" width="72" height="72" loading="lazy" decoding="async" alt="Amir Kebiyeb, fondateur de Purity Agency">
+      <p class="founder__name">Amir Kebiyeb</p>
+      <p class="founder__role">Fondateur de <a class="founder__brand" href="/">Purity Agency</a></p>
     </div>
-    
-  </div>
-</section>
-
-<!-- ═══ FAQ ═══ -->
-<section id="faq" class="sec">
-  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
-  <div class="wrap wrap--sm">
-    <div class="sec-head" data-reveal>
-      <span class="tag lg" data-i18n="faq.tag"><span data-i18n="gen_text_452">FAQ</span></span>
-      <h2 data-i18n="faq.title"><span data-i18n="gen_text_453">Questions </span><em><span data-i18n="gen_text_454">fréquentes</span></em></h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq" data-reveal>
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_455">J'ai déjà un site web. En quoi Purity Agency ferait-il une vraie différence&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_456">88&nbsp;% des utilisateurs mobiles qui font une recherche locale visitent ou appellent un commerce dans les 24&nbsp;heures. Si votre site actuel ne se charge pas en moins de 2&nbsp;secondes, n'est pas optimisé pour le mobile ou ne capture pas activement les demandes, il vous fait perdre des clients chaque jour. Nous concevons des sites qui convertissent&nbsp;: architecture mobile-first, Core Web Vitals optimisés, formulaires connectés à votre agenda en temps réel.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.05s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_457">Quelle est la différence entre vos automatisations IA et des outils comme Zapier ou ChatGPT&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_458">Les outils grand public sont génériques et fragiles&nbsp;: ils demandent du temps de configuration et cassent dès que quelque chose change. Nous développons des agents IA sur-mesure, intégrés directement à vos flux opérationnels (WhatsApp, CRM, Google Agenda). Ils sont entraînés exclusivement sur vos données — tarifs, FAQ, procédures — et qualifient vos prospects 24h/24 sans jamais inventer d'information. Conformes à l'AI Act européen (art.&nbsp;50), ils informent clairement vos visiteurs qu'ils interagissent avec une intelligence artificielle.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.1s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_459">Comment fonctionne l'aide des Chèques Entreprises de la Région Wallonne&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_460">Les Chèques Entreprises du SPW Économie financent </span><strong><span data-i18n="gen_text_461">jusqu'à 50&nbsp;% du montant HTVA</span></strong><span data-i18n="gen_text_462"> de vos projets de transformation numérique, avec un plafond de 50&nbsp;000&nbsp;€ sur 3&nbsp;ans. Pour en bénéficier, votre entreprise doit être une PME wallonne et faire appel à un prestataire labellisé par l'AEI. Purity Agency n'est pas labellisée à ce jour : nos prestations ne sont donc pas éligibles à cette aide. Nos tarifs sont nets, sans dossier administratif ni délai d'instruction de 2 à 4 semaines.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.15s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_463">Quels sont vos engagements de livraison&nbsp;? Que se passe-t-il en cas de retard&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_464">Le respect des délais est inscrit dans notre contrat. Nos projets se livrent en 5 à 15&nbsp;jours ouvrés selon la complexité, à compter de la réception de tous les éléments nécessaires de votre part (textes, visuels, accès). Systèmes métier complexes&nbsp;: sprints hebdomadaires avec démo à chaque étape. Tout retard non justifié de notre part entraîne une pénalité financière contractuelle à votre avantage.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.2s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_465">Est-ce que je suis propriétaire de tout ce que vous créez&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_466">Oui, à 100&nbsp;%. Code source, nom de domaine, bases de données, comptes d'hébergement&nbsp;: tout est à votre nom. Aucun verrou technique, aucun abonnement captif. Notre maintenance mensuelle est sans engagement et résiliable à tout moment. Vous pouvez partir avec l'intégralité de votre projet quand vous voulez.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.25s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_467">Je ne suis pas à l'aise avec le numérique. Comment ça se passe&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_468">C'est justement notre métier. 42&nbsp;% des PME belges citent le manque de compétences numériques comme premier frein à leur digitalisation. Chaque projet inclut un livret de prise en main détaillé et des tutoriels vidéo courts enregistrés directement sur votre interface. Vous êtes autonome dès le premier jour.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.3s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_469">Comment garantissez-vous la conformité RGPD et la protection des données&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_470">Toutes nos architectures respectent le RGPD&nbsp;: chiffrement des données, hébergement sur serveurs européens, consentement explicite documenté. Nous n'installons aucun cookie publicitaire ni traceur tiers — seule une mesure d'audience anonyme et sans cookie (PostHog, hébergé en UE) nous aide à améliorer le site. Nos agents IA respectent également l'AI Act européen (transparence obligatoire dès août&nbsp;2026).</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="faq" data-reveal style="--d:.35s">
-        <button class="faq__q" aria-expanded="false"><span><span data-i18n="gen_text_471">Je peux commencer petit ou je dois prendre un pack complet&nbsp;?</span></span><i></i></button>
-        <div class="faq__a">
-          <div>
-            <p><span data-i18n="gen_text_472">On fonctionne en briques modulaires. Vous pouvez démarrer avec une landing page à 490&nbsp;€, un système de réservation à 390&nbsp;€, ou un agent IA sur un seul canal. Vous ajoutez des briques au fil de votre croissance et de vos besoins. Zéro engagement sur des services dont vous n'avez pas besoin aujourd'hui.</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+  </section>
 </main>
 
-<!-- ═══ STICKY BOOKING CTA ═══ -->
-<div id="sticky-booking" class="sticky-booking" aria-live="polite" hidden>
-  <div class="sticky-booking__inner">
-    <div class="sticky-booking__text">
-      <strong data-i18n="sticky.question"><span data-i18n="gen_text_527">Vous avez une question ?</span></strong>
-      <span data-i18n="sticky.sub"><span data-i18n="gen_text_528">Réservez un appel de 15 min — gratuit</span></span>
-    </div>
-    <a href="https://wa.me/32465368265" class="sticky-booking__wa" target="_blank" rel="noopener" aria-label="WhatsApp" data-i18n-aria="gen_aria_19">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-      <span><span data-i18n="gen_text_529">WhatsApp</span></span>
-    </a>
-    <a href="#booking" class="sticky-booking__btn" aria-label="Réserver maintenant" data-i18n-aria="sticky.btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
-      <span data-i18n="sticky.btn"><span data-i18n="gen_text_530">Réserver maintenant</span></span>
-    </a>
-    <button class="sticky-booking__close" aria-label="Fermer" data-i18n-aria="gen_aria_20">✕</button>
+<a class="octo-float" href="/contact.html" aria-label="Parler avec OctoMask et contacter Purity Agency">
+  <img src="/assets/octomask-logo.png" width="72" height="72" alt="" aria-hidden="true">
+</a>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div><a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt="" width="32" height="32">Purity Agency</a><p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p></div>
+    <nav aria-label="Navigation de pied de page"><h2>Explorer</h2><a href="#services">Services</a><a href="/blog.html">Blog</a><a href="/contact.html">Contact</a></nav>
+    <div><h2>Parlons-en</h2><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
   </div>
-</div>
-
-<!-- ═══ FOOTER ═══ -->
-<footer id="footer">
-  <div class="footer__glow" aria-hidden="true"></div>
-  <div class="footer__watermark" aria-hidden="true"><span data-i18n="gen_text_531">PURITY</span></div>
-  <div class="wrap footer__inner">
-
-    <!-- CTA zone -->
-    <div class="footer__cta">
-      <div class="footer__cta-left">
-        <span class="footer__status"><span class="footer__status-dot"></span><span data-i18n="gen_text_532">Disponible pour nouveaux projets</span></span>
-        <p class="footer__tagline" data-i18n="footer.tagline"><span data-i18n="gen_text_533">On crée votre présence.</span><br><em><span data-i18n="gen_text_534">Elle travaille pour vous.</span></em></p>
-      </div>
-      <div class="footer__cta-right">
-        <a href="#contact" class="btn btn--accent btn--lg" data-i18n="nav.cta"><span data-i18n="gen_text_535">Parlons de votre projet</span></a>
-        <div class="footer__cta-proofs">
-          <span data-i18n="hero.proof1"><span data-i18n="gen_text_536">Réponse sous 24&nbsp;h</span></span>
-          <span data-i18n="hero.proof2"><span data-i18n="gen_text_537">Sans engagement</span></span>
-        </div>
-        <a href="mailto:contact@purity-agency.be" class="footer__email-link"><span data-i18n="gen_text_538">contact@purity-agency.be</span></a>
-      </div>
-    </div>
-
-    <!-- Colonnes -->
-    <div class="footer__grid">
-      <div class="footer__col footer__col--brand">
-        <a class="footer__logo" href="#hero"><span class="footer__logo-name"><span data-i18n="gen_text_539">PURITY</span></span><span class="footer__logo-sub"><span data-i18n="gen_text_540">AGENCY</span></span></a>
-        <p class="footer__pitch" data-i18n="footer.pitch"><span data-i18n="gen_text_541">Agence digitale à Charleroi. Sites, visibilité locale, automatisation &amp; IA pour les indépendants et PME.</span></p>
-        <p class="footer__location">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-i18n="gen_text_542">
-          Charleroi &amp; toute la Wallonie
-        </span></p>
-        <div class="footer__socials">
-          <a href="mailto:contact@purity-agency.be" aria-label="E-mail" data-i18n-aria="gen_aria_21">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </a>
-          <a href="https://x.com/PurityAgency_be" target="_blank" rel="noopener" aria-label="X (Twitter)" data-i18n-aria="gen_aria_22">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/purityagency.be/" target="_blank" rel="noopener" aria-label="Instagram" data-i18n-aria="gen_aria_23">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@purity_agency" target="_blank" rel="noopener" aria-label="TikTok" data-i18n-aria="gen_aria_24">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.31-2.83v-3.5a6.37 6.37 0 1 0 5.76 6.33V8.69a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.12z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/amir-kebiyeb-131395408/" target="_blank" rel="noopener" aria-label="LinkedIn" data-i18n-aria="gen_aria_25">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=61591450695302" target="_blank" rel="noopener" aria-label="Facebook" data-i18n-aria="gen_aria_26">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21.9v-8.34h2.8l.53-3.49h-3.33V7.81c0-.96.47-1.89 1.96-1.89h1.51V2.95s-1.37-.24-2.68-.24c-2.74 0-4.53 1.68-4.53 4.7v2.66H7.08v3.49h2.68v8.34a10 10 0 0 0 3.74 0z"/></svg>
-          </a>
-          <a href="https://wa.me/32465368265" class="footer__wa-link" target="_blank" rel="noopener" aria-label="WhatsApp" data-i18n-aria="gen_aria_27">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer__col">
-        <h3 class="footer__col-title" data-i18n="footer.col_nav"><span data-i18n="gen_text_543">Navigation</span></h3>
-        <nav class="footer__nav">
-          <a href="#services" data-i18n="nav.services"><span data-i18n="gen_text_544">Services</span></a>
-          <a href="#methode" data-i18n="nav.methode"><span data-i18n="gen_text_545">Méthode</span></a>
-          <a href="#tarifs" data-i18n="nav.tarifs"><span data-i18n="gen_text_546">Tarifs</span></a>
-          <a href="blog.html" data-i18n="nav.blog"><span data-i18n="gen_text_547">Blog</span></a>
-          <a href="#contact" data-i18n="nav.contact"><span data-i18n="gen_text_548">Contact</span></a>
-        </nav>
-      </div>
-
-      <div class="footer__col">
-        <h3 class="footer__col-title"><span data-i18n="gen_text_549">Nos services</span></h3>
-        <nav class="footer__nav">
-          <a href="services.html#presence"><span data-i18n="gen_text_550">Présence en ligne</span></a>
-          <a href="services.html#acquisition"><span data-i18n="gen_text_551">Acquisition clients</span></a>
-          <a href="services.html#automatisation"><span data-i18n="gen_text_552">Automatisation</span></a>
-          <a href="services.html#studio"><span data-i18n="gen_text_553">Outils &amp; IA</span></a>
-          <a href="agence-web-charleroi.html"><span data-i18n="gen_text_554">Agence web Charleroi</span></a>
-        </nav>
-      </div>
-
-      <div class="footer__col">
-        <h3 class="footer__col-title" data-i18n="footer.col_legal"><span data-i18n="gen_text_555">Légal</span></h3>
-        <nav class="footer__nav">
-          <a href="legal.html#mentions" data-i18n="footer.legal1"><span data-i18n="gen_text_556">Mentions légales</span></a>
-          <a href="legal.html#confidentialite" data-i18n="footer.legal2"><span data-i18n="gen_text_557">Confidentialité</span></a>
-          <a href="legal.html#cookies" data-i18n="footer.legal3"><span data-i18n="gen_text_558">Cookies</span></a>
-        </nav>
-      </div>
-    </div>
-
-    <!-- Bas -->
-    <div class="footer__bottom">
-      <p class="footer__legal-line" data-i18n="footer.legal_line"><strong><span data-i18n="gen_text_559">Purity Agency</span></strong><span data-i18n="gen_text_560"> · BCE&nbsp;1036.775.590 · Petite entreprise — franchise, TVA non applicable (art.&nbsp;56bis CTVA)</span></p>
-      <p data-i18n="footer.copyright"><span data-i18n="gen_text_561">© 2026 Purity Agency. Tous droits réservés.</span></p>
-    </div>
-  </div>
+  <div class="site-footer__legal"><span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span><span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span><span>© 2026 Purity Agency</span><a href="/legal.html">Légal</a><a href="/confidentialite.html">Confidentialité</a><a href="/cookies.html">Cookies</a><a href="/conditions-generales.html">CGV</a></div>
 </footer>
 
-<!-- Chatbot OctoMask -->
-<div id="chat" class="chat" data-side="right">
-  <div id="chat-teaser" class="chat__teaser" hidden>
-    <button class="chat__teaser-close" data-i18n-aria="teaser.close_aria" aria-label="Fermer" data-i18n-aria="gen_aria_28">✕</button>
-    <span class="chat__teaser-wave">👋</span>
-    <p data-i18n="teaser.text"><span data-i18n="gen_text_562">Un projet en tête ?</span><br><strong><span data-i18n="gen_text_563">Parlons-en — c'est gratuit.</span></strong></p>
-  </div>
-  <button id="chat-toggle" class="chat__toggle" data-i18n-aria="chat.aria_open" aria-label="Ouvrir le chat" data-i18n-aria="gen_aria_29">
-    <video class="chat__avatar" data-src="assets/octomask-floating.mp4" preload="none" muted loop autoplay playsinline disablepictureinpicture></video>
-    <span class="chat-close" aria-hidden="true">✕.</span>
-    <span id="chat-badge" class="chat__badge" aria-hidden="true">1</span>
-  </button>
-  <div id="chat-panel" class="chat__panel" role="dialog" data-i18n-aria="chat.aria_dialog" aria-label="Assistant Purity" data-i18n-aria="gen_aria_30" hidden>
-    <div class="chat__header">
-      <div class="chat__header-info">
-        <div class="chat__title" data-i18n="chat.title"><span data-i18n="gen_text_564">OctoMask IA</span></div>
-        <div class="chat__status" data-i18n="chat.status"><span data-i18n="gen_text_565">En ligne</span></div>
-      </div>
-      <a href="#contact" class="btn btn--accent chat__meet-btn" style="padding: 6px 12px; font-size: 0.85rem; border-radius: 12px; height: auto; text-decoration: none;" data-i18n="chat.meet_btn"><span data-i18n="gen_text_566">Réserver</span></a>
-      <button type="button" id="chat-close" class="chat__close" aria-label="Fermer le chat">✕</button>
-    </div>
-    <div id="chat-log" class="chat__log"></div>
-    <div id="chat-suggestions" class="chat__suggestions">
-      <button type="button" class="chat__chip" data-query="Quels sont vos tarifs pour un site web ?">💡 Tarifs</button>
-      <button type="button" class="chat__chip" data-query="Quels sont vos délais de livraison ?">⚡ Délais</button>
-      <button type="button" class="chat__chip" data-query="Comment réserver un appel de 15 min ?">📅 Appel 15 min</button>
-      <button type="button" class="chat__chip" data-query="Proposez-vous des packs métier ?">🚀 Packs Métier</button>
-    </div>
-    <form id="chat-form" class="chat__form">
-      <input type="text" id="chat-input" class="chat__input" data-i18n-placeholder="chat.placeholder" placeholder="Posez votre question..." autocomplete="off">
-      <button type="submit" id="chat-submit" class="chat__submit" data-i18n-aria="chat.aria_send" aria-label="Envoyer" data-i18n-aria="gen_aria_31">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-      </button>
-    </form>
-    <p class="chat__disclaimer" data-i18n="chat.disclaimer"><span data-i18n="gen_text_567">Assistant IA (Google Gemini). Évitez les données sensibles. </span><a href="legal.html#confidentialite"><span data-i18n="gen_text_568">Confidentialité</span></a></p>
-  </div>
-</div>
-
-          </div>
-
-          <button class="btn btn--glass ob-btn-close" data-i18n="ob.btn.close"><span data-i18n="gen_text_621">Fermer</span></button>
-        </div>
-      </div>
-
-      <!-- Barre de progression -->
-      <div class="ob-progress-bar">
-        <div class="ob-progress-fill" style="width: 33%"></div>
-        <div class="ob-progress-steps">
-          <span class="ob-progress-step is-active">1</span>
-          <span class="ob-progress-step">2</span>
-          <span class="ob-progress-step">3</span>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-<!-- Notice cookies (RGPD / ePrivacy) -->
-<div id="cookie-banner" class="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Information cookies" data-i18n-aria="gen_aria_33">
-  <p data-i18n="cookie.text">Nous utilisons des outils de mesure d'audience (PostHog, Google Analytics via Google Tag Manager) pour comprendre l'usage du site. Aucune donnée n'est utilisée à des fins publicitaires. <a href="legal.html#cookies">En savoir plus sur les cookies</a></p>
-  <div class="cookie-banner__actions">
-    <button id="cookie-refuse" class="btn btn--ghost" data-i18n="cookie.refuse">Refuser</button>
-    <button id="cookie-accept" class="btn btn--accent" data-i18n="cookie.accept">Accepter</button>
-  </div>
-</div>
-<script src="js/chatbot.js" defer></script>
+<script src="/js/menu.js?v=2" defer></script>
+<script src="/js/audit.js" defer></script>
+<script src="/js/reveal.js?v=2" defer></script>
+<script src="/js/method-waves.js?v=3" defer></script>
+<script src="/js/founder-reveal.js?v=3" defer></script>
+<script src="/js/solutions.js" defer></script>
+<script src="/js/service-details.js?v=11" defer></script>
+<script src="/js/service-pricing.js?v=1" defer></script>
+    <script src="/js/hero-video.js?v=31" defer></script>
+<script src="/js/octomask.js" defer></script>
+<script src="/js/cookie-notice.js" defer></script>
 </body>
 </html>

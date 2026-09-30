@@ -12,7 +12,11 @@
   const launcher = document.createElement('button');
   launcher.type = 'button';
   launcher.className = 'octo-float';
-  launcher.setAttribute('aria-label', 'Parler à OctoMask, assistant IA de Purity');
+  const LABEL = 'Parler à OctoMask, assistant IA de Purity';
+  // Le badge "1" est visible a l'ecran meme s'il est aria-hidden : un aria-label qui ne le
+  // reprend pas cree un ecart entre texte visible et nom accessible (utilisateurs de
+  // commande vocale notamment). On l'integre au libelle tant que le badge est present.
+  launcher.setAttribute('aria-label', LABEL + ' (1 suggestion)');
   launcher.setAttribute('aria-haspopup', 'dialog');
   launcher.setAttribute('aria-controls', 'octomask-dialog');
   launcher.innerHTML = '<img src="/assets/octomask-logo.png" width="72" height="72" alt=""><span class="octo-float__notice" aria-hidden="true">1</span>';
@@ -175,7 +179,12 @@
       if (dialog.open) input.focus();
     }
   }
-  launcher.addEventListener('click', () => { hideTeaser(); launcher.querySelector('.octo-float__notice')?.remove(); dialog.showModal(); input.focus(); });
+  launcher.addEventListener('click', () => {
+    hideTeaser();
+    launcher.querySelector('.octo-float__notice')?.remove();
+    launcher.setAttribute('aria-label', LABEL);
+    dialog.showModal(); input.focus();
+  });
   teaser.querySelector('.octo__teaser-open').addEventListener('click', () => { hideTeaser(true); launcher.click(); });
   teaser.querySelector('.octo__teaser-close').addEventListener('click', () => hideTeaser(true));
   window.addEventListener('scroll', () => hideTeaser(false), { passive: true, once: true });

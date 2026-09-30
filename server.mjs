@@ -36,6 +36,12 @@ function securityHeaders(res) {
     "frame-ancestors 'none'",
     "script-src 'self'",
     "style-src 'self'",
+    // Les animations (reveal.js, founder-reveal.js, hero-video.js, method-waves.js, menu.js)
+    // pilotent des custom properties CSS (--i, --score, --scroll-progress...) et des
+    // transform/opacity via element.style.* : CSP les traite comme "style inline" au meme
+    // titre qu'un attribut style="" statique. style-src-attr cible precisement l'attribut
+    // style (HTML ou pose par JS) sans rouvrir <style>/feuilles externes (toujours 'self').
+    "style-src-attr 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self'",
     "media-src 'self'",

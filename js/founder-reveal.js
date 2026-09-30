@@ -15,6 +15,11 @@
 
   parts.forEach(function (part) {
     var value = part.textContent;
+    // role="text" : les lettres qui composent le mot sont individuellement aria-hidden
+    // (ligne plus bas) pour l'effet visuel ; ce role indique aux lecteurs d'ecran de lire
+    // aria-label a la place au lieu de descendre dans les enfants caches. Un span sans role
+    // n'a pas le droit de porter aria-label (regle aria-prohibited-attr).
+    part.setAttribute('role', 'text');
     part.setAttribute('aria-label', value);
     part.textContent = '';
     value.split(/(\s+)/).forEach(function (fragment) {

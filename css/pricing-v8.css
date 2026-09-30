@@ -1,4 +1,3 @@
-/* Final Tarifs direction: editorial hierarchy, service-like scenes, compact decision flow. */
 .pricing{width:min(100%,1240px);padding-top:calc(var(--nav-h) + clamp(2.8rem,6vw,5.4rem))}
 .pricing__hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.65fr);align-items:end;gap:clamp(2rem,7vw,7rem);min-height:clamp(300px,37vw,470px);padding-bottom:clamp(2.5rem,5vw,4.3rem);border-bottom:1px solid var(--ink)}
 .pricing__hero-copy{max-width:760px}.pricing__hero>div>p,.pricing__catalog-head>p{display:flex;align-items:center;gap:.65rem;margin:0 0 .95rem;color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.pricing__hero>div>p::before,.pricing__catalog-head>p::before{display:block;width:2.5rem;height:1px;background:currentColor;content:''}.pricing__hero h1{max-width:11ch;margin:0;font-size:clamp(3.6rem,7.2vw,7.5rem);line-height:.88;letter-spacing:-.065em;text-wrap:balance}.pricing__hero-lead{max-width:45ch;margin-top:1.6rem;color:var(--muted);font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.5}.pricing__hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.7rem}.pricing__hero-actions .btn{min-height:44px;font-size:.88rem}
@@ -10,14 +9,10 @@
 .pricing-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}.price-card{min-height:325px;padding:1.35rem 1.25rem 1.15rem;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:transparent}.price-card:nth-child(3n){border-right:0}.price-card:hover{background:#faf7fc}.price-card h4{font-size:1.3rem}.price-card__pricing strong{color:var(--accent);font-size:1.55rem}.price-card>p{max-width:24ch;font-size:.88rem}.price-card__example{border-color:var(--line)}.price-card__cta{align-self:flex-start;min-height:2.45rem;margin-top:.85rem;padding:0;border-radius:0;background:transparent;color:var(--ink);font-size:.82rem;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px}.price-card__cta span{color:var(--accent)}.price-card__cta:hover{background:transparent;color:var(--accent-deep)}
 @media(max-width:760px){.pricing{padding-top:calc(var(--nav-h) + 2.4rem)}.pricing__hero{display:block;min-height:0;padding-bottom:2.4rem}.pricing__hero h1{max-width:9ch;font-size:clamp(3.25rem,15vw,5rem)}.pricing__hero-lead{max-width:34ch;font-size:.95rem}.pricing__hero-signal{min-height:160px;margin-top:2rem;padding:1.1rem;border-left:0;border-top:1px solid var(--line)}.pricing__hero-signal-label{top:1rem;left:1.1rem}.pricing__hero-signal strong{font-size:2.1rem}.pricing__proof{grid-template-columns:1fr 1fr;gap:1rem;margin-top:0}.pricing__proof span:last-child{grid-column:1/-1}.pricing__catalog{margin-top:4rem}.pricing__catalog-head{display:block}.pricing__catalog-head h2{max-width:9ch;font-size:clamp(3rem,15vw,5rem)}.pricing__catalog-head>span{display:block;margin-top:1rem}.pricing-group__head{display:block}.pricing-group__head h3{font-size:2.7rem}.pricing-group__visual{width:min(100%,28rem);margin:.8rem auto 0}.pricing-visual{min-height:160px}.pricing-list{display:flex;overflow-x:auto;border-top:1px solid var(--ink);scroll-snap-type:x mandatory;scrollbar-width:none}.pricing-list::-webkit-scrollbar{display:none}.price-card{flex:0 0 calc(100% - 1.5rem);min-height:300px;border-right:1px solid var(--line);scroll-snap-align:start}}
 @media(prefers-reduced-motion:reduce){.pricing-visual__tentacle{transition:none;stroke-dashoffset:0}}
-
-/* La page commence directement par la décision : aucun hero marketing à faire défiler. */
 .pricing{padding-top:calc(var(--nav-h) + clamp(2.6rem,5vw,4.8rem))}
 .pricing__catalog{margin-top:0}
 .pricing__catalog-head h1{max-width:11ch;margin:0;font-size:clamp(3rem,6.2vw,6.5rem);line-height:.88;letter-spacing:-.065em;text-wrap:balance}
 @media(max-width:760px){.pricing{padding-top:calc(var(--nav-h) + 2.25rem)}.pricing__catalog{margin-top:0}.pricing__catalog-head h1{max-width:9ch;font-size:clamp(3rem,15vw,5rem)}}
-
-/* Les priorités deviennent quatre portes d'entrée visuelles, pas des onglets nus. */
 .pricing__catalog-head h1{max-width:12ch;font-size:clamp(2.9rem,5.1vw,5.5rem)}
 .pricing__catalog-head>span{max-width:25ch}
 .pricing-tabs{display:grid;grid-template-columns:1.18fr .82fr;gap:.85rem;margin:0;border:0;overflow:visible}
@@ -31,16 +26,12 @@
 .pricing-panels{margin-top:clamp(3.2rem,6vw,5.5rem)}.pricing-group__head{grid-template-columns:minmax(0,.78fr) minmax(26rem,1.22fr);gap:1.5rem;align-items:end;margin-bottom:2.5rem}.pricing-group__head h3{max-width:11ch;font-size:clamp(2.6rem,4.5vw,5rem)}.pricing-group__visual{position:relative;min-height:clamp(13rem,22vw,18rem);overflow:visible}.pricing-visual{height:100%;min-height:0}.pricing-visual img{position:absolute;right:-6%;bottom:-9%;width:108%;max-width:none;filter:drop-shadow(0 22px 19px rgba(52,24,80,.12));transform:rotate(-1.5deg);transition:transform var(--t-slow) var(--ease-smooth)}.pricing-group:hover .pricing-visual img{transform:rotate(-1.5deg) translate3d(-8px,-4px,0) scale(1.025)}
 @media(max-width:760px){.pricing__catalog-head h1{font-size:clamp(2.8rem,13vw,4.4rem)}.pricing-tabs{grid-template-columns:1fr;gap:.7rem}.pricing-tabs button{min-height:11.5rem;padding:1.1rem}.pricing-tab__copy{max-width:16ch;margin-top:1.8rem}.pricing-tabs button img{right:-7%;width:78%}.pricing-tabs button:nth-child(2) img,.pricing-tabs button:nth-child(3) img,.pricing-tabs button:nth-child(4) img{right:-8%;width:88%;bottom:-8%}.pricing-group__head{display:block;margin-bottom:1.5rem}.pricing-group__visual{min-height:11rem;margin-top:1rem}.pricing-visual img{right:-4%;bottom:-15%;width:113%}}
 @media(prefers-reduced-motion:reduce){.pricing-tabs button,.pricing-tabs button img,.pricing-visual img{transition:none!important;transform:none!important}}
-
-/* Ajustements optiques : l'objet reste spectaculaire, le choix reste lisible en une seconde. */
 .pricing__catalog-head{display:block}.pricing__catalog-head>span{display:block;max-width:37ch;margin-top:1.15rem;padding:0;text-align:left}
 .pricing-tab__copy{width:min(17rem,55%);padding:.6rem .65rem .7rem;border-radius:.8rem;background:rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 7px 20px rgba(56,34,77,.06)}
 .pricing-tabs .pricing-tab__copy small{display:block;min-width:0;height:auto;margin:0;padding:0;border-radius:0;background:transparent;color:var(--muted);font-size:.76rem;font-weight:500;letter-spacing:0;line-height:1.35;text-transform:none}
 .pricing-tabs button[aria-selected="true"] .pricing-tab__copy small{background:transparent;color:var(--muted)}
 .pricing-tabs button:nth-child(1) img{right:-5%;width:75%}.pricing-tabs button:nth-child(2) img{right:-18%;width:99%}.pricing-tabs button:nth-child(3) img{right:-11%;width:94%}.pricing-tabs button:nth-child(4) img{right:-13%;width:91%}
 @media(max-width:760px){.pricing__catalog-head>span{max-width:31ch}.pricing-tab__copy{width:min(16rem,62%);padding:.55rem .6rem .65rem}.pricing-tabs button:nth-child(1) img{right:-5%;width:76%}.pricing-tabs button:nth-child(2) img,.pricing-tabs button:nth-child(3) img,.pricing-tabs button:nth-child(4) img{right:-11%;width:88%}}
-
-/* Palette d'objectifs : colorée comme Services, mais tenue par le même violet Purity. */
 .page--pricing{background:#f4f0f6}.page--pricing .header{background:rgba(255,255,255,.82)}
 .pricing__catalog-head h1{font-size:clamp(2.7rem,4.5vw,4.9rem)}
 .pricing-tabs{gap:1rem}.pricing-tabs button{border:0;box-shadow:0 18px 38px rgba(70,40,88,.08),inset 0 1px 0 rgba(255,255,255,.75)}
@@ -56,8 +47,6 @@
 .price-card{background:transparent}.price-card:hover{background:rgba(255,255,255,.55)}
 .pricing-group[data-pricing-panel="visibilite"] .pricing-list{grid-template-columns:repeat(2,minmax(0,1fr))}.pricing-group[data-pricing-panel="visibilite"] .price-card,.pricing-group[data-pricing-panel="diagnostic"] .price-card{grid-column:auto}.pricing-group[data-pricing-panel="diagnostic"] .pricing-list{grid-template-columns:minmax(0,34rem);justify-content:center}
 @media(max-width:760px){.page--pricing{background:#f4f0f6}.pricing__catalog-head h1{font-size:clamp(2.65rem,12.3vw,4rem)}.pricing-tabs{gap:.8rem}.pricing-group{padding:1rem;border-radius:1.25rem}.pricing-list{border-radius:.9rem}}
-
-/* Tarifs hérite de Services : le blanc porte la lecture, la couleur vient des scènes Octo. */
 .page--pricing{background:var(--paper)}
 .pricing__catalog-head{max-width:760px}.pricing__catalog-head h1{max-width:11ch;font-size:clamp(2.55rem,4.4vw,4.45rem);line-height:.94;letter-spacing:-.052em}.pricing__catalog-head>p{margin-bottom:.8rem}.pricing__catalog-head>span{max-width:38ch;margin-top:1rem;font-size:1rem}
 .pricing-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.8rem,1.6vw,1.15rem)}
@@ -83,16 +72,14 @@
 .pricing-group__visual{display:none}
 .pricing-list{margin-top:0}
 @media(max-width:760px){
-  .pricing-tabs button{min-height:19rem}
-  .pricing-tab__copy{max-width:15rem}
-  .pricing-tab__action{bottom:1.25rem;left:1.35rem}
-  .pricing-group__head{max-width:none;margin-bottom:1.25rem;text-align:left}
-  .pricing-group__head h3{max-width:14ch;margin-left:0;text-align:left}
-  .pricing-group__description{max-width:34ch;margin-top:.8rem;text-align:left}
+ .pricing-tabs button{min-height:19rem}
+ .pricing-tab__copy{max-width:15rem}
+ .pricing-tab__action{bottom:1.25rem;left:1.35rem}
+ .pricing-group__head{max-width:none;margin-bottom:1.25rem;text-align:left}
+ .pricing-group__head h3{max-width:14ch;margin-left:0;text-align:left}
+ .pricing-group__description{max-width:34ch;margin-top:.8rem;text-align:left}
 }
 @media(prefers-reduced-motion:reduce){.pricing-tab__action b{transition:none}}
-
-/* v10 : Tarifs devient un sélecteur plein écran, puis une fiche unique. */
 body.page--pricing{overflow:hidden}
 .page--pricing{overflow-x:hidden}
 .page--pricing .site-footer{display:none}
@@ -128,38 +115,35 @@ body.page--pricing{overflow:hidden}
 body.pricing-detail-open{overflow:hidden}
 body.pricing-detail-open .octo-float,body.pricing-detail-open .whatsapp-float,body.pricing-detail-open .octo__teaser{opacity:0;pointer-events:none}
 @media(max-width:760px){
-  .page--pricing .pricing{padding-bottom:1rem}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;overflow:visible;width:100%}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button{min-width:0;width:100%}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button{min-height:clamp(10.5rem,22vh,12.5rem);padding:.85rem;border-radius:18px}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tab__copy{max-width:9rem;margin-top:.35rem}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tab__copy strong{font-size:clamp(1.15rem,5.2vw,1.55rem);line-height:1}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tab__price{font-size:.68rem}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tab__price span{font-size:.56rem}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tab__action{bottom:.7rem;left:.85rem;font-size:.67rem}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tab__action b{width:1.35rem;height:1.35rem;font-size:.8rem}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button img{right:-13%;bottom:-4%;width:74%}
-  .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button:nth-child(2) img,.pricing__groups[data-pricing-view="chooser"] .pricing-tabs button:nth-child(3) img,.pricing__groups[data-pricing-view="chooser"] .pricing-tabs button:nth-child(4) img{right:-17%;width:86%;bottom:-3%}
-  .pricing--detail .pricing__groups{height:calc(100svh - var(--nav-h) - 1rem)}
-  .pricing--detail .pricing-group{padding:.85rem;border-radius:18px}
-  .pricing--detail .pricing-group__head h3{font-size:clamp(2rem,10.5vw,3rem)}
-  .pricing--detail .pricing-list{display:grid;grid-template-columns:1fr;gap:.7rem;overflow:visible;padding:0}
-  .pricing--detail .pricing-list .price-card{width:100%;min-width:0;flex:none;min-height:300px;scroll-snap-align:none}
-  .pricing-back{margin-bottom:1.2rem}
+ .page--pricing .pricing{padding-bottom:1rem}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;overflow:visible;width:100%}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button{min-width:0;width:100%}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button{min-height:clamp(10.5rem,22vh,12.5rem);padding:.85rem;border-radius:18px}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tab__copy{max-width:9rem;margin-top:.35rem}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tab__copy strong{font-size:clamp(1.15rem,5.2vw,1.55rem);line-height:1}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tab__price{font-size:.68rem}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tab__price span{font-size:.56rem}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tab__action{bottom:.7rem;left:.85rem;font-size:.67rem}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tab__action b{width:1.35rem;height:1.35rem;font-size:.8rem}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button img{right:-13%;bottom:-4%;width:74%}
+ .pricing__groups[data-pricing-view="chooser"] .pricing-tabs button:nth-child(2) img,.pricing__groups[data-pricing-view="chooser"] .pricing-tabs button:nth-child(3) img,.pricing__groups[data-pricing-view="chooser"] .pricing-tabs button:nth-child(4) img{right:-17%;width:86%;bottom:-3%}
+ .pricing--detail .pricing__groups{height:calc(100svh - var(--nav-h) - 1rem)}
+ .pricing--detail .pricing-group{padding:.85rem;border-radius:18px}
+ .pricing--detail .pricing-group__head h3{font-size:clamp(2rem,10.5vw,3rem)}
+ .pricing--detail .pricing-list{display:grid;grid-template-columns:1fr;gap:.7rem;overflow:visible;padding:0}
+ .pricing--detail .pricing-list .price-card{width:100%;min-width:0;flex:none;min-height:300px;scroll-snap-align:none}
+ .pricing-back{margin-bottom:1.2rem}
 }
 @media(prefers-reduced-motion:reduce){.pricing-back{transition:none}}
-
-/* Sur le sélecteur plein écran, les deux accès rapides partagent le socle
-   inférieur afin de ne jamais recouvrir une priorité, surtout sur mobile. */
 @media(min-width:601px){
-  .page--pricing:not(.pricing-detail-open) .whatsapp-float{
-    right:calc(clamp(1rem,3vw,2rem) + 72px + .75rem);
-    bottom:clamp(1rem,3vw,2rem);
-  }
+ .page--pricing:not(.pricing-detail-open) .whatsapp-float{
+ right:calc(clamp(1rem,3vw,2rem) + 72px + .75rem);
+ bottom:clamp(1rem,3vw,2rem);
+ }
 }
 @media(max-width:600px){
-  .page--pricing:not(.pricing-detail-open) .whatsapp-float{
-    right:calc(1rem + 62px + .65rem);
-    bottom:1rem;
-  }
+ .page--pricing:not(.pricing-detail-open) .whatsapp-float{
+ right:calc(1rem + 62px + .65rem);
+ bottom:1rem;
+ }
 }

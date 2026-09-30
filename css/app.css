@@ -1,396 +1,315 @@
-/* Purity Agency v2 — socle clair. */
-
 @font-face{
-  font-family:'General Sans';
-  src:url(/assets/GeneralSans-Variable.woff2) format('woff2-variations'),
-      url(/assets/GeneralSans-Variable.woff2) format('woff2');
-  font-weight:200 700;font-style:normal;font-display:swap
+ font-family:'General Sans';
+ src:url(/assets/GeneralSans-Variable.woff2) format('woff2-variations'),
+ url(/assets/GeneralSans-Variable.woff2) format('woff2');
+ font-weight:200 700;font-style:normal;font-display:swap
 }
-
 :root{
-  --ink:#0B0A0C;
-  --paper:#FFFFFF;
-  --muted:#4A4640;
-  --line:rgba(11,10,12,.12);
-  --reveal-off:#CFCBC5;   /* gris clair des mots pas encore reveles */
-  --accent:#6C3CAA;       /* mauve releve directement sur le mot de l'animation hero */
-  --accent-deep:#4D267D;  /* meme famille, plus profond pour les etats actifs */
-
-  --fw-display:652;
-  --fw-title:600;
-  --fw-emph:456;
-  --fw-body:456;
-
-  --lh-display:1.02;
-  --tracking:-.01em;
-
-  /* Valeurs de mouvement centralisees : aucune duree ni courbe en dur
-     dans les composants. */
-  --t-fast:150ms;
-  --t-normal:320ms;
-  --t-slow:520ms;
-  --ease-smooth:cubic-bezier(.16,1,.3,1);
-  --ease-sharp:cubic-bezier(.4,0,.2,1);
-
-  /* Poussee du hero : trajet long et freine, contact etabli tot. */
-  --t-push:1400ms;
-  --d-contact:180ms;
-  --ease-push:cubic-bezier(.16,.85,.2,1);
-
-  --nav-h:92px;
-  --wrap:1200px;
+ --ink:#0B0A0C;
+ --paper:#FFFFFF;
+ --muted:#4A4640;
+ --line:rgba(11,10,12,.12);
+ --reveal-off:#CFCBC5;
+ --accent:#6C3CAA;
+ --accent-deep:#4D267D;
+ --fw-display:652;
+ --fw-title:600;
+ --fw-emph:456;
+ --fw-body:456;
+ --lh-display:1.02;
+ --tracking:-.01em;
+ --t-fast:150ms;
+ --t-normal:320ms;
+ --t-slow:520ms;
+ --ease-smooth:cubic-bezier(.16,1,.3,1);
+ --ease-sharp:cubic-bezier(.4,0,.2,1);
+ --t-push:1400ms;
+ --d-contact:180ms;
+ --ease-push:cubic-bezier(.16,.85,.2,1);
+ --nav-h:92px;
+ --wrap:1200px;
 }
-
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--nav-h)}
 body{
-  margin:0;
-  overflow-x:clip;   /* la volute deborde a gauche du hero */
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'General Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-  font-weight:var(--fw-body);
-  font-optical-sizing:auto;
-  -webkit-font-smoothing:antialiased;
-  line-height:1.5
+ margin:0;
+ overflow-x:clip;
+ background:var(--paper);
+ color:var(--ink);
+ font-family:'General Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+ font-weight:var(--fw-body);
+ font-optical-sizing:auto;
+ -webkit-font-smoothing:antialiased;
+ line-height:1.5
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
-
-/* Navigation persistante : suffisamment discrète au-dessus du hero, mais
-   toujours lisible lorsque les sections défilent sous elle. */
 .header{
-  position:fixed;
-  inset:0 0 auto;
-  height:var(--nav-h);
-  display:flex;
-  align-items:center;
-  gap:2rem;
-  padding:0 clamp(1.5rem,4.5vw,3rem);
-  z-index:20;
-  border-bottom:1px solid rgba(25,18,31,.07);
-  background:rgba(255,255,255,.88);
-  box-shadow:0 8px 28px rgba(31,18,43,.045);
-  -webkit-backdrop-filter:saturate(140%) blur(16px);
-  backdrop-filter:saturate(140%) blur(16px)
+ position:fixed;
+ inset:0 0 auto;
+ height:var(--nav-h);
+ display:flex;
+ align-items:center;
+ gap:2rem;
+ padding:0 clamp(1.5rem,4.5vw,3rem);
+ z-index:20;
+ border-bottom:1px solid rgba(25,18,31,.07);
+ background:rgba(255,255,255,.88);
+ box-shadow:0 8px 28px rgba(31,18,43,.045);
+ -webkit-backdrop-filter:saturate(140%) blur(16px);
+ backdrop-filter:saturate(140%) blur(16px)
 }
 .header__brand{
-  transition:color 150ms ease-out;
-  display:flex;
-  align-items:center;
-  gap:.55rem;
-  font-weight:var(--fw-title);
-  letter-spacing:var(--tracking);
-  text-decoration:none;
-  font-size:1.14rem
+ transition:color 150ms ease-out;
+ display:flex;
+ align-items:center;
+ gap:.55rem;
+ font-weight:var(--fw-title);
+ letter-spacing:var(--tracking);
+ text-decoration:none;
+ font-size:1.14rem
 }
 .header__brand img{width:32px;height:32px}
 .header__nav{
-  margin-left:auto;
-  display:flex;
-  align-items:center;
-  gap:clamp(1.3rem,2.8vw,2.4rem)
+ margin-left:auto;
+ display:flex;
+ align-items:center;
+ gap:clamp(1.3rem,2.8vw,2.4rem)
 }
 .header__nav a{
-  position:relative;
-  font-size:1.02rem;
-  font-weight:var(--fw-title);
-  text-decoration:none;
-  color:var(--ink);
-  opacity:.78;
-  padding-bottom:3px;
-  transition:opacity 180ms ease-out,color 180ms ease-out
+ position:relative;
+ font-size:1.02rem;
+ font-weight:var(--fw-title);
+ text-decoration:none;
+ color:var(--ink);
+ opacity:.78;
+ padding-bottom:3px;
+ transition:opacity 180ms ease-out,color 180ms ease-out
 }
-/* Le trait se dessine depuis la gauche : il confirme la cible visee sans
-   deplacer le texte, donc sans faire sauter la barre. */
 .header__nav a::after{
-  content:"";
-  position:absolute;
-  left:0;right:0;bottom:0;
-  height:2px;
-  background:var(--accent);
-  border-radius:2px;
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition:transform 220ms cubic-bezier(.16,1,.3,1)
+ content:"";
+ position:absolute;
+ left:0;right:0;bottom:0;
+ height:2px;
+ background:var(--accent);
+ border-radius:2px;
+ transform:scaleX(0);
+ transform-origin:left center;
+ transition:transform 220ms cubic-bezier(.16,1,.3,1)
 }
 .header__nav a:hover{opacity:1;color:var(--accent)}
 .header__nav a:hover::after,
 .header__nav a:focus-visible::after{transform:scaleX(1)}
 .header__nav a:focus-visible,.header__brand:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
-
 .hero{
-  min-height:100dvh;
-  display:grid;
-  place-items:center;
-  padding:calc(var(--nav-h) + clamp(2rem,6vw,4rem)) clamp(1.25rem,5vw,3rem) clamp(3rem,8vw,6rem);
-  text-align:center
+ min-height:100dvh;
+ display:grid;
+ place-items:center;
+ padding:calc(var(--nav-h) + clamp(2rem,6vw,4rem)) clamp(1.25rem,5vw,3rem) clamp(3rem,8vw,6rem);
+ text-align:center
 }
 .hero__inner{max-width:min(1040px,92vw)}
 .hero h1{
-  margin:0;
-  font-size:clamp(2.4rem,6.2vw,5rem);
-  font-weight:var(--fw-display);
-  line-height:var(--lh-display);
-  letter-spacing:var(--tracking);
-  text-wrap:balance
+ margin:0;
+ font-size:clamp(2.4rem,6.2vw,5rem);
+ font-weight:var(--fw-display);
+ line-height:var(--lh-display);
+ letter-spacing:var(--tracking);
+ text-wrap:balance
 }
 .hero p{
-  margin:clamp(1.4rem,2.6vw,2rem) auto 0;
-  max-width:52ch;
-  font-size:clamp(1.02rem,1.4vw,1.2rem);
-  font-weight:var(--fw-emph);
-  line-height:1.6;
-  color:var(--muted);
-  text-wrap:balance
+ margin:clamp(1.4rem,2.6vw,2rem) auto 0;
+ max-width:52ch;
+ font-size:clamp(1.02rem,1.4vw,1.2rem);
+ font-weight:var(--fw-emph);
+ line-height:1.6;
+ color:var(--muted);
+ text-wrap:balance
 }
-/* ── La volute pousse le mot ─────────────────────────────────────────────
-   Deux calques decoupes dans le meme visuel. Le calque volute est nettoye de
-   tout pixel de lettrage : sans cela le « r » se dedouble des que les deux
-   calques se separent.
-
-   Physique de la poussee. Les deux phases sont portees par deux proprietes
-   distinctes, qui se composent :
-     translate  = le convoi, strictement identique sur les deux calques une
-                  fois le contact etabli. C'est ce qui garantit que l'ecart
-                  entre la boucle et le mot reste constant.
-     transform  = le rattrapage, applique a la seule volute avant le contact.
-   Exprimer les deux en pourcentage serait faux : les calques n'ont pas la
-   meme largeur, donc un meme pourcentage donne des distances differentes et
-   la volute traverse le mot au lieu de le pousser.
-
-   Mesures du fichier complet (2135 x 492) et de la police rendue :
-     hauteur d'x du mot = 21,34% de la hauteur du visuel
-     hauteur d'x de General Sans = 0,5375em
-     ligne de base du mot = 53,46% de la hauteur
-     ratio du visuel = 4,3394
-     hauteur affichee = 0,5375 / 0,2134    = 2,519em
-     largeur du visuel = x 4,3394          = 10,93em
-     largeur du mot    = 24,78% de 10,93em = 2,71em
-     decalage bas = (1 - 0,5346) x 2,519em = 1,172em */
 .ram{position:relative;display:inline-block;margin-right:.22em}
 .ram__txt{visibility:hidden}
-
 .ram__tentacle,.ram__word{
-  position:absolute;
-  bottom:-1.172em;
-  max-width:none;
-  height:auto;
-  pointer-events:none
+ position:absolute;
+ bottom:-1.172em;
+ max-width:none;
+ height:auto;
+ pointer-events:none
 }
-.ram__tentacle{right:2.23em;width:8.70em}   /* 79,63% du visuel */
-.ram__word{right:0;width:2.94em;z-index:-1} /* 26,93%, sous la volute */
-
+.ram__tentacle{right:2.23em;width:8.70em}
+.ram__word{right:0;width:2.94em;z-index:-1}
 @media (min-width:901px){
-  .ram{width:2.71em}
-
-  /* Convoi : meme distance, meme courbe, meme depart pour les deux. */
-  .ram__tentacle,.ram__word{
-    animation:convoy calc(var(--t-push) - var(--d-contact))
-              var(--ease-push) var(--d-contact) both
-  }
-  /* Rattrapage : la volute seule, avant que le contact soit etabli. */
-  .ram__tentacle{
-    animation:convoy calc(var(--t-push) - var(--d-contact))
-              var(--ease-push) var(--d-contact) both,
-              catchup var(--d-contact) linear both
-  }
+ .ram{width:2.71em}
+ .ram__tentacle,.ram__word{
+ animation:convoy calc(var(--t-push) - var(--d-contact))
+ var(--ease-push) var(--d-contact) both
+ }
+ .ram__tentacle{
+ animation:convoy calc(var(--t-push) - var(--d-contact))
+ var(--ease-push) var(--d-contact) both,
+ catchup var(--d-contact) linear both
+ }
 }
 @keyframes convoy{
-  from{translate:-5.2em 0}
-  to{translate:0 0}
+ from{translate:-5.2em 0}
+ to{translate:0 0}
 }
 @keyframes catchup{
-  from{transform:translateX(-2.1em)}
-  to{transform:translateX(0)}
+ from{transform:translateX(-2.1em)}
+ to{transform:translateX(0)}
 }
-
-/* Sous 900px la volute recouvrirait le mot precedent : le texte reprend la
-   main, en violet de marque. */
 @media (max-width:900px){
-  .ram__tentacle,.ram__word{display:none}
-  .ram__txt{visibility:visible;color:var(--accent)}
+ .ram__tentacle,.ram__word{display:none}
+ .ram__txt{visibility:visible;color:var(--accent)}
 }
-
-/* Mouvement reduit : le visuel est en place d'emblee. */
 @media (prefers-reduced-motion:reduce){
-  .ram__tentacle,.ram__word{animation:none;translate:0 0;transform:none}
+ .ram__tentacle,.ram__word{animation:none;translate:0 0;transform:none}
 }
-
 .hero__actions{
-  margin-top:clamp(2rem,3.6vw,2.8rem);
-  display:flex;
-  flex-wrap:wrap;
-  gap:.75rem;
-  justify-content:center
+ margin-top:clamp(2rem,3.6vw,2.8rem);
+ display:flex;
+ flex-wrap:wrap;
+ gap:.75rem;
+ justify-content:center
 }
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 1.5rem;
-  border-radius:999px;
-  font-size:.97rem;
-  font-weight:var(--fw-title);
-  letter-spacing:var(--tracking);
-  text-decoration:none;
-  border:1px solid var(--ink);
-  transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:48px;
+ padding:0 1.5rem;
+ border-radius:999px;
+ font-size:.97rem;
+ font-weight:var(--fw-title);
+ letter-spacing:var(--tracking);
+ text-decoration:none;
+ border:1px solid var(--ink);
+ transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
 }
-/* Au survol le bouton plein se vide ; le bouton contour ne prend que le
-   violet sur son texte et son trait, sans fond. */
 .btn--primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
 .btn--primary:hover{background:var(--paper);color:var(--accent);border-color:var(--accent)}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn--ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
 @media (prefers-reduced-motion:reduce){
-  .btn,.header__nav a,.header__nav a::after{transition:none}
-  .btn:active{transform:none}
+ .btn,.header__nav a,.header__nav a::after{transition:none}
+ .btn:active{transform:none}
 }
-
-/* Mot mis en avant dans le titre : violet exact du logo. */
 .hero__actions{
-  margin-top:clamp(2rem,3.6vw,2.8rem);
-  display:flex;
-  flex-wrap:wrap;
-  gap:.75rem;
-  justify-content:center
+ margin-top:clamp(2rem,3.6vw,2.8rem);
+ display:flex;
+ flex-wrap:wrap;
+ gap:.75rem;
+ justify-content:center
 }
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 1.5rem;
-  border-radius:999px;
-  font-size:.97rem;
-  font-weight:var(--fw-title);
-  letter-spacing:var(--tracking);
-  text-decoration:none;
-  border:1px solid var(--ink);
-  transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:48px;
+ padding:0 1.5rem;
+ border-radius:999px;
+ font-size:.97rem;
+ font-weight:var(--fw-title);
+ letter-spacing:var(--tracking);
+ text-decoration:none;
+ border:1px solid var(--ink);
+ transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
 }
-/* Au survol le bouton plein se vide ; le bouton contour ne prend que le
-   violet sur son texte et son trait, sans fond. */
 .btn--primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
 .btn--primary:hover{background:var(--paper);color:var(--accent);border-color:var(--accent)}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn--ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
 @media (prefers-reduced-motion:reduce){
-  .btn,.header__nav a,.header__nav a::after{transition:none}
-  .btn:active{transform:none}
+ .btn,.header__nav a,.header__nav a::after{transition:none}
+ .btn:active{transform:none}
 }
-
-/* Mot mis en avant dans le titre : violet exact du logo. */
 .hero__actions{
-  margin-top:clamp(2rem,3.6vw,2.8rem);
-  display:flex;
-  flex-wrap:wrap;
-  gap:.75rem;
-  justify-content:center
+ margin-top:clamp(2rem,3.6vw,2.8rem);
+ display:flex;
+ flex-wrap:wrap;
+ gap:.75rem;
+ justify-content:center
 }
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 1.5rem;
-  border-radius:999px;
-  font-size:.97rem;
-  font-weight:var(--fw-title);
-  letter-spacing:var(--tracking);
-  text-decoration:none;
-  border:1px solid var(--ink);
-  transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:48px;
+ padding:0 1.5rem;
+ border-radius:999px;
+ font-size:.97rem;
+ font-weight:var(--fw-title);
+ letter-spacing:var(--tracking);
+ text-decoration:none;
+ border:1px solid var(--ink);
+ transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
 }
-/* Au survol le bouton plein se vide ; le bouton contour ne prend que le
-   violet sur son texte et son trait, sans fond. */
 .btn--primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
 .btn--primary:hover{background:var(--paper);color:var(--accent);border-color:var(--accent)}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn--ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
 @media (prefers-reduced-motion:reduce){
-  .btn,.header__nav a,.header__nav a::after{transition:none}
-  .btn:active{transform:none}
+ .btn,.header__nav a,.header__nav a::after{transition:none}
+ .btn:active{transform:none}
 }
-
-/* Mot mis en avant dans le titre : violet exact du logo. */
 .hero__actions{
-  margin-top:clamp(2rem,3.6vw,2.8rem);
-  display:flex;
-  flex-wrap:wrap;
-  gap:.75rem;
-  justify-content:center
+ margin-top:clamp(2rem,3.6vw,2.8rem);
+ display:flex;
+ flex-wrap:wrap;
+ gap:.75rem;
+ justify-content:center
 }
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 1.5rem;
-  border-radius:999px;
-  font-size:.97rem;
-  font-weight:var(--fw-title);
-  letter-spacing:var(--tracking);
-  text-decoration:none;
-  border:1px solid var(--ink);
-  transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:48px;
+ padding:0 1.5rem;
+ border-radius:999px;
+ font-size:.97rem;
+ font-weight:var(--fw-title);
+ letter-spacing:var(--tracking);
+ text-decoration:none;
+ border:1px solid var(--ink);
+ transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out
 }
-/* Au survol le bouton plein se vide ; le bouton contour ne prend que le
-   violet sur son texte et son trait, sans fond. */
 .btn--primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
 .btn--primary:hover{background:var(--paper);color:var(--accent);border-color:var(--accent)}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn--ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
 @media (prefers-reduced-motion:reduce){
-  .btn,.header__nav a,.header__nav a::after{transition:none}
-  .btn:active{transform:none}
+ .btn,.header__nav a,.header__nav a::after{transition:none}
+ .btn:active{transform:none}
 }
-
-/* Mot mis en avant dans le titre : violet exact du logo. */
-/* Le mot accentue sert d'ancre a la volute : quel que soit l'endroit ou la
-   ligne se casse, la boucle reste collee au mot plutot qu'a un point fixe
-   de la page. */
 .hero h1 em{font-style:normal;color:var(--accent);position:relative}
 .hero h1 em::before{
-  content:"";
-  position:absolute;
-  right:calc(100% - .18em);          /* la boucle mord legerement sur le mot */
-  top:50%;
-  /* Calibre sur la boucle : elle occupe 64% de la hauteur de l'image, donc
-     cette largeur lui donne a peu pres la hauteur du mot. */
-  width:6.2em;
-  aspect-ratio:911 / 470;
-  translate:0 -50%;
-  background:url(/assets/hero-tentacule.webp) right center / contain no-repeat;
-  pointer-events:none;
-  z-index:-1
+ content:"";
+ position:absolute;
+ right:calc(100% - .18em);
+ top:50%;
+ width:6.2em;
+ aspect-ratio:911 / 470;
+ translate:0 -50%;
+ background:url(/assets/hero-tentacule.webp) right center / contain no-repeat;
+ pointer-events:none;
+ z-index:-1
 }
 @media (max-width:900px){
-  .hero h1 em::before{width:5em;right:calc(100% - .12em)}
+ .hero h1 em::before{width:5em;right:calc(100% - .12em)}
 }
-/* Sous 560px la volute mangerait la moitie de l'ecran sans rien apporter. */
 @media (max-width:560px){
-  .hero h1 em::before{display:none}
+ .hero h1 em::before{display:none}
 }
-
-/* Section fondateur : la citation et le visage, rien d'autre. */
 .founder{
-  padding:clamp(5rem,11vw,10rem) clamp(1.25rem,5vw,3rem);
-  text-align:center
+ padding:clamp(5rem,11vw,10rem) clamp(1.25rem,5vw,3rem);
+ text-align:center
 }
 .founder__inner{max-width:1000px;margin:0 auto}
 .founder__quote{margin:0;padding:0;scroll-margin-top:calc(var(--header-h, 82px) + 2rem)}
@@ -401,75 +320,56 @@ a{color:inherit}
 .founder__brand:focus-visible{outline:2px solid var(--accent);outline-offset:.14em;border-radius:.08em}
 .founder__word{display:inline-block;white-space:nowrap}
 @media (prefers-reduced-motion:no-preference){
-  .has-founder-reveal .founder__letter{display:inline-block;color:var(--ink);opacity:.11;transform:translateY(.045em);will-change:opacity,transform}
-  .has-founder-reveal .founder__brand .founder__letter{color:var(--accent)}
+ .has-founder-reveal .founder__letter{display:inline-block;color:var(--ink);opacity:.11;transform:translateY(.045em);will-change:opacity,transform}
+ .has-founder-reveal .founder__brand .founder__letter{color:var(--accent)}
 }
 .founder__quote p{
-  margin:0 auto;
-  font-size:clamp(1.55rem,3.25vw,2.8rem);
-  font-weight:var(--fw-display);
-  line-height:var(--lh-display);
-  letter-spacing:var(--tracking);
-  text-wrap:balance
+ margin:0 auto;
+ font-size:clamp(1.55rem,3.25vw,2.8rem);
+ font-weight:var(--fw-display);
+ line-height:var(--lh-display);
+ letter-spacing:var(--tracking);
+ text-wrap:balance
 }
 .founder__avatar{
-  width:72px;height:72px;
-  margin:clamp(2.2rem,4vw,3rem) auto 0;
-  border-radius:50%;
-  object-fit:cover
+ width:72px;height:72px;
+ margin:clamp(2.2rem,4vw,3rem) auto 0;
+ border-radius:50%;
+ object-fit:cover
 }
 .founder__name{
-  margin:1.1rem 0 0;
-  font-size:1rem;
-  font-weight:var(--fw-title);
-  letter-spacing:var(--tracking)
+ margin:1.1rem 0 0;
+ font-size:1rem;
+ font-weight:var(--fw-title);
+ letter-spacing:var(--tracking)
 }
 .founder__role{
-  margin:.3rem 0 0;
-  font-size:.94rem;
-  font-weight:var(--fw-emph);
-  color:var(--muted)
+ margin:.3rem 0 0;
+ font-size:.94rem;
+ font-weight:var(--fw-emph);
+ color:var(--muted)
 }
 .founder__role a{color:var(--accent);text-decoration:none}
 .founder__role a:hover{text-decoration:underline}
 .founder__role a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
-
-/* Tout lien survole prend le violet de marque, sans exception. */
 a:hover{color:var(--accent)}
 .header__brand:hover{color:var(--accent)}
-
-/* ── Mobile ────────────────────────────────────────────────────────────── */
 @media (max-width:767px){
-  :root{--nav-h:74px}
-
-  .header{gap:1rem}
-  .header__brand{white-space:nowrap;font-size:1.05rem}
-  .header__brand img{width:28px;height:28px}
-
-  /* Quatre libelles ne tiennent pas sur 375px. Plutot qu'un menu burger pour
-     quatre entrees, on garde les deux liens qui portent la conversion ;
-     Services et Portfolio restent atteignables au scroll et par le pied de
-     page. */
-  .header__nav{gap:1.1rem}
-  .header__nav a:not([href$="contact.html"]){display:none}
-
-  .hero{padding-top:calc(var(--nav-h) + 2rem);min-height:auto;padding-bottom:4rem}
-  .hero h1{font-size:clamp(2.1rem,8.4vw,2.9rem)}
-  .hero p{font-size:1.02rem}
-
-  /* Boutons de meme largeur, empiles : la cible tactile ne depend plus de la
-     longueur du libelle. */
-  .hero__actions{flex-direction:column;align-items:stretch;gap:.65rem}
-  .hero__actions .btn{width:100%}
-
-  .founder{padding-top:4.5rem;padding-bottom:5rem}
-  .founder__quote p{font-size:clamp(1.5rem,6.4vw,2rem)}
-  .founder__avatar{width:64px;height:64px}
+ :root{--nav-h:74px}
+ .header{gap:1rem}
+ .header__brand{white-space:nowrap;font-size:1.05rem}
+ .header__brand img{width:28px;height:28px}
+ .header__nav{gap:1.1rem}
+ .header__nav a:not([href$="contact.html"]){display:none}
+ .hero{padding-top:calc(var(--nav-h) + 2rem);min-height:auto;padding-bottom:4rem}
+ .hero h1{font-size:clamp(2.1rem,8.4vw,2.9rem)}
+ .hero p{font-size:1.02rem}
+ .hero__actions{flex-direction:column;align-items:stretch;gap:.65rem}
+ .hero__actions .btn{width:100%}
+ .founder{padding-top:4.5rem;padding-bottom:5rem}
+ .founder__quote p{font-size:clamp(1.5rem,6.4vw,2rem)}
+ .founder__avatar{width:64px;height:64px}
 }
-
-/* Polish global des appels a l'action : les libelles restent centres meme
-   lorsqu'ils passent sur deux lignes, et les cibles tactiles gardent une
-   presence stable sur mobile. */
 .btn,
 .booking__external,
 .service-card__primary,
@@ -482,13 +382,12 @@ a:hover{color:var(--accent)}
 .octo__nudge button,
 .octo__teaser-open,
 .menu__foot .btn{
-  text-align:center;
-  line-height:1.15;
-  text-wrap:balance;
-  overflow-wrap:break-word;
-  -webkit-tap-highlight-color:transparent
+ text-align:center;
+ line-height:1.15;
+ text-wrap:balance;
+ overflow-wrap:break-word;
+ -webkit-tap-highlight-color:transparent
 }
-
 .btn,
 .booking__external,
 .service-card__primary,
@@ -496,90 +395,73 @@ a:hover{color:var(--accent)}
 .price-card__cta,
 .octo__action,
 .menu__foot .btn{
-  align-items:center;
-  justify-content:center
+ align-items:center;
+ justify-content:center
 }
-
 @media (max-width:767px){
-  .btn,
-  .booking__external,
-  .service-card__primary,
-  .service-card__actions>a,
-  .price-card__cta,
-  .octo__action,
-  .menu__foot .btn{
-    width:100%;
-    min-height:48px;
-    padding-inline:1rem
-  }
+ .btn,
+ .booking__external,
+ .service-card__primary,
+ .service-card__actions>a,
+ .price-card__cta,
+ .octo__action,
+ .menu__foot .btn{
+ width:100%;
+ min-height:48px;
+ padding-inline:1rem
+ }
 }
-
-/* Sur ecran tactile le survol n'existe pas : on evite l'etat colle apres
-   un appui. */
 @media (hover:none){
-  .header__nav a:hover::after{transform:scaleX(0)}
-  .header__nav a:hover{color:var(--ink)}
+ .header__nav a:hover::after{transform:scaleX(0)}
+ .header__nav a:hover{color:var(--ink)}
 }
-
-/* ── Note Google ─────────────────────────────────────────────────────────
-   Sous les CTA : la preuve sociale confirme une decision, elle ne la
-   declenche pas, et le hero garde quatre elements de texte. */
 .rating{
-  display:inline-flex;
-  align-items:center;
-  gap:.55rem;
-  margin-top:clamp(1.6rem,2.6vw,2.2rem);
-  text-decoration:none;
-  color:var(--ink);
-  transition:transform 150ms ease-out
+ display:inline-flex;
+ align-items:center;
+ gap:.55rem;
+ margin-top:clamp(1.6rem,2.6vw,2.2rem);
+ text-decoration:none;
+ color:var(--ink);
+ transition:transform 150ms ease-out
 }
 .rating:hover{transform:translateY(-1px)}
 .rating:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .rating__g{width:17px;height:17px;flex:none}
-
-/* Deux calques superposes : la rangee pleine est rognee a la note exacte,
-   ce qui evite d'arrondir 4,8 a cinq etoiles pleines. */
 .stars{position:relative;display:block;width:90px;height:18px;flex:none}
 .stars svg{width:90px;height:18px;display:block}
 .stars__empty{fill:rgba(11,10,12,.18)}
 .stars__fill{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  width:var(--score,100%);
-  fill:#F5A623
+ position:absolute;
+ inset:0;
+ overflow:hidden;
+ width:var(--score,100%);
+ fill:#F5A623
 }
 .stars__fill svg{position:absolute;inset:0}
-
 .rating__score{font-weight:var(--fw-title);font-size:.95rem;letter-spacing:var(--tracking)}
 .rating__count{font-weight:var(--fw-emph);font-size:.9rem;color:var(--muted)}
 .rating:hover .rating__count{color:var(--accent)}
-
 @media (max-width:767px){
-  .rating{margin-top:1.4rem;gap:.45rem}
-  .rating__count{font-size:.85rem}
-  .stars,.stars svg{width:78px;height:16px}
+ .rating{margin-top:1.4rem;gap:.45rem}
+ .rating__count{font-size:.85rem}
+ .stars,.stars svg{width:78px;height:16px}
 }
 @media (prefers-reduced-motion:reduce){
-  .rating{transition:none}
-  .rating:hover{transform:none}
+ .rating{transition:none}
+ .rating:hover{transform:none}
 }
-
-/* Bulles d'avis : initiales des cinq auteurs reels de la fiche Google.
-   Pas de photo, elles appartiennent aux clients et ne peuvent pas etre
-   rehebergees sans leur accord. */
 .faces{display:inline-flex;align-items:center;flex:none}
 .face{
-  display:grid;
-  place-items:center;
-  width:26px;height:26px;
-  border-radius:50%;
-  font-size:.62rem;
-  font-weight:var(--fw-title);
-  letter-spacing:.02em;
-  color:#fff;
-  border:2px solid var(--paper);
-  transition:transform 200ms cubic-bezier(.16,1,.3,1)
+ display:grid;
+ place-items:center;
+ width:26px;height:26px;
+ border-radius:50%;
+ font-size:.62rem;
+ font-weight:var(--fw-title);
+ letter-spacing:.02em;
+ color:#fff;
+ border:2px solid var(--paper);
+ transition:transform 200ms cubic-bezier(.16,1,.3,1)
 }
 .face + .face{margin-left:-9px}
 .face[data-i="1"]{background:#3F3A46}
@@ -593,67 +475,60 @@ a:hover{color:var(--accent)}
 .rating:hover .face[data-i="4"]{transition-delay:90ms}
 .rating:hover .face[data-i="5"]{transition-delay:120ms}
 @media (max-width:767px){
-  .face{width:23px;height:23px;font-size:.56rem}
-  .face + .face{margin-left:-8px}
+ .face{width:23px;height:23px;font-size:.56rem}
+ .face + .face{margin-left:-8px}
 }
 @media (prefers-reduced-motion:reduce){
-  .face,.rating:hover .face{transition:none;transform:none}
+ .face,.rating:hover .face{transition:none;transform:none}
 }
-
-/* ── Polish system-wide — finition UI/UX ────────────────────────────────
-   Couche tardive volontaire : elle uniformise les détails visibles entre
-   accueil, blog, articles, légal et contact sans réécrire chaque page. */
 :root{
-  --accent-soft:color-mix(in srgb,var(--accent) 11%,#fff);
-  --accent-hairline:color-mix(in srgb,var(--accent) 20%,transparent);
-  --surface:#fff;
-  --surface-soft:#fbf9ff;
-  --shadow-soft:0 20px 58px rgba(34,18,58,.07);
-  --shadow-lift:0 28px 74px rgba(44,20,75,.12);
+ --accent-soft:color-mix(in srgb,var(--accent) 11%,#fff);
+ --accent-hairline:color-mix(in srgb,var(--accent) 20%,transparent);
+ --surface:#fff;
+ --surface-soft:#fbf9ff;
+ --shadow-soft:0 20px 58px rgba(34,18,58,.07);
+ --shadow-lift:0 28px 74px rgba(44,20,75,.12);
 }
-
 :focus-visible{
-  outline:3px solid color-mix(in srgb,var(--accent) 62%,#fff);
-  outline-offset:4px;
+ outline:3px solid color-mix(in srgb,var(--accent) 62%,#fff);
+ outline-offset:4px;
 }
-
 .header{
-  height:calc(var(--nav-h) - 10px);
-  margin:10px clamp(.7rem,2vw,1.25rem) 0;
-  inset:0 0 auto;
-  border:1px solid rgba(108,60,170,.09);
-  border-radius:999px;
-  background:rgba(255,255,255,.9);
-  box-shadow:0 10px 34px rgba(31,18,43,.065);
+ height:calc(var(--nav-h) - 10px);
+ margin:10px clamp(.7rem,2vw,1.25rem) 0;
+ inset:0 0 auto;
+ border:1px solid rgba(108,60,170,.09);
+ border-radius:999px;
+ background:rgba(255,255,255,.9);
+ box-shadow:0 10px 34px rgba(31,18,43,.065);
 }
 .header__brand img{filter:drop-shadow(0 2px 7px rgba(108,60,170,.2))}
 .header__nav a{opacity:.82}
 .header__nav a[aria-current="page"]{color:var(--accent);opacity:1}
 .header__nav a[aria-current="page"]::after{transform:scaleX(1)}
-
 .btn,
 .booking__external,
 .service-card__primary,
 .service-card__actions>a,
 .article-cta .btn,
 .menu__foot .btn{
-  min-height:48px;
-  border-radius:999px;
-  font-weight:700;
-  transition:
-    transform 420ms cubic-bezier(.32,.72,0,1),
-    box-shadow 420ms cubic-bezier(.32,.72,0,1),
-    background-color 260ms cubic-bezier(.32,.72,0,1),
-    border-color 260ms cubic-bezier(.32,.72,0,1),
-    color 260ms cubic-bezier(.32,.72,0,1);
+ min-height:48px;
+ border-radius:999px;
+ font-weight:700;
+ transition:
+ transform 420ms cubic-bezier(.32,.72,0,1),
+ box-shadow 420ms cubic-bezier(.32,.72,0,1),
+ background-color 260ms cubic-bezier(.32,.72,0,1),
+ border-color 260ms cubic-bezier(.32,.72,0,1),
+ color 260ms cubic-bezier(.32,.72,0,1);
 }
 .btn--primary,
 .article-cta .btn,
 .service-card__actions .service-card__primary{
-  border-color:var(--accent);
-  background:linear-gradient(135deg,var(--accent) 0%,var(--accent-deep) 100%);
-  color:#fff;
-  box-shadow:0 14px 32px rgba(77,38,125,.18);
+ border-color:var(--accent);
+ background:linear-gradient(135deg,var(--accent) 0%,var(--accent-deep) 100%);
+ color:#fff;
+ box-shadow:0 14px 32px rgba(77,38,125,.18);
 }
 .btn--primary:hover,
 .btn--primary:focus-visible,
@@ -661,112 +536,107 @@ a:hover{color:var(--accent)}
 .article-cta .btn:focus-visible,
 .service-card__actions .service-card__primary:hover,
 .service-card__actions .service-card__primary:focus-visible{
-  border-color:var(--accent-deep);
-  background:linear-gradient(135deg,var(--accent-deep) 0%,#341456 100%);
-  color:#fff;
-  transform:translateY(-2px);
-  box-shadow:0 20px 44px rgba(77,38,125,.24);
+ border-color:var(--accent-deep);
+ background:linear-gradient(135deg,var(--accent-deep) 0%,#341456 100%);
+ color:#fff;
+ transform:translateY(-2px);
+ box-shadow:0 20px 44px rgba(77,38,125,.24);
 }
 .btn--ghost{
-  border-color:rgba(11,10,12,.13);
-  background:#fff;
-  color:var(--ink);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+ border-color:rgba(11,10,12,.13);
+ background:#fff;
+ color:var(--ink);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
 }
 .btn--ghost:hover,
 .btn--ghost:focus-visible{
-  border-color:var(--accent-hairline);
-  background:var(--accent-soft);
-  color:var(--accent-deep);
-  transform:translateY(-2px);
+ border-color:var(--accent-hairline);
+ background:var(--accent-soft);
+ color:var(--accent-deep);
+ transform:translateY(-2px);
 }
 .btn:active,
 .booking__external:active,
 .service-card__actions>a:active{transform:scale(.985)}
-
 .site-footer{
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 15% 0,rgba(108,60,170,.1),transparent 22rem),
-    linear-gradient(180deg,#fff 0%,#fbf9ff 100%);
+ position:relative;
+ overflow:hidden;
+ background:
+ radial-gradient(circle at 15% 0,rgba(108,60,170,.1),transparent 22rem),
+ linear-gradient(180deg,#fff 0%,#fbf9ff 100%);
 }
 .site-footer::before{
-  position:absolute;
-  inset:0 0 auto;
-  height:1px;
-  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 38%,transparent),transparent);
-  content:"";
+ position:absolute;
+ inset:0 0 auto;
+ height:1px;
+ background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 38%,transparent),transparent);
+ content:"";
 }
 .site-footer__brand img{filter:drop-shadow(0 2px 7px rgba(108,60,170,.18))}
 .site-footer a{
-  transition:color 180ms var(--ease-smooth),text-decoration-color 180ms var(--ease-smooth);
+ transition:color 180ms var(--ease-smooth),text-decoration-color 180ms var(--ease-smooth);
 }
 .site-footer a:hover{color:var(--accent-deep);text-decoration-color:currentColor}
 .site-footer__legal{
-  align-items:center;
-  line-height:1.45;
+ align-items:center;
+ line-height:1.45;
 }
-
 input,
 textarea,
 button,
 select{font:inherit}
 input,
 textarea{
-  transition:
-    border-color 220ms var(--ease-smooth),
-    box-shadow 220ms var(--ease-smooth),
-    background-color 220ms var(--ease-smooth);
+ transition:
+ border-color 220ms var(--ease-smooth),
+ box-shadow 220ms var(--ease-smooth),
+ background-color 220ms var(--ease-smooth);
 }
-
 @media (max-width:767px){
-  .header{
-    height:calc(var(--nav-h) - 12px);
-    margin:8px .75rem 0;
-    padding-inline:1rem;
-  }
-  .hero{padding-top:calc(var(--nav-h) + 2.35rem)}
-  .site-footer__legal{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:.55rem;
-  }
+ .header{
+ height:calc(var(--nav-h) - 12px);
+ margin:8px .75rem 0;
+ padding-inline:1rem;
+ }
+ .hero{padding-top:calc(var(--nav-h) + 2.35rem)}
+ .site-footer__legal{
+ display:grid;
+ grid-template-columns:1fr;
+ gap:.55rem;
+ }
 }
-
 @media (prefers-reduced-motion:reduce){
-  .btn,
-  .booking__external,
-  .service-card__primary,
-  .service-card__actions>a,
-  .article-cta .btn,
-  .menu__foot .btn,
-  .site-footer a,
-  input,
-  textarea{transition:none!important}
+ .btn,
+ .booking__external,
+ .service-card__primary,
+ .service-card__actions>a,
+ .article-cta .btn,
+ .menu__foot .btn,
+ .site-footer a,
+ input,
+ textarea{transition:none!important}
 }
-
 .scroll-progress{
-  position:fixed;
-  z-index:60;
-  top:0;
-  left:0;
-  width:100%;
-  height:5px;
-  pointer-events:none;
-  background:rgba(108,4,241,.09);
+ position:fixed;
+ z-index:60;
+ top:0;
+ left:0;
+ width:100%;
+ height:5px;
+ pointer-events:none;
+ background:rgba(108,4,241,.09);
 }
 .scroll-progress__bar{
-  display:block;
-  width:100%;
-  height:100%;
-  border-radius:0 999px 999px 0;
-  background:linear-gradient(90deg,#7b2cff 0%,var(--accent) 52%,var(--accent-deep) 100%);
-  box-shadow:0 0 20px rgba(108,4,241,.42);
-  transform:scaleX(var(--scroll-progress,0));
-  transform-origin:left center;
-  transition:transform 120ms linear;
+ display:block;
+ width:100%;
+ height:100%;
+ border-radius:0 999px 999px 0;
+ background:linear-gradient(90deg,#7b2cff 0%,var(--accent) 52%,var(--accent-deep) 100%);
+ box-shadow:0 0 20px rgba(108,4,241,.42);
+ transform:scaleX(var(--scroll-progress,0));
+ transform-origin:left center;
+ transition:transform 120ms linear;
 }
 @media (prefers-reduced-motion:reduce){
-  .scroll-progress__bar{transition:none}
+ .scroll-progress__bar{transition:none}
 }

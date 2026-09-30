@@ -1,0 +1,8 @@
+/* Fond de la section Services : formes organiques violettes animées par js/services-bg.js. */
+.solutions{position:relative;isolation:isolate;overflow:hidden;background:#5d1ec2}
+.solutions__bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#5d1ec2}
+.solutions__bg svg{position:absolute;inset:0;display:block;width:100%;height:100%}
+.solutions__bg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(36,6,104,.3) 1px,transparent 1.5px),radial-gradient(rgba(36,6,104,.3) 1px,transparent 1.5px);background-size:6px 6px;background-position:0 0,3px 3px}
+.solutions .solutions__intro h2{color:#fff}
+.solutions .solutions__intro .section-kicker{color:#e3d5ff}
+.solutions .solutions__intro>p:last-child{color:rgba(255,255,255,.88)}

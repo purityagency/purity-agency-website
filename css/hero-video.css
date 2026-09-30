@@ -20,7 +20,7 @@
 @keyframes hero-underline-draw{to{transform:scaleX(1)}}
 .hero__word{position:relative;display:inline-block;width:3.84em;height:.65em;vertical-align:baseline}
 .hero__delivered-clients{position:absolute;font-size:1em;line-height:1;white-space:nowrap;will-change:transform}
-.hero__source,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02);mask-image:linear-gradient(to right,#000 86%,transparent 100%);-webkit-mask-image:linear-gradient(to right,#000 86%,transparent 100%)}
+.hero__source,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
 .hero__source{visibility:hidden}
 .hero__poster{visibility:visible}
 .hero--ready .hero__source{visibility:visible}

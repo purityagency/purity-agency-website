@@ -1,11 +1,18 @@
 # Purity Agency
 
-Agence web à Charleroi, Belgique. Purity Agency accompagne les indépendants et PME sur leur site web, leur visibilité locale et leurs automatisations utiles.
+Agence digitale basée à Charleroi, Belgique. Purity Agency aide les indépendants et PME à moderniser et optimiser leur activité : acquisition, présence digitale, sites et e-commerce, applications et outils métier, automatisation, IA, branding et communication.
 
 ## Pages principales
 - https://purity-agency.be/
 - https://purity-agency.be/contact.html
 - https://purity-agency.be/blog.html
+
+## Domaines d'intervention
+- Acquisition et visibilité locale
+- Sites web professionnels et e-commerce
+- Applications et outils métier sur mesure
+- Automatisation des processus et intégration d'IA
+- Branding et communication digitale
 
 ## Informations fiables
 - Les prix publics sont servis depuis le catalogue de la v2.

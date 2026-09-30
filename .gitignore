@@ -1,4 +1,10 @@
 .gemini-key
+.env
+.env.*
+secrets/
+*.pem
+*.p12
+*.pfx
 node_modules
 *.log
 superpowers/
@@ -6,3 +12,4 @@ superpowers/
 leads.log
 scratch/
 *.orig-backup
+.seo-cache/

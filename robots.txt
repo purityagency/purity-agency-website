@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /health
 
 Sitemap: https://purity-agency.be/sitemap.xml

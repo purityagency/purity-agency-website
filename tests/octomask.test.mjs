@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { chat, sessionFor, clearSession, validateReply } from '../api/chat.mjs';
 import { sendContact } from '../api/contact.mjs';
+import { isPublicAddress, normaliseUrl } from '../api/audit.mjs';
 
 const valid = { reply: 'Pour une présentation en cinq pages, le Site Vitrine est pertinent. Avez-vous déjà un site ?', offerIds: ['M04'], suggestions: ['Oui', 'Pas encore'], action: 'none' };
 const provider = output => async () => ({ ok: true, json: async () => ({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify(output) }] } }] }) });
@@ -55,4 +56,15 @@ test('contact never claims success if neither journal nor email succeeds', async
   assert.deepEqual(await sendContact(lead, { apiKey: '', journal: () => {} }), { ok: true, saved: true, delivered: false });
   assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: fail, fetcher: async () => ({ ok: true }) }), { ok: true, saved: false, delivered: true });
   assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: fail, fetcher: fail }), { ok: false, saved: false, delivered: false });
+});
+test('public audit rejects unsafe protocols, credentials, ports and private addresses', () => {
+  assert.equal(normaliseUrl('file:///etc/passwd'), null);
+  assert.equal(normaliseUrl('https://user:pass@example.com'), null);
+  assert.equal(normaliseUrl('https://example.com:8080'), null);
+  for (const address of ['127.0.0.1', '10.0.0.1', '169.254.169.254', '172.16.0.1', '192.168.1.1', '::1', 'fc00::1', 'fe80::1', '::ffff:127.0.0.1']) {
+    assert.equal(isPublicAddress(address), false, address);
+  }
+  for (const address of ['8.8.8.8', '1.1.1.1', '2606:4700:4700::1111']) {
+    assert.equal(isPublicAddress(address), true, address);
+  }
 });

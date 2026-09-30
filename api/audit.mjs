@@ -2,6 +2,8 @@
 // Aucune valeur n'est inventee ; ce qui n'a pas pu etre mesure est signale.
 
 import { hasKey } from './pagespeed.mjs';
+import { lookup } from 'node:dns/promises';
+import { isIP } from 'node:net';
 
 const UA = 'Mozilla/5.0 (compatible; PurityAudit/1.0; +https://purity-agency.be)';
 const TIMEOUT = 12000;
@@ -13,10 +15,69 @@ export function normaliseUrl(raw) {
   const looksLikeDomain = /^([a-z0-9-]+\.)+[a-z]{2,}(\/|$)/i.test(v.replace(/^https?:\/\//i, ''));
   if (!looksLikeDomain) return null;
   try {
-    return new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v);
+    const url = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v);
+    if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) return null;
+    if (url.port && !['80', '443'].includes(url.port)) return null;
+    return url;
   } catch {
     return null;
   }
+}
+
+export function isPublicAddress(address) {
+  const value = String(address || '').toLowerCase().split('%')[0];
+  if (!isIP(value)) return false;
+  if (value === '::' || value === '::1' || value.startsWith('fc') || value.startsWith('fd') ||
+      /^fe[89ab]/.test(value)) return false;
+  const mapped = value.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/)?.[1];
+  const ipv4 = mapped || (isIP(value) === 4 ? value : '');
+  if (!ipv4) return true;
+  const [a, b] = ipv4.split('.').map(Number);
+  return !(a === 0 || a === 10 || a === 127 ||
+    (a === 100 && b >= 64 && b <= 127) ||
+    (a === 169 && b === 254) ||
+    (a === 172 && b >= 16 && b <= 31) ||
+    (a === 192 && [0, 168].includes(b)) ||
+    (a === 198 && [18, 19, 51].includes(b)) ||
+    (a === 203 && b === 0) || a >= 224);
+}
+
+async function isPublicUrl(url) {
+  if (!url || !['http:', 'https:'].includes(url.protocol) || url.username || url.password) return false;
+  if (url.port && !['80', '443'].includes(url.port)) return false;
+  if (url.hostname === 'localhost' || url.hostname.endsWith('.localhost')) return false;
+  try {
+    const addresses = await lookup(url.hostname, { all: true, verbatim: true });
+    return addresses.length > 0 && addresses.every(({ address }) => isPublicAddress(address));
+  } catch { return false; }
+}
+
+async function safeFetch(initial, options = {}) {
+  let target = new URL(initial);
+  for (let hop = 0; hop <= 3; hop++) {
+    if (!(await isPublicUrl(target))) throw new Error('private-target');
+    const response = await fetch(target, { ...options, redirect: 'manual' });
+    if (![301, 302, 303, 307, 308].includes(response.status)) return response;
+    const location = response.headers.get('location');
+    if (!location || hop === 3) throw new Error('redirect-limit');
+    target = new URL(location, target);
+  }
+  throw new Error('redirect-limit');
+}
+
+async function readLimited(response, maxBytes = 1_500_000) {
+  if (!response.body) return '';
+  const reader = response.body.getReader();
+  const chunks = [];
+  let total = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) { await reader.cancel(); throw new Error('response-too-large'); }
+    chunks.push(Buffer.from(value));
+  }
+  return Buffer.concat(chunks).toString('utf8');
 }
 
 export async function auditSite(url) {
@@ -26,18 +87,18 @@ export async function auditSite(url) {
 
   let res, html = '', ttfb = null, httpsOk = true;
   try {
-    res = await fetch(url.href, { redirect: 'follow', signal: ctrl.signal, headers: { 'User-Agent': UA } });
+    res = await safeFetch(url.href, { signal: ctrl.signal, headers: { 'User-Agent': UA } });
     ttfb = Date.now() - started;
-    html = await res.text();
+    html = await readLimited(res);
   } catch {
     // Certains hebergeurs ne repondent qu'en HTTP.
     if (url.protocol === 'https:') {
       httpsOk = false;
       const alt = new URL(url.href); alt.protocol = 'http:';
       try {
-        res = await fetch(alt.href, { redirect: 'follow', signal: ctrl.signal, headers: { 'User-Agent': UA } });
+        res = await safeFetch(alt.href, { signal: ctrl.signal, headers: { 'User-Agent': UA } });
         ttfb = Date.now() - started;
-        html = await res.text();
+        html = await readLimited(res);
       } catch { clearTimeout(timer); return { ok: false, reason: 'unreachable' }; }
     } else { clearTimeout(timer); return { ok: false, reason: 'unreachable' }; }
   }
@@ -98,7 +159,7 @@ export async function auditSite(url) {
   let robots = null, sitemap = null;
   try {
     const base = new URL(finalUrl).origin;
-    const probe = (path) => fetch(base + path, { method: 'GET', headers: { 'User-Agent': UA },
+    const probe = (path) => safeFetch(base + path, { method: 'GET', headers: { 'User-Agent': UA },
       signal: AbortSignal.timeout(4000) }).then((r) => r.ok).catch(() => false);
     [robots, sitemap] = await Promise.all([probe('/robots.txt'), probe('/sitemap.xml')]);
   } catch { /* sondes optionnelles */ }

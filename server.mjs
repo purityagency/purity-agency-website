@@ -1,6 +1,7 @@
 // Serveur statique minimal pour le chantier v2. Aucune dependance.
 import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
+import { createReadStream } from 'node:fs';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditSite, normaliseUrl } from './api/audit.mjs';
@@ -184,12 +185,41 @@ http.createServer(async (req, res) => {
       res.writeHead(403).end('Forbidden');
       return;
     }
-    await stat(file);
-    const body = await readFile(file);
-    res.writeHead(200, {
-      'Content-Type': MIME[extname(file).toLowerCase()] || 'application/octet-stream',
-      'Cache-Control': 'no-store'
-    }).end(body);
+    const info = await stat(file);
+    const ext = extname(file).toLowerCase();
+    const etag = `W/"${info.size.toString(16)}-${Math.floor(info.mtimeMs).toString(16)}"`;
+    // HTML, CSS, JS : toujours revalides (304 si inchanges) pour qu'un deploiement soit
+    // visible immediatement. Medias et polices : gardes un jour en cache navigateur.
+    const media = /^\.(?:webm|mp4|png|jpg|webp|svg|woff2|ico)$/.test(ext);
+    const headers = {
+      'Content-Type': MIME[ext] || 'application/octet-stream',
+      'Cache-Control': media ? 'public, max-age=86400, stale-while-revalidate=604800' : 'no-cache',
+      'ETag': etag,
+      'Last-Modified': new Date(info.mtimeMs).toUTCString(),
+      'Accept-Ranges': 'bytes'
+    };
+    if (req.headers['if-none-match'] === etag) {
+      res.writeHead(304, headers).end();
+      return;
+    }
+    // Requetes partielles : le navigateur peut sauter dans la video (currentTime = 4.4)
+    // sans devoir telecharger tout le debut du fichier.
+    const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+    if (range && (range[1] || range[2])) {
+      let start = range[1] ? Number(range[1]) : Math.max(0, info.size - Number(range[2]));
+      let end = range[1] && range[2] ? Math.min(Number(range[2]), info.size - 1) : info.size - 1;
+      if (start >= info.size || start > end) {
+        res.writeHead(416, { 'Content-Range': `bytes */${info.size}` }).end();
+        return;
+      }
+      res.writeHead(206, { ...headers, 'Content-Range': `bytes ${start}-${end}/${info.size}`, 'Content-Length': end - start + 1 });
+      if (req.method === 'HEAD') { res.end(); return; }
+      createReadStream(file, { start, end }).pipe(res);
+      return;
+    }
+    res.writeHead(200, { ...headers, 'Content-Length': info.size });
+    if (req.method === 'HEAD') { res.end(); return; }
+    createReadStream(file).pipe(res);
   } catch {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404');
   }

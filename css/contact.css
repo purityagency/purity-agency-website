@@ -60,6 +60,14 @@
 .thread__log{display:grid;gap:.5rem;margin-bottom:1.1rem}
 .thread__log:empty{margin-bottom:0}
 
+/* L'attribut HTML `hidden` reste l'unique source de verite pour les etats
+   du formulaire. Les display:grid/flex ci-dessous ne doivent jamais le
+   rendre visible avant un envoi confirme par l'API. */
+.thread__log[hidden],
+.thread__done[hidden],
+.progress[hidden],
+.ask[hidden]{display:none!important}
+
 /* Reponse validee : elle se replie en une ligne, et reste modifiable. */
 .recap{
   display:grid;

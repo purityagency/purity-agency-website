@@ -21,12 +21,14 @@
 <link rel="preload" as="style" href="/css/service-grid.css">
 <link rel="preload" as="style" href="/css/service-fix.css">
 <link rel="preload" as="style" href="/css/service-experience.css?v=14">
+<link rel="preload" as="style" href="/css/services-bg.css">
 <noscript>
 <link rel="stylesheet" href="/css/audit.css?v=7">
 <link rel="stylesheet" href="/css/method.css?v=11">
 <link rel="stylesheet" href="/css/service-grid.css">
 <link rel="stylesheet" href="/css/service-fix.css">
 <link rel="stylesheet" href="/css/service-experience.css?v=14">
+<link rel="stylesheet" href="/css/services-bg.css">
 </noscript>
 <script type="application/ld+json">
 {
@@ -90,7 +92,7 @@
 
   <nav class="menu__nav">
     <a href="#services" style="--i:0">Services</a>
-    <a href="/blog.html" style="--i:1">Blog</a>
+    <a href="/blog.html" style="--i:2">Blog</a>
     <a href="/contact.html" style="--i:2">Contact</a>
   </nav>
   <div class="menu__foot" style="--i:3">
@@ -201,6 +203,7 @@
   </section>
 
   <section class="solutions" id="services" aria-labelledby="solutions-title">
+    <div class="solutions__bg" data-services-bg aria-hidden="true"></div>
     <div class="solutions__inner">
       <div class="solutions__intro">
         <p class="section-kicker">Partons de votre priorité</p>
@@ -234,7 +237,7 @@
               <a href="/contact.html?service=suivi-commercial"><span>Suivi des contacts et opportunités</span><small>Discuter ↗</small></a>
             </div>
             <div class="service-card__pricing" data-service-pricing="acquisition" aria-live="polite"><div class="service-card__pricing-head"><strong>Repères de prix</strong><span>Prix publics, ajustés au périmètre.</span></div><div class="service-card__offers"><p>Chargement des offres…</p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=acquisition">Parler de cet objectif</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=acquisition">Parler de cet objectif</a><a class="service-card__example" href="/cas-concrets/renovation.html">Voir un cas concret</a></div>
           </div>
         </details>
         <details class="service-card service-card--time" name="service-priority">
@@ -262,7 +265,7 @@
               <a href="/contact.html?service=relances"><span>Relances, e-mails et documents automatiques</span><small>Discuter ↗</small></a>
             </div>
             <div class="service-card__pricing" data-service-pricing="automatisation" aria-live="polite"><div class="service-card__pricing-head"><strong>Repères de prix</strong><span>Prix publics, maintenance comprise quand elle s’applique.</span></div><div class="service-card__offers"><p>Chargement des offres…</p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=automatisation">Parler de cet objectif</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=automatisation">Parler de cet objectif</a><a class="service-card__example" href="/cas-concrets/chauffage.html">Voir un cas concret</a></div>
           </div>
         </details>
         <details class="service-card service-card--tools" name="service-priority">
@@ -290,7 +293,7 @@
               <a href="/contact.html?service=planning"><span>Planning, devis, stock et tâches</span><small>Discuter ↗</small></a>
             </div>
             <div class="service-card__pricing" data-service-pricing="outils" aria-live="polite"><div class="service-card__pricing-head"><strong>Repère de prix</strong><span>Le développement sur mesure se cadre après le diagnostic.</span></div><div class="service-card__offers"><p>Chargement de l’offre…</p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=outil-metier">Parler de cet objectif</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=outil-metier">Parler de cet objectif</a><a class="service-card__example" href="/cas-concrets/fiduciaire.html">Voir un cas concret</a></div>
           </div>
         </details>
         <details class="service-card service-card--trust" name="service-priority">
@@ -318,7 +321,7 @@
               <a href="/contact.html?service=hebergement"><span>Hébergement, maintenance et sécurité</span><small>Discuter ↗</small></a>
             </div>
             <div class="service-card__pricing" data-service-pricing="visibilite" aria-live="polite"><div class="service-card__pricing-head"><strong>Repères de prix</strong><span>Des points d’entrée concrets pour être trouvé.</span></div><div class="service-card__offers"><p>Chargement des offres…</p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=presence-marque">Parler de cet objectif</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact.html?solution=presence-marque">Parler de cet objectif</a><a class="service-card__example" href="/cas-concrets/architecture.html">Voir un cas concret</a></div>
           </div>
         </details>
       </div>
@@ -392,7 +395,7 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div><a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt="" width="32" height="32">Purity Agency</a><p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p></div>
-    <nav aria-label="Navigation de pied de page"><h2>Explorer</h2><a href="#services">Services</a><a href="/blog.html">Blog</a><a href="/contact.html">Contact</a></nav>
+    <nav aria-label="Navigation de pied de page"><h2>Explorer</h2><a href="#services">Services</a><a href="/cas-concrets.html">Cas concrets</a><a href="/blog.html">Blog</a><a href="/contact.html">Contact</a></nav>
     <div><h2>Parlons-en</h2><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
   </div>
   <div class="site-footer__legal"><span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span><span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span><span>© 2026 Purity Agency</span><a href="/legal.html">Légal</a><a href="/confidentialite.html">Confidentialité</a><a href="/cookies.html">Cookies</a><a href="/conditions-generales.html">CGV</a></div>
@@ -405,6 +408,7 @@
 <script src="/js/method-waves.js?v=3" defer></script>
 <script src="/js/founder-reveal.js?v=3" defer></script>
 <script src="/js/solutions.js" defer></script>
+<script src="/js/services-bg.js" defer></script>
 <script src="/js/service-details.js?v=11" defer></script>
 <script src="/js/service-pricing.js?v=1" defer></script>
     <script src="/js/hero-video.js?v=31" defer></script>

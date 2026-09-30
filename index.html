@@ -11,14 +11,23 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=9">
 <link rel="stylesheet" href="/css/menu.css">
-<link rel="stylesheet" href="/css/audit.css?v=7">
-<link rel="stylesheet" href="/css/method.css?v=11">
 <link rel="stylesheet" href="/css/octomask.css?v=4">
     <link rel="stylesheet" href="/css/hero-video.css?v=26">
 <link rel="stylesheet" href="/css/site-additions.css">
+<!-- Sections sous la ligne de flottaison : CSS pre-charge (fetch immediat, non bloquant)
+     puis active par /js/defer-css.js. Repli <noscript> pour les navigateurs sans JS. -->
+<link rel="preload" as="style" href="/css/audit.css?v=7">
+<link rel="preload" as="style" href="/css/method.css?v=11">
+<link rel="preload" as="style" href="/css/service-grid.css">
+<link rel="preload" as="style" href="/css/service-fix.css">
+<link rel="preload" as="style" href="/css/service-experience.css?v=14">
+<noscript>
+<link rel="stylesheet" href="/css/audit.css?v=7">
+<link rel="stylesheet" href="/css/method.css?v=11">
 <link rel="stylesheet" href="/css/service-grid.css">
 <link rel="stylesheet" href="/css/service-fix.css">
 <link rel="stylesheet" href="/css/service-experience.css?v=14">
+</noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -389,6 +398,7 @@
   <div class="site-footer__legal"><span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span><span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span><span>© 2026 Purity Agency</span><a href="/legal.html">Légal</a><a href="/confidentialite.html">Confidentialité</a><a href="/cookies.html">Cookies</a><a href="/conditions-generales.html">CGV</a></div>
 </footer>
 
+<script src="/js/defer-css.js" defer></script>
 <script src="/js/menu.js?v=2" defer></script>
 <script src="/js/audit.js" defer></script>
 <script src="/js/reveal.js?v=2" defer></script>

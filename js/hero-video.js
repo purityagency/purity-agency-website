@@ -99,8 +99,12 @@
     updateClients(seeked ? video.currentTime : 4.4);
   }
 
+  // CSS cache deja video/poster sous 768px (hero-video.css) : inutile de telecharger
+  // les 4,6 Mo du film sur mobile pour un element qui ne s'affichera jamais.
+  const mobileHidden = matchMedia('(max-width: 767px)');
+
   function sync() {
-    const shouldPlay = visible && !document.hidden && !reduced.matches && !userPaused;
+    const shouldPlay = visible && !document.hidden && !reduced.matches && !userPaused && !mobileHidden.matches;
     if (!shouldPlay) {
       video.pause();
       stopFrameLoop();
@@ -155,6 +159,7 @@
   }, { threshold: .08 }).observe(hero);
   document.addEventListener('visibilitychange', sync);
   reduced.addEventListener('change', sync);
+  mobileHidden.addEventListener('change', sync);
   measure();
   sync();
 })();

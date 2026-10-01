@@ -75,7 +75,7 @@ export async function chat(session, message, { fetcher = fetch, apiKey = key() }
   active++;
   daily++;
   try {
-    const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+    const model = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
     const contents = [...session.messages.slice(-20), { role: 'user', parts: [{ text: message.trim() }] }];
     let answer;
     let raw;
@@ -84,7 +84,11 @@ export async function chat(session, message, { fetcher = fetch, apiKey = key() }
       method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
       body: JSON.stringify({ systemInstruction: { parts: [{ text: instructions + (attempt ? '\nVALIDATION : la réponse précédente était invalide. Ne cite aucun montant, aucun mot euro/EUR, aucun symbole monétaire ni URL dans reply. Les prix apparaissent SEULEMENT sur les cartes sélectionnées par offerIds. Ne confirme aucune action. Respecte strictement les longueurs : suggestions maximum 55 caractères, 3 suggestions, 2 offres.' : '') }] }, contents,
         generationConfig: { temperature: 0.35, maxOutputTokens: 1800, responseMimeType: 'application/json', responseSchema: schema,
-          ...(/2\.5.*flash/.test(model) ? { thinkingConfig: { thinkingBudget: 0 } } : {}) } }),
+          // Gemini 2.5 coupe le raisonnement via thinkingBudget ; la famille 3.x (nouvelle API
+          // "thinking level") via thinkingLevel. Sans ca, un modele 3.x "pense" avant de repondre :
+          // plus lent et plus cher pour un simple JSON de chat, sans gain de qualite mesure.
+          ...(/^gemini-2\.5/.test(model) ? { thinkingConfig: { thinkingBudget: 0 } }
+            : /^gemini-3/.test(model) ? { thinkingConfig: { thinkingLevel: 'minimal' } } : {}) } }),
       signal: AbortSignal.timeout(10_000)
     });
     if (!response.ok) throw new Error('provider-unavailable');

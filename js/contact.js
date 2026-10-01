@@ -38,11 +38,23 @@
   var params = new URLSearchParams(location.search);
   var offer = params.get('offer');
   var solution = params.get('solution');
-  if (offer && /^[A-Z]\d{2}$/.test(offer)) {
+  var caseId = params.get('case');
+  var caseLabels = {
+    renovation: 'la démonstration Rénovation intérieure', beaute: 'la démonstration Institut de beauté',
+    garage: 'la démonstration Garage / carrosserie', decoration: 'la démonstration Boutique de décoration',
+    immobilier: 'la démonstration Agence immobilière', fiduciaire: 'la démonstration Fiduciaire',
+    restaurant: 'la démonstration Restaurant', sport: 'la démonstration Studio sportif',
+    sante: 'la démonstration Cabinet de santé', animaux: 'la démonstration Service animalier',
+    architecture: 'la démonstration Atelier d’architecture', chauffage: 'la démonstration Artisan chauffagiste'
+  };
+  if (caseId && caseLabels[caseId]) {
+    field.value = 'Je souhaite une solution proche de ' + caseLabels[caseId] + '.';
+    help.textContent = 'Cette demande a été préparée depuis un cas concret Purity. Modifiez-la avant de continuer : rien n’est encore envoyé.';
+  } else if (offer && /^[A-Z]\d{2}$/.test(offer)) {
     field.value = 'Je souhaite en savoir plus sur l’offre ' + offer + '.';
     help.textContent = 'Cette demande a été préparée depuis la page Tarifs. Modifiez-la avant de continuer : rien n’est encore envoyé.';
   }
-  if (!offer && solution && /^[a-z-]{3,40}$/.test(solution)) {
+  if (!caseId && !offer && solution && /^[a-z-]{3,40}$/.test(solution)) {
     var solutionLabels = {
       'acquisition': 'attirer plus de clients',
       'automatisation': 'arrêter de perdre du temps sur le suivi',
@@ -56,7 +68,7 @@
   }
   try {
     var draft = JSON.parse(sessionStorage.getItem('purity-contact-draft'));
-    if (!offer && draft && Date.now() - draft.at < 30 * 60 * 1000 && typeof draft.message === 'string' && draft.message) {
+    if (!caseId && !offer && draft && Date.now() - draft.at < 30 * 60 * 1000 && typeof draft.message === 'string' && draft.message) {
       field.value = draft.message.slice(0, 3400);
       help.textContent = 'Voici le contexte préparé avec OctoMask. Modifiez-le avant de continuer : rien n’est encore envoyé.';
     }

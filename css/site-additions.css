@@ -7,3 +7,13 @@
 @media(max-width:560px){.solution-picker__choices{grid-template-columns:1fr}.solution-choice{min-height:0}.solution-panel{padding:1.35rem}.system-map{margin-top:1.7rem}.system-map__node{min-width:6.1rem;min-height:4.1rem;font-size:.78rem}.system-map__line{min-width:1.25rem}.solution-modules{gap:.42rem}.solution-modules li{font-size:.74rem}.solutions__capabilities{margin-top:3.25rem}.site-footer__inner{grid-template-columns:1fr}.site-footer__inner>div:first-child{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){.whatsapp-float,.solution-choice,.solution-panel__link span{transition:none}}
 .cookie-note{position:fixed;z-index:35;left:1rem;bottom:1rem;display:flex;align-items:center;gap:.8rem;max-width:460px;padding:.9rem 1rem;border:1px solid #ded2fa;border-radius:14px;background:rgba(255,255,255,.97);box-shadow:0 12px 34px rgba(31,21,50,.13);font-size:.82rem}.cookie-note p{margin:0;line-height:1.4}.cookie-note p strong,.cookie-note p span{display:block}.cookie-note p span{margin-top:.18rem;color:var(--muted)}.cookie-note a{flex:none;color:var(--accent);font-weight:700;white-space:nowrap}.cookie-note button{flex:none;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:#f2edf9;color:var(--ink);font-size:1.25rem;cursor:pointer}@media(max-width:560px){.cookie-note{right:1rem;bottom:1rem;align-items:flex-start}.cookie-note a{white-space:normal}}
+.closing-cta{padding:clamp(4rem,9vw,7.5rem) clamp(1.25rem,5vw,3rem);border-top:1px solid var(--line)}
+.closing-cta__inner{max-width:var(--wrap);margin:auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:1.2rem clamp(2rem,6vw,6rem);align-items:end}
+.closing-cta .section-kicker{grid-column:1/-1;margin:0;color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.closing-cta h2{margin:0;font-size:clamp(2.1rem,4.6vw,3.9rem);line-height:1;letter-spacing:-.04em;text-wrap:balance}
+.closing-cta__inner>p:not(.section-kicker){margin:0;max-width:44ch;color:var(--muted);line-height:1.6;text-wrap:pretty}
+.closing-cta__actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;margin-top:1rem}
+.closing-cta .text-link{font-weight:650;color:var(--accent);text-underline-offset:4px}
+.closing-cta .text-link:hover{color:var(--accent-deep)}
+.site-footer__legal a{padding:.35rem 0}
+@media(max-width:800px){.closing-cta__inner{grid-template-columns:1fr}.closing-cta__actions .btn{width:100%;justify-content:center}.site-footer nav a,.site-footer__inner>div:last-child a{padding:.4rem 0}}

@@ -110,3 +110,8 @@
  .blog-index__head h2{margin-top:1rem}
  .article-cta .btn{width:100%}
 }
+.legal-updated{margin-top:3rem;color:var(--muted);font-size:.85rem}
+.prose blockquote.legal-form{font-size:.95rem;font-weight:400;background:#faf8ff}
+.prose blockquote.legal-form p{margin:.4rem 0}
+@media(max-width:700px){.legal-table thead{display:none}.legal-table tr{display:block;padding:1rem 0;border-bottom:1px solid var(--line)}.legal-table td{display:block;padding:.2rem 0;border:0}.legal-table td:first-child{font-weight:700}}
+@media(max-width:700px){.legal-table td::before{display:block;color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.legal-table--priv td:nth-child(2)::before{content:"Données et finalité"}.legal-table--priv td:nth-child(3)::before{content:"Base légale"}.legal-table--priv td:nth-child(4)::before,.legal-table--cookies td:nth-child(3)::before{content:"Durée"}.legal-table td+td{margin-top:.5rem}}

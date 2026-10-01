@@ -175,7 +175,12 @@ http.createServer(async (req, res) => {
     }
     if (path.endsWith('/')) path += 'index.html';
     // Do not serve backend source, documentation or dotfiles as static assets.
-    if (!/^\/(?:[a-zA-Z0-9_-]+\.(?:html|txt|xml)|(?:assets|css|js)\/[a-zA-Z0-9_./-]+)$/.test(path) || path.split('/').some(s => s.startsWith('.')) || !Object.hasOwn(MIME, extname(path))) {
+    const allowedStaticPath =
+      /^\/[a-zA-Z0-9_-]+\.(?:html|txt|xml)$/.test(path) ||
+      /^\/(?:assets|css|js)\/[a-zA-Z0-9_./-]+$/.test(path) ||
+      /^\/cas-concrets\/[a-z0-9-]+\.html$/.test(path) ||
+      /^\/demos\/[a-z0-9-]+\/(?:index|services|univers|contact|studio)\.html$/.test(path);
+    if (!allowedStaticPath || path.split('/').some(s => s.startsWith('.')) || !Object.hasOwn(MIME, extname(path))) {
       res.writeHead(404).end('404'); return;
     }
     // normalize resout les segments ".." ; on verifie ensuite que le chemin

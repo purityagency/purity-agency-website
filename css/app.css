@@ -497,7 +497,7 @@ a:hover{color:var(--accent)}
  height:calc(var(--nav-h) - 10px);
  margin:10px clamp(.7rem,2vw,1.25rem) 0;
  inset:0 0 auto;
- border:1px solid rgba(108,60,170,.09);
+ border:1px solid rgba(108,60,170,.2);
  border-radius:999px;
  background:rgba(255,255,255,.9);
  box-shadow:0 10px 34px rgba(31,18,43,.065);
@@ -558,6 +558,18 @@ a:hover{color:var(--accent)}
 .btn:active,
 .booking__external:active,
 .service-card__actions>a:active{transform:scale(.985)}
+.service-card__actions .service-card__example{
+  min-height:44px;
+  padding-inline:0;
+  border:0;
+  background:transparent;
+  color:var(--accent-deep);
+  text-decoration:underline;
+  text-underline-offset:4px;
+  box-shadow:none;
+}
+.service-card__actions .service-card__example:hover,
+.service-card__actions .service-card__example:focus-visible{color:var(--accent);background:transparent}
 .site-footer{
  position:relative;
  overflow:hidden;

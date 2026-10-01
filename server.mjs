@@ -61,6 +61,17 @@ function rateLimited(ip) {
   return list.length > 6;
 }
 
+
+// Page 404 brandee : le visiteur garde le header, le footer et des liens de sortie.
+async function notFound(res) {
+  try {
+    const html = await readFile(join(ROOT, '404.html'));
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' }).end(html);
+  } catch {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404');
+  }
+}
+
 http.createServer(async (req, res) => {
   try {
     securityHeaders(res);
@@ -181,7 +192,7 @@ http.createServer(async (req, res) => {
       /^\/cas-concrets\/[a-z0-9-]+\.html$/.test(path) ||
       /^\/demos\/[a-z0-9-]+\/(?:index|services|univers|contact|studio)\.html$/.test(path);
     if (!allowedStaticPath || path.split('/').some(s => s.startsWith('.')) || !Object.hasOwn(MIME, extname(path))) {
-      res.writeHead(404).end('404'); return;
+      await notFound(res); return;
     }
     // normalize resout les segments ".." ; on verifie ensuite que le chemin
     // reste sous ROOT, ce qui bloque toute remontee hors du dossier servi.
@@ -226,6 +237,6 @@ http.createServer(async (req, res) => {
     if (req.method === 'HEAD') { res.end(); return; }
     createReadStream(file).pipe(res);
   } catch {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404');
+    if (!res.headersSent) await notFound(res);
   }
 }).listen(PORT, '0.0.0.0', () => console.log(`purity-v2 on http://127.0.0.1:${PORT}`));

@@ -22,37 +22,38 @@
 .hero__delivered-clients{position:absolute;font-size:1em;line-height:1;white-space:nowrap;will-change:transform}
 .hero__source,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
 .hero__source{visibility:hidden}
+/* Au chargement : le poster "blank" (hors cadre, avant que la tentacule
+   n'apporte le mot) est visible ; le poster "settled" (mot deja depose) ne
+   sert que de repli -- lecture video reduite/bloquee/en erreur -- jamais
+   comme premiere image. Voir hero__poster--blank/--settled plus bas et
+   js/hero-video.js (classe hero--static). */
 .hero__poster{visibility:visible}
+.hero__poster--settled{visibility:hidden}
 .hero--ready .hero__source{visibility:visible}
 .hero--ready .hero__poster{visibility:hidden}
+.hero--static .hero__poster--blank{visibility:hidden}
+.hero--static .hero__poster--settled{visibility:visible}
 .hero__inner>p,.hero__actions,.hero .rating{position:relative;z-index:2}
 .hero__motion-toggle{display:block;margin:1rem auto 0;padding:.35rem .6rem;border:0;background:none;color:var(--muted);font:inherit;font-size:.75rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;position:relative;z-index:2}
 .hero__motion-toggle[hidden]{display:none}
 .hero__motion-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 @media(max-width:767px){
  .hero h1{font-size:clamp(1.4rem,6.6vw,2.55rem)}
- .hero__source,.hero__poster{display:none!important}
  .hero__delivery{
+ /* Le mot incruste dans la video est beaucoup plus haut qu'une ligne de
+    texte (echelle mobile .615 dans measure(), contre .44 sur desktop), et
+    deborde surtout vers le haut (son point d'ancrage optique est bas dans
+    l'image source). Une marge haute genereuse evite qu'il ne touche la
+    ligne du dessus, sans gonfler inutilement la hauteur de la ligne. */
  height:auto;
- margin:.24em 0;
+ margin:clamp(3rem,13vw,4.2rem) 0 .3em;
  white-space:normal;
  line-height:1.08
  }
- .hero__word{
- width:auto;
- height:auto;
- margin-right:.16em;
- color:var(--accent);
- vertical-align:baseline
- }
- .hero__word::after{content:"ramener "}
- .hero__delivered-clients{
- position:static;
- font-size:1em;
- white-space:normal;
- transform:none!important
- }
- .hero__motion-toggle{display:none!important}
+ /* Meme mecanique que desktop (video incrustee + texte anime en overlay) :
+    seule la largeur reservee pour le mot change, l'echelle video mobile
+    (.615 dans measure()) etant plus large en proportion que desktop (.44). */
+ .hero__word{width:4.6em}
 }
 @media(min-width:768px) and (max-width:1350px){
  .hero__consequence{font-size:.84em;white-space:nowrap}
@@ -64,7 +65,8 @@
 }
 @media(prefers-reduced-motion:reduce){
  .hero__source{visibility:hidden!important}
- .hero__poster{visibility:visible!important}
+ .hero__poster--blank{visibility:hidden!important}
+ .hero__poster--settled{visibility:visible!important}
  .hero__motion-toggle{display:none}
  .hero__exister::after{animation:none;transform:scaleX(1)}
  .hero-to-audit__line{opacity:.7;transform:none;animation:none}

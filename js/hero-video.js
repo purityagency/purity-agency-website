@@ -1,11 +1,11 @@
 (() => {
   const hero = document.querySelector('.hero');
   const video = hero?.querySelector('.hero__source');
-  const poster = hero?.querySelector('.hero__poster');
+  const posters = hero?.querySelectorAll('.hero__poster');
   const delivery = hero?.querySelector('.hero__delivery');
   const clients = hero?.querySelector('.hero__delivered-clients');
   const toggle = hero?.querySelector('.hero__motion-toggle');
-  if (!hero || !video || !poster || !delivery || !clients || !toggle) return;
+  if (!hero || !video || !posters?.length || !delivery || !clients || !toggle) return;
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = true;
@@ -85,7 +85,7 @@
     // The tentacle is designed to enter from outside the viewport: never
     // leave a white gutter between the film and the left edge of the hero.
     const mediaLeft = Math.min(0, (heroBox.width - wordStart - phraseEnd) / 2);
-    for (const media of [video, poster]) {
+    for (const media of [video, ...posters]) {
       media.style.width = `${width}px`;
       media.style.height = `${sourceHeight * scale}px`;
       media.style.left = `${mediaLeft}px`;
@@ -96,20 +96,29 @@
     // 328 is the optical baseline offset measured on the baked word.
     clients.style.top = `${top + 328 * scale - line.top + heroBox.top + baselineNudge}px`;
     centeredOffset = (heroBox.width - clientsWidth) / 2 - (mediaLeft + width * (970 / 1280) + gap);
-    updateClients(seeked ? video.currentTime : 4.4);
+    // 0.08 : le film reste hors cadre (pas de mot, pas de tentacule) tant que la
+    // lecture n'a pas commence. Le mot "ramener" ne doit jamais etre visible avant
+    // que l'animation ne l'apporte — voir le poster "blank" plus bas.
+    updateClients(seeked ? video.currentTime : 0.08);
   }
 
-  // CSS cache deja video/poster sous 768px (hero-video.css) : inutile de telecharger
-  // les 4,6 Mo du film sur mobile pour un element qui ne s'affichera jamais.
-  const mobileHidden = matchMedia('(max-width: 767px)');
+  // L'animation joue aussi sur mobile desormais. Seul un reglage explicite
+  // d'economie de donnees ou une connexion tres lente (2G) la desactive :
+  // dans ce cas le poster "settled" prend le relais, comme pour reduced-motion.
+  function lowData() {
+    const c = navigator.connection;
+    return !!(c && (c.saveData || /2g/.test(c.effectiveType || '')));
+  }
 
   function sync() {
-    const shouldPlay = visible && !document.hidden && !reduced.matches && !userPaused && !mobileHidden.matches;
+    const persistent = reduced.matches || lowData();
+    const shouldPlay = visible && !document.hidden && !persistent && !userPaused;
     if (!shouldPlay) {
       video.pause();
       stopFrameLoop();
-      if (reduced.matches) {
+      if (persistent) {
         hero.classList.remove('hero--ready');
+        hero.classList.add('hero--static');
         updateClients(4.4);
       }
       return;
@@ -117,7 +126,12 @@
     if (!video.src) video.src = video.dataset.src;
     if (!seeked) return;
     video.play().then(() => { toggle.hidden = false; }).catch(() => {
+      // Lecture bloquee (rare, hors geste utilisateur) : le poster "blank" ne doit
+      // pas rester affiche sans fin (le mot ne serait jamais apporte). On bascule
+      // sur le poster "settled" pour montrer malgre tout le message complet.
       hero.classList.remove('hero--ready');
+      hero.classList.add('hero--static');
+      updateClients(4.4);
       toggle.hidden = true;
     });
   }
@@ -126,7 +140,11 @@
     measure();
     if (!started) {
       started = true;
-      video.currentTime = 4.4;
+      // Hors cadre : juste apres la boucle (la queue 9.22-10s est deja vide de
+      // mot et de tentacule), donc la toute premiere chose jouee est l'arrivee
+      // du mot — jamais le mot deja depose. 0 pile peut ne pas declencher
+      // 'seeked' si le navigateur y est deja ; une valeur non nulle le garantit.
+      video.currentTime = 0.08;
     }
   });
   video.addEventListener('seeked', () => {
@@ -137,10 +155,13 @@
   });
   video.addEventListener('playing', () => {
     hero.classList.add('hero--ready');
+    hero.classList.remove('hero--static');
     if (frameId === undefined) frame();
   });
   video.addEventListener('error', () => {
+    // Le film ne jouera jamais : memes raisons que le catch() de play() plus haut.
     hero.classList.remove('hero--ready');
+    hero.classList.add('hero--static');
     toggle.hidden = true;
     stopFrameLoop();
     updateClients(4.4);
@@ -159,7 +180,7 @@
   }, { threshold: .08 }).observe(hero);
   document.addEventListener('visibilitychange', sync);
   reduced.addEventListener('change', sync);
-  mobileHidden.addEventListener('change', sync);
+  navigator.connection?.addEventListener('change', sync);
   measure();
   sync();
 })();

@@ -28,6 +28,16 @@
   teaser.innerHTML = '<button type="button" class="octo__teaser-close" aria-label="Masquer cette notification">×</button><p><strong>Vous hésitez sur la prochaine étape ?</strong><span>OctoMask vous oriente en 3 questions, sans engagement.</span></p><button type="button" class="octo__teaser-open">Voir la meilleure option</button>';
   document.body.append(teaser);
 
+  // La bulle flottante reste au meme endroit a l'ecran pendant tout le scroll :
+  // sur certaines pages elle finit par recouvrir du texte (fin de section,
+  // liens du footer). On l'efface simplement quand le pied de page arrive.
+  const footer = document.querySelector('.site-footer');
+  if (footer && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      document.body.classList.toggle('octo-near-footer', entry.isIntersecting);
+    }, { rootMargin: '0px 0px -40% 0px' }).observe(footer);
+  }
+
   const dialog = document.createElement('dialog');
   dialog.id = 'octomask-dialog';
   dialog.className = 'octo';

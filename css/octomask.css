@@ -14,6 +14,8 @@
 }
 @keyframes octo-notice{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 @media (max-width:600px){.octo-float,.octo-float img{width:62px;height:62px}}
+body.octo-near-footer .octo-float,
+body.octo-near-footer .octo__teaser{opacity:0;pointer-events:none;transition:opacity var(--t-normal) var(--ease-smooth)}
 @media (prefers-reduced-motion:reduce){.octo-float{transition:none}.octo-float__notice{animation:none}}
 button.octo-float{border:0;padding:0;cursor:pointer}
 html:has(.octo[open]){overflow:hidden}

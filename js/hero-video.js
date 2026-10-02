@@ -80,7 +80,15 @@
       ? Math.max(7, Math.min(20, width * .018))
       : Math.max(18, Math.min(32, width * .04));
     const wordStart = width * (310 / 1280);
-    const clientsWidth = clients.getBoundingClientRect().width;
+    // Mesurer la largeur naturelle (non contrainte) avant d'eventuellement
+    // appliquer plus bas une limite de largeur mobile — sinon chaque appel
+    // repartirait d'une largeur deja retrecie par le precedent.
+    clients.style.maxWidth = 'none';
+    clients.style.whiteSpace = '';
+    delivery.style.marginBottom = '';
+    const clientsRectNatural = clients.getBoundingClientRect();
+    const clientsWidth = clientsRectNatural.width;
+    const clientsLineHeight = clientsRectNatural.height;
     const phraseEnd = width * (970 / 1280) + gap + clientsWidth;
     // The tentacle is designed to enter from outside the viewport: never
     // leave a white gutter between the film and the left edge of the hero.
@@ -98,9 +106,27 @@
       media.style.top = `${mediaTop}px`;
     }
     // Coordinates measured in the 1280 x 720 source at the deposited frame.
-    clients.style.left = `${mediaLeft + width * (970 / 1280) + gap - line.left + heroBox.left}px`;
+    const clientsHeroLeft = mediaLeft + width * (970 / 1280) + gap;
+    clients.style.left = `${clientsHeroLeft - line.left + heroBox.left}px`;
     // 328 is the optical baseline offset measured on the baked word.
     clients.style.top = `${top + 328 * scale - line.top + heroBox.top + baselineNudge}px`;
+    // "des clients, pas juste" peut deborder du cadre sur un mobile etroit : la
+    // phrase n'a jamais ete pensee pour partager la ligne avec le mot incruste
+    // a cette largeur. Si besoin, autoriser le retour a la ligne plutot que de
+    // laisser le dernier mot (ex. "juste") depasser le bord de l'ecran.
+    if (mobile) {
+      const available = heroBox.width - clientsHeroLeft - 4;
+      if (clientsWidth > available) {
+        clients.style.maxWidth = `${Math.max(80, available)}px`;
+        clients.style.whiteSpace = 'normal';
+        // La phrase passe alors sur 2 lignes : sa boite grandit, mais comme elle
+        // est en position absolue, la ligne "exister." suivante ne le sait pas
+        // et remonterait dessus. On pousse le conteneur du montant exact en trop.
+        const wrappedHeight = clients.getBoundingClientRect().height;
+        const baseMarginBottom = parseFloat(getComputedStyle(delivery).marginBottom) || 0;
+        delivery.style.marginBottom = `${baseMarginBottom + Math.max(0, wrappedHeight - clientsLineHeight)}px`;
+      }
+    }
     centeredOffset = (heroBox.width - clientsWidth) / 2 - (mediaLeft + width * (970 / 1280) + gap);
     // 0.08 : le film reste hors cadre (pas de mot, pas de tentacule) tant que la
     // lecture n'a pas commence. Le mot "ramener" ne doit jamais etre visible avant

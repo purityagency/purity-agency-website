@@ -46,7 +46,7 @@
     l'image source). Une marge haute genereuse evite qu'il ne touche la
     ligne du dessus, sans gonfler inutilement la hauteur de la ligne. */
  height:auto;
- margin:clamp(1.6rem,7vw,2.4rem) 0 .3em;
+ margin:clamp(.8rem,3.8vw,1.3rem) 0 .3em;
  white-space:normal;
  line-height:1.08
  }

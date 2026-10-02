@@ -397,5 +397,5 @@
  .thread__done{padding-inline:.25rem}
  .thread__done-text{max-width:31ch;font-size:.95rem}
 }
-.form-privacy{margin:1.2rem 0 0;color:var(--muted);font-size:.82rem;line-height:1.5}
-.form-privacy a{color:inherit;text-underline-offset:3px}
+.form-privacy{margin:1.2rem 0 0;color:var(--contact-card-muted);font-size:.82rem;line-height:1.5}
+.form-privacy a{color:inherit;text-underline-offset:3px;text-decoration-color:rgba(255,250,244,.5)}

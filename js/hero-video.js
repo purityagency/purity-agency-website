@@ -84,7 +84,13 @@
     const phraseEnd = width * (970 / 1280) + gap + clientsWidth;
     // The tentacle is designed to enter from outside the viewport: never
     // leave a white gutter between the film and the left edge of the hero.
-    const mediaLeft = Math.min(0, (heroBox.width - wordStart - phraseEnd) / 2);
+    let mediaLeft = Math.min(0, (heroBox.width - wordStart - phraseEnd) / 2);
+    // Sur mobile, "des clients, pas juste" peut passer a la ligne (contrairement
+    // a desktop qui tient sur une seule ligne) : centrer le mot+la phrase sur une
+    // largeur qui n'a plus besoin de tenir ensemble pousse mediaLeft trop loin a
+    // gauche et rogne le mot lui-meme (le "r" de "ramener" disparaissait). Seule
+    // la tentacule doit deborder hors cadre, jamais le mot.
+    if (mobile) mediaLeft = Math.max(mediaLeft, -(wordStart - 6));
     for (const media of [video, ...posters]) {
       media.style.width = `${width}px`;
       media.style.height = `${sourceHeight * scale}px`;

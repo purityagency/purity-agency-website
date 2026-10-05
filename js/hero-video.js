@@ -1,18 +1,38 @@
 (() => {
   const hero = document.querySelector('.hero');
   const video = hero?.querySelector('.hero__source');
+  const canvas = hero?.querySelector('.hero__canvas');
   const posters = hero?.querySelectorAll('.hero__poster');
   const delivery = hero?.querySelector('.hero__delivery');
   const clients = hero?.querySelector('.hero__delivered-clients');
   const toggle = hero?.querySelector('.hero__motion-toggle');
-  if (!hero || !video || !posters?.length || !delivery || !clients || !toggle) return;
+  if (!hero || !video || !canvas || !posters?.length || !delivery || !clients || !toggle) return;
+
+  // Film "stacked alpha" : couleur en haut (1280x720), 16 px de marge noire,
+  // puis la transparence en niveaux de gris (1280x720). Recompose en WebGL.
+  // Pourquoi pas un WebM VP9 transparent : Safari (tous les iPhone) ignore son
+  // canal alpha et affiche le fond gris clair encode sous la transparence —
+  // la "case grise" — ou ne le lit pas du tout. Ce format marche partout.
+  const FRAME_W = 1280;
+  const FRAME_H = 720;
+  const PAD = 16;
+  const FPS = 24;
+  const SOURCES = [
+    ['/assets/hero-tentacle-stacked-av1.mp4', 'video/mp4; codecs="av01.0.08M.08"', 1.98e6],
+    ['/assets/hero-tentacle-stacked-hevc.mp4', 'video/mp4; codecs="hvc1.1.6.L120.90"', 2.36e6],
+    ['/assets/hero-tentacle-stacked-h264.mp4', 'video/mp4; codecs="avc1.640028"', 2.39e6],
+  ];
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = true;
   let userPaused = false;
-  let started = false;
-  let seeked = false;
+  let gaveUp = false;
+  let ready = false;
+  let loading;
+  let gl;
   let frameId;
+  let lastFrame = -1;
+  let fallbackTimer;
   let centeredOffset = 0;
 
   const smooth = (value) => {
@@ -34,29 +54,184 @@
       delivered = 1 - smooth((time - 9.22) / .6);
     }
 
-    if (reduced.matches) delivered = 1;
+    if (reduced.matches || gaveUp) delivered = 1;
     clients.style.transform = `translate3d(${centeredOffset * (1 - delivered)}px, 0, 0)`;
+  }
+
+  function initGL() {
+    const options = { alpha: true, antialias: false, depth: false, stencil: false, premultipliedAlpha: true, powerPreference: 'low-power' };
+    const ctx = canvas.getContext('webgl', options) || canvas.getContext('experimental-webgl', options);
+    if (!ctx) return null;
+    const H = FRAME_H * 2 + PAD;
+    const vs = `attribute vec2 p;varying vec2 uv;void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}`;
+    // Seuil de 8/255 sur l'alpha : efface les residus de compression (pixels
+    // quasi transparents) sans toucher aux bords reels de la tentacule.
+    const fs = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform sampler2D f;varying vec2 uv;
+void main(){
+  vec3 c=texture2D(f,vec2(uv.x,uv.y*${FRAME_H}.0/${H}.0)).rgb;
+  float a=texture2D(f,vec2(uv.x,(${FRAME_H + PAD}.0+uv.y*${FRAME_H}.0)/${H}.0)).r;
+  a=clamp((a-.031)/.969,0.,1.);
+  gl_FragColor=vec4(c*a,a);
+}`;
+    const program = ctx.createProgram();
+    for (const [type, src] of [[ctx.VERTEX_SHADER, vs], [ctx.FRAGMENT_SHADER, fs]]) {
+      const shader = ctx.createShader(type);
+      ctx.shaderSource(shader, src);
+      ctx.compileShader(shader);
+      if (!ctx.getShaderParameter(shader, ctx.COMPILE_STATUS)) return null;
+      ctx.attachShader(program, shader);
+    }
+    ctx.linkProgram(program);
+    if (!ctx.getProgramParameter(program, ctx.LINK_STATUS)) return null;
+    ctx.useProgram(program);
+    ctx.bindBuffer(ctx.ARRAY_BUFFER, ctx.createBuffer());
+    ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), ctx.STATIC_DRAW);
+    const loc = ctx.getAttribLocation(program, 'p');
+    ctx.enableVertexAttribArray(loc);
+    ctx.vertexAttribPointer(loc, 2, ctx.FLOAT, false, 0, 0);
+    ctx.bindTexture(ctx.TEXTURE_2D, ctx.createTexture());
+    for (const [k, v] of [[ctx.TEXTURE_WRAP_S, ctx.CLAMP_TO_EDGE], [ctx.TEXTURE_WRAP_T, ctx.CLAMP_TO_EDGE], [ctx.TEXTURE_MIN_FILTER, ctx.NEAREST], [ctx.TEXTURE_MAG_FILTER, ctx.NEAREST]]) {
+      ctx.texParameteri(ctx.TEXTURE_2D, k, v);
+    }
+    canvas.width = FRAME_W;
+    canvas.height = FRAME_H;
+    ctx.viewport(0, 0, FRAME_W, FRAME_H);
+    return ctx;
+  }
+
+  function draw() {
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 
   function stopFrameLoop() {
     if (frameId === undefined) return;
-    if (video.cancelVideoFrameCallback) video.cancelVideoFrameCallback(frameId);
-    else cancelAnimationFrame(frameId);
+    cancelAnimationFrame(frameId);
     frameId = undefined;
   }
 
   function frame() {
     frameId = undefined;
+    if (video.readyState >= 2 && gl) {
+      // N'envoyer au GPU qu'une fois par image du film (24/s), pas a 60 Hz.
+      const index = Math.floor(video.currentTime * FPS);
+      if (index !== lastFrame) {
+        lastFrame = index;
+        draw();
+        if (!ready) {
+          ready = true;
+          clearTimeout(fallbackTimer);
+          hero.classList.add('hero--ready');
+          hero.classList.remove('hero--static');
+          toggle.hidden = false;
+        }
+      }
+    }
     updateClients(video.currentTime);
-    if (!video.paused) frameId = video.requestVideoFrameCallback
-      ? video.requestVideoFrameCallback(frame) : requestAnimationFrame(frame);
+    if (!video.paused) frameId = requestAnimationFrame(frame);
+  }
+
+  // Repli definitif : le poster "settled" (mot deja depose) remplace
+  // l'animation. Jamais de bascule tardive vers le film ensuite, sinon le mot
+  // disparaitrait sous les yeux du visiteur avant d'etre rapporte.
+  function goStatic() {
+    gaveUp = true;
+    clearTimeout(fallbackTimer);
+    stopFrameLoop();
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    hero.classList.remove('hero--ready');
+    hero.classList.add('hero--static');
+    toggle.hidden = true;
+    updateClients(4.4);
+  }
+
+  async function pickSource() {
+    const playable = SOURCES.filter(([, type]) => video.canPlayType(type));
+    if (!playable.length) return null;
+    // Preferer un decodage materiel (economie de batterie, pas de saccades sur
+    // les Android d'entree de gamme) quand le navigateur sait le dire.
+    if (navigator.mediaCapabilities?.decodingInfo) {
+      try {
+        const infos = await Promise.all(playable.map(([, contentType, bitrate]) => navigator.mediaCapabilities.decodingInfo({
+          type: 'file',
+          video: { contentType, width: FRAME_W, height: FRAME_H * 2 + PAD, bitrate, framerate: FPS },
+        })));
+        const best = playable.find((_, i) => infos[i].supported && infos[i].powerEfficient)
+          || playable.find((_, i) => infos[i].supported && infos[i].smooth);
+        if (best) return best[0];
+      } catch {}
+    }
+    return playable[0][0];
+  }
+
+  // L'animation joue aussi sur mobile. Seul un reglage explicite d'economie de
+  // donnees ou une connexion tres lente (2G) la desactive.
+  function lowData() {
+    const c = navigator.connection;
+    return !!(c && (c.saveData || /2g/.test(c.effectiveType || '')));
+  }
+
+  function play() {
+    // Safari n'autorise l'autoplay qu'a partir d'une tache distincte.
+    setTimeout(() => {
+      if (gaveUp) return;
+      video.play().catch(() => {
+        // Lecture refusee (mode economie d'energie iOS, autoplay bloque) : le
+        // message complet doit rester lisible.
+        if (!ready) goStatic();
+        else toggle.hidden = true;
+      });
+    }, 0);
+  }
+
+  function sync() {
+    if (gaveUp) return;
+    if (reduced.matches || lowData()) {
+      goStatic();
+      return;
+    }
+    const shouldPlay = visible && !document.hidden && !userPaused;
+    if (!shouldPlay) {
+      video.pause();
+      stopFrameLoop();
+      return;
+    }
+    if (!gl) {
+      gl = initGL();
+      if (!gl) {
+        goStatic();
+        return;
+      }
+    }
+    if (!loading) {
+      loading = pickSource().then((src) => {
+        if (!src) {
+          goStatic();
+          return;
+        }
+        // Le film ne doit jamais laisser le titre ampute de son mot : sans
+        // premiere image affichee apres 4 s, on passe au repli statique.
+        fallbackTimer = setTimeout(() => { if (!ready) goStatic(); }, 4000);
+        video.src = src;
+        sync();
+      });
+      return;
+    }
+    if (video.getAttribute('src')) play();
   }
 
   function measure() {
     const heroBox = hero.getBoundingClientRect();
     const line = delivery.getBoundingClientRect();
-    const sourceWidth = video.videoWidth || 1280;
-    const sourceHeight = video.videoHeight || 720;
+    const sourceWidth = FRAME_W;
+    const sourceHeight = FRAME_H;
     const mobile = matchMedia('(max-width: 767px)').matches;
     // Correction optique : la ligne de base du mot incrusté est très
     // légèrement plus haute que celle de General Sans sur desktop.
@@ -99,7 +274,7 @@
     // gauche et rogne le mot lui-meme (le "r" de "ramener" disparaissait). Seule
     // la tentacule doit deborder hors cadre, jamais le mot.
     if (mobile) mediaLeft = Math.max(mediaLeft, -(wordStart - 6));
-    for (const media of [video, ...posters]) {
+    for (const media of [canvas, ...posters]) {
       media.style.width = `${width}px`;
       media.style.height = `${sourceHeight * scale}px`;
       media.style.left = `${mediaLeft}px`;
@@ -128,92 +303,21 @@
       }
     }
     centeredOffset = (heroBox.width - clientsWidth) / 2 - (mediaLeft + width * (970 / 1280) + gap);
-    // 0.08 : le film reste hors cadre (pas de mot, pas de tentacule) tant que la
-    // lecture n'a pas commence. Le mot "ramener" ne doit jamais etre visible avant
-    // que l'animation ne l'apporte — voir le poster "blank" plus bas.
-    updateClients(seeked ? video.currentTime : 0.08);
+    // Avant lecture, le film est a sa premiere image (vide : ni mot ni
+    // tentacule). Le mot "ramener" ne doit jamais etre visible avant que
+    // l'animation ne l'apporte.
+    updateClients(gaveUp ? 4.4 : video.currentTime);
   }
 
-  // L'animation joue aussi sur mobile desormais. Seul un reglage explicite
-  // d'economie de donnees ou une connexion tres lente (2G) la desactive :
-  // dans ce cas le poster "settled" prend le relais, comme pour reduced-motion.
-  function lowData() {
-    const c = navigator.connection;
-    return !!(c && (c.saveData || /2g/.test(c.effectiveType || '')));
-  }
-
-  // Filet de securite mobile : si la video ne demarre pas (seeked jamais recu,
-  // lecture silencieusement bloquee, reseau lent), le poster "blank" resterait
-  // affiche sans fin et le mot ne serait jamais apporte. Apres 3 s sans
-  // 'playing', on montre le poster "settled" (mot deja depose) comme repli.
-  let fallbackTimer;
-  function armFallback() {
-    clearTimeout(fallbackTimer);
-    fallbackTimer = setTimeout(() => {
-      if (hero.classList.contains('hero--ready')) return;
-      hero.classList.remove('hero--ready');
-      hero.classList.add('hero--static');
-      updateClients(4.4);
-    }, 3000);
-  }
-
-  function sync() {
-    const persistent = reduced.matches || lowData();
-    const shouldPlay = visible && !document.hidden && !persistent && !userPaused;
-    if (!shouldPlay) {
-      video.pause();
-      stopFrameLoop();
-      if (persistent) {
-        hero.classList.remove('hero--ready');
-        hero.classList.add('hero--static');
-        updateClients(4.4);
-      }
-      return;
-    }
-    if (!video.src) video.src = video.dataset.src;
-    armFallback();
-    if (!seeked) return;
-    video.play().then(() => { toggle.hidden = false; }).catch(() => {
-      // Lecture bloquee (rare, hors geste utilisateur) : le poster "blank" ne doit
-      // pas rester affiche sans fin (le mot ne serait jamais apporte). On bascule
-      // sur le poster "settled" pour montrer malgre tout le message complet.
-      hero.classList.remove('hero--ready');
-      hero.classList.add('hero--static');
-      updateClients(4.4);
-      toggle.hidden = true;
-    });
-  }
-
-  video.addEventListener('loadedmetadata', () => {
-    measure();
-    if (!started) {
-      started = true;
-      // Hors cadre : juste apres la boucle (la queue 9.22-10s est deja vide de
-      // mot et de tentacule), donc la toute premiere chose jouee est l'arrivee
-      // du mot — jamais le mot deja depose. 0 pile peut ne pas declencher
-      // 'seeked' si le navigateur y est deja ; une valeur non nulle le garantit.
-      video.currentTime = 0.08;
-    }
-  });
-  video.addEventListener('seeked', () => {
-    if (!seeked) {
-      seeked = true;
-      sync();
-    }
-  });
   video.addEventListener('playing', () => {
-    clearTimeout(fallbackTimer);
-    hero.classList.add('hero--ready');
-    hero.classList.remove('hero--static');
     if (frameId === undefined) frame();
   });
   video.addEventListener('error', () => {
-    // Le film ne jouera jamais : memes raisons que le catch() de play() plus haut.
-    hero.classList.remove('hero--ready');
-    hero.classList.add('hero--static');
-    toggle.hidden = true;
-    stopFrameLoop();
-    updateClients(4.4);
+    if (video.getAttribute('src') && !ready) goStatic();
+  });
+  canvas.addEventListener('webglcontextlost', (event) => {
+    event.preventDefault();
+    goStatic();
   });
   toggle.addEventListener('click', () => {
     userPaused = !userPaused;

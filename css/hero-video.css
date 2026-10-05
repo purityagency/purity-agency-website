@@ -20,19 +20,15 @@
 @keyframes hero-underline-draw{to{transform:scaleX(1)}}
 .hero__word{position:relative;display:inline-block;width:3.84em;height:.65em;vertical-align:baseline}
 .hero__delivered-clients{position:absolute;font-size:1em;line-height:1;white-space:nowrap;will-change:transform}
-.hero__source,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
-.hero__source{visibility:hidden}
-/* Au chargement : le poster "blank" (hors cadre, avant que la tentacule
-   n'apporte le mot) est visible ; le poster "settled" (mot deja depose) ne
-   sert que de repli -- lecture video reduite/bloquee/en erreur -- jamais
-   comme premiere image. Voir hero__poster--blank/--settled plus bas et
-   js/hero-video.js (classe hero--static). */
-.hero__poster{visibility:visible}
-.hero__poster--settled{visibility:hidden}
-.hero--ready .hero__source{visibility:visible}
-.hero--ready .hero__poster{visibility:hidden}
-.hero--static .hero__poster--blank{visibility:hidden}
-.hero--static .hero__poster--settled{visibility:visible}
+.hero__source{display:none}
+.hero__canvas,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
+/* Le film (canvas WebGL, voir js/hero-video.js) n'apparait qu'a sa premiere
+   image dessinee. Avant ca, rien : la tentacule arrive hors cadre et apporte
+   le mot. Le poster (mot deja depose) ne sert que de repli : reduced-motion,
+   economie de donnees, lecture refusee ou film qui ne demarre pas en 4 s. */
+.hero__canvas,.hero__poster{visibility:hidden}
+.hero--ready .hero__canvas{visibility:visible}
+.hero--static .hero__poster{visibility:visible}
 .hero__inner>p,.hero__actions,.hero .rating{position:relative;z-index:2}
 .hero__motion-toggle{display:block;margin:1rem auto 0;padding:.35rem .6rem;border:0;background:none;color:var(--muted);font:inherit;font-size:.75rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;position:relative;z-index:2}
 .hero__motion-toggle[hidden]{display:none}
@@ -72,9 +68,8 @@
  .hero__consequence{font-size:.87em;transform:translateX(calc(var(--hero-optical-shift) * -1))}
 }
 @media(prefers-reduced-motion:reduce){
- .hero__source{visibility:hidden!important}
- .hero__poster--blank{visibility:hidden!important}
- .hero__poster--settled{visibility:visible!important}
+ .hero__canvas{visibility:hidden!important}
+ .hero__poster{visibility:visible!important}
  .hero__motion-toggle{display:none}
  .hero__exister::after{animation:none;transform:scaleX(1)}
  .hero-to-audit__line{opacity:.7;transform:none;animation:none}

@@ -159,10 +159,14 @@ void main(){
     // les Android d'entree de gamme) quand le navigateur sait le dire.
     if (navigator.mediaCapabilities?.decodingInfo) {
       try {
-        const infos = await Promise.all(playable.map(([, contentType, bitrate]) => navigator.mediaCapabilities.decodingInfo({
-          type: 'file',
-          video: { contentType, width: FRAME_W, height: FRAME_H * 2 + PAD, bitrate, framerate: FPS },
-        })));
+        // Jamais plus d'une seconde d'attente : sans reponse, premier codec lisible.
+        const infos = await Promise.race([
+          Promise.all(playable.map(([, contentType, bitrate]) => navigator.mediaCapabilities.decodingInfo({
+            type: 'file',
+            video: { contentType, width: FRAME_W, height: FRAME_H * 2 + PAD, bitrate, framerate: FPS },
+          }))),
+          new Promise((_, reject) => setTimeout(reject, 1000)),
+        ]);
         const best = playable.find((_, i) => infos[i].supported && infos[i].powerEfficient)
           || playable.find((_, i) => infos[i].supported && infos[i].smooth);
         if (best) return best[0];
@@ -211,14 +215,15 @@ void main(){
       }
     }
     if (!loading) {
+      // Le film ne doit jamais laisser le titre ampute de son mot : sans
+      // premiere image affichee apres 4 s, on passe au repli statique.
+      fallbackTimer = setTimeout(() => { if (!ready) goStatic(); }, 4000);
       loading = pickSource().then((src) => {
+        if (gaveUp) return;
         if (!src) {
           goStatic();
           return;
         }
-        // Le film ne doit jamais laisser le titre ampute de son mot : sans
-        // premiere image affichee apres 4 s, on passe au repli statique.
-        fallbackTimer = setTimeout(() => { if (!ready) goStatic(); }, 4000);
         video.src = src;
         sync();
       });

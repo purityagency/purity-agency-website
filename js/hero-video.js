@@ -142,6 +142,21 @@
     return !!(c && (c.saveData || /2g/.test(c.effectiveType || '')));
   }
 
+  // Filet de securite mobile : si la video ne demarre pas (seeked jamais recu,
+  // lecture silencieusement bloquee, reseau lent), le poster "blank" resterait
+  // affiche sans fin et le mot ne serait jamais apporte. Apres 3 s sans
+  // 'playing', on montre le poster "settled" (mot deja depose) comme repli.
+  let fallbackTimer;
+  function armFallback() {
+    clearTimeout(fallbackTimer);
+    fallbackTimer = setTimeout(() => {
+      if (hero.classList.contains('hero--ready')) return;
+      hero.classList.remove('hero--ready');
+      hero.classList.add('hero--static');
+      updateClients(4.4);
+    }, 3000);
+  }
+
   function sync() {
     const persistent = reduced.matches || lowData();
     const shouldPlay = visible && !document.hidden && !persistent && !userPaused;
@@ -156,6 +171,7 @@
       return;
     }
     if (!video.src) video.src = video.dataset.src;
+    armFallback();
     if (!seeked) return;
     video.play().then(() => { toggle.hidden = false; }).catch(() => {
       // Lecture bloquee (rare, hors geste utilisateur) : le poster "blank" ne doit
@@ -186,6 +202,7 @@
     }
   });
   video.addEventListener('playing', () => {
+    clearTimeout(fallbackTimer);
     hero.classList.add('hero--ready');
     hero.classList.remove('hero--static');
     if (frameId === undefined) frame();

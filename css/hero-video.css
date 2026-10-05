@@ -54,6 +54,14 @@
     seule la largeur reservee pour le mot change, l'echelle video mobile
     (.615 dans measure()) etant plus large en proportion que desktop (.44). */
  .hero__word{width:4.6em}
+ /* "pas juste" passe sur la ligne de "exister." : la ligne du mot ne porte
+    plus que "ramener des clients," et peut etre centree d'un bloc, sans
+    rogner le mot ni laisser de trou. Contenu CSS (lu par les lecteurs
+    d'ecran) plutot qu'un doublon HTML, pour garder le texte source intact. */
+ .hero__tail{display:none}
+ .hero__consequence::before{content:"pas juste "}
+ .hero__delivered-clients{text-align:left}
+ .hero{padding-bottom:2.25rem}
 }
 @media(min-width:768px) and (max-width:1350px){
  .hero__consequence{font-size:.84em;white-space:nowrap}

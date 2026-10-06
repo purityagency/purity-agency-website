@@ -8,6 +8,9 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const today = '2026-09-30';
 const esc = (value) => String(value).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug = (item) => `/cas-concrets/${item.id}.html`;
+const requestedCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice(7);
+if (requestedCase && !caseStudies.some((item) => item.id === requestedCase)) throw new Error(`Unknown case: ${requestedCase}`);
+const selectedCases = requestedCase ? caseStudies.filter((item) => item.id === requestedCase) : caseStudies;
 function socialCard(item) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title"><title id="title">${esc(item.descriptor)} — Cas concret Purity</title><rect width="1200" height="630" fill="${item.palette[1]}"/><path d="M0 448C190 355 312 545 505 442S836 361 1200 467V630H0Z" fill="${item.palette[0]}" opacity=".13"/><circle cx="1037" cy="159" r="174" fill="${item.palette[2]}" opacity=".9"/><circle cx="1037" cy="159" r="108" fill="${item.palette[1]}"/><text x="88" y="134" font-family="Arial, sans-serif" font-size="30" fill="${item.palette[0]}" letter-spacing="4">PURITY AGENCY · CAS CONCRET</text><text x="88" y="288" font-family="Arial, sans-serif" font-size="77" font-weight="700" fill="${item.palette[0]}">${esc(item.descriptor)}</text><text x="88" y="363" font-family="Arial, sans-serif" font-size="38" fill="${item.palette[0]}" opacity=".78">${esc(item.promise)}</text></svg>`;
 }
@@ -42,7 +45,7 @@ function casePage(item) {
 await writeFile(join(root, 'cas-concrets.html'), gallery());
 await mkdir(join(root, 'assets', 'cases'), { recursive:true });
 await writeFile(join(root, 'assets', 'cases', 'cas-concrets-og.svg'), socialCard({ descriptor:'Des solutions concrètes', promise:'pour votre métier.', palette:['#1f1731','#f6f1fb','#6c3caa'] }));
-for (const item of caseStudies) {
+for (const item of selectedCases) {
   await mkdir(join(root, 'cas-concrets'), { recursive:true });
   await writeFile(join(root, 'cas-concrets', `${item.id}.html`), casePage(item));
   await writeFile(join(root, 'assets', 'cases', `${item.id}-og.svg`), socialCard(item));
@@ -52,4 +55,4 @@ for (const item of caseStudies) {
     await writeFile(join(demoRoot, page === 'index' ? 'index.html' : `${page}.html`), demoPage(item, page));
   }
 }
-console.log(`Generated ${caseStudies.length} cases and ${caseStudies.length * 5} demo screens.`);
+console.log(`Generated ${selectedCases.length} cases and ${selectedCases.length * 5} demo screens.`);

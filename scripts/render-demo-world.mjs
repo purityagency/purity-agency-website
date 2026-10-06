@@ -1,13 +1,59 @@
 import { worlds } from '../data/demo-worlds.mjs';
 const e = v => String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const image = (id, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/visuals/${id}.png" alt="${e(worlds[id].eyebrow)}" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const architectureImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/architecture/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const decorationImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/decoration/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const propertyImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/immobilier/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const garageImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/garage/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const renovationImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/renovation/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const restaurantImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/restaurant/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const worldImage = (item, placement, cls='', lazy=true) => {
+  if (item.id === 'architecture') {
+    const name = placement === 'hero' ? 'ligne-claire-garden.png' : placement === 'model' ? 'ligne-claire-model.png' : 'ligne-claire-interior.png';
+    return architectureImage(name, cls, lazy);
+  }
+  if (item.id === 'decoration') {
+    const name = placement === 'hero' ? 'matiere-commune-vase.png' : 'matiere-commune-interior.png';
+    return decorationImage(name, cls, lazy);
+  }
+  if (item.id === 'immobilier') {
+    const index = Number(String(placement).replace('property-', ''));
+    const names = ['beaux-jours-maison.png', 'beaux-jours-appartement.png', 'beaux-jours-longere.png', 'beaux-jours-appartement.png'];
+    return propertyImage(names[Number.isFinite(index) ? index : 0], cls, lazy);
+  }
+  if (item.id === 'garage') {
+    const name = placement === 'hero'
+      ? 'atelier-noir-coupe.png'
+      : placement === 'story'
+        ? 'atelier-noir-mecanique.png'
+        : 'atelier-noir-restauration.png';
+    return garageImage(name, cls, lazy);
+  }
+  if (item.id === 'renovation') {
+    const name = placement === 'hero'
+      ? 'atelier-noma-cuisine.png'
+      : placement === 'story'
+        ? 'atelier-noma-salon.png'
+        : 'atelier-noma-plan.png';
+    return renovationImage(name, cls, lazy);
+  }
+  if (item.id === 'restaurant') {
+    const name = placement === 'hero'
+      ? 'table-serein-assiette.png'
+      : placement === 'story'
+        ? 'table-serein-salle.png'
+        : 'table-serein-cuisine.png';
+    return restaurantImage(name, cls, lazy);
+  }
+  return image(item.id, cls, lazy);
+};
 const link = (text, href='contact.html', cls='action') => `<a class="${cls}" href="./${href}">${e(text)} <span aria-hidden="true">↗</span></a>`;
 const tag = s => `<p class="eyebrow">${e(s)}</p>`;
 const sectionHead = (k,t) => `<header class="section-heading">${tag(k)}<h2>${e(t)}</h2></header>`;
 
 function hero(item,w) {
   const words = `<h1>${e(w.title)}</h1><p class="lead">${e(w.lead)}</p>${link(w.action,['cart','properties','classes'].includes(w.kind)?'services.html':'contact.html')}`;
-  const photo = `<figure class="hero-photo" data-depth>${image(item.id,'',false)}<figcaption>${e(w.eyebrow)}</figcaption></figure>`;
+  const photo = `<figure class="hero-photo" data-depth>${worldImage(item,'hero','',false)}<figcaption>${e(w.eyebrow)}</figcaption></figure>`;
   const copy = `<div class="hero-copy">${tag(w.eyebrow)}${words}</div>`;
   const variants = {
     architectural:`<div class="folio-number" aria-hidden="true">N° 01<br>Intérieurs</div>${copy}${photo}<p class="hero-footnote">Un lieu. Vos usages. Un nouveau regard.</p>`,
@@ -30,7 +76,7 @@ function pageHead(w,title,desc) {
 }
 function spatialScene(item) {
   const architecture=item.id==='architecture';
-  return `<section class="spatial-section section ${architecture?'spatial-architecture':'spatial-objects'}" id="${architecture?'maquette':'matiere'}" data-spatial="${architecture?'house':'vase'}"><div class="spatial-copy">${tag(architecture?'Étude / Maison patio':'Objet / 01 — Le vase Onde')}<h2>${architecture?'Comprendre l’espace.<br>Avant de l’habiter.':'Sous tous<br>les angles.'}</h2><p>${architecture?'Une pièce ouverte sur le jardin, un patio pour la lumière et des espaces plus intimes en retrait. Explorez les volumes de cette maison.':'Une silhouette généreuse, une ouverture fine et le relief discret du grès. Faites tourner la pièce et trouvez votre nuance.'}</p>${architecture?'<button type="button" class="text-action" data-explode aria-pressed="false">Soulever la toiture <span aria-hidden="true">↗</span></button>':'<div class="swatches" role="group" aria-label="Finition du vase"><button type="button" data-finish="sable" aria-pressed="true">Sable</button><button type="button" data-finish="argile" aria-pressed="false">Argile</button><button type="button" data-finish="foret" aria-pressed="false">Forêt</button></div><p class="spatial-price">Vase Onde <span>46 €</span></p><button type="button" class="text-action" data-add="0" data-price="46" data-title="Vase Onde">Ajouter au panier <span aria-hidden="true">+</span></button>'}</div><div class="spatial-work"><div class="spatial-viewport">${image(item.id,'spatial-fallback')}<canvas aria-label="${architecture?'Maquette 3D de la maison patio':'Vase Onde en trois dimensions'}" role="img"></canvas><span class="spatial-number" aria-hidden="true">${architecture?'LC / 01':'MC / 01'}</span><span class="spatial-caption">${architecture?'Maquette d’étude · Maison patio':'Grès texturé · Collection Onde'}</span></div><div class="spatial-controls" hidden><label>Faire pivoter<input type="range" min="-180" max="180" value="0" step="1" data-rotation></label><span>Glissez horizontalement ou utilisez le curseur</span></div><p class="spatial-status" role="status"></p></div></section>`;
+  return `<section class="spatial-section section ${architecture?'spatial-architecture':'spatial-objects'}" id="${architecture?'maquette':'matiere'}" data-spatial="${architecture?'house':'vase'}"><div class="spatial-copy">${tag(architecture?'Étude / Extension sur jardin':'Objet / 01 — Le vase Onde')}<h2>${architecture?'Comprendre l’espace.<br>Avant de l’habiter.':'Sous tous<br>les angles.'}</h2><p>${architecture?'Une grande baie vitrée ouverte sur le jardin, une terrasse en bois et des espaces de vie lumineux. Explorez les volumes de cette extension.':'Une silhouette généreuse, une ouverture fine et le relief discret du grès. Faites tourner la pièce et trouvez votre nuance.'}</p>${architecture?'<button type="button" class="text-action" data-explode aria-pressed="false">Soulever la toiture <span aria-hidden="true">↗</span></button>':'<div class="swatches" role="group" aria-label="Finition du vase"><button type="button" data-finish="sable" aria-pressed="true">Sable</button><button type="button" data-finish="argile" aria-pressed="false">Argile</button><button type="button" data-finish="foret" aria-pressed="false">Forêt</button></div><p class="spatial-price">Vase Onde <span>46 €</span></p><button type="button" class="text-action" data-add="0" data-price="46" data-title="Vase Onde">Ajouter au panier <span aria-hidden="true">+</span></button>'}</div><div class="spatial-work"><div class="spatial-viewport">${image(item.id,'spatial-fallback')}<canvas aria-label="${architecture?'Maquette 3D d’une extension sur jardin':'Vase Onde en trois dimensions'}" role="img"></canvas><span class="spatial-number" aria-hidden="true">${architecture?'LC / 01':'MC / 01'}</span><span class="spatial-caption">${architecture?'Maquette d’étude · Extension sur jardin':'Grès texturé · Collection Onde'}</span></div><div class="spatial-controls" hidden><label>Faire pivoter<input type="range" min="-180" max="180" value="0" step="1" data-rotation></label><span>Glissez horizontalement ou utilisez le curseur</span></div><p class="spatial-status" role="status"></p></div></section>`;
 }
 function catalog(item,w,full=false) {
   const filters = [...new Set(w.offers.map(o=>o[3]))];
@@ -43,14 +89,14 @@ function catalog(item,w,full=false) {
     const button = w.kind==='cart' ? `<button type="button" class="text-action" data-add="${i}" data-price="${o[5]}" data-title="${e(o[0])}">Ajouter au panier <span aria-hidden="true">+</span></button>` : w.kind==='properties' ? `<div class="property-actions">${link('Organiser une visite',`contact.html?choice=${encodeURIComponent(o[0])}`,'text-action')}<button type="button" class="favorite" data-favorite="${i}" aria-label="Enregistrer ${e(o[0])}" aria-pressed="false">♡</button></div>` : link(w.kind==='classes'?'Choisir ce cours':w.kind==='table'?'Réserver une table':w.kind==='appointment'?'Choisir ce soin':'Parlons-en',`contact.html?choice=${encodeURIComponent(o[0])}`,'text-action');
     let illustration='';
     if(w.kind==='cart') illustration=`<div class="object-art object-${i}" aria-hidden="true"><div class="object-shape"></div><div class="object-shadow"></div></div>`;
-    if(w.kind==='properties') illustration=`<div class="property-photo crop-${i}">${image(item.id)}<span>${e(o[3])}</span></div>`;
-    if(item.id==='architecture') illustration=`<div class="plan-art plan-${i}" aria-hidden="true"><i></i><i></i><i></i><b>ÉTUDE ${String(i+1).padStart(2,'0')}</b></div>`;
+    if(w.kind==='properties') illustration=`<div class="property-photo crop-${i}">${worldImage(item,`property-${i}`)}<span>${e(o[3])}</span></div>`;
+    if(item.id==='architecture') illustration=`<figure class="project-image project-image-${i}">${worldImage(item,i % 2 ? 'story' : 'hero')}<figcaption>Projet ${String(i+1).padStart(2,'0')} · Étude en cours</figcaption></figure>`;
     return `<article class="offering" data-category="${e(o[3])}" id="offre-${i}">${illustration}<div class="offering-copy"><span class="offering-number">${String(i+1).padStart(2,'0')}</span>${meta}<h3>${e(o[0])}</h3><p>${e(o[1])}</p>${details}${button}</div></article>`;
   }).join('');
   return `<section class="catalog section ${mode}" id="collection">${sectionHead(full?'En détail':'À découvrir',w.catalogTitle)}${selectable?buttons:''}<div class="catalog-items">${cards}</div><p class="catalog-status" role="status"></p>${!full?link('Tout découvrir','services.html','section-link'):''}${w.kind==='cart'?link('Ouvrir mon panier','contact.html','section-link'):''}</section>`;
 }
 function story(item,w,full=false) {
-  return `<section class="story section story-${w.layout}"><div class="story-text">${tag(item.id==='restaurant'?'La maison':item.id==='architecture'?'La démarche':'Notre approche')}<h2>${e(w.storyTitle)}</h2><p>${e(w.story)}</p>${full?`<p>${e(w.storyMore)}</p>`:link(w.nav[1],'univers.html','text-action')}</div><figure class="story-photo">${image(item.id)}<figcaption>${e(item.name)} / ${e(item.descriptor)}</figcaption></figure></section>`;
+  return `<section class="story section story-${w.layout}"><div class="story-text">${tag(item.id==='restaurant'?'La maison':item.id==='architecture'?'La démarche':'Notre approche')}<h2>${e(w.storyTitle)}</h2><p>${e(w.story)}</p>${full?`<p>${e(w.storyMore)}</p>`:link(w.nav[1],'univers.html','text-action')}</div><figure class="story-photo">${worldImage(item,'story')}<figcaption>${e(item.name)} / ${e(item.descriptor)}</figcaption></figure></section>`;
 }
 function detailSection(w) {
   return `<section class="detail-section section">${sectionHead('Ce qui compte',w.kind==='table'?'Autour de l’assiette.':w.kind==='cart'?'La matière change tout.':'Le soin du détail.')}<div class="detail-columns">${w.details.map((d,i)=>`<article><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span><h3>${e(d[0])}</h3><p>${e(d[1])}</p></article>`).join('')}</div></section>`;
@@ -92,5 +138,5 @@ export function demoPage(item,page) {
   const titles={index:item.name,services:w.nav[0],univers:w.nav[1],contact:w.nav[2],studio:item.dashboard};
   const nav=[['index','Accueil'],['services',w.nav[0]],['univers',w.nav[1]],['contact',w.nav[2]]].map(([p,label])=>`<a href="./${p==='index'?'':p+'.html'}" ${page===p?'aria-current="page"':''}>${e(label)}${p==='contact'&&w.kind==='cart'?'<span data-cart-count></span>':''}</a>`).join('');
   let body=page==='index'?home(item,w):page==='services'?pageHead(w,w.catalogTitle,w.lead)+catalog(item,w,true)+asideFeature(item,w)+process(w)+questions(w)+closing(w):page==='univers'?pageHead(w,w.storyTitle,w.storyMore)+story(item,w,true)+detailSection(w)+process(w)+questions(w)+closing(w):page==='studio'?studio(item,w):pageHead(w,w.kind==='cart'?'Votre panier.':w.action,w.kind==='cart'?'Les pièces choisies pour votre intérieur.':w.steps[0][1])+(w.kind==='cart'?cart(w):booking(w))+questions(w);
-  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>${e(titles[page])} — ${e(item.name)}</title><meta name="description" content="${e(w.lead)}"><link rel="stylesheet" href="/css/demo-fonts.css"><link rel="stylesheet" href="/css/demo-worlds.css"><link rel="stylesheet" href="/css/demo-motion.css"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"></head><body class="world world-${item.id} layout-${w.layout}" data-world="${item.id}" data-kind="${w.kind}" data-page="${page}" style="--ink:${item.palette[0]};--paper:${item.palette[1]};--accent:${item.palette[2]};--display:'${w.font}';--body:'${w.body}'"><a class="skip" href="#content">Aller au contenu</a><aside class="purity-strip"><a href="/cas-concrets.html">← Portfolio Purity</a><span>Concept · ${e(item.descriptor)}</span><a href="/contact.html?case=${item.id}">Je veux un site comme celui-ci ↗</a></aside><header class="world-header"><a class="world-brand" href="./" aria-label="${e(item.name)} — Accueil">${e(w.mark)}</a><button type="button" class="menu-toggle" aria-expanded="false" aria-controls="world-nav">Menu <span aria-hidden="true">+</span></button><nav id="world-nav" aria-label="Navigation ${e(item.name)}">${nav}</nav></header><main id="content">${body}</main><footer class="world-footer"><a class="footer-mark" href="./">${e(w.mark)}</a><div><p>${e(w.eyebrow)}</p><nav aria-label="Pied de page">${nav}</nav></div><div class="footer-bottom"><span>© ${e(item.name)} · Concept Purity</span><a href="./studio.html">Côté entreprise ↗</a><button type="button" data-reset>Réinitialiser</button><a href="/contact.html?case=${item.id}">Créer le vôtre avec Purity ↗</a></div></footer><div class="live-notice" role="status" aria-live="polite"></div><script src="/js/demo-worlds.js" defer></script></body></html>`;
+  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>${e(titles[page])} — ${e(item.name)}</title><meta name="description" content="${e(w.lead)}"><link rel="stylesheet" href="/css/demo-fonts.css"><link rel="stylesheet" href="/css/demo-worlds.css"><link rel="stylesheet" href="/css/demo-motion.css">${item.id==='architecture'?'<link rel="stylesheet" href="/css/world-architecture.css">':''}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"></head><body class="world world-${item.id} layout-${w.layout}" data-world="${item.id}" data-kind="${w.kind}" data-page="${page}" style="--ink:${item.palette[0]};--paper:${item.palette[1]};--accent:${item.palette[2]};--display:'${w.font}';--body:'${w.body}'"><a class="skip" href="#content">Aller au contenu</a><aside class="purity-strip"><a href="/cas-concrets.html">← Portfolio Purity</a><span>Concept · ${e(item.descriptor)}</span><a href="/contact.html?case=${item.id}">Je veux un site comme celui-ci ↗</a></aside><header class="world-header"><a class="world-brand" href="./" aria-label="${e(item.name)} — Accueil">${e(w.mark)}</a><button type="button" class="menu-toggle" aria-expanded="false" aria-controls="world-nav">Menu <span aria-hidden="true">+</span></button><nav id="world-nav" aria-label="Navigation ${e(item.name)}">${nav}</nav></header><main id="content">${body}</main><footer class="world-footer"><a class="footer-mark" href="./">${e(w.mark)}</a><div><p>${e(w.eyebrow)}</p><nav aria-label="Pied de page">${nav}</nav></div><div class="footer-bottom"><span>© ${e(item.name)} · Concept Purity</span><a href="./studio.html">Côté entreprise ↗</a><button type="button" data-reset>Réinitialiser</button><a href="/contact.html?case=${item.id}">Créer le vôtre avec Purity ↗</a></div></footer><div class="live-notice" role="status" aria-live="polite"></div><script src="/assets/cases/vendor/gsap.min.js" defer></script><script src="/assets/cases/vendor/ScrollTrigger.min.js" defer></script><script src="/js/demo-gsap.js" defer></script><script src="/js/demo-worlds.js" defer></script></body></html>`;
 }

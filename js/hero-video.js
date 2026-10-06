@@ -44,6 +44,23 @@
   let frameId;
   let lastFrame = -1;
   let fallbackTimer;
+  // Diagnostic temporaire (appareils reels) : etapes franchies et raison d'un
+  // eventuel repli, envoyes une seule fois au serveur (journal Render).
+  const t0 = performance.now();
+  const diag = { ev: {}, draws: 0 };
+  let diagSent = false;
+  function sendDiag(outcome) {
+    if (diagSent) return;
+    diagSent = true;
+    const c = navigator.connection;
+    const payload = {
+      outcome, ua: navigator.userAgent, vw: innerWidth, dpr: devicePixelRatio, rm: reduced.matches,
+      net: c ? [c.effectiveType, c.saveData] : null, src: video.currentSrc.split('/').pop(),
+      rs: video.readyState, ns: video.networkState, err: video.error && video.error.code,
+      paused: video.paused, ct: +video.currentTime.toFixed(2), ms: Math.round(performance.now() - t0), ...diag,
+    };
+    try { navigator.sendBeacon('/api/hero-diag', new Blob([JSON.stringify(payload)], { type: 'text/plain' })); } catch {}
+  }
   let layout = { mediaLeft: 0, scale: 0, gap: 0, centered: 0, delivered: 0 };
   const probe = document.createElement('span');
 
@@ -124,6 +141,7 @@ void main(){
   function draw() {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (!diag.draws++) diag.glErr = gl.getError();
   }
 
   function stopFrameLoop() {
@@ -146,6 +164,8 @@ void main(){
           hero.classList.add('hero--ready');
           hero.classList.remove('hero--static');
           toggle.hidden = false;
+          // Rapport 5 s apres la premiere image : verifie que le film avance.
+          setTimeout(() => sendDiag('ready'), 5000);
         }
       }
     }
@@ -156,7 +176,9 @@ void main(){
   // Repli definitif : le poster "settled" (mot deja depose) remplace
   // l'animation. Jamais de bascule tardive vers le film ensuite, sinon le mot
   // disparaitrait sous les yeux du visiteur avant d'etre rapporte.
-  function goStatic() {
+  function goStatic(reason) {
+    diag.reason = reason;
+    sendDiag('static');
     gaveUp = true;
     clearTimeout(fallbackTimer);
     stopFrameLoop();
@@ -184,6 +206,7 @@ void main(){
           }))),
           new Promise((_, reject) => setTimeout(reject, 1000)),
         ]);
+        diag.mc = infos.map((info, i) => `${playable[i][0].split('-').pop()}:${+info.supported}${+info.smooth}${+info.powerEfficient}`).join(' ');
         const best = playable.find((_, i) => infos[i].supported && infos[i].powerEfficient)
           || playable.find((_, i) => infos[i].supported && infos[i].smooth);
         if (best) return best[0];
@@ -203,10 +226,11 @@ void main(){
     // Safari n'autorise l'autoplay qu'a partir d'une tache distincte.
     setTimeout(() => {
       if (gaveUp) return;
-      video.play().catch(() => {
+      video.play().catch((error) => {
+        diag.playErr = `${error?.name}: ${error?.message}`.slice(0, 160);
         // Lecture refusee (mode economie d'energie iOS, autoplay bloque) : le
         // message complet doit rester lisible.
-        if (!ready) goStatic();
+        if (!ready) goStatic('playRejected');
         else toggle.hidden = true;
       });
     }, 0);
@@ -215,7 +239,7 @@ void main(){
   function sync() {
     if (gaveUp) return;
     if (reduced.matches || lowData()) {
-      goStatic();
+      goStatic(reduced.matches ? 'reducedMotion' : 'lowData');
       return;
     }
     const shouldPlay = visible && !document.hidden && !userPaused;
@@ -227,18 +251,18 @@ void main(){
     if (!gl) {
       gl = initGL();
       if (!gl) {
-        goStatic();
+        goStatic('noWebGL');
         return;
       }
     }
     if (!loading) {
       // Le film ne doit jamais laisser le titre ampute de son mot : sans
       // premiere image affichee apres 4 s, on passe au repli statique.
-      fallbackTimer = setTimeout(() => { if (!ready) goStatic(); }, 4000);
+      fallbackTimer = setTimeout(() => { if (!ready) goStatic('timeout'); }, 4000);
       loading = pickSource().then((src) => {
         if (gaveUp) return;
         if (!src) {
-          goStatic();
+          goStatic('noSource');
           return;
         }
         video.src = src;
@@ -290,7 +314,7 @@ void main(){
     // gauche et rogne le mot lui-meme (le "r" de "ramener" disparaissait). Seule
     // la tentacule doit deborder hors cadre, jamais le mot.
     if (mobile) mediaLeft = Math.max(mediaLeft, -(wordStart - 6));
-    for (const media of [canvas, ...posters]) {
+    for (const media of [video, canvas, ...posters]) {
       media.style.width = `${width}px`;
       media.style.height = `${sourceHeight * scale}px`;
       media.style.left = `${mediaLeft}px`;
@@ -322,15 +346,18 @@ void main(){
     updateClients(gaveUp ? 4.4 : video.currentTime);
   }
 
+  for (const type of ['loadstart', 'loadedmetadata', 'loadeddata', 'canplay', 'playing', 'waiting', 'stalled', 'suspend', 'pause', 'error']) {
+    video.addEventListener(type, () => { diag.ev[type] ??= Math.round(performance.now() - t0); });
+  }
   video.addEventListener('playing', () => {
     if (frameId === undefined) frame();
   });
   video.addEventListener('error', () => {
-    if (video.getAttribute('src') && !ready) goStatic();
+    if (video.getAttribute('src') && !ready) goStatic('videoError');
   });
   canvas.addEventListener('webglcontextlost', (event) => {
     event.preventDefault();
-    goStatic();
+    goStatic('contextLost');
   });
   toggle.addEventListener('click', () => {
     userPaused = !userPaused;

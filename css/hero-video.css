@@ -21,7 +21,9 @@
 .hero__word{position:relative;display:inline-block;width:3.84em;height:.65em;vertical-align:baseline}
 /* Centre avant le premier calcul JS (= etat initial de l'animation) : aucun saut. */
 .hero__delivered-clients{position:absolute;top:0;left:50%;translate:-50% 0;font-size:1em;line-height:inherit;white-space:nowrap;will-change:transform}
-.hero__source{display:none}
+/* Film source : rendu (pas display:none, que Safari peut refuser de decoder)
+   mais invisible, superpose au canvas qui en affiche la version recomposee. */
+.hero__source{position:absolute;left:0;top:0;opacity:0;pointer-events:none;z-index:0}
 .hero__canvas,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
 /* Le film (canvas WebGL, voir js/hero-video.js) n'apparait qu'a sa premiere
    image dessinee. Avant ca, rien : la tentacule arrive hors cadre et apporte

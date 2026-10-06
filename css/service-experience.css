@@ -239,11 +239,12 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
 }
 @media(max-width:440px){
  .solutions__intro>p:last-child{font-size:.98rem}
- .service-card summary{min-height:19rem;padding:1.25rem}
- .service-card[open] summary{min-height:13.25rem}
- .service-card h3{max-width:7.2ch;font-size:clamp(1.8rem,9.6vw,2.35rem)}
- .service-card--clients h3,.service-card--time h3{max-width:11.5ch}
- .service-card__visual{right:-1%;bottom:7%;width:45%}
+ /* Quatre cartes empilees : a 19rem chacune, la section faisait pres de deux
+    ecrans de vide. Le titre et l'illustration tiennent dans une carte plus basse. */
+ .service-card summary{min-height:14.5rem;padding:1.25rem}
+ .service-card[open] summary{min-height:12rem}
+ .service-card h3{max-width:11.5ch;font-size:clamp(1.7rem,8.4vw,2.1rem)}
+ .service-card__visual{right:-1%;bottom:6%;width:41%}
  .service-card__cue b{font-size:.82rem}
  .service-card__body{padding:1.2rem 1.25rem 1.35rem}
  .service-card__services a{min-height:4rem}

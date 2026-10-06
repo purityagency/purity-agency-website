@@ -104,8 +104,10 @@
 }
 .legal-table th{background:#fbf9ff}
 @media(max-width:700px){
+ /* <main> decale deja de la hauteur du menu : l'ajouter une seconde fois laissait
+    pres de 200px de blanc avant le titre sur telephone. */
  .content-hero,
- .blog-hero{padding-top:calc(var(--nav-h) + 2.8rem)}
+ .blog-hero{padding-top:2.25rem}
  .blog-index__head{display:block}
  .blog-index__head h2{margin-top:1rem}
  .article-cta .btn{width:100%}

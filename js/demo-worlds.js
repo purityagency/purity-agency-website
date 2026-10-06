@@ -49,7 +49,11 @@
     document.querySelector('[data-cart-total]').textContent=money(state.cart.reduce((n,x)=>n+x.price*x.qty,0));
   }
   document.querySelectorAll('[data-add]').forEach(button=>button.addEventListener('click',()=>{const index=Number(button.dataset.add);const found=state.cart.find(x=>x.id===index);if(found){found.qty=Math.min(20,found.qty+1);}else{state.cart.push({id:index,title:button.dataset.title,price:Number(button.dataset.price),qty:1});}save();updateCount();announce(`${button.dataset.title} ajouté au panier.`);}));
+  document.querySelectorAll('[data-finish]').forEach(button=>button.addEventListener('click',()=>{state.cartFinish=button.dataset.finish;save();}));
   renderCart();
+  const finishSelect=document.querySelector('[data-cart-finish]');
+  if(finishSelect&&state.cartFinish){const map={sable:'Sable',argile:'Argile',foret:'Forêt'};finishSelect.value=map[state.cartFinish]||'Sable';}
+
   const prepareCart=document.querySelector('[data-cart-prepare]');
   if(prepareCart)prepareCart.addEventListener('click',()=>{const status=document.querySelector('[data-cart-status]');if(!state.cart.length){status.textContent='Ajoutez au moins une pièce à votre panier.';return;}state.booking={kind:'Retrait en boutique',entries:[['Articles',state.cart.map(x=>`${x.qty} × ${x.title}`).join(', ')],['Total',money(state.cart.reduce((n,x)=>n+x.price*x.qty,0))],['Finition',document.querySelector('[data-cart-finish]').value]]};save();status.textContent='Sélection enregistrée dans cet aperçu. Aucun paiement ni commande envoyée.';});
   const form=document.querySelector('[data-local-booking]');

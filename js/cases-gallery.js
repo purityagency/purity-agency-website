@@ -9,6 +9,11 @@
   var scrollKey = 'purity-case-scroll';
   var current = sessionStorage.getItem(storageKey) || 'Tous';
 
+  var introTitle = document.querySelector('.cases__intro h1');
+  var introKicker = document.querySelector('.cases__intro .section-kicker');
+  if (introTitle) introTitle.textContent = 'Nos réalisations.';
+  if (introKicker) introKicker.textContent = 'Portfolio Purity';
+
   function apply(filter, shouldStore) {
     current = filter;
     if (shouldStore) sessionStorage.setItem(storageKey, filter);

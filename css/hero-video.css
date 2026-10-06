@@ -12,14 +12,15 @@
 .hero__title{position:relative;z-index:2;isolation:isolate}
 .hero h1{font-size:clamp(2.3rem,5.2vw,6.6rem)}
 .hero__line{display:block;white-space:nowrap}
-.hero__lead{position:relative;left:50%;width:max-content;transform:translate(-50%,clamp(.45rem,1.35vw,1.6rem))}
-.hero__delivery{position:relative;height:clamp(8.2rem,13.7vw,10.5rem);margin:.08em 0;white-space:nowrap}
+.hero__lead{position:relative;left:50%;width:max-content;transform:translateX(-50%)}
+.hero__delivery{position:relative;white-space:nowrap}
 .hero__consequence{position:relative;margin-top:0}
 .hero__exister{position:relative;display:inline-block}
 .hero__exister::after{content:"";position:absolute;left:.02em;right:.02em;bottom:-.07em;height:.07em;border-radius:999px;background:var(--accent);transform:scaleX(0);transform-origin:left center;animation:hero-underline-draw .9s cubic-bezier(.22,1,.36,1) .3s forwards}
 @keyframes hero-underline-draw{to{transform:scaleX(1)}}
 .hero__word{position:relative;display:inline-block;width:3.84em;height:.65em;vertical-align:baseline}
-.hero__delivered-clients{position:absolute;font-size:1em;line-height:1;white-space:nowrap;will-change:transform}
+/* Centre avant le premier calcul JS (= etat initial de l'animation) : aucun saut. */
+.hero__delivered-clients{position:absolute;top:0;left:50%;translate:-50% 0;font-size:1em;line-height:inherit;white-space:nowrap;will-change:transform}
 .hero__source{display:none}
 .hero__canvas,.hero__poster{position:absolute;left:0;top:0;display:block;width:44%;aspect-ratio:1280/720;max-width:none;height:auto;pointer-events:none;z-index:1;filter:saturate(1.2) contrast(1.02)}
 /* Le film (canvas WebGL, voir js/hero-video.js) n'apparait qu'a sa premiere
@@ -31,21 +32,16 @@
 .hero--static .hero__poster{visibility:visible}
 .hero__inner>p,.hero__actions,.hero .rating{position:relative;z-index:2}
 .hero__motion-toggle{display:block;margin:1rem auto 0;padding:.35rem .6rem;border:0;background:none;color:var(--muted);font:inherit;font-size:.75rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;position:relative;z-index:2}
-.hero__motion-toggle[hidden]{display:none}
+/* Place reservee meme masque : son apparition au demarrage du film ne doit
+   pas decaler le hero (saut visible, et mot desaligne du texte). */
+.hero__motion-toggle[hidden]{display:block;visibility:hidden}
 .hero__motion-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 @media(max-width:767px){
  .hero h1{font-size:clamp(1.4rem,6.6vw,2.55rem)}
- .hero__delivery{
- /* Le mot incruste dans la video est beaucoup plus haut qu'une ligne de
-    texte (echelle mobile .615 dans measure(), contre .44 sur desktop), et
-    deborde surtout vers le haut (son point d'ancrage optique est bas dans
-    l'image source). Une marge haute genereuse evite qu'il ne touche la
-    ligne du dessus, sans gonfler inutilement la hauteur de la ligne. */
- height:auto;
- margin:clamp(.8rem,3.8vw,1.3rem) 0 .3em;
- white-space:normal;
- line-height:1.08
- }
+ /* Trois lignes de meme taille : meme interligne partout. Le mot incruste
+    n'a ni hampe ni jambage (que des minuscules courtes) : il tient dans la
+    ligne, aucune marge supplementaire n'est necessaire. */
+ .hero__line{line-height:1.12}
  /* Meme mecanique que desktop (video incrustee + texte anime en overlay) :
     seule la largeur reservee pour le mot change, l'echelle video mobile
     (.615 dans measure()) etant plus large en proportion que desktop (.44). */
@@ -64,13 +60,19 @@
 }
 @media(min-width:768px){
  .hero{--hero-optical-shift:0px}
+ /* Interlignes egaux (1,45 x la taille de la ligne du milieu) malgre les
+    lignes a .87em : meme hauteur de boite pour les trois, puis la ligne du
+    milieu remonte de (ascendante - descendante) / 2 x .13em = .05em
+    (General Sans : 1.01 - 0.24), sinon l'ecart du haut serait plus grand. */
+ .hero__lead,.hero__consequence{line-height:calc(1.45em / .87)}
+ .hero__delivery{line-height:1.45;top:-.05em}
  .hero__lead{left:calc(50% - var(--hero-optical-shift));font-size:.87em}
  .hero__consequence{font-size:.87em;transform:translateX(calc(var(--hero-optical-shift) * -1))}
 }
 @media(prefers-reduced-motion:reduce){
  .hero__canvas{visibility:hidden!important}
  .hero__poster{visibility:visible!important}
- .hero__motion-toggle{display:none}
+ .hero__motion-toggle,.hero__motion-toggle[hidden]{display:none}
  .hero__exister::after{animation:none;transform:scaleX(1)}
  .hero-to-audit__line{opacity:.7;transform:none;animation:none}
  .hero-to-audit__pulse{opacity:1;transform:none;animation:none}

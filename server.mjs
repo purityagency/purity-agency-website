@@ -97,15 +97,6 @@ http.createServer(async (req, res) => {
       return json(200, { status: 'ok', service: 'purity-agency-v2', ts: Date.now() });
     }
 
-    // Diagnostic temporaire de l'animation hero sur appareils reels : une ligne
-    // dans le journal Render, rien d'autre n'est conserve.
-    if (path === '/api/hero-diag' && req.method === 'POST') {
-      const body = await readBody().catch(() => null);
-      if (body) console.log('[hero-diag]', JSON.stringify(body).slice(0, 3000));
-      res.writeHead(204).end();
-      return;
-    }
-
     if (path === '/api/chat') {
       if (!['POST', 'DELETE'].includes(req.method)) return json(405, { error: 'Méthode non autorisée.' });
       if (req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`) return json(403, { error: 'Origine non autorisée.' });

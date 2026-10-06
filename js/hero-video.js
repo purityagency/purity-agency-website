@@ -17,6 +17,17 @@
   const FRAME_H = 720;
   const PAD = 16;
   const FPS = 24;
+  // Mesures du mot "ramener" dans le film (pixels source, image posee) :
+  // bords gauche/droit de l'encre et ligne de base des lettres a fond plat.
+  const WORD_LEFT = 313;
+  const WORD_RIGHT = 971;
+  const WORD_BASELINE = 430;
+  // Bord droit du mot, image par image, mesure sur la source : arrivee
+  // (images 4 a 66) puis sortie (images 189 a 221). Entre les deux, le mot est
+  // pose ; avant et apres, il est hors champ. Le texte suit ce bord : il est
+  // pousse par le mot a l'arrivee et le suit quand il repart — jamais de trou.
+  const ARRIVAL = [22, 43, 65, 87, 111, 136, 162, 188, 215, 243, 271, 299, 327, 355, 383, 412, 439, 467, 494, 521, 546, 572, 597, 621, 644, 667, 689, 709, 729, 749, 767, 785, 801, 817, 831, 844, 857, 868, 878, 887, 897, 905, 912, 919, 925, 930, 935, 940, 944, 948, 951, 954, 957, 959, 961, 963, 964, 965, 966, 967, 968, 969, 970];
+  const EXIT = [966, 959, 948, 934, 918, 899, 879, 856, 833, 807, 780, 752, 723, 693, 661, 627, 595, 561, 526, 489, 453, 417, 381, 343, 305, 267, 229, 191, 155, 119, 83, 45, 11];
   const SOURCES = [
     ['/assets/hero-tentacle-stacked-av1.mp4', 'video/mp4; codecs="av01.0.08M.08"', 1.98e6],
     ['/assets/hero-tentacle-stacked-hevc.mp4', 'video/mp4; codecs="hvc1.1.6.L120.90"', 2.36e6],
@@ -33,29 +44,35 @@
   let frameId;
   let lastFrame = -1;
   let fallbackTimer;
-  let centeredOffset = 0;
+  let layout = { mediaLeft: 0, scale: 0, gap: 0, centered: 0, delivered: 0 };
+  const probe = document.createElement('span');
 
-  const smooth = (value) => {
-    const t = Math.max(0, Math.min(1, value));
-    return t * t * t * (t * (t * 6 - 15) + 10);
-  };
+  function frameRight(i) {
+    if (i < 4) return 0;
+    if (i <= 66) return ARRIVAL[i - 4];
+    if (i <= 188) return WORD_RIGHT;
+    if (i <= 221) return EXIT[i - 189];
+    return 0;
+  }
+
+  function wordRight(time) {
+    const f = time * FPS;
+    const i = Math.floor(f);
+    const a = frameRight(i);
+    return a + (frameRight(i + 1) - a) * (f - i);
+  }
 
   function updateClients(time) {
-    let delivered = 0;
-
-    // The copy moves once, shortly before the tentacles finish placing the
-    // word. It stays put during the whole scene, then recentres only after
-    // the final purple fragment has left the frame at roughly 9.2 seconds.
-    if (time >= .18 && time < 1.38) {
-      delivered = smooth((time - .18) / 1.2);
-    } else if (time >= 1.38 && time < 9.22) {
-      delivered = 1;
-    } else if (time >= 9.22 && time < 9.82) {
-      delivered = 1 - smooth((time - 9.22) / .6);
+    const { mediaLeft, scale, gap, centered, delivered } = layout;
+    let x = delivered;
+    if (!reduced.matches && !gaveUp) {
+      // L'image affichee peut avoir une image d'avance ou de retard sur
+      // currentTime : on se cale sur la position la plus a droite du mot dans
+      // cette fenetre, pour que le texte ne le touche jamais (sortie rapide).
+      const right = Math.max(wordRight(time - 2 / FPS), wordRight(time - 1 / FPS), wordRight(time), wordRight(time + 1 / FPS));
+      x = Math.min(delivered, Math.max(centered, mediaLeft + right * scale + gap));
     }
-
-    if (reduced.matches || gaveUp) delivered = 1;
-    clients.style.transform = `translate3d(${centeredOffset * (1 - delivered)}px, 0, 0)`;
+    clients.style.transform = `translate3d(${x - delivered}px, 0, 0)`;
   }
 
   function initGL() {
@@ -238,38 +255,32 @@ void main(){
     const sourceWidth = FRAME_W;
     const sourceHeight = FRAME_H;
     const mobile = matchMedia('(max-width: 767px)').matches;
-    // Correction optique : la ligne de base du mot incrusté est très
-    // légèrement plus haute que celle de General Sans sur desktop.
-    const baselineNudge = mobile ? -3 : -2;
     // Keep scaling the native frame on wide screens so its left edge stays
     // outside the viewport instead of revealing an artificial blank margin.
-    // Le mot déjà intégré au film doit rester légèrement plus petit que la
-    // typographie HTML, sinon il paraît gonflé au moment où il est déposé.
     // On desktop, keep the baked-in word at the same optical size as the
     // General Sans words beside it. Mobile keeps its dedicated composition.
     const width = Math.min(heroBox.width * (mobile ? .615 : .44), sourceWidth);
     const scale = width / sourceWidth;
-    const mediaBaselineNudge = mobile ? 0 : 10;
-    const top = line.top - heroBox.top + Math.min(line.height * .24, 45) - 309 * scale + mediaBaselineNudge;
-    // The baked word uses the same baseline calculation as the adjacent copy.
-    // Keep the HTML copy fixed: only the media itself is positioned here.
-    const mediaTop = top;
     // Desktop gets a deliberate breathing space after the baked-in word.
     // The mobile composition keeps its compact native spacing.
     const gap = mobile
       ? Math.max(7, Math.min(20, width * .018))
       : Math.max(18, Math.min(32, width * .04));
-    const wordStart = width * (310 / 1280);
+    const wordStart = WORD_LEFT * scale;
     // Mesurer la largeur naturelle (non contrainte) avant d'eventuellement
     // appliquer plus bas une limite de largeur mobile — sinon chaque appel
     // repartirait d'une largeur deja retrecie par le precedent.
+    clients.style.translate = 'none';
     clients.style.maxWidth = 'none';
     clients.style.whiteSpace = '';
     delivery.style.marginBottom = '';
     const clientsRectNatural = clients.getBoundingClientRect();
     const clientsWidth = clientsRectNatural.width;
     const clientsLineHeight = clientsRectNatural.height;
-    const phraseEnd = width * (970 / 1280) + gap + clientsWidth;
+    // Ligne de base du texte HTML (sonde de hauteur nulle posee sur la ligne
+    // de base de "des clients,") : celle du mot incruste s'y aligne au pixel.
+    const mediaTop = probe.getBoundingClientRect().top - heroBox.top - WORD_BASELINE * scale;
+    const phraseEnd = WORD_RIGHT * scale + gap + clientsWidth;
     // The tentacle is designed to enter from outside the viewport: never
     // leave a white gutter between the film and the left edge of the hero.
     let mediaLeft = Math.min(0, (heroBox.width - wordStart - phraseEnd) / 2);
@@ -285,11 +296,8 @@ void main(){
       media.style.left = `${mediaLeft}px`;
       media.style.top = `${mediaTop}px`;
     }
-    // Coordinates measured in the 1280 x 720 source at the deposited frame.
-    const clientsHeroLeft = mediaLeft + width * (970 / 1280) + gap;
+    const clientsHeroLeft = mediaLeft + WORD_RIGHT * scale + gap;
     clients.style.left = `${clientsHeroLeft - line.left + heroBox.left}px`;
-    // 328 is the optical baseline offset measured on the baked word.
-    clients.style.top = `${top + 328 * scale - line.top + heroBox.top + baselineNudge}px`;
     // "des clients, pas juste" peut deborder du cadre sur un mobile etroit : la
     // phrase n'a jamais ete pensee pour partager la ligne avec le mot incruste
     // a cette largeur. Si besoin, autoriser le retour a la ligne plutot que de
@@ -307,7 +315,7 @@ void main(){
         delivery.style.marginBottom = `${baseMarginBottom + Math.max(0, wrappedHeight - clientsLineHeight)}px`;
       }
     }
-    centeredOffset = (heroBox.width - clientsWidth) / 2 - (mediaLeft + width * (970 / 1280) + gap);
+    layout = { mediaLeft, scale, gap, centered: (heroBox.width - clientsWidth) / 2, delivered: clientsHeroLeft };
     // Avant lecture, le film est a sa premiere image (vide : ni mot ni
     // tentacule). Le mot "ramener" ne doit jamais etre visible avant que
     // l'animation ne l'apporte.
@@ -330,7 +338,12 @@ void main(){
     toggle.textContent = userPaused ? 'Reprendre l’animation' : 'Mettre l’animation en pause';
     sync();
   });
-  new ResizeObserver(measure).observe(hero);
+  probe.setAttribute('aria-hidden', 'true');
+  probe.style.cssText = 'display:inline-block;width:0;height:0';
+  clients.prepend(probe);
+  const resize = new ResizeObserver(measure);
+  resize.observe(hero);
+  resize.observe(hero.querySelector('.hero__inner') || delivery);
   document.fonts.ready.then(measure);
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;

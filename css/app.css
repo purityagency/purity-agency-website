@@ -652,3 +652,10 @@ textarea{
 @media (prefers-reduced-motion:reduce){
  .scroll-progress__bar{transition:none}
 }
+/* Utilitaire lecteurs d'ecran : doit etre bloquant (au-dessus de la ligne de
+   flottaison, ex. le mot "ramener" du hero). audit.css est charge en differe :
+   sans cette regle ici, le texte masque s'affichait en clair au chargement. */
+.sr-only{
+ position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+ overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0
+}

@@ -40,14 +40,35 @@
     cards.forEach(function (card) {
       var preview = card.querySelector('.case-preview');
       if (!preview) return;
+      var siteFrame = preview.querySelector('.case-preview__frame-site');
+      function scrollSitePreview(top) {
+        if (!siteFrame || !siteFrame.contentWindow) return;
+        try {
+          siteFrame.contentWindow.scrollTo({ top: top, behavior: 'smooth' });
+        } catch (error) {
+          // The thumbnail remains a static hero if an embedded page cannot be read.
+        }
+      }
+      function revealSitePreview() {
+        if (!siteFrame) return;
+        var move = function () { scrollSitePreview(260); };
+        if (siteFrame.contentDocument && siteFrame.contentDocument.readyState === 'complete') move();
+        else siteFrame.addEventListener('load', move, { once: true });
+      }
       card.addEventListener('pointermove', function (event) {
         var rect = preview.getBoundingClientRect();
         preview.style.setProperty('--case-x', ((event.clientX - rect.left) / rect.width - .5).toFixed(3));
         preview.style.setProperty('--case-y', ((event.clientY - rect.top) / rect.height - .5).toFixed(3));
       });
+      card.addEventListener('pointerenter', revealSitePreview);
       card.addEventListener('pointerleave', function () {
         preview.style.removeProperty('--case-x');
         preview.style.removeProperty('--case-y');
+        scrollSitePreview(0);
+      });
+      card.addEventListener('focusin', revealSitePreview);
+      card.addEventListener('focusout', function (event) {
+        if (!card.contains(event.relatedTarget)) scrollSitePreview(0);
       });
     });
   }

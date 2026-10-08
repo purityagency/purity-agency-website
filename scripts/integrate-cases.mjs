@@ -17,7 +17,7 @@ function addCasesNavigation(html) {
   // Mobile popover menu nav
   html = html.replace(/(<nav class="menu__nav">[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*style="--i:0"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
     if (m.includes('/cas-concrets.html')) return m;
-    return `${p1}\n    <a href="/cas-concrets.html" style="--i:1">Cas concrets</a>${p2}`;
+    return `${p1}\n    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>${p2}`;
   });
   return html.replace(/(<a [^>]*href="\/?blog\.html"[^>]*style=")--i:1("[^>]*>Blog<\/a>)/gi, '$1--i:2$2');
 }

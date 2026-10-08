@@ -11,7 +11,7 @@ function addCasesNavigation(html) {
   const headerNavMatch = html.match(/<nav class="header__nav"[^>]*>([\s\S]*?)<\/nav>/i);
   if (headerNavMatch && !headerNavMatch[1].includes('href="/cas-concrets.html"')) {
     html = html.replace(/(<nav class="header__nav"[^>]*>[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
-      return `${p1}\n    <a href="/cas-concrets.html">Cas concrets</a>${p2}`;
+      return `${p1}\n    <a href="/cas-concrets.html">Nos réalisations</a>${p2}`;
     });
   }
   // Mobile popover menu nav

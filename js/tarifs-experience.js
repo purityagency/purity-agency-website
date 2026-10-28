@@ -3,10 +3,10 @@
   if (!root) return;
 
   const groups = [
-    { id: 'presence', label: 'Je veux plus de demandes', title: 'Attirer plus de clients', description: 'Une présence qui explique votre valeur et facilite la prise de contact.', image: '/assets/pricing-presence-studio.png', ids: ['M03', 'M04', 'M05', 'M06', 'M07'] },
-    { id: 'visibilite', label: 'Je veux être trouvé', title: 'Être visible au bon moment', description: 'Être compris et choisi quand vos clients cherchent une activité comme la vôtre.', image: '/assets/pricing-visibility-studio.png', ids: ['M08', 'M13'] },
-    { id: 'automatisation', label: 'Je veux gagner du temps', title: 'Automatiser ce qui vous ralentit', description: 'Des outils qui réduisent les ressaisies, les oublis et les tâches répétitives.', image: '/assets/pricing-automation-studio.png', ids: ['M21', 'M22', 'M23'] },
-    { id: 'diagnostic', label: 'Je veux savoir quoi faire', title: 'Partir du bon problème', description: 'Un diagnostic concret avant d’investir dans une solution qui ne vous servirait pas.', image: '/assets/pricing-diagnostic-studio.png', ids: ['M01'] }
+    { id: 'presence', label: 'Je veux un site qui ramène des clients', title: 'Sites web, boutiques & refontes (-25 % lancement)', description: 'Un site rapide, pensé pour convertir vos visiteurs en appels et demandes de devis.', image: '/assets/pricing-presence-studio.png', ids: ['M03', 'M04', 'M05', 'M06', 'M07'] },
+    { id: 'visibilite', label: 'Je veux être visible sur Google & les réseaux', title: 'Google local, Réseaux sociaux (3x/sem.) & Image', description: 'Ressortir sur Google Maps et publier 3 fois par semaine sans y passer vos soirées.', image: '/assets/pricing-visibility-studio.png', ids: ['M08', 'M13', 'M16', 'M09', 'M10'] },
+    { id: 'automatisation', label: 'Je veux gagner du temps chaque semaine', title: 'Automatisation & Agents IA sur mesure', description: 'Des outils qui répondent, prennent rendez-vous et relancent automatiquement.', image: '/assets/pricing-automation-studio.png', ids: ['M21', 'M22', 'M23'] },
+    { id: 'diagnostic', label: 'Je veux savoir par où commencer', title: 'Diagnostic gratuit en 15 minutes', description: 'Un point honnête sur votre site et vos réseaux avant d’engager le moindre euro.', image: '/assets/pricing-diagnostic-studio.png', ids: ['M01'] }
   ];
 
   const examples = {
@@ -16,7 +16,10 @@
     M06: 'Les fiches, la réassurance et le panier restent cohérents sur mobile comme sur ordinateur.',
     M07: 'On garde ce qui aide déjà et on retire ce qui ralentit la lecture ou la prise de contact.',
     M08: 'La fiche, les pages locales et les coordonnées facilitent le choix depuis une recherche Google.',
+    M09: 'Un logo net, des couleurs cohérentes et des supports qui inspirent immédiatement confiance.',
+    M10: 'Des photos, visuels et vidéos courtes prêts à publier pour montrer votre travail réel.',
     M13: 'Les pages répondent aux recherches réellement utilisées dans votre zone de travail.',
+    M16: '3 publications par semaine + 1 Reel par semaine créés et programmés pour vous (1er mois offert).',
     M21: 'Le formulaire recueille les informations utiles avant le premier échange.',
     M22: 'Les prospects sont suivis régulièrement sans simuler une relation humaine.',
     M23: 'Les outils échangent les informations utiles pour réduire les doubles encodages et les oublis.',
@@ -27,10 +30,18 @@
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
 
-  const priceMarkup = price => {
-    const parts = String(price).split(' + ');
-    if (parts.length === 1) return `<div class="price-card__pricing price-card__pricing--single"><span><strong>${esc(parts[0])}</strong><small>prix affiché</small></span></div>`;
-    return `<div class="price-card__pricing"><span><strong>${esc(parts[0])}</strong><small>mise en place</small></span><span><strong>${esc(parts.slice(1).join(' + '))}</strong><small>maintenance</small></span></div>`;
+  const priceMarkup = offer => {
+    const parts = String(offer.price).split(' + ');
+    const setupHtml = offer.promoSetup
+      ? `<s class="price-old">${esc(parts[0])}</s> <strong>${esc(offer.promoSetup)}</strong>`
+      : `<strong>${esc(parts[0])}</strong>`;
+    const badgeHtml = offer.id === 'M16'
+      ? `<em class="promo-pill promo-pill--free">${esc(offer.promoTag)}</em>`
+      : offer.promoSetup
+        ? `<em class="promo-pill promo-pill--25">${esc(offer.promoTag || '-25 % 24h')}</em>`
+        : '';
+    if (parts.length === 1) return `<div class="price-card__pricing price-card__pricing--single"><span>${setupHtml} ${badgeHtml}<small>${offer.promoSetup ? 'mise en place (-25 % 24h)' : 'prix affiché'}</small></span></div>`;
+    return `<div class="price-card__pricing"><span>${setupHtml} ${badgeHtml}<small>mise en place</small></span><span><strong>${esc(parts.slice(1).join(' + '))}</strong><small>${offer.id === 'M16' ? '1er mois offert' : 'maintenance'}</small></span></div>`;
   };
 
   const conciseDescription = description => String(description)
@@ -40,19 +51,20 @@
 
   const priceAnchor = offers => {
     const ranked = offers
-      .map(offer => ({ offer, value: Number.parseFloat(String(offer.price).replace(/\s/g, '').replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0] || '') }))
+      .map(offer => ({ offer, value: Number.parseFloat(String(offer.promoSetup || offer.price).replace(/\s/g, '').replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0] || '') }))
       .filter(item => Number.isFinite(item.value))
       .sort((a, b) => a.value - b.value);
-    if (!ranked.length) return { primary: 'Sur mesure', secondary: 'après échange' };
-    const [primary, ...rest] = String(ranked[0].offer.price).split(' + ');
-    return { primary: `À partir de ${primary}`, secondary: rest.length ? `+ ${rest.join(' + ')}` : 'prix affiché' };
+    if (!ranked.length) return { primary: 'Offert (15 min)', secondary: 'sans engagement' };
+    const top = ranked[0].offer;
+    const [primary, ...rest] = String(top.price).split(' + ');
+    return { primary: `Dès ${top.promoSetup || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')}` : 'mise en place (-25 %)' };
   };
 
   const cardMarkup = offer => `<article class="price-card">
-    <div class="price-card__top"><h4>${esc(offer.name)}</h4>${priceMarkup(offer.price)}</div>
+    <div class="price-card__top"><h4>${esc(offer.name)}</h4>${priceMarkup(offer)}</div>
     <p>${esc(conciseDescription(offer.description))}</p>
-    <details class="price-card__example"><summary>Voir un exemple concret <span aria-hidden="true">+</span></summary><div>${esc(examples[offer.id])}</div></details>
-    <a class="price-card__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}">Préparer ma demande <span aria-hidden="true">↗</span></a>
+    <details class="price-card__example"><summary>Voir un exemple concret <span aria-hidden="true">+</span></summary><div>${esc(examples[offer.id] || '')}</div></details>
+    <a class="price-card__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=ouverture25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
   </article>`;
 
   const pricingPage = document.querySelector('.pricing');

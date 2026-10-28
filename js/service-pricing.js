@@ -5,25 +5,32 @@
   if (!blocks.length) return;
 
   const offerGroups = {
-    acquisition: ['M03', 'M04', 'M05', 'M06', 'M07'],
-    visibilite: ['M08', 'M13'],
+    acquisition: ['M03', 'M04', 'M07', 'M08', 'M13', 'M16'],
+    visibilite: ['M16', 'M09', 'M10', 'M05', 'M06'],
     automatisation: ['M21', 'M22', 'M23'],
-    outils: ['M01']
+    outils: ['M01', 'M22', 'M23']
   };
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
 
-  const priceMarkup = price => {
-    const parts = String(price || 'Sur mesure').split(' + ');
-    return `<strong>${escapeHtml(parts[0])}</strong>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : '<small>prix affiché</small>'}`;
+  const priceMarkup = offer => {
+    const price = String(offer.price || 'Sur mesure');
+    const parts = price.split(' + ');
+    if (offer.id === 'M16') {
+      return `<span class="price-promo-line"><s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup || parts[0])}</strong></span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : ''}<em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '1er mois offert')}</em>`;
+    }
+    if (offer.promoSetup) {
+      return `<span class="price-promo-line"><s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup)}</strong> <em class="promo-pill promo-pill--25">${escapeHtml(offer.promoTag || '-25 % 24h')}</em></span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : '<small>mise en place (-25 %)</small>'}`;
+    }
+    return `<strong>${escapeHtml(parts[0])}</strong>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : `<small>${escapeHtml(offer.promoTag || 'prix affiché')}</small>`}`;
   };
 
   const renderOffer = offer => `<article class="service-offer-row">
     <div class="service-offer-row__copy"><strong>${escapeHtml(offer.name)}</strong><p>${escapeHtml(offer.description)}</p></div>
-    <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer.price)}</div>
-    <a href="/contact.html?offer=${encodeURIComponent(offer.id)}">Préparer ma demande <span aria-hidden="true">↗</span></a>
+    <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer)}</div>
+    <a href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=ouverture25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
   </article>`;
 
   const setError = block => {

@@ -8,23 +8,23 @@
 <link rel="canonical" href="https://purity-agency.be/"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:locale" content="fr_BE"><meta property="og:title" content="Purity Agency — Moderniser et optimiser votre activité"><meta property="og:description" content="Solutions digitales claires pour PME et indépendants : sites, e-commerce, automatisation, IA, outils métier, branding et communication."><meta property="og:url" content="https://purity-agency.be/"><meta name="twitter:card" content="summary">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=10">
-<link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/app.css?v=11">
+<link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/octomask.css?v=5">
     <link rel="stylesheet" href="/css/hero-video.css?v=29">
-<link rel="stylesheet" href="/css/site-additions.css">
+<link rel="stylesheet" href="/css/site-additions.css?v=12">
 <!-- audit.css bloquant : la section audit est visible des le premier ecran sur mobile
      (en differe, son application decalait la page). 2 Ko compresses. -->
 <link rel="stylesheet" href="/css/audit.css?v=7">
 <!-- Sections sous la ligne de flottaison : CSS pre-charge (fetch immediat, non bloquant)
      puis active par /js/defer-css.js. Repli <noscript> pour les navigateurs sans JS. -->
-<link rel="preload" as="style" href="/css/method.css?v=11">
+<link rel="preload" as="style" href="/css/method.css?v=12">
 <link rel="preload" as="style" href="/css/service-grid.css">
 <link rel="preload" as="style" href="/css/service-fix.css">
 <link rel="preload" as="style" href="/css/service-experience.css?v=15">
 <link rel="preload" as="style" href="/css/services-bg.css">
 <noscript>
-<link rel="stylesheet" href="/css/method.css?v=11">
+<link rel="stylesheet" href="/css/method.css?v=12">
 <link rel="stylesheet" href="/css/service-grid.css">
 <link rel="stylesheet" href="/css/service-fix.css">
 <link rel="stylesheet" href="/css/service-experience.css?v=15">
@@ -160,49 +160,6 @@
       </div>
 
       <output class="audit__out" id="audit-out" aria-live="polite"></output>
-    </div>
-  </section>
-
-
-
-  <section class="method" id="methode" aria-labelledby="method-title">
-    <div class="method-wave method-wave--top" aria-hidden="true">
-      <svg viewBox="0 0 1440 180" preserveAspectRatio="none" focusable="false">
-        <path class="method-wave__soft method-wave__soft--a" d="M0 0H1440V55C1308 25 1196 20 1068 52C926 88 815 92 682 55C535 15 420 23 286 63C170 98 80 94 0 62V0Z"/>
-        <path class="method-wave__soft method-wave__soft--b" d="M0 0H1440V82C1300 38 1192 37 1052 76C920 113 810 117 671 74C526 28 404 33 268 82C154 123 67 112 0 82V0Z"/>
-        <path class="method-wave__main" d="M0 0H1440V96C1320 54 1210 48 1070 88C930 128 804 132 662 88C518 44 396 48 258 98C148 138 62 126 0 96V0Z"/>
-      </svg>
-    </div>
-    <div class="method__inner">
-      <div class="method__content">
-        <h2 class="method__headline reveal" id="method-title" data-reveal>On commence par repérer ce qui freine votre activité.</h2>
-        <p class="method__lead">En 15 minutes, on regarde l’acquisition, l’organisation ou les outils qui vous ralentissent. Vous repartez avec une priorité claire, même si nous ne travaillons pas ensemble.</p>
-        <a class="method__cta" href="/contact.html">
-          <span class="method__cta-label">Faire le point 15 min</span>
-          <span class="method__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
-            </svg>
-          </span>
-        </a>
-        <p class="method__reassurance">15 min, sans engagement.</p>
-      </div>
-
-      <div class="method__visual">
-        <span class="method__visual-orbit" aria-hidden="true"></span>
-        <img class="method__shot" src="/assets/reunion-4k.webp"
-             srcset="/assets/reunion-460.webp 460w, /assets/reunion.webp 760w, /assets/reunion-4k.webp 1520w"
-             sizes="(max-width: 860px) 220px, 300px"
-             width="1520" height="1634" loading="lazy" decoding="async"
-             alt="Deux personnes assises face à face autour d'une table de réunion, vues de dessus">
-      </div>
-    </div>
-    <div class="method-wave method-wave--bottom" aria-hidden="true">
-      <svg viewBox="0 0 1440 180" preserveAspectRatio="none" focusable="false">
-        <path class="method-wave__soft method-wave__soft--a" d="M0 180H1440V116C1320 78 1200 78 1068 116C930 156 814 154 676 114C532 72 420 76 286 118C172 154 78 150 0 112V180Z"/>
-        <path class="method-wave__soft method-wave__soft--b" d="M0 180H1440V92C1306 134 1190 136 1050 94C912 52 800 55 668 98C528 143 410 142 276 94C152 50 68 62 0 96V180Z"/>
-        <path class="method-wave__main" d="M0 180H1440V78C1318 118 1198 122 1060 78C918 33 796 39 660 84C520 130 404 132 270 84C150 41 64 52 0 84V180Z"/>
-      </svg>
     </div>
   </section>
 
@@ -390,7 +347,50 @@
       <p class="founder__role">Fondateur de <a class="founder__brand" href="/">Purity Agency</a></p>
     </div>
   </section>
-  <section class="closing-cta" aria-labelledby="closing-cta-title"><div class="closing-cta__inner"><p class="section-kicker">Prochaine étape</p><h2 id="closing-cta-title">Voyez ce que ça donne pour votre métier.</h2><p>Douze démonstrations à essayer, de la toiletteuse au bureau d’architecture. Ou parlons directement de votre activité.</p><div class="closing-cta__actions"><a class="btn btn--primary" href="/contact.html?source=accueil">Faire le point 15 min</a><a class="text-link" href="/cas-concrets.html">Voir les cas concrets <span aria-hidden="true">↗</span></a></div></div></section>
+  <section class="method closing-cta" id="methode" aria-labelledby="closing-cta-title">
+    <div class="method-wave method-wave--top" aria-hidden="true">
+      <svg viewBox="0 0 1440 180" preserveAspectRatio="none" focusable="false">
+        <path class="method-wave__soft method-wave__soft--a" d="M0 0H1440V55C1308 25 1196 20 1068 52C926 88 815 92 682 55C535 15 420 23 286 63C170 98 80 94 0 62V0Z"/>
+        <path class="method-wave__soft method-wave__soft--b" d="M0 0H1440V82C1300 38 1192 37 1052 76C920 113 810 117 671 74C526 28 404 33 268 82C154 123 67 112 0 82V0Z"/>
+        <path class="method-wave__main" d="M0 0H1440V96C1320 54 1210 48 1070 88C930 128 804 132 662 88C518 44 396 48 258 98C148 138 62 126 0 96V0Z"/>
+      </svg>
+    </div>
+    <div class="method__inner">
+      <div class="method__content">
+        <p class="method__kicker">Prochaine étape</p>
+        <h2 class="method__headline reveal" id="closing-cta-title" data-reveal>On commence par repérer ce qui freine votre activité.</h2>
+        <p class="method__lead">En 15 minutes, on regarde l’acquisition, l’organisation ou les outils qui vous ralentissent. Vous repartez avec une priorité claire — ou testez nos 12 démonstrations métier.</p>
+        <div class="method__actions">
+          <a class="method__cta" href="/contact.html?promo=ouverture10">
+            <span class="method__cta-label">Faire le point 15 min (-10 % 24h)</span>
+            <span class="method__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+              </svg>
+            </span>
+          </a>
+          <a class="method__cases-link" href="/cas-concrets.html">Voir les 12 réalisations <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="method__reassurance">15 min, sans engagement · -10 % sur devis demandé sous 24h + 1er mois réseaux sociaux (3x/sem.) offert.</p>
+      </div>
+
+      <div class="method__visual">
+        <span class="method__visual-orbit" aria-hidden="true"></span>
+        <img class="method__shot" src="/assets/reunion-4k.webp"
+             srcset="/assets/reunion-460.webp 460w, /assets/reunion.webp 760w, /assets/reunion-4k.webp 1520w"
+             sizes="(max-width: 860px) 220px, 300px"
+             width="1520" height="1634" loading="lazy" decoding="async"
+             alt="Deux personnes assises face à face autour d'une table de réunion, vues de dessus">
+      </div>
+    </div>
+    <div class="method-wave method-wave--bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 180" preserveAspectRatio="none" focusable="false">
+        <path class="method-wave__soft method-wave__soft--a" d="M0 180H1440V116C1320 78 1200 78 1068 116C930 156 814 154 676 114C532 72 420 76 286 118C172 154 78 150 0 112V180Z"/>
+        <path class="method-wave__soft method-wave__soft--b" d="M0 180H1440V92C1306 134 1190 136 1050 94C912 52 800 55 668 98C528 143 410 142 276 94C152 50 68 62 0 96V180Z"/>
+        <path class="method-wave__main" d="M0 180H1440V78C1318 118 1198 122 1060 78C918 33 796 39 660 84C520 130 404 132 270 84C150 41 64 52 0 84V180Z"/>
+      </svg>
+    </div>
+  </section>
 </main>
 
 <a class="octo-float" href="/contact.html" aria-label="Parler avec OctoMask et contacter Purity Agency">
@@ -407,7 +407,7 @@
 </footer>
 
 <script src="/js/defer-css.js" defer></script>
-<script src="/js/menu.js?v=2" defer></script>
+<script src="/js/menu.js?v=3" defer></script>
 <script src="/js/audit.js" defer></script>
 <script src="/js/reveal.js?v=2" defer></script>
 <script src="/js/method-waves.js?v=3" defer></script>
@@ -417,7 +417,7 @@
 <script src="/js/service-details.js?v=11" defer></script>
 <script src="/js/service-pricing.js?v=1" defer></script>
     <script src="/js/hero-video.js?v=37" defer></script>
-<script src="/js/octomask.js?v=5" defer></script>
+<script src="/js/octomask.js?v=6" defer></script>
 <script src="/js/cookie-notice.js" defer></script>
 </body>
 </html>

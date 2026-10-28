@@ -39,6 +39,7 @@
   var offer = params.get('offer');
   var solution = params.get('solution');
   var caseId = params.get('case');
+  var promo = params.get('promo');
   var caseLabels = {
     renovation: 'la démonstration Rénovation intérieure', beaute: 'la démonstration Institut de beauté',
     garage: 'la démonstration Garage / carrosserie', decoration: 'la démonstration Boutique de décoration',
@@ -53,6 +54,9 @@
   } else if (offer && /^[A-Z]\d{2}$/.test(offer)) {
     field.value = 'Je souhaite en savoir plus sur l’offre ' + offer + '.';
     help.textContent = 'Cette demande a été préparée depuis la page Tarifs. Modifiez-la avant de continuer : rien n’est encore envoyé.';
+  } else if (promo) {
+    field.value = 'Je souhaite demander un devis et profiter de l’offre d’ouverture (-10 % sous 24h + 1er mois offert sur les contenus réseaux sociaux 3x/semaine). Mon activité : ';
+    help.textContent = 'Offre d’ouverture pré-activée. Précisez votre activité en une phrase avant de continuer.';
   }
   if (!caseId && !offer && solution && /^[a-z-]{3,40}$/.test(solution)) {
     var solutionLabels = {

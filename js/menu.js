@@ -69,3 +69,39 @@
   window.addEventListener('resize', requestPaint);
   paint();
 })();
+
+// Banniere jaune d'offre d'ouverture en haut de toutes les pages du site.
+(function () {
+  if (document.querySelector('.promo-bar')) return;
+  try {
+    if (sessionStorage.getItem('purity-promo-dismissed') === '1') return;
+  } catch {}
+
+  var promo = document.createElement('aside');
+  promo.className = 'promo-bar';
+  promo.setAttribute('aria-label', 'Offre d’ouverture Purity Agency');
+  promo.innerHTML =
+    '<span class="promo-bar__badge">Ouverture du site</span>' +
+    '<span class="promo-bar__text"><strong>-10\u00a0% sur votre devis</strong> demandé dans les 24h + <strong>1er mois offert</strong> sur vos contenus réseaux sociaux (3x/semaine)</span>' +
+    '<a class="promo-bar__cta" href="/contact.html?promo=ouverture">En profiter →</a>' +
+    '<button type="button" class="promo-bar__close" aria-label="Masquer cette offre">×</button>';
+
+  document.body.prepend(promo);
+
+  function syncPromoHeight() {
+    if (!promo.isConnected) {
+      document.documentElement.style.setProperty('--promo-h', '0px');
+      return;
+    }
+    document.documentElement.style.setProperty('--promo-h', (promo.offsetHeight + 4) + 'px');
+  }
+
+  promo.querySelector('.promo-bar__close').addEventListener('click', function () {
+    promo.remove();
+    syncPromoHeight();
+    try { sessionStorage.setItem('purity-promo-dismissed', '1'); } catch {}
+  });
+
+  window.addEventListener('resize', syncPromoHeight);
+  syncPromoHeight();
+})();

@@ -188,9 +188,9 @@
       const card = document.createElement('article');
       card.className = 'octo__offer';
       const title = document.createElement('h3'); title.textContent = offer.name;
-      const price = document.createElement('strong'); price.textContent = offer.price;
+      const price = document.createElement('strong'); price.textContent = offer.promoSetup ? `${offer.promoSetup} au lieu de ${offer.price.split(' + ')[0]}${offer.price.includes(' + ') ? ' + ' + offer.price.split(' + ').slice(1).join(' + ') : ''} (${offer.promoTag || '-25 % 24h'})` : offer.price;
       const desc = document.createElement('p'); desc.textContent = offer.description;
-      const note = document.createElement('small'); note.textContent = 'Tarif catalogue indicatif · périmètre et conditions confirmés sur devis.';
+      const note = document.createElement('small'); note.textContent = 'Offre de lancement valable sous 24h · périmètre et conditions confirmés sur devis.';
       card.append(title, price, desc, note);
       log.append(card);
     }

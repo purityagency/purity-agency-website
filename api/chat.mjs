@@ -1,9 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { randomBytes } from 'node:crypto';
-import { offers, instructions } from './octomask-knowledge.mjs';
+import { offers, instructions, matchFastRoute, normalizeKey } from './octomask-knowledge.mjs';
 
 const sessions = new Map();
 const limits = new Map();
+const responseCache = new Map();
+const CACHE_TTL = 60 * 60_000;
 const TTL = 30 * 60_000;
 let active = 0;
 let day = '';
@@ -12,11 +14,17 @@ setInterval(() => {
   const now = Date.now();
   for (const [id, session] of sessions) if (now - session.at >= TTL && !session.busy) sessions.delete(id);
   for (const [ip, limit] of limits) if (now >= limit.until) limits.delete(ip);
+  for (const [k, entry] of responseCache) if (now - entry.at >= CACHE_TTL) responseCache.delete(k);
 }, 60_000).unref();
 function key() {
   if (process.env.GEMINI_API_KEY) return process.env.GEMINI_API_KEY.trim();
-  try { return readFileSync(new URL('../../secrets/.gemini-key', import.meta.url), 'utf8').trim(); }
-  catch { return ''; }
+  for (const file of ['../../secrets/.gemini-key-free', '../../secrets/.gemini-key']) {
+    try {
+      const k = readFileSync(new URL(file, import.meta.url), 'utf8').trim();
+      if (k) return k;
+    } catch {}
+  }
+  return '';
 }
 
 export function sessionFor(cookie = '') {
@@ -53,6 +61,22 @@ const schema = {
   }, required: ['reply', 'offerIds', 'suggestions', 'action']
 };
 
+// Soft sanitization repairs formatting slip-ups (long suggestions, extra offers) without burning a 2nd LLM call.
+export function sanitizeCandidate(value) {
+  if (!value || typeof value !== 'object') return value;
+  const validOfferIds = Array.isArray(value.offerIds)
+    ? [...new Set(value.offerIds.filter(id => offers.some(o => o.id === id)))].slice(0, 2)
+    : [];
+  const validSuggestions = Array.isArray(value.suggestions)
+    ? value.suggestions
+        .filter(s => typeof s === 'string' && s.trim())
+        .map(s => (s.trim().length > 55 ? s.trim().slice(0, 54).trimEnd() + '…' : s.trim()))
+        .slice(0, 3)
+    : [];
+  const validAction = ['none', 'contact', 'booking'].includes(value.action) ? value.action : 'none';
+  return { ...value, offerIds: validOfferIds, suggestions: validSuggestions, action: validAction };
+}
+
 export function validateReply(value) {
   if (!value || typeof value.reply !== 'string' || !value.reply.trim() || value.reply.length > 1800) throw new Error('invalid-reply');
   // Prices belong to authoritative cards, never free-form model output.
@@ -64,9 +88,48 @@ export function validateReply(value) {
   return { reply: value.reply.trim(), offers: [...new Set(value.offerIds)].map(id => offers.find(o => o.id === id)), suggestions: value.suggestions, action: value.action };
 }
 
-export async function chat(session, message, { fetcher = fetch, apiKey = key() } = {}) {
+// Compact model turns before sending to Gemini: only send the assistant's text reply instead of the full JSON envelope.
+function compactForModel(messages) {
+  return messages.slice(-6).map(m => {
+    if (m.role !== 'model') return m;
+    const rawText = m.parts?.[0]?.text || '';
+    try {
+      const parsed = JSON.parse(rawText);
+      if (parsed && typeof parsed.reply === 'string') {
+        const tag = Array.isArray(parsed.offerIds) && parsed.offerIds.length ? ` [Offres: ${parsed.offerIds.join(',')}]` : '';
+        return { role: 'model', parts: [{ text: parsed.reply + tag }] };
+      }
+    } catch {}
+    return m;
+  });
+}
+
+export async function chat(session, message, { fetcher = fetch, apiKey = key(), page = '' } = {}) {
   if (typeof message !== 'string' || !message.trim() || message.length > 1800) return { status: 400, error: 'Écrivez un message de 1 à 1 800 caractères.' };
   if (session.busy) return { status: 409, error: 'Une réponse est déjà en cours.' };
+  const cleanMessage = message.trim();
+
+  // 1. Zero-Token Fast Router (chips & clear commercial intents) — only when using default live fetcher
+  if (fetcher === fetch) {
+    const fast = matchFastRoute(cleanMessage, session.messages?.length || 0);
+    if (fast) {
+      const answer = validateReply(fast);
+      session.messages = [...(session.messages || []).slice(-18), { role: 'user', parts: [{ text: cleanMessage }] }, { role: 'model', parts: [{ text: JSON.stringify(fast) }] }].slice(-20);
+      session.at = Date.now();
+      return { status: 200, ...answer };
+    }
+    // 2. Normalized First-Turn LRU Cache (0 tokens for repeated initial questions)
+    if ((session.messages?.length || 0) === 0) {
+      const cacheKey = normalizeKey(cleanMessage);
+      const cached = cacheKey ? responseCache.get(cacheKey) : null;
+      if (cached && Date.now() - cached.at < CACHE_TTL) {
+        session.messages = [{ role: 'user', parts: [{ text: cleanMessage }] }, { role: 'model', parts: [{ text: cached.raw }] }];
+        session.at = Date.now();
+        return { status: 200, ...cached.answer };
+      }
+    }
+  }
+
   if (!apiKey) return { status: 503, error: 'La conversation IA est indisponible. Vous pouvez transmettre votre projet directement à Amir.' };
   const today = new Date().toISOString().slice(0, 10);
   if (today !== day) { day = today; daily = 0; }
@@ -76,30 +139,48 @@ export async function chat(session, message, { fetcher = fetch, apiKey = key() }
   daily++;
   try {
     const model = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
-    const contents = [...session.messages.slice(-20), { role: 'user', parts: [{ text: message.trim() }] }];
+    const history = [...(session.messages || []).slice(-20), { role: 'user', parts: [{ text: cleanMessage }] }];
+    const llmContents = [...compactForModel(session.messages || []), { role: 'user', parts: [{ text: cleanMessage }] }];
+    const pageHint = typeof page === 'string' && /^\/[a-z0-9/_.-]*$/i.test(page) && page !== '/' ? `\nPAGE VISITÉE : ${page.slice(0, 60)}` : '';
     let answer;
     let raw;
     for (let attempt = 0; attempt < 2; attempt++) {
-    const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-      body: JSON.stringify({ systemInstruction: { parts: [{ text: instructions + (attempt ? '\nVALIDATION : la réponse précédente était invalide. Ne cite aucun montant, aucun mot euro/EUR, aucun symbole monétaire ni URL dans reply. Les prix apparaissent SEULEMENT sur les cartes sélectionnées par offerIds. Ne confirme aucune action. Respecte strictement les longueurs : suggestions maximum 55 caractères, 3 suggestions, 2 offres.' : '') }] }, contents,
-        generationConfig: { temperature: 0.35, maxOutputTokens: 1800, responseMimeType: 'application/json', responseSchema: schema,
-          // Gemini 2.5 coupe le raisonnement via thinkingBudget ; la famille 3.x (nouvelle API
-          // "thinking level") via thinkingLevel. Sans ca, un modele 3.x "pense" avant de repondre :
-          // plus lent et plus cher pour un simple JSON de chat, sans gain de qualite mesure.
-          ...(/^gemini-2\.5/.test(model) ? { thinkingConfig: { thinkingBudget: 0 } }
-            : /^gemini-3/.test(model) ? { thinkingConfig: { thinkingLevel: 'minimal' } } : {}) } }),
-      signal: AbortSignal.timeout(10_000)
-    });
-    if (!response.ok) throw new Error('provider-unavailable');
-    const result = await response.json();
-    const candidate = result.candidates?.[0];
-    if (candidate?.finishReason !== 'STOP') throw new Error('incomplete');
-    raw = candidate.content?.parts?.filter(p => !p.thought).map(p => p.text || '').join('');
-    try { answer = validateReply(JSON.parse(raw)); break; }
-    catch (error) { if (attempt) throw error; }
+      const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: instructions + pageHint + (attempt ? '\nVALIDATION : réponse précédente invalide. Zéro prix, mot euro/EUR, symbole € ou URL dans reply. Ne confirme aucune action.' : '') }] },
+          contents: llmContents,
+          generationConfig: {
+            temperature: 0.3,
+            maxOutputTokens: 380,
+            responseMimeType: 'application/json',
+            responseSchema: schema,
+            ...(/^gemini-2\.5/.test(model) ? { thinkingConfig: { thinkingBudget: 0 } }
+              : /^gemini-3/.test(model) ? { thinkingConfig: { thinkingLevel: 'minimal' } } : {})
+          }
+        }),
+        signal: AbortSignal.timeout(10_000)
+      });
+      if (!response.ok) throw new Error('provider-unavailable');
+      const result = await response.json();
+      const candidate = result.candidates?.[0];
+      if (candidate?.finishReason !== 'STOP') throw new Error('incomplete');
+      raw = candidate.content?.parts?.filter(p => !p.thought).map(p => p.text || '').join('');
+      try {
+        const parsed = sanitizeCandidate(JSON.parse(raw));
+        answer = validateReply(parsed);
+        raw = JSON.stringify(parsed);
+        break;
+      } catch (error) { if (attempt) throw error; }
     }
-    session.messages = [...contents, { role: 'model', parts: [{ text: raw }] }].slice(-20);
+    if (fetcher === fetch && (session.messages?.length || 0) === 0) {
+      const cacheKey = normalizeKey(cleanMessage);
+      if (cacheKey && cacheKey.length >= 4) {
+        if (responseCache.size >= 300) responseCache.delete(responseCache.keys().next().value);
+        responseCache.set(cacheKey, { at: Date.now(), raw, answer });
+      }
+    }
+    session.messages = [...history, { role: 'model', parts: [{ text: raw }] }].slice(-20);
     session.at = Date.now();
     return { status: 200, ...answer };
   } catch {

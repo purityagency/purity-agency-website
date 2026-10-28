@@ -210,7 +210,7 @@
     typing.hidden = false; toBottom();
     try {
       const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }), signal: AbortSignal.timeout(27_000) });
+        body: JSON.stringify({ message, page: location.pathname }), signal: AbortSignal.timeout(27_000) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'La réponse est indisponible. Réessayez ou contactez Amir.');
       typing.hidden = true;

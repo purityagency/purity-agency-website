@@ -106,7 +106,7 @@ http.createServer(async (req, res) => {
       if (req.method === 'DELETE') { clearSession(id); return json(200, { ok: true }); }
       try {
         const body = await readBody();
-        const result = await chat(session, body?.message);
+        const result = await chat(session, body?.message, { page: body?.page });
         const { status, ...payload } = result;
         return json(status, payload);
       } catch { return json(400, { error: 'Message invalide.' }); }

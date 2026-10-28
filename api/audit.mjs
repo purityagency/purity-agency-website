@@ -32,20 +32,24 @@ export function isPublicAddress(address) {
   const mapped = value.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/)?.[1];
   const ipv4 = mapped || (isIP(value) === 4 ? value : '');
   if (!ipv4) return true;
-  const [a, b] = ipv4.split('.').map(Number);
+  const [a, b, c] = ipv4.split('.').map(Number);
   return !(a === 0 || a === 10 || a === 127 ||
     (a === 100 && b >= 64 && b <= 127) ||
     (a === 169 && b === 254) ||
     (a === 172 && b >= 16 && b <= 31) ||
-    (a === 192 && [0, 168].includes(b)) ||
-    (a === 198 && [18, 19, 51].includes(b)) ||
-    (a === 203 && b === 0) || a >= 224);
+    (a === 192 && b === 168) ||
+    (a === 192 && b === 0 && (c === 0 || c === 2)) ||
+    (a === 198 && (b === 18 || b === 19)) ||
+    (a === 198 && b === 51 && c === 100) ||
+    (a === 203 && b === 0 && c === 113) ||
+    a >= 224);
 }
 
-async function isPublicUrl(url) {
+export async function isPublicUrl(url) {
   if (!url || !['http:', 'https:'].includes(url.protocol) || url.username || url.password) return false;
   if (url.port && !['80', '443'].includes(url.port)) return false;
-  if (url.hostname === 'localhost' || url.hostname.endsWith('.localhost')) return false;
+  const host = url.hostname.toLowerCase();
+  if (host === 'localhost' || host.endsWith('.localhost') || host.endsWith('.local') || host.endsWith('.internal')) return false;
   try {
     const addresses = await lookup(url.hostname, { all: true, verbatim: true });
     return addresses.length > 0 && addresses.every(({ address }) => isPublicAddress(address));

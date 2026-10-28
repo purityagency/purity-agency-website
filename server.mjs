@@ -4,7 +4,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { auditSite, normaliseUrl } from './api/audit.mjs';
+import { auditSite, normaliseUrl, isPublicUrl } from './api/audit.mjs';
 import { pagespeed, pagespeedIssues } from './api/pagespeed.mjs';
 import { availability, book } from './api/calendar.mjs';
 import { sendContact } from './api/contact.mjs';
@@ -24,15 +24,19 @@ const MIME = {
 
 function securityHeaders(res) {
   if (process.env.NODE_ENV === 'production') {
-    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   }
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()');
   res.setHeader('Content-Security-Policy', [
     "default-src 'self'",
     "base-uri 'self'",
+    "form-action 'self'",
     "object-src 'none'",
     "frame-ancestors 'none'",
     "script-src 'self'",
@@ -50,15 +54,33 @@ function securityHeaders(res) {
   ].join('; '));
 }
 
+function sameOrigin(req) {
+  if (req.headers.origin) {
+    return req.headers.origin === `http://${req.headers.host}` || req.headers.origin === `https://${req.headers.host}`;
+  }
+  const sfs = req.headers['sec-fetch-site'];
+  if (sfs && sfs !== 'same-origin' && sfs !== 'none') return false;
+  return true;
+}
+
 // Une IP ne peut pas enchainer les audits : chaque audit declenche une
 // requete sortante vers un site tiers.
 const hits = new Map();
-function rateLimited(ip) {
+setInterval(() => {
   const now = Date.now();
+  for (const [ip, list] of hits) {
+    const fresh = list.filter((t) => now - t < 60000);
+    if (fresh.length) hits.set(ip, fresh); else hits.delete(ip);
+  }
+}, 60_000).unref();
+
+function rateLimited(ip, maxPerMin = 6) {
+  const now = Date.now();
+  if (hits.size >= 5000 && !hits.has(ip)) return true;
   const list = (hits.get(ip) || []).filter((t) => now - t < 60000);
   list.push(now);
   hits.set(ip, list);
-  return list.length > 6;
+  return list.length > maxPerMin;
 }
 
 
@@ -99,7 +121,7 @@ http.createServer(async (req, res) => {
 
     if (path === '/api/chat') {
       if (!['POST', 'DELETE'].includes(req.method)) return json(405, { error: 'Méthode non autorisée.' });
-      if (req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`) return json(403, { error: 'Origine non autorisée.' });
+      if (!sameOrigin(req)) return json(403, { error: 'Origine non autorisée.' });
       if (!allowed(req.socket.remoteAddress || 'unknown')) return json(429, { error: 'Trop de messages. Réessayez dans quelques minutes ou contactez Amir.' });
       const { id, session } = sessionFor(req.headers.cookie);
       res.setHeader('Set-Cookie', `octomask=${id}; HttpOnly; SameSite=Strict; Path=/api/chat; Max-Age=1800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`);
@@ -114,7 +136,9 @@ http.createServer(async (req, res) => {
 
     if (path === '/api/offers' && req.method === 'GET') return json(200, { offers });
 
-    if (path === '/api/slots') {
+    if (path === '/api/slots' && req.method === 'GET') {
+      const ip = req.socket.remoteAddress || 'x';
+      if (rateLimited(ip, 20)) return json(429, { ok: false, reason: 'rate' });
       const date = new URL(req.url, 'http://x').searchParams.get('date');
       try {
         return json(200, await availability(String(date || '')));
@@ -124,6 +148,7 @@ http.createServer(async (req, res) => {
     }
 
     if (path === '/api/book' && req.method === 'POST') {
+      if (!sameOrigin(req)) return json(403, { ok: false, reason: 'forbidden' });
       const ip = req.socket.remoteAddress || 'x';
       if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
       try {
@@ -136,6 +161,7 @@ http.createServer(async (req, res) => {
     }
 
     if (path === '/api/contact' && req.method === 'POST') {
+      if (!sameOrigin(req)) return json(403, { ok: false, reason: 'forbidden' });
       const ip = req.socket.remoteAddress || 'x';
       if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
       try {
@@ -146,10 +172,12 @@ http.createServer(async (req, res) => {
       }
     }
 
-    if (path === '/api/pagespeed') {
+    if (path === '/api/pagespeed' && req.method === 'GET') {
+      const ip = req.socket.remoteAddress || 'x';
+      if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
       const q = new URL(req.url, 'http://x').searchParams.get('url');
       const target = normaliseUrl(q);
-      if (!target) return json(200, { ok: false });
+      if (!target || !(await isPublicUrl(target))) return json(200, { ok: false });
       try {
         const ps = await pagespeed(target.href);
         return json(200, ps ? { ok: true, pagespeed: ps, issues: pagespeedIssues(ps) } : { ok: false });
@@ -158,7 +186,7 @@ http.createServer(async (req, res) => {
       }
     }
 
-    if (path === '/api/audit') {
+    if (path === '/api/audit' && req.method === 'GET') {
       const q = new URL(req.url, 'http://x').searchParams.get('url');
       const ip = req.socket.remoteAddress || 'x';
       if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });

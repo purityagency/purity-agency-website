@@ -35,9 +35,10 @@ test('soft sanitizer repairs long suggestions and extra offerIds without burning
   assert.equal(validated.action, 'none');
 });
 test('rejects malformed output, unapproved navigation and false confirmations', () => {
-  for (const reply of ['', 'https://evil.example', 'Votre rendez-vous est confirmé.', 'J’ai envoyé votre demande.']) {
+  for (const reply of ['', 'https://evil.example', 'Votre rendez-vous est confirmé.', 'J’ai envoyé votre demande.', '<script>alert(1)</script>', 'SORTIE JSON : reply']) {
     assert.throws(() => validateReply({ ...valid, reply }));
   }
+  assert.throws(() => validateReply({ ...valid, suggestions: ['https://evil.example'] }));
   assert.throws(() => validateReply({ ...valid, action: 'send_email' }));
 });
 test('server owns history and keeps a bounded multi-turn context', async () => {
@@ -83,10 +84,10 @@ test('public audit rejects unsafe protocols, credentials, ports and private addr
   assert.equal(normaliseUrl('file:///etc/passwd'), null);
   assert.equal(normaliseUrl('https://user:pass@example.com'), null);
   assert.equal(normaliseUrl('https://example.com:8080'), null);
-  for (const address of ['127.0.0.1', '10.0.0.1', '169.254.169.254', '172.16.0.1', '192.168.1.1', '::1', 'fc00::1', 'fe80::1', '::ffff:127.0.0.1']) {
+  for (const address of ['127.0.0.1', '10.0.0.1', '169.254.169.254', '172.16.0.1', '192.168.1.1', '198.51.100.1', '203.0.113.5', '::1', 'fc00::1', 'fe80::1', '::ffff:127.0.0.1']) {
     assert.equal(isPublicAddress(address), false, address);
   }
-  for (const address of ['8.8.8.8', '1.1.1.1', '2606:4700:4700::1111']) {
+  for (const address of ['8.8.8.8', '1.1.1.1', '198.51.101.1', '203.0.114.1', '2606:4700:4700::1111']) {
     assert.equal(isPublicAddress(address), true, address);
   }
 });

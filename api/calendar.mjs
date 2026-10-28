@@ -151,8 +151,18 @@ export async function book({ start, name, email, phone, message }) {
   const token = await getToken();
   if (!token) return { ok: false, reason: 'unconfigured' };
 
+  const cleanStr = (v, max) => String(v == null ? '' : v).replace(/[\u0000-\u001F\u007F]+/g, ' ').trim().slice(0, max);
+  const safeName = cleanStr(name, 120);
+  const safeEmail = cleanStr(email, 160);
+  const safePhone = cleanStr(phone, 40);
+  const safeMessage = String(message == null ? '' : message).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]+/g, '').trim().slice(0, 2000);
+  if (!safeName || !safeEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(safeEmail)) {
+    return { ok: false, reason: 'bad-request' };
+  }
+
   const s = new Date(start);
-  if (isNaN(s) || s.getTime() < Date.now()) return { ok: false, reason: 'bad-slot' };
+  const maxAdvanceMs = BOOKING.advanceDays * 86400_000;
+  if (isNaN(s) || s.getTime() < Date.now() || s.getTime() > Date.now() + maxAdvanceMs) return { ok: false, reason: 'bad-slot' };
   const e = new Date(s.getTime() + BOOKING.slotMinutes * 60000);
 
   // Verifie que le creneau est toujours libre : deux visiteurs peuvent viser
@@ -164,9 +174,9 @@ export async function book({ start, name, email, phone, message }) {
   }
 
   const body = {
-    summary: `Appel Purity Agency - ${name}`,
-    description: [`Nom : ${name}`, `E-mail : ${email}`,
-      phone ? `Téléphone : ${phone}` : null, '', message || '']
+    summary: `Appel Purity Agency - ${safeName}`,
+    description: [`Nom : ${safeName}`, `E-mail : ${safeEmail}`,
+      safePhone ? `Téléphone : ${safePhone}` : null, '', safeMessage]
       .filter((l) => l !== null).join('\n'),
     start: { dateTime: s.toISOString(), timeZone: BOOKING.timezone },
     end: { dateTime: e.toISOString(), timeZone: BOOKING.timezone }

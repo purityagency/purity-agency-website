@@ -79,11 +79,11 @@ export function sanitizeCandidate(value) {
 
 export function validateReply(value) {
   if (!value || typeof value.reply !== 'string' || !value.reply.trim() || value.reply.length > 1800) throw new Error('invalid-reply');
-  // Prices belong to authoritative cards, never free-form model output.
-  if (/€|\beuros?\b|\bEUR\b|https?:\/\/|\[[^\]]*\]\(/i.test(value.reply)) throw new Error('unsafe-reply');
+  // Prices belong to authoritative cards, never free-form model output. Also block HTML tags and system-prompt leak markers.
+  if (/€|\beuros?\b|\bEUR\b|https?:\/\/|\[[^\]]*\]\(|<[a-z!/][\s\S]*?>|SORTIE JSON|CATALOGUE PUBLIC|MÉTHODE \(40/i.test(value.reply)) throw new Error('unsafe-reply');
   if (/(?:j[’']ai|nous avons|c[’']est|votre (?:message|demande|rendez-vous).{0,30}(?:est|a été)).{0,35}(?:envoy|transmis|réserv|confirm|bloqu)/i.test(value.reply)) throw new Error('unverified-action');
   if (!Array.isArray(value.offerIds) || value.offerIds.length > 2 || value.offerIds.some(id => !offers.some(o => o.id === id))) throw new Error('invalid-offers');
-  if (!Array.isArray(value.suggestions) || value.suggestions.length > 3 || value.suggestions.some(s => typeof s !== 'string' || s.length > 55)) throw new Error('invalid-suggestions');
+  if (!Array.isArray(value.suggestions) || value.suggestions.length > 3 || value.suggestions.some(s => typeof s !== 'string' || s.length > 55 || /https?:\/\/|<[a-z!/]/i.test(s))) throw new Error('invalid-suggestions');
   if (!['none', 'contact', 'booking'].includes(value.action)) throw new Error('invalid-action');
   return { reply: value.reply.trim(), offers: [...new Set(value.offerIds)].map(id => offers.find(o => o.id === id)), suggestions: value.suggestions, action: value.action };
 }
@@ -105,9 +105,10 @@ function compactForModel(messages) {
 }
 
 export async function chat(session, message, { fetcher = fetch, apiKey = key(), page = '' } = {}) {
-  if (typeof message !== 'string' || !message.trim() || message.length > 1800) return { status: 400, error: 'Écrivez un message de 1 à 1 800 caractères.' };
+  if (typeof message !== 'string') return { status: 400, error: 'Écrivez un message de 1 à 1 800 caractères.' };
+  const cleanMessage = message.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]+/g, '').trim();
+  if (!cleanMessage || cleanMessage.length > 1800) return { status: 400, error: 'Écrivez un message de 1 à 1 800 caractères.' };
   if (session.busy) return { status: 409, error: 'Une réponse est déjà en cours.' };
-  const cleanMessage = message.trim();
 
   // 1. Zero-Token Fast Router (chips & clear commercial intents) — only when using default live fetcher
   if (fetcher === fetch) {

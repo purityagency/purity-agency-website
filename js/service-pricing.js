@@ -30,7 +30,7 @@
   const renderOffer = offer => `<article class="service-offer-row">
     <div class="service-offer-row__copy"><strong>${escapeHtml(offer.name)}</strong><p>${escapeHtml(offer.description)}</p></div>
     <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer)}</div>
-    <a href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=ouverture25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
+    <a href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
   </article>`;
 
   const setError = block => {

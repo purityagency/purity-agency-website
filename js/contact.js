@@ -55,8 +55,8 @@
     field.value = 'Je souhaite en savoir plus sur l’offre ' + offer + '.';
     help.textContent = 'Cette demande a été préparée depuis la page Tarifs. Modifiez-la avant de continuer : rien n’est encore envoyé.';
   } else if (promo) {
-    field.value = 'Je souhaite demander un devis et profiter de l’offre de lancement (-25 % sur la création sous 24h + 1er mois offert sur la gestion des réseaux sociaux 3x/semaine). Mon activité : ';
-    help.textContent = 'Offre de lancement (-25 % + 1er mois réseaux sociaux offert) pré-activée. Précisez votre activité en une phrase avant de continuer.';
+    field.value = 'Je souhaite demander un devis et profiter de l’offre Novembre – Décembre (-25 % sur la création sous 24h + 1er mois offert sur la gestion des réseaux sociaux 3x/semaine). Mon activité : ';
+    help.textContent = 'Offre Novembre – Décembre (-25 % + 1er mois réseaux sociaux offert) pré-activée. Précisez votre activité en une phrase avant de continuer.';
   }
   if (!caseId && !offer && solution && /^[a-z-]{3,40}$/.test(solution)) {
     var solutionLabels = {

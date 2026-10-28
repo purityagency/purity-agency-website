@@ -3,7 +3,7 @@
   if (!root) return;
 
   const groups = [
-    { id: 'presence', label: 'Je veux un site qui ramène des clients', title: 'Sites web, boutiques & refontes (-25 % lancement)', description: 'Un site rapide, pensé pour convertir vos visiteurs en appels et demandes de devis.', image: '/assets/pricing-presence-studio.png', ids: ['M03', 'M04', 'M05', 'M06', 'M07'] },
+    { id: 'presence', label: 'Je veux un site qui ramène des clients', title: 'Sites web, boutiques & refontes (-25 % Nov. – Déc.)', description: 'Un site rapide, pensé pour convertir vos visiteurs en appels et demandes de devis.', image: '/assets/pricing-presence-studio.png', ids: ['M03', 'M04', 'M05', 'M06', 'M07'] },
     { id: 'visibilite', label: 'Je veux être visible sur Google & les réseaux', title: 'Google local, Réseaux sociaux (3x/sem.) & Image', description: 'Ressortir sur Google Maps et publier 3 fois par semaine sans y passer vos soirées.', image: '/assets/pricing-visibility-studio.png', ids: ['M08', 'M13', 'M16', 'M09', 'M10'] },
     { id: 'automatisation', label: 'Je veux gagner du temps chaque semaine', title: 'Automatisation & Agents IA sur mesure', description: 'Des outils qui répondent, prennent rendez-vous et relancent automatiquement.', image: '/assets/pricing-automation-studio.png', ids: ['M21', 'M22', 'M23'] },
     { id: 'diagnostic', label: 'Je veux savoir par où commencer', title: 'Diagnostic gratuit en 15 minutes', description: 'Un point honnête sur votre site et vos réseaux avant d’engager le moindre euro.', image: '/assets/pricing-diagnostic-studio.png', ids: ['M01'] }
@@ -64,7 +64,7 @@
     <div class="price-card__top"><h4>${esc(offer.name)}</h4>${priceMarkup(offer)}</div>
     <p>${esc(conciseDescription(offer.description))}</p>
     <details class="price-card__example"><summary>Voir un exemple concret <span aria-hidden="true">+</span></summary><div>${esc(examples[offer.id] || '')}</div></details>
-    <a class="price-card__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=ouverture25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
+    <a class="price-card__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
   </article>`;
 
   const pricingPage = document.querySelector('.pricing');

@@ -70,20 +70,20 @@
   paint();
 })();
 
-// Banniere jaune d'offre d'ouverture en haut de toutes les pages du site.
+// Banniere jaune d'offre Novembre - Decembre en haut de toutes les pages du site.
 (function () {
   if (document.querySelector('.promo-bar')) return;
   try {
-    if (sessionStorage.getItem('purity-promo-v25-dismissed') === '1') return;
+    if (sessionStorage.getItem('purity-promo-novdec-dismissed') === '1') return;
   } catch {}
 
   var promo = document.createElement('aside');
   promo.className = 'promo-bar';
-  promo.setAttribute('aria-label', 'Offre d’ouverture Purity Agency');
+  promo.setAttribute('aria-label', 'Offre Novembre – Décembre Purity Agency');
   promo.innerHTML =
-    '<span class="promo-bar__badge">Offre de lancement</span>' +
+    '<span class="promo-bar__badge">Novembre – Décembre</span>' +
     '<span class="promo-bar__text"><strong>-25\u00a0% sur la création</strong> (devis sous 24h) + <strong>1er mois offert</strong> sur vos réseaux sociaux <strong>3x/semaine</strong></span>' +
-    '<a class="promo-bar__cta" href="/contact.html?promo=ouverture25">En profiter →</a>' +
+    '<a class="promo-bar__cta" href="/contact.html?promo=novdec25">En profiter →</a>' +
     '<button type="button" class="promo-bar__close" aria-label="Masquer cette offre">×</button>';
 
   document.body.prepend(promo);
@@ -99,7 +99,7 @@
   promo.querySelector('.promo-bar__close').addEventListener('click', function () {
     promo.remove();
     syncPromoHeight();
-    try { sessionStorage.setItem('purity-promo-v25-dismissed', '1'); } catch {}
+    try { sessionStorage.setItem('purity-promo-novdec-dismissed', '1'); } catch {}
   });
 
   window.addEventListener('resize', syncPromoHeight);

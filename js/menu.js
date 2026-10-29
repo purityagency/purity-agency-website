@@ -165,7 +165,10 @@
       promo.className = 'promo-bar';
       promo.setAttribute('aria-label', 'Offre Purity Agency');
       promo.innerHTML =
-        '<span class="promo-bar__timer" data-promo-timer aria-live="off"></span>' +
+        '<span class="promo-bar__timer" data-promo-timer aria-live="off">' +
+          '<strong class="promo-bar__off" data-promo-off>-25\u00a0%</strong>' +
+          '<span class="promo-bar__clock" data-promo-clock></span>' +
+        '</span>' +
         '<span class="promo-bar__text" data-promo-bar-text></span>' +
         '<a class="promo-bar__cta" href="/tarifs.html">Tarifs →</a>' +
         '<button type="button" class="promo-bar__close" aria-label="Masquer">×</button>';
@@ -198,7 +201,14 @@
     var timerText = formatRemaining();
 
     document.querySelectorAll('[data-promo-timer]').forEach(function (el) {
-      el.textContent = active ? '-25\u00a0% · ' + timerText : 'Nov. – Déc.';
+      var offEl = el.querySelector('[data-promo-off]');
+      var clockEl = el.querySelector('[data-promo-clock]');
+      if (offEl && clockEl) {
+        offEl.hidden = !active;
+        clockEl.textContent = active ? '· ' + timerText : 'Nov. – Déc.';
+      } else {
+        el.textContent = active ? '-25\u00a0% · ' + timerText : 'Nov. – Déc.';
+      }
     });
 
     document.querySelectorAll('[data-promo-bar-text]').forEach(function (el) {

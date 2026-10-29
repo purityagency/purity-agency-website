@@ -688,7 +688,9 @@ textarea{
  place-items:center
 }
 .promo-bar__close:hover{background:rgba(11,10,12,.22)}
-.promo-bar__timer{display:inline-flex;align-items:center;gap:.24rem;padding:.14rem .5rem;border-radius:999px;background:rgba(11,10,12,.9);color:#FDE047;font-size:.71rem;font-weight:780;font-variant-numeric:tabular-nums;letter-spacing:.03em;white-space:nowrap}
+.promo-bar__timer{display:inline-flex;align-items:baseline;gap:.32rem;padding:.16rem .56rem;border-radius:999px;background:rgba(11,10,12,.92);color:#FDE047;font-size:.73rem;font-weight:780;font-variant-numeric:tabular-nums;letter-spacing:.03em;white-space:nowrap}
+.promo-bar__off{color:#FF3B30;font-size:.94rem;font-weight:880;letter-spacing:-.015em;line-height:1;text-shadow:0 0 10px rgba(255,59,48,.28)}
+.promo-bar__clock{color:#FDE047;font-size:.73rem;font-weight:760}
 .price-promo-line{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.35rem}
 .price-old{color:var(--muted);font-size:.82em;font-weight:500;text-decoration:line-through;opacity:.75}
 .promo-pill{display:inline-flex;align-items:center;padding:.14rem .46rem;border-radius:999px;font-size:.66rem;font-style:normal;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:.03em;line-height:1.2;white-space:nowrap}

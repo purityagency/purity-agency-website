@@ -59,3 +59,4 @@ EXPOSE 3001
 
 # Lancement direct sans wrapper shell pour propagation immédiate des signaux UNIX (SIGTERM / SIGINT)
 CMD ["node", "server.mjs"]
+

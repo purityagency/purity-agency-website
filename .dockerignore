@@ -24,3 +24,4 @@ tests/
 .pre-commit-config.yaml
 Dockerfile
 .dockerignore
+

@@ -117,5 +117,20 @@ test('CSRF origin check, prototype pollution guard, IP extraction, and honeypot 
   const { id: realId } = sessionFor(`octomask=${forged}`);
   assert.notEqual(realId, forged);
   assert.equal(sessionFor(`octomask=${realId}`).id, realId);
+
+  // Oversized body rejected cleanly with HTTP 413
+  await withServer(async baseUrl => {
+    const r = await fetch(`${baseUrl}/api/contact`, {
+      method: 'POST',
+      headers: {
+        'Origin': baseUrl,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: 'X'.repeat(25000) })
+    });
+    assert.equal(r.status, 413);
+    const body = await r.json();
+    assert.equal(body.reason, 'payload-too-large');
+  });
 });
 

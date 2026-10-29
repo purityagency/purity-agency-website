@@ -15,16 +15,23 @@
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
 
+  const isPromo24hActive = () => !window.PurityPromo24h || window.PurityPromo24h.isActive();
+  const promoBadgeText = fallback => (window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : (fallback || '-25 % 24h'));
+
   const priceMarkup = offer => {
     const price = String(offer.price || 'Sur mesure');
     const parts = price.split(' + ');
+    const active24h = isPromo24hActive();
     if (offer.id === 'M16') {
-      return `<span class="price-promo-line"><s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup || parts[0])}</strong></span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : ''}<em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '1er mois offert')}</em>`;
+      const setupPart = active24h && offer.promoSetup
+        ? `<s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup)}</strong>`
+        : `<strong>${escapeHtml(parts[0])}</strong>`;
+      return `<span class="price-promo-line">${setupPart}</span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : ''}<em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '1er mois offert')}</em>`;
     }
-    if (offer.promoSetup) {
-      return `<span class="price-promo-line"><s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup)}</strong> <em class="promo-pill promo-pill--25">${escapeHtml(offer.promoTag || '-25 % 24h')}</em></span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : '<small>mise en place (-25 %)</small>'}`;
+    if (offer.promoSetup && active24h) {
+      return `<span class="price-promo-line"><s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup)}</strong> <em class="promo-pill promo-pill--25" data-promo-badge="25">${escapeHtml(promoBadgeText(offer.promoTag))}</em></span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : '<small>mise en place (-25 %)</small>'}`;
     }
-    return `<strong>${escapeHtml(parts[0])}</strong>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : `<small>${escapeHtml(offer.promoTag || 'prix affiché')}</small>`}`;
+    return `<strong>${escapeHtml(parts[0])}</strong>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : `<small>${escapeHtml(offer.promoSetup ? 'Offre -25 % (24h) expirée' : (offer.promoTag || 'prix affiché'))}</small>`}`;
   };
 
   const renderOffer = offer => `<article class="service-offer-row">
@@ -45,13 +52,17 @@
     })
     .then(payload => {
       const offers = new Map((Array.isArray(payload.offers) ? payload.offers : []).map(offer => [offer.id, offer]));
-      blocks.forEach(block => {
-        const target = block.querySelector('.service-card__offers');
-        const ids = offerGroups[block.dataset.servicePricing] || [];
-        const selected = ids.map(id => offers.get(id)).filter(Boolean);
-        if (!target || !selected.length) return setError(block);
-        target.innerHTML = selected.map(renderOffer).join('');
-      });
+      const renderAll = () => {
+        blocks.forEach(block => {
+          const target = block.querySelector('.service-card__offers');
+          const ids = offerGroups[block.dataset.servicePricing] || [];
+          const selected = ids.map(id => offers.get(id)).filter(Boolean);
+          if (!target || !selected.length) return setError(block);
+          target.innerHTML = selected.map(renderOffer).join('');
+        });
+      };
+      renderAll();
+      window.addEventListener('purity:promo24h-expired', renderAll);
     })
     .catch(() => blocks.forEach(setError));
 })();

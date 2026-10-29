@@ -1,6 +1,24 @@
 import { readFileSync } from 'node:fs';
-import { randomBytes } from 'node:crypto';
+import { randomBytes, createHmac, timingSafeEqual } from 'node:crypto';
 import { offers, instructions, matchFastRoute, normalizeKey } from './octomask-knowledge.mjs';
+
+const SESSION_SECRET = randomBytes(32);
+
+function signSessionToken(rawHex32) {
+  const mac = createHmac('sha256', SESSION_SECRET).update(rawHex32).digest('hex').slice(0, 16);
+  return rawHex32 + mac;
+}
+
+function verifySessionToken(token48) {
+  if (typeof token48 !== 'string' || !/^[a-f0-9]{48}$/.test(token48)) return false;
+  const rawHex32 = token48.slice(0, 32);
+  const providedMac = Buffer.from(token48.slice(32), 'utf8');
+  const expectedMac = Buffer.from(
+    createHmac('sha256', SESSION_SECRET).update(rawHex32).digest('hex').slice(0, 16),
+    'utf8'
+  );
+  return providedMac.length === expectedMac.length && timingSafeEqual(providedMac, expectedMac);
+}
 
 const sessions = new Map();
 const limits = new Map();
@@ -32,9 +50,9 @@ export function sessionFor(cookie = '') {
   for (const [id, s] of sessions) if (now - s.at > TTL) sessions.delete(id);
   for (const [ip, s] of limits) if (now > s.until) limits.delete(ip);
   let id = cookie.match(/(?:^|;\s*)octomask=([a-f0-9]{48})(?:;|$)/)?.[1];
-  if (!id || !sessions.has(id)) {
+  if (!id || !verifySessionToken(id) || !sessions.has(id)) {
     if (sessions.size >= 1000) sessions.delete(sessions.keys().next().value);
-    id = randomBytes(24).toString('hex');
+    id = signSessionToken(randomBytes(16).toString('hex'));
     sessions.set(id, { at: now, messages: [], busy: false });
   }
   const session = sessions.get(id);

@@ -688,10 +688,12 @@ textarea{
  place-items:center
 }
 .promo-bar__close:hover{background:rgba(11,10,12,.22)}
+.promo-bar__timer{display:inline-flex;align-items:center;gap:.24rem;padding:.14rem .5rem;border-radius:999px;background:rgba(11,10,12,.9);color:#FDE047;font-size:.71rem;font-weight:780;font-variant-numeric:tabular-nums;letter-spacing:.03em;white-space:nowrap}
 .price-promo-line{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.35rem}
 .price-old{color:var(--muted);font-size:.82em;font-weight:500;text-decoration:line-through;opacity:.75}
-.promo-pill{display:inline-flex;align-items:center;padding:.14rem .46rem;border-radius:999px;font-size:.66rem;font-style:normal;font-weight:750;letter-spacing:.03em;line-height:1.2;white-space:nowrap}
+.promo-pill{display:inline-flex;align-items:center;padding:.14rem .46rem;border-radius:999px;font-size:.66rem;font-style:normal;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:.03em;line-height:1.2;white-space:nowrap}
 .promo-pill--25{background:#FDE047;color:#0B0A0C;border:1px solid rgba(11,10,12,.14)}
+.promo-pill--expired{background:rgba(11,10,12,.08);color:var(--muted);border:1px solid rgba(11,10,12,.12)}
 .promo-pill--free{background:color-mix(in srgb,var(--accent) 14%,#fff);color:var(--accent-deep);border:1px solid color-mix(in srgb,var(--accent) 32%,transparent)}
 @media (max-width:767px){
  .promo-bar{padding:.36rem 2.05rem .36rem .6rem;gap:.25rem .45rem;font-size:.71rem}

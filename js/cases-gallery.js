@@ -41,34 +41,54 @@
       var preview = card.querySelector('.case-preview');
       if (!preview) return;
       var siteFrame = preview.querySelector('.case-preview__frame-site');
-      function scrollSitePreview(top) {
+      var rafScroll = 0;
+      var currentY = 0;
+      var targetY = 0;
+
+      function stepScroll() {
         if (!siteFrame || !siteFrame.contentWindow) return;
-        try {
-          siteFrame.contentWindow.scrollTo({ top: top, behavior: 'smooth' });
-        } catch (error) {
-          // The thumbnail remains a static hero if an embedded page cannot be read.
+        var diff = targetY - currentY;
+        if (Math.abs(diff) > 0.8) {
+          currentY += diff * 0.085;
+          try {
+            siteFrame.contentWindow.scrollTo(0, currentY);
+          } catch (e) {}
+          rafScroll = requestAnimationFrame(stepScroll);
+        } else {
+          currentY = targetY;
+          try {
+            siteFrame.contentWindow.scrollTo(0, currentY);
+          } catch (e) {}
+          rafScroll = 0;
         }
       }
-      function revealSitePreview() {
-        if (!siteFrame) return;
-        var move = function () { scrollSitePreview(260); };
-        if (siteFrame.contentDocument && siteFrame.contentDocument.readyState === 'complete') move();
-        else siteFrame.addEventListener('load', move, { once: true });
+
+      function setScrollTarget(y) {
+        targetY = y;
+        if (!rafScroll) rafScroll = requestAnimationFrame(stepScroll);
       }
+
+      card.addEventListener('pointerenter', function () {
+        setScrollTarget(620);
+      });
+
       card.addEventListener('pointermove', function (event) {
         var rect = preview.getBoundingClientRect();
         preview.style.setProperty('--case-x', ((event.clientX - rect.left) / rect.width - .5).toFixed(3));
         preview.style.setProperty('--case-y', ((event.clientY - rect.top) / rect.height - .5).toFixed(3));
+        var progress = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+        setScrollTarget(Math.round(progress * 780));
       });
-      card.addEventListener('pointerenter', revealSitePreview);
+
       card.addEventListener('pointerleave', function () {
         preview.style.removeProperty('--case-x');
         preview.style.removeProperty('--case-y');
-        scrollSitePreview(0);
+        setScrollTarget(0);
       });
-      card.addEventListener('focusin', revealSitePreview);
+
+      card.addEventListener('focusin', function () { setScrollTarget(520); });
       card.addEventListener('focusout', function (event) {
-        if (!card.contains(event.relatedTarget)) scrollSitePreview(0);
+        if (!card.contains(event.relatedTarget)) setScrollTarget(0);
       });
     });
   }

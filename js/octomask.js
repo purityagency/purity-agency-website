@@ -110,7 +110,7 @@
 
   function save() {
     turns = turns.slice(-40);
-    try { sessionStorage.setItem(STORE, JSON.stringify({ at: Date.now(), turns })); } catch {}
+    try { sessionStorage.setItem(STORE, JSON.stringify({ at: Date.now(), turns })); } catch { }
   }
   function bubble(text, role) {
     const p = document.createElement('p');
@@ -135,11 +135,11 @@
   function hideTeaser(permanent = false) {
     teaser.classList.remove('is-visible');
     dismissedTeaser = true;
-    if (permanent) try { sessionStorage.setItem(`${STORE}-teaser`, 'hidden'); } catch {}
+    if (permanent) try { sessionStorage.setItem(`${STORE}-teaser`, 'hidden'); } catch { }
   }
   function showTeaser() {
     if (turns.length || dismissedTeaser) return;
-    try { if (sessionStorage.getItem(`${STORE}-teaser`) === 'hidden') return; } catch {}
+    try { if (sessionStorage.getItem(`${STORE}-teaser`) === 'hidden') return; } catch { }
     setTimeout(() => {
       if (dialog.open || dismissedTeaser) return;
       teaser.classList.add('is-visible');
@@ -188,7 +188,9 @@
       const card = document.createElement('article');
       card.className = 'octo__offer';
       const title = document.createElement('h3'); title.textContent = offer.name;
-      const price = document.createElement('strong'); price.textContent = offer.promoSetup ? `${offer.promoSetup} au lieu de ${offer.price.split(' + ')[0]}${offer.price.includes(' + ') ? ' + ' + offer.price.split(' + ').slice(1).join(' + ') : ''} (${offer.promoTag || '-25 % 24h'})` : offer.price;
+      const active24h = !window.PurityPromo24h || window.PurityPromo24h.isActive();
+      const badge24h = window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : (offer.promoTag || '-25 % 24h');
+      const price = document.createElement('strong'); price.textContent = (offer.promoSetup && active24h) ? `${offer.promoSetup} au lieu de ${offer.price.split(' + ')[0]}${offer.price.includes(' + ') ? ' + ' + offer.price.split(' + ').slice(1).join(' + ') : ''} (${offer.id === 'M16' ? offer.promoTag : badge24h})` : offer.price;
       const desc = document.createElement('p'); desc.textContent = offer.description;
       const note = document.createElement('small'); note.textContent = 'Offre Novembre – Décembre (devis sous 24h) · périmètre et conditions confirmés sur devis.';
       card.append(title, price, desc, note);
@@ -209,8 +211,10 @@
     status.textContent = 'OctoMask prépare sa réponse…';
     typing.hidden = false; toBottom();
     try {
-      const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, page: location.pathname }), signal: AbortSignal.timeout(27_000) });
+      const response = await fetch('/api/chat', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, page: location.pathname }), signal: AbortSignal.timeout(27_000)
+      });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'La réponse est indisponible. Réessayez ou contactez Amir.');
       typing.hidden = true;

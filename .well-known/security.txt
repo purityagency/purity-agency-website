@@ -1,0 +1,5 @@
+Contact: mailto:contact@purity-agency.be
+Preferred-Languages: fr, en
+Canonical: https://purity-agency.be/.well-known/security.txt
+Policy: https://purity-agency.be/confidentialite.html
+Expires: 2027-12-31T23:59:59.000Z

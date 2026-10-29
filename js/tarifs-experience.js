@@ -30,17 +30,24 @@
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
 
+  const isPromo24hActive = () => !window.PurityPromo24h || window.PurityPromo24h.isActive();
+  const promoBadgeText = fallback => (window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : (fallback || '-25 % 24h'));
+
   const priceMarkup = offer => {
     const parts = String(offer.price).split(' + ');
-    const setupHtml = offer.promoSetup
+    const active24h = isPromo24hActive();
+    const hasSetupDiscount = Boolean(offer.promoSetup && active24h);
+    const setupHtml = hasSetupDiscount
       ? `<s class="price-old">${esc(parts[0])}</s> <strong>${esc(offer.promoSetup)}</strong>`
       : `<strong>${esc(parts[0])}</strong>`;
     const badgeHtml = offer.id === 'M16'
       ? `<em class="promo-pill promo-pill--free">${esc(offer.promoTag)}</em>`
-      : offer.promoSetup
-        ? `<em class="promo-pill promo-pill--25">${esc(offer.promoTag || '-25 % 24h')}</em>`
-        : '';
-    if (parts.length === 1) return `<div class="price-card__pricing price-card__pricing--single"><span>${setupHtml} ${badgeHtml}<small>${offer.promoSetup ? 'mise en place (-25 % 24h)' : 'prix affiché'}</small></span></div>`;
+      : hasSetupDiscount
+        ? `<em class="promo-pill promo-pill--25" data-promo-badge="25">${esc(promoBadgeText(offer.promoTag))}</em>`
+        : offer.promoSetup
+          ? `<em class="promo-pill promo-pill--expired" data-promo-badge="25">24h expiré</em>`
+          : '';
+    if (parts.length === 1) return `<div class="price-card__pricing price-card__pricing--single"><span>${setupHtml} ${badgeHtml}<small>${hasSetupDiscount ? 'mise en place (-25 % 24h)' : 'prix affiché'}</small></span></div>`;
     return `<div class="price-card__pricing"><span>${setupHtml} ${badgeHtml}<small>mise en place</small></span><span><strong>${esc(parts.slice(1).join(' + '))}</strong><small>${offer.id === 'M16' ? '1er mois offert' : 'maintenance'}</small></span></div>`;
   };
 
@@ -50,14 +57,15 @@
     .trim();
 
   const priceAnchor = offers => {
+    const active24h = isPromo24hActive();
     const ranked = offers
-      .map(offer => ({ offer, value: Number.parseFloat(String(offer.promoSetup || offer.price).replace(/\s/g, '').replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0] || '') }))
+      .map(offer => ({ offer, value: Number.parseFloat(String((active24h && offer.promoSetup) || offer.price).replace(/\s/g, '').replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0] || '') }))
       .filter(item => Number.isFinite(item.value))
       .sort((a, b) => a.value - b.value);
     if (!ranked.length) return { primary: 'Offert (15 min)', secondary: 'sans engagement' };
     const top = ranked[0].offer;
     const [primary, ...rest] = String(top.price).split(' + ');
-    return { primary: `Dès ${top.promoSetup || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')}` : 'mise en place (-25 %)' };
+    return { primary: `Dès ${(active24h && top.promoSetup) || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')}` : (active24h ? 'mise en place (-25 %)' : 'mise en place') };
   };
 
   const cardMarkup = offer => `<article class="price-card">
@@ -135,6 +143,13 @@
       addEventListener('hashchange', () => {
         const next = validGroup(location.hash.slice(1));
         next ? showDetail(next) : showChooser();
+      });
+      addEventListener('purity:promo24h-expired', () => {
+        root.querySelectorAll('.pricing-group').forEach(section => {
+          const group = groups.find(g => g.id === section.dataset.pricingPanel);
+          const list = section.querySelector('.pricing-list');
+          if (group && list) list.innerHTML = group.ids.map(id => byId.get(id)).filter(Boolean).map(cardMarkup).join('');
+        });
       });
     })
     .catch(() => {

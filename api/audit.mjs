@@ -4,6 +4,8 @@
 import { hasKey } from './pagespeed.mjs';
 import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
+import http from 'node:http';
+import https from 'node:https';
 
 const UA = 'Mozilla/5.0 (compatible; PurityAudit/1.0; +https://purity-agency.be)';
 const TIMEOUT = 12000;
@@ -27,9 +29,22 @@ export function normaliseUrl(raw) {
 export function isPublicAddress(address) {
   const value = String(address || '').toLowerCase().split('%')[0];
   if (!isIP(value)) return false;
-  if (value === '::' || value === '::1' || value.startsWith('fc') || value.startsWith('fd') ||
-      /^fe[89ab]/.test(value)) return false;
-  const mapped = value.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/)?.[1];
+  if (
+    value === '::' ||
+    value === '::1' ||
+    value.startsWith('fc') ||
+    value.startsWith('fd') ||
+    /^fe[89ab]/.test(value) ||
+    value.startsWith('ff') ||
+    value.startsWith('2001:db8:') ||
+    value.startsWith('2001:0db8:') ||
+    value.startsWith('2001:2:') ||
+    value.startsWith('2001:0:') ||
+    value.startsWith('2001:0000:') ||
+    value.startsWith('2002:') ||
+    value.startsWith('64:ff9b:')
+  ) return false;
+  const mapped = value.match(/^::(?:ffff:)?(\d+\.\d+\.\d+\.\d+)$/)?.[1];
   const ipv4 = mapped || (isIP(value) === 4 ? value : '');
   if (!ipv4) return true;
   const [a, b, c] = ipv4.split('.').map(Number);
@@ -45,23 +60,79 @@ export function isPublicAddress(address) {
     a >= 224);
 }
 
-export async function isPublicUrl(url) {
-  if (!url || !['http:', 'https:'].includes(url.protocol) || url.username || url.password) return false;
-  if (url.port && !['80', '443'].includes(url.port)) return false;
+export async function resolvePublicTarget(url) {
+  if (!url || !['http:', 'https:'].includes(url.protocol) || url.username || url.password) return null;
+  if (url.port && !['80', '443'].includes(url.port)) return null;
   const host = url.hostname.toLowerCase();
-  if (host === 'localhost' || host.endsWith('.localhost') || host.endsWith('.local') || host.endsWith('.internal')) return false;
+  if (
+    isIP(host) ||
+    host === 'localhost' ||
+    host.endsWith('.localhost') ||
+    host.endsWith('.local') ||
+    host.endsWith('.internal') ||
+    host.endsWith('.arpa') ||
+    host.endsWith('.home') ||
+    host.endsWith('.lan')
+  ) return null;
   try {
     const addresses = await lookup(url.hostname, { all: true, verbatim: true });
-    return addresses.length > 0 && addresses.every(({ address }) => isPublicAddress(address));
-  } catch { return false; }
+    if (!addresses.length || !addresses.every(({ address }) => isPublicAddress(address))) return null;
+    return addresses[0]; // { address, family }
+  } catch {
+    return null;
+  }
+}
+
+export async function isPublicUrl(url) {
+  return Boolean(await resolvePublicTarget(url));
+}
+
+// Requete HTTP/HTTPS epinglee sur l'IP publique deja verifiee (Anti-DNS Rebinding / TOCTOU).
+function pinnedRequest(targetUrl, pinned, { headers = {}, signal } = {}) {
+  return new Promise((resolve, reject) => {
+    const isTls = targetUrl.protocol === 'https:';
+    const mod = isTls ? https : http;
+    const req = mod.request(
+      targetUrl,
+      {
+        method: 'GET',
+        headers: { ...headers, Host: targetUrl.host },
+        servername: targetUrl.hostname,
+        agent: false,
+        lookup: (_hostname, opts, cb) => {
+          if (opts && opts.all) cb(null, [{ address: pinned.address, family: pinned.family }]);
+          else cb(null, pinned.address, pinned.family);
+        },
+        signal
+      },
+      res => {
+        resolve({
+          status: res.statusCode || 0,
+          ok: (res.statusCode || 0) >= 200 && (res.statusCode || 0) < 300,
+          url: targetUrl.href,
+          headers: {
+            get: name => {
+              const val = res.headers[String(name).toLowerCase()];
+              return Array.isArray(val) ? val.join(', ') : (val || null);
+            }
+          },
+          stream: res
+        });
+      }
+    );
+    req.on('error', reject);
+    req.end();
+  });
 }
 
 async function safeFetch(initial, options = {}) {
   let target = new URL(initial);
   for (let hop = 0; hop <= 3; hop++) {
-    if (!(await isPublicUrl(target))) throw new Error('private-target');
-    const response = await fetch(target, { ...options, redirect: 'manual' });
+    const pinned = await resolvePublicTarget(target);
+    if (!pinned) throw new Error('private-target');
+    const response = await pinnedRequest(target, pinned, options);
     if (![301, 302, 303, 307, 308].includes(response.status)) return response;
+    response.stream?.destroy();
     const location = response.headers.get('location');
     if (!location || hop === 3) throw new Error('redirect-limit');
     target = new URL(location, target);
@@ -70,18 +141,23 @@ async function safeFetch(initial, options = {}) {
 }
 
 async function readLimited(response, maxBytes = 1_500_000) {
-  if (!response.body) return '';
-  const reader = response.body.getReader();
-  const chunks = [];
-  let total = 0;
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    total += value.byteLength;
-    if (total > maxBytes) { await reader.cancel(); throw new Error('response-too-large'); }
-    chunks.push(Buffer.from(value));
-  }
-  return Buffer.concat(chunks).toString('utf8');
+  if (!response?.stream) return '';
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let total = 0;
+    response.stream.on('data', chunk => {
+      const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      total += buf.byteLength;
+      if (total > maxBytes) {
+        response.stream.destroy();
+        reject(new Error('response-too-large'));
+        return;
+      }
+      chunks.push(buf);
+    });
+    response.stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    response.stream.on('error', reject);
+  });
 }
 
 export async function auditSite(url) {

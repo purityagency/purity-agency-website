@@ -82,38 +82,167 @@
   paint();
 })();
 
-// Banniere jaune d'offre Novembre - Decembre en haut de toutes les pages du site.
+// Decompte 24h a partir de la 1re ouverture du site, sur un cycle glissant de 30 jours.
+// Expose window.PurityPromo24h et synchronise en temps reel la banniere et tous les badges -25 %.
 (function () {
-  if (document.querySelector('.promo-bar')) return;
-  try {
-    if (sessionStorage.getItem('purity-promo-novdec-dismissed') === '1') return;
-  } catch {}
+  var STORAGE_KEY = 'purity_promo_first_open_v1';
+  var COOKIE_KEY = 'purity_first_open';
+  var WINDOW_MS = 24 * 60 * 60 * 1000;      // 24 heures de validite du -25 %
+  var CYCLE_MS = 30 * 24 * 60 * 60 * 1000;  // Cycle de 30 jours avant reinitialisation
 
-  var promo = document.createElement('aside');
-  promo.className = 'promo-bar';
-  promo.setAttribute('aria-label', 'Offre Novembre – Décembre Purity Agency');
-  promo.innerHTML =
-    '<span class="promo-bar__badge">Novembre – Décembre</span>' +
-    '<span class="promo-bar__text"><strong>-25\u00a0% sur la création</strong> (devis sous 24h) + <strong>1er mois offert</strong> sur vos réseaux sociaux <strong>3x/semaine</strong></span>' +
-    '<a class="promo-bar__cta" href="/contact.html?promo=novdec25">En profiter →</a>' +
-    '<button type="button" class="promo-bar__close" aria-label="Masquer cette offre">×</button>';
-
-  document.body.prepend(promo);
-
-  function syncPromoHeight() {
-    if (!promo.isConnected) {
-      document.documentElement.style.setProperty('--promo-h', '0px');
-      return;
-    }
-    document.documentElement.style.setProperty('--promo-h', (promo.offsetHeight + 4) + 'px');
+  function readCookieTimestamp() {
+    var m = document.cookie.match(/(?:^|;\s*)purity_first_open=(\d{10,15})/);
+    return m ? Number(m[1]) : 0;
   }
 
-  promo.querySelector('.promo-bar__close').addEventListener('click', function () {
-    promo.remove();
-    syncPromoHeight();
-    try { sessionStorage.setItem('purity-promo-novdec-dismissed', '1'); } catch {}
+  function writeTimestamp(ts) {
+    try { localStorage.setItem(STORAGE_KEY, String(ts)); } catch {}
+    try {
+      document.cookie = COOKIE_KEY + '=' + ts + '; Path=/; Max-Age=2592000; SameSite=Lax';
+    } catch {}
+  }
+
+  function resolveFirstOpen() {
+    var now = Date.now();
+    var stored = 0;
+    try { stored = Number(localStorage.getItem(STORAGE_KEY) || 0); } catch {}
+    if (!stored) stored = readCookieTimestamp();
+    if (!stored || !Number.isFinite(stored) || stored > now || (now - stored) >= CYCLE_MS) {
+      stored = now;
+    }
+    writeTimestamp(stored);
+    return stored;
+  }
+
+  var firstOpenAt = resolveFirstOpen();
+
+  function pad(n) {
+    return n < 10 ? '0' + n : String(n);
+  }
+
+  function remainingMs() {
+    var now = Date.now();
+    if ((now - firstOpenAt) >= CYCLE_MS) {
+      firstOpenAt = resolveFirstOpen();
+    }
+    return Math.max(0, (firstOpenAt + WINDOW_MS) - now);
+  }
+
+  function isActive() {
+    return remainingMs() > 0;
+  }
+
+  function formatRemaining() {
+    var totalSec = Math.ceil(remainingMs() / 1000);
+    var h = Math.floor(totalSec / 3600);
+    var m = Math.floor((totalSec % 3600) / 60);
+    var s = totalSec % 60;
+    return pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+
+  function badgeLabel() {
+    return isActive() ? '-25 % · ' + formatRemaining() : 'Offre 24h expirée';
+  }
+
+  window.PurityPromo24h = {
+    get firstOpenAt() { return firstOpenAt; },
+    get expiresAt() { return firstOpenAt + WINDOW_MS; },
+    get resetAt() { return firstOpenAt + CYCLE_MS; },
+    remainingMs: remainingMs,
+    isActive: isActive,
+    formatRemaining: formatRemaining,
+    badgeLabel: badgeLabel
+  };
+
+  // Repere les petits badges statiques "-25 % 24h ↗" dans le HTML pour les animer en direct.
+  document.querySelectorAll('small').forEach(function (el) {
+    if (el.textContent && el.textContent.indexOf('-25 % 24h') !== -1) {
+      el.setAttribute('data-promo-chip-24h', '1');
+    }
   });
 
-  window.addEventListener('resize', syncPromoHeight);
-  syncPromoHeight();
+  if (!document.querySelector('.promo-bar')) {
+    var dismissed = false;
+    try {
+      dismissed = sessionStorage.getItem('purity-promo-novdec-dismissed') === '1';
+    } catch {}
+
+    if (!dismissed) {
+      var promo = document.createElement('aside');
+      promo.className = 'promo-bar';
+      promo.setAttribute('aria-label', 'Offre Novembre – Décembre Purity Agency');
+      promo.innerHTML =
+        '<span class="promo-bar__badge">Novembre – Décembre</span>' +
+        '<span class="promo-bar__timer" data-promo-timer aria-live="off"></span>' +
+        '<span class="promo-bar__text" data-promo-bar-text></span>' +
+        '<a class="promo-bar__cta" href="/contact.html?promo=novdec25">En profiter →</a>' +
+        '<button type="button" class="promo-bar__close" aria-label="Masquer cette offre">×</button>';
+
+      document.body.prepend(promo);
+
+      function syncPromoHeight() {
+        if (!promo.isConnected) {
+          document.documentElement.style.setProperty('--promo-h', '0px');
+          return;
+        }
+        document.documentElement.style.setProperty('--promo-h', (promo.offsetHeight + 4) + 'px');
+      }
+
+      promo.querySelector('.promo-bar__close').addEventListener('click', function () {
+        promo.remove();
+        syncPromoHeight();
+        try { sessionStorage.setItem('purity-promo-novdec-dismissed', '1'); } catch {}
+      });
+
+      window.addEventListener('resize', syncPromoHeight);
+      requestAnimationFrame(syncPromoHeight);
+    }
+  }
+
+  var wasActive = isActive();
+
+  function tickPromo24h() {
+    var active = isActive();
+    var timerText = formatRemaining();
+
+    document.querySelectorAll('[data-promo-timer]').forEach(function (el) {
+      el.textContent = active ? '⏱ -25\u00a0% · ' + timerText : '⏱ Offre 24h expirée';
+    });
+
+    document.querySelectorAll('[data-promo-bar-text]').forEach(function (el) {
+      if (active) {
+        if (el.dataset.state !== 'active') {
+          el.dataset.state = 'active';
+          el.innerHTML = '<strong>-25\u00a0% sur la création</strong> (24h dès 1re visite) + <strong>1er mois offert</strong> sur vos réseaux sociaux <strong>3x/semaine</strong>';
+        }
+      } else if (el.dataset.state !== 'expired') {
+        el.dataset.state = 'expired';
+        el.innerHTML = '<strong>1er mois offert</strong> sur vos réseaux sociaux <strong>3x/semaine</strong> · remise -25\u00a0% (24h) expirée';
+      }
+    });
+
+    document.querySelectorAll('.promo-pill--25, [data-promo-badge="25"]').forEach(function (el) {
+      if (active) {
+        el.classList.add('promo-pill--25');
+        el.classList.remove('promo-pill--expired');
+        el.textContent = '-25 % · ' + timerText;
+      } else {
+        el.classList.remove('promo-pill--25');
+        el.classList.add('promo-pill--expired');
+        el.textContent = '24h expiré';
+      }
+    });
+
+    document.querySelectorAll('[data-promo-chip-24h]').forEach(function (el) {
+      el.textContent = active ? '-25 % · ' + timerText + ' ↗' : 'Sur devis ↗';
+    });
+
+    if (wasActive && !active) {
+      wasActive = false;
+      window.dispatchEvent(new CustomEvent('purity:promo24h-expired'));
+    }
+  }
+
+  tickPromo24h();
+  setInterval(tickPromo24h, 1000);
 })();

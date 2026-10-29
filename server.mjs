@@ -1,7 +1,7 @@
-// Serveur statique minimal pour le chantier v2. Aucune dependance.
+// Serveur HTTP haute securite (Zero-Dependency) pour Purity Agency v2.
 import http from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
-import { createReadStream } from 'node:fs';
+import { readFile, realpath, stat } from 'node:fs/promises';
+import { createReadStream, realpathSync } from 'node:fs';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditSite, normaliseUrl, isPublicUrl } from './api/audit.mjs';
@@ -10,109 +10,98 @@ import { availability, book } from './api/calendar.mjs';
 import { sendContact } from './api/contact.mjs';
 import { chat, sessionFor, clearSession, allowed } from './api/chat.mjs';
 import { offers } from './api/octomask-knowledge.mjs';
+import {
+  SECURITY_TXT,
+  applySecurityHeaders,
+  extractClientIp,
+  verifySameOrigin,
+  readJsonBody,
+  createRateLimiter,
+  resolveCleanRoute,
+  isAllowedStaticPath
+} from './api/security.mjs';
 
-const ROOT = resolve(fileURLToPath(new URL('.', import.meta.url)));
+const ROOT = realpathSync(resolve(fileURLToPath(new URL('.', import.meta.url))));
+const ROOT_PREFIX = ROOT.endsWith(sep) ? ROOT : ROOT + sep;
 const PORT = Number(process.env.PORT) || 3001;
 
 const MIME = {
-  '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.xml': 'application/xml; charset=utf-8',
-  '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg',
-  '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.ico': 'image/x-icon',
-  '.mp4': 'video/mp4', '.webm': 'video/webm', '.txt': 'text/plain; charset=utf-8'
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
+  '.webp': 'image/webp',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.woff2': 'font/woff2',
+  '.ico': 'image/x-icon',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
+  '.txt': 'text/plain; charset=utf-8'
 };
 
-function securityHeaders(res) {
-  if (process.env.NODE_ENV === 'production') {
-    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
-  }
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()');
-  res.setHeader('Content-Security-Policy', [
-    "default-src 'self'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "object-src 'none'",
-    "frame-ancestors 'none'",
-    "script-src 'self'",
-    "style-src 'self'",
-    // Les animations (reveal.js, founder-reveal.js, hero-video.js, method-waves.js, menu.js)
-    // pilotent des custom properties CSS (--i, --score, --scroll-progress...) et des
-    // transform/opacity via element.style.* : CSP les traite comme "style inline" au meme
-    // titre qu'un attribut style="" statique. style-src-attr cible precisement l'attribut
-    // style (HTML ou pose par JS) sans rouvrir <style>/feuilles externes (toujours 'self').
-    "style-src-attr 'unsafe-inline'",
-    "img-src 'self' data: https:",
-    "font-src 'self'",
-    "media-src 'self'",
-    "connect-src 'self' https://generativelanguage.googleapis.com https://api.resend.com https://oauth2.googleapis.com https://www.googleapis.com https://www.googleapis.com/pagespeedonline/"
-  ].join('; '));
-}
-
-function sameOrigin(req) {
-  if (req.headers.origin) {
-    return req.headers.origin === `http://${req.headers.host}` || req.headers.origin === `https://${req.headers.host}`;
-  }
-  const sfs = req.headers['sec-fetch-site'];
-  if (sfs && sfs !== 'same-origin' && sfs !== 'none') return false;
-  return true;
-}
-
-// Une IP ne peut pas enchainer les audits : chaque audit declenche une
-// requete sortante vers un site tiers.
-const hits = new Map();
-setInterval(() => {
-  const now = Date.now();
-  for (const [ip, list] of hits) {
-    const fresh = list.filter((t) => now - t < 60000);
-    if (fresh.length) hits.set(ip, fresh); else hits.delete(ip);
-  }
-}, 60_000).unref();
-
-function rateLimited(ip, maxPerMin = 6) {
-  const now = Date.now();
-  if (hits.size >= 5000 && !hits.has(ip)) return true;
-  const list = (hits.get(ip) || []).filter((t) => now - t < 60000);
-  list.push(now);
-  hits.set(ip, list);
-  return list.length > maxPerMin;
-}
-
+// Limiteurs de debit dedies par type d'operation pour empecher qu'un appel
+// lourd (audit / PageSpeed) ne bloque le formulaire de contact ou l'agenda.
+const auditLimiter = createRateLimiter({ windowMs: 60_000, max: 6 });
+const pagespeedLimiter = createRateLimiter({ windowMs: 60_000, max: 4 });
+const mutationLimiter = createRateLimiter({ windowMs: 60_000, max: 8 });
+const slotsLimiter = createRateLimiter({ windowMs: 60_000, max: 25 });
+const offersLimiter = createRateLimiter({ windowMs: 60_000, max: 60 });
 
 // Page 404 brandee : le visiteur garde le header, le footer et des liens de sortie.
 async function notFound(res) {
+  applySecurityHeaders(res, { isNoIndex: true });
   try {
     const html = await readFile(join(ROOT, '404.html'));
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' }).end(html);
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' }).end(html);
   } catch {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404');
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }).end('404');
   }
 }
 
-http.createServer(async (req, res) => {
+export const server = http.createServer(async (req, res) => {
   try {
-    securityHeaders(res);
-    let path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+    if (['TRACE', 'TRACK', 'CONNECT'].includes(String(req.method || '').toUpperCase())) {
+      applySecurityHeaders(res, { isNoIndex: true });
+      res.writeHead(405, { 'Cache-Control': 'no-store' }).end('Method Not Allowed');
+      return;
+    }
+    const rawUrl = String(req.url || '/');
+    if (rawUrl.length > 2048 || /%(?:00|2e|2f|5c)/i.test(rawUrl)) {
+      applySecurityHeaders(res, { isNoIndex: true });
+      res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }).end('Bad Request');
+      return;
+    }
 
-    var json = (code, body) => res.writeHead(code, {
-      'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store'
+    let path;
+    try {
+      path = decodeURIComponent(new URL(rawUrl, 'http://x').pathname);
+    } catch {
+      applySecurityHeaders(res, { isNoIndex: true });
+      res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }).end('Bad Request');
+      return;
+    }
+
+    const isNoIndexRoute = path.startsWith('/api/') || path.startsWith('/demos/') || path.startsWith('/offres/');
+    applySecurityHeaders(res, { isNoIndex: isNoIndexRoute });
+
+    const json = (code, body, extraHeaders = {}) => res.writeHead(code, {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+      ...extraHeaders
     }).end(JSON.stringify(body));
 
-    function readBody() {
-      return new Promise((ok, ko) => {
-        let raw = '';
-        req.on('data', (c) => {
-          raw += c;
-          if (raw.length > 20000) { req.destroy(); ko(new Error('too-large')); }
-        });
-        req.on('end', () => { try { ok(JSON.parse(raw || '{}')); } catch { ko(new Error('bad-json')); } });
-        req.on('error', ko);
-      });
+    const ip = extractClientIp(req);
+
+    // RFC 9116 security.txt
+    if ((path === '/.well-known/security.txt' || path === '/security.txt') && (req.method === 'GET' || req.method === 'HEAD')) {
+      res.writeHead(200, {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400'
+      }).end(req.method === 'HEAD' ? undefined : SECURITY_TXT);
+      return;
     }
 
     if ((path === '/health' || path === '/api/health') && req.method === 'GET') {
@@ -120,26 +109,42 @@ http.createServer(async (req, res) => {
     }
 
     if (path === '/api/chat') {
-      if (!['POST', 'DELETE'].includes(req.method)) return json(405, { error: 'Méthode non autorisée.' });
-      if (!sameOrigin(req)) return json(403, { error: 'Origine non autorisée.' });
-      if (!allowed(req.socket.remoteAddress || 'unknown')) return json(429, { error: 'Trop de messages. Réessayez dans quelques minutes ou contactez Amir.' });
+      if (!['POST', 'DELETE'].includes(req.method)) {
+        return json(405, { error: 'Méthode non autorisée.' }, { Allow: 'POST, DELETE' });
+      }
+      if (!verifySameOrigin(req)) return json(403, { error: 'Origine non autorisée.' });
+      if (!allowed(ip)) {
+        return json(429, { error: 'Trop de messages. Réessayez dans quelques minutes ou contactez Amir.' }, { 'Retry-After': '60' });
+      }
       const { id, session } = sessionFor(req.headers.cookie);
-      res.setHeader('Set-Cookie', `octomask=${id}; HttpOnly; SameSite=Strict; Path=/api/chat; Max-Age=1800${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`);
-      if (req.method === 'DELETE') { clearSession(id); return json(200, { ok: true }); }
+      res.setHeader(
+        'Set-Cookie',
+        `octomask=${id}; HttpOnly; SameSite=Strict; Path=/api/chat; Max-Age=1800; Priority=High${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+      );
+      if (req.method === 'DELETE') {
+        clearSession(id);
+        return json(200, { ok: true });
+      }
       try {
-        const body = await readBody();
+        const body = await readJsonBody(req, { maxBytes: 8_192, timeoutMs: 8_000 });
         const result = await chat(session, body?.message, { page: body?.page });
         const { status, ...payload } = result;
         return json(status, payload);
-      } catch { return json(400, { error: 'Message invalide.' }); }
+      } catch {
+        return json(400, { error: 'Message invalide.' });
+      }
     }
 
-    if (path === '/api/offers' && req.method === 'GET') return json(200, { offers });
+    if (path === '/api/offers') {
+      if (req.method !== 'GET') return json(405, { error: 'Méthode non autorisée.' }, { Allow: 'GET' });
+      if (offersLimiter(ip)) return json(429, { error: 'Trop de requêtes.' }, { 'Retry-After': '60' });
+      return json(200, { offers });
+    }
 
-    if (path === '/api/slots' && req.method === 'GET') {
-      const ip = req.socket.remoteAddress || 'x';
-      if (rateLimited(ip, 20)) return json(429, { ok: false, reason: 'rate' });
-      const date = new URL(req.url, 'http://x').searchParams.get('date');
+    if (path === '/api/slots') {
+      if (req.method !== 'GET') return json(405, { ok: false, reason: 'method' }, { Allow: 'GET' });
+      if (slotsLimiter(ip)) return json(429, { ok: false, reason: 'rate' }, { 'Retry-After': '60' });
+      const date = new URL(rawUrl, 'http://x').searchParams.get('date');
       try {
         return json(200, await availability(String(date || '')));
       } catch {
@@ -147,12 +152,13 @@ http.createServer(async (req, res) => {
       }
     }
 
-    if (path === '/api/book' && req.method === 'POST') {
-      if (!sameOrigin(req)) return json(403, { ok: false, reason: 'forbidden' });
-      const ip = req.socket.remoteAddress || 'x';
-      if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
+    if (path === '/api/book') {
+      if (req.method !== 'POST') return json(405, { ok: false, reason: 'method' }, { Allow: 'POST' });
+      if (!verifySameOrigin(req)) return json(403, { ok: false, reason: 'forbidden' });
+      if (mutationLimiter(ip)) return json(429, { ok: false, reason: 'rate' }, { 'Retry-After': '60' });
       try {
-        const b = await readBody();
+        const b = await readJsonBody(req, { maxBytes: 12_288, timeoutMs: 8_000 });
+        if (b.website || b.company_url || b._hp) return json(200, { ok: true, start: b.start || '' });
         if (!b.start || !b.name || !b.email) return json(200, { ok: false, reason: 'missing' });
         return json(200, await book(b));
       } catch {
@@ -160,22 +166,22 @@ http.createServer(async (req, res) => {
       }
     }
 
-    if (path === '/api/contact' && req.method === 'POST') {
-      if (!sameOrigin(req)) return json(403, { ok: false, reason: 'forbidden' });
-      const ip = req.socket.remoteAddress || 'x';
-      if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
+    if (path === '/api/contact') {
+      if (req.method !== 'POST') return json(405, { ok: false, reason: 'method' }, { Allow: 'POST' });
+      if (!verifySameOrigin(req)) return json(403, { ok: false, reason: 'forbidden' });
+      if (mutationLimiter(ip)) return json(429, { ok: false, reason: 'rate' }, { 'Retry-After': '60' });
       try {
-        const b = await readBody();
+        const b = await readJsonBody(req, { maxBytes: 16_384, timeoutMs: 8_000 });
         return json(200, await sendContact(b));
       } catch {
         return json(200, { ok: false, reason: 'bad-request' });
       }
     }
 
-    if (path === '/api/pagespeed' && req.method === 'GET') {
-      const ip = req.socket.remoteAddress || 'x';
-      if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
-      const q = new URL(req.url, 'http://x').searchParams.get('url');
+    if (path === '/api/pagespeed') {
+      if (req.method !== 'GET') return json(405, { ok: false, reason: 'method' }, { Allow: 'GET' });
+      if (pagespeedLimiter(ip)) return json(429, { ok: false, reason: 'rate' }, { 'Retry-After': '60' });
+      const q = new URL(rawUrl, 'http://x').searchParams.get('url');
       const target = normaliseUrl(q);
       if (!target || !(await isPublicUrl(target))) return json(200, { ok: false });
       try {
@@ -186,10 +192,10 @@ http.createServer(async (req, res) => {
       }
     }
 
-    if (path === '/api/audit' && req.method === 'GET') {
-      const q = new URL(req.url, 'http://x').searchParams.get('url');
-      const ip = req.socket.remoteAddress || 'x';
-      if (rateLimited(ip)) return json(429, { ok: false, reason: 'rate' });
+    if (path === '/api/audit') {
+      if (req.method !== 'GET') return json(405, { ok: false, reason: 'method' }, { Allow: 'GET' });
+      if (auditLimiter(ip)) return json(429, { ok: false, reason: 'rate' }, { 'Retry-After': '60' });
+      const q = new URL(rawUrl, 'http://x').searchParams.get('url');
       const target = normaliseUrl(q);
       if (!target) return json(200, { ok: false, reason: 'no-url' });
       try {
@@ -199,11 +205,20 @@ http.createServer(async (req, res) => {
       }
     }
 
-    // Preserve useful legacy entry points while the new information architecture
-    // takes over. Search engines and bookmarked v1 URLs land on an equivalent
-    // v2 destination instead of a dead page.
+    // Bloque toute route /api/* inconnue sans tomber dans le serveur de fichiers.
+    if (path.startsWith('/api/')) {
+      return json(404, { error: 'Route API introuvable.' });
+    }
+
+    // Seules les methodes GET et HEAD sont autorisees sur les ressources statiques.
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      res.writeHead(405, { Allow: 'GET, HEAD', 'Cache-Control': 'no-store' }).end('Method Not Allowed');
+      return;
+    }
+
+    // Redirections 301 des anciennes URLs v1 vers leur destination v2 active.
+    // Note : /tarifs.html est desormais une vraie page active et ne doit plus rediriger.
     const redirects = {
-      '/tarifs.html': '/#services',
       '/services.html': '/#services',
       '/agence-web-charleroi.html': '/#services',
       '/liens.html': '/contact.html'
@@ -212,28 +227,40 @@ http.createServer(async (req, res) => {
       res.writeHead(301, { Location: redirects[path], 'Cache-Control': 'no-store' }).end();
       return;
     }
-    if (path.endsWith('/')) path += 'index.html';
-    // Do not serve backend source, documentation or dotfiles as static assets.
-    const allowedStaticPath =
-      /^\/[a-zA-Z0-9_-]+\.(?:html|txt|xml)$/.test(path) ||
-      /^\/(?:assets|css|js)\/[a-zA-Z0-9_./-]+$/.test(path) ||
-      /^\/cas-concrets\/[a-z0-9-]+\.html$/.test(path) ||
-      /^\/demos\/[a-z0-9-]+\/(?:index|services|univers|contact|studio)\.html$/.test(path);
-    if (!allowedStaticPath || path.split('/').some(s => s.startsWith('.')) || !Object.hasOwn(MIME, extname(path))) {
-      await notFound(res); return;
-    }
-    // normalize resout les segments ".." ; on verifie ensuite que le chemin
-    // reste sous ROOT, ce qui bloque toute remontee hors du dossier servi.
-    const file = resolve(join(ROOT, normalize(path)));
-    if (!file.startsWith(ROOT.endsWith(sep) ? ROOT : ROOT + sep)) {
-      res.writeHead(403).end('Forbidden');
+
+    const resolvedRoute = resolveCleanRoute(path);
+    if (!resolvedRoute) {
+      await notFound(res);
       return;
     }
-    const info = await stat(file);
+    path = resolvedRoute;
+    if (path.endsWith('/')) path += 'index.html';
+
+    if (!isAllowedStaticPath(path) || !Object.hasOwn(MIME, extname(path).toLowerCase())) {
+      await notFound(res);
+      return;
+    }
+
+    const file = resolve(join(ROOT, normalize(path)));
+    if (!file.startsWith(ROOT_PREFIX)) {
+      res.writeHead(403, { 'Cache-Control': 'no-store' }).end('Forbidden');
+      return;
+    }
+
+    const realFile = await realpath(file);
+    if (!realFile.startsWith(ROOT_PREFIX)) {
+      res.writeHead(403, { 'Cache-Control': 'no-store' }).end('Forbidden');
+      return;
+    }
+
+    const info = await stat(realFile);
+    if (!info.isFile()) {
+      await notFound(res);
+      return;
+    }
+
     const ext = extname(file).toLowerCase();
     const etag = `W/"${info.size.toString(16)}-${Math.floor(info.mtimeMs).toString(16)}"`;
-    // HTML, CSS, JS : toujours revalides (304 si inchanges) pour qu'un deploiement soit
-    // visible immediatement. Medias et polices : gardes un jour en cache navigateur.
     const media = /^\.(?:webm|mp4|png|jpg|webp|svg|woff2|ico)$/.test(ext);
     const headers = {
       'Content-Type': MIME[ext] || 'application/octet-stream',
@@ -246,13 +273,11 @@ http.createServer(async (req, res) => {
       res.writeHead(304, headers).end();
       return;
     }
-    // Requetes partielles : le navigateur peut sauter dans la video (currentTime = 4.4)
-    // sans devoir telecharger tout le debut du fichier.
     const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
     if (range && (range[1] || range[2])) {
       let start = range[1] ? Number(range[1]) : Math.max(0, info.size - Number(range[2]));
       let end = range[1] && range[2] ? Math.min(Number(range[2]), info.size - 1) : info.size - 1;
-      if (start >= info.size || start > end) {
+      if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || start >= info.size || start > end) {
         res.writeHead(416, { 'Content-Range': `bytes */${info.size}` }).end();
         return;
       }
@@ -267,4 +292,14 @@ http.createServer(async (req, res) => {
   } catch {
     if (!res.headersSent) await notFound(res);
   }
-}).listen(PORT, '0.0.0.0', () => console.log(`purity-v2 on http://127.0.0.1:${PORT}`));
+});
+
+// Protection anti-Slowloris et limites de connexion HTTP.
+server.requestTimeout = 30_000;
+server.headersTimeout = 10_000;
+server.keepAliveTimeout = 5_000;
+server.maxHeadersCount = 64;
+
+if (process.env.PURITY_NO_LISTEN !== '1') {
+  server.listen(PORT, '0.0.0.0', () => console.log(`purity-v2 on http://127.0.0.1:${PORT}`));
+}

@@ -489,6 +489,8 @@ for (const study of caseStudies) {
     </div>
   </div>
   <div class="site-footer__legal">
+    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal.html">Légal</a>
     <a href="/confidentialite.html">Confidentialité</a>
@@ -500,37 +502,6 @@ for (const study of caseStudies) {
 <script src="/js/menu.js?v=2" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  /* Scroll fluide et interactif au hover dans le browser frame */
-  var preview = document.querySelector('.case-preview');
-  var frame = preview && preview.querySelector('.case-preview__frame-site');
-  if (preview && frame && window.matchMedia && window.matchMedia('(hover: hover)').matches) {
-    var raf = 0, curY = 0, tgtY = 0;
-    function anim() {
-      if (!frame || !frame.contentWindow) return;
-      var diff = tgtY - curY;
-      if (Math.abs(diff) > 0.8) {
-        curY += diff * 0.085;
-        try { frame.contentWindow.scrollTo(0, curY); } catch(e){}
-        raf = requestAnimationFrame(anim);
-      } else {
-        curY = tgtY;
-        try { frame.contentWindow.scrollTo(0, curY); } catch(e){}
-        raf = 0;
-      }
-    }
-    function setTgt(y) {
-      tgtY = y;
-      if (!raf) raf = requestAnimationFrame(anim);
-    }
-    preview.addEventListener('pointerenter', function () { setTgt(620); });
-    preview.addEventListener('pointermove', function (e) {
-      var r = preview.getBoundingClientRect();
-      var prog = Math.max(0, Math.min(1, (e.clientY - r.top) / r.height));
-      setTgt(Math.round(prog * 800));
-    });
-    preview.addEventListener('pointerleave', function () { setTgt(0); });
-  }
-
   var form = document.getElementById('lp-form');
   var status = document.getElementById('lp-status');
   if (!form || !status) return;

@@ -57,14 +57,6 @@ jobs:
             p/owasp-top-ten
             p/javascript
             p/nodejsscan
-          generateSarif: "1"
-
-      - name: Upload Semgrep Security SARIF Findings
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: semgrep.sarif
-          category: semgrep-sast
 
       - name: Run OWASP / STRIDE Security Test Suite
         run: npm test

@@ -65,8 +65,7 @@
     if (!ranked.length) return { primary: 'Offert (15 min)', secondary: 'sans engagement' };
     const top = ranked[0].offer;
     const [primary, ...rest] = String(top.price).split(' + ');
-    const badge24h = window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : '-25 % 24h';
-    return { primary: `Dès ${(active24h && top.promoSetup) || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')} (${active24h ? badge24h : 'tarif normal'})` : (active24h ? `mise en place (${badge24h})` : 'mise en place') };
+    return { primary: `Dès ${(active24h && top.promoSetup) || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')}` : 'mise en place' };
   };
 
   const cardMarkup = offer => `<article class="price-card">

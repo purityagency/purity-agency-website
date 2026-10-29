@@ -197,3 +197,18 @@
       });
   });
 })();
+
+// Sliders interactifs Avant / Apres autour du bloc d'audit (PC).
+(function () {
+  document.querySelectorAll('[data-audit-compare]').forEach(function (card) {
+    var range = card.querySelector('.audit-compare__range');
+    if (!range) return;
+    function sync() {
+      var val = Math.max(6, Math.min(94, Number(range.value) || 50));
+      card.style.setProperty('--split', val + '%');
+    }
+    range.addEventListener('input', sync);
+    range.addEventListener('change', sync);
+    sync();
+  });
+})();

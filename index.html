@@ -8,14 +8,14 @@
 <link rel="canonical" href="https://purity-agency.be/"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:locale" content="fr_BE"><meta property="og:title" content="Purity Agency — Moderniser et optimiser votre activité"><meta property="og:description" content="Solutions digitales claires pour PME et indépendants : sites, e-commerce, automatisation, IA, outils métier, branding et communication."><meta property="og:url" content="https://purity-agency.be/"><meta name="twitter:card" content="summary">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=12">
+<link rel="stylesheet" href="/css/app.css?v=14">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/octomask.css?v=5">
     <link rel="stylesheet" href="/css/hero-video.css?v=29">
 <link rel="stylesheet" href="/css/site-additions.css?v=12">
 <!-- audit.css bloquant : la section audit est visible des le premier ecran sur mobile
      (en differe, son application decalait la page). 2 Ko compresses. -->
-<link rel="stylesheet" href="/css/audit.css?v=7">
+<link rel="stylesheet" href="/css/audit.css?v=8">
 <!-- Sections sous la ligne de flottaison : CSS pre-charge (fetch immediat, non bloquant)
      puis active par /js/defer-css.js. Repli <noscript> pour les navigateurs sans JS. -->
 <link rel="preload" as="style" href="/css/method.css?v=13">
@@ -148,17 +148,67 @@
 
   <section class="audit" id="audit" aria-labelledby="audit-title">
     <div class="audit__inner">
-      <div class="audit__copy">
-        <h2 class="audit__title" id="audit-title">Testez votre site gratuitement.</h2>
-        <p class="audit__lead">Recevez un diagnostic expert de vos points faibles : ce qui freine la confiance, la prise de contact et ce qu’il faudrait améliorer en priorité.</p>
+      <div class="audit__stage">
+        <figure class="audit-compare audit-compare--left" data-audit-compare style="--split:50%">
+          <div class="audit-compare__chrome" aria-hidden="true">
+            <span class="audit-compare__dots"><i></i><i></i><i></i></span>
+            <span class="audit-compare__domain">renov-chauffage.be</span>
+            <span class="audit-compare__delta"><s>34</s> <strong>96/100</strong></span>
+          </div>
+          <div class="audit-compare__viewport">
+            <img class="audit-compare__img audit-compare__img--before" src="/assets/audit-compare/before-artisan.jpg" alt="Site artisan avant refonte : mise en page datée et illisible" width="800" height="600" loading="lazy" decoding="async">
+            <img class="audit-compare__img audit-compare__img--after" src="/assets/audit-compare/after-artisan.jpg" alt="Site artisan après refonte Purity : design moderne et demande de devis directe" width="800" height="600" loading="lazy" decoding="async">
+            <span class="audit-compare__tag audit-compare__tag--before" aria-hidden="true">Avant</span>
+            <span class="audit-compare__tag audit-compare__tag--after" aria-hidden="true">Après Purity</span>
+            <div class="audit-compare__divider" aria-hidden="true">
+              <span class="audit-compare__handle">
+                <svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <input class="audit-compare__range" type="range" min="6" max="94" value="50" aria-label="Glisser pour comparer le site artisan avant et après refonte">
+          </div>
+          <figcaption class="audit-compare__caption">
+            <strong>Artisan &amp; Rénovation</strong>
+            <span>Glissez pour comparer ↔</span>
+          </figcaption>
+        </figure>
 
-        <form class="audit__form" id="audit-form" novalidate>
-          <label class="sr-only" for="audit-url">Adresse de votre site</label>
-          <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
-                 placeholder="votre-entreprise.be" aria-describedby="audit-hint">
-          <button class="btn btn--primary audit__submit" type="submit">Obtenir le diagnostic</button>
-        </form>
-        <p class="audit__hint" id="audit-hint">Gratuit, sans inscription. Votre adresse n’est pas utilisée à des fins commerciales.</p>
+        <div class="audit__copy">
+          <h2 class="audit__title" id="audit-title">Testez votre site gratuitement.</h2>
+          <p class="audit__lead">Recevez un diagnostic expert de vos points faibles : ce qui freine la confiance, la prise de contact et ce qu’il faudrait améliorer en priorité.</p>
+
+          <form class="audit__form" id="audit-form" novalidate>
+            <label class="sr-only" for="audit-url">Adresse de votre site</label>
+            <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
+                   placeholder="votre-entreprise.be" aria-describedby="audit-hint">
+            <button class="btn btn--primary audit__submit" type="submit">Obtenir le diagnostic</button>
+          </form>
+          <p class="audit__hint" id="audit-hint">Gratuit, sans inscription. Votre adresse n’est pas utilisée à des fins commerciales.</p>
+        </div>
+
+        <figure class="audit-compare audit-compare--right" data-audit-compare style="--split:50%">
+          <div class="audit-compare__chrome" aria-hidden="true">
+            <span class="audit-compare__dots"><i></i><i></i><i></i></span>
+            <span class="audit-compare__domain">table-serein.be</span>
+            <span class="audit-compare__delta"><s>41</s> <strong>98/100</strong></span>
+          </div>
+          <div class="audit-compare__viewport">
+            <img class="audit-compare__img audit-compare__img--before" src="/assets/audit-compare/before-resto.jpg" alt="Site restaurant avant refonte : menu PDF illisible et sans réservation" width="800" height="600" loading="lazy" decoding="async">
+            <img class="audit-compare__img audit-compare__img--after" src="/assets/audit-compare/after-resto.jpg" alt="Site restaurant après refonte Purity : réservation en 1 clic et visuels studio" width="800" height="600" loading="lazy" decoding="async">
+            <span class="audit-compare__tag audit-compare__tag--before" aria-hidden="true">Avant</span>
+            <span class="audit-compare__tag audit-compare__tag--after" aria-hidden="true">Après Purity</span>
+            <div class="audit-compare__divider" aria-hidden="true">
+              <span class="audit-compare__handle">
+                <svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <input class="audit-compare__range" type="range" min="6" max="94" value="50" aria-label="Glisser pour comparer le site restaurant avant et après refonte">
+          </div>
+          <figcaption class="audit-compare__caption">
+            <strong>Restaurant &amp; Commerce</strong>
+            <span>Glissez pour comparer ↔</span>
+          </figcaption>
+        </figure>
       </div>
 
       <output class="audit__out" id="audit-out" aria-live="polite"></output>
@@ -434,7 +484,7 @@
 
 <script src="/js/defer-css.js" defer></script>
 <script src="/js/menu.js?v=9" defer></script>
-<script src="/js/audit.js" defer></script>
+<script src="/js/audit.js?v=2" defer></script>
 <script src="/js/reveal.js?v=2" defer></script>
 <script src="/js/method-waves.js?v=3" defer></script>
 <script src="/js/founder-reveal.js?v=3" defer></script>

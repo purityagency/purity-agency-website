@@ -38,7 +38,7 @@ export function validateEnvironment() {
       name: 'Gemini API Key',
       envVar: 'GEMINI_API_KEY',
       file: resolve(SECRETS_DIR, '.gemini-key'),
-      pattern: /^AIza[a-zA-Z0-9_-]{35}$/,
+      pattern: /^[a-zA-Z0-9_.-]{30,}$/,
       critical: false // Repli gracieux sur fast-router si absent
     },
     {
@@ -85,7 +85,11 @@ export function validateEnvironment() {
         warnings.push(`Secret optionnel non configuré pour ${check.name} (${source}).`);
       }
     } else if (check.pattern && source.startsWith('env:') && !check.pattern.test(value)) {
-      errors.push(`Format invalide pour la variable ${check.envVar} (${check.name}). Longueur: ${value.length} caractères.`);
+      if (check.critical) {
+        errors.push(`Format invalide pour la variable ${check.envVar} (${check.name}). Longueur: ${value.length} caractères.`);
+      } else {
+        warnings.push(`Format inattendu pour la variable optionnelle ${check.envVar} (${check.name}). Longueur: ${value.length} caractères.`);
+      }
     }
   }
 

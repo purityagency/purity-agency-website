@@ -1,0 +1,76 @@
+name: DevSecOps Hardening & Security Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 4 * * 1' # Audit automatique tous les lundis à 04h00 UTC
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  security-audit:
+    name: Supply Chain, SAST & Runtime Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # actions/checkout@v4.2.2 pinned to commit SHA
+      - name: Checkout Code (Least-Privilege)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      # actions/setup-node@v4.1.0 pinned to commit SHA
+      - name: Setup Node.js Runtime (v22 LTS)
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
+        with:
+          node-version: '22'
+          check-latest: true
+
+      - name: Supply Chain Dependency Audit
+        run: |
+          echo "=== Vérification de l'arbre de dépendances ==="
+          npm audit --audit-level=high
+
+      - name: Static Code Analysis & Syntax Guard
+        run: |
+          echo "=== Vérification syntaxique stricte ==="
+          for f in server.mjs api/*.mjs js/*.js; do
+            node --check "$f"
+          done
+
+      - name: Static Analysis Security Testing (Semgrep SAST)
+        uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
+        with:
+          config: >-
+            p/security-audit
+            p/owasp-top-ten
+            p/javascript
+            p/nodejsscan
+          generateSarif: "1"
+        env:
+          SEMGREP_RULES: >-
+            p/security-audit
+            p/owasp-top-ten
+            p/javascript
+            p/nodejsscan
+
+      - name: Upload Semgrep Security SARIF Findings
+        uses: github/codeql-action/upload-sarif@48ab28a6f5dab2a823ea613400017578330ff187
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep-sast
+
+      - name: Run OWASP / STRIDE Security Test Suite
+        run: npm test

@@ -22,3 +22,4 @@ We take the security of Purity Agency and our clients' data seriously. If you ha
 - Do not access, modify, or destroy user data.
 
 We acknowledge receipt of valid security reports within 24 business hours and prioritize fixes according to severity.
+

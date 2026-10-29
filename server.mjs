@@ -20,6 +20,9 @@ import {
   resolveCleanRoute,
   isAllowedStaticPath
 } from './api/security.mjs';
+import { validateEnvironment } from './api/env-validator.mjs';
+
+validateEnvironment();
 
 const ROOT = realpathSync(resolve(fileURLToPath(new URL('.', import.meta.url))));
 const ROOT_PREFIX = ROOT.endsWith(sep) ? ROOT : ROOT + sep;

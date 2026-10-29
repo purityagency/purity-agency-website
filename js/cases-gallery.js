@@ -14,6 +14,19 @@
   if (introTitle) introTitle.textContent = 'Nos réalisations.';
   if (introKicker) introKicker.textContent = 'Portfolio Purity';
 
+  function updateScales() {
+    cards.forEach(function (card) {
+      var preview = card.querySelector('.case-preview');
+      if (!preview) return;
+      var screen = preview.querySelector('.case-preview__screen') || preview;
+      var w = screen.clientWidth;
+      if (w > 0) {
+        var scale = (w / 1280).toFixed(4);
+        preview.style.setProperty('--preview-scale', scale);
+      }
+    });
+  }
+
   function apply(filter, shouldStore) {
     current = filter;
     if (shouldStore) sessionStorage.setItem(storageKey, filter);
@@ -31,15 +44,34 @@
       if (visible) count++;
     });
     status.textContent = count === 1 ? '1 démonstration affichée.' : count + ' démonstrations affichées.';
+    requestAnimationFrame(updateScales);
   }
   buttons.forEach(function (button) { button.addEventListener('click', function () { apply(button.dataset.filter, true); }); });
   if (select) select.addEventListener('change', function () { apply(select.value, true); });
   apply(current, false);
+
+  updateScales();
+  window.addEventListener('resize', updateScales);
+  window.addEventListener('load', updateScales);
+
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reducedMotion && window.matchMedia && window.matchMedia('(hover: hover)').matches) {
     cards.forEach(function (card) {
       var preview = card.querySelector('.case-preview');
       if (!preview) return;
+
+      card.addEventListener('pointerenter', function () {
+        updateScales();
+        card.classList.add('is-hovered');
+        preview.classList.add('is-hovered');
+      });
+
+      card.addEventListener('pointerleave', function () {
+        card.classList.remove('is-hovered');
+        preview.classList.remove('is-hovered');
+        preview.style.removeProperty('--case-x');
+        preview.style.removeProperty('--case-y');
+      });
 
       card.addEventListener('pointermove', function (event) {
         var rect = preview.getBoundingClientRect();
@@ -47,9 +79,17 @@
         preview.style.setProperty('--case-y', ((event.clientY - rect.top) / rect.height - .5).toFixed(3));
       });
 
-      card.addEventListener('pointerleave', function () {
-        preview.style.removeProperty('--case-x');
-        preview.style.removeProperty('--case-y');
+      card.addEventListener('focusin', function () {
+        updateScales();
+        card.classList.add('is-hovered');
+        preview.classList.add('is-hovered');
+      });
+
+      card.addEventListener('focusout', function (event) {
+        if (!card.contains(event.relatedTarget)) {
+          card.classList.remove('is-hovered');
+          preview.classList.remove('is-hovered');
+        }
       });
     });
   }

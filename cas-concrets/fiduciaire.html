@@ -14,7 +14,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/css/app.css?v=16">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=2">
+<link rel="stylesheet" href="/css/cases.css?v=25">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -109,7 +109,7 @@
           <source srcset="/assets/cases/visuals/fiduciaire.webp" type="image/webp">
           <img src="/assets/cases/visuals/fiduciaire.png" width="1536" height="1024" loading="eager" decoding="async" alt="Démonstration Clarté & Associés">
         </picture>
-        <iframe class="case-preview__frame-site" src="/demos/fiduciaire/" title="Clarté & Associés" tabindex="-1" loading="lazy" aria-hidden="true"></iframe>
+        <iframe class="case-preview__frame-site" src="/demos/fiduciaire/" title="Clarté & Associés" tabindex="-1" loading="eager" aria-hidden="true"></iframe>
       </div>
       <span class="case-preview__hint">Survolez pour explorer le site ↓</span>
     </div>
@@ -244,16 +244,56 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-    <div><a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt="" width="32" height="32">Purity Agency</a><p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p></div>
-    <nav aria-label="Navigation de pied de page"><h2>Explorer</h2><a href="/#services">Services</a><a href="/tarifs.html">Tarifs</a><a href="/cas-concrets.html">Nos réalisations</a><a href="/blog.html">Blog</a><a href="/contact.html">Contact</a></nav>
-    <div><h2>Parlons-en</h2><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
+    <div>
+      <a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt="" width="32" height="32">Purity Agency</a>
+      <p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p>
+    </div>
+    <nav aria-label="Navigation de pied de page">
+      <h2>Explorer</h2>
+      <a href="/#services">Services</a>
+      <a href="/tarifs.html">Tarifs</a>
+      <a href="/cas-concrets.html">Nos réalisations</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div>
+      <h2>Parlons-en</h2>
+      <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+    </div>
   </div>
-  <div class="site-footer__legal"><span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span><span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span><span>© 2026 Purity Agency</span><a href="/legal.html">Légal</a><a href="/confidentialite.html">Confidentialité</a><a href="/cookies.html">Cookies</a><a href="/conditions-generales.html">CGV</a></div>
+  <div class="site-footer__legal">
+    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
+    <span>© 2026 Purity Agency</span>
+    <a href="/legal.html">Légal</a>
+    <a href="/confidentialite.html">Confidentialité</a>
+    <a href="/cookies.html">Cookies</a>
+    <a href="/conditions-generales.html">CGV</a>
+  </div>
 </footer>
 
 <script src="/js/menu.js?v=2" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  var preview = document.querySelector('.case-preview');
+  if (preview) {
+    function updateScale() {
+      var screen = preview.querySelector('.case-preview__screen') || preview;
+      var w = screen.clientWidth;
+      if (w > 0) preview.style.setProperty('--preview-scale', (w / 1280).toFixed(4));
+    }
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    window.addEventListener('load', updateScale);
+    preview.addEventListener('pointerenter', function () {
+      updateScale();
+      preview.classList.add('is-hovered');
+    });
+    preview.addEventListener('pointerleave', function () {
+      preview.classList.remove('is-hovered');
+    });
+  }
+
   var form = document.getElementById('lp-form');
   var status = document.getElementById('lp-status');
   if (!form || !status) return;

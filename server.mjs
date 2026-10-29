@@ -84,8 +84,9 @@ export const server = http.createServer(async (req, res) => {
       return;
     }
 
-    const isNoIndexRoute = path.startsWith('/api/') || path.startsWith('/demos/') || path.startsWith('/offres/');
-    applySecurityHeaders(res, { isNoIndex: isNoIndexRoute });
+    const isDemoRoute = path.startsWith('/demos/');
+    const isNoIndexRoute = path.startsWith('/api/') || isDemoRoute || path.startsWith('/offres/');
+    applySecurityHeaders(res, { isNoIndex: isNoIndexRoute, isDemo: isDemoRoute });
 
     const json = (code, body, extraHeaders = {}) => res.writeHead(code, {
       'Content-Type': 'application/json; charset=utf-8',

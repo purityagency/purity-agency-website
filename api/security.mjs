@@ -8,6 +8,7 @@ const CSP_DIRECTIVES = [
   "form-action 'self'",
   "object-src 'none'",
   "frame-ancestors 'none'",
+  "frame-src 'self'",
   "script-src 'self'",
   "script-src-attr 'none'",
   "style-src 'self'",
@@ -63,10 +64,10 @@ export const SECURITY_TXT = [
   ''
 ].join('\n');
 
-export function applySecurityHeaders(res, { isNoIndex = false } = {}) {
+export function applySecurityHeaders(res, { isNoIndex = false, isDemo = false } = {}) {
   res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Frame-Options', isDemo ? 'SAMEORIGIN' : 'DENY');
   res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
   res.setHeader('X-DNS-Prefetch-Control', 'off');
   res.setHeader('X-Download-Options', 'noopen');
@@ -75,9 +76,12 @@ export function applySecurityHeaders(res, { isNoIndex = false } = {}) {
   res.setHeader('Origin-Agent-Cluster', '?1');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy', PERMISSIONS_POLICY);
+  const baseDirectives = isDemo
+    ? CSP_DIRECTIVES.map(d => d.startsWith('frame-ancestors') ? "frame-ancestors 'self'" : d)
+    : CSP_DIRECTIVES;
   const csp = process.env.NODE_ENV === 'production'
-    ? [...CSP_DIRECTIVES, 'upgrade-insecure-requests'].join('; ')
-    : CSP_DIRECTIVES.join('; ');
+    ? [...baseDirectives, 'upgrade-insecure-requests'].join('; ')
+    : baseDirectives.join('; ');
   res.setHeader('Content-Security-Policy', csp);
   if (isNoIndex) {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');

@@ -93,15 +93,25 @@
       </div>
     </div>
 
-    <!-- PREVIEW VISUELLE HAUTE RESOLUTION -->
+    <!-- PREVIEW DU SITE EN SCROLL DANS LE FRAME -->
     <div class="case-preview" style="--case-ink:#171a1d;--case-paper:#edf0ed;--case-accent:#bd7143" aria-hidden="true">
-      <picture>
-        <source srcset="/assets/cases/visuals/garage.webp" type="image/webp">
-        <img src="/assets/cases/visuals/garage.png" width="1536" height="1024" loading="eager" decoding="async" alt="Démonstration Garage Rive">
-      </picture>
-      <span class="case-preview__wash"></span>
-      <span class="case-preview__frame"></span>
-      <span class="case-preview__orb"></span>
+      <div class="case-preview__bar">
+        <div class="case-preview__dots">
+          <span class="case-preview__dot case-preview__dot--r"></span>
+          <span class="case-preview__dot case-preview__dot--y"></span>
+          <span class="case-preview__dot case-preview__dot--g"></span>
+        </div>
+        <div class="case-preview__url">demo.garage.be</div>
+        <div class="case-preview__tag">Démo Live</div>
+      </div>
+      <div class="case-preview__screen">
+        <picture class="case-preview__poster">
+          <source srcset="/assets/cases/visuals/garage.webp" type="image/webp">
+          <img src="/assets/cases/visuals/garage.png" width="1536" height="1024" loading="eager" decoding="async" alt="Démonstration Garage Rive">
+        </picture>
+        <iframe class="case-preview__frame-site" src="/demos/garage/" title="Garage Rive" tabindex="-1" loading="lazy" aria-hidden="true"></iframe>
+      </div>
+      <span class="case-preview__hint">Survolez pour explorer le site ↓</span>
     </div>
   </section>
 
@@ -263,6 +273,37 @@
 <script src="/js/menu.js?v=2" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  /* Scroll fluide et interactif au hover dans le browser frame */
+  var preview = document.querySelector('.case-preview');
+  var frame = preview && preview.querySelector('.case-preview__frame-site');
+  if (preview && frame && window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+    var raf = 0, curY = 0, tgtY = 0;
+    function anim() {
+      if (!frame || !frame.contentWindow) return;
+      var diff = tgtY - curY;
+      if (Math.abs(diff) > 0.8) {
+        curY += diff * 0.085;
+        try { frame.contentWindow.scrollTo(0, curY); } catch(e){}
+        raf = requestAnimationFrame(anim);
+      } else {
+        curY = tgtY;
+        try { frame.contentWindow.scrollTo(0, curY); } catch(e){}
+        raf = 0;
+      }
+    }
+    function setTgt(y) {
+      tgtY = y;
+      if (!raf) raf = requestAnimationFrame(anim);
+    }
+    preview.addEventListener('pointerenter', function () { setTgt(620); });
+    preview.addEventListener('pointermove', function (e) {
+      var r = preview.getBoundingClientRect();
+      var prog = Math.max(0, Math.min(1, (e.clientY - r.top) / r.height));
+      setTgt(Math.round(prog * 800));
+    });
+    preview.addEventListener('pointerleave', function () { setTgt(0); });
+  }
+
   var form = document.getElementById('lp-form');
   var status = document.getElementById('lp-status');
   if (!form || !status) return;

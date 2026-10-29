@@ -50,7 +50,7 @@ jobs:
           done
 
       - name: Static Analysis Security Testing (Semgrep SAST)
-        uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
+        uses: semgrep/semgrep-action@v1
         with:
           config: >-
             p/security-audit
@@ -58,15 +58,9 @@ jobs:
             p/javascript
             p/nodejsscan
           generateSarif: "1"
-        env:
-          SEMGREP_RULES: >-
-            p/security-audit
-            p/owasp-top-ten
-            p/javascript
-            p/nodejsscan
 
       - name: Upload Semgrep Security SARIF Findings
-        uses: github/codeql-action/upload-sarif@48ab28a6f5dab2a823ea613400017578330ff187
+        uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
           sarif_file: semgrep.sarif

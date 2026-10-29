@@ -134,7 +134,8 @@ export const server = http.createServer(async (req, res) => {
         const result = await chat(session, body?.message, { page: body?.page });
         const { status, ...payload } = result;
         return json(status, payload);
-      } catch {
+      } catch (err) {
+        if (err?.message === 'too-large') return json(413, { error: 'Message trop volumineux (max 8 Ko).' });
         return json(400, { error: 'Message invalide.' });
       }
     }
@@ -165,8 +166,9 @@ export const server = http.createServer(async (req, res) => {
         if (b.website || b.company_url || b._hp) return json(200, { ok: true, start: b.start || '' });
         if (!b.start || !b.name || !b.email) return json(200, { ok: false, reason: 'missing' });
         return json(200, await book(b));
-      } catch {
-        return json(200, { ok: false, reason: 'bad-request' });
+      } catch (err) {
+        if (err?.message === 'too-large') return json(413, { ok: false, reason: 'payload-too-large' });
+        return json(400, { ok: false, reason: 'bad-request' });
       }
     }
 
@@ -177,8 +179,9 @@ export const server = http.createServer(async (req, res) => {
       try {
         const b = await readJsonBody(req, { maxBytes: 16_384, timeoutMs: 8_000 });
         return json(200, await sendContact(b));
-      } catch {
-        return json(200, { ok: false, reason: 'bad-request' });
+      } catch (err) {
+        if (err?.message === 'too-large') return json(413, { ok: false, reason: 'payload-too-large' });
+        return json(400, { ok: false, reason: 'bad-request' });
       }
     }
 

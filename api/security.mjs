@@ -189,7 +189,8 @@ export function readJsonBody(req, { maxBytes = 16_384, timeoutMs = 8_000 } = {})
       if (totalBytes > maxBytes) {
         settled = true;
         clearTimeout(timer);
-        req.destroy();
+        req.pause();
+        req.on('data', () => {}); // drain stream safely
         reject(new Error('too-large'));
         return;
       }

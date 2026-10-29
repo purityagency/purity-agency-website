@@ -255,7 +255,7 @@ for (const study of caseStudies) {
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/css/app.css?v=16">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=2">
+<link rel="stylesheet" href="/css/cases.css?v=25">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -350,7 +350,7 @@ for (const study of caseStudies) {
           <source srcset="/assets/cases/visuals/${study.id}.webp" type="image/webp">
           <img src="/assets/cases/visuals/${study.id}.png" width="1536" height="1024" loading="eager" decoding="async" alt="Démonstration ${meta.demoName}">
         </picture>
-        <iframe class="case-preview__frame-site" src="/demos/${study.id}/" title="${meta.demoName}" tabindex="-1" loading="lazy" aria-hidden="true"></iframe>
+        <iframe class="case-preview__frame-site" src="/demos/${study.id}/" title="${meta.demoName}" tabindex="-1" loading="eager" aria-hidden="true"></iframe>
       </div>
       <span class="case-preview__hint">Survolez pour explorer le site ↓</span>
     </div>
@@ -502,6 +502,25 @@ for (const study of caseStudies) {
 <script src="/js/menu.js?v=2" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  var preview = document.querySelector('.case-preview');
+  if (preview) {
+    function updateScale() {
+      var screen = preview.querySelector('.case-preview__screen') || preview;
+      var w = screen.clientWidth;
+      if (w > 0) preview.style.setProperty('--preview-scale', (w / 1280).toFixed(4));
+    }
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    window.addEventListener('load', updateScale);
+    preview.addEventListener('pointerenter', function () {
+      updateScale();
+      preview.classList.add('is-hovered');
+    });
+    preview.addEventListener('pointerleave', function () {
+      preview.classList.remove('is-hovered');
+    });
+  }
+
   var form = document.getElementById('lp-form');
   var status = document.getElementById('lp-status');
   if (!form || !status) return;

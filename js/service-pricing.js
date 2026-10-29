@@ -22,23 +22,71 @@
     const price = String(offer.price || 'Sur mesure');
     const parts = price.split(' + ');
     const active24h = isPromo24hActive();
+    const hasMonthly = Boolean(parts[1]);
+    const monthlyText = hasMonthly ? `+ ${escapeHtml(parts.slice(1).join(' + '))}` : '';
+
+    if (offer.id === 'M01') {
+      return `<div class="price-setup">
+        <strong class="price-current price-current--free">${escapeHtml(parts[0])}</strong>
+        <em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '100 % gratuit')}</em>
+      </div>
+      <div class="price-recurring price-recurring--free">
+        <span class="price-recurring__note">15 min en visio · sans aucun engagement</span>
+      </div>`;
+    }
+
     if (offer.id === 'M16') {
-      const setupPart = active24h && offer.promoSetup
-        ? `<s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup)}</strong>`
-        : `<strong>${escapeHtml(parts[0])}</strong>`;
-      return `<span class="price-promo-line">${setupPart}</span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : ''}<em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '1er mois offert')}</em>`;
+      const setupOld = parts[0];
+      const setupNow = active24h && offer.promoSetup ? offer.promoSetup : setupOld;
+      const isDiscounted = active24h && offer.promoSetup && setupNow !== setupOld;
+      return `<div class="price-setup">
+        ${isDiscounted ? `<s class="price-old">${escapeHtml(setupOld)}</s>` : ''}
+        <strong class="price-current">${escapeHtml(setupNow)}</strong>
+        ${isDiscounted ? `<em class="promo-pill promo-pill--25" data-promo-badge="25">${escapeHtml(promoBadgeText(offer.promoTag))}</em>` : ''}
+      </div>
+      <div class="price-recurring">
+        <span class="price-recurring__amount">${monthlyText}</span>
+        <em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '1er mois offert')}</em>
+      </div>`;
     }
+
     if (offer.promoSetup && active24h) {
-      return `<span class="price-promo-line"><s class="price-old">${escapeHtml(parts[0])}</s> <strong>${escapeHtml(offer.promoSetup)}</strong> <em class="promo-pill promo-pill--25" data-promo-badge="25">${escapeHtml(promoBadgeText(offer.promoTag))}</em></span>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : '<small>mise en place (-25 %)</small>'}`;
+      return `<div class="price-setup">
+        <s class="price-old">${escapeHtml(parts[0])}</s>
+        <strong class="price-current">${escapeHtml(offer.promoSetup)}</strong>
+        <em class="promo-pill promo-pill--25" data-promo-badge="25">${escapeHtml(promoBadgeText(offer.promoTag))}</em>
+      </div>
+      <div class="price-recurring">
+        ${hasMonthly 
+          ? `<span class="price-recurring__amount">${monthlyText}</span> <span class="price-recurring__note">hébergement &amp; suivi inclus</span>` 
+          : `<span class="price-recurring__note price-recurring__note--once">paiement unique · sans abonnement</span>`
+        }
+      </div>`;
     }
-    return `<strong>${escapeHtml(parts[0])}</strong>${parts[1] ? `<span>+ ${escapeHtml(parts.slice(1).join(' + '))}</span>` : `<small>${escapeHtml(offer.promoSetup ? 'Offre -25 % (24h) expirée' : (offer.promoTag || 'prix affiché'))}</small>`}`;
+
+    return `<div class="price-setup">
+      <strong class="price-current">${escapeHtml(parts[0])}</strong>
+      ${offer.promoSetup ? `<em class="promo-pill promo-pill--expired" data-promo-badge="25">24h expiré</em>` : ''}
+    </div>
+    <div class="price-recurring">
+      ${hasMonthly 
+        ? `<span class="price-recurring__amount">${monthlyText}</span> <span class="price-recurring__note">hébergement &amp; suivi inclus</span>` 
+        : `<span class="price-recurring__note price-recurring__note--once">paiement unique · sans abonnement</span>`
+      }
+    </div>`;
   };
 
-  const renderOffer = offer => `<article class="service-offer-row">
-    <div class="service-offer-row__copy"><strong>${escapeHtml(offer.name)}</strong><p>${escapeHtml(offer.description)}</p></div>
-    <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer)}</div>
-    <a href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
-  </article>`;
+  const renderOffer = offer => {
+    const ctaLabel = offer.id === 'M01' ? 'Réserver mon créneau' : 'Profiter de l’offre';
+    return `<article class="service-offer-row">
+      <div class="service-offer-row__copy">
+        <strong>${escapeHtml(offer.name)}</strong>
+        <p>${escapeHtml(offer.description)}</p>
+      </div>
+      <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer)}</div>
+      <a href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">${ctaLabel} <span aria-hidden="true">↗</span></a>
+    </article>`;
+  };
 
   const setError = block => {
     const target = block.querySelector('.service-card__offers');

@@ -64,14 +64,21 @@
       card.open = true;
       card.classList.add('is-focused', 'is-cue-active');
       grid.classList.add('is-focused');
-      syncCueMetrics(card);
+      syncAllCues();
+      setTimeout(function () {
+        syncAllCues();
+        var rect = card.getBoundingClientRect();
+        if (rect.top < 80 || rect.top > window.innerHeight * 0.4) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     } else {
       card.open = false;
       card.classList.remove('is-focused', 'is-cue-active');
       if (!cards.some(function (c) { return c.open; })) {
         grid.classList.remove('is-focused');
       }
-      syncCueMetrics(card);
+      syncAllCues();
     }
   }
 

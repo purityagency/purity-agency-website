@@ -198,17 +198,79 @@
   });
 })();
 
-// Sliders interactifs Avant / Apres autour du bloc d'audit (PC).
+// Sliders interactifs Avant / Apres autour du bloc d'audit (PC) avec inertie fluide.
 (function () {
-  document.querySelectorAll('[data-audit-compare]').forEach(function (card) {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-audit-compare]'));
+  if (!cards.length) return;
+
+  cards.forEach(function (card, idx) {
     var range = card.querySelector('.audit-compare__range');
     if (!range) return;
-    function sync() {
-      var val = Math.max(6, Math.min(94, Number(range.value) || 50));
-      card.style.setProperty('--split', val + '%');
+
+    var current = 50;
+    var target = 50;
+    var rafId = 0;
+    var userTouched = false;
+
+    function apply(val) {
+      card.style.setProperty('--split', val.toFixed(2) + '%');
     }
-    range.addEventListener('input', sync);
-    range.addEventListener('change', sync);
-    sync();
+
+    function step() {
+      var diff = target - current;
+      if (Math.abs(diff) < 0.08 || reduced) {
+        current = target;
+        apply(current);
+        rafId = 0;
+        return;
+      }
+      current += diff * 0.28;
+      apply(current);
+      rafId = requestAnimationFrame(step);
+    }
+
+    function setTarget(val) {
+      target = Math.max(6, Math.min(94, Number(val) || 50));
+      if (!rafId) rafId = requestAnimationFrame(step);
+    }
+
+    range.addEventListener('pointerdown', function () {
+      userTouched = true;
+      card.classList.add('is-dragging');
+    });
+    window.addEventListener('pointerup', function () {
+      card.classList.remove('is-dragging');
+    });
+    range.addEventListener('input', function () {
+      userTouched = true;
+      setTarget(range.value);
+    });
+    range.addEventListener('change', function () {
+      userTouched = true;
+      setTarget(range.value);
+    });
+
+    apply(50);
+
+    /* Micro-balayage d'invitation unique à l'entrée dans le viewport sur PC */
+    if (!reduced && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        if (window.innerWidth < 1180 || userTouched) return;
+        var delay = idx * 140;
+        setTimeout(function () {
+          if (userTouched) return;
+          setTarget(idx === 0 ? 36 : 64);
+          setTimeout(function () {
+            if (userTouched) return;
+            setTarget(50);
+            range.value = '50';
+          }, 420);
+        }, 260 + delay);
+      }, { threshold: 0.45 });
+      io.observe(card);
+    }
   });
 })();

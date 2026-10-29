@@ -51,8 +51,11 @@
  outline:none!important
 }
 .founder{border-bottom:none!important}
-.page--home .site-footer{border-top:none!important}
-.page--home .site-footer::before{display:none!important}
+.site-footer{border-top:none!important}
+.site-footer::before{display:none!important}
+.method{border:none!important;border-top:none!important;border-bottom:none!important;margin-top:-2px!important;margin-bottom:-2px!important}
+.method-wave--top{top:-2px!important}
+.method-wave--bottom{bottom:-2px!important}
 .method-wave--bottom svg{
  transform:translate3d(calc(var(--method-wave-x) * -.48px),0,0) scaleX(calc(1.018 + (var(--method-wave-pull) - 1) * .028))
 }

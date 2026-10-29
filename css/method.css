@@ -12,6 +12,9 @@
  margin-inline:0;
  padding:clamp(6.5rem,10vw,9.5rem) clamp(1.25rem,5vw,3rem);
  border-radius:0;
+ border:none!important;
+ border-top:none!important;
+ border-bottom:none!important;
  background:
  radial-gradient(circle at 78% 46%,rgba(255,255,255,.14) 0,transparent 17rem),
  radial-gradient(circle at 10% 8%,rgba(183,137,255,.32) 0,transparent 18rem),
@@ -30,7 +33,9 @@
  height:clamp(6rem,10vw,9.2rem);
  pointer-events:none;
  color:#fff;
- overflow:hidden
+ overflow:hidden;
+ border:none!important;
+ outline:none!important
 }
 .method-wave--top{top:-8px}
 .method-wave--bottom{bottom:-8px}
@@ -41,8 +46,13 @@
  overflow:visible;
  will-change:transform;
  transform:translate3d(calc(var(--method-wave-x) * .52px),0,0) scaleX(calc(1.018 + (var(--method-wave-pull) - 1) * .03));
- transform-origin:center
+ transform-origin:center;
+ border:none!important;
+ outline:none!important
 }
+.founder{border-bottom:none!important}
+.page--home .site-footer{border-top:none!important}
+.page--home .site-footer::before{display:none!important}
 .method-wave--bottom svg{
  transform:translate3d(calc(var(--method-wave-x) * -.48px),0,0) scaleX(calc(1.018 + (var(--method-wave-pull) - 1) * .028))
 }

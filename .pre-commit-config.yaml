@@ -1,0 +1,23 @@
+# .pre-commit-config.yaml — Purity Agency DevSecOps
+# Bloque les secrets, clés privées, tokens et fuites d'API avant tout commit local.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+        name: Gitleaks Secret Detector
+        entry: gitleaks protect --verbose --redact --staged
+        language: golang
+        stages: [commit]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=5000']
+      - id: check-case-conflict
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: forbid-new-submodules

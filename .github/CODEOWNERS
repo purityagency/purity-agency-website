@@ -1,0 +1,19 @@
+# CODEOWNERS — Purity Agency DevSecOps
+# Définit les approbations obligatoires pour les zones critiques du dépôt.
+
+* @purityagency
+
+# Infrastructure & CI/CD
+/.github/ @purityagency
+/Dockerfile @purityagency
+/.dockerignore @purityagency
+
+# Serveur & Couche Sécurité
+/server.mjs @purityagency
+/api/ @purityagency
+/api/security.mjs @purityagency
+
+# Données & Configuration
+/secrets/ @purityagency
+/.gitignore @purityagency
+/package.json @purityagency

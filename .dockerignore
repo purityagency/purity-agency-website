@@ -1,0 +1,26 @@
+# .dockerignore — Purity Agency DevSecOps
+.git/
+.github/
+secrets/
+.env*
+*.key
+*.token
+*.pem
+*.p12
+*.pfx
+*.cert
+*.crt
+id_rsa*
+id_ed25519*
+data/
+*.log
+leads.log
+scratch/
+*.orig-backup
+.seo-cache/
+superpowers/
+node_modules/
+tests/
+.pre-commit-config.yaml
+Dockerfile
+.dockerignore

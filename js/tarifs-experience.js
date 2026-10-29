@@ -75,19 +75,49 @@
     <a class="price-card__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">Profiter de l’offre <span aria-hidden="true">↗</span></a>
   </article>`;
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pricingPage = document.querySelector('.pricing');
   const validGroup = id => groups.some(group => group.id === id) ? id : null;
 
   const showChooser = ({ updateHash = false } = {}) => {
-    root.dataset.pricingView = 'chooser';
-    pricingPage?.classList.remove('pricing--detail');
-    document.body.classList.remove('pricing-detail-open');
-    root.querySelectorAll('[role="tab"]').forEach(button => {
-      button.setAttribute('aria-selected', 'false');
-      button.tabIndex = 0;
-    });
-    root.querySelectorAll('[data-pricing-panel]').forEach(panel => { panel.hidden = true; });
-    if (updateHash) history.replaceState(null, '', location.pathname);
+    const activePanel = root.querySelector('[data-pricing-panel]:not([hidden])');
+    const backBtn = activePanel?.querySelector('.pricing-back');
+    if (backBtn) backBtn.classList.remove('is-open');
+
+    const finish = () => {
+      root.dataset.pricingView = 'chooser';
+      pricingPage?.classList.remove('pricing--detail');
+      document.body.classList.remove('pricing-detail-open');
+      root.querySelectorAll('[role="tab"]').forEach(button => {
+        button.setAttribute('aria-selected', 'false');
+        button.tabIndex = 0;
+      });
+      root.querySelectorAll('[data-pricing-panel]').forEach(panel => { panel.hidden = true; });
+      if (updateHash) history.replaceState(null, '', location.pathname);
+      if (!reduceMotion) {
+        root.querySelectorAll('[role="tab"]').forEach((btn, idx) => {
+          btn.animate?.([
+            { opacity: 0, transform: 'translate3d(0, 14px, 0) scale(0.982)' },
+            { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+          ], {
+            duration: 380,
+            delay: idx * 36,
+            easing: 'cubic-bezier(.22, 1, .36, 1)',
+            fill: 'backwards'
+          });
+        });
+      }
+    };
+
+    if (!reduceMotion && activePanel?.animate) {
+      activePanel.animate([
+        { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+        { opacity: 0, transform: 'translate3d(0, 10px, 0)' }
+      ], { duration: 220, easing: 'cubic-bezier(.4, 0, .2, 1)' });
+      setTimeout(finish, 210);
+    } else {
+      finish();
+    }
   };
 
   const showDetail = (id, { updateHash = false } = {}) => {
@@ -101,7 +131,21 @@
       button.tabIndex = -1;
     });
     root.querySelectorAll('[data-pricing-panel]').forEach(panel => {
-      panel.hidden = panel.dataset.pricingPanel !== active;
+      const isMatch = panel.dataset.pricingPanel === active;
+      panel.hidden = !isMatch;
+      if (isMatch) {
+        const backBtn = panel.querySelector('.pricing-back');
+        if (backBtn) {
+          backBtn.classList.remove('is-open');
+          requestAnimationFrame(() => requestAnimationFrame(() => backBtn.classList.add('is-open')));
+        }
+        if (!reduceMotion && panel.animate) {
+          panel.animate([
+            { opacity: 0, transform: 'translate3d(0, 14px, 0) scale(0.99)' },
+            { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }
+          ], { duration: 400, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+        }
+      }
     });
     if (updateHash) history.replaceState(null, '', `#${active}`);
   };
@@ -112,9 +156,9 @@
       const byId = new Map(offers.map(offer => [offer.id, offer]));
       root.innerHTML = `<nav class="pricing-tabs" role="tablist" aria-label="Choisissez votre priorité">${groups.map((group, index) => {
         const anchor = priceAnchor(group.ids.map(id => byId.get(id)).filter(Boolean));
-        return `<button type="button" role="tab" data-group="${group.id}" aria-controls="pricing-${group.id}" aria-selected="false" tabindex="0"><span class="pricing-tab__count">0${index + 1}</span><span class="pricing-tab__copy"><strong>${group.label}</strong><small>${group.description}</small><em class="pricing-tab__price">${esc(anchor.primary)}${group.id !== 'diagnostic' ? ` <b class="promo-pill promo-pill--25" data-promo-badge="25">${esc(promoBadgeText('-25 % 24h'))}</b>` : ''}<span>${esc(anchor.secondary)}</span></em></span><span class="pricing-tab__action">Voir les options <b aria-hidden="true">↘</b></span><img src="${group.image}" alt="" width="2048" height="683"></button>`;
+        return `<button type="button" role="tab" data-group="${group.id}" aria-controls="pricing-${group.id}" aria-selected="false" tabindex="0"><span class="pricing-tab__count">0${index + 1}</span><span class="pricing-tab__copy"><strong>${group.label}</strong><small>${group.description}</small><em class="pricing-tab__price">${esc(anchor.primary)}${group.id !== 'diagnostic' ? ` <b class="promo-pill promo-pill--25" data-promo-badge="25">${esc(promoBadgeText('-25 % 24h'))}</b>` : ''}<span>${esc(anchor.secondary)}</span></em></span><span class="pricing-tab__action">Voir les options <b aria-hidden="true">+</b></span><img src="${group.image}" alt="" width="2048" height="683"></button>`;
       }).join('')}</nav>
-        <div class="pricing-panels">${groups.map(group => `<section class="pricing-group" id="pricing-${group.id}" data-pricing-panel="${group.id}" hidden><button class="pricing-back" type="button" data-pricing-back><span aria-hidden="true">←</span> Retour aux priorités</button><div class="pricing-group__head"><div class="pricing-group__heading"><p>${group.label}</p><h3>${group.title}</h3><span class="pricing-group__description">${group.description}</span><span class="pricing-group__swipe">Glissez pour comparer&nbsp;→</span></div></div><div class="pricing-list">${group.ids.map(id => byId.get(id)).filter(Boolean).map(cardMarkup).join('')}</div></section>`).join('')}</div>`;
+        <div class="pricing-panels">${groups.map(group => `<section class="pricing-group" id="pricing-${group.id}" data-pricing-panel="${group.id}" hidden><button class="pricing-back" type="button" data-pricing-back><span class="pricing-back__label">Retour aux priorités</span><i class="pricing-back__icon" aria-hidden="true">+</i></button><div class="pricing-group__head"><div class="pricing-group__heading"><p>${group.label}</p><h3>${group.title}</h3><span class="pricing-group__description">${group.description}</span><span class="pricing-group__swipe">Glissez pour comparer&nbsp;→</span></div></div><div class="pricing-list">${group.ids.map(id => byId.get(id)).filter(Boolean).map(cardMarkup).join('')}</div></section>`).join('')}</div>`;
 
       const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
       tabs.forEach((button, index) => {

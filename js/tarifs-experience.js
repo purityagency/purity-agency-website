@@ -65,7 +65,8 @@
     if (!ranked.length) return { primary: 'Offert (15 min)', secondary: 'sans engagement' };
     const top = ranked[0].offer;
     const [primary, ...rest] = String(top.price).split(' + ');
-    return { primary: `Dès ${(active24h && top.promoSetup) || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')}` : (active24h ? 'mise en place (-25 %)' : 'mise en place') };
+    const badge24h = window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : '-25 % 24h';
+    return { primary: `Dès ${(active24h && top.promoSetup) || primary}`, secondary: rest.length ? `+ ${rest.join(' + ')} (${active24h ? badge24h : 'tarif normal'})` : (active24h ? `mise en place (${badge24h})` : 'mise en place') };
   };
 
   const cardMarkup = offer => `<article class="price-card">
@@ -112,7 +113,7 @@
       const byId = new Map(offers.map(offer => [offer.id, offer]));
       root.innerHTML = `<nav class="pricing-tabs" role="tablist" aria-label="Choisissez votre priorité">${groups.map((group, index) => {
         const anchor = priceAnchor(group.ids.map(id => byId.get(id)).filter(Boolean));
-        return `<button type="button" role="tab" data-group="${group.id}" aria-controls="pricing-${group.id}" aria-selected="false" tabindex="0"><span class="pricing-tab__count">0${index + 1}</span><span class="pricing-tab__copy"><strong>${group.label}</strong><small>${group.description}</small><em class="pricing-tab__price">${esc(anchor.primary)}<span>${esc(anchor.secondary)}</span></em></span><span class="pricing-tab__action">Voir les options <b aria-hidden="true">↘</b></span><img src="${group.image}" alt="" width="2048" height="683"></button>`;
+        return `<button type="button" role="tab" data-group="${group.id}" aria-controls="pricing-${group.id}" aria-selected="false" tabindex="0"><span class="pricing-tab__count">0${index + 1}</span><span class="pricing-tab__copy"><strong>${group.label}</strong><small>${group.description}</small><em class="pricing-tab__price">${esc(anchor.primary)}${group.id !== 'diagnostic' ? ` <b class="promo-pill promo-pill--25" data-promo-badge="25">${esc(promoBadgeText('-25 % 24h'))}</b>` : ''}<span>${esc(anchor.secondary)}</span></em></span><span class="pricing-tab__action">Voir les options <b aria-hidden="true">↘</b></span><img src="${group.image}" alt="" width="2048" height="683"></button>`;
       }).join('')}</nav>
         <div class="pricing-panels">${groups.map(group => `<section class="pricing-group" id="pricing-${group.id}" data-pricing-panel="${group.id}" hidden><button class="pricing-back" type="button" data-pricing-back><span aria-hidden="true">←</span> Retour aux priorités</button><div class="pricing-group__head"><div class="pricing-group__heading"><p>${group.label}</p><h3>${group.title}</h3><span class="pricing-group__description">${group.description}</span><span class="pricing-group__swipe">Glissez pour comparer&nbsp;→</span></div></div><div class="pricing-list">${group.ids.map(id => byId.get(id)).filter(Boolean).map(cardMarkup).join('')}</div></section>`).join('')}</div>`;
 

@@ -1,15 +1,36 @@
+# Secrets, keys, and tokens (never commit)
 .gemini-key
+.resend-key
 .env
 .env.*
+.env.local
 secrets/
+*.key
+*.token
 *.pem
 *.p12
 *.pfx
-node_modules
+*.pkcs12
+*.cert
+*.crt
+*.ovpn
+id_rsa*
+id_ed25519*
+
+# Logs & Runtime journals
 *.log
-superpowers/
-.resend-key
 leads.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node dependencies
+node_modules/
+
+# Local caches & scratchpads
 scratch/
 *.orig-backup
 .seo-cache/
+superpowers/
+.DS_Store
+Thumbs.db

@@ -14,6 +14,17 @@
   var error = document.getElementById('ask-error');
   var done = document.getElementById('thread-done');
   var dots = document.querySelectorAll('#progress .progress__dot');
+  var quickWrap = document.getElementById('contact-quick');
+  if (quickWrap) {
+    quickWrap.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-quick]');
+      if (!btn || step !== 0) return;
+      field.value = btn.getAttribute('data-quick');
+      field.dispatchEvent(new Event('input'));
+      field.focus();
+      field.setSelectionRange(field.value.length, field.value.length);
+    });
+  }
 
   var STEPS = [
     { key: 'message', label: 'Le problème à résoudre',
@@ -112,6 +123,7 @@
 
   function showStep() {
     var s = STEPS[step];
+    if (quickWrap) quickWrap.hidden = step !== 0;
     label.textContent = s.label;
     help.textContent = s.help;
 
@@ -233,6 +245,7 @@
     e.preventDefault();
     if (sending) return;
     var s = STEPS[step];
+    if (quickWrap) quickWrap.hidden = step !== 0;
     var v = field.value.trim();
 
     if (s.required || v) {

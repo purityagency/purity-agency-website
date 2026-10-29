@@ -399,3 +399,28 @@
 }
 .form-privacy{margin:1.2rem 0 0;color:var(--contact-card-muted);font-size:.82rem;line-height:1.5}
 .form-privacy a{color:inherit;text-underline-offset:3px;text-decoration-color:rgba(255,250,244,.5)}
+
+.contact-quick{
+ display:flex;
+ flex-wrap:wrap;
+ gap:.45rem;
+ margin:.65rem 0 .85rem
+}
+.contact-quick[hidden]{display:none!important}
+.contact-quick button{
+ padding:.42rem .78rem;
+ border:1px solid rgba(255,255,255,.28);
+ border-radius:999px;
+ background:rgba(255,255,255,.11);
+ color:#fffaf4;
+ font:inherit;
+ font-size:.78rem;
+ font-weight:650;
+ cursor:pointer;
+ transition:background-color 180ms ease,border-color 180ms ease,transform 180ms ease
+}
+.contact-quick button:hover,.contact-quick button:focus-visible{
+ background:rgba(255,255,255,.24);
+ border-color:#fff;
+ transform:translateY(-1px)
+}

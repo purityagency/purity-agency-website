@@ -320,3 +320,90 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
  }
  .service-card__visual{opacity:.94}
 }
+
+.sector-demos{
+ width:min(100%,1100px);
+ margin:clamp(3.2rem,6vw,5rem) auto 0;
+ padding:clamp(1.6rem,3vw,2.4rem);
+ border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));
+ border-radius:24px;
+ background:linear-gradient(145deg,rgba(255,255,255,.94),color-mix(in srgb,var(--accent) 5%,#fff));
+ box-shadow:0 18px 46px rgba(34,18,58,.055)
+}
+.sector-demos__head{
+ display:flex;
+ flex-wrap:wrap;
+ align-items:flex-end;
+ justify-content:space-between;
+ gap:1rem 2rem;
+ margin-bottom:clamp(1.25rem,2.4vw,1.8rem)
+}
+.sector-demos__head h3{
+ margin:.35rem 0 0;
+ font-family:var(--font-head);
+ font-size:clamp(1.4rem,2.5vw,2.05rem);
+ font-weight:var(--fw-display);
+ line-height:1.08;
+ letter-spacing:var(--tracking);
+ max-width:28ch;
+ text-wrap:balance
+}
+.sector-demos__all{
+ display:inline-flex;
+ align-items:center;
+ gap:.4rem;
+ padding:.55rem 1.05rem;
+ border:1px solid color-mix(in srgb,var(--accent) 32%,var(--line));
+ border-radius:999px;
+ background:#fff;
+ color:var(--accent-deep);
+ font-size:.86rem;
+ font-weight:700;
+ text-decoration:none;
+ transition:transform 220ms ease,border-color 220ms ease,background-color 220ms ease
+}
+.sector-demos__all:hover{
+ transform:translateY(-2px);
+ border-color:var(--accent);
+ background:color-mix(in srgb,var(--accent) 8%,#fff)
+}
+.sector-demos__grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(225px,1fr));
+ gap:.7rem
+}
+.sector-demo-chip{
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+ gap:.28rem;
+ padding:.85rem 1.05rem;
+ border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);
+ border-radius:16px;
+ background:#fff;
+ color:var(--ink);
+ text-decoration:none;
+ transition:transform 220ms ease,border-color 220ms ease,box-shadow 220ms ease
+}
+.sector-demo-chip strong{
+ font-size:.93rem;
+ font-weight:700;
+ line-height:1.2
+}
+.sector-demo-chip span{
+ color:var(--accent-deep);
+ font-size:.76rem;
+ font-weight:650
+}
+.sector-demo-chip:hover,.sector-demo-chip:focus-visible{
+ transform:translateY(-2px);
+ border-color:var(--accent);
+ box-shadow:0 12px 28px rgba(44,20,75,.09)
+}
+@media(max-width:640px){
+ .sector-demos{padding:1.25rem;border-radius:20px}
+ .sector-demos__grid{grid-template-columns:1fr 1fr;gap:.55rem}
+ .sector-demo-chip{padding:.75rem .85rem}
+ .sector-demo-chip strong{font-size:.84rem}
+ .sector-demo-chip span{font-size:.7rem}
+}

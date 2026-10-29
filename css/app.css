@@ -570,29 +570,20 @@ a:hover{color:var(--accent)}
 }
 .service-card__actions .service-card__example:hover,
 .service-card__actions .service-card__example:focus-visible{color:var(--accent);background:transparent}
-.site-footer{
- position:relative;
- overflow:hidden;
- background:
- radial-gradient(circle at 15% 0,rgba(108,60,170,.1),transparent 22rem),
- linear-gradient(180deg,#fff 0%,#fbf9ff 100%);
-}
-.site-footer::before{
- position:absolute;
- inset:0 0 auto;
- height:1px;
- background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 38%,transparent),transparent);
- content:"";
-}
-.site-footer__brand img{filter:drop-shadow(0 2px 7px rgba(108,60,170,.18))}
-.site-footer a{
- transition:color 180ms var(--ease-smooth),text-decoration-color 180ms var(--ease-smooth);
-}
+.site-footer{position:relative;padding:clamp(3.5rem,7vw,6rem) clamp(1.25rem,5vw,3rem) 1.4rem;border-top:none!important;background:#fbfafe}
+.site-footer::before{display:none!important}
+.site-footer__inner{display:grid;grid-template-columns:1.6fr .7fr .9fr;gap:clamp(2rem,6vw,6rem);max-width:var(--wrap);margin:auto}
+.site-footer__brand{display:inline-flex;align-items:center;gap:.65rem;font-size:1.2rem;font-weight:650;text-decoration:none}
+.site-footer__brand img{width:32px;height:32px;filter:drop-shadow(0 2px 7px rgba(108,60,170,.18))}
+.site-footer p{max-width:34ch;margin:1rem 0 0;color:var(--muted);line-height:1.55}
+.site-footer h2{margin:0 0 1rem;font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.site-footer nav,.site-footer__inner>div:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:.55rem}
+.site-footer a{color:var(--ink);text-decoration-color:#cbbbe8;text-underline-offset:3px;transition:color 180ms var(--ease-smooth),text-decoration-color 180ms var(--ease-smooth)}
 .site-footer a:hover{color:var(--accent-deep);text-decoration-color:currentColor}
-.site-footer__legal{
- align-items:center;
- line-height:1.45;
-}
+.site-footer__legal{display:flex;max-width:var(--wrap);margin:clamp(3rem,6vw,5rem) auto 0;padding-top:1.2rem;border-top:1px solid var(--line);gap:.8rem 1.4rem;flex-wrap:wrap;color:var(--muted);font-size:.78rem;line-height:1.45;align-items:center}
+.site-footer__legal a{margin-left:auto;padding:.35rem 0}
+@media(max-width:800px){.site-footer__inner{grid-template-columns:1fr 1fr}.site-footer__inner>div:first-child{grid-column:1/-1}.site-footer__legal a{margin-left:0}.site-footer nav a,.site-footer__inner>div:last-child a{padding:.4rem 0}}
+@media(max-width:560px){.site-footer__inner{grid-template-columns:1fr}.site-footer__inner>div:first-child{grid-column:auto}.site-footer__legal{display:grid;grid-template-columns:1fr;gap:.55rem}}
 input,
 textarea,
 button,

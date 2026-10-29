@@ -42,15 +42,15 @@ test('security headers, CSP connect-src self, and RFC 9116 security.txt are enfo
   });
 });
 
-test('/tarifs.html and clean URL /tarifs serve the pricing page without redirecting away', async () => {
+test('/tarifs.html and clean URL /tarifs redirect directly to /#services', async () => {
   await withServer(async baseUrl => {
     const r1 = await fetch(`${baseUrl}/tarifs.html`, { redirect: 'manual' });
-    assert.equal(r1.status, 200);
-    const html = await r1.text();
-    assert.match(html, /pricing-catalog/);
+    assert.equal(r1.status, 301);
+    assert.equal(r1.headers.get('location'), '/#services');
 
     const r2 = await fetch(`${baseUrl}/tarifs`, { redirect: 'manual' });
-    assert.equal(r2.status, 200);
+    assert.equal(r2.status, 301);
+    assert.equal(r2.headers.get('location'), '/#services');
   });
 });
 

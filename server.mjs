@@ -220,6 +220,8 @@ export const server = http.createServer(async (req, res) => {
     // Redirections 301 des anciennes URLs v1 vers leur destination v2 active.
     // Note : /tarifs.html est desormais une vraie page active et ne doit plus rediriger.
     const redirects = {
+      '/tarifs': '/#services',
+      '/tarifs.html': '/#services',
       '/services.html': '/#services',
       '/agence-web-charleroi.html': '/#services',
       '/liens.html': '/contact.html'

@@ -169,8 +169,7 @@
           '<strong class="promo-bar__off" data-promo-off>-25\u00a0%</strong>' +
           '<span class="promo-bar__clock" data-promo-clock></span>' +
         '</span>' +
-        '<span class="promo-bar__text" data-promo-bar-text></span>' +
-        '<a class="promo-bar__cta" href="/tarifs.html">Tarifs →</a>' +
+        '<a class="promo-bar__link" href="/contact.html?promo=novdec25"><span class="promo-bar__text" data-promo-bar-text></span></a>' +
         '<button type="button" class="promo-bar__close" aria-label="Masquer">×</button>';
 
       document.body.prepend(promo);

@@ -337,19 +337,19 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
  transform:translateX(2px)
 }
 .service-offer-row__copy{min-width:0}
-.service-offer-row__copy>strong{display:block;font-size:1.08rem;line-height:1.25;font-weight:700;color:var(--ink)}
-.service-offer-row__copy p{max-width:54ch;margin:.35rem 0 0;color:var(--muted);font-size:.9rem;line-height:1.48}
-.service-offer-row__price{display:grid;justify-items:start;gap:.25rem;color:var(--accent-deep);font-variant-numeric:tabular-nums;line-height:1.15}
-.service-offer-row__price strong{font-size:1.28rem;font-weight:800;color:#181024}
-.service-offer-row__price .price-old{color:#E11D48!important;font-size:.92em;font-weight:650;text-decoration:line-through!important;text-decoration-color:#E11D48!important;text-decoration-thickness:1.8px!important;opacity:.95}
-.service-offer-row__price span,.service-offer-row__price small{color:var(--muted);font-size:.82rem;font-weight:650}
+.service-offer-row__copy>strong{display:block;font-size:1.18rem;line-height:1.25;font-weight:750;color:var(--ink)}
+.service-offer-row__copy p{max-width:56ch;margin:.4rem 0 0;color:var(--muted);font-size:1.02rem;line-height:1.55}
+.service-offer-row__price{display:grid;justify-items:start;gap:.3rem;color:var(--accent-deep);font-variant-numeric:tabular-nums;line-height:1.2}
+.service-offer-row__price strong{font-size:1.42rem;font-weight:850;color:#181024}
+.service-offer-row__price .price-old{color:#EF4444!important;font-size:1.04em;font-weight:800;text-decoration:line-through!important;text-decoration-color:#EF4444!important;text-decoration-thickness:2.5px!important;opacity:1;background:rgba(239,68,68,0.08);padding:.1rem .38rem;border-radius:5px;display:inline-block;margin-right:.35rem}
+.service-offer-row__price span,.service-offer-row__price small{color:var(--muted);font-size:.92rem;font-weight:650}
 .service-offer-row__price small{text-transform:uppercase;letter-spacing:.05em}
 .service-offer-row>a{
  justify-self:end;
  color:var(--ink);
- font-size:.88rem;
- font-weight:700;
- padding:.45rem .95rem;
+ font-size:.94rem;
+ font-weight:750;
+ padding:.52rem 1.15rem;
  border-radius:999px;
  border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);
  background:#fff;

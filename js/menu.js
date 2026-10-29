@@ -154,17 +154,19 @@
     badgeLabel: badgeLabel
   };
 
-  // Repere les petits badges statiques "-25 % 24h ↗" dans le HTML pour les animer en direct.
-  document.querySelectorAll('small').forEach(function (el) {
-    if (el.textContent && el.textContent.indexOf('-25 % 24h') !== -1) {
-      el.setAttribute('data-promo-chip-24h', '1');
+  // Repere tous les elements contenant "24h" liés à l'offre -25 % pour les mettre à jour chaque seconde.
+  document.querySelectorAll('small, .btn, .method__cta-label, .service-card__cue b, .service-card__pricing-head strong, [data-promo-countdown]').forEach(function (el) {
+    var txt = el.textContent || '';
+    if (el.hasAttribute('data-promo-countdown')) return;
+    if (txt.indexOf('-25 % 24h') !== -1 || txt.indexOf('-25 % sous 24h') !== -1 || txt.indexOf('(-25 %)') !== -1) {
+      el.setAttribute('data-promo-template', txt);
     }
   });
 
   if (!document.querySelector('.promo-bar')) {
     var dismissed = false;
     try {
-      dismissed = sessionStorage.getItem('purity-promo-novdec-dismissed') === '1';
+      dismissed = sessionStorage.getItem('purity-promo-24h-v2-dismissed') === '1';
     } catch {}
 
     if (!dismissed) {
@@ -191,7 +193,7 @@
       promo.querySelector('.promo-bar__close').addEventListener('click', function () {
         promo.remove();
         syncPromoHeight();
-        try { sessionStorage.setItem('purity-promo-novdec-dismissed', '1'); } catch {}
+        try { sessionStorage.setItem('purity-promo-24h-v2-dismissed', '1'); } catch {}
       });
 
       window.addEventListener('resize', syncPromoHeight);
@@ -233,8 +235,24 @@
       }
     });
 
-    document.querySelectorAll('[data-promo-chip-24h]').forEach(function (el) {
-      el.textContent = active ? '-25 % · ' + timerText + ' ↗' : 'Sur devis ↗';
+    document.querySelectorAll('[data-promo-template]').forEach(function (el) {
+      var tpl = el.getAttribute('data-promo-template') || '';
+      if (active) {
+        el.textContent = tpl
+          .replace(/-25 % sous 24h/g, '-25 % · ' + timerText)
+          .replace(/-25 % 24h/g, '-25 % · ' + timerText)
+          .replace(/\(-25 %\)/g, '(-25 % · ' + timerText + ')');
+      } else {
+        el.textContent = tpl
+          .replace(/\s*\(-25 % sous 24h\)/g, '')
+          .replace(/\s*\(-25 % 24h\)/g, '')
+          .replace(/-25 % 24h/g, 'Sur devis')
+          .replace(/\s*\(-25 %\)/g, '');
+      }
+    });
+
+    document.querySelectorAll('[data-promo-countdown]').forEach(function (el) {
+      el.textContent = active ? '⏱ -25 % (24h) · ' + timerText : '⏱ Offre 24h expirée';
     });
 
     if (wasActive && !active) {

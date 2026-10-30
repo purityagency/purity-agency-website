@@ -38,18 +38,6 @@
       if (e.target.closest('a')) burger.click();
     });
   }
-
-  // Garantit que "Tarifs" est visible dans la navigation sur toutes les pages du site.
-  ['.header__nav', '.menu__nav'].forEach(function (sel) {
-    var nav = document.querySelector(sel);
-    if (!nav || nav.querySelector('a[href="/tarifs.html"]')) return;
-    var link = document.createElement('a');
-    link.href = '/tarifs.html';
-    link.textContent = 'Tarifs';
-    var ref = nav.querySelector('a[href="/cas-concrets.html"]') || nav.firstElementChild;
-    if (ref && ref.nextSibling) nav.insertBefore(link, ref.nextSibling);
-    else nav.appendChild(link);
-  });
 })();
 
 // Barre de progression de lecture / scroll globale.

@@ -39,3 +39,10 @@ test('le contexte cas concret prévaut sur un brouillon OctoMask', async () => {
   assert.match(contact, /if \(caseId && caseLabels\[caseId\]\)/);
   assert.match(contact, /if \(!caseId && !offer && draft/);
 });
+
+test('resolveCleanRoute gère les URLs propres des cas concrets', async () => {
+  const { resolveCleanRoute } = await import('../api/security.mjs');
+  assert.equal(resolveCleanRoute('/cas-concrets/restaurant'), '/cas-concrets/restaurant.html');
+  assert.equal(resolveCleanRoute('/cas-concrets/renovation/'), '/cas-concrets/renovation.html');
+  assert.equal(resolveCleanRoute('/cas-concrets/invalid!'), '/cas-concrets/invalid!');
+});

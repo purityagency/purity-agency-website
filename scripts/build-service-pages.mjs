@@ -215,7 +215,7 @@ ${renderHeader('services')}
       <p class="sd-hero__summary">${escapeHtml(service.summary)}</p>
 
       <div class="sd-hero__meta">
-        <div class="sd-meta-card">
+        <div class="sd-meta-card sd-meta-card--highlight">
           <span class="sd-meta-card__label">Tarif de mise en place</span>
           <div class="sd-meta-card__price-wrap">
             ${service.promoSetup && service.promoSetup !== service.priceSetup ? `<span class="sd-meta-card__price-old">${escapeHtml(service.priceSetup)}</span>` : ''}
@@ -227,13 +227,13 @@ ${renderHeader('services')}
 
         <div class="sd-meta-card">
           <span class="sd-meta-card__label">Délai d'exécution</span>
-          <span style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-top: 0.2rem;">${escapeHtml(service.delay)}</span>
+          <span class="sd-meta-card__value">${escapeHtml(service.delay)}</span>
           <span class="sd-meta-card__sub">Engagement de livraison contractuel</span>
         </div>
 
         <div class="sd-meta-card">
           <span class="sd-meta-card__label">Garantie &amp; Accompagnement</span>
-          <span style="font-size: 1.05rem; font-weight: 650; color: #fff; margin-top: 0.2rem;">100 % Clé en main</span>
+          <span class="sd-meta-card__value">100 % Clé en main</span>
           <span class="sd-meta-card__sub">Sans frais cachés · Interlocuteur unique (Amir)</span>
         </div>
       </div>
@@ -343,9 +343,9 @@ ${renderHeader('services')}
     <!-- SECTION LE COÛT DE L'INACTION -->
     <section class="sd-section">
       <div class="sd-loss-card">
-        <span class="sd-kicker" style="color: #F87171;">Ne pas agir a un coût</span>
-        <h2 class="sd-heading" style="color: #FEE2E2;">Ce que vous perdez chaque mois sans cette solution</h2>
-        <p class="sd-subheading" style="color: #FCA5A5;">Ce n'est pas le coût de la solution qui est cher, c'est ce que son absence vous fait perdre en continu.</p>
+        <span class="sd-kicker">Ne pas agir a un coût</span>
+        <h2 class="sd-heading">Ce que vous perdez chaque mois sans cette solution</h2>
+        <p class="sd-subheading">Ce n'est pas le coût de la solution qui est cher, c'est ce que son absence vous fait perdre en continu.</p>
 
         <div class="sd-loss-grid">
           ${service.lossOfInaction.map(loss => `

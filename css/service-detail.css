@@ -1,6 +1,7 @@
 /* ==========================================================================
    PURITY AGENCY — SERVICE DETAIL & HUB SYSTEM (2026-2027 LIQUID GLASS)
    Theme: Near-black #060309, Mauve #7C3AED, fine white lines, liquid glass
+   Mobile-first, Fitts's Law conversion, SEO rich snippets & Google Ads quality
    ========================================================================== */
 
 :root {
@@ -27,6 +28,7 @@ body.service-page {
   color: var(--sd-text);
   font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
+  padding-bottom: clamp(0rem, 5vw, 2rem);
 }
 
 /* Subtle background glow effect */
@@ -238,6 +240,38 @@ body.service-page {
 }
 
 /* --------------------------------------------------------------------------
+   TRUST STRIP (GOOGLE REVIEW, LOCAL PRESENCE & BCE)
+   -------------------------------------------------------------------------- */
+.sd-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.2rem);
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sd-border);
+  font-size: 0.86rem;
+  color: var(--sd-muted);
+}
+.sd-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.sd-trust-item svg {
+  color: var(--sd-accent-light);
+  flex-shrink: 0;
+}
+.sd-trust-item strong {
+  color: #fff;
+  font-weight: 600;
+}
+.sd-trust-item .sd-stars {
+  color: #FBBF24;
+  letter-spacing: 2px;
+}
+
+/* --------------------------------------------------------------------------
    SECTION COMMON
    -------------------------------------------------------------------------- */
 .sd-section {
@@ -362,6 +396,62 @@ body.service-page {
 }
 
 /* --------------------------------------------------------------------------
+   COMPARISON TABLE (SANS PURITY VS AVEC PURITY)
+   -------------------------------------------------------------------------- */
+.sd-comparison-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--sd-border);
+  border-radius: var(--sd-radius-lg);
+  background: var(--sd-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  margin-top: 1.5rem;
+}
+.sd-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  text-align: left;
+  min-width: 580px;
+}
+.sd-comparison-table th,
+.sd-comparison-table td {
+  padding: 1.15rem 1.4rem;
+  border-bottom: 1px solid var(--sd-border);
+}
+.sd-comparison-table th {
+  background: rgba(18, 12, 28, 0.8);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sd-muted);
+}
+.sd-comparison-table th.sd-col-purity {
+  color: var(--sd-accent-light);
+  background: rgba(124, 58, 237, 0.14);
+  border-bottom-color: rgba(124, 58, 237, 0.35);
+  font-weight: 700;
+}
+.sd-comparison-table td.sd-col-aspect {
+  font-weight: 650;
+  color: #fff;
+  width: 25%;
+}
+.sd-comparison-table td.sd-col-others {
+  color: #9E96AD;
+  width: 37.5%;
+}
+.sd-comparison-table td.sd-col-purity {
+  background: rgba(124, 58, 237, 0.06);
+  color: #E2DFEB;
+  font-weight: 600;
+  width: 37.5%;
+}
+.sd-comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
    LOSS OF INACTION (CE QUE VOUS PERDEZ SANS CELA)
    -------------------------------------------------------------------------- */
 .sd-loss-card {
@@ -438,6 +528,60 @@ body.service-page {
   line-height: 1.55;
   color: var(--sd-muted);
   margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   RELATED CASE STUDIES
+   -------------------------------------------------------------------------- */
+.sd-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.sd-case-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--sd-surface);
+  border: 1px solid var(--sd-border);
+  border-radius: var(--sd-radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+.sd-case-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--sd-border-accent);
+  box-shadow: 0 12px 32px -8px rgba(124, 58, 237, 0.25);
+}
+.sd-case-card__sector {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--sd-accent-light);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+.sd-case-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+.sd-case-card p {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--sd-muted);
+  margin: 0 0 1.2rem;
+  flex-grow: 1;
+}
+.sd-case-card__cta {
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: var(--sd-accent-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -552,8 +696,87 @@ body.service-page {
 }
 
 /* --------------------------------------------------------------------------
+   MOBILE FLOATING CONVERSION BAR (FITTS'S LAW FOR GOOGLE ADS)
+   -------------------------------------------------------------------------- */
+.sd-floating-bar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .sd-floating-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    padding: 0.75rem 1.25rem;
+    background: rgba(10, 6, 16, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(124, 58, 237, 0.35);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+  }
+  .sd-floating-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .sd-floating-price {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .sd-floating-note {
+    font-size: 0.72rem;
+    color: var(--sd-accent-light);
+    font-weight: 600;
+  }
+  .sd-floating-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.15rem;
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.88rem;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+    white-space: nowrap;
+  }
+}
+
+/* --------------------------------------------------------------------------
    HUB SERVICES PAGE (/services)
    -------------------------------------------------------------------------- */
+.sd-hub-filter-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.sd-hub-filter-btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--sd-border);
+  color: var(--sd-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+.sd-hub-filter-btn:hover,
+.sd-hub-filter-btn.is-active {
+  background: rgba(124, 58, 237, 0.18);
+  border-color: var(--sd-border-accent);
+  color: #fff;
+}
+
 .sd-hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

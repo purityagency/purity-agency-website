@@ -253,12 +253,12 @@
 
     apply(50);
 
-    /* Micro-balayage d'invitation unique à l'entrée dans le viewport sur PC */
+    /* Micro-balayage d'invitation unique à l'entrée dans le viewport */
     if (!reduced && 'IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         if (!entries[0].isIntersecting) return;
         io.disconnect();
-        if (window.innerWidth < 1180 || userTouched) return;
+        if (window.innerWidth < 360 || userTouched) return;
         var delay = idx * 140;
         setTimeout(function () {
           if (userTouched) return;

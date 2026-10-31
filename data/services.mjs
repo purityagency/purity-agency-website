@@ -1,5 +1,5 @@
 // Catalogue officiel exhaustif des 14 services Purity Agency
-// Structure de données de référence pour les pages de détails, livrables, utilité et coût de l'inaction.
+// Structure de référence pour les pages de détails, SEO local, Google Ads Quality Score et conversion Fitts.
 
 export const services = [
   {
@@ -8,68 +8,87 @@ export const services = [
     name: 'Diagnostic digital (15 min)',
     pillar: 'Pilier 04 · Diagnostic & Cadrage',
     kicker: '15 min en visio · 100 % gratuit · sans engagement',
-    headline: 'Identifiez en 15 minutes le point de friction précis qui bloque vos demandes clients.',
-    summary: 'Avant d’investir le moindre euro dans un site, des réseaux ou de la publicité, on examine votre présence actuelle et on isole l’action la plus rentable pour votre activité.',
+    headline: 'Identifiez en 15 minutes le point de friction précis qui bloque vos demandes clients en ligne.',
+    summary: 'Avant d’investir le moindre euro dans un site web, des réseaux sociaux ou de la publicité, on examine votre présence actuelle et on isole l’action la plus rentable pour votre activité.',
     price: 'Offert',
     priceSetup: '0 €',
     promoSetup: 'Offert',
     promoTag: 'Gratuit · sans engagement',
     monthlyPrice: null,
     monthlyNote: 'Aucun abonnement, aucun moyen de paiement requis.',
-    delay: 'Créneau immédiat (15 min)',
-    targetAudience: 'Indépendants, artisans, gérants de PME en Wallonie qui hésitent sur la priorité digitale à enclencher ou dont le site actuel ne génère aucun contact.',
-    utility: 'Éviter de dépenser des milliers d\'euros dans un outil ou une refonte inutile. Vous obtenez un avis technique et commercial honnête, sans jargon, directement avec Amir Kebiyeb.',
+    delay: 'Créneau immédiat (15 min chrono)',
+    targetAudience: 'Indépendants, artisans, gérants de PME en Wallonie (Charleroi, Namur, Mons, Liège, Brabant Wallon) qui hésitent sur la priorité digitale à enclencher ou dont le site actuel ne génère aucun contact.',
+    utility: 'Éviter de gaspiller des milliers d’euros dans un outil ou une refonte inutile. Vous obtenez un diagnostic technique et commercial honnête, sans jargon, directement avec Amir Kebiyeb.',
+    searchIntentKeywords: [
+      'audit site internet gratuit charleroi',
+      'diagnostic digital pme wallonie',
+      'conseil agence web indépendant belgique',
+      'pourquoi mon site ne convertit pas'
+    ],
+    relatedCases: [
+      { id: 'renovation', name: 'Atelier Noma', sector: 'Rénovation & Bâtiment' },
+      { id: 'chauffage', name: 'Thermiq', sector: 'Chauffage & Énergie' }
+    ],
+    comparison: [
+      { aspect: 'Approche commerciale', others: 'Tentative de vente d’un pack complet à 5 000 € dès la 5ème minute', purity: '100 % conseil neutre : si vous n’avez besoin de rien, on vous le dit' },
+      { aspect: 'Interlocuteur', others: 'Commercial junior qui lit une grille de vente', purity: 'Échange direct avec Amir Kebiyeb, fondateur & ingénieur' },
+      { aspect: 'Résultat délivré', others: 'Devis générique copier-coller', purity: 'Synthèse écrite sous 1h avec la priorité n°1 à débloquer' }
+    ],
     deliverables: [
       {
-        title: 'Audit direct en direct de votre visibilité',
-        desc: 'Analyse sur écran partagé de votre site web, de votre fiche Google Maps et de vos réseaux sociaux.'
+        title: 'Audit en direct de votre visibilité web',
+        desc: 'Analyse sur écran partagé de votre site, de votre fiche Google Maps et de vos réseaux sociaux par rapport à vos concurrents locaux directs.'
       },
       {
-        title: 'Détection du goulot d\'étranglement',
-        desc: 'Identification exacte de ce qui bloque : temps de chargement mobile, manque de clarté de l\'offre, friction sur le formulaire ou invisibilité locale.'
+        title: 'Détection du goulot d\'étranglement mobile',
+        desc: 'Identification exacte de ce qui bloque : temps de chargement > 3s, offre confuse sur smartphone, formulaire trop long ou invisibilité locale.'
       },
       {
         title: 'Plan d\'action prioritaire chiffré',
-        desc: 'Recommandation claire de l\'étape n°1 à réaliser, avec estimation budgétaire exacte sans frais cachés.'
+        desc: 'Recommandation claire de l\'étape n°1 la plus rentable à appliquer, avec estimation budgétaire exacte sans frais cachés.'
       },
       {
-        title: 'Compte-rendu écrit de synthèse',
-        desc: 'Un récapitulatif synthétique envoyé par e-mail dans l\'heure suivant l\'échange pour que vous gardiez une trace exploitable.'
+        title: 'Compte-rendu écrit de synthèse sous 1 heure',
+        desc: 'Un mémo actionnable envoyé par e-mail récapitulant les points faibles détectés et la marche à suivre immédiate.'
       }
     ],
     lossOfInaction: [
       {
-        title: 'Dépenses inutiles à l\'aveugle',
-        desc: 'Lancer des publicités ou payer un prestataire sans savoir pourquoi vos visiteurs actuels ne convertissent pas.'
+        title: 'Dépenses à l\'aveugle en publicité',
+        desc: 'Payer des annonces Google Ads ou Facebook qui envoient des visiteurs sur un site qui ne convertit pas : argent jeté par la fenêtre.'
       },
       {
-        title: 'Mois perdus dans le doute',
-        desc: 'Reporter la modernisation de votre activité pendant que vos concurrents locaux captent les recherches Google.'
+        title: 'Mois perdus dans l\'hésitation',
+        desc: 'Reporter votre modernisation pendant que vos concurrents locaux mieux structurés s\'installent dans l\'esprit de vos futurs clients.'
       },
       {
-        title: 'Clients qualifiés non captés',
-        desc: 'Continuer à perdre des prospects qui arrivent sur une page mal adaptée aux smartphones.'
+        title: 'Clients qualifiés qui appellent ailleurs',
+        desc: 'Continuer à perdre des personnes cherchant votre métier dans votre ville parce que votre présence mobile manque de crédibilité.'
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Réservation en ligne', desc: 'Vous choisissez un créneau de 15 minutes dans l\'agenda d\'Amir selon vos disponibilités.' },
-      { step: '02', title: 'Pré-analyse', desc: 'Amir consulte votre site et votre présence en amont pour ne pas perdre une seule minute.' },
-      { step: '03', title: 'Échange visio ou appel', desc: '15 minutes chrono de diagnostic chirurgical sans discours commercial agressif.' },
-      { step: '04', title: 'Orientation claire', desc: 'Vous repartez avec la priorité exacte à appliquer, que vous travailliez avec nous ou non.' }
+      { step: '01', title: 'Réservation en ligne', desc: 'Vous choisissez un créneau de 15 minutes dans l\'agenda officiel selon vos disponibilités.' },
+      { step: '02', title: 'Pré-analyse technique', desc: 'Amir inspecte votre site et vos concurrents en amont pour maximiser l\'utilité de l\'échange.' },
+      { step: '03', title: 'Diagnostic 15 min chrono', desc: 'Échange vidéo ou téléphonique sans détour, centré uniquement sur votre chiffre d\'affaires.' },
+      { step: '04', title: 'Feuille de route claire', desc: 'Vous repartez avec la priorité exacte à appliquer, que vous travailliez avec nous ou en interne.' }
     ],
-    includedMaintenance: 'Non applicable (service ponctuel gratuit).',
+    includedMaintenance: 'Non applicable (service ponctuel 100 % offert).',
     faq: [
       {
-        q: 'Est-ce vraiment 100 % gratuit sans piège ?',
-        a: 'Oui. Le diagnostic de 15 minutes est totalement offert et ne vous engage à rien. Il nous permet de valider si nous pouvons réellement vous apporter du chiffre d\'affaires avant d\'émettre la moindre proposition.'
+        q: 'Est-ce vraiment 100 % gratuit sans aucun engagement ?',
+        a: 'Oui. Le diagnostic de 15 minutes est totalement offert et ne demande aucune carte bancaire. Il nous permet de valider si nous pouvons réellement vous apporter du résultat avant de proposer quoi que ce soit.'
       },
       {
         q: 'De quoi ai-je besoin pour le rendez-vous ?',
-        a: 'Rien de particulier : simplement l\'adresse de votre site ou de votre fiche Google s\'ils existent, et vos objectifs (nombre de devis souhaités, secteur géographique).'
+        a: 'Simplement de l\'adresse de votre site web actuel (ou page Facebook / fiche Google s\'il existe) et de votre objectif principal (plus d\'appels locaux, vente en ligne, gain de temps).'
       },
       {
-        q: 'Que se passe-t-il après les 15 minutes ?',
-        a: 'Si une solution Purity est pertinente, nous vous expliquons la formule exacte et son tarif. Si votre situation ne nécessite pas nos services, nous vous le disons en toute franchise.'
+        q: 'Que se passe-t-il après l\'échange ?',
+        a: 'Si une formule Purity correspond parfaitement à votre besoin, nous vous transmettons une proposition détaillée. Si votre présence actuelle est déjà satisfaisante ou qu\'une simple correction gratuite suffit, nous vous l\'indiquons en toute transparence.'
+      },
+      {
+        q: 'Comment se déroule la visio ?',
+        a: 'Par lien Google Meet accessible en un clic depuis votre ordinateur ou smartphone, sans aucun logiciel à installer.'
       }
     ]
   },
@@ -80,75 +99,94 @@ export const services = [
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Lancement rapide · Conversion directe · Artisans & Indépendants',
     headline: 'Une page professionnelle ultra-rapide qui présente votre métier et déclenche des appels dès le premier écran.',
-    summary: 'La solution idéale pour les indépendants qui ont une offre unique et veulent remplacer une page Facebook ou un vieux site par une présence moderne et percutante.',
+    summary: 'La solution idéale pour les indépendants qui ont une offre unique et veulent remplacer une simple page Facebook ou un site obsolète par une présence moderne, crédible et contactable 24h/24.',
     price: '490 € + 79 €/mois',
     priceSetup: '490 €',
     promoSetup: '367 €',
     promoTag: '-25 % 24h',
     monthlyPrice: '79 €/mois',
-    monthlyNote: 'Hébergement haute vitesse, nom de domaine .be, sécurité SSL, sauvegardes et modifications courantes incluses.',
+    monthlyNote: 'Hébergement haute vitesse, nom de domaine .be, certificat SSL, sauvegardes et modifications courantes incluses.',
     delay: '5 à 7 jours ouvrés',
-    targetAudience: 'Électriciens, plombiers, consultants, coaches, photographes, réparateurs et prestataires de services qui ont besoin d’un point de contact sérieux et rapide.',
-    utility: 'Rassurer immédiatement un prospect qui a entendu parler de vous et lui donner un moyen ultra-simple d\'appeler ou de demander un devis en 30 secondes chrono sur son smartphone.',
+    targetAudience: 'Électriciens, plombiers, consultants, coaches, photographes, réparateurs, dépanneurs et indépendants en Wallonie ayant une activité ciblée.',
+    utility: 'Rassurer instantanément un prospect qui cherche votre métier dans votre commune et lui offrir un bouton d’appel direct et WhatsApp sans friction.',
+    searchIntentKeywords: [
+      'création site one page artisan belgique',
+      'prix site internet indépendant charleroi',
+      'création landing page conversion wallonie',
+      'site web rapide artisan bâtiment'
+    ],
+    relatedCases: [
+      { id: 'chauffage', name: 'Thermiq', sector: 'Chauffage & Énergie' },
+      { id: 'animaux', name: 'Patte Douce', sector: 'Toilettage Animalier' }
+    ],
+    comparison: [
+      { aspect: 'Temps de chargement', others: '3 à 6 secondes (CMS lourd type Wix/WordPress avec plugins)', purity: 'Moins de 0,8 seconde (Code vanilla pur optimisé)' },
+      { aspect: 'Ergonomie mobile', others: 'Textes minuscules et boutons d’appel difficiles à cliquer', purity: 'Conçu selon la loi de Fitts : bouton d’appel au pouce en 1 clic' },
+      { aspect: 'Maintenance & Modifications', others: 'Facturées 80 € de l’heure pour changer un numéro', purity: 'Incluses dans le suivi mensuel sans surcoût' }
+    ],
     deliverables: [
       {
-        title: 'Architecture One-Page optimisée conversion',
-        desc: 'Structure linéaire pensée selon les lois de Fitts et de Miller : Promesse forte, Preuves de savoir-faire, Témoignages réels, Tarifs/Services et Formulaire direct.'
+        title: 'Architecture One-Page pensée pour la conversion',
+        desc: 'Structure linéaire optimisée : Promesse forte au-dessus de la ligne de flottaison, preuves de réalisations, grille tarifaire indicative et formulaire direct.'
       },
       {
         title: 'Design Liquid Glass sur mesure (Dark Theme)',
-        desc: 'Identité soignée aux finitions 2026 : typographie General Sans, micro-interactions soignées, zéro template générique ou effet slop.'
+        desc: 'Finition soignée 2026-2027 : fond near-black `#060309`, typographie General Sans, micro-interactions subtiles, 0% template générique.'
       },
       {
-        title: 'Vitesse de chargement PageSpeed 95+',
-        desc: 'Code vanilla ultra-léger sans CMS lourd, affichage instantané en moins d\'une seconde sur réseau 4G/5G mobile.'
+        title: 'Score PageSpeed 95+ sur smartphone',
+        desc: 'Chargement instantané sans aucun CMS lourd, garantissant un score vert Google et un taux de rebond minimal.'
       },
       {
-        title: 'Appel en un clic & Bouton WhatsApp',
-        desc: 'Bouton d\'appel direct collé en bas d\'écran sur smartphone pour maximiser le taux de contact immédiat.'
+        title: 'Bouton d\'appel direct & WhatsApp au pouce',
+        desc: 'Action bar ergonomique pour déclencher un appel téléphonique ou un message WhatsApp en 1 seconde chrono depuis un smartphone.'
       },
       {
         title: 'Nom de domaine .be & Certificat SSL HTTPS',
-        desc: 'Configuration complète du domaine officiel de votre entreprise et sécurisation maximale des échanges.'
+        desc: 'Configuration de votre adresse officielle de marque et cadenas de sécurité HTTPS obligatoire.'
       },
       {
-        title: 'Conformité légale belge & RGPD',
-        desc: 'Mentions légales obligatoires (BCE, franchise TVA art. 56bis le cas échéant), politique de confidentialité et sécurité des données.'
+        title: 'Conformité légale belge complète (BCE, TVA, RGPD)',
+        desc: 'Mentions légales officielles (numéro d’entreprise, régime TVA art. 56bis le cas échéant), politique de confidentialité et sécurité des données.'
       }
     ],
     lossOfInaction: [
       {
         title: '70 % des prospects mobiles perdus',
-        desc: 'Sans page rapide et claire, un prospect sur deux quitte votre lien si le chargement dépasse 3 secondes.'
+        desc: 'Sur smartphone, un prospect sur deux quitte une page si elle met plus de 3 secondes à s\'afficher.'
       },
       {
-        title: 'Image d\'artisan amateur',
-        desc: 'Envoyer une simple page Facebook ou une adresse Gmail gratuite réduit drastiquement la confiance des clients prêts à payer le juste prix.'
+        title: 'Image amateur qui tire vos tarifs vers le bas',
+        desc: 'Envoyer un lien Facebook ou une boîte Gmail gratuite pousse les clients à négocier vos prix à la baisse.'
       },
       {
-        title: 'Zéro conversion le soir et le week-end',
-        desc: 'Quand vous êtes sur chantier ou en rendez-vous, vous perdez des demandes qui partent chez le confrère disponible en ligne.'
+        title: 'Zéro demande pendant vos chantiers',
+        desc: 'Pendant que vous travaillez sur le terrain, vous manquez les appels de clients qui finissent par appeler votre confrère.'
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Cadrage de votre offre (20 min)', desc: 'On valide ensemble vos 3 points forts, vos zones d\'intervention et vos photos de réalisations.' },
-      { step: '02', title: 'Conception & rédaction', desc: 'Nous rédigeons les textes percutants et intégrons l\'interface Liquid Glass.' },
-      { step: '03', title: 'Test sur votre smartphone', desc: 'Vous recevez un lien privé pour tester l\'expérience réelle avant toute mise en ligne.' },
-      { step: '04', title: 'Lancement & connexion domaine', desc: 'Votre page est reliée à votre domaine .be et indexée sur Google en 24h.' }
+      { step: '01', title: 'Cadrage de l\'offre (20 min)', desc: 'On valide vos prestations phares, votre zone d\'intervention en Wallonie et vos photos de chantiers.' },
+      { step: '02', title: 'Rédaction & Design Liquid Glass', desc: 'Nous rédigeons les textes percutants et intégrons l\'interface sans que vous n\'ayez à rédiger quoi que ce soit.' },
+      { step: '03', title: 'Test réel sur votre smartphone', desc: 'Vous recevez un lien de prévisualisation privé pour tester la fluidité et le parcours d\'appel.' },
+      { step: '04', title: 'Mise en ligne & Indexation Google', desc: 'Connexion de votre nom de domaine .be et soumission immédiate à Google Search Console.' }
     ],
-    includedMaintenance: 'Hébergement sur serveur vert haute performance en Europe, renouvellement annuel de votre nom de domaine .be, certificat SSL HTTPS, surveillance 24/7 et prise en charge de vos modifications de coordonnées ou tarifs.',
+    includedMaintenance: 'Hébergement sur serveur haute performance européen, renouvellement annuel du nom de domaine .be, surveillance de sécurité 24/7 et prise en charge rapide de vos modifications de textes/tarifs/horaires.',
     faq: [
       {
-        q: 'Puis-je faire évoluer ma page vers un site multi-pages plus tard ?',
-        a: 'Absolument. La base technique est modulaire : nous pouvons ajouter des pages de réalisations ou de services quand votre activité grandit sans devoir tout recommencer.'
+        q: 'Puis-je transformer ma page en site multi-pages plus tard ?',
+        a: 'Absolument. L\'architecture est conçue de façon modulaire : nous pouvons ajouter des pages de services ou de réalisations quand votre volume d\'affaires grandit sans devoir tout recommencer.'
       },
       {
-        q: 'Fournissez-vous les textes ou dois-je tout écrire ?',
-        a: 'Nous nous chargeons de la rédaction commerciale et SEO à partir de notre court entretien de cadrage. Vous n\'avez rien à rédiger vous-même.'
+        q: 'Dois-je écrire les textes moi-même ?',
+        a: 'Non. Nous rédigeons l’intégralité des textes commerciaux et optimisés SEO à partir de notre court entretien de cadrage.'
       },
       {
-        q: 'Y a-t-il un engagement sur le suivi mensuel ?',
-        a: 'Engagement initial de 12 mois pour amortir les frais techniques de lancement, résiliable ensuite sur simple demande par e-mail avec un préavis de 30 jours.'
+        q: 'Le site fonctionne-t-il sur tous les téléphones ?',
+        a: 'Oui, le site est rigoureusement testé sur iPhone (Safari), Android (Chrome, Samsung Internet) et tablettes, avec une adaptation parfaite de chaque bouton.'
+      },
+      {
+        q: 'Quelle est la durée d’engagement pour la maintenance ?',
+        a: 'Engagement initial de 12 mois pour amortir les coûts de configuration technique, renouvelable ensuite au mois le mois avec résiliation sur simple e-mail.'
       }
     ]
   },
@@ -159,75 +197,94 @@ export const services = [
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Le standard professionnel · PME & Artisans confirmés',
     headline: 'Le site vitrine complet pour asseoir votre autorité locale et convertir chaque recherche Google en demande de devis qualifiée.',
-    summary: 'La solution la plus populaire : 5 pages complètes et structurées (Accueil, Services, Réalisations, À Propos, Contact & Devis) conçues pour dominer votre zone géographique.',
+    summary: 'La solution la plus demandée : 5 pages complètes et structurées (Accueil d’autorité, Services détaillés, Réalisations avec comparateur avant/après, À Propos, Contact & Devis) conçues pour dominer votre zone géographique.',
     price: '1 490 € + 79 €/mois',
     priceSetup: '1 490 €',
     promoSetup: '1 117 €',
     promoTag: '-25 % 24h',
     monthlyPrice: '79 €/mois',
-    monthlyNote: 'Hébergement infogéré, domaine, SSL, sauvegardes et modifications courantes incluses.',
+    monthlyNote: 'Hébergement infogéré, domaine .be, SSL, sauvegardes et modifications courantes incluses.',
     delay: '7 à 10 jours ouvrés',
-    targetAudience: 'Entrepreneurs du bâtiment, cabinets médicaux ou juridiques, garages, instituts, agences et PME locales voulant une vitrine d\'exception.',
-    utility: 'Positionner votre entreprise comme la référence indiscutable dans votre ville (Charleroi, Namur, Mons, Liège, etc.) et filtrer les demandes pour ne recevoir que des clients qualifiés et solvables.',
+    targetAudience: 'Entreprises de rénovation, électriciens, plombiers, garages, carrosseries, cabinets dentaires, agences immobilières et PME régionales en Wallonie.',
+    utility: 'Devenir le choix évident dans votre ville et filtrer les demandes pour ne recevoir que des chantiers rentables avec des clients qui ont le budget.',
+    searchIntentKeywords: [
+      'création site vitrine pme charleroi',
+      'tarif création site web artisan wallonie',
+      'agence web namur site vitrine professionnel',
+      'devis site internet entreprise bâtiment belgique'
+    ],
+    relatedCases: [
+      { id: 'renovation', name: 'Atelier Noma', sector: 'Rénovation Intérieure' },
+      { id: 'garage', name: 'Garage Rive', sector: 'Garage & Carrosserie' }
+    ],
+    comparison: [
+      { aspect: 'Filtrage des curieux', others: 'Formulaire basique : vous perdez votre temps sur des devis sans budget', purity: 'Formulaire qualifié par pièce/budget pour cibler les vrais chantiers' },
+      { aspect: 'Preuve de savoir-faire', others: 'Photos compressées sans mise en valeur', purity: 'Comparateur interactif Avant / Après ultra-tactile' },
+      { aspect: 'Référencement local', others: 'Site invisible dès qu’on dépasse le code postal', purity: 'Balises Schema.org ProfessionalService + maillage local' }
+    ],
     deliverables: [
       {
-        title: '5 pages sur mesure complètes',
-        desc: 'Page d\'Accueil d\'autorité, Page Services avec fiches d\'intervention, Galerie de Réalisations avant/après, Page Entreprise/Équipe et Contact avec formulaire multi-critères.'
+        title: '5 pages complètes pensées pour convaincre',
+        desc: 'Accueil d’autorité, Page Services avec fiches détaillées, Galerie de réalisations avant/après, Page Entreprise/Équipe et Contact avec devis guidé.'
       },
       {
-        title: 'Formulaire de devis qualifié',
-        desc: 'Un parcours qui demande le type de chantier, le délai souhaité et la commune, pour éliminer les curieux et vous faire gagner du temps.'
+        title: 'Parcours de devis qualifié par critères',
+        desc: 'Formulaire intelligent demandant le type de projet, le délai souhaité et la commune, éliminant les curieux avant même votre premier appel.'
       },
       {
-        title: 'Structure SEO Local Wallonie',
-        desc: 'Optimisation sémantique des balises Hn, métadonnées OpenGraph, maillage interne et balises Schema.org ProfessionalService pour Google.'
+        title: 'Curseur interactif Avant / Après',
+        desc: 'Composant interactif permettant au visiteur de glisser le curseur pour voir la qualité de vos finitions (comme sur notre propre site).'
       },
       {
-        title: 'Galerie interactive Avant / Après',
-        desc: 'Curseur interactif de comparaison visuelle (comme sur notre propre site) pour prouver immédiatement la qualité de vos travaux.'
+        title: 'Optimisation SEO Local Wallonie',
+        desc: 'Balises sémantiques Hn, métadonnées OpenGraph, données structurées Schema.org ProfessionalService et intégration de votre zone géographique.'
       },
       {
-        title: 'Design Liquid Glass & animations fluides',
-        desc: 'Interface raffinée, transitions subtiles GSAP respectant les préférences d\'animation, contraste AA accessible.'
+        title: 'Adresses e-mails professionnelles',
+        desc: 'Configuration de vos boîtes e-mails personnalisées (ex: contact@votre-entreprise.be) synchronisées sur votre téléphone et PC.'
       },
       {
-        title: 'E-mails professionnels personnalisés',
-        desc: 'Configuration de vos adresses pro nom@votre-entreprise.be reliées à votre messagerie habituelle.'
+        title: 'Vitesse de pointe PageSpeed 95+',
+        desc: 'Architecture ultra-rapide sans framework superflu garantissant un affichage instantané et un excellent Quality Score pour Google Ads.'
       }
     ],
     lossOfInaction: [
       {
         title: '15 à 30 chantiers perdus par an',
-        desc: 'Quand un prospect compare 3 entreprises locales, celle qui a un site obsolète ou absent est systématiquement écartée de la liste finale.'
+        desc: 'Lorsqu’un particulier compare 3 artisans locaux, celui qui n’a pas de site crédible est éliminé dès la première minute.'
       },
       {
-        title: 'Gaspillage de temps au téléphone',
-        desc: 'Répondre 20 fois par semaine aux mêmes questions basiques (tarifs, disponibilités, zones) au lieu de laisser votre site qualifier le besoin.'
+        title: 'Des heures passées à faire des devis pour rien',
+        desc: 'Se déplacer chez des clients qui n’ont pas le budget parce que votre site ne communiquait pas clairement votre positionnement.'
       },
       {
-        title: 'Perte de crédibilité face aux concurrents récents',
-        desc: 'De nouveaux entrants avec un bon marketing digital captent les clients premium pendant que vous comptez uniquement sur le bouche-à-oreille.'
+        title: 'Dépendance au bouche-à-oreille qui stagne',
+        desc: 'Le bouche-à-oreille est excellent mais irrégulier : un site pro assure un flux constant de nouvelles demandes toute l’année.'
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Atelier de cadrage (30 min)', desc: 'On cartographie votre catalogue de services, vos réalisations phares et vos cibles prioritaires.' },
-      { step: '02', title: 'Architecture & maquettage', desc: 'Nous concevons les 5 pages avec rédaction complète des argumentaires et mise en scène de vos photos.' },
-      { step: '03', title: 'Revue collaborative', desc: 'Vous naviguez sur la démo interactive, nous ajustons les moindres détails selon vos retours.' },
-      { step: '04', title: 'Mise en ligne & indexation', desc: 'Bascule du domaine, configuration DNS, soumission du sitemap à Google Search Console.' }
+      { step: '01', title: 'Atelier de cadrage (30 min)', desc: 'Cartographie de vos chantiers types, tarifs indicatifs et profils de clients recherchés.' },
+      { step: '02', title: 'Conception & Rédaction intégrale', desc: 'Création des 5 pages, rédaction commerciale soignée et mise en valeur de vos réalisations.' },
+      { step: '03', title: 'Revue collaborative', desc: 'Vous testez la version interactive sur votre téléphone et nous ajustons chaque détail à votre goût.' },
+      { step: '04', title: 'Mise en ligne & Remise des clés', desc: 'Bascule DNS du domaine, indexation Google et envoi de vos accès administrateur.' }
     ],
-    includedMaintenance: 'Infogérance serveur 24/7, mises à jour de sécurité préventives, sauvegardes quotidiennes chiffrées, intégration de vos nouveaux avis et photos au fil de l\'eau sur simple e-mail.',
+    includedMaintenance: 'Supervision serveur 24/7, mises à jour techniques préventives, sauvegardes quotidiennes chiffrées et intégration de vos nouveaux chantiers ou avis clients au fil de l’eau sur simple message.',
     faq: [
       {
-        q: 'Puis-je ajouter d\'autres pages plus tard ?',
-        a: 'Oui, nous pouvons intégrer de nouvelles pages de services ou d\'articles de blog à tout moment selon un tarif fixé à l\'avance.'
+        q: 'Suis-je propriétaire de mon site et de mon nom de domaine ?',
+        a: 'Oui, à 100 %. Le code, les visuels, les textes et le nom de domaine sont votre entière propriété. Vous n’êtes jamais enfermé chez nous.'
       },
       {
-        q: 'Combien de temps dois-je consacrer au projet ?',
-        a: 'Environ 45 minutes au total : 30 minutes d\'atelier initial et 15 minutes pour valider la maquette finale. Nous nous occupons de l\'intégralité de la technique et de la rédaction.'
+        q: 'Combien de temps le projet va-t-il me prendre ?',
+        a: 'Environ 45 minutes en tout : 30 minutes d\'atelier initial et 15 minutes pour valider la maquette finale. Nous nous chargeons de l’ensemble de la rédaction et de la technique.'
       },
       {
-        q: 'Le site m\'appartient-il ?',
-        a: 'Oui. Le code, les textes, les visuels et le nom de domaine sont votre entière propriété. Vous n\'êtes jamais pris en otage.'
+        q: 'Puis-je modifier mes textes ou photos moi-même ?',
+        a: 'Oui, vous disposez d\'un accès simple. Mais le plus pratique pour vous reste de nous envoyer un e-mail ou WhatsApp : notre équipe applique vos changements sans surcoût dans le cadre du suivi.'
+      },
+      {
+        q: 'Cette page est-elle prête pour des campagnes Google Ads ?',
+        a: 'Parfaitement. Son score technique de vitesse élevé (95+), son message clair et son formulaire bien placé permettent d\'obtenir une note de pertinence maximale sur Google Ads, réduisant le coût par clic.'
       }
     ]
   },
@@ -238,7 +295,7 @@ export const services = [
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Grande visibilité · Multi-services & Multi-villes',
     headline: 'La plateforme digitale exhaustive pour les PME multi-métiers qui veulent dominer plusieurs zones géographiques sur Google.',
-    summary: 'Plus de 10 pages dédiées pour couvrir chacun de vos corps d’état ou villes d’intervention (ex: Charleroi, Namur, Mons, Brabant Wallon) avec un maillage SEO puissant.',
+    summary: 'Plus de 10 pages dédiées pour couvrir chacun de vos corps d’état ou villes d’intervention (ex: Charleroi, Namur, Mons, Nivelles, Brabant Wallon) avec un maillage SEO puissant et des formulaires spécifiques.',
     price: '2 490 € + 149 €/mois',
     priceSetup: '2 490 €',
     promoSetup: '1 867 €',
@@ -246,67 +303,86 @@ export const services = [
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Maintenance avancée, monitoring temps réel, sauvegardes bi-quotidiennes et interventions prioritaires.',
     delay: '12 à 18 jours ouvrés',
-    targetAudience: 'Entreprises générales de construction, bureaux d\'études, concessions, réseaux de franchises, cliniques privées et PME en expansion.',
-    utility: 'Capturer un volume massif de recherches spécifiques sur Google (ex: "rénovation toiture Charleroi", "isolation façade Namur") avec des pages ultra-pertinentes qui convertissent chaque secteur.',
+    targetAudience: 'Entreprises générales de construction, bureaux d\'architecture, promoteurs immobiliers, réseaux de concessions et PME disposant de plusieurs équipes.',
+    utility: 'Capter un volume important de recherches locales sur Google (ex: "rénovation toiture Charleroi", "isolation façade Namur") avec des pages ultra-ciblées qui convertissent.',
+    searchIntentKeywords: [
+      'création site web entreprise générale wallonie',
+      'site internet multi services charleroi pme',
+      'référencement naturel multi villes belgique',
+      'plateforme digitale b2b wallonie'
+    ],
+    relatedCases: [
+      { id: 'architecture', name: 'Ligne Claire', sector: 'Bureau d’Architecture' },
+      { id: 'immobilier', name: 'Beaux Jours', sector: 'Agence Immobilière' }
+    ],
+    comparison: [
+      { aspect: 'Couverture géographique', others: 'Une seule page vague qui n’apparaît que dans sa propre commune', purity: 'Silos géographiques dédiés pour ranker sur chaque ville ciblée' },
+      { aspect: 'Gestion des demandes', others: 'Boîte de réception submergée de messages non triés', purity: 'Formulaires conditionnels par métier routant vers la bonne équipe' },
+      { aspect: 'Support technique', others: 'Délai de réponse de 5 à 10 jours ouvrés', purity: 'Ligne directe et prise en charge garantie sous 24h ouvrées' }
+    ],
     deliverables: [
       {
-        title: 'Architecture 10 à 15 pages sur mesure',
-        desc: 'Siloing thématique complet : pages services ultra-détaillées, silos géographiques régionaux, cas d\'études complets, espace recrutement / carrières.'
+        title: 'Arborescence 10 à 15 pages sur mesure',
+        desc: 'Pages services approfondies, silos géographiques par ville/région, fiches de réalisations détaillées et page carrières/recrutement.'
       },
       {
-        title: 'Stratégie de maillage interne SEO avancé',
-        desc: 'Structure de liens internes optimisée pour pousser les pages stratégiques en première position sur les requêtes à forte valeur ajoutée.'
+        title: 'Silos sémantiques SEO avancés',
+        desc: 'Structure de liens internes optimisée pour propulser vos pages stratégiques en première page sur les requêtes à fort panier moyen.'
       },
       {
-        title: 'Formulaires conditionnels intelligents',
-        desc: 'Formulaires dynamiques qui adaptent les questions posées selon le service sélectionné par le prospect pour un pré-chiffrage précis.'
+        title: 'Formulaires conditionnels multi-services',
+        desc: 'Parcours dynamique qui adapte automatiquement les questions selon la prestation sélectionnée par le prospect.'
       },
       {
-        title: 'Espace Presse / Actualités / Blog',
-        desc: 'Moteur de publication performant pour publier vos chantiers récents, conseils d\'experts et nouveautés d\'entreprise.'
+        title: 'Section Actualités & Études de cas',
+        desc: 'Moteur de publication pour présenter vos chantiers récents et maintenir votre autorité Google active.'
       },
       {
-        title: 'Tableau de bord statistique privé',
-        desc: 'Accès sécurisé et respectueux du RGPD pour suivre vos visites, le taux de conversion et les formulaires reçus en temps réel.'
+        title: 'Tableau de bord statistique privé RGPD',
+        desc: 'Suivi transparent des visites réelles, du taux de contact et de la provenance de vos demandes sans cookies intrusifs.'
       },
       {
-        title: 'Support technique prioritaire dédié',
-        desc: 'Ligne directe et prise en charge de vos demandes sous 24h ouvrées garanties.'
+        title: 'Support prioritaire garanti sous 24h',
+        desc: 'Canal direct réservé avec notre pôle technique pour vos demandes urgentes et modifications de planning.'
       }
     ],
     lossOfInaction: [
       {
-        title: 'Centaines de recherches mensuelles abandonnées aux concurrents',
-        desc: 'Un site vitrine basique de 3 pages ne peut pas ranker sur 10 métiers différents : vous laissez le champ libre aux leaders régionaux.'
+        title: 'Marchés régionaux abandonnés aux leaders concurrents',
+        desc: 'Un site basique de 3 pages ne peut pas rivaliser avec des entreprises qui ont une page optimisée pour chaque ville de Wallonie.'
       },
       {
-        title: 'Marges réduites sur les chantiers d\'envergure',
-        desc: 'Les clients institutionnels ou à gros budget exigent une assise technique et une structure corporate solide pour signer des contrats à 5 ou 6 chiffres.'
+        title: 'Marges rognées sur les gros contrats',
+        desc: 'Les clients à fort budget (architectes, promoteurs, entreprises) exigent une assise digitale irréprochable avant de signer des devis à 5 ou 6 chiffres.'
       },
       {
-        title: 'Dépendance à la sous-traitance',
-        desc: 'Sans génération directe de leads qualifiés sur vos spécialités, vous restez dépendant de tiers qui prennent une marge importante au passage.'
+        title: 'Difficultés à recruter des ouvriers qualifiés',
+        desc: 'Les meilleurs artisans et techniciens refusent de postuler dans des entreprises qui renvoient une image vieillissante en ligne.'
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Audit stratégique & mot-clés', desc: 'Étude sémantique des volumes de recherche en Wallonie et découpage de l\'arborescence.' },
-      { step: '02', title: 'Production des contenus & design', desc: 'Rédaction experte de chaque fiche métier et création de l\'univers visuel.' },
-      { step: '03', title: 'Recette & intégration des flux', desc: 'Tests de charge, vérification du tracking analytics et validation des formulaires.' },
-      { step: '04', title: 'Déploiement & plan d\'indexation', desc: 'Mise en production sécurisée avec surveillance de l\'indexation URL par URL.' }
+      { step: '01', title: 'Audit sémantique & arborescence', desc: 'Analyse des volumes de recherche réels en Wallonie et découpage des silos thématiques.' },
+      { step: '02', title: 'Production des contenus & maquettes', desc: 'Rédaction experte de chaque fiche métier et validation de l\'expérience utilisateur.' },
+      { step: '03', title: 'Développement & tests de charge', desc: 'Intégration responsive, validation du routage des formulaires et tracking analytique.' },
+      { step: '04', title: 'Mise en ligne & indexation massive', desc: 'Déploiement sécurisé avec soumission complète du sitemap pour indexation rapide.' }
     ],
-    includedMaintenance: 'Supervision continue, audit de sécurité mensuel, sauvegardes chiffrées automatiques, support prioritaire sous 24h et 2h de modifications graphiques ou de contenus incluses chaque mois.',
+    includedMaintenance: 'Supervision proactive 24/7, audits de sécurité réguliers, sauvegardes chiffrées automatiques, support prioritaire sous 24h et 2h de modifications incluses chaque mois.',
     faq: [
       {
-        q: 'Combien de pages exactes comprend l\'offre ?',
-        a: 'L\'offre standard comprend jusqu\'à 15 pages complètes rédigées et intégrées. Les pages supplémentaires peuvent être ajoutées par lots selon vos besoins.'
+        q: 'Combien de pages exactes sont incluses ?',
+        a: 'Jusqu\'à 15 pages complètes rédigées et intégrées sont incluses dans le forfait initial. Des pages supplémentaires peuvent être ajoutées au fil de votre développement.'
       },
       {
-        q: 'Garantissez-vous la première place sur Google ?',
-        a: 'Aucune agence sérieuse ne peut promettre contractuellement une position n°1 garantie. En revanche, nous appliquons rigoureusement les meilleures pratiques techniques, sémantiques et d\'autorité qui amènent nos clients dans le top 3 local.'
+        q: 'Peut-on intégrer des plans ou catalogues PDF ?',
+        a: 'Oui, nous pouvons intégrer des visionneuses de plans haute définition ou des téléchargements de fiches techniques protégés.'
       },
       {
-        q: 'Qui s\'occupe des photos de nos chantiers ?',
-        a: 'Vous nous transmettez vos photos brutes même prises au smartphone. Nous les optimisons, les recadrons et améliorons leur colorimétrie avec nos outils studio.'
+        q: 'Comment s’organise le routage des formulaires ?',
+        a: 'Chaque formulaire peut être envoyé vers une boîte e-mail différente selon le service choisi (ex: devis toiture vers le chef d\'équipe toiture).'
+      },
+      {
+        q: 'Quelle est la fiscalité de cet investissement en Belgique ?',
+        a: 'La création de site web et sa maintenance sont des charges d\'exploitation 100 % déductibles pour votre société ou entreprise individuelle.'
       }
     ]
   },
@@ -315,9 +391,9 @@ export const services = [
     slug: 'boutique-en-ligne',
     name: 'Boutique en ligne (E-commerce)',
     pillar: 'Pilier 01 · Sites Web & Référencement',
-    kicker: 'Vente 24h/24 · Paiement Bancontact & CB · Sans commissions excessives',
+    kicker: 'Vente 24h/24 · Bancontact & Payconiq · Zéro commissions excessives',
     headline: 'Votre boutique e-commerce moderne, rapide et autonome pour vendre vos produits en Belgique et en Europe sans friction.',
-    summary: 'Une boutique en ligne élégante, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, Cartes), optimisée pour convertir sur mobile.',
+    summary: 'Une boutique en ligne élégante, connectée aux moyens de paiement préférés des consommateurs belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), optimisée pour convertir sur smartphone sans abandon de panier.',
     price: '3 990 € + 149 €/mois',
     priceSetup: '3 990 €',
     promoSetup: '2 992 €',
@@ -325,67 +401,85 @@ export const services = [
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Sécurité bancaire, monitoring des paiements, maintenance des passerelles et support technique.',
     delay: '15 à 25 jours ouvrés',
-    targetAudience: 'Commerçants, artisans créateurs, producteurs locaux, marques de cosmétiques ou de mode, et distributeurs cherchant un canal de vente directe sans commissions exorbitantes.',
+    targetAudience: 'Commerçants, artisans créateurs, producteurs locaux, marques de cosmétiques ou de mode, et distributeurs cherchant un canal de vente directe sans commissions de plateformes.',
     utility: 'Encaisser des commandes 7j/7 et 24h/24 avec un panier fluide en 3 clics, un suivi des stocks transparent et une expérience d\'achat haut de gamme qui fidélise.',
+    searchIntentKeywords: [
+      'création boutique en ligne belgique bancontact',
+      'site e-commerce artisan charleroi',
+      'tarif boutique e commerce pme wallonie',
+      'création site vente en ligne sans commissions'
+    ],
+    relatedCases: [
+      { id: 'decoration', name: 'Matière Commune', sector: 'Commerce & Décoration' }
+    ],
+    comparison: [
+      { aspect: 'Commissions sur ventes', others: '15 % à 30 % prélevés par les marketplaces (Amazon, etc.)', purity: '0 % de commission Purity : vous gardez 100 % de votre marge' },
+      { aspect: 'Paiements belges', others: 'Cartes de crédit uniquement (abandon massif en Belgique)', purity: 'Bancontact, Payconiq, Apple Pay et Cartes intégrés nativement' },
+      { aspect: 'Tunnel d’achat', others: '5 étapes lentes demandant un compte obligatoire', purity: 'Checkout express en 1 écran avec achat invité' }
+    ],
     deliverables: [
       {
         title: 'Boutique complète jusqu\'à 100 produits',
-        desc: 'Fiches produits attrayantes avec variantes (tailles, coloris), galeries photos zoomables, avis clients et produits suggérés.'
+        desc: 'Fiches produits soignées avec variantes (tailles, coloris, poids), galeries photos zoomables, gestion des stocks et produits recommandés.'
       },
       {
-        title: 'Passerelle de paiement sécurisée belge',
+        title: 'Passerelle de paiement belge sécurisée',
         desc: 'Intégration directe de Bancontact, Payconiq, Carte Bancaire, Apple Pay et Google Pay via Stripe ou Mollie sans intermédiaire douteux.'
       },
       {
-        title: 'Tunnel d\'achat optimisé sans abandon de panier',
-        desc: 'Checkout express en une page (One-Step Checkout) réduisant la friction et augmentant le taux de commande de +25 %.'
+        title: 'Tunnel d\'achat One-Step anti-abandon',
+        desc: 'Validation de commande en une seule page claire, réduisant la friction et augmentant le taux de conversion d\'au moins +25 %.'
       },
       {
-        title: 'Gestion des livraisons & Click and Collect',
-        desc: 'Configuration des frais de port par zone géographique (Belgique, France, Luxembourg), points relais (Bpost, Mondial Relay) et retrait en boutique.'
+        title: 'Expéditions Bpost, Mondial Relay & Click and Collect',
+        desc: 'Configuration des zones de livraison (Belgique, France, Luxembourg), points relais automatiques et retrait gratuit en magasin.'
       },
       {
-        title: 'E-mails transactionnels automatisés',
-        desc: 'Confirmation de commande, notification d\'expédition avec suivi de colis et relance automatique des paniers abandonnés.'
+        title: 'E-mails transactionnels & Facturation automatique',
+        desc: 'Confirmation de commande, notification d\'envoi avec numéro de suivi colis et génération de factures PDF conformes.'
       },
       {
-        title: 'Formation vidéo complète à la gestion',
-        desc: 'Tutoriel personnalisé de 20 minutes pour apprendre à ajouter vos nouveaux produits, gérer vos stocks et imprimer vos étiquettes en toute simplicité.'
+        title: 'Formation vidéo personnalisée (20 min)',
+        desc: 'Tutoriel simple pour ajouter de nouveaux produits, modifier vos prix et imprimer vos bordereaux d\'envoi en totale autonomie.'
       }
     ],
     lossOfInaction: [
       {
-        title: 'Ventes limitées aux heures d\'ouverture physique',
-        desc: 'Pendant que votre commerce est fermé, 42 % des achats en ligne se font entre 20h et minuit sur les plateformes concurrentes.'
+        title: 'Ventes bloquées aux heures de fermeture physique',
+        desc: '42 % des achats en ligne se font entre 20h et minuit : sans e-commerce, vos clients fidèles finissent par acheter ailleurs.'
       },
       {
-        title: 'Racket des commissions de marketplaces',
-        desc: 'Vendre sur des plateformes tierces qui prélèvent entre 15 % et 30 % de commission sur votre chiffre d\'affaires au lieu de posséder votre canal direct.'
+        title: 'Marges détruites par les plateformes tierces',
+        desc: 'Vendre sur des plateformes qui prélèvent 20 % de commission réduit à néant votre rentabilité commerciale.'
       },
       {
-        title: 'Perte définitive de vos clients fidèles',
-        desc: 'Un client qui ne peut pas réapprovisionner facilement ses produits préférés en ligne finit par commander sur Amazon.'
+        title: 'Stocks dormants non valorisés',
+        desc: 'Des invendus qui s\'accumulent en réserve au lieu d\'être proposés à une clientèle élargie sur toute la Wallonie et Bruxelles.'
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Structure catalogue & paiements', desc: 'Paramétrage de vos catégories, de vos modes de livraison et connexion de votre compte bancaire.' },
-      { step: '02', title: 'Design & intégration produits', desc: 'Mise en valeur visuelle de vos produits et conception du parcours d\'achat.' },
-      { step: '03', title: 'Phase de tests de commande réels', desc: 'Simulations d\'achats complets en conditions réelles avec paiements réels de 1 € pour valider le flux.' },
+      { step: '01', title: 'Structure catalogue & bancaire', desc: 'Paramétrage des catégories, connexion de votre compte bancaire et paramétrage des transporteurs.' },
+      { step: '02', title: 'Design & intégration fiches', desc: 'Mise en scène visuelle de vos produits et optimisation de l\'affichage sur mobile.' },
+      { step: '03', title: 'Simulations d\'achats réels', desc: 'Tests de transactions réelles à 1 € pour valider le bon fonctionnement de Bancontact et des alertes.' },
       { step: '04', title: 'Lancement & session de formation', desc: 'Ouverture officielle de la boutique et prise en main guidée pour traiter vos premières commandes.' }
     ],
-    includedMaintenance: 'Maintenance des passerelles bancaires et des protocoles de sécurité TLS/SSL, sauvegardes continues des commandes et de la base de données clients, assistance technique rapide en cas de bug de paiement.',
+    includedMaintenance: 'Maintenance continue des protocoles bancaires sécurisés SSL/TLS, sauvegardes journalières de la base clients et commandes, et support technique réactif.',
     faq: [
       {
-        q: 'Prenez-vous une commission sur mes ventes ?',
-        a: 'Absolument aucune commission ! Seuls s\'appliquent les frais bancaires standards de la passerelle de paiement (ex: Mollie ou Stripe, environ 0,25 € par transaction Bancontact).'
+        q: 'Prenez-vous une commission sur mon chiffre d\'affaires ?',
+        a: 'Non, 0 % de commission. Vous ne payez que les frais de transaction bancaires classiques de la passerelle (ex: Mollie ou Stripe, environ 0,25 € par paiement Bancontact).'
       },
       {
-        q: 'Est-il facile d\'ajouter un produit moi-même ?',
-        a: 'Très facile. Nous configurons une interface d\'administration intuitive où vous ajoutez un produit en 2 minutes chrono (photos, prix, stock, description).'
+        q: 'Est-il simple de mettre à jour mes stocks ?',
+        a: 'Très simple : depuis votre smartphone ou ordinateur, vous modifiez une quantité ou désactivez un produit en 10 secondes.'
       },
       {
-        q: 'Comment sont gérées les factures conformes en Belgique ?',
-        a: 'Le système génère automatiquement des factures PDF numérotées avec votre numéro d\'entreprise, le taux de TVA applicable et les coordonnées complètes de l\'acheteur.'
+        q: 'Le système gère-t-il la TVA belge à 6 % et 21 % ?',
+        a: 'Oui, les taux de TVA sont configurés précisément par produit (alimentation à 6 %, produits manufacturés à 21 %) pour une comptabilité sans erreur.'
+      },
+      {
+        q: 'Puis-je proposer le retrait gratuit en magasin (Click & Collect) ?',
+        a: 'Oui, le client peut choisir entre la livraison à domicile, le point relais ou le retrait gratuit dans votre atelier/boutique.'
       }
     ]
   },
@@ -396,75 +490,93 @@ export const services = [
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Transformation radicale · Conservation de vos acquis SEO',
     headline: 'Transformez votre ancien site web lent et dépassé en une machine de conversion moderne, fluide et crédible.',
-    summary: 'Votre site a plus de 4 ans, ne ressemble à rien sur smartphone ou ne génère aucun appel ? Nous le reconstruisons de fond en comble en conservant vos adresses et votre référencement acquis.',
+    summary: 'Votre site actuel a plus de 4 ans, ne ressemble à rien sur smartphone ou ne génère plus aucun contact ? Nous le reconstruisons entièrement en conservant vos adresses et votre autorité Google acquise.',
     price: '890 à 2 490 € + 79 €/mois',
     priceSetup: 'dès 890 €',
     promoSetup: 'dès 667 €',
     promoTag: '-25 % 24h',
     monthlyPrice: '79 €/mois',
-    monthlyNote: 'Hébergement, maintenance et garantie zéro régression SEO.',
+    monthlyNote: 'Hébergement, maintenance technique et garantie stricte de zéro perte de trafic SEO.',
     delay: '7 à 14 jours ouvrés',
-    targetAudience: 'Entreprises établies qui ont déjà un site existant (WordPress, Wix ou fait maison) mais qui ont honte de le montrer à leurs clients.',
+    targetAudience: 'Entreprises établies qui disposent déjà d\'un site web (ancien WordPress, Wix ou fait maison) mais qui ont honte de le montrer à leurs clients.',
     utility: 'Multiplier immédiatement votre taux de conversion par 3 sans perdre votre historique, vos liens externes ni vos positions actuelles sur Google.',
+    searchIntentKeywords: [
+      'refonte site internet charleroi',
+      'moderniser vieux site web belgique',
+      'refonte wordpress vers site rapide wallonie',
+      'prix refonte site web pme'
+    ],
+    relatedCases: [
+      { id: 'renovation', name: 'Atelier Noma', sector: 'Rénovation & Bâtiment' }
+    ],
+    comparison: [
+      { aspect: 'Gestion des anciennes adresses', others: 'Liens cassés en 404 : tout votre référencement Google s’effondre', purity: 'Plan strict de redirections 301 pour transférer 100 % de votre autorité' },
+      { aspect: 'Coupure de service', others: 'Site indisponible pendant 2 semaines', purity: 'Zéro coupure : votre ancien site reste en ligne jusqu’à la minute de bascule' },
+      { aspect: 'Vitesse après refonte', others: 'Même lenteur car refait avec le même CMS lourd', purity: 'Temps de chargement divisé par 4 (PageSpeed 95+)' }
+    ],
     deliverables: [
       {
-        title: 'Audit complet de l\'existant',
-        desc: 'Inventaire précis de toutes vos URLs, mots-clés qui vous amènent du trafic et points faibles de conversion de l\'ancienne version.'
+        title: 'Audit complet de l\'existant & crawl technique',
+        desc: 'Inventaire exhaustif de vos URLs historiques, des mots-clés qui vous amènent déjà du trafic et des points de friction majeurs.'
       },
       {
-        title: 'Plan de redirections 301 strict',
-        desc: 'Garantie absolue de zéro perte de trafic : chaque ancienne adresse est redirigée proprement pour conserver votre autorité Google.'
+        title: 'Plan de redirections 301 chirurgical',
+        desc: 'Garantie absolue de zéro perte de trafic : chaque ancienne adresse est redirigée de manière transparente vers sa nouvelle page équivalente.'
       },
       {
-        title: 'Refonte graphique Liquid Glass 2026',
-        desc: 'Modernisation visuelle totale : finitions soignées, typographies actuelles, mise en valeur de vos compétences réelles.'
+        title: 'Refonte graphique Liquid Glass 2026-2027',
+        desc: 'Modernisation visuelle complète : finitions soignées, typographies haut de gamme et valorisation de vos compétences réelles.'
       },
       {
-        title: 'Nettoyage du code & accélération',
-        desc: 'Suppression des 40 plugins obsolètes, des thèmes lourds et du code inutile pour un temps de réponse divisé par 4.'
+        title: 'Suppression des plugins lourds & code allégé',
+        desc: 'Nettoyage des dizaines d\'extensions vulnérables et obsolètes au profit d\'un code vanilla ultra-léger et sécurisé.'
       },
       {
-        title: 'Modernisation des formulaires de contact',
-        desc: 'Remplacement des vieux formulaires austères par des parcours dynamiques avec confirmation visuelle immédiate.'
+        title: 'Nouveaux formulaires de contact qualifiés',
+        desc: 'Remplacement des vieux formulaires austères par des parcours fluides avec confirmation instantanée.'
       },
       {
-        title: 'Mise en conformité RGPD & Sécurité',
-        desc: 'Élimination des failles de sécurité courantes des vieux sites et mise en règle des bandeaux de consentement.'
+        title: 'Mise en conformité RGPD & Sécurité renforcée',
+        desc: 'Élimination des failles de sécurité et mise aux normes du bandeau de consentement selon l\'Autorité de Protection des Données belge.'
       }
     ],
     lossOfInaction: [
       {
-        title: 'Chute inexorable dans les classements Google',
-        desc: 'Google pénalise activement les sites qui échouent aux tests Core Web Vitals (lenteur, sauts de mise en page sur mobile).'
+        title: 'Pénalités progressives infligées par Google',
+        desc: 'Google déclasse les sites qui échouent aux tests Core Web Vitals (lenteur, éléments qui sautent lors du défilement mobile).'
       },
       {
-        title: 'Risque de piratage massif sur vieux WordPress',
-        desc: 'Les sites aux extensions non mises à jour sont la cible n°1 des robots pirates (injections de spams, vol de données, blocage complet).'
+        title: 'Risque de piratage massif sur vieux CMS non mis à jour',
+        desc: 'Les sites aux plugins obsolètes sont la cible privilégiée des robots pirates (injections de spams, blocage d\'accès, vol d\'e-mails).'
       },
       {
-        title: 'Taux de rebond de 80 %',
-        desc: '8 visiteurs sur 10 repartent immédiatement s\'ils tombent sur un design qui ressemble aux années 2012.'
+        title: 'Taux de fuite de 80 % sur smartphone',
+        desc: '8 visiteurs sur 10 quittent immédiatement un site qui nécessite de zoomer avec les doigts pour lire un texte.'
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Extraction des contenus utiles', desc: 'Nous récupérons vos textes, logos et visuels de qualité de l\'ancien site.' },
-      { step: '02', title: 'Développement sur environnement privé', desc: 'Votre ancien site reste 100 % en ligne pendant que nous construisons le nouveau en coulisses.' },
-      { step: '03', title: 'Validation comparative', desc: 'Vous comparez les deux versions et validez la nouvelle mouture.' },
-      { step: '04', title: 'Bascule instantanée sans coupure', desc: 'Migration DNS fluide en quelques minutes avec application instantanée du plan de redirection 301.' }
+      { step: '01', title: 'Extraction des contenus de valeur', desc: 'Récupération de vos textes existants, avis clients et photos de qualité.' },
+      { step: '02', title: 'Création en environnement privé', desc: 'Votre ancien site reste 100 % actif pendant que nous construisons le nouveau en coulisses.' },
+      { step: '03', title: 'Comparatif Avant / Après', desc: 'Vous comparez les deux versions côte à côte et validez la nouvelle mouture.' },
+      { step: '04', title: 'Bascule instantanée sans coupure', desc: 'Migration DNS fluide en quelques minutes avec application du plan de redirections.' }
     ],
-    includedMaintenance: 'Surveillance anti-panne, gestion des redirections, hébergement moderne et réactif, assistance technique et modifications de routine.',
+    includedMaintenance: 'Surveillance anti-panne, gestion continue des redirections, hébergement haute performance et modifications de routine.',
     faq: [
       {
-        q: 'Mon ancien site sera-t-il coupé pendant les travaux ?',
+        q: 'Mon site actuel sera-t-il indisponible pendant la refonte ?',
         a: 'Non, jamais. Votre site actuel reste en ligne et continue de recevoir vos clients jusqu\'à la minute exacte où nous activons le nouveau.'
       },
       {
         q: 'Vais-je perdre mes adresses e-mails professionnelles ?',
-        a: 'Non, nous configurons les enregistrements MX et DNS avec une précision chirurgicale pour qu\'aucun e-mail ne soit perdu lors de la transition.'
+        a: 'Non. Nous configurons les enregistrements DNS avec une rigueur absolue pour qu\'aucun e-mail ne soit perdu lors du transfert.'
       },
       {
-        q: 'Mon classement Google va-t-il chuter ?',
-        a: 'Au contraire. Grâce à notre plan strict de redirections 301 et au gain massif de vitesse, la majorité de nos clients constatent une remontée de leurs positions dans les 3 semaines.'
+        q: 'Mon classement Google risque-t-il de baisser ?',
+        a: 'Au contraire. Grâce à notre plan de redirections 301 et au gain massif de vitesse, la majorité de nos clients constatent une remontée de leurs positions sous 3 à 4 semaines.'
+      },
+      {
+        q: 'Pouvez-vous récupérer mes textes existants ?',
+        a: 'Oui, nous récupérons vos textes existants et nous les retravaillons pour les rendre plus percutants et plus lisibles sur mobile.'
       }
     ]
   },
@@ -475,7 +587,7 @@ export const services = [
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Pack Visibilité Locale · Présence Google Maps n°1',
     headline: 'Ressortez en tête de liste sur Google Maps quand vos voisins cherchent votre métier dans votre ville.',
-    summary: 'Optimisation chirurgicale de votre fiche Google Business Profile pour apparaître dans le pack local de 3 résultats de Google et déclencher des appels téléphoniques quotidiens.',
+    summary: 'Optimisation complète de votre fiche Google Business Profile pour apparaître dans le pack local de 3 résultats de Google et déclencher des appels téléphoniques quotidiens sans payer de publicité.',
     price: '290 €',
     priceSetup: '290 €',
     promoSetup: '217 €',
@@ -483,58 +595,73 @@ export const services = [
     monthlyPrice: null,
     monthlyNote: 'Paiement unique, sans abonnement obligatoire.',
     delay: '3 à 5 jours ouvrés',
-    targetAudience: 'Commerces physiques, dépanneurs, artisans mobiles, restaurants, professions libérales et cabinets locaux.',
-    utility: 'Capter le trafic de proximité le plus chaud : des personnes prêtes à acheter ou à appeler immédiatement dans un rayon de 10 à 30 km autour de votre atelier.',
+    targetAudience: 'Commerces physiques, dépanneurs, artisans mobiles, restaurants, professions libérales et cabinets locaux en Wallonie.',
+    utility: 'Capter le trafic de proximité le plus chaud : des prospects prêts à appeler immédiatement dans un rayon de 10 à 30 km autour de votre atelier.',
+    searchIntentKeywords: [
+      'optimiser fiche google business charleroi',
+      'apparaitre premier sur google maps belgique',
+      'création google my business artisan wallonie',
+      'référencement local google maps pme'
+    ],
+    relatedCases: [
+      { id: 'restaurant', name: 'Table Serein', sector: 'Horeca' },
+      { id: 'garage', name: 'Garage Rive', sector: 'Automobile' }
+    ],
+    comparison: [
+      { aspect: 'Catégorisation Google', others: 'Une seule catégorie basique choisie au hasard', purity: 'Catégorie principale et secondaires calibrées sur l’algorithme belge' },
+      { aspect: 'Collecte d’avis 5 étoiles', others: 'Attendre passivement que les clients pensent à laisser un avis', purity: 'QR code d’atelier + lien court direct augmentant les avis de +300 %' },
+      { aspect: 'Gestion des doublons', others: 'Fiches en doublon qui diluent votre score Google', purity: 'Nettoyage et harmonisation complète des signaux NAP' }
+    ],
     deliverables: [
       {
-        title: 'Revendication & validation complète de la fiche',
-        desc: 'Audit de statut, vérification auprès de Google et sécurisation de la propriété de votre établissement.'
+        title: 'Revendication & validation officielle de la fiche',
+        desc: 'Audit de statut, sécurisation de la propriété de votre établissement et validation auprès de Google.'
       },
       {
-        title: 'Optimisation des catégories principales et secondaires',
-        desc: 'Sélection des catégories exactes d\'activité les plus recherchées par l\'algorithme Google en Belgique.'
+        title: 'Optimisation des catégories d\'activité',
+        desc: 'Sélection des catégories exactes les plus recherchées par l\'algorithme Google en Belgique francophone.'
       },
       {
-        title: 'Rédaction optimisée de la description d\'établissement',
-        desc: 'Texte attractif de 750 caractères intégrant vos mots-clés prioritaires, zones desservies et arguments de réassurance.'
+        title: 'Rédaction optimisée de la description d\'entreprise',
+        desc: 'Texte professionnel de 750 caractères intégrant vos mots-clés prioritaires, zones desservies et réassurances.'
       },
       {
-        title: 'Création du catalogue de services & produits',
-        desc: 'Ajout de chacun de vos services avec descriptif clair, tarifs indicatifs et liens vers votre site ou WhatsApp.'
+        title: 'Catalogue complet de vos services & tarifs indicatifs',
+        desc: 'Ajout de chacune de vos prestations avec descriptif clair et liens vers votre site web ou WhatsApp.'
       },
       {
-        title: 'Stratégie de collecte d\'avis 5 étoiles & QR Code',
-        desc: 'Fourniture de votre lien direct d\'avis court + création d\'un QR code prêt à imprimer pour récolter des avis de vos clients satisfaits.'
+        title: 'Kit d\'avis clients 5 étoiles & QR Code imprimable',
+        desc: 'Lien direct court + création d\'un QR code prêt à imprimer pour votre comptoir, camionnette ou factures.'
       },
       {
-        title: 'Nettoyage des doublons & signaux de cohérence NAP',
-        desc: 'Harmonisation du Nom, Adresse et Téléphone pour éviter toute pénalité de classement de Google.'
+        title: 'Harmonisation des signaux de cohérence NAP',
+        desc: 'Alignement du Nom, Adresse et Téléphone sur le web pour éviter toute pénalité de classement de Google.'
       }
     ],
     lossOfInaction: [
       {
-        title: 'Invisibilité totale pour 65 % des recherches mobiles',
-        desc: 'Sur smartphone, 2 personnes sur 3 appellent directement depuis la carte Google Maps sans même ouvrir de site web.'
+        title: 'Invisibilité sur 65 % des recherches mobiles',
+        desc: 'Sur smartphone, 2 personnes sur 3 appellent directement depuis la carte Google Maps sans ouvrir de site web.'
       },
       {
-        title: 'Avis négatifs sans réponse qui plombent votre réputation',
-        desc: 'Une fiche non gérée laisse des clients mécontents sans réponse constructive, faisant fuir les nouveaux prospects.'
+        title: 'Avis négatifs sans réponse professionnelle',
+        desc: 'Une fiche non gérée laisse des avis litigieux sans réponse constructive, faisant fuir les nouveaux prospects.'
       },
       {
-        title: 'Informations erronées et clients devant porte close',
-        desc: 'Horaires faux ou mauvaise adresse sur Google qui envoient vos clients chez le concurrent ouvert à côté.'
+        title: 'Clients qui trouvent porte close',
+        desc: 'Horaires faux ou mauvaise adresse sur Google qui envoient vos clients directement chez le concurrent ouvert à côté.'
       }
     ],
     howItWorks: [
       { step: '01', title: 'Audit d\'accès', desc: 'Vous nous donnez accès comme gestionnaire à votre fiche existante ou nous la créons ensemble.' },
-      { step: '02', title: 'Restructuration complète', desc: 'Nous renseignons l\'ensemble des champs techniques, balisons les zones et ajoutons vos services.' },
-      { step: '03', title: 'Photos & identité', desc: 'Intégration de photos professionnelles valorisant vos locaux, votre équipe et votre savoir-faire.' },
+      { step: '02', title: 'Restructuration complète', desc: 'Nous renseignons l\'ensemble des champs techniques, balisons les zones d\'intervention et ajoutons vos services.' },
+      { step: '03', title: 'Photos & identité', desc: 'Intégration de photos soignées valorisant vos locaux, votre équipe et votre savoir-faire.' },
       { step: '04', title: 'Remise du kit d\'avis', desc: 'Vous recevez vos accès propres et votre kit pour booster vos avis clients chaque semaine.' }
     ],
-    includedMaintenance: 'Service ponctuel sans abonnement. Possibilité de souscrire à notre accompagnement mensuel Réseaux & Google pour la publication régulière de posts.',
+    includedMaintenance: 'Service ponctuel sans abonnement. Possibilité d’opter pour notre suivi mensuel pour la publication régulière de posts Google.',
     faq: [
       {
-        q: 'Je n\'ai pas d\'adresse physique pour accueillir du public, est-ce possible ?',
+        q: 'Je n’ai pas d’adresse pour accueillir du public, est-ce possible ?',
         a: 'Oui. Google permet de créer une fiche en zone de desserte (ex: "Artisan itinérant couvrant Charleroi et 30 km aux alentours"), sans afficher votre adresse privée.'
       },
       {
@@ -542,8 +669,12 @@ export const services = [
         a: 'La mise à jour technique est effective en 48h. L\'impact sur le classement local et les appels se fait généralement ressentir entre 10 et 20 jours après l\'optimisation.'
       },
       {
-        q: 'Puis-je supprimer des avis injustes ?',
+        q: 'Peut-on supprimer un faux avis calomnieux ?',
         a: 'Nous vous accompagnons pour signaler les faux avis contraires aux règles de Google et nous vous aidons à rédiger des réponses professionnelles pour désamorcer les avis litigieux.'
+      },
+      {
+        q: 'Est-ce un paiement unique ou un abonnement ?',
+        a: 'C\'est un paiement unique de 217 € (avec remise 24h). Aucun abonnement mensuel obligatoire.'
       }
     ]
   },
@@ -560,17 +691,32 @@ export const services = [
     promoSetup: '517 €',
     promoTag: '-25 % 24h',
     monthlyPrice: null,
-    monthlyNote: 'Paiement unique, fichiers sources et droits d\'exploitation 100 % cédés.',
+    monthlyNote: 'Paiement unique, fichiers sources et droits d’exploitation 100 % cédés.',
     delay: '7 à 10 jours ouvrés',
     targetAudience: 'Créateurs d\'entreprise, indépendants en phase de repositionnement ou PME dont le logo actuel est pixelisé, démodé ou créé sous Word.',
     utility: 'Inspirer un respect professionnel instantané dès le premier contact et justifier des devis plus élevés auprès d\'une clientèle plus exigeante.',
+    searchIntentKeywords: [
+      'création logo entreprise charleroi',
+      'refonte identité visuelle pme belgique',
+      'tarif graphiste logo professionnel wallonie',
+      'charte graphique entreprise artisanale'
+    ],
+    relatedCases: [
+      { id: 'beaute', name: 'Maison Lune', sector: 'Institut de Beauté' },
+      { id: 'sport', name: 'Cadence Studio', sector: 'Studio Sportif' }
+    ],
+    comparison: [
+      { aspect: 'Originalité', others: 'Logo généré par IA ou icône de banque d’images vue partout', purity: 'Création vectorielle sur mesure originale et brevetable' },
+      { aspect: 'Formats fournis', others: 'Simple fichier JPEG pixelisé inutilisable pour l’imprimerie', purity: 'Pack vectoriel complet (SVG, EPS, PDF HD, WebP transparent)' },
+      { aspect: 'Droits de propriété', others: 'Droits flous ou licence mensuelle cachée', purity: 'Attestation de cession totale des droits patrimoniaux' }
+    ],
     deliverables: [
       {
         title: '3 pistes créatives uniques et argumentées',
         desc: 'Propositions originales conçues selon votre positionnement, sans aucune icône générique de banque d\'images.'
       },
       {
-        title: 'Logo final décliné sous tous les formats',
+        title: 'Logo final décliné sous tous les formats HD',
         desc: 'Fichiers vectoriels SVG, EPS, PDF (imprimerie haute résolution) et versions web transparentes PNG/WebP (fond clair et fond sombre).'
       },
       {
@@ -582,8 +728,8 @@ export const services = [
         desc: 'Guide synthétique précisant vos codes couleurs exacts (HEX, RVB, CMJN pour l\'impression), polices de caractères et règles d\'interdiction.'
       },
       {
-        title: 'Fichiers prêts pour flocage & signalétique',
-        desc: 'Gabarits préparés pour vos véhicules utilitaires, cartes de visite, vêtements de travail ou enseigne de façade.'
+        title: 'Gabarits prêts pour flocage & signalétique',
+        desc: 'Fichiers préparés aux bonnes dimensions pour vos véhicules utilitaires, cartes de visite, vêtements de travail ou enseigne de façade.'
       },
       {
         title: 'Cession totale des droits patrimoniaux',
@@ -597,32 +743,36 @@ export const services = [
       },
       {
         title: 'Frais de réimpression inutiles',
-        desc: 'Fournir un logo flou ou mal calibré à un imprimeur qui donne un résultat désastreux sur vos camionnettes ou vos bâches.'
+        desc: 'Fournir un logo flou à un imprimeur qui donne un résultat désastreux sur vos camionnettes ou vos bâches publicitaires.'
       },
       {
         title: 'Confusion dans l\'esprit du public',
-        desc: 'Avoir un logo différent sur Facebook, votre camion et vos factures détruit la mémorisation de votre marque.'
+        desc: 'Avoir un logo différent sur Facebook, votre camionnette et vos factures détruit la mémorisation de votre marque.'
       }
     ],
     howItWorks: [
       { step: '01', title: 'Questionnaire de style (15 min)', desc: 'Vous partagez vos préférences, vos concurrents directs et les valeurs phares de votre métier.' },
-      { step: '02', title: 'Présentation de 3 axes', desc: 'Amir vous présente 3 concepts distincts avec simulation sur supports réels (cartes, t-shirts, mobile).' },
+      { step: '02', title: 'Présentation de 3 axes', desc: 'Amir vous présente 3 concepts distincts avec simulation sur supports réels (cartes, vêtements, mobile).' },
       { step: '03', title: 'Affinage de la piste retenue', desc: 'Jusqu\'à 2 séries d\'ajustements sur les couleurs, les formes et la typographie choisie.' },
       { step: '04', title: 'Remise du dossier complet', desc: 'Téléchargement d\'une archive organisée avec tous les formats professionnels classés.' }
     ],
     includedMaintenance: 'Livraison clé en main définitive. Les fichiers restent archivés chez nous à vie en cas de perte de votre côté.',
     faq: [
       {
-        q: 'Puis-je protéger mon logo à l\'OBPI (Office Benelux de la Propriété Intellectuelle) ?',
-        a: 'Oui. Tous nos logos sont créés sur mesure et vectorisés selon les normes d\'enregistrement des marques.'
+        q: 'Puis-je protéger mon logo à l\'OBPI (Office Benelux) ?',
+        a: 'Oui. Tous nos logos sont créés sur mesure et vectorisés selon les normes d\'enregistrement de marque du Benelux.'
       },
       {
         q: 'Fournissez-vous les cartes de visite imprimées ?',
-        a: 'Nous vous livrons le fichier PDF d\'impression conforme avec traits de coupe et marges perdues, prêt à être envoyé à votre imprimeur local ou en ligne (ex: VistaPrint ou imprimeur carolo).'
+        a: 'Nous vous livrons le fichier PDF d\'impression conforme avec traits de coupe et marges perdues, prêt à être envoyé à votre imprimeur local.'
       },
       {
         q: 'Que se passe-t-il si aucune des 3 pistes ne me plaît ?',
         a: 'Notre cadrage initial est si précis que cela n\'arrive quasiment jamais. Si c\'est le cas, nous analysons ce qui a manqué et concevons un axe supplémentaire corrigé.'
+      },
+      {
+        q: 'Le logo est-il utilisable pour floquer mes camionnettes ?',
+        a: 'Parfaitement. Les fichiers vectoriels (.EPS et .SVG) peuvent être agrandis à l’infini sans aucune perte de netteté.'
       }
     ]
   },
@@ -633,7 +783,7 @@ export const services = [
     pillar: 'Pilier 02 · Réseaux Sociaux & Image',
     kicker: 'Formats courts percutants · Instagram, TikTok, Facebook',
     headline: 'Des visuels percutants et vidéos courtes au format Reels prêtes à publier pour captiver votre audience locale.',
-    summary: 'Création de visuels percutants et de 4 vidéos courtes au format Reels/TikTok pour mettre en lumière votre savoir-faire avec un montage dynamique et professionnel.',
+    summary: 'Création de visuels soignés et de 4 vidéos courtes au format Reels/TikTok pour mettre en lumière votre savoir-faire avec un montage dynamique et professionnel prêt à poster.',
     price: '390 €',
     priceSetup: '390 €',
     promoSetup: '292 €',
@@ -641,8 +791,23 @@ export const services = [
     monthlyPrice: null,
     monthlyNote: 'Pack ponctuel sans abonnement, réutilisable sur tous vos canaux.',
     delay: '5 à 7 jours ouvrés',
-    targetAudience: 'Restaurants, commerces de bouche, instituts esthétiques, coachs sportifs et artisans réalisant des avant/après spectaculaires.',
+    targetAudience: 'Restaurants, commerces de bouche, instituts esthétiques, coachs sportifs et artisans réalisant des avant/après spectaculaires en Wallonie.',
     utility: 'Générer de l\'engagement rapide et multiplier par 5 la portée de vos publications grâce aux formats vidéo verticaux privilégiés par les algorithmes.',
+    searchIntentKeywords: [
+      'création reels instagram entreprise charleroi',
+      'montage vidéo tiktok pme wallonie',
+      'pack visuels réseaux sociaux artisan',
+      'vidéo courte verticale commerce local'
+    ],
+    relatedCases: [
+      { id: 'restaurant', name: 'Table Serein', sector: 'Horeca' },
+      { id: 'beaute', name: 'Maison Lune', sector: 'Beauté' }
+    ],
+    comparison: [
+      { aspect: 'Rétention d’attention', others: 'Vidéos sans sous-titres zappées en 2 secondes', purity: 'Accroche percutante dès 0,5s + sous-titres animés lisibles sans son' },
+      { aspect: 'Temps passé par le gérant', others: '3 heures de galère sur une application mobile', purity: 'Vous envoyez vos vidéos brutes sur WhatsApp, on gère tout le montage' },
+      { aspect: 'Qualité graphique', others: 'Polices criardes qui décrédibilisent l’artisan', purity: 'Charte graphique soignée, musique tendance libre de droits' }
+    ],
     deliverables: [
       {
         title: '4 Reels / TikToks verticaux (9:16) montés',
@@ -650,7 +815,7 @@ export const services = [
       },
       {
         title: 'Sous-titrage animé synchronisé',
-        desc: '80 % des vidéos sont regardées sans son : nous ajoutons des sous-titres animés lisibles pour maximiser la rétention.'
+        desc: '80 % des vidéos sont regardées sans le son : nous ajoutons des sous-titres animés lisibles pour maximiser la rétention.'
       },
       {
         title: '6 visuels carrousels ou posts carrés (1:1 & 4:5)',
@@ -685,7 +850,7 @@ export const services = [
       { step: '03', title: 'Montage studio & sous-titres', desc: 'Étalonnage, mixage sonore et intégration des animations textuelles.' },
       { step: '04', title: 'Livraison prête à poster', desc: 'Vous recevez les vidéos par e-mail ou WhatsApp, avec l\'ordre de publication et les textes rédigés.' }
     ],
-    includedMaintenance: 'Pack créatif sans récurrence. Possibilité de renouveler chaque mois ou de basculer sur notre offre M16 (Gestion complète 3x/semaine).',
+    includedMaintenance: 'Pack créatif ponctuel sans récurrence. Possibilité de basculer sur notre formule M16 (Gestion complète 3x/semaine).',
     faq: [
       {
         q: 'Dois-je avoir du matériel de tournage professionnel ?',
@@ -698,6 +863,10 @@ export const services = [
       {
         q: 'Qui valide les vidéos avant diffusion ?',
         a: 'Vous avez un droit de regard et de retouche sur chaque vidéo avant de les diffuser.'
+      },
+      {
+        q: 'Les musiques sont-elles libres de droits pour un compte pro ?',
+        a: 'Oui, nous utilisons exclusivement des morceaux autorisés pour un usage commercial afin d’éviter toute coupure audio par Instagram.'
       }
     ]
   },
@@ -718,6 +887,21 @@ export const services = [
     delay: 'Effets mesurables dès 30 à 60 jours',
     targetAudience: 'Indépendants et PME qui en ont marre de dépendre du budget Google Ads et veulent un flux régulier et gratuit de demandes organiques.',
     utility: 'Investir dans un actif digital qui prend de la valeur chaque mois et capte des prospects qualifiés au moment exact où ils ont besoin de vos services.',
+    searchIntentKeywords: [
+      'agence seo charleroi référencement naturel',
+      'expert seo local wallonie indépendant',
+      'remonter premier sur google artisan belgique',
+      'prix référencement naturel site pme'
+    ],
+    relatedCases: [
+      { id: 'renovation', name: 'Atelier Noma', sector: 'Rénovation' },
+      { id: 'chauffage', name: 'Thermiq', sector: 'Chauffage' }
+    ],
+    comparison: [
+      { aspect: 'Pérennité', others: 'Google Ads s’arrête dès que vous coupez votre budget', purity: 'Le SEO construit un actif qui continue d’amener des clients sans coût par clic' },
+      { aspect: 'Qualité des contenus', others: 'Textes génériques bourrés de mots-clés illisibles', purity: 'Articles rédigés avec expertise locale répondant aux vraies questions clients' },
+      { aspect: 'Transparence', others: 'Rapport mensuel automatique incompréhensible', purity: 'Bilan commenté avec suivi de vos positions et appels déclenchés' }
+    ],
     deliverables: [
       {
         title: 'Audit sémantique & sélection de 20 mots-clés cibles',
@@ -773,6 +957,10 @@ export const services = [
       {
         q: 'Quelle est la durée d\'engagement ?',
         a: 'Engagement initial de 6 mois recommandé pour laisser le temps aux moteurs d\'indexer et de valoriser le travail, résiliable mensuellement par la suite.'
+      },
+      {
+        q: 'Garantissez-vous la position numéro 1 sur Google ?',
+        a: 'Aucune agence éthique ne peut promettre contractuellement une première place garantie (Google restant seul juge). En revanche, nous appliquons une méthodologie éprouvée qui place régulièrement nos clients dans le top 3 local.'
       }
     ]
   },
@@ -791,8 +979,23 @@ export const services = [
     monthlyPrice: '349 €/mois',
     monthlyNote: 'Création des visuels, montage des vidéos, rédaction des textes et programmation clé en main.',
     delay: 'Démarrage sous 5 jours ouvrés',
-    targetAudience: 'Artisans débordés, gérants de commerces, restaurants et dirigeants de PME qui n\'ont pas le temps de poster régulièrement.',
+    targetAudience: 'Artisans débordés, gérants de commerces, restaurants et dirigeants de PME en Wallonie qui n\'ont pas le temps de poster régulièrement.',
     utility: 'Montrer chaque semaine à vos prospects et clients que votre entreprise est active, réactive et en pleine croissance, tout en restant concentré à 100 % sur vos chantiers et votre métier.',
+    searchIntentKeywords: [
+      'community manager charleroi pme',
+      'gestion réseaux sociaux entreprise belgique',
+      'tarif animation instagram facebook wallonie',
+      'agence réseaux sociaux artisan namur'
+    ],
+    relatedCases: [
+      { id: 'restaurant', name: 'Table Serein', sector: 'Horeca' },
+      { id: 'beaute', name: 'Maison Lune', sector: 'Beauté' }
+    ],
+    comparison: [
+      { aspect: 'Régularité', others: 'Un post par-ci par-là, puis 3 mois de silence total', purity: '3 publications soignées par semaine, calendrier planifié 1 mois à l’avance' },
+      { aspect: 'Temps requis', others: 'Vos soirées et dimanches gâchés sur Canva', purity: '20 minutes de briefing mensuel avec nous, zéro charge mentale' },
+      { aspect: 'Offre découverte', others: 'Plein tarif dès le premier jour', purity: '1er mois d’abonnement mensuel (349 €) 100 % offert' }
+    ],
     deliverables: [
       {
         title: '12 publications professionnelles par mois (3 par semaine)',
@@ -852,6 +1055,10 @@ export const services = [
       {
         q: 'Puis-je continuer à poster moi-même de temps en temps ?',
         a: 'Absolument ! Notre formule assure votre socle professionnel régulier, et vous restez totalement libre de poster des stories spontanées quand vous le souhaitez.'
+      },
+      {
+        q: 'Sur quels réseaux publiez-vous ?',
+        a: 'Principalement Instagram et Facebook pour le grand public, ou LinkedIn pour les prestataires de services B2B.'
       }
     ]
   },
@@ -870,8 +1077,22 @@ export const services = [
     monthlyPrice: '39 €/mois',
     monthlyNote: 'Maintenance des webhooks, surveillance des erreurs et exécution garantie.',
     delay: '5 à 7 jours ouvrés',
-    targetAudience: 'Indépendants et artisans qui passent leurs soirées à répondre à des e-mails, relancer des devis non signés ou fixer des rendez-vous par SMS.',
+    targetAudience: 'Indépendants et artisans en Wallonie qui passent leurs soirées à répondre à des e-mails, relancer des devis non signés ou fixer des rendez-vous par SMS.',
     utility: 'Récupérer immédiatement entre 3 et 6 heures de temps libre chaque semaine et répondre aux demandes 10 fois plus vite que vos concurrents.',
+    searchIntentKeywords: [
+      'automatiser devis artisan belgique',
+      'prise de rendez-vous automatique pme wallonie',
+      'automatisation tâches répétitives charleroi',
+      'relance devis automatique indépendant'
+    ],
+    relatedCases: [
+      { id: 'sante', name: 'Cabinet Horizon', sector: 'Santé & Médical' }
+    ],
+    comparison: [
+      { aspect: 'Temps de réponse', others: 'Réponse le lendemain soir après le chantier (le client a déjà signé ailleurs)', purity: 'Notification et confirmation envoyée en 30 secondes chrono' },
+      { aspect: 'Oublis de relances', others: 'Devis oubliés dans un carnet', purity: 'Relances programmées avec tact à J+3 et J+7 sans effort' },
+      { aspect: 'Fiabilité technique', others: 'Bricolage maison qui plante à la première mise à jour', purity: 'Flux monitoré sur serveur dédié avec alertes d’erreur automatiques' }
+    ],
     deliverables: [
       {
         title: 'Cadrage précis d\'un flux unique à fort impact',
@@ -927,6 +1148,10 @@ export const services = [
       {
         q: 'Que se passe-t-il si un client répond à l\'e-mail automatique ?',
         a: 'La réponse arrive directement dans votre boîte de réception classique, vous reprenez la main comme d\'habitude.'
+      },
+      {
+        q: 'Mes données clients sont-elles protégées ?',
+        a: 'Oui, nous respectons strictement le RGPD. Toutes les automatisations transitent par des serveurs européens sécurisés.'
       }
     ]
   },
@@ -945,8 +1170,22 @@ export const services = [
     monthlyPrice: '69 €/mois',
     monthlyNote: 'Monitoring des flux, maintenance multi-connecteurs et évolutions mineures.',
     delay: '10 à 14 jours ouvrés',
-    targetAudience: 'PME, cabinets de conseil, entreprises du bâtiment avec plusieurs équipes, et sociétés recevant plus de 10 demandes par semaine.',
+    targetAudience: 'PME, cabinets comptables, entreprises du bâtiment avec plusieurs équipes et sociétés recevant plus de 10 demandes par semaine.',
     utility: 'Structurer votre entreprise comme une machine bien huilée : chaque demande web crée automatiquement la fiche client, le dossier dans votre CRM et génère l\'ébauche de devis.',
+    searchIntentKeywords: [
+      'connecter crm formulaire web wallonie',
+      'automatisation facturation devis pme belgique',
+      'logiciel gestion chantier interconnecté charleroi',
+      'expert make n8n entreprise belgique'
+    ],
+    relatedCases: [
+      { id: 'fiduciaire', name: 'Clarté & Associés', sector: 'Fiduciaire' }
+    ],
+    comparison: [
+      { aspect: 'Centralisation', others: 'Fichiers Excel perdus, post-its et doubles saisies manuelles', purity: 'Tableau de bord unique synchronisé en temps réel sur mobile et PC' },
+      { aspect: 'Coordination d’équipe', others: 'Messages WhatsApp perdus dans le fil de discussion', purity: 'Alertes automatiques assignées au bon collaborateur dès validation' },
+      { aspect: 'Relance des impayés', others: 'Rappels manuels quand la trésorerie est dans le rouge', purity: 'Relances courtoises automatiques avant et après échéance' }
+    ],
     deliverables: [
       {
         title: 'Cartographie complète de vos flux de données',
@@ -1002,6 +1241,10 @@ export const services = [
       {
         q: 'Mes données clients sont-elles protégées ?',
         a: 'Oui, nous respectons strictement le RGPD. Toutes les données transitent par des flux chiffrés sans hébergement chez des tiers non conformes.'
+      },
+      {
+        q: 'Que se passe-t-il si un collaborateur n’est pas à l’aise avec l’informatique ?',
+        a: 'Nous simplifions l’interface à l’extrême : vos techniciens reçoivent un message clair sur leur téléphone avec l’adresse et le bouton GPS en 1 clic.'
       }
     ]
   },
@@ -1022,6 +1265,21 @@ export const services = [
     delay: '15 à 20 jours ouvrés',
     targetAudience: 'Entreprises en forte croissance, sociétés de services avec fort volume de sollicitations, et dirigeants souhaitant déléguer le premier niveau de relation client à une IA sur-mesure.',
     utility: 'Traiter les questions clients instantanément à 23h le dimanche, qualifier précisément le budget et l\'urgence, et ne transmettre au patron que les dossiers chauds et prêts à signer.',
+    searchIntentKeywords: [
+      'création agent ia entreprise belgique',
+      'chatbot ia intelligent pme charleroi',
+      'automatisation relation client ia wallonie',
+      'agent conversationnel sur mesure pme'
+    ],
+    relatedCases: [
+      { id: 'fiduciaire', name: 'Clarté & Associés', sector: 'Fiduciaire' },
+      { id: 'immobilier', name: 'Beaux Jours', sector: 'Immobilier' }
+    ],
+    comparison: [
+      { aspect: 'Intelligence & Précision', others: 'Vieux chatbot rigide qui répète "Je n’ai pas compris"', purity: 'Agent IA moderne entraîné sur votre vrai catalogue avec garde-fous stricts' },
+      { aspect: 'Gestion des prix', others: 'L’IA hallucine des remises ou invente des tarifs faux', purity: 'Zero-hallucination guard : l’IA ne dévie jamais de votre grille officielle' },
+      { aspect: 'Conformité européenne', others: 'Données envoyées sur des serveurs non conformes', purity: '100 % conforme RGPD et AI Act européen avec mention claire de transparence' }
+    ],
     deliverables: [
       {
         title: 'Agent IA personnalisé sur mesure (sans hallucination)',
@@ -1081,6 +1339,10 @@ export const services = [
       {
         q: 'Combien de temps faut-il pour qu\'il soit opérationnel ?',
         a: 'Le paramétrage, l\'entraînement et les tests prennent entre 15 et 20 jours ouvrés pour une solution livrée clés en main.'
+      },
+      {
+        q: 'Puis-je couper l\'agent IA si nécessaire ?',
+        a: 'Oui, un simple bouton dans votre tableau de bord vous permet de désactiver l\'agent ou de basculer en mode formulaire classique à tout moment.'
       }
     ]
   }

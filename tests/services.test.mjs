@@ -32,6 +32,10 @@ test('toutes les pages de détails de services et le hub sont générés et conf
     assert.match(detail, new RegExp(`canonical" href="https://purity-agency\\.be/services/${s.slug}"`));
     assert.match(detail, /"@type": "Service"/);
     assert.match(detail, /"@type": "BreadcrumbList"/);
+    assert.match(detail, /"@type": "FAQPage"/);
+    assert.match(detail, /sd-trust-strip/);
+    assert.match(detail, /sd-comparison-table/);
+    assert.match(detail, /sd-floating-bar/);
     assert.match(detail, /sd-deliverables-grid/);
     assert.match(detail, /Ce que vous perdez chaque mois sans cette solution/);
     await stat(new URL(`services/${s.slug}.html`, root));
@@ -49,3 +53,4 @@ test('resolveCleanRoute et isAllowedStaticPath gèrent les URLs de services', ()
   assert.equal(isAllowedStaticPath('/services/site-vitrine.html'), true);
   assert.equal(isAllowedStaticPath('/services/invalid!'), false);
 });
+

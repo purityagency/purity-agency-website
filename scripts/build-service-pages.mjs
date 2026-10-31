@@ -93,6 +93,16 @@ function buildServiceDetailPage(service) {
     : `/contact.html?offer=${service.id}&promo=novdec25`;
   const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Demander mon devis cadré';
 
+  // Build FAQPage Schema.org structure
+  const faqSchemaItems = (service.faq || []).map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }));
+
   const schemaJson = {
     "@context": "https://schema.org",
     "@graph": [
@@ -130,6 +140,17 @@ function buildServiceDetailPage(service) {
             "addressLocality": "Charleroi",
             "postalCode": "6000",
             "addressCountry": "BE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 50.4167,
+            "longitude": 4.4444
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "bestRating": "5",
+            "reviewCount": "38"
           }
         },
         "areaServed": "Wallonie",
@@ -140,6 +161,10 @@ function buildServiceDetailPage(service) {
           "availability": "https://schema.org/InStock",
           "url": canonicalUrl
         }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqSchemaItems
       }
     ]
   };
@@ -153,14 +178,16 @@ function buildServiceDetailPage(service) {
 <meta name="description" content="${escapeHtml(metaDesc)}">
 <link rel="canonical" href="${canonicalUrl}">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="fr_BE">
 <meta property="og:title" content="${escapeHtml(pageTitle)}">
 <meta property="og:description" content="${escapeHtml(metaDesc)}">
 <meta property="og:url" content="${canonicalUrl}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=34">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=2">
+<link rel="stylesheet" href="/css/service-detail.css?v=3">
 <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
@@ -205,15 +232,31 @@ ${renderHeader('services')}
         </div>
 
         <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Garantie &amp; Suivi</span>
+          <span class="sd-meta-card__label">Garantie &amp; Accompagnement</span>
           <span style="font-size: 1.05rem; font-weight: 650; color: #fff; margin-top: 0.2rem;">100 % Clé en main</span>
-          <span class="sd-meta-card__sub">Zéro frais caché · Accompagnement direct avec Amir</span>
+          <span class="sd-meta-card__sub">Sans frais cachés · Interlocuteur unique (Amir)</span>
         </div>
       </div>
 
       <div class="sd-hero__actions">
         <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span aria-hidden="true">↗</span></a>
         ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="/contact.html?solution=diagnostic">Échanger 15 min en visio d'abord <span aria-hidden="true">→</span></a>` : ''}
+      </div>
+
+      <!-- TRUST STRIP ABOVE THE FOLD -->
+      <div class="sd-trust-strip" aria-label="Garanties et réassurance">
+        <div class="sd-trust-item">
+          <span class="sd-stars" aria-hidden="true">★★★★★</span>
+          <span><strong>4,8/5</strong> sur Google (38 avis vérifiés)</span>
+        </div>
+        <div class="sd-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
+        </div>
+        <div class="sd-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Charleroi &amp; Wallonie</span>
+        </div>
       </div>
     </section>
 
@@ -265,6 +308,38 @@ ${renderHeader('services')}
       </div>
     </section>
 
+    <!-- SECTION COMPARATIVE AVEC PURITY VS AUTRES -->
+    ${service.comparison && service.comparison.length ? `
+    <section class="sd-section">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Pourquoi Purity</span>
+        <h2 class="sd-heading">La différence concrète face aux prestataires classiques</h2>
+        <p class="sd-subheading">Voyez exactement ce qui change lorsque vous travaillez avec un studio axé sur la performance et la rentabilité.</p>
+      </div>
+
+      <div class="sd-comparison-wrap">
+        <table class="sd-comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Critère clé</th>
+              <th scope="col">Prestataire classique / Bricolage</th>
+              <th scope="col" class="sd-col-purity">Approche Purity Agency</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${service.comparison.map(c => `
+              <tr>
+                <td class="sd-col-aspect">${escapeHtml(c.aspect)}</td>
+                <td class="sd-col-others">${escapeHtml(c.others)}</td>
+                <td class="sd-col-purity"><strong>✓</strong> ${escapeHtml(c.purity)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    ` : ''}
+
     <!-- SECTION LE COÛT DE L'INACTION -->
     <section class="sd-section">
       <div class="sd-loss-card">
@@ -305,6 +380,28 @@ ${renderHeader('services')}
       </div>
     </section>
 
+    <!-- SECTION CAS CONCRETS ASSOCIÉS (PREUVE SOCIALE & MAILLAGE) -->
+    ${service.relatedCases && service.relatedCases.length ? `
+    <section class="sd-section">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Exemples réels</span>
+        <h2 class="sd-heading">Voyez ce que nous avons créé pour d'autres métiers</h2>
+        <p class="sd-subheading">Découvrez les démonstrations interactives et cas concrets déployés pour les artisans et PME de Wallonie.</p>
+      </div>
+
+      <div class="sd-cases-grid">
+        ${service.relatedCases.map(rc => `
+          <a class="sd-case-card" href="/cas-concrets/${escapeHtml(rc.id)}.html">
+            <span class="sd-case-card__sector">${escapeHtml(rc.sector)}</span>
+            <h3>${escapeHtml(rc.name)}</h3>
+            <p>Voir le cas d'étude détaillé, l'architecture de conversion et la démonstration interactive en ligne.</p>
+            <span class="sd-case-card__cta">Explorer le cas d'étude <span aria-hidden="true">→</span></span>
+          </a>
+        `).join('')}
+      </div>
+    </section>
+    ` : ''}
+
     <!-- SECTION MAINTENANCE & SUIVI -->
     ${service.monthlyPrice ? `
     <section class="sd-section">
@@ -318,7 +415,7 @@ ${renderHeader('services')}
     </section>
     ` : ''}
 
-    <!-- FAQ SECTION -->
+    <!-- FAQ SECTION (SERP RICH SNIPPETS) -->
     <section class="sd-section">
       <div class="sd-section-header">
         <span class="sd-kicker">Transparence</span>
@@ -352,6 +449,15 @@ ${renderHeader('services')}
     </section>
   </div>
 </main>
+
+<!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
+<aside class="sd-floating-bar" aria-label="Action rapide">
+  <div class="sd-floating-info">
+    <span class="sd-floating-price">${escapeHtml(service.promoSetup || service.priceSetup)}</span>
+    <span class="sd-floating-note">${service.promoTag ? escapeHtml(service.promoTag) : 'Tarif direct'}</span>
+  </div>
+  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Diagnostic offert' : 'Demander devis'} <span aria-hidden="true">↗</span></a>
+</aside>
 
 ${renderFooter()}
 
@@ -397,14 +503,16 @@ function buildServicesHubPage() {
 <meta name="description" content="${escapeHtml(metaDesc)}">
 <link rel="canonical" href="${canonicalUrl}">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="fr_BE">
 <meta property="og:title" content="${escapeHtml(pageTitle)}">
 <meta property="og:description" content="${escapeHtml(metaDesc)}">
 <meta property="og:url" content="${canonicalUrl}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=34">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=2">
+<link rel="stylesheet" href="/css/service-detail.css?v=3">
 <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
@@ -427,12 +535,42 @@ ${renderHeader('services')}
       <h1 class="sd-hero__title">Des solutions concrètes.<br>Des livrables précis.</h1>
       <p class="sd-hero__headline">Cliquez sur un service pour inspecter ses livrables complets, son utilité et le coût de l'inaction.</p>
       <p class="sd-hero__summary">Tous nos tarifs sont transparents et affichés sans devis à la tête du client. Hébergement rapide, sécurité et maintenance incluses.</p>
+
+      <div class="sd-trust-strip" aria-label="Garanties">
+        <div class="sd-trust-item">
+          <span class="sd-stars" aria-hidden="true">★★★★★</span>
+          <span><strong>4,8/5</strong> sur Google (38 avis vérifiés)</span>
+        </div>
+        <div class="sd-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Entreprise enregistrée BCE 1036.775.590</span>
+        </div>
+        <div class="sd-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Charleroi · Namur · Mons · Liège · Wallonie</span>
+        </div>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="sd-hub-filter-bar" role="tablist" aria-label="Filtrer les services par pilier">
+        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all">Tous les services (14)</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1">01 · Sites Web &amp; Référencement</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2">02 · Réseaux Sociaux &amp; Image</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3">03 · Automatisation &amp; IA</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4">04 · Diagnostic</button>
+      </div>
     </section>
 
     <section class="sd-section" style="border-top: 1px solid var(--sd-border);">
-      <div class="sd-hub-grid">
-        ${services.map(svc => `
-          <a class="sd-hub-card" href="/services/${svc.slug}">
+      <div class="sd-hub-grid" id="services-grid">
+        ${services.map(svc => {
+          let pillarTag = 'pilier-1';
+          if (svc.pillar.includes('Pilier 02')) pillarTag = 'pilier-2';
+          else if (svc.pillar.includes('Pilier 03')) pillarTag = 'pilier-3';
+          else if (svc.pillar.includes('Pilier 04')) pillarTag = 'pilier-4';
+
+          return `
+          <a class="sd-hub-card" href="/services/${svc.slug}" data-pillar="${pillarTag}">
             <span class="sd-hub-card__pillar">${escapeHtml(svc.pillar)}</span>
             <h3>${escapeHtml(svc.name)}</h3>
             <p>${escapeHtml(svc.summary)}</p>
@@ -441,7 +579,8 @@ ${renderHeader('services')}
               <span class="sd-hub-card__cta">Voir en détail <span aria-hidden="true">→</span></span>
             </div>
           </a>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     </section>
 
@@ -456,6 +595,29 @@ ${renderHeader('services')}
     </section>
   </div>
 </main>
+
+<script>
+(() => {
+  const filterBtns = document.querySelectorAll('.sd-hub-filter-btn');
+  const cards = document.querySelectorAll('#services-grid .sd-hub-card');
+  if (!filterBtns.length || !cards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.pillar === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
 
 ${renderFooter()}
 

@@ -269,6 +269,7 @@ export function resolveCleanRoute(rawPathname) {
   if (rawPathname.includes('\0') || rawPathname.includes('\\') || rawPathname.includes('//')) return null;
   const trimmed = rawPathname.length > 1 && rawPathname.endsWith('/') ? rawPathname.slice(0, -1) : rawPathname;
   if (CLEAN_HTML_ROUTES.has(trimmed)) return `${trimmed}.html`;
+  if (/^\/cas-concrets\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
   return rawPathname;
 }
 

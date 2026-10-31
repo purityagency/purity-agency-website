@@ -470,7 +470,42 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
  font-weight:650;
  font-size:.85rem
 }
-.service-offer-row>a{
+.service-offer-row__actions{
+ justify-self:end;
+ display:inline-flex;
+ align-items:center;
+ gap:.55rem;
+ flex-wrap:wrap
+}
+.service-offer-row__detail{
+ display:inline-flex;
+ align-items:center;
+ gap:.35rem;
+ padding:.58rem 1rem;
+ border-radius:999px;
+ border:1px solid rgba(124,58,237,.28);
+ background:rgba(124,58,237,.06);
+ color:var(--accent);
+ font-size:.88rem;
+ font-weight:650;
+ text-decoration:none;
+ white-space:nowrap;
+ transition:all 200ms cubic-bezier(.22,1,.36,1)
+}
+.service-offer-row__detail:hover{
+ background:rgba(124,58,237,.14);
+ border-color:var(--accent);
+ transform:translateY(-1px)
+}
+.service-offer-row__detail span{
+ display:inline-block;
+ transition:transform 200ms ease
+}
+.service-offer-row__detail:hover span{
+ transform:translateX(3px)
+}
+.service-offer-row>a,
+.service-offer-row__cta{
  justify-self:end;
  display:inline-flex;
  align-items:center;
@@ -487,19 +522,22 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
  box-shadow:0 2px 10px rgba(44,20,75,.05);
  transition:all 220ms cubic-bezier(.22,1,.36,1)
 }
-.service-offer-row>a:hover{
+.service-offer-row>a:hover,
+.service-offer-row__cta:hover{
  background:var(--accent);
  color:#fff;
  border-color:var(--accent);
  transform:translateY(-2px);
  box-shadow:0 8px 24px rgba(124,58,237,.28)
 }
-.service-offer-row>a span{
+.service-offer-row>a span,
+.service-offer-row__cta span{
  color:var(--accent);
  display:inline-block;
  transition:transform 220ms ease
 }
-.service-offer-row>a:hover span{
+.service-offer-row>a:hover span,
+.service-offer-row__cta:hover span{
  color:#fff;
  transform:translate(2px,-2px)
 }
@@ -544,7 +582,10 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
  .service-offer-row__price .price-current{font-size:1.38rem}
  .service-offer-row__price .price-recurring__amount{font-size:.95rem}
  .service-offer-row__price .price-recurring__note{font-size:.8rem}
+ .service-offer-row__actions{justify-self:stretch;width:100%;display:flex;flex-direction:column;gap:.5rem}
+ .service-offer-row__actions>a,
  .service-offer-row>a{justify-self:stretch;justify-content:center;width:100%;padding:.72rem 1rem;font-size:.94rem;background:rgba(124,58,237,.06);border-color:rgba(124,58,237,.28);color:var(--accent-deep)}
+ .service-offer-row__actions>a:hover,
  .service-offer-row>a:hover{background:var(--accent);color:#fff}
 }
 @media(max-width:440px){

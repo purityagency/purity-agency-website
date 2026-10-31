@@ -61,7 +61,12 @@ test('static allowlist blocks source code, dotfiles, encoded traversal, and disa
   assert.equal(isAllowedStaticPath('/data/leads.log'), false);
   assert.equal(isAllowedStaticPath('/docs/OCTOMASK.md'), false);
   assert.equal(isAllowedStaticPath('/tarifs.html'), true);
+  assert.equal(isAllowedStaticPath('/services.html'), true);
+  assert.equal(isAllowedStaticPath('/services/site-vitrine.html'), true);
   assert.equal(resolveCleanRoute('/tarifs'), '/tarifs.html');
+  assert.equal(resolveCleanRoute('/services'), '/services.html');
+  assert.equal(resolveCleanRoute('/services/site-vitrine'), '/services/site-vitrine.html');
+  assert.equal(resolveCleanRoute('/services/site-vitrine/'), '/services/site-vitrine.html');
   assert.equal(resolveCleanRoute('/contact/'), '/contact.html');
   assert.equal(resolveCleanRoute('//evil.com'), null);
 

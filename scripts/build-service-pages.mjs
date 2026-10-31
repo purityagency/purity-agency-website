@@ -561,22 +561,42 @@ ${renderHeader('services')}
 
     <section class="sd-section" style="border-top: 1px solid var(--sd-border);">
       <div class="sd-hub-grid" id="services-grid">
-        ${services.map(svc => {
+        ${services.map((svc, idx) => {
           let pillarTag = 'pilier-1';
           if (svc.pillar.includes('Pilier 02')) pillarTag = 'pilier-2';
           else if (svc.pillar.includes('Pilier 03')) pillarTag = 'pilier-3';
           else if (svc.pillar.includes('Pilier 04')) pillarTag = 'pilier-4';
 
+          const numStr = String(idx + 1).padStart(2, '0');
+
           return `
-          <a class="sd-hub-card" href="/services/${svc.slug}" data-pillar="${pillarTag}">
-            <span class="sd-hub-card__pillar">${escapeHtml(svc.pillar)}</span>
-            <h3>${escapeHtml(svc.name)}</h3>
-            <p>${escapeHtml(svc.summary)}</p>
-            <div class="sd-hub-card__footer">
-              <span class="sd-hub-card__price">${escapeHtml(svc.promoSetup || svc.priceSetup)}</span>
-              <span class="sd-hub-card__cta">Voir en détail <span aria-hidden="true">→</span></span>
+          <article class="sd-hub-card" data-pillar="${pillarTag}">
+            <div class="sd-hub-card__top">
+              <span class="sd-hub-card__num">#${numStr}</span>
+              <span class="sd-hub-card__pillar">${escapeHtml(svc.pillar.replace(/Pilier \d+ · /, ''))}</span>
             </div>
-          </a>
+            <h2 class="sd-hub-card__title"><a href="/services/${svc.slug}">${escapeHtml(svc.name)}</a></h2>
+            <p class="sd-hub-card__summary">${escapeHtml(svc.summary)}</p>
+
+            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
+              ${svc.deliverables.slice(0, 3).map(deliv => `
+                <li>
+                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
+                  <span>${escapeHtml(deliv.title)}</span>
+                </li>
+              `).join('')}
+            </ul>
+
+            <div class="sd-hub-card__footer">
+              <div class="sd-hub-card__price-wrap">
+                <span class="sd-hub-card__price">${escapeHtml(svc.promoSetup || svc.priceSetup)}</span>
+                <span class="sd-hub-card__delay">Livraison : ${escapeHtml(svc.delay)}</span>
+              </div>
+              <a class="sd-hub-card__btn" href="/services/${svc.slug}" aria-label="Voir le détail et les livrables pour ${escapeHtml(svc.name)}">
+                Voir en détail <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
           `;
         }).join('')}
       </div>

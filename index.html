@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/site-additions.css?v=12">
 <!-- audit.css bloquant : la section audit est visible des le premier ecran sur mobile
      (en differe, son application decalait la page). 2 Ko compresses. -->
-<link rel="stylesheet" href="/css/audit.css?v=10">
+<link rel="stylesheet" href="/css/audit.css?v=11">
 <!-- Sections sous la ligne de flottaison : CSS pre-charge (fetch immediat, non bloquant)
      puis active par /js/defer-css.js. Repli <noscript> pour les navigateurs sans JS. -->
 <link rel="preload" as="style" href="/css/method.css?v=13">
@@ -144,16 +144,9 @@
     <span class="hero-to-audit__pulse"></span>
   </div>
 
-  <!-- VITRINE AVANT / APRES NOS REFONTES -->
-  <section class="audit-showcase" id="avant-apres" aria-labelledby="audit-showcase-title">
-    <div class="audit-showcase__inner">
-      <div class="audit-showcase__head">
-        <p class="section-kicker">L’impact concret</p>
-        <h2 class="audit-showcase__title" id="audit-showcase-title">Avant / Après nos refontes sur mesure.</h2>
-        <p class="audit-showcase__lead">Glissez sur l’image pour constater la différence entre un site ordinaire et une expérience taillée pour convertir.</p>
-      </div>
-
-      <div class="audit-showcase__grid">
+  <section class="audit" id="audit" aria-labelledby="audit-title">
+    <div class="audit__inner">
+      <div class="audit__stage">
         <figure class="audit-compare audit-compare--left" data-audit-compare style="--split:50%">
           <div class="audit-compare__chrome" aria-hidden="true">
             <span class="audit-compare__dots"><i></i><i></i><i></i></span>
@@ -178,6 +171,19 @@
           </figcaption>
         </figure>
 
+        <div class="audit__copy">
+          <h2 class="audit__title" id="audit-title">Testez votre site gratuitement.</h2>
+          <p class="audit__lead">Recevez un diagnostic expert de vos points faibles : ce qui freine la confiance, la prise de contact et ce qu’il faudrait améliorer en priorité.</p>
+
+          <form class="audit__form" id="audit-form" novalidate>
+            <label class="sr-only" for="audit-url">Adresse de votre site</label>
+            <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
+                   placeholder="votre-entreprise.be" aria-describedby="audit-hint">
+            <button class="btn btn--primary audit__submit" type="submit">Obtenir le diagnostic</button>
+          </form>
+          <p class="audit__hint" id="audit-hint">Gratuit, sans inscription. Votre adresse n’est pas utilisée à des fins commerciales.</p>
+        </div>
+
         <figure class="audit-compare audit-compare--right" data-audit-compare style="--split:50%">
           <div class="audit-compare__chrome" aria-hidden="true">
             <span class="audit-compare__dots"><i></i><i></i><i></i></span>
@@ -201,25 +207,6 @@
             <span>Glissez pour comparer ↔</span>
           </figcaption>
         </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTEZ VOTRE SITE (AUDIT GRATUIT) -->
-  <section class="audit" id="audit" aria-labelledby="audit-title">
-    <div class="audit__inner">
-      <div class="audit__copy">
-        <p class="section-kicker">Diagnostic immédiat</p>
-        <h2 class="audit__title" id="audit-title">Testez votre site gratuitement.</h2>
-        <p class="audit__lead">Recevez un diagnostic expert de vos points faibles : ce qui freine la confiance, la prise de contact et ce qu’il faudrait améliorer en priorité.</p>
-
-        <form class="audit__form" id="audit-form" novalidate>
-          <label class="sr-only" for="audit-url">Adresse de votre site</label>
-          <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
-                 placeholder="votre-entreprise.be" aria-describedby="audit-hint">
-          <button class="btn btn--primary audit__submit" type="submit">Obtenir le diagnostic</button>
-        </form>
-        <p class="audit__hint" id="audit-hint">Gratuit, sans inscription. Votre adresse n’est pas utilisée à des fins commerciales.</p>
       </div>
 
       <output class="audit__out" id="audit-out" aria-live="polite"></output>

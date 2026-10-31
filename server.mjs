@@ -47,8 +47,8 @@ const MIME = {
 
 // Limiteurs de debit dedies par type d'operation pour empecher qu'un appel
 // lourd (audit / PageSpeed) ne bloque le formulaire de contact ou l'agenda.
-const auditLimiter = createRateLimiter({ windowMs: 60_000, max: 6 });
-const pagespeedLimiter = createRateLimiter({ windowMs: 60_000, max: 4 });
+const auditLimiter = createRateLimiter({ windowMs: 60_000, max: 30 });
+const pagespeedLimiter = createRateLimiter({ windowMs: 60_000, max: 20 });
 const mutationLimiter = createRateLimiter({ windowMs: 60_000, max: 8 });
 const slotsLimiter = createRateLimiter({ windowMs: 60_000, max: 25 });
 const offersLimiter = createRateLimiter({ windowMs: 60_000, max: 60 });

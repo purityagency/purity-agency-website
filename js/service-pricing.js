@@ -78,13 +78,17 @@
 
   const renderOffer = offer => {
     const ctaLabel = offer.id === 'M01' ? 'Réserver mon créneau' : 'Profiter de l’offre';
+    const detailUrl = offer.slug ? `/services/${encodeURIComponent(offer.slug)}` : '/services';
     return `<article class="service-offer-row">
       <div class="service-offer-row__copy">
         <strong>${escapeHtml(offer.name)}</strong>
         <p>${escapeHtml(offer.description)}</p>
       </div>
       <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer)}</div>
-      <a href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">${ctaLabel} <span aria-hidden="true">↗</span></a>
+      <div class="service-offer-row__actions">
+        <a class="service-offer-row__detail" href="${detailUrl}">Détails &amp; livrables <span aria-hidden="true">→</span></a>
+        <a class="service-offer-row__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">${ctaLabel} <span aria-hidden="true">↗</span></a>
+      </div>
     </article>`;
   };
 

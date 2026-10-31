@@ -35,18 +35,8 @@ body.service-page {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Halo supérieur délicat (lumière diffuse mauve discrète) */
 .sd-bg-glow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  max-width: 1400px;
-  height: 520px;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(108, 60, 170, 0.045), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .sd-container {
@@ -166,18 +156,18 @@ body.service-page {
   box-shadow: 0 8px 24px rgba(11, 10, 12, 0.06);
 }
 
-/* La carte prix principale hérite du style Dark Signature Purity pour capter le regard */
+/* Carte tarif mise en valeur avec bordure d'accent violet */
 .sd-meta-card--highlight {
-  background: linear-gradient(145deg, #130B22 0%, #08040E 100%);
-  color: #FFFFFF;
-  border: 1px solid rgba(124, 58, 237, 0.35);
-  box-shadow: 0 16px 40px rgba(12, 5, 22, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: #FFFFFF;
+  color: var(--sd-text);
+  border: 2px solid var(--sd-accent);
+  box-shadow: 0 8px 24px rgba(108, 60, 170, 0.08);
 }
 .sd-meta-card--highlight .sd-meta-card__label {
-  color: #D8B4FE;
+  color: var(--sd-accent);
 }
 .sd-meta-card--highlight .sd-meta-card__sub {
-  color: #D1D5DB;
+  color: var(--sd-muted);
 }
 
 .sd-meta-card__label {
@@ -889,11 +879,9 @@ body.service-page {
   right: 0;
   z-index: 100;
   padding: 0.85rem 1.25rem;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #FFFFFF;
   border-top: 1px solid rgba(11, 10, 12, 0.1);
-  box-shadow: 0 -8px 24px rgba(11, 10, 12, 0.08);
+  box-shadow: 0 -4px 20px rgba(11, 10, 12, 0.08);
   align-items: center;
   justify-content: space-between;
   gap: 1rem;

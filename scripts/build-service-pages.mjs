@@ -193,7 +193,6 @@ ${JSON.stringify(schemaJson, null, 2)}
 </script>
 </head>
 <body class="service-page">
-<div class="sd-bg-glow" aria-hidden="true"></div>
 
 ${renderHeader('services')}
 
@@ -518,7 +517,6 @@ ${JSON.stringify(schemaJson, null, 2)}
 </script>
 </head>
 <body class="service-page">
-<div class="sd-bg-glow" aria-hidden="true"></div>
 
 ${renderHeader('services')}
 

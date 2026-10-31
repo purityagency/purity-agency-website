@@ -248,12 +248,14 @@
 .audit__input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,60,170,.16)}
 .audit__submit{flex:none;min-height:52px}
 .audit__hint{margin:.8rem 0 0;font-size:.86rem;font-weight:var(--fw-emph);color:var(--muted)}
-.audit__out{display:block;margin-top:clamp(1.8rem,3vw,2.6rem)}
+.audit__out{display:block;margin:clamp(1.8rem,3vw,2.6rem) auto 0;max-width:860px;scroll-margin-top:2rem}
 .panel{
  text-align:left;
  padding:clamp(1.5rem,3.4vw,2.4rem);
  border:1px solid var(--line);
- border-radius:22px
+ border-radius:22px;
+ max-width:860px;
+ margin:0 auto
 }
 .panel--msg{text-align:center}
 .audit__out.is-done .panel{animation:panel-in 380ms cubic-bezier(.16,1,.3,1) both}

@@ -165,8 +165,27 @@
     var v = input.value.trim();
     if (!v) { input.focus(); return; }
 
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Analyse en cours…';
+      btn.style.opacity = '0.75';
+    }
+
     var timer = loading();
-    var stop = function () { if (timer) clearInterval(timer); };
+    var stop = function () {
+      if (timer) clearInterval(timer);
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = btnText;
+        btn.style.opacity = '1';
+      }
+    };
+
+    try {
+      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (_) {}
 
     fetch('/api/audit?url=' + encodeURIComponent(v))
       .then(function (r) { return r.json(); })
@@ -174,6 +193,7 @@
         stop();
         if (d.ok) {
           render(d);
+          try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
           if (d.pagespeedPending) fetchPagespeed(d.url);
           return;
         }
@@ -181,19 +201,23 @@
           message('<p class="panel__sentence">Il nous faut une adresse de site, du type <strong>votre-entreprise.be</strong>.</p>' +
             '<p class="panel__note">Vous n&rsquo;avez pas encore de site ? C&rsquo;est le meilleur moment pour en parler.</p>' +
             '<a class="btn btn--primary panel__cta" href="#contact">En parler avec nous</a>');
+          try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
           return;
         }
         if (d.reason === 'rate') {
           message('<p class="panel__sentence">Trop d&rsquo;analyses coup sur coup. Réessayez dans une minute.</p>');
+          try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
           return;
         }
         message('<p class="panel__sentence">Nous n&rsquo;arrivons pas à joindre ce site.</p>' +
           '<p class="panel__note">Soit l&rsquo;adresse comporte une erreur, soit le site ne répond pas. Dans le second cas, le problème est déjà sérieux.</p>' +
           '<a class="btn btn--primary panel__cta" href="#contact">Faites-le vérifier</a>');
+        try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
       })
       .catch(function () {
         stop();
         message('<p class="panel__sentence">L&rsquo;analyse a échoué. Réessayez dans un instant.</p>');
+        try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
       });
   });
 })();

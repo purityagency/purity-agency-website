@@ -1,23 +1,59 @@
 # Purity Agency
 
-Agence digitale basée à Charleroi, Belgique. Purity Agency aide les indépendants et PME à moderniser et optimiser leur activité : acquisition, présence digitale, sites et e-commerce, applications et outils métier, automatisation, IA, branding et communication.
+> Agence digitale basée à Charleroi, Belgique. Purity Agency aide les indépendants et PME de Wallonie à moderniser et optimiser leur activité : sites web et e-commerce, visibilité locale, réseaux sociaux, automatisation, intégration d'IA, identité visuelle et outils métier.
+
+Purity Agency est le nom commercial d'Amir Kebiyeb, entreprise personne physique. Numéro d'entreprise (BCE) et TVA : BE 1036.775.590. Régime de la franchise TVA (article 56bis du Code de la TVA) : TVA non applicable. Adresse : Boulevard Frans Dewandre 14, 6000 Charleroi, Belgique. Contact : contact@purity-agency.be.
 
 ## Pages principales
-- https://purity-agency.be/
-- https://purity-agency.be/contact.html
-- https://purity-agency.be/blog.html
 
-## Domaines d'intervention
-- Acquisition et visibilité locale
-- Sites web professionnels et e-commerce
-- Applications et outils métier sur mesure
-- Automatisation des processus et intégration d'IA
-- Branding et communication digitale
+- [Accueil](https://purity-agency.be/): présentation de l'agence et de ses solutions.
+- [Services et tarifs](https://purity-agency.be/services): les 14 solutions, avec leurs repères de prix.
+- [Nos réalisations](https://purity-agency.be/cas-concrets.html): 12 démonstrations interactives par métier.
+- [Blog](https://purity-agency.be/blog.html): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
+- [Contact](https://purity-agency.be/contact.html): formulaire et réservation d'un appel de 15 minutes, sans engagement.
+
+## Services
+
+- [Diagnostic digital (15 min)](https://purity-agency.be/services/diagnostic-digital): échange gratuit pour identifier l'action la plus utile avant toute dépense.
+- [Page Essentielle (1 page)](https://purity-agency.be/services/page-essentielle): une page nette et contactable pour artisans et indépendants.
+- [Site Vitrine (5 pages)](https://purity-agency.be/services/site-vitrine): accueil, prestations, réalisations, présentation et contact.
+- [Site Complet (10+ pages)](https://purity-agency.be/services/site-complet): une page par métier et par ville d'intervention.
+- [Boutique en ligne](https://purity-agency.be/services/boutique-en-ligne): e-commerce avec les moyens de paiement utilisés en Belgique.
+- [Refonte et modernisation](https://purity-agency.be/services/refonte-modernisation): reconstruction d'un site existant en conservant ses adresses et son positionnement Google.
+- [Fiche Google Business et Maps](https://purity-agency.be/services/google-business): validation et optimisation de la fiche d'établissement.
+- [Référencement local (SEO)](https://purity-agency.be/services/referencement-local-seo): travail régulier de visibilité sur les recherches locales.
+- [Réseaux sociaux](https://purity-agency.be/services/gestion-reseaux-sociaux): planning, rédaction, visuels et programmation des publications.
+- [Pack Visuels et Reels](https://purity-agency.be/services/pack-visuels-reels): vidéos de smartphone transformées en contenus sous-titrés prêts à publier.
+- [Identité visuelle et logo](https://purity-agency.be/services/identite-visuelle-logo): identité de marque lisible et professionnelle.
+- [Pilote Automatique Essentiel](https://purity-agency.be/services/pilote-automatique-essentiel): une automatisation ciblée (rappels SMS, relance de devis, alertes).
+- [Pilote Automatique Business](https://purity-agency.be/services/pilote-automatique-business): formulaires, e-mails, planning et facturation connectés.
+- [Pilote Automatique Intégral](https://purity-agency.be/services/pilote-automatique-integral): assistant IA configuré sur les tarifs, zones et règles métier du client.
+
+## Nos réalisations (démonstrations)
+
+Les entreprises présentées dans ces démonstrations sont fictives : ce sont des exemples de parcours client par métier, pas des références clients.
+
+- [Rénovation](https://purity-agency.be/cas-concrets/renovation.html)
+- [Beauté](https://purity-agency.be/cas-concrets/beaute.html)
+- [Garage et carrosserie](https://purity-agency.be/cas-concrets/garage.html)
+- [Décoration](https://purity-agency.be/cas-concrets/decoration.html)
+- [Immobilier](https://purity-agency.be/cas-concrets/immobilier.html)
+- [Fiduciaire](https://purity-agency.be/cas-concrets/fiduciaire.html)
+- [Restaurant](https://purity-agency.be/cas-concrets/restaurant.html)
+- [Sport](https://purity-agency.be/cas-concrets/sport.html)
+- [Santé](https://purity-agency.be/cas-concrets/sante.html)
+- [Animaux](https://purity-agency.be/cas-concrets/animaux.html)
+- [Architecture](https://purity-agency.be/cas-concrets/architecture.html)
+- [Chauffage](https://purity-agency.be/cas-concrets/chauffage.html)
 
 ## Informations fiables
-- Les prix publics sont servis depuis le catalogue de la v2.
-- OctoMask est un assistant d’orientation : il ne confirme ni paiement ni réservation sans validation explicite.
-- Les conditions contractuelles sont précisées dans un devis ou contrat accepté.
 
-## Cas concrets
-- https://purity-agency.be/cas-concrets.html — Douze démonstrations de solutions digitales par métier.
+- Les repères de prix affichés sur le site sont indicatifs ; le devis accepté par écrit fixe le périmètre et le prix.
+- OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
+
+## Pages légales
+
+- [Mentions légales](https://purity-agency.be/legal.html)
+- [Politique de confidentialité](https://purity-agency.be/confidentialite.html)
+- [Cookies](https://purity-agency.be/cookies.html)
+- [Conditions générales](https://purity-agency.be/conditions-generales.html)

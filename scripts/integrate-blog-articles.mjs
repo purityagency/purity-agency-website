@@ -1,10 +1,17 @@
-import { writeFileSync } from 'node:fs';
+// Genere les 16 articles « newArticles », la page blog.html et met a jour sitemap.xml.
+// Les 5 articles « oldArticles » sont ecrits a la main : seules leurs cartes et leurs
+// entrees de sitemap viennent d'ici. Les gabarits (en-tete, pied de page, versions CSS/JS)
+// doivent rester identiques aux pages en ligne : si on les change ailleurs, les reporter ici.
+// Le sitemap est fusionne, jamais ecrase : les autres URL (services, cas concrets, pages
+// legales...) sont conservees telles quelles.
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 
 const siteUrl = 'https://purity-agency.be';
+const today = new Date().toISOString().slice(0, 10);
 
 const oldArticles = [
   {
@@ -63,7 +70,12 @@ const newArticles = [
       ['Ce qui déclenche souvent la suspension', 'Google suspend rarement une fiche “au hasard”. Les causes les plus fréquentes sont un nom d’établissement gonflé avec des mots-clés, une adresse qui ne correspond pas à un vrai lieu de réception, plusieurs fiches pour la même activité ou une catégorie choisie pour manipuler la visibilité plutôt que décrire le métier réel. Le réflexe à éviter : modifier dix éléments dans la panique. Chaque changement ajoute du bruit au dossier.'],
       ['Remettre la fiche en conformité avant l’appel', 'Avant de demander une révision, il faut corriger ce qui peut bloquer : nom strictement identique à l’enseigne, adresse cohérente, zone de service propre, photos réelles, horaires plausibles et catégories claires. Une demande de révision envoyée trop tôt peut rallonger le délai, car Google réexamine une fiche encore fragile.'],
       ['Documenter la réalité de l’entreprise', 'Préparez les preuves utiles : extrait BCE, facture récente, photo de devanture si vous recevez du public, site cohérent avec le nom, coordonnées identiques sur vos pages et annuaires. Le but n’est pas de plaider fort, mais de rendre l’établissement vérifiable.'],
-      ['La prévention reste moins chère que la récupération', 'Une fiche locale doit être traitée comme un actif commercial. Mieux vaut la construire proprement dès le départ que courir après une suspension en pleine saison. Chez Purity, on préfère sécuriser le socle : fiche, site, coordonnées, avis et pages locales doivent raconter la même réalité.']
+      ['La prévention reste moins chère que la récupération', 'Une fiche locale doit être traitée comme un actif commercial. Mieux vaut la construire proprement dès le départ que courir après une suspension en pleine saison. Chez Purity, on préfère sécuriser le socle : fiche, site, coordonnées, avis et [pages locales](/services/referencement-local-seo) doivent raconter la même réalité.']
+    ],
+    related: [
+      ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée pour être trouvé quand un client cherche votre métier à proximité.'],
+      ['/article-seo-local-wallonie.html', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.'],
+      ['/article-gerer-avis-client-negatif-google.html', 'Répondre à un avis négatif sur Google', 'La méthode pour protéger votre réputation sans envenimer l’échange.']
     ],
     cta: ['Vous voulez sécuriser votre visibilité locale ?', '/contact.html?service=seo-local', 'Faire vérifier ma présence locale']
   },
@@ -82,6 +94,11 @@ const newArticles = [
       ['Les négatifs sauvent la rentabilité', 'Une campagne saine possède une liste vivante de mots-clés négatifs : “emploi”, “formation”, “gratuit”, “salaire”, “occasion”, “pdf”, selon le secteur. Ce nettoyage ne se fait pas une fois au lancement. Il se fait chaque semaine au début, puis régulièrement quand la campagne mûrit.'],
       ['Une bonne campagne accepte de perdre du volume', 'Le but n’est pas d’obtenir le maximum de clics. Le but est de payer pour les clics qui peuvent devenir des conversations utiles. Une campagne plus petite, mieux ciblée et mieux mesurée bat souvent une campagne large qui donne l’illusion de bouger.']
     ],
+    related: [
+      ['/article-retargeting-pme-visiteurs-indecis.html', 'Retargeting : convertir les visiteurs qui hésitent', 'Reparler aux personnes qui connaissent déjà votre entreprise, sans les harceler.'],
+      ['/article-mots-cles-faible-volume-seo-b2b.html', 'Mots-clés à faible volume en SEO', 'Pourquoi une recherche précise vaut souvent mieux qu’un gros volume, en référencement naturel aussi.'],
+      ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Vérifier avec vous si la publicité est vraiment la dépense la plus utile pour votre activité.']
+    ],
     cta: ['Votre budget pub part trop vite ?', '/contact.html?service=campagnes', 'Auditer mes campagnes']
   },
   {
@@ -97,7 +114,11 @@ const newArticles = [
       ['L’opacité crée de la friction', 'Sur internet, personne n’a envie de remplir un formulaire pour découvrir que le budget est hors sujet. Même si chaque projet est différent, le visiteur cherche un ordre de grandeur. Sans repère, il compare ailleurs.'],
       ['Les prix filtrent sans fermer la porte', 'Afficher des forfaits, des prix de départ ou des fourchettes ne bloque pas les projets spécifiques. Cela évite surtout les demandes impossibles, les devis fantômes et les échanges avec des personnes qui n’ont pas du tout le bon niveau de budget.'],
       ['La transparence devient un signal de confiance', 'Une entreprise qui explique ses prix montre qu’elle assume sa valeur. Elle donne aussi au visiteur une base pour décider : ce qui est compris, ce qui fait varier le budget, ce qui est mensuel, ce qui est optionnel.'],
-      ['Le bon format : clair, mais pas rigide', 'La meilleure page tarifs n’est pas un catalogue infini. Elle montre quelques portes d’entrée, explique les cas concrets et invite à cadrer le besoin. C’est exactement le rôle des repères : aider le prospect à comprendre avant de parler.']
+      ['Le bon format : clair, mais pas rigide', 'La meilleure [page tarifs](/services) n’est pas un catalogue infini. Elle montre quelques portes d’entrée, explique les cas concrets et invite à cadrer le besoin. C’est exactement le rôle des repères : aider le prospect à comprendre avant de parler.']
+    ],
+    related: [
+      ['/article-prix-site-web-belgique.html', 'Combien coûte un site web professionnel en Belgique ?', 'Les fourchettes courantes et ce qui fait réellement varier un devis.'],
+      ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Ce que le visiteur doit comprendre dès le premier écran.']
     ],
     cta: ['Vous voulez des prix plus clairs sans vous enfermer ?', '/contact.html?service=conversion', 'Revoir ma stratégie de conversion']
   },
@@ -116,6 +137,11 @@ const newArticles = [
       ['CLS : la page bouge-t-elle au mauvais moment ?', 'Le Cumulative Layout Shift mesure les décalages inattendus. Une image qui charge et pousse un bouton, une bannière qui apparaît trop tard, un formulaire qui saute : ce sont de petites frustrations qui donnent une impression d’amateurisme.'],
       ['La performance est une promesse silencieuse', 'Un site rapide ne garantit pas une vente. Mais un site lent peut empêcher une bonne offre d’être lue. La technique doit soutenir le message, pas voler l’attention.']
     ],
+    related: [
+      ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site lent ou vieillissant en conservant vos adresses et votre positionnement Google.'],
+      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'La lenteur arrive en tête, mais elle n’est pas la seule fuite.'],
+      ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Ce qui doit s’afficher en premier, et ce qu’il vaut mieux retirer.']
+    ],
     cta: ['Votre site semble beau mais lent ?', '/contact.html?service=conversion', 'Demander un audit technique']
   },
   {
@@ -133,6 +159,11 @@ const newArticles = [
       ['Troisième e-mail : créer le dernier déclic', 'Après 48 à 72 heures, l’intention refroidit. Une livraison offerte, un rappel de stock ou une offre limitée peut aider, à condition de rester vrai. La fausse urgence abîme la confiance.'],
       ['Le cadre légal et technique compte', 'En Belgique et en Europe, la collecte de l’e-mail, le consentement et la configuration de l’outil doivent être propres. Une bonne automatisation n’est pas seulement un texte : c’est un scénario, des règles, une mesure et une sortie claire.']
     ],
+    related: [
+      ['/services/boutique-en-ligne', 'Boutique en ligne', 'Une boutique rapide et sécurisée, avec les moyens de paiement utilisés en Belgique.'],
+      ['/article-ia-pme-belgique.html', 'IA et automatisation : par où commencer ?', 'Choisir une seule tâche à automatiser et garder la main sur les messages sensibles.'],
+      ['/article-rgpd-cookies-popins-prospects.html', 'RGPD et cookies : informer sans faire fuir', 'Rester clair sur les données collectées sans alourdir le parcours.']
+    ],
     cta: ['Vous perdez des ventes après le panier ?', '/contact.html?service=relances', 'Automatiser mes relances']
   },
   {
@@ -147,8 +178,13 @@ const newArticles = [
     sections: [
       ['Le one-page : simple, rapide, contrôlé', 'Une page unique fonctionne bien pour une offre précise, une campagne, un lancement ou un indépendant qui veut valider une première demande. Le récit est linéaire, le coût reste contenu et l’expérience mobile peut être très fluide.'],
       ['La limite : une seule page ne peut pas tout porter', 'Une URL unique ne peut pas répondre sérieusement à dix intentions de recherche différentes. Si vous proposez plusieurs services, chaque sujet mérite souvent sa propre page pour être compris par Google et par le visiteur.'],
-      ['Le multi-pages : plus stratégique pour grandir', 'Un site multi-pages structure l’activité : accueil, services, cas, contact, contenus utiles. Chaque page peut traiter une question précise, recevoir des liens internes et devenir une porte d’entrée. C’est plus long à concevoir, mais plus durable.'],
+      ['Le multi-pages : plus stratégique pour grandir', 'Un site multi-pages structure l’activité : accueil, services, cas, contact, contenus utiles. Chaque page peut traiter une question précise, recevoir des [liens internes](/article-maillage-interne-seo-pages-services.html) et devenir une porte d’entrée. C’est plus long à concevoir, mais plus durable.'],
       ['Le bon choix : commencer juste, prévoir la suite', 'On peut commencer par une page solide et prévoir une architecture extensible. L’erreur n’est pas de faire simple. L’erreur est de faire simple sans penser à ce qui devra arriver après.']
+    ],
+    related: [
+      ['/services/page-essentielle', 'Page Essentielle (1 page)', 'Une page unique, nette et contactable en un clic, pour démarrer.'],
+      ['/services/site-vitrine', 'Site Vitrine (5 pages)', 'Accueil, prestations, réalisations, présentation de l’entreprise et contact.'],
+      ['/services/site-complet', 'Site Complet (10 pages et plus)', 'Une page par métier et par ville d’intervention.']
     ],
     cta: ['Vous lancez une activité et hésitez sur le format ?', '/contact.html?service=conversion', 'Choisir la bonne structure']
   },
@@ -167,6 +203,11 @@ const newArticles = [
       ['Ce qu’il faut éviter', 'Évitez les accusations, les détails personnels, les longs débats et les phrases passives-agressives. Même si le client exagère, votre réponse doit rester plus solide que l’avis.'],
       ['Transformer l’incident en signal de confiance', 'Une entreprise qui reconnaît un problème, explique brièvement et propose de corriger inspire souvent plus confiance qu’une fiche parfaite mais froide. La réputation locale se construit aussi dans les moments inconfortables.']
     ],
+    related: [
+      ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée pour être trouvé quand un client cherche votre métier à proximité.'],
+      ['/article-google-business-profile-suspendu-recuperation.html', 'Fiche Google suspendue : l’éviter et la récupérer', 'Les erreurs qui déclenchent une suspension et la méthode pour revenir en conformité.'],
+      ['/article-e-e-a-t-artisan-pme-locale.html', 'E-E-A-T : prouver votre sérieux sur votre site', 'Les signes concrets qui rendent une entreprise locale vérifiable.']
+    ],
     cta: ['Votre image locale manque de méthode ?', '/contact.html?service=presence-marque', 'Structurer ma réputation']
   },
   {
@@ -182,7 +223,11 @@ const newArticles = [
       ['Le volume ne dit pas tout', 'Les outils SEO affichent des volumes moyens. Ils ne montrent pas toujours la valeur commerciale d’une recherche. “Logiciel devis menuiserie Belgique” peut avoir peu de volume, mais une personne qui tape cela sait déjà ce qu’elle cherche.'],
       ['La longue traîne convertit mieux', 'Les requêtes spécifiques attirent moins de monde, mais moins de curieux. Elles permettent aussi de créer des pages plus concrètes : cas d’usage, secteur, zone, problème métier. C’est souvent là que les PME peuvent gagner sans affronter les gros acteurs.'],
       ['Construire des pages utiles, pas des pages artificielles', 'Une bonne page de niche ne répète pas un mot-clé. Elle répond à un vrai besoin : contexte, problèmes fréquents, critères de choix, exemples, étapes, limites. Google et le lecteur doivent sentir que la page a été écrite pour une situation réelle.'],
-      ['La stratégie : couvrir un territoire de questions', 'Le SEO durable ressemble moins à un pari sur un mot-clé qu’à une cartographie. Une série de pages bien reliées autour d’un métier peut devenir une vraie source de demandes qualifiées.']
+      ['La stratégie : couvrir un territoire de questions', 'Le SEO durable ressemble moins à un pari sur un mot-clé qu’à une cartographie. Une série de [pages bien reliées](/article-maillage-interne-seo-pages-services.html) autour d’un métier peut devenir une vraie source de demandes qualifiées.']
+    ],
+    related: [
+      ['/services/referencement-local-seo', 'Référencement local (SEO)', 'Un travail régulier pour apparaître sur les recherches précises de votre région.'],
+      ['/services/site-complet', 'Site Complet (10 pages et plus)', 'Une page par métier et par ville d’intervention.']
     ],
     cta: ['Votre activité est spécifique et difficile à expliquer ?', '/contact.html?service=seo-local', 'Construire ma stratégie SEO']
   },
@@ -199,7 +244,12 @@ const newArticles = [
       ['Montrer ce qui donne envie de venir', 'Les publications trop parfaites peuvent éloigner. Un commerce local gagne souvent avec du concret : arrivages, coulisses, avant/après, conseils rapides, disponibilité, horaires, ambiance réelle.'],
       ['Créer des raisons de passer maintenant', 'Un abonné devient client quand l’action est évidente : réserver, demander une taille, venir voir une nouveauté, profiter d’un créneau, récupérer une commande. Chaque contenu doit pouvoir mener à une action simple.'],
       ['Utiliser les stories comme canal opérationnel', 'Les stories sont utiles pour les informations qui vieillissent vite : stock, horaires, météo, place restante, rappel événement. Elles doivent rester lisibles, pas devenir un mur de stickers.'],
-      ['Relier Instagram au reste du système', 'Le lien en bio, la fiche Google, le site, WhatsApp et le point de vente doivent raconter la même chose. Sinon, l’intérêt créé par Instagram se perd dans le parcours.']
+      ['Relier Instagram au reste du système', 'Le lien en bio, [la fiche Google](/services/google-business), le site, WhatsApp et le point de vente doivent raconter la même chose. Sinon, l’intérêt créé par Instagram se perd dans le parcours.']
+    ],
+    related: [
+      ['/services/gestion-reseaux-sociaux', 'Gestion de vos réseaux sociaux', 'Planning du mois, rédaction, visuels et programmation des publications.'],
+      ['/services/pack-visuels-reels', 'Pack Visuels et Reels', 'Vos vidéos brutes filmées au smartphone transformées en vidéos sous-titrées prêtes à publier.'],
+      ['/article-minimalisme-digital-strategie-micro-entreprise.html', 'Minimalisme digital : moins de canaux, mieux tenus', 'Choisir les canaux où vos clients prennent vraiment leur décision.']
     ],
     cta: ['Votre présence sociale ne ramène pas assez de clients ?', '/contact.html?service=studio', 'Structurer mes contenus']
   },
@@ -218,6 +268,11 @@ const newArticles = [
       ['Éviter les pop-ins prématurées', 'Une pop-in qui demande un e-mail au bout d’une seconde coupe la lecture. Si vous proposez une ressource ou un contact, attendez un signal d’intérêt : scroll, temps passé, clic, retour en haut, intention de sortie.'],
       ['La clarté rassure plus que le jargon', 'Les pages confidentialité, cookies et conditions doivent expliquer le fonctionnement réel du site. Déclarer des traitements inexistants ou cacher les vrais outils crée plus de risque que de valeur.']
     ],
+    related: [
+      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Les frictions qui font partir un visiteur avant sa demande.'],
+      ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Pourquoi une pop-in immédiate coûte cher dans le premier écran.'],
+      ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Un échange pour repérer l’action la plus utile sur votre présence en ligne.']
+    ],
     cta: ['Vos parcours manquent de clarté et de confiance ?', '/contact.html?service=conversion', 'Clarifier mon parcours']
   },
   {
@@ -234,6 +289,11 @@ const newArticles = [
       ['Le message doit changer', 'Montrer la même annonce qu’à une audience froide est une erreur. Une personne qui revient a besoin de réassurance : avis, méthode, cas concret, garantie, disponibilité, exemple de résultat ou réponse à une objection.'],
       ['La fréquence protège votre image', 'Un bon retargeting reste présent sans devenir oppressant. Limitez la répétition, excluez les personnes qui ont déjà envoyé une demande et arrêtez les audiences trop anciennes.'],
       ['Le pixel n’est pas une stratégie', 'Installer un pixel ne suffit pas. Il faut un parcours clair : pages vues, actions importantes, exclusions, créas adaptées, mesure des conversions. Sans cela, on suit les visiteurs sans savoir quoi leur dire.']
+    ],
+    related: [
+      ['/article-mots-cles-large-google-ads-perte-budget.html', 'Google Ads : l’erreur des mots-clés larges', 'Reprendre le contrôle d’un budget qui part sur de mauvaises recherches.'],
+      ['/article-rgpd-cookies-popins-prospects.html', 'RGPD et cookies : informer sans faire fuir', 'Un pixel publicitaire suppose le consentement du visiteur : comment le demander sans casser le parcours.'],
+      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Corriger les fuites du site avant de payer pour faire revenir les visiteurs.']
     ],
     cta: ['Vous payez déjà du trafic ?', '/contact.html?service=campagnes', 'Rentabiliser mes visiteurs']
   },
@@ -252,6 +312,11 @@ const newArticles = [
       ['Autorité : soignez les signaux externes', 'Avis, fiche Google, annuaires sérieux, partenaires, mentions locales, liens depuis des acteurs de votre secteur : ces signaux aident Google et les humains à vous situer.'],
       ['Fiabilité : rendez l’entreprise vérifiable', 'Coordonnées cohérentes, adresse, mentions légales, pages de confidentialité, politique de contact, prix ou repères : la confiance se construit dans les détails visibles.']
     ],
+    related: [
+      ['/services/site-vitrine', 'Site Vitrine (5 pages)', 'Prestations détaillées, galerie de réalisations, présentation de l’entreprise et contact.'],
+      ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée, premier signal local que voient vos clients.'],
+      ['/article-seo-local-wallonie.html', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.']
+    ],
     cta: ['Votre site ne prouve pas assez votre sérieux ?', '/contact.html?service=presence-marque', 'Renforcer ma crédibilité']
   },
   {
@@ -265,9 +330,13 @@ const newArticles = [
     lead: 'Une petite entreprise n’a pas besoin d’être partout. Elle a besoin d’être claire là où ses clients prennent vraiment leur décision.',
     sections: [
       ['Chaque canal ajoute une charge', 'Instagram, LinkedIn, Google, newsletter, blog, TikTok, publicité : chaque canal demande une stratégie, des contenus, du suivi et une régularité. Sans système, cela devient une fatigue permanente.'],
-      ['Choisir un canal selon la cible', 'Un artisan local peut tirer plus de valeur d’une fiche Google vivante et de photos régulières que de cinq réseaux mal tenus. Un consultant B2B peut privilégier LinkedIn et quelques pages de fond. Le bon canal dépend de l’achat, pas de la mode.'],
+      ['Choisir un canal selon la cible', 'Un artisan local peut tirer plus de valeur d’une [fiche Google vivante](/services/google-business) et de photos régulières que de cinq réseaux mal tenus. Un consultant B2B peut privilégier LinkedIn et quelques pages de fond. Le bon canal dépend de l’achat, pas de la mode.'],
       ['Recycler au lieu de recommencer', 'Un contenu pilier peut devenir plusieurs formats : post, story, e-mail, page conseil, script vidéo. La cohérence vient d’un système, pas d’une inspiration quotidienne.'],
       ['Moins de bruit, plus de profondeur', 'Le minimalisme digital n’est pas faire moins par paresse. C’est concentrer l’effort sur ce qui peut vraiment créer des contacts, de la confiance ou du temps gagné.']
+    ],
+    related: [
+      ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Identifier avec vous le canal qui mérite votre temps en premier.'],
+      ['/article-instagram-commerce-physique-clients.html', 'Transformer ses abonnés Instagram en clients', 'Si Instagram est votre canal, comment le relier à des visites réelles.']
     ],
     cta: ['Vous avez trop d’outils et pas assez de résultats ?', '/contact.html?solution=presence-marque', 'Simplifier ma stratégie']
   },
@@ -286,6 +355,11 @@ const newArticles = [
       ['Un appel à l’action visible et simple', 'Le bouton principal doit être clair : parler du projet, réserver un échange, tester une page, demander un audit. Un second bouton peut aider, mais il ne doit pas créer un dilemme.'],
       ['Ce qu’il faut retirer', 'Carrousel, menu trop long, pop-in immédiate, phrases génériques, image décorative sans sens : le premier écran ne pardonne pas le bruit. Chaque élément doit aider à décider.']
     ],
+    related: [
+      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Les autres fuites entre une visite et une demande.'],
+      ['/article-core-web-vitals-impact-chiffre-affaires.html', 'Core Web Vitals : quand la technique coûte des ventes', 'Un premier écran qui s’affiche trop tard perd le visiteur avant le message.'],
+      ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site vieillissant en conservant vos adresses et votre positionnement Google.']
+    ],
     cta: ['Votre haut de page ne convertit pas assez vite ?', '/contact.html?service=conversion', 'Repenser mon premier écran']
   },
   {
@@ -303,6 +377,11 @@ const newArticles = [
       ['Sauvegardes et accès propres', 'Un mot de passe fort, des rôles limités, une authentification double facteur et des sauvegardes externes changent tout. La question n’est pas “est-ce que ça arrivera ?”, mais “comment on récupère si ça arrive ?”.'],
       ['La sécurité est une maintenance, pas un plugin', 'Un plugin de sécurité peut aider, mais il ne remplace pas une discipline : mises à jour, surveillance, hébergement sérieux, sauvegardes testées et décisions techniques sobres.']
     ],
+    related: [
+      ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site WordPress instable en conservant vos adresses et votre positionnement Google.'],
+      ['/article-prix-site-web-belgique.html', 'Combien coûte un site web professionnel en Belgique ?', 'Maintenance, hébergement et licences : les coûts à prévoir dès le devis.'],
+      ['/article-core-web-vitals-impact-chiffre-affaires.html', 'Core Web Vitals : quand la technique coûte des ventes', 'Vitesse, réactivité et stabilité : ce que mesurent les indicateurs de Google.']
+    ],
     cta: ['Votre site WordPress est-il vraiment maintenu ?', '/contact.html?service=hebergement', 'Sécuriser mon site']
   },
   {
@@ -316,9 +395,13 @@ const newArticles = [
     lead: 'Avant de chercher des liens ailleurs, beaucoup de sites devraient déjà mieux utiliser leurs propres pages. Le maillage interne est souvent le levier SEO le plus négligé.',
     sections: [
       ['Google suit vos liens pour comprendre vos priorités', 'Une page service liée seulement depuis le menu reçoit peu de contexte. Quand plusieurs articles et pages la citent naturellement, elle devient plus importante dans l’architecture du site.'],
-      ['L’ancre doit dire quelque chose', '“Cliquez ici” n’aide personne. Une bonne ancre explique la destination : “optimiser votre fiche Google”, “automatiser les relances”, “créer un outil métier”. Le visiteur et Google comprennent le lien avant de cliquer.'],
+      ['L’ancre doit dire quelque chose', '“Cliquez ici” n’aide personne. Une bonne ancre explique la destination : “[optimiser votre fiche Google](/services/google-business)”, “[automatiser les relances](/services/pilote-automatique-essentiel)”, “créer un outil métier”. Le visiteur et Google comprennent le lien avant de cliquer.'],
       ['Le lien doit être placé en contexte', 'Un lien dans un paragraphe utile vaut souvent mieux qu’un lien perdu en footer. Il accompagne une idée : problème, exemple, suite logique, solution. Le maillage doit ressembler à un conseil, pas à une décoration.'],
       ['Les pages services doivent recevoir plus qu’elles n’émettent', 'Vos pages de conversion sont les destinations. Les articles servent à expliquer, rassurer et orienter. Un bon blog ne vit pas seul : il nourrit les pages qui transforment.']
+    ],
+    related: [
+      ['/services/referencement-local-seo', 'Référencement local (SEO)', 'Un travail régulier pour apparaître sur les recherches précises de votre région.'],
+      ['/article-mots-cles-faible-volume-seo-b2b.html', 'Mots-clés à faible volume en SEO', 'Les recherches précises qui méritent chacune leur page.']
     ],
     cta: ['Vos contenus n’envoient pas assez vers vos offres ?', '/contact.html?service=seo-local', 'Auditer mon maillage']
   }
@@ -334,28 +417,80 @@ function esc(text) {
     .replaceAll('"', '&quot;');
 }
 
+// Texte echappe + liens internes ecrits [ancre](/chemin) dans les donnees des articles.
+function inline(text) {
+  return esc(text).replace(/\[([^\]]+)\]\((\/[a-z0-9/_.#?=-]*)\)/gi, '<a href="$2">$1</a>');
+}
+
+function relatedHtml(links = []) {
+  if (!links.length) return '';
+  const items = links.map(([href, anchor, context]) => `<li><a href="${esc(href)}">${esc(anchor)}</a><span>${esc(context)}</span></li>`).join('');
+  return `<aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">Pour aller plus loin</h2><ul>${items}</ul></aside>`;
+}
+
+const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=20261101">
+<link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/site-additions.css?v=20261101">
+<link rel="stylesheet" href="/css/content.css?v=20261101">`;
+
+const ogImage = `<meta property="og:image" content="${siteUrl}/assets/og-purity.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">`;
+
 function header(current = '') {
+  const blogCurrent = current === 'blog' ? ' aria-current="page"' : '';
   return `<header class="header">
 <a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
-<nav class="header__nav" aria-label="Principal"><a href="/#services">Services</a><a href="/blog.html"${current === 'blog' ? ' aria-current="page"' : ''}>Blog</a><a href="/contact.html">Contact</a></nav>
+<nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets.html">Nos réalisations</a><a href="/blog.html"${blogCurrent}>Blog</a><a href="/contact.html">Contact</a></nav>
 <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
 <div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/blog.html" style="--i:1"${current === 'blog' ? ' aria-current="page"' : ''}>Blog</a><a href="/contact.html" style="--i:2">Contact</a></nav>
+<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets.html" style="--i:1">Nos réalisations</a><a href="/blog.html" style="--i:2"${blogCurrent}>Blog</a><a href="/contact.html" style="--i:3">Contact</a></nav>
 <div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact.html">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
 </div>`;
 }
 
 function footer() {
-  return `<footer class="site-footer"><div class="site-footer__inner"><div><a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt="" width="32" height="32">Purity Agency</a><p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p></div><nav aria-label="Navigation de pied de page"><h2>Explorer</h2><a href="/#services">Services</a><a href="/blog.html">Blog</a><a href="/contact.html">Contact</a></nav><div><h2>Parlons-en</h2><a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div></div><div class="site-footer__legal"><span>© 2026 Purity Agency</span><a href="/legal.html">Légal</a><a href="/confidentialite.html">Confidentialité</a><a href="/cookies.html">Cookies</a><a href="/conditions-generales.html">CGV</a></div></footer>`;
+  return `<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <a class="site-footer__brand" href="/">
+        <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
+        Purity Agency
+      </a>
+      <p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p>
+    </div>
+    <nav aria-label="Navigation de pied de page">
+      <h2>Explorer</h2>
+      <a href="/#services">Services &amp; Tarifs</a>
+      <a href="/cas-concrets.html">Nos réalisations</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div>
+      <h2>Parlons-en</h2>
+      <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+    </div>
+  </div>
+  <div class="site-footer__legal">
+    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
+    <span>© 2026 Purity Agency</span>
+    <a href="/legal.html">Légal</a>
+    <a href="/confidentialite.html">Confidentialité</a>
+    <a href="/cookies.html">Cookies</a>
+    <a href="/conditions-generales.html">CGV</a>
+  </div>
+</footer>
+<script src="/js/menu.js?v=20261101" defer></script>
+<script src="/js/cookie-notice.js" defer></script>`;
 }
 
 function articleHtml(article) {
   const body = [
     `<p class="lead">${esc(article.lead)}</p>`,
-    ...article.sections.map(([title, text]) => `<h2>${esc(title)}</h2><p>${esc(text)}</p>`),
+    ...article.sections.map(([title, text]) => `<h2>${esc(title)}</h2><p>${inline(text)}</p>`),
     `<blockquote>${esc(article.title).replace(/\.$/, '')} n’est pas un sujet isolé : c’est un morceau du système qui transforme une présence digitale en demandes plus qualifiées.</blockquote>`,
+    relatedHtml(article.related),
     `<div class="article-cta"><p>${esc(article.cta[0])}</p><a class="btn btn--primary" href="${esc(article.cta[1])}">${esc(article.cta[2])}</a></div>`
   ].join('');
 
@@ -386,12 +521,9 @@ function articleHtml(article) {
 <meta property="og:title" content="${esc(article.title)}">
 <meta property="og:description" content="${esc(article.description)}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/css/app.css?v=8">
-<link rel="stylesheet" href="/css/menu.css">
-<link rel="stylesheet" href="/css/site-additions.css">
-<link rel="stylesheet" href="/css/content.css?v=3">
+${cssLinks}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-</head>
+${ogImage}</head>
 <body>
 ${header()}
 <main class="content-page">
@@ -405,8 +537,6 @@ ${header()}
 <article class="content-main prose">${body}</article>
 </main>
 ${footer()}
-<script src="/js/menu.js" defer></script>
-<script src="/js/cookie-notice.js" defer></script>
 </body>
 </html>
 `;
@@ -445,12 +575,9 @@ function blogHtml() {
 <meta property="og:title" content="Le journal Purity : acquisition, systèmes et IA sans jargon">
 <meta property="og:description" content="Des guides utiles, datés et concrets pour les indépendants et PME de Wallonie.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/css/app.css?v=8">
-<link rel="stylesheet" href="/css/menu.css">
-<link rel="stylesheet" href="/css/site-additions.css">
-<link rel="stylesheet" href="/css/content.css?v=3">
+${cssLinks}
 <script type="application/ld+json">${JSON.stringify(blogJson)}</script>
-</head>
+${ogImage}</head>
 <body>
 ${header('blog')}
 <main class="blog">
@@ -466,33 +593,68 @@ ${header('blog')}
 <div class="blog-index__head"><p class="content-hero__eyebrow">Tous les guides</p><h2 id="blog-index-title">Un fond éditorial qui couvre tout le système.</h2></div>
 <div class="blog-grid" aria-label="Articles">${rest.map(article => card(article)).join('')}</div>
 </section>
+<section class="blog-cta">
+<div class="blog-cta__inner">
+<p class="section-kicker">Votre présence</p>
+<h2>Prêt à moderniser votre activité&nbsp;?</h2>
+<p>Diagnostic gratuit en 15 minutes : on passe en revue votre visibilité, votre site et vos automatisations.</p>
+<a class="btn btn--primary" href="/contact.html">Demander un diagnostic <span aria-hidden="true">↗</span></a>
+</div>
+</section>
 </main>
 ${footer()}
-<script src="/js/menu.js" defer></script>
-<script src="/js/cookie-notice.js" defer></script>
 </body>
 </html>
 `;
 }
 
-function sitemapXml() {
-  const urls = [
-    ['/', '1.0'],
-    ['/contact.html', '0.8'],
-    ['/blog.html', '0.8'],
-    ...allCards.map(article => [`/${article.slug}.html`, '0.7'])
-  ];
+// Ecrit le fichier seulement s'il change ; renvoie true si son contenu a change.
+function writeIfChanged(relativePath, content) {
+  const file = join(root, relativePath);
+  if (existsSync(file) && readFileSync(file, 'utf8') === content) return false;
+  writeFileSync(file, content);
+  return true;
+}
 
+// Fusionne les URL du blog dans sitemap.xml sans toucher aux autres entrees.
+// lastmod = date du jour pour un fichier reecrit, sinon la date deja presente.
+function mergeSitemap(existing, updates) {
+  const blocks = [...existing.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(match => match[1].trim());
+  if (/<url>/.test(existing) && !blocks.length) throw new Error('sitemap.xml illisible : fusion annulée.');
+  const entries = new Map();
+  for (const block of blocks) {
+    const loc = block.match(/<loc>\s*([^<]+?)\s*<\/loc>/)?.[1];
+    if (loc && !entries.has(loc)) entries.set(loc, block);
+  }
+  for (const [loc, changed] of updates) {
+    const block = entries.get(loc);
+    if (!block) {
+      entries.set(loc, `<loc>${loc}</loc><lastmod>${today}</lastmod>`);
+    } else if (changed) {
+      entries.set(loc, /<lastmod>/.test(block)
+        ? block.replace(/<lastmod>[^<]*<\/lastmod>/, `<lastmod>${today}</lastmod>`)
+        : block.replace('</loc>', `</loc><lastmod>${today}</lastmod>`));
+    }
+  }
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(([loc, priority]) => `<url><loc>${siteUrl}${loc}</loc><priority>${priority}</priority></url>`).join('')}</urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${[...entries.values()].map(block => `  <url>${block}</url>`).join('\n')}
+</urlset>
 `;
 }
 
+const changed = new Map();
 for (const article of newArticles) {
-  writeFileSync(join(root, `${article.slug}.html`), articleHtml(article));
+  changed.set(`${siteUrl}/${article.slug}.html`, writeIfChanged(`${article.slug}.html`, articleHtml(article)));
 }
+for (const article of oldArticles) {
+  changed.set(`${siteUrl}/${article.slug}.html`, false);
+}
+changed.set(`${siteUrl}/blog.html`, writeIfChanged('blog.html', blogHtml()));
 
-writeFileSync(join(root, 'blog.html'), blogHtml());
-writeFileSync(join(root, 'sitemap.xml'), sitemapXml());
+const sitemapFile = join(root, 'sitemap.xml');
+const currentSitemap = existsSync(sitemapFile) ? readFileSync(sitemapFile, 'utf8') : '';
+writeIfChanged('sitemap.xml', mergeSitemap(currentSitemap, changed));
 
-console.log(`Integrated ${newArticles.length} new articles and ${allCards.length} blog cards.`);
+const rewritten = [...changed.values()].filter(Boolean).length;
+console.log(`${newArticles.length} articles générés, ${allCards.length} cartes de blog, ${rewritten} fichier(s) réécrit(s), sitemap fusionné.`);

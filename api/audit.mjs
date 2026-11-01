@@ -6,6 +6,7 @@ import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
 import http from 'node:http';
 import https from 'node:https';
+import zlib from 'node:zlib';
 
 const UA = 'Mozilla/5.0 (compatible; PurityAudit/1.0; +https://purity-agency.be)';
 const TIMEOUT = 12000;
@@ -140,23 +141,31 @@ async function safeFetch(initial, options = {}) {
   throw new Error('redirect-limit');
 }
 
+// La limite porte sur les octets decompresses : une bombe gzip ne passe pas.
 async function readLimited(response, maxBytes = 1_500_000) {
   if (!response?.stream) return '';
+  const enc = (response.headers.get('content-encoding') || '').toLowerCase().trim();
+  const decoder = enc === 'gzip' || enc === 'x-gzip' ? zlib.createGunzip()
+    : enc === 'br' ? zlib.createBrotliDecompress()
+    : null;
+  const stream = decoder ? response.stream.pipe(decoder) : response.stream;
+  if (decoder) response.stream.on('error', (err) => decoder.destroy(err));
   return new Promise((resolve, reject) => {
     const chunks = [];
     let total = 0;
-    response.stream.on('data', chunk => {
+    stream.on('data', chunk => {
       const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
       total += buf.byteLength;
       if (total > maxBytes) {
         response.stream.destroy();
+        stream.destroy();
         reject(new Error('response-too-large'));
         return;
       }
       chunks.push(buf);
     });
-    response.stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
-    response.stream.on('error', reject);
+    stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    stream.on('error', reject);
   });
 }
 
@@ -167,7 +176,7 @@ export async function auditSite(url) {
 
   let res, html = '', ttfb = null, httpsOk = true;
   try {
-    res = await safeFetch(url.href, { signal: ctrl.signal, headers: { 'User-Agent': UA } });
+    res = await safeFetch(url.href, { signal: ctrl.signal, headers: { 'User-Agent': UA, 'Accept-Encoding': 'gzip, br' } });
     ttfb = Date.now() - started;
     html = await readLimited(res);
   } catch {
@@ -176,7 +185,7 @@ export async function auditSite(url) {
       httpsOk = false;
       const alt = new URL(url.href); alt.protocol = 'http:';
       try {
-        res = await safeFetch(alt.href, { signal: ctrl.signal, headers: { 'User-Agent': UA } });
+        res = await safeFetch(alt.href, { signal: ctrl.signal, headers: { 'User-Agent': UA, 'Accept-Encoding': 'gzip, br' } });
         ttfb = Date.now() - started;
         html = await readLimited(res);
       } catch { clearTimeout(timer); return { ok: false, reason: 'unreachable' }; }
@@ -185,16 +194,29 @@ export async function auditSite(url) {
   clearTimeout(timer);
 
   const head = html.slice(0, 200000);
-  const pick = (re) => { const m = head.match(re); return m ? m[1].trim() : null; };
+  const lower = head.toLowerCase();
 
-  const title = pick(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  const desc = pick(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i)
-            || pick(/<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["']/i);
-  const viewport = /<meta[^>]+name=["']viewport["']/i.test(head);
-  const h1 = pick(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-  const og = /<meta[^>]+property=["']og:/i.test(head);
+  // Le HTML vient de n'importe quel site : aucune regex ne doit pouvoir
+  // revenir en arriere sans borne, sinon une page piegee gele tout le serveur.
+  // [^<>]* s'arrete au '<' suivant, ce qui garde chaque balayage lineaire.
+  const between = (open, close) => {
+    const a = lower.search(open);
+    if (a < 0) return null;
+    const gt = lower.indexOf('>', a);
+    const b = gt < 0 ? -1 : lower.indexOf(close, gt);
+    return b < 0 ? null : head.slice(gt + 1, b).trim();
+  };
+  const metas = head.match(/<meta\b[^<>]*>/gi) || [];
+  const metasWith = (attr) => metas.filter((t) => attr.test(t));
+  const contentOf = (t) => { const m = t.match(/\bcontent=["']([^"']*)["']/i); return m ? m[1].trim() : null; };
+
+  const title = between(/<title[\s>]/, '</title>');
+  const desc = metasWith(/\bname=["']description["']/i).map(contentOf).find((v) => v !== null) ?? null;
+  const viewport = metasWith(/\bname=["']viewport["']/i).length > 0;
+  const h1 = between(/<h1[\s>]/, '</h1>');
+  const og = metasWith(/\bproperty=["']og:/i).length > 0;
   const schema = /application\/ld\+json/i.test(head) && /(LocalBusiness|ProfessionalService|Organization)/i.test(head);
-  const imgs = head.match(/<img\b[^>]*>/gi) || [];
+  const imgs = head.match(/<img\b[^<>]*>/gi) || [];
   const imgsNoAlt = imgs.filter((t) => !/\balt\s*=/i.test(t)).length;
   const phone = /(tel:|\+32|0[1-9]\d{7,8})/.test(head);
   const bytes = Buffer.byteLength(html, 'utf8');
@@ -227,12 +249,30 @@ export async function auditSite(url) {
   const srcs = imgs.map((t) => (t.match(/src=["']([^"']+)["']/i) || [])[1] || '');
   const legacyImgs = srcs.filter((u) => /\.(png|jpe?g)(\?|$)/i.test(u)).length;
   const lazy = imgs.filter((t) => /loading\s*=\s*["']lazy["']/i.test(t)).length;
-  const scripts = (head.match(/<script[^>]*src=/gi) || []);
+  const scripts = (head.match(/<script\b[^<>]*>/gi) || []).filter((t) => /\bsrc=/i.test(t));
   const thirdParty = scripts.filter((t) => {
     const u = (t.match(/src=["']([^"']+)["']/i) || [])[1] || '';
     return /^https?:\/\//i.test(u) && !u.includes(new URL(finalUrl).hostname);
   }).length;
-  const text = html.replace(/<(script|style)[\s\S]*?<\/>/gi, ' ').replace(/<[^>]+>/g, ' ');
+  // Retire <script>/<style> en temps lineaire : l'ancienne regex paresseuse etait
+  // quadratique sur une page piegee (et sa fermeture ne correspondait jamais).
+  const stripCode = (s) => {
+    const low = s.toLowerCase();
+    let out = '', i = 0, a = low.indexOf('<script'), b = low.indexOf('<style');
+    while (i < s.length) {
+      if (a !== -1 && a < i) a = low.indexOf('<script', i);
+      if (b !== -1 && b < i) b = low.indexOf('<style', i);
+      const start = a === -1 ? b : b === -1 ? a : Math.min(a, b);
+      if (start === -1) { out += s.slice(i); break; }
+      out += s.slice(i, start) + ' ';
+      const end = low.indexOf(start === a ? '</script' : '</style', start);
+      if (end === -1) break;
+      const gt = low.indexOf('>', end);
+      i = gt === -1 ? s.length : gt + 1;
+    }
+    return out;
+  };
+  const text = stripCode(html).replace(/<[^<>]*>/g, ' ');
   const words = (text.match(/\S+/g) || []).length;
   const encoding = (res.headers.get('content-encoding') || '').toLowerCase();
 

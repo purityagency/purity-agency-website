@@ -8,9 +8,15 @@
   var hasPopover = HTMLElement.prototype.hasOwnProperty('popover');
   var hasCommand = 'command' in HTMLButtonElement.prototype;
 
+  // Boutons internes au menu (le x de fermeture) : meme dependance aux invoker commands.
+  var closers = Array.prototype.filter.call(document.querySelectorAll('[commandfor="menu"]'), function (b) { return b !== burger; });
+
   if (hasPopover && !hasCommand) {
     burger.addEventListener('click', function () {
       menu.togglePopover();
+    });
+    closers.forEach(function (b) {
+      b.addEventListener('click', function () { menu.hidePopover(); });
     });
   }
 
@@ -36,6 +42,11 @@
     });
     menu.addEventListener('click', function (e) {
       if (e.target.closest('a')) burger.click();
+    });
+    closers.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (menu.classList.contains('is-open')) burger.click();
+      });
     });
   }
 })();

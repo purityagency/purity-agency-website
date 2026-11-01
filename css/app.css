@@ -668,6 +668,7 @@ textarea{
  transition:background 180ms ease,color 180ms ease
 }
 .promo-bar__close:hover{background:rgba(255,255,255,.28);color:#FFFFFF}
+@media (pointer:coarse){.promo-bar__close::before{content:"";position:absolute;inset:-10px -7px -10px -2px}}
 .promo-bar__timer{display:inline-flex;align-items:baseline;gap:.34rem;padding:.16rem .58rem;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#FFFFFF;font-size:.74rem;font-weight:780;font-variant-numeric:tabular-nums;letter-spacing:.03em;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 .promo-bar__off{color:#FF453A;font-size:.94rem;font-weight:880;letter-spacing:-.015em;line-height:1;text-shadow:0 0 10px rgba(255,69,58,.35)}
 .promo-bar__clock{color:#FFFFFF;font-size:.75rem;font-weight:780;letter-spacing:.04em}

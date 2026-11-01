@@ -161,6 +161,12 @@ test('static allowlist blocks source code, dotfiles, encoded traversal, and disa
 
     const postStatic = await fetch(`${baseUrl}/index.html`, { method: 'POST' });
     assert.equal(postStatic.status, 405);
+
+    // Une URL encodee dans la query (cas de l'outil de diagnostic) ne doit pas etre rejetee.
+    const encodedQuery = await fetch(`${baseUrl}/index.html?url=https%3A%2F%2Fexample.be%2F`);
+    assert.equal(encodedQuery.status, 200);
+    const encodedPath = await fetch(`${baseUrl}/js%2F..%2Fserver.mjs`);
+    assert.equal(encodedPath.status, 400);
   });
 });
 

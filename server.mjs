@@ -73,7 +73,10 @@ export const server = http.createServer(async (req, res) => {
       return;
     }
     const rawUrl = String(req.url || '/');
-    if (rawUrl.length > 2048 || /%(?:00|2e|2f|5c)/i.test(rawUrl)) {
+    // Points et slashs encodes interdits dans le chemin seulement : la query les
+    // contient legitimement (/api/audit?url=https%3A%2F%2F...).
+    const rawPath = rawUrl.split('?')[0];
+    if (rawUrl.length > 2048 || /%00/.test(rawUrl) || /%(?:2e|2f|5c)/i.test(rawPath)) {
       applySecurityHeaders(res, { isNoIndex: true });
       res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }).end('Bad Request');
       return;

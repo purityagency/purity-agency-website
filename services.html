@@ -677,28 +677,7 @@
   </div>
 </main>
 
-<script>
-(() => {
-  const filterBtns = document.querySelectorAll('.sd-hub-filter-btn');
-  const cards = document.querySelectorAll('#services-grid .sd-hub-card');
-  if (!filterBtns.length || !cards.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        if (filter === 'all' || card.dataset.pillar === filter) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-})();
-</script>
+<script src="/js/services-hub.js?v=1" defer></script>
 
 <footer class="site-footer">
   <div class="site-footer__inner">

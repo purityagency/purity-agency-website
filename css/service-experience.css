@@ -542,6 +542,10 @@ body.is-exploring-services .octo__teaser{opacity:0;visibility:hidden;pointer-eve
  transform:translate(2px,-2px)
 }
 .service-pricing-error{margin:0;padding:.8rem 0;color:var(--muted);font-size:.92rem;line-height:1.45}.service-pricing-error a{color:var(--accent-deep);font-weight:650}
+.service-pricing-note{margin:.6rem 0 0;padding-top:.85rem;border-top:1px solid color-mix(in srgb,var(--ink) 9%,transparent);color:var(--muted);font-size:.84rem;line-height:1.5}
+.solutions__more{margin:clamp(1.6rem,3vw,2.4rem) 0 0;text-align:center}
+.solutions__more a{color:var(--accent-deep);font-size:.98rem;font-weight:650;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 40%,transparent);text-underline-offset:4px}
+.solutions__more a:hover{color:var(--accent);text-decoration-color:currentColor}
 .service-card[open] .service-card__services a,
 .service-card[open] .service-offer-row{animation:service-row-in .38s cubic-bezier(.22,1,.36,1) both}
 .service-card[open] .service-card__services a:nth-child(2),

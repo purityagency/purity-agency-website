@@ -63,11 +63,22 @@
     field.value = 'Je souhaite une solution proche de ' + caseLabels[caseId] + '.';
     help.textContent = 'Cette demande a été préparée depuis un cas concret Purity. Modifiez-la avant de continuer : rien n’est encore envoyé.';
   } else if (offer && /^[A-Z]\d{2}$/.test(offer)) {
-    field.value = 'Je souhaite en savoir plus sur l’offre ' + offer + '.';
+    // Noms lisibles du catalogue (data/services.mjs) : le visiteur ne doit pas
+    // recevoir un code interne dans son propre message.
+    var offerNames = {
+      M01: 'Diagnostic digital (15 min)', M03: 'Page Essentielle (1 page)', M04: 'Site Vitrine (5 pages)',
+      M05: 'Site Complet (10+ pages)', M06: 'Boutique en ligne (E-commerce)', M07: 'Refonte & modernisation de site web',
+      M08: 'Fiche Google Business & Maps', M09: 'Identité visuelle & Logo', M10: 'Pack Visuels & Reels Studio',
+      M13: 'Référencement local (SEO)', M16: 'Réseaux sociaux (3x/semaine)', M21: 'Pilote Automatique Essentiel',
+      M22: 'Pilote Automatique Business', M23: 'Pilote Automatique Intégral'
+    };
+    field.value = offerNames[offer]
+      ? 'Je souhaite en savoir plus sur l’offre « ' + offerNames[offer] + ' ».'
+      : 'Je souhaite en savoir plus sur vos offres.';
     help.textContent = 'Cette demande a été préparée depuis la page Tarifs. Modifiez-la avant de continuer : rien n’est encore envoyé.';
   } else if (promo) {
-    field.value = 'Je souhaite demander un devis et profiter de l’offre Novembre – Décembre (-25 % sur la création sous 24h + 1er mois offert sur la gestion des réseaux sociaux 3x/semaine). Mon activité : ';
-    help.textContent = 'Offre Novembre – Décembre (-25 % + 1er mois réseaux sociaux offert) pré-activée. Précisez votre activité en une phrase avant de continuer.';
+    field.value = 'Je souhaite demander un devis (-25 % sur la création si je valide dans les 24 h suivant le devis, 1er mois de gestion des réseaux sociaux offert). Mon activité : ';
+    help.textContent = 'Offre rappelée dans votre message : -25 % sur la création si vous validez dans les 24 h suivant votre devis, 1er mois de réseaux sociaux offert. Précisez votre activité en une phrase avant de continuer.';
   }
   if (!caseId && !offer && solution && /^[a-z-]{3,40}$/.test(solution)) {
     var solutionLabels = {
@@ -183,12 +194,17 @@
     document.getElementById('progress').hidden = true;
     log.insertAdjacentHTML('beforeend', '<p class="thread__sending">Envoi en cours…</p>');
 
+    // Champ piege : invisible pour un visiteur, rempli par les robots. Le
+    // serveur ignore alors la demande sans le signaler.
+    var trap = form.querySelector('[name="_hp"]');
+    var hp = trap ? trap.value : '';
+
     // Un creneau choisi doit aussi poser le rendez-vous dans l'agenda, sinon
     // le visiteur croit avoir reserve alors que rien n'est bloque.
     var send = fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(Object.assign({}, data, { _hp: hp }))
     }).then(function (r) { return r.json(); });
 
     var chain = data.slot
@@ -198,7 +214,7 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ start: data.slot, name: data.name, email: data.email,
-                                   phone: data.phone, message: data.message })
+                                   phone: data.phone, message: data.message, _hp: hp })
           }).then(function (r) { return r.json(); })
             .then(function (b) { return Object.assign({}, d, { booked: b.ok }); })
             .catch(function () { return d; });
@@ -371,7 +387,8 @@
       '<span class="recap__val">' + b.textContent + ' le ' +
       fmtFull.format(new Date(selected)) + '</span>';
     log.insertBefore(row, log.firstChild);
-    document.querySelector('.thread').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelector('.thread').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
   });
 
   buildDays();

@@ -69,7 +69,8 @@
         syncAllCues();
         var rect = card.getBoundingClientRect();
         if (rect.top < 80 || rect.top > window.innerHeight * 0.4) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          card.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
         }
       }, 50);
     } else {
@@ -100,13 +101,17 @@
     });
   });
 
+  // Echap ne referme une carte de prix que si aucune couche au-dessus (OctoMask,
+  // menu) n'attend cette touche : sinon elle doit se fermer en premier.
+  function overlayOpen() {
+    if (document.querySelector('dialog[open], .menu.is-open')) return true;
+    try { return Boolean(document.querySelector(':popover-open')); } catch (e) { return false; }
+  }
+
   window.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape') return;
+    if (event.key !== 'Escape' || event.defaultPrevented || overlayOpen()) return;
     var activeCard = cards.find(function (c) { return c.open; });
-    if (activeCard) {
-      event.preventDefault();
-      toggleCard(activeCard);
-    }
+    if (activeCard) toggleCard(activeCard);
   });
 
   grid.addEventListener('click', function (event) {

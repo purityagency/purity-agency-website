@@ -64,6 +64,10 @@
     }, 700);
   }
 
+  function showOut() {
+    try { out.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' }); } catch (_) {}
+  }
+
   function message(html) {
     out.className = 'audit__out is-msg';
     out.innerHTML = '<div class="panel panel--msg">' + html + '</div>';
@@ -101,8 +105,8 @@
 
     var extra = d.issuesTotal - d.issues.length;
     var rest = extra > 0
-      ? '<p class="panel__rest">' + extra + (extra > 1 ? ' autres points figurent' : ' autre point figure') +
-        ' dans le rapport complet.</p>'
+      ? '<p class="panel__rest">' + extra + (extra > 1 ? ' autres points relevés ne sont pas affichés ici' : ' autre point relevé n&rsquo;est pas affiché ici') +
+        ' : nous les passons en revue avec vous lors d&rsquo;un échange de 15 minutes, ou dans un audit détaillé sur demande.</p>'
       : '';
 
     out.className = 'audit__out is-done';
@@ -114,7 +118,9 @@
               '<circle class="ring__track" cx="60" cy="60" r="52"></circle>' +
               '<circle class="ring__value" cx="60" cy="60" r="52" style="--pct:' + d.score + '"></circle>' +
             '</svg>' +
-            '<span class="ring__num" id="score-num">0</span>' +
+            // Le chiffre anime reste muet : la region live n'annonce que la valeur finale.
+            '<span class="ring__num" id="score-num" aria-hidden="true">0</span>' +
+            '<span class="sr-only">Score : ' + d.score + ' sur 100.</span>' +
           '</div>' +
           '<div class="panel__verdict">' +
             '<p class="panel__site">' + esc(d.url.replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</p>' +
@@ -183,9 +189,7 @@
       }
     };
 
-    try {
-      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } catch (_) {}
+    showOut();
 
     fetch('/api/audit?url=' + encodeURIComponent(v))
       .then(function (r) { return r.json(); })
@@ -193,7 +197,7 @@
         stop();
         if (d.ok) {
           render(d);
-          try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
+          showOut();
           if (d.pagespeedPending) fetchPagespeed(d.url);
           return;
         }
@@ -201,23 +205,23 @@
           message('<p class="panel__sentence">Il nous faut une adresse de site, du type <strong>votre-entreprise.be</strong>.</p>' +
             '<p class="panel__note">Vous n&rsquo;avez pas encore de site ? C&rsquo;est le meilleur moment pour en parler.</p>' +
             '<a class="btn btn--primary panel__cta" href="/contact.html">En parler avec nous</a>');
-          try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
+          showOut();
           return;
         }
         if (d.reason === 'rate') {
           message('<p class="panel__sentence">Trop d&rsquo;analyses coup sur coup. Réessayez dans une minute.</p>');
-          try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
+          showOut();
           return;
         }
         message('<p class="panel__sentence">Nous n&rsquo;arrivons pas à joindre ce site.</p>' +
           '<p class="panel__note">Soit l&rsquo;adresse comporte une erreur, soit le site ne répond pas. Dans le second cas, le problème est déjà sérieux.</p>' +
           '<a class="btn btn--primary panel__cta" href="/contact.html">Faites-le vérifier</a>');
-        try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
+        showOut();
       })
       .catch(function () {
         stop();
         message('<p class="panel__sentence">L&rsquo;analyse a échoué. Réessayez dans un instant.</p>');
-        try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (_) {}
+        showOut();
       });
   });
 })();

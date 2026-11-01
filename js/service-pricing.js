@@ -15,20 +15,21 @@
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
 
-  const isPromo24hActive = () => !window.PurityPromo24h || window.PurityPromo24h.isActive();
-  const promoBadgeText = fallback => (window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : (fallback || '-25 % 24h'));
+  // Prix affiché = prix réel. La remise de 24 h dépend de la date du devis, pas
+  // de la visite : elle figure en note sous la liste, jamais en prix barré.
+  const pricingNote = '<p class="service-pricing-note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA). '
+    + '-25&nbsp;% sur la création si vous validez dans les 24&nbsp;h suivant votre devis.</p>';
 
   const priceMarkup = offer => {
     const price = String(offer.price || 'Sur mesure');
     const parts = price.split(' + ');
-    const active24h = isPromo24hActive();
     const hasMonthly = Boolean(parts[1]);
     const monthlyText = hasMonthly ? `+ ${escapeHtml(parts.slice(1).join(' + '))}` : '';
 
     if (offer.id === 'M01') {
       return `<div class="price-setup">
         <strong class="price-current price-current--free">${escapeHtml(parts[0])}</strong>
-        <em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '100 % gratuit')}</em>
+        <em class="promo-pill promo-pill--free">Gratuit · sans engagement</em>
       </div>
       <div class="price-recurring price-recurring--free">
         <span class="price-recurring__note">15 min en visio · sans aucun engagement</span>
@@ -36,37 +37,17 @@
     }
 
     if (offer.id === 'M16') {
-      const setupOld = parts[0];
-      const setupNow = active24h && offer.promoSetup ? offer.promoSetup : setupOld;
-      const isDiscounted = active24h && offer.promoSetup && setupNow !== setupOld;
       return `<div class="price-setup">
-        ${isDiscounted ? `<s class="price-old">${escapeHtml(setupOld)}</s>` : ''}
-        <strong class="price-current">${escapeHtml(setupNow)}</strong>
-        ${isDiscounted ? `<em class="promo-pill promo-pill--25" data-promo-badge="25">${escapeHtml(promoBadgeText(offer.promoTag))}</em>` : ''}
+        <strong class="price-current">${escapeHtml(parts[0])}</strong>
       </div>
       <div class="price-recurring">
         <span class="price-recurring__amount">${monthlyText}</span>
-        <em class="promo-pill promo-pill--free">${escapeHtml(offer.promoTag || '1er mois offert')}</em>
-      </div>`;
-    }
-
-    if (offer.promoSetup && active24h) {
-      return `<div class="price-setup">
-        <s class="price-old">${escapeHtml(parts[0])}</s>
-        <strong class="price-current">${escapeHtml(offer.promoSetup)}</strong>
-        <em class="promo-pill promo-pill--25" data-promo-badge="25">${escapeHtml(promoBadgeText(offer.promoTag))}</em>
-      </div>
-      <div class="price-recurring">
-        ${hasMonthly 
-          ? `<span class="price-recurring__amount">${monthlyText}</span> <span class="price-recurring__note">hébergement &amp; suivi inclus</span>` 
-          : `<span class="price-recurring__note price-recurring__note--once">paiement unique · sans abonnement</span>`
-        }
+        <em class="promo-pill promo-pill--free">1er mois offert</em>
       </div>`;
     }
 
     return `<div class="price-setup">
       <strong class="price-current">${escapeHtml(parts[0])}</strong>
-      ${offer.promoSetup ? `<em class="promo-pill promo-pill--expired" data-promo-badge="25">24h expiré</em>` : ''}
     </div>
     <div class="price-recurring">
       ${hasMonthly 
@@ -104,17 +85,13 @@
     })
     .then(payload => {
       const offers = new Map((Array.isArray(payload.offers) ? payload.offers : []).map(offer => [offer.id, offer]));
-      const renderAll = () => {
-        blocks.forEach(block => {
-          const target = block.querySelector('.service-card__offers');
-          const ids = offerGroups[block.dataset.servicePricing] || [];
-          const selected = ids.map(id => offers.get(id)).filter(Boolean);
-          if (!target || !selected.length) return setError(block);
-          target.innerHTML = selected.map(renderOffer).join('');
-        });
-      };
-      renderAll();
-      window.addEventListener('purity:promo24h-expired', renderAll);
+      blocks.forEach(block => {
+        const target = block.querySelector('.service-card__offers');
+        const ids = offerGroups[block.dataset.servicePricing] || [];
+        const selected = ids.map(id => offers.get(id)).filter(Boolean);
+        if (!target || !selected.length) return setError(block);
+        target.innerHTML = selected.map(renderOffer).join('') + pricingNote;
+      });
     })
     .catch(() => blocks.forEach(setError));
 })();

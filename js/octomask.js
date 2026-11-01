@@ -13,13 +13,10 @@
   launcher.type = 'button';
   launcher.className = 'octo-float';
   const LABEL = 'Parler à OctoMask, assistant IA de Purity';
-  // Le badge "1" est visible a l'ecran meme s'il est aria-hidden : un aria-label qui ne le
-  // reprend pas cree un ecart entre texte visible et nom accessible (utilisateurs de
-  // commande vocale notamment). On l'integre au libelle tant que le badge est present.
-  launcher.setAttribute('aria-label', LABEL + ' (1 suggestion)');
+  launcher.setAttribute('aria-label', LABEL);
   launcher.setAttribute('aria-haspopup', 'dialog');
   launcher.setAttribute('aria-controls', 'octomask-dialog');
-  launcher.innerHTML = '<img src="/assets/octomask-logo.png" width="72" height="72" alt=""><span class="octo-float__notice" aria-hidden="true">1</span>';
+  launcher.innerHTML = '<img src="/assets/octomask-logo.png" width="72" height="72" alt="">';
   if (old) old.replaceWith(launcher); else document.body.append(launcher);
 
   const teaser = document.createElement('aside');
@@ -188,11 +185,11 @@
       const card = document.createElement('article');
       card.className = 'octo__offer';
       const title = document.createElement('h3'); title.textContent = offer.name;
-      const active24h = !window.PurityPromo24h || window.PurityPromo24h.isActive();
-      const badge24h = window.PurityPromo24h ? window.PurityPromo24h.badgeLabel() : (offer.promoTag || '-25 % 24h');
-      const price = document.createElement('strong'); price.textContent = (offer.promoSetup && active24h) ? `${offer.promoSetup} au lieu de ${offer.price.split(' + ')[0]}${offer.price.includes(' + ') ? ' + ' + offer.price.split(' + ').slice(1).join(' + ') : ''} (${offer.id === 'M16' ? offer.promoTag : badge24h})` : offer.price;
+      const price = document.createElement('strong'); price.textContent = offer.price;
       const desc = document.createElement('p'); desc.textContent = offer.description;
-      const note = document.createElement('small'); note.textContent = 'Offre Novembre – Décembre (devis sous 24h) · périmètre et conditions confirmés sur devis.';
+      const note = document.createElement('small'); note.textContent = offer.id === 'M01'
+        ? 'Gratuit, sans engagement.'
+        : 'Prix net, TVA non applicable. -25 % sur la création si vous validez dans les 24 h suivant votre devis · périmètre confirmé sur devis.';
       card.append(title, price, desc, note);
       log.append(card);
     }
@@ -245,8 +242,6 @@
   }
   launcher.addEventListener('click', () => {
     hideTeaser();
-    launcher.querySelector('.octo-float__notice')?.remove();
-    launcher.setAttribute('aria-label', LABEL);
     dialog.showModal();
     if (vv) { vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
     fit();

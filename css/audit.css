@@ -176,6 +176,8 @@
 }
 .audit-compare__caption strong{font-weight:700;color:var(--ink)}
 .audit-compare__caption span{color:var(--accent);font-weight:650;font-size:.71rem}
+.audit-compare__caption{flex-wrap:wrap}
+.audit-compare__note{flex-basis:100%;color:var(--muted);font-size:.7rem;font-weight:500}
 @media (min-width:1080px){
  .audit__stage{
   display:grid;

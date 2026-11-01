@@ -11,6 +11,53 @@
   // Boutons internes au menu (le x de fermeture) : meme dependance aux invoker commands.
   var closers = Array.prototype.filter.call(document.querySelectorAll('[commandfor="menu"]'), function (b) { return b !== burger; });
 
+  // Un lien suivi ferme le menu sans renvoyer le focus au burger.
+  var closingViaLink = false;
+
+  function isOpen() {
+    if (menu.classList.contains('is-open')) return true;
+    try { return menu.matches(':popover-open'); } catch (e) { return false; }
+  }
+
+  function focusables() {
+    return Array.prototype.filter.call(
+      menu.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+      function (el) { return el.getClientRects().length > 0; }
+    );
+  }
+
+  function onOpened() {
+    var items = focusables();
+    if (items.length) items[0].focus({ preventScroll: true });
+  }
+
+  function onClosed() {
+    var active = document.activeElement;
+    if (!closingViaLink && (!active || active === document.body || menu.contains(active))) burger.focus();
+    closingViaLink = false;
+  }
+
+  // Le menu ouvert couvre tout l'ecran : la tabulation reste dedans au lieu de
+  // partir sur la page masquee derriere.
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !isOpen()) return;
+    var items = focusables();
+    if (!items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    var active = document.activeElement;
+    if (!menu.contains(active)) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    } else if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
   if (hasPopover && !hasCommand) {
     burger.addEventListener('click', function () {
       menu.togglePopover();
@@ -22,12 +69,17 @@
 
   if (hasPopover) {
     menu.addEventListener('toggle', function (e) {
-      burger.setAttribute('aria-expanded', String(e.newState === 'open'));
-      burger.setAttribute('aria-label', e.newState === 'open' ? 'Fermer le menu' : 'Ouvrir le menu');
+      var open = e.newState === 'open';
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      if (open) onOpened(); else onClosed();
     });
     // Un lien d'ancre ne referme pas le popover de lui-meme.
     menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) menu.hidePopover();
+      if (e.target.closest('a')) {
+        closingViaLink = true;
+        menu.hidePopover();
+      }
     });
   } else {
     // Sans Popover API : bascule par classe, plus fermeture Echap.
@@ -36,12 +88,16 @@
       var open = menu.classList.toggle('is-open');
       burger.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
+      if (open) onOpened(); else onClosed();
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.classList.contains('is-open')) burger.click();
     });
     menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) burger.click();
+      if (e.target.closest('a')) {
+        closingViaLink = true;
+        burger.click();
+      }
     });
     closers.forEach(function (b) {
       b.addEventListener('click', function () {
@@ -81,159 +137,56 @@
   paint();
 })();
 
-// Decompte 24h a partir de la 1re ouverture du site, sur un cycle glissant de 30 jours.
-// Expose window.PurityPromo24h et synchronise en temps reel la banniere et tous les badges -25 %.
+// Barre d'offre : message fixe, identique pour tous les visiteurs, sans compte a rebours.
 (function () {
-  var STORAGE_KEY = 'purity_promo_first_open_v1';
-  var COOKIE_KEY = 'purity_first_open';
-  var WINDOW_MS = 24 * 60 * 60 * 1000;      // 24 heures de validite du -25 %
-  var CYCLE_MS = 30 * 24 * 60 * 60 * 1000;  // Cycle de 30 jours avant reinitialisation
+  // Efface les traceurs de l'ancien compte a rebours encore presents chez les visiteurs.
+  try { document.cookie = 'purity_first_open=; Max-Age=0; Path=/; SameSite=Lax'; } catch (e) {}
+  try { localStorage.removeItem('purity_promo_first_open_v1'); } catch (e) {}
 
-  function readCookieTimestamp() {
-    var m = document.cookie.match(/(?:^|;\s*)purity_first_open=(\d{10,15})/);
-    return m ? Number(m[1]) : 0;
-  }
+  if (document.querySelector('.promo-bar')) return;
+  var dismissed = false;
+  try { dismissed = sessionStorage.getItem('purity-promo-bar-dismissed') === '1'; } catch (e) {}
+  if (dismissed) return;
 
-  function writeTimestamp(ts) {
-    try { localStorage.setItem(STORAGE_KEY, String(ts)); } catch {}
-    try {
-      document.cookie = COOKIE_KEY + '=' + ts + '; Path=/; Max-Age=2592000; SameSite=Lax';
-    } catch {}
-  }
+  var promo = document.createElement('aside');
+  promo.className = 'promo-bar';
+  promo.setAttribute('aria-label', 'Offre Purity Agency');
+  promo.innerHTML =
+    '<a class="promo-bar__link" href="/contact.html?promo=novdec25"><span class="promo-bar__text">' +
+      '<strong>-25 %</strong> sur la création si vous validez dans les 24 h suivant votre devis · 1er mois de réseaux sociaux offert' +
+    '</span></a>' +
+    '<button type="button" class="promo-bar__close" aria-label="Masquer l’offre">×</button>';
 
-  function resolveFirstOpen() {
-    var now = Date.now();
-    var stored = 0;
-    try { stored = Number(localStorage.getItem(STORAGE_KEY) || 0); } catch {}
-    if (!stored) stored = readCookieTimestamp();
-    if (!stored || !Number.isFinite(stored) || stored > now || (now - stored) >= CYCLE_MS) {
-      stored = now;
+  document.body.prepend(promo);
+
+  function syncPromoHeight() {
+    if (!promo.isConnected) {
+      document.documentElement.style.setProperty('--promo-h', '0px');
+      return;
     }
-    writeTimestamp(stored);
-    return stored;
+    document.documentElement.style.setProperty('--promo-h', (promo.offsetHeight + 4) + 'px');
   }
 
-  var firstOpenAt = resolveFirstOpen();
+  promo.querySelector('.promo-bar__close').addEventListener('click', function () {
+    promo.remove();
+    syncPromoHeight();
+    try { sessionStorage.setItem('purity-promo-bar-dismissed', '1'); } catch (e) {}
+  });
 
-  function pad(n) {
-    return n < 10 ? '0' + n : String(n);
-  }
+  window.addEventListener('resize', syncPromoHeight);
+  requestAnimationFrame(syncPromoHeight);
+})();
 
-  function remainingMs() {
-    var now = Date.now();
-    if ((now - firstOpenAt) >= CYCLE_MS) {
-      firstOpenAt = resolveFirstOpen();
-    }
-    return Math.max(0, (firstOpenAt + WINDOW_MS) - now);
-  }
-
-  function isActive() {
-    return remainingMs() > 0;
-  }
-
-  function formatRemaining() {
-    var totalSec = Math.ceil(remainingMs() / 1000);
-    var h = Math.floor(totalSec / 3600);
-    var m = Math.floor((totalSec % 3600) / 60);
-    var s = totalSec % 60;
-    return pad(h) + ':' + pad(m) + ':' + pad(s);
-  }
-
-  function badgeLabel() {
-    return isActive() ? '-25 % · ' + formatRemaining() : 'Offre 24h expirée';
-  }
-
-  window.PurityPromo24h = {
-    get firstOpenAt() { return firstOpenAt; },
-    get expiresAt() { return firstOpenAt + WINDOW_MS; },
-    get resetAt() { return firstOpenAt + CYCLE_MS; },
-    remainingMs: remainingMs,
-    isActive: isActive,
-    formatRemaining: formatRemaining,
-    badgeLabel: badgeLabel
-  };
-
-  if (!document.querySelector('.promo-bar')) {
-    var dismissed = false;
-    try {
-      dismissed = sessionStorage.getItem('purity-promo-24h-v2-dismissed') === '1';
-    } catch {}
-
-    if (!dismissed) {
-      var promo = document.createElement('aside');
-      promo.className = 'promo-bar';
-      promo.setAttribute('aria-label', 'Offre Purity Agency');
-      promo.innerHTML =
-        '<span class="promo-bar__timer" data-promo-timer aria-live="off">' +
-          '<strong class="promo-bar__off" data-promo-off>-25\u00a0%</strong>' +
-          '<span class="promo-bar__clock" data-promo-clock></span>' +
-        '</span>' +
-        '<a class="promo-bar__link" href="/contact.html?promo=novdec25"><span class="promo-bar__text" data-promo-bar-text></span></a>' +
-        '<button type="button" class="promo-bar__close" aria-label="Masquer">×</button>';
-
-      document.body.prepend(promo);
-
-      function syncPromoHeight() {
-        if (!promo.isConnected) {
-          document.documentElement.style.setProperty('--promo-h', '0px');
-          return;
-        }
-        document.documentElement.style.setProperty('--promo-h', (promo.offsetHeight + 4) + 'px');
-      }
-
-      promo.querySelector('.promo-bar__close').addEventListener('click', function () {
-        promo.remove();
-        syncPromoHeight();
-        try { sessionStorage.setItem('purity-promo-24h-v2-dismissed', '1'); } catch {}
-      });
-
-      window.addEventListener('resize', syncPromoHeight);
-      requestAnimationFrame(syncPromoHeight);
-    }
-  }
-
-  var wasActive = isActive();
-
-  function tickPromo24h() {
-    var active = isActive();
-    var timerText = formatRemaining();
-
-    document.querySelectorAll('[data-promo-timer]').forEach(function (el) {
-      var offEl = el.querySelector('[data-promo-off]');
-      var clockEl = el.querySelector('[data-promo-clock]');
-      if (offEl && clockEl) {
-        offEl.hidden = !active;
-        clockEl.textContent = active ? '· ' + timerText : 'Nov. – Déc.';
-      } else {
-        el.textContent = active ? '-25\u00a0% · ' + timerText : 'Nov. – Déc.';
-      }
-    });
-
-    document.querySelectorAll('[data-promo-bar-text]').forEach(function (el) {
-      var nextText = active
-        ? 'Remise 24h sur la création · 1er mois réseaux offert'
-        : '1er mois réseaux sociaux offert';
-      if (el.textContent !== nextText) el.textContent = nextText;
-    });
-
-    document.querySelectorAll('.promo-pill--25, [data-promo-badge="25"]').forEach(function (el) {
-      if (active) {
-        el.classList.add('promo-pill--25');
-        el.classList.remove('promo-pill--expired');
-        el.textContent = '-25 % · ' + timerText;
-      } else {
-        el.classList.remove('promo-pill--25');
-        el.classList.add('promo-pill--expired');
-        el.textContent = '24h expiré';
-      }
-    });
-
-    if (wasActive && !active) {
-      wasActive = false;
-      window.dispatchEvent(new CustomEvent('purity:promo24h-expired'));
-    }
-  }
-
-  tickPromo24h();
-  setInterval(tickPromo24h, 1000);
+// Lien d'evitement : premier element tabulable de chaque page, vers le contenu principal.
+(function () {
+  if (document.querySelector('.skip-link')) return;
+  var main = document.querySelector('main');
+  if (!main) return;
+  if (!main.id) main.id = 'contenu';
+  if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+  var skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#' + main.id;
+  skip.textContent = 'Aller au contenu';
+  document.body.insertBefore(skip, document.body.firstChild);
 })();

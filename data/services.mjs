@@ -13,8 +13,7 @@ export const services = [
     headline: 'Découvrez en 15 minutes ce qui freine vos demandes de devis et ce qu’il faut corriger en priorité.',
     summary: 'Avant de dépenser le moindre euro dans un site web, des réseaux sociaux ou de la publicité, Amir Kebiyeb examine votre situation avec vous et vous indique l’action concrète la plus rentable pour décrocher plus de chantiers.',
     price: 'Offert',
-    priceSetup: '0 €',
-    promoSetup: 'Offert',
+    priceSetup: 'Offert',
     promoTag: 'Gratuit · sans engagement',
     monthlyPrice: null,
     monthlyNote: 'Aucun abonnement, aucun moyen de paiement requis.',
@@ -104,8 +103,7 @@ export const services = [
     summary: 'La formule idéale pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coaches) qui veulent remplacer une simple page Facebook ou un vieux site par une vitrine nette, crédible et contactable en 1 clic.',
     price: '490 € + 79 €/mois',
     priceSetup: '490 €',
-    promoSetup: '367 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement haute vitesse, nom de domaine .be, boîte e-mail pro et modifications de vos coordonnées incluses.',
     delay: '5 à 7 jours ouvrés',
@@ -202,8 +200,7 @@ export const services = [
     summary: 'La formule la plus demandée : 5 pages complètes et structurées (Accueil rassurant, Prestations détaillées, Galerie de réalisations avec comparateur avant/après, Présentation de l’entreprise, Contact et demande de devis) conçues pour faire de vous le premier choix dans votre région.',
     price: '1 490 € + 79 €/mois',
     priceSetup: '1 490 €',
-    promoSetup: '1 117 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.',
     delay: '7 à 10 jours ouvrés',
@@ -300,8 +297,7 @@ export const services = [
     summary: 'Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vos villes d’intervention en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles, Brabant Wallon), avec des formulaires spécifiques par équipe et un espace de recrutement.',
     price: '2 490 € + 149 €/mois',
     priceSetup: '2 490 €',
-    promoSetup: '1 867 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Maintenance avancée, sauvegardes bi-quotidiennes, interventions prioritaires et 2h de modifications incluses chaque mois.',
     delay: '12 à 18 jours ouvrés',
@@ -398,8 +394,7 @@ export const services = [
     summary: 'Une boutique rapide et sécurisée, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), adaptée aussi bien aux commerçants qu’aux restaurateurs (commandes à emporter et réservations anti-no-show).',
     price: '3 990 € + 149 €/mois',
     priceSetup: '3 990 €',
-    promoSetup: '2 992 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Sécurité bancaire continue, surveillance des paiements, maintenance des passerelles et assistance technique.',
     delay: '15 à 25 jours ouvrés',
@@ -495,8 +490,7 @@ export const services = [
     summary: 'Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en conservant rigoureusement vos adresses et votre positionnement Google sans rien casser.',
     price: '890 à 2 490 € + 79 €/mois',
     priceSetup: 'dès 890 €',
-    promoSetup: 'dès 667 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement, maintenance technique et garantie contractuelle de zéro perte de trafic Google.',
     delay: '7 à 14 jours ouvrés',
@@ -589,11 +583,10 @@ export const services = [
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Visibilité locale immédiate · Avis 5 étoiles · Appel en 1 clic',
     headline: 'Faites apparaître votre entreprise en tête de Google Maps sur votre commune.',
-    summary: 'En Belgique, 65 % des personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps sans visiter de site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.',
+    summary: 'Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.',
     price: '290 €',
     priceSetup: '290 €',
-    promoSetup: '217 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique sans abonnement obligatoire.',
     delay: '3 à 5 jours ouvrés',
@@ -641,7 +634,7 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: 'Invisibilité sur 65 % des recherches mobiles locales',
+        title: 'Invisibilité dans les recherches mobiles locales',
         desc: 'Ne pas être bien placé sur Google Maps, c’est laisser l’ensemble des appels téléphoniques directs aux concurrents du coin.'
       },
       {
@@ -675,7 +668,7 @@ export const services = [
       },
       {
         q: 'Comment mes clients utilisent-ils le QR Code ?',
-        a: 'Ils scannent simplement le QR Code avec l’appareil photo de leur smartphone : la page d’avis Google s’ouvre directement avec 5 étoiles pré-cochées.'
+        a: 'Ils scannent simplement le QR Code avec l’appareil photo de leur smartphone : la page Google pour laisser un avis s’ouvre directement.'
       }
     ]
   },
@@ -689,8 +682,7 @@ export const services = [
     summary: 'Fini les logos bricolés ou pixélisés : nous créons une identité de marque nette, lisible et professionnelle, pensée pour le monde réel (flocage de véhicules utilitaires, vêtements de travail, devis et factures).',
     price: '690 €',
     priceSetup: '690 €',
-    promoSetup: '517 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique · cession totale de propriété incluse.',
     delay: '7 à 10 jours ouvrés',
@@ -786,8 +778,7 @@ export const services = [
     summary: 'Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.',
     price: '390 €',
     priceSetup: '390 €',
-    promoSetup: '292 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique sans abonnement.',
     delay: '4 à 7 jours ouvrés',
@@ -879,8 +870,7 @@ export const services = [
     summary: 'Un travail régulier pour placer votre site web en tête des résultats Google dès qu’un habitant de votre région cherche une intervention précise (ex: "chauffagiste agréé Charleroi", "carrossier Namur", "rénovation toiture Mons") sans dépendre de publicités payantes.',
     price: '590 € + 149 €/mois',
     priceSetup: '590 €',
-    promoSetup: '442 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Optimisations continues, création de contenus mensuels sur vos chantiers et bilan transparent sans jargon.',
     delay: 'Mise en place : 10 jours ouvrés',
@@ -973,8 +963,7 @@ export const services = [
     summary: 'Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos de chantiers et programmation automatique.',
     price: '290 € + 349 €/mois',
     priceSetup: '290 €',
-    promoSetup: '217 €',
-    promoTag: '-25 % 24h',
+    promoTag: '1er mois offert',
     monthlyPrice: '349 €/mois',
     monthlyNote: 'Gestion complète, 12 publications par mois, 4 vidéos montées et réponses aux messages de base.',
     delay: 'Démarrage sous 5 jours ouvrés',
@@ -1017,7 +1006,7 @@ export const services = [
       },
       {
         title: '1er mois d’abonnement 100 % offert pour tester',
-        desc: 'Vous ne payez que les frais de démarrage initial (avec la remise de 25 %). Le premier mois de gestion complet est totalement offert.'
+        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous validez dans les 24 h suivant votre devis). Le premier mois de gestion est offert.'
       }
     ],
     lossOfInaction: [
@@ -1048,7 +1037,7 @@ export const services = [
       },
       {
         q: 'Comment fonctionne le 1er mois offert ?',
-        a: 'Vous ne réglez que les frais de mise en place de départ (217 € au lieu de 290 €). Le premier mois complet d’abonnement (valeur 349 €) est totalement gratuit.'
+        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous validez dans les 24 h suivant votre devis). Le premier mois d’abonnement (valeur 349 €) est offert.'
       },
       {
         q: 'Puis-je continuer à poster moi-même de temps en temps ?',
@@ -1070,8 +1059,7 @@ export const services = [
     summary: 'Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.',
     price: '490 € + 39 €/mois',
     priceSetup: '490 €',
-    promoSetup: '367 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '39 €/mois',
     monthlyNote: 'Surveillance continue des connexions automatiques, alertes anti-erreurs et assistance technique.',
     delay: '5 à 7 jours ouvrés',
@@ -1163,8 +1151,7 @@ export const services = [
     summary: 'Fini les post-its, les notes égarées et les ressaisies manuelles : nous connectons vos formulaires web, vos e-mails, votre planning d’équipe et votre logiciel de facturation pour que chaque nouveau contact crée son dossier complet automatiquement.',
     price: '990 € + 69 €/mois',
     priceSetup: '990 €',
-    promoSetup: '742 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '69 €/mois',
     monthlyNote: 'Surveillance des liaisons multi-outils, ajustement des champs et assistance technique.',
     delay: '10 à 14 jours ouvrés',
@@ -1256,8 +1243,7 @@ export const services = [
     summary: 'La solution la plus aboutie : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.',
     price: '1 990 € + 119 €/mois',
     priceSetup: '1 990 €',
-    promoSetup: '1 492 €',
-    promoTag: '-25 % 24h',
+    promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '119 €/mois',
     monthlyNote: 'Surveillance de l’assistant, mises à jour de vos tarifs et ajustements continus.',
     delay: '15 à 20 jours ouvrés',

@@ -1,0 +1,2 @@
+/* Sans JavaScript, le film du hero ne demarre pas : on montre l'image fixe. */
+.hero__poster{visibility:visible!important}

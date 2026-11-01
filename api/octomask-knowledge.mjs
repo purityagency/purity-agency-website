@@ -11,7 +11,7 @@ export const offers = [
   { id: 'M09', slug: 'identite-visuelle-logo', name: 'Identité visuelle & Logo', price: '690 €', promoSetup: '517 €', promoTag: '-25 % si devis validé sous 24 h', description: 'Création ou refonte de votre logo, palette de couleurs, typographies et charte graphique professionnelle.' },
   { id: 'M10', slug: 'pack-visuels-reels', name: 'Pack Visuels & Reels Studio', price: '390 €', promoSetup: '292 €', promoTag: '-25 % si devis validé sous 24 h', description: 'Création de visuels sur mesure et vidéos courtes (Reels / TikTok) prêts à publier pour valoriser votre savoir-faire.' },
   { id: 'M13', slug: 'referencement-local-seo', name: 'Référencement local (SEO)', price: '590 € + 149 €/mois', promoSetup: '442 €', promoTag: '-25 % si devis validé sous 24 h', description: 'Optimisation continue pour remonter sur Google dans votre région en Wallonie, avec suivi mensuel.' },
-  { id: 'M16', slug: 'gestion-reseaux-sociaux', name: 'Réseaux sociaux (3x/semaine)', price: '290 € + 349 €/mois', promoSetup: '217 €', promoTag: '1er mois 349 € offert', description: '3 publications par semaine (12/mois) + 4 Reels/mois sur Instagram, Facebook ou LinkedIn. 1er mois d’abonnement offert (Nov. – Déc.).' },
+  { id: 'M16', slug: 'gestion-reseaux-sociaux', name: 'Réseaux sociaux (3x/semaine)', price: '290 € + 349 €/mois', promoSetup: '217 €', promoTag: '1er mois 349 € offert', description: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) + 3 publications, sur les réseaux de votre choix, cadrés sur devis. 1er mois d’abonnement offert pour essayer, puis engagement de 6 mois.' },
   { id: 'M21', slug: 'pilote-automatique-essentiel', name: 'Pilote Automatique Essentiel', price: '490 € + 39 €/mois', promoSetup: '367 €', promoTag: '-25 % si devis validé sous 24 h', description: 'Automatiser une tâche précise qui vous fait perdre du temps (prise de RDV, tri de demandes ou relance).' },
   { id: 'M22', slug: 'pilote-automatique-business', name: 'Pilote Automatique Business', price: '990 € + 69 €/mois', promoSetup: '742 €', promoTag: '-25 % si devis validé sous 24 h', description: 'Connecter votre site, vos e-mails, votre agenda et votre suivi client pour ne plus rien ressaisir à la main.' },
   { id: 'M23', slug: 'pilote-automatique-integral', name: 'Pilote Automatique Intégral', price: '1 990 € + 119 €/mois', promoSetup: '1 492 €', promoTag: '-25 % si devis validé sous 24 h', description: 'Système complet sur mesure avec agent IA, automatisations métier et tableau de suivi centralisé.' }
@@ -33,7 +33,7 @@ MÉTHODE (40–90 mots, max 130)
 
 RÈGLES STRICTES & SÉCURITÉ
 - ZÉRO prix, chiffre monétaire, mot euro/EUR, symbole € ou URL dans reply : sélectionne uniquement offerIds, l'interface affiche les cartes officielles avec prix et remise.
-- OFFRES NOVEMBRE – DÉCEMBRE, à mentionner seulement si pertinent et sans montant : -25 pourcent sur la création si le client valide son devis dans les 24 heures qui suivent sa réception ; premier mois de gestion des réseaux sociaux offert sur la formule M16. Aucun compte à rebours ne tourne sur le site : le délai de 24 heures démarre à la réception du devis, jamais avant. Ne crée aucune urgence et n'invente aucune autre remise.
+- OFFRES NOVEMBRE – DÉCEMBRE, à mentionner seulement si pertinent et sans montant : -25 pourcent sur la création si le client valide son devis dans les 24 heures qui suivent sa réception ; premier mois offert sur la formule M16 (Réseaux sociaux), puis engagement de 6 mois si le client continue. Aucun compte à rebours ne tourne sur le site : le délai de 24 heures démarre à la réception du devis, jamais avant. Ne crée aucune urgence et n'invente aucune autre remise.
 - Ne cite jamais de note, d'étoiles, de nombre d'avis ni de témoignage client. Si on te demande des avis ou des références, dis que tu ne peux pas en citer et propose un échange de 15 minutes avec Amir.
 - Tu ne visites pas d'URL, ne consultes pas l'agenda, n'envoies et ne réserves rien. Ne dis jamais « envoyé », « transmis », « réservé », « confirmé ».
 - action="booking" ouvre le calendrier d'appel découverte (15 min sans engagement). action="contact" ouvre le récapitulatif vers Amir (contact@purity-agency.be). Sinon action="none". Ne demande pas d'e-mail/téléphone dans le chat.
@@ -111,7 +111,7 @@ const FAST_ROUTES = new Map([
     action: 'contact'
   }],
   ['je veux gerer mes reseaux sociaux', {
-    reply: 'Notre formule Réseaux sociaux inclut trois publications par semaine et quatre vidéos courtes par mois, avec le premier mois d’abonnement offert en novembre et décembre. Sur quels réseaux souhaitez-vous être actif ?',
+    reply: 'Notre formule Réseaux sociaux comprend, chaque semaine, trois vidéos courtes (Reels, TikTok ou Shorts) et trois publications sur les réseaux de votre choix. Le premier mois est offert pour essayer, puis l’abonnement court sur 6 mois. Sur quels réseaux souhaitez-vous être actif ?',
     offerIds: ['M16', 'M10'],
     suggestions: ['Instagram et Facebook', 'LinkedIn professionnel', 'Je veux en discuter avec Amir'],
     action: 'none'

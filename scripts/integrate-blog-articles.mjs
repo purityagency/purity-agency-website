@@ -27,24 +27,24 @@ const oldArticles = [
     category: 'Conversion',
     title: 'Votre site ne convertit pas : 7 raisons fréquentes',
     description: 'Les fuites les plus courantes entre une visite et une demande, et comment les repérer sans tout refaire.',
-    date: '2026-03-20',
-    meta: '11 min · 20 mars 2026'
+    date: '2026-05-06',
+    meta: '11 min · 6 mai 2026'
   },
   {
     slug: 'article-ia-pme-belgique',
     category: 'IA & automatisation',
     title: 'L’IA pour les indépendants et PME : par où commencer ?',
     description: 'Une approche pragmatique pour automatiser un vrai point de friction sans promettre de remplacer l’humain.',
-    date: '2026-03-05',
-    meta: '10 min · 5 mars 2026'
+    date: '2026-04-08',
+    meta: '10 min · 8 avril 2026'
   },
   {
     slug: 'article-seo-local-wallonie',
     category: 'SEO local',
     title: 'Être trouvé à Charleroi et en Wallonie : le guide du SEO local',
     description: 'Fiche Google, avis, présence locale et site mobile : les bases qui aident vos clients à vous choisir.',
-    date: '2026-02-15',
-    meta: '11 min · 15 février 2026'
+    date: '2026-03-04',
+    meta: '11 min · 4 mars 2026'
   },
   {
     slug: 'article-prix-site-web-belgique',
@@ -63,8 +63,8 @@ const newArticles = [
     title: 'Google Business Profile suspendu : comment l’éviter et récupérer sa fiche',
     seoTitle: 'Fiche Google Business Profile suspendue : causes et solutions | Purity Agency',
     description: 'Les erreurs qui déclenchent une suspension Google Business Profile et la méthode pour remettre une fiche locale en conformité.',
-    date: '2026-09-18',
-    meta: '8 min · 18 septembre 2026',
+    date: '2026-09-30',
+    meta: '8 min · 30 septembre 2026',
     lead: 'Une fiche Google suspendue, ce n’est pas un détail technique. Pour un commerce local, un artisan ou une PME, c’est parfois la disparition immédiate des appels, des itinéraires et d’une partie de la confiance.',
     sections: [
       ['Ce qui déclenche souvent la suspension', 'Google suspend rarement une fiche “au hasard”. Les causes les plus fréquentes sont un nom d’établissement gonflé avec des mots-clés, une adresse qui ne correspond pas à un vrai lieu de réception, plusieurs fiches pour la même activité ou une catégorie choisie pour manipuler la visibilité plutôt que décrire le métier réel. Le réflexe à éviter : modifier dix éléments dans la panique. Chaque changement ajoute du bruit au dossier.'],
@@ -85,8 +85,8 @@ const newArticles = [
     title: 'Google Ads : pourquoi les mots-clés larges vident le budget des PME',
     seoTitle: 'Requête large Google Ads : l’erreur qui coûte cher aux PME | Purity Agency',
     description: 'Pourquoi la requête large Google Ads peut gaspiller un budget local et comment reprendre le contrôle avec les bons réglages.',
-    date: '2026-09-03',
-    meta: '7 min · 3 septembre 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Quand un budget Google Ads disparaît sans demandes sérieuses derrière, le problème vient rarement du bouton “lancer la campagne”. Il vient souvent du niveau de contrôle laissé à Google.',
     sections: [
       ['Le piège de la requête large', 'La requête large donne beaucoup de liberté à Google. C’est utile pour explorer un marché, mais dangereux quand le budget est limité. Une entreprise qui vise “plombier Charleroi” peut payer des clics sur des recherches de formation, de salaire, de prix trop bas ou de documents administratifs. Le trafic existe, mais l’intention commerciale n’est pas là.'],
@@ -107,8 +107,8 @@ const newArticles = [
     title: 'Cacher ses prix sur son site : pourquoi cela fait fuir les bons prospects',
     seoTitle: 'Pourquoi ne pas afficher ses prix détruit la conversion web | Purity Agency',
     description: 'Afficher des prix ou des fourchettes rassure, filtre et qualifie mieux les demandes entrantes.',
-    date: '2026-08-22',
-    meta: '6 min · 22 août 2026',
+    date: '2026-09-30',
+    meta: '6 min · 30 septembre 2026',
     lead: '“Demandez un devis” peut être utile. Mais quand c’est la seule information disponible, le visiteur ne sait pas s’il entre dans une conversation sérieuse ou dans une perte de temps.',
     sections: [
       ['L’opacité crée de la friction', 'Sur internet, personne n’a envie de remplir un formulaire pour découvrir que le budget est hors sujet. Même si chaque projet est différent, le visiteur cherche un ordre de grandeur. Sans repère, il compare ailleurs.'],
@@ -128,8 +128,8 @@ const newArticles = [
     title: 'Core Web Vitals : pourquoi la technique peut coûter du chiffre d’affaires',
     seoTitle: 'Core Web Vitals : pourquoi la technique de votre site impacte vos ventes | Purity Agency',
     description: 'LCP, INP et CLS expliqués simplement : pourquoi un site lent ou instable perd des prospects avant même le formulaire.',
-    date: '2026-08-06',
-    meta: '8 min · 6 août 2026',
+    date: '2026-09-30',
+    meta: '8 min · 30 septembre 2026',
     lead: 'Les Core Web Vitals ont des noms de tableau de bord technique. Pourtant, ils décrivent quelque chose de très simple : est-ce que votre site répond vite, reste stable et donne envie de continuer ?',
     sections: [
       ['LCP : le visiteur attend-il trop longtemps ?', 'Le Largest Contentful Paint mesure le moment où le contenu principal devient visible. Si le titre, l’image ou le bloc central arrive trop tard, le visiteur pense que le site est lourd ou cassé. Sur mobile, quelques secondes suffisent pour perdre une demande.'],
@@ -150,8 +150,8 @@ const newArticles = [
     title: 'Paniers abandonnés : la séquence d’e-mails qui récupère des ventes',
     seoTitle: 'Paniers abandonnés e-commerce : la séquence d’e-mails qui convertit | Purity Agency',
     description: 'Une séquence simple en trois temps pour relancer les paniers abandonnés sans harceler le client.',
-    date: '2026-07-19',
-    meta: '7 min · 19 juillet 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Un panier abandonné n’est pas toujours un refus. Souvent, c’est une hésitation, une distraction ou une question non résolue au moment du paiement.',
     sections: [
       ['Premier e-mail : rappeler sans brader', 'Le premier message doit arriver rapidement et rester factuel : le panier est encore disponible, les produits sont rappelés, le lien ramène directement au checkout. Pas besoin de réduction immédiate. Une remise trop rapide apprend au client à attendre.'],
@@ -172,8 +172,8 @@ const newArticles = [
     title: 'One-page ou site multi-pages : que choisir pour lancer son activité ?',
     seoTitle: 'One-page vs multi-pages : le meilleur choix pour votre lancement | Purity Agency',
     description: 'Le choix entre une landing page et un site structuré dépend du besoin de conversion, de SEO et d’évolution.',
-    date: '2026-07-02',
-    meta: '7 min · 2 juillet 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Un site one-page peut être parfait pour lancer vite. Il peut aussi devenir une limite si votre activité doit être trouvée sur plusieurs besoins, zones ou services.',
     sections: [
       ['Le one-page : simple, rapide, contrôlé', 'Une page unique fonctionne bien pour une offre précise, une campagne, un lancement ou un indépendant qui veut valider une première demande. Le récit est linéaire, le coût reste contenu et l’expérience mobile peut être très fluide.'],
@@ -194,8 +194,8 @@ const newArticles = [
     title: 'Avis négatif sur Google : répondre sans envenimer la situation',
     seoTitle: 'Répondre à un avis Google négatif : méthode pour PME locales | Purity Agency',
     description: 'Une méthode simple pour répondre à un avis négatif, protéger sa réputation et montrer son sérieux aux futurs clients.',
-    date: '2026-06-17',
-    meta: '6 min · 17 juin 2026',
+    date: '2026-09-30',
+    meta: '6 min · 30 septembre 2026',
     lead: 'Un avis négatif fait rarement plaisir. Mais la réponse publique compte parfois plus que la note elle-même : elle montre aux futurs clients comment vous gérez un problème.',
     sections: [
       ['Ne répondez pas à chaud', 'Une réponse défensive peut transformer un incident isolé en preuve publique de mauvaise gestion. Prenez le temps de relire, de vérifier les faits et de distinguer un vrai problème client d’un avis abusif.'],
@@ -216,8 +216,8 @@ const newArticles = [
     title: 'Mots-clés à faible volume : la stratégie SEO des niches B2B',
     seoTitle: 'Mots-clés à faible volume : stratégie SEO rentable en B2B | Purity Agency',
     description: 'Pourquoi des requêtes avec peu de volume peuvent générer de meilleures demandes qu’un mot-clé très concurrentiel.',
-    date: '2026-06-04',
-    meta: '7 min · 4 juin 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Un mot-clé à faible volume n’est pas forcément un mauvais mot-clé. En B2B, il peut même signaler une intention très précise et très proche de l’achat.',
     sections: [
       ['Le volume ne dit pas tout', 'Les outils SEO affichent des volumes moyens. Ils ne montrent pas toujours la valeur commerciale d’une recherche. “Logiciel devis menuiserie Belgique” peut avoir peu de volume, mais une personne qui tape cela sait déjà ce qu’elle cherche.'],
@@ -237,8 +237,8 @@ const newArticles = [
     title: 'Transformer ses abonnés Instagram en clients dans un commerce physique',
     seoTitle: 'Instagram pour commerce local : transformer les abonnés en clients | Purity Agency',
     description: 'Comment relier Instagram à des visites réelles en magasin, avec des contenus utiles et des appels à l’action simples.',
-    date: '2026-05-21',
-    meta: '6 min · 21 mai 2026',
+    date: '2026-09-30',
+    meta: '6 min · 30 septembre 2026',
     lead: 'Avoir des abonnés ne suffit pas. Pour un commerce physique, Instagram doit créer des visites, des réservations, des messages ou des passages en boutique.',
     sections: [
       ['Montrer ce qui donne envie de venir', 'Les publications trop parfaites peuvent éloigner. Un commerce local gagne souvent avec du concret : arrivages, coulisses, avant/après, conseils rapides, disponibilité, horaires, ambiance réelle.'],
@@ -259,8 +259,8 @@ const newArticles = [
     title: 'RGPD et cookies : informer sans faire fuir vos prospects',
     seoTitle: 'RGPD et cookies : comment rester clair sans casser la conversion | Purity Agency',
     description: 'Une approche sobre des cookies, pop-ins et messages RGPD pour rester conforme sans dégrader l’expérience.',
-    date: '2026-05-06',
-    meta: '7 min · 6 mai 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Le problème n’est pas d’informer l’utilisateur. Le problème, c’est de l’accueillir avec une avalanche de bandeaux, pop-ins et textes juridiques avant même qu’il comprenne votre offre.',
     sections: [
       ['La conformité ne doit pas devenir une agression', 'Un bandeau cookie peut être nécessaire selon les outils activés. Mais il doit rester clair, proportionné et honnête. Demander un consentement massif pour des outils inutiles dégrade la confiance.'],
@@ -281,8 +281,8 @@ const newArticles = [
     title: 'Retargeting pour PME : convertir les visiteurs qui hésitent',
     seoTitle: 'Retargeting pour PME : la stratégie pour convertir les indécis | Purity Agency',
     description: 'Comment utiliser le retargeting sans harceler : audiences simples, fréquence raisonnable et messages de réassurance.',
-    date: '2026-04-18',
-    meta: '7 min · 18 avril 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'La majorité des visiteurs ne contacte pas une entreprise lors de la première visite. Cela ne veut pas dire qu’ils ne sont pas intéressés. Souvent, ils comparent, réfléchissent ou remettent la décision à plus tard.',
     sections: [
       ['Le retargeting sert à revenir au bon moment', 'Le reciblage permet de reparler à des personnes qui ont déjà visité votre site. Elles connaissent au moins votre nom, ce qui rend le message moins froid et souvent moins coûteux qu’une campagne d’acquisition pure.'],
@@ -303,8 +303,8 @@ const newArticles = [
     title: 'E-E-A-T : prouver votre expertise locale sur votre site',
     seoTitle: 'E-E-A-T Google : guide pour artisans et PME locales | Purity Agency',
     description: 'Comment montrer l’expérience, l’expertise et la fiabilité d’une entreprise locale sans discours creux.',
-    date: '2026-04-03',
-    meta: '8 min · 3 avril 2026',
+    date: '2026-09-30',
+    meta: '8 min · 30 septembre 2026',
     lead: 'Google et vos visiteurs cherchent la même chose : des signes que vous êtes une vraie entreprise, compétente, joignable et fiable.',
     sections: [
       ['Expérience : montrez le terrain', 'Les réalisations, photos, cas concrets, étapes de travail et exemples de problèmes résolus prouvent davantage qu’une phrase “expert depuis 10 ans”. Le détail crée la confiance.'],
@@ -325,8 +325,8 @@ const newArticles = [
     title: 'Minimalisme digital : faire plus avec moins de canaux',
     seoTitle: 'Stratégie digitale minimaliste pour micro-entreprises | Purity Agency',
     description: 'Une stratégie simple pour indépendants et micro-entreprises : moins de canaux, plus de cohérence, moins d’épuisement.',
-    date: '2026-03-14',
-    meta: '6 min · 14 mars 2026',
+    date: '2026-09-30',
+    meta: '6 min · 30 septembre 2026',
     lead: 'Une petite entreprise n’a pas besoin d’être partout. Elle a besoin d’être claire là où ses clients prennent vraiment leur décision.',
     sections: [
       ['Chaque canal ajoute une charge', 'Instagram, LinkedIn, Google, newsletter, blog, TikTok, publicité : chaque canal demande une stratégie, des contenus, du suivi et une régularité. Sans système, cela devient une fatigue permanente.'],
@@ -346,8 +346,8 @@ const newArticles = [
     title: 'Above the fold : structurer le haut de page pour convertir',
     seoTitle: 'Above the Fold : comment structurer le haut de votre site | Purity Agency',
     description: 'Les éléments essentiels à placer dans le premier écran pour aider un visiteur à comprendre et agir en quelques secondes.',
-    date: '2026-02-27',
-    meta: '7 min · 27 février 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Le premier écran d’un site n’a pas besoin de tout dire. Il doit faire comprendre assez vite pourquoi rester, quoi regarder et quelle action est logique.',
     sections: [
       ['Une promesse compréhensible en deux secondes', 'Le titre doit dire ce que l’entreprise aide à obtenir, pour qui ou dans quel contexte. Les mots vagues rassurent rarement. Les mots concrets orientent.'],
@@ -368,8 +368,8 @@ const newArticles = [
     title: 'Piratage WordPress : le vrai coût pour une PME',
     seoTitle: 'Site WordPress piraté : impact financier et prévention | Purity Agency',
     description: 'Pourquoi un site WordPress mal entretenu peut coûter beaucoup plus qu’une intervention technique.',
-    date: '2026-02-03',
-    meta: '8 min · 3 février 2026',
+    date: '2026-09-30',
+    meta: '8 min · 30 septembre 2026',
     lead: 'Un site vitrine peut sembler trop petit pour intéresser un pirate. En réalité, beaucoup d’attaques sont automatisées : elles cherchent des failles, pas des marques connues.',
     sections: [
       ['Le coût dépasse la réparation', 'Un piratage peut provoquer une alerte navigateur, une baisse de trafic, une perte de mails, une suspension d’hébergement, une perte de confiance ou une désindexation temporaire. Le nettoyage technique n’est qu’une partie du problème.'],
@@ -390,8 +390,8 @@ const newArticles = [
     title: 'Maillage interne : booster vos pages services sans chercher des backlinks',
     seoTitle: 'Maillage interne SEO : booster vos pages services | Purity Agency',
     description: 'Comment relier vos contenus aux pages qui convertissent pour aider Google et les visiteurs à comprendre vos priorités.',
-    date: '2026-01-28',
-    meta: '7 min · 28 janvier 2026',
+    date: '2026-09-30',
+    meta: '7 min · 30 septembre 2026',
     lead: 'Avant de chercher des liens ailleurs, beaucoup de sites devraient déjà mieux utiliser leurs propres pages. Le maillage interne est souvent le levier SEO le plus négligé.',
     sections: [
       ['Google suit vos liens pour comprendre vos priorités', 'Une page service liée seulement depuis le menu reçoit peu de contexte. Quand plusieurs articles et pages la citent naturellement, elle devient plus importante dans l’architecture du site.'],
@@ -428,7 +428,7 @@ function relatedHtml(links = []) {
   return `<aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">Pour aller plus loin</h2><ul>${items}</ul></aside>`;
 }
 
-const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=20261101">
+const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/site-additions.css?v=20261101">
 <link rel="stylesheet" href="/css/content.css?v=20261101">`;
@@ -481,7 +481,7 @@ function footer() {
     <a href="/conditions-generales.html">CGV</a>
   </div>
 </footer>
-<script src="/js/menu.js?v=20261101" defer></script>
+<script src="/js/menu.js?v=2026110102" defer></script>
 <script src="/js/cookie-notice.js" defer></script>`;
 }
 

@@ -112,7 +112,7 @@ const META_DESCRIPTIONS = {
   'identite-visuelle-logo': s => `Logo et identité visuelle pour artisans, indépendants et commerces : une image nette, lisible sur camionnette, vêtements et devis. ${tarif(s)}`,
   'pack-visuels-reels': s => `Vos vidéos de chantier filmées au smartphone deviennent des Reels sous-titrés et des visuels prêts à publier sur Instagram et Facebook. ${tarif(s)}`,
   'referencement-local-seo': s => `Référencement local en Wallonie : être trouvé sur Google pour votre métier et votre commune, sans dépendre de la publicité. ${tarif(s)}`,
-  'gestion-reseaux-sociaux': s => `Gestion de vos réseaux sociaux : 3 publications par semaine, planning, rédaction, visuels et montage vidéo pris en charge. ${tarif(s)}`,
+  'gestion-reseaux-sociaux': s => `Vos réseaux sociaux gérés : 3 vidéos courtes et 3 publications par semaine, sur les réseaux de votre choix. ${tarif(s)}`,
   'pilote-automatique-essentiel': s => `Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis à J+3 et J+7 ou alerte devis urgent. ${tarif(s)}`,
   'pilote-automatique-business': s => `Formulaires, e-mails, planning et facturation reliés : chaque nouveau contact crée son dossier complet, sans double saisie. ${tarif(s)}`,
   'pilote-automatique-integral': s => `Assistant IA entraîné sur vos tarifs, vos zones et vos règles métier : il répond à vos clients le soir et le week-end. ${tarif(s)}`
@@ -222,7 +222,7 @@ ${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=20261101">
+<link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=20261101">
 <script type="application/ld+json">
@@ -494,7 +494,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=20261101" defer></script>
+<script src="/js/menu.js?v=2026110102" defer></script>
 </body>
 </html>`;
 }
@@ -545,7 +545,7 @@ ${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=20261101">
+<link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=20261101">
 <script type="application/ld+json">
@@ -651,7 +651,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=20261101" defer></script>
+<script src="/js/menu.js?v=2026110102" defer></script>
 </body>
 </html>`;
 }

@@ -958,14 +958,14 @@ export const services = [
     slug: 'gestion-reseaux-sociaux',
     name: 'Réseaux sociaux (3x/semaine)',
     pillar: 'Pilier 02 · Image de Marque & Studio',
-    kicker: '12 posts/mois + 4 vidéos · 1er mois offert · Gestion 100 % déléguée',
+    kicker: '3 vidéos + 3 posts par semaine · 1er mois offert · Réseaux au choix',
     headline: 'Une présence active et soignée sur vos réseaux sociaux sans y passer une seule minute de votre temps.',
-    summary: 'Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos de chantiers et programmation automatique.',
+    summary: 'Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.',
     price: '290 € + 349 €/mois',
     priceSetup: '290 €',
     promoTag: '1er mois offert',
     monthlyPrice: '349 €/mois',
-    monthlyNote: 'Gestion complète, 12 publications par mois, 4 vidéos montées et réponses aux messages de base.',
+    monthlyNote: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.',
     delay: 'Démarrage sous 5 jours ouvrés',
     targetAudience: 'Artisans, commerçants, restaurateurs et gérants de PME en Wallonie qui savent qu’il faut être visible sur les réseaux mais qui manquent de temps pour s’en occuper.',
     utility: 'Avoir une vitrine active et professionnelle qui rassure vos prospects et fait parler de votre entreprise, sans que vous n’ayez à toucher à votre téléphone après le travail.',
@@ -979,17 +979,17 @@ export const services = [
       { id: 'animaux', name: 'Patte Douce', sector: 'Commerce Local' }
     ],
     comparison: [
-      { aspect: 'Régularité des publications', others: '3 posts en une semaine puis plus rien pendant 6 mois', purity: '3 publications de qualité par semaine, chaque semaine, sans interruption' },
+      { aspect: 'Régularité des publications', others: '3 posts en une semaine puis plus rien pendant 6 mois', purity: '3 vidéos et 3 publications chaque semaine, sans interruption' },
       { aspect: 'Variété des contenus', others: 'Photos de chantier brutes sans texte ni explication', purity: 'Mélange équilibré de vidéos courtes, photos de réalisations et avis clients' },
-      { aspect: 'Offre découverte', others: 'Engagement immédiat de 12 mois sans tester le résultat', purity: '1er mois d’abonnement 100 % offert : vous ne réglez que la mise en place initiale' }
+      { aspect: 'Offre découverte', others: 'Engagement immédiat de 12 mois sans tester le résultat', purity: '1er mois d’abonnement offert pour essayer, puis engagement de 6 mois si vous continuez' }
     ],
     deliverables: [
       {
-        title: '12 publications soignées par mois (3 par semaine)',
+        title: '3 publications soignées par semaine, sur les réseaux de votre choix',
         desc: 'Des publications régulières montrant vos réalisations récentes, vos coulisses d’atelier, vos avis clients et vos prestations clés.'
       },
       {
-        title: '4 vidéos courtes montées par mois (Reels / TikToks)',
+        title: '3 vidéos courtes par semaine (Reels, TikTok ou Shorts, au choix)',
         desc: 'Des vidéos rythmées avec sous-titres pour capter de nouveaux clients locaux qui ne connaissent pas encore votre entreprise.'
       },
       {
@@ -1005,8 +1005,8 @@ export const services = [
         desc: 'Vos contenus sont publiés automatiquement aux moments où vos clients locaux sont les plus attentifs (pauses déjeuner, soirées, week-ends).'
       },
       {
-        title: '1er mois d’abonnement 100 % offert pour tester',
-        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous validez dans les 24 h suivant votre devis). Le premier mois de gestion est offert.'
+        title: '1er mois d’abonnement offert pour essayer',
+        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous validez dans les 24 h suivant votre devis). Le premier mois de gestion est offert. Si vous continuez, l’abonnement est conclu pour 6 mois (349 €/mois).'
       }
     ],
     lossOfInaction: [
@@ -1025,7 +1025,7 @@ export const services = [
     ],
     howItWorks: [
       { step: '01', title: 'Court échange sur vos priorités', desc: 'On définit le style de communication, vos chantiers phares et les services à mettre en avant.' },
-      { step: '02', title: 'Préparation du mois complet', desc: 'Nous rédigeons les 12 textes et préparons tous les visuels et vidéos du mois.' },
+      { step: '02', title: 'Préparation du mois complet', desc: 'Nous rédigeons les textes et préparons les visuels et les vidéos du mois.' },
       { step: '03', title: 'Validation en 5 minutes', desc: 'Vous jetez un œil sur votre smartphone et vous validez ou demandez une correction en un clic.' },
       { step: '04', title: 'Diffusion automatique', desc: 'Nous nous chargeons de toutes les publications aux heures optimales sans que vous n’ayez rien à faire.' }
     ],
@@ -1037,7 +1037,7 @@ export const services = [
       },
       {
         q: 'Comment fonctionne le 1er mois offert ?',
-        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous validez dans les 24 h suivant votre devis). Le premier mois d’abonnement (valeur 349 €) est offert.'
+        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous validez dans les 24 h suivant votre devis). Le premier mois d’abonnement (valeur 349 €) est offert. Si vous continuez ensuite, l’abonnement est conclu pour 6 mois à 349 €/mois.'
       },
       {
         q: 'Puis-je continuer à poster moi-même de temps en temps ?',
@@ -1045,7 +1045,7 @@ export const services = [
       },
       {
         q: 'Sur quels réseaux sociaux publiez-vous ?',
-        a: 'Principalement sur Facebook et Instagram pour les particuliers, ou sur LinkedIn si vous travaillez pour des clients professionnels (B2B).'
+        a: 'Sur les réseaux de votre choix : Instagram, Facebook, TikTok, YouTube Shorts ou LinkedIn. On les fixe ensemble dans le devis, selon vos clients.'
       }
     ]
   },

@@ -573,3 +573,40 @@ main[tabindex="-1"]:focus{outline:none}
  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0
 }
+
+/* Note Google (4,8 réelle, sans nombre d'avis) */
+.rating{
+ display:inline-flex;
+ align-items:center;
+ gap:.55rem;
+ margin-top:clamp(1.6rem,2.6vw,2.2rem);
+ text-decoration:none;
+ color:var(--ink);
+ transition:transform 150ms ease-out
+}
+.rating:hover{transform:translateY(-1px)}
+.rating:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.rating__g{width:17px;height:17px;flex:none}
+.stars{position:relative;display:block;width:90px;height:18px;flex:none}
+.stars svg{width:90px;height:18px;display:block}
+.stars__empty{fill:rgba(11,10,12,.18)}
+.stars__fill{
+ position:absolute;
+ inset:0;
+ overflow:hidden;
+ width:var(--score,100%);
+ fill:#F5A623
+}
+.stars__fill svg{position:absolute;inset:0}
+.rating__score{font-weight:var(--fw-title);font-size:.95rem;letter-spacing:var(--tracking)}
+.rating__count{font-weight:var(--fw-emph);font-size:.9rem;color:var(--muted)}
+.rating:hover .rating__count{color:var(--accent)}
+@media (max-width:767px){
+ .rating{margin-top:1.4rem;gap:.45rem}
+ .rating__count{font-size:.85rem}
+ .stars,.stars svg{width:78px;height:16px}
+}
+@media (prefers-reduced-motion:reduce){
+ .rating{transition:none}
+ .rating:hover{transform:none}
+}

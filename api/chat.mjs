@@ -36,7 +36,8 @@ setInterval(() => {
 }, 60_000).unref();
 function key() {
   if (process.env.GEMINI_API_KEY) return process.env.GEMINI_API_KEY.trim();
-  for (const file of ['../../secrets/.gemini-key-free', '../../secrets/.gemini-key']) {
+  // Cle payante d'abord : la politique de confidentialite annonce une version sans entrainement.
+  for (const file of ['../../secrets/.gemini-key', '../../secrets/.gemini-key-free']) {
     try {
       const k = readFileSync(new URL(file, import.meta.url), 'utf8').trim();
       if (k) return k;
@@ -100,6 +101,8 @@ export function validateReply(value) {
   // Prices belong to authoritative cards, never free-form model output. Also block HTML tags and system-prompt leak markers.
   if (/€|\beuros?\b|\bEUR\b|https?:\/\/|\[[^\]]*\]\(|<[a-z!/][\s\S]*?>|SORTIE JSON|CATALOGUE PUBLIC|MÉTHODE \(40/i.test(value.reply)) throw new Error('unsafe-reply');
   if (/(?:j[’']ai|nous avons|c[’']est|votre (?:message|demande|rendez-vous).{0,30}(?:est|a été)).{0,35}(?:envoy|transmis|réserv|confirm|bloqu)/i.test(value.reply)) throw new Error('unverified-action');
+  // Aucun avis verifiable n'existe : ni note, ni etoiles, ni nombre d'avis.
+  if (/\d\s*(?:[.,]\d\s*)?(?:\/\s*5\b|sur\s*5\b|étoiles?)|\d+\s+avis\b|avis\s+(?:clients?\s+)?(?:vérifiés|google)|note\s+(?:google|moyenne)/i.test(value.reply)) throw new Error('unverified-proof');
   if (!Array.isArray(value.offerIds) || value.offerIds.length > 2 || value.offerIds.some(id => !offers.some(o => o.id === id))) throw new Error('invalid-offers');
   if (!Array.isArray(value.suggestions) || value.suggestions.length > 3 || value.suggestions.some(s => typeof s !== 'string' || s.length > 55 || /https?:\/\/|<[a-z!/]/i.test(s))) throw new Error('invalid-suggestions');
   if (!['none', 'contact', 'booking'].includes(value.action)) throw new Error('invalid-action');
@@ -167,7 +170,7 @@ export async function chat(session, message, { fetcher = fetch, apiKey = key(), 
       const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: instructions + pageHint + (attempt ? '\nVALIDATION : réponse précédente invalide. Zéro prix, mot euro/EUR, symbole € ou URL dans reply. Ne confirme aucune action.' : '') }] },
+          systemInstruction: { parts: [{ text: instructions + pageHint + (attempt ? '\nVALIDATION : réponse précédente invalide. Zéro prix, mot euro/EUR, symbole € ou URL dans reply. Ni note ni nombre d\'avis. Ne confirme aucune action.' : '') }] },
           contents: llmContents,
           generationConfig: {
             temperature: 0.3,

@@ -227,34 +227,58 @@ export function readJsonBody(req, { maxBytes = 16_384, timeoutMs = 8_000 } = {})
   });
 }
 
-export function createRateLimiter({ windowMs = 60_000, max = 10, maxKeys = 5_000 } = {}) {
+// Fenetre glissante approchee (compteur courant + compteur precedent pondere) :
+// O(1) par appel, les requetes rejetees ne sont jamais comptees ni stockees.
+export function createRateLimiter({ windowMs = 60_000, max = 10, maxKeys = 5_000, now: clock = Date.now } = {}) {
   const buckets = new Map();
 
   const cleanup = setInterval(() => {
-    const now = Date.now();
+    const now = clock();
     for (const [key, entry] of buckets) {
-      const fresh = entry.filter(ts => now - ts < windowMs);
-      if (fresh.length) buckets.set(key, fresh);
-      else buckets.delete(key);
+      if (now - entry.start >= 2 * windowMs) buckets.delete(key);
     }
   }, Math.min(windowMs, 60_000));
   cleanup.unref?.();
 
   return function isRateLimited(key, customMax = max) {
-    const now = Date.now();
-    if (buckets.size >= maxKeys && !buckets.has(key)) {
-      const oldestKey = buckets.keys().next().value;
-      if (oldestKey !== undefined) buckets.delete(oldestKey);
+    const now = clock();
+    let entry = buckets.get(key);
+    if (!entry) {
+      if (buckets.size >= maxKeys) buckets.delete(buckets.keys().next().value);
+      entry = { start: now, count: 0, prev: 0 };
+      buckets.set(key, entry);
+    } else if (now - entry.start >= windowMs) {
+      const elapsedWindows = Math.floor((now - entry.start) / windowMs);
+      entry.prev = elapsedWindows === 1 ? entry.count : 0;
+      entry.count = 0;
+      entry.start += elapsedWindows * windowMs;
+      buckets.delete(key);
+      buckets.set(key, entry);
     }
-    const list = (buckets.get(key) || []).filter(ts => now - ts < windowMs);
-    list.push(now);
-    buckets.set(key, list);
-    return list.length > customMax;
+    const weight = 1 - (now - entry.start) / windowMs;
+    if (entry.count + entry.prev * weight >= customMax) return true;
+    entry.count++;
+    return false;
   };
 }
 
+// Anciennes URL v1 redirigees en 301 vers leur destination v2 (slash final tolere).
+// Aucune cible ne doit etre elle-meme une source, sinon boucle.
+const LEGACY_REDIRECTS = new Map([
+  ['/tarifs', '/#services'],
+  ['/tarifs.html', '/#services'],
+  ['/services.html', '/services'],
+  ['/agence-web-charleroi.html', '/#services'],
+  ['/liens.html', '/contact.html']
+]);
+
+export function resolveLegacyRedirect(rawPathname) {
+  if (typeof rawPathname !== 'string') return null;
+  const trimmed = rawPathname.length > 1 && rawPathname.endsWith('/') ? rawPathname.slice(0, -1) : rawPathname;
+  return LEGACY_REDIRECTS.get(trimmed) || null;
+}
+
 const CLEAN_HTML_ROUTES = new Set([
-  '/tarifs',
   '/contact',
   '/cas-concrets',
   '/services',
@@ -285,8 +309,7 @@ export function isAllowedStaticPath(path) {
     /^\/(?:assets|css|js)\/[a-zA-Z0-9_./-]+$/.test(path) ||
     /^\/cas-concrets\/[a-z0-9-]+\.html$/.test(path) ||
     /^\/services\/[a-z0-9-]+\.html$/.test(path) ||
-    /^\/demos\/[a-z0-9-]+\/(?:index|services|univers|contact|studio)\.html$/.test(path) ||
-    /^\/offres\/(?:assets\/[a-zA-Z0-9_.-]+|[a-z0-9-]+\/index\.html)$/.test(path)
+    /^\/demos\/[a-z0-9-]+\/(?:index|services|univers|contact|studio)\.html$/.test(path)
   );
 }
 

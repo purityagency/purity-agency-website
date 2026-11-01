@@ -17,6 +17,7 @@ import {
   verifySameOrigin,
   readJsonBody,
   createRateLimiter,
+  resolveLegacyRedirect,
   resolveCleanRoute,
   isAllowedStaticPath
 } from './api/security.mjs';
@@ -88,7 +89,7 @@ export const server = http.createServer(async (req, res) => {
     }
 
     const isDemoRoute = path.startsWith('/demos/');
-    const isNoIndexRoute = path.startsWith('/api/') || isDemoRoute || path.startsWith('/offres/');
+    const isNoIndexRoute = path.startsWith('/api/') || isDemoRoute;
     applySecurityHeaders(res, { isNoIndex: isNoIndexRoute, isDemo: isDemoRoute });
 
     const json = (code, body, extraHeaders = {}) => res.writeHead(code, {
@@ -143,7 +144,7 @@ export const server = http.createServer(async (req, res) => {
     if (path === '/api/offers') {
       if (req.method !== 'GET') return json(405, { error: 'Méthode non autorisée.' }, { Allow: 'GET' });
       if (offersLimiter(ip)) return json(429, { error: 'Trop de requêtes.' }, { 'Retry-After': '60' });
-      return json(200, { offers });
+      return json(200, { offers }, { 'Cache-Control': 'public, max-age=300' });
     }
 
     if (path === '/api/slots') {
@@ -223,17 +224,11 @@ export const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // Redirections 301 des anciennes URLs v1 vers leur destination v2 active.
-    // Note : /tarifs.html est desormais une vraie page active et ne doit plus rediriger.
-    const redirects = {
-      '/tarifs': '/#services',
-      '/tarifs.html': '/#services',
-      '/services.html': '/#services',
-      '/agence-web-charleroi.html': '/#services',
-      '/liens.html': '/contact.html'
-    };
-    if (redirects[path]) {
-      res.writeHead(301, { Location: redirects[path], 'Cache-Control': 'no-store' }).end();
+    // Redirections 301 des anciennes URLs v1 (/tarifs, /tarifs/, /tarifs.html, /services.html...)
+    // avant toute resolution de route propre : le stub tarifs.html n'est donc jamais servi.
+    const redirectTo = resolveLegacyRedirect(path);
+    if (redirectTo) {
+      res.writeHead(301, { Location: redirectTo, 'Cache-Control': 'no-store' }).end();
       return;
     }
 
@@ -271,9 +266,12 @@ export const server = http.createServer(async (req, res) => {
     const ext = extname(file).toLowerCase();
     const etag = `W/"${info.size.toString(16)}-${Math.floor(info.mtimeMs).toString(16)}"`;
     const media = /^\.(?:webm|mp4|png|jpg|webp|svg|woff2|ico)$/.test(ext);
+    const code = ext === '.css' || ext === '.js';
     const headers = {
       'Content-Type': MIME[ext] || 'application/octet-stream',
-      'Cache-Control': media ? 'public, max-age=86400, stale-while-revalidate=604800' : 'no-cache',
+      'Cache-Control': media
+        ? 'public, max-age=86400, stale-while-revalidate=604800'
+        : code ? 'public, max-age=300, stale-while-revalidate=86400' : 'no-cache',
       'ETag': etag,
       'Last-Modified': new Date(info.mtimeMs).toUTCString(),
       'Accept-Ranges': 'bytes'

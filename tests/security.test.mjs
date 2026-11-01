@@ -4,6 +4,8 @@ import {
   extractClientIp,
   verifySameOrigin,
   stripPrototypePollution,
+  createRateLimiter,
+  resolveLegacyRedirect,
   resolveCleanRoute,
   isAllowedStaticPath
 } from '../api/security.mjs';
@@ -42,16 +44,96 @@ test('security headers, CSP connect-src self, and RFC 9116 security.txt are enfo
   });
 });
 
-test('/tarifs.html and clean URL /tarifs redirect directly to /#services', async () => {
-  await withServer(async baseUrl => {
-    const r1 = await fetch(`${baseUrl}/tarifs.html`, { redirect: 'manual' });
-    assert.equal(r1.status, 301);
-    assert.equal(r1.headers.get('location'), '/#services');
+test('legacy URLs redirect in 301 (trailing slash included) without loops', async () => {
+  const expected = {
+    '/tarifs': '/#services',
+    '/tarifs/': '/#services',
+    '/tarifs.html': '/#services',
+    '/tarifs.html/': '/#services',
+    '/services.html': '/services',
+    '/services.html/': '/services',
+    '/agence-web-charleroi.html': '/#services',
+    '/liens.html': '/contact.html'
+  };
+  for (const [from, to] of Object.entries(expected)) {
+    assert.equal(resolveLegacyRedirect(from), to, from);
+    assert.equal(resolveLegacyRedirect(new URL(to, 'http://x').pathname), null, `${to} must not redirect again`);
+  }
+  for (const live of ['/', '/services', '/services/', '/contact', '/services/site-vitrine']) {
+    assert.equal(resolveLegacyRedirect(live), null, live);
+  }
 
-    const r2 = await fetch(`${baseUrl}/tarifs`, { redirect: 'manual' });
-    assert.equal(r2.status, 301);
-    assert.equal(r2.headers.get('location'), '/#services');
+  await withServer(async baseUrl => {
+    for (const [from, to] of Object.entries(expected)) {
+      const res = await fetch(`${baseUrl}${from}`, { redirect: 'manual' });
+      assert.equal(res.status, 301, from);
+      assert.equal(res.headers.get('location'), to, from);
+    }
+    for (const hub of ['/services', '/services/']) {
+      const res = await fetch(`${baseUrl}${hub}`, { redirect: 'manual' });
+      assert.equal(res.status, 200, hub);
+      assert.match(await res.text(), /canonical" href="https:\/\/purity-agency\.be\/services"/);
+    }
   });
+});
+
+test('client offers are no longer served on the main domain', async () => {
+  assert.equal(isAllowedStaticPath('/offres/rdv/index.html'), false);
+  assert.equal(isAllowedStaticPath('/offres/assets/logo-mail.png'), false);
+  await withServer(async baseUrl => {
+    for (const gone of ['/offres/fm-chauffage/', '/offres/rdv/', '/offres/fm-chauffage/index.html', '/offres/assets/logo-mail.png']) {
+      const res = await fetch(`${baseUrl}${gone}`, { redirect: 'manual' });
+      assert.equal(res.status, 404, gone);
+    }
+  });
+});
+
+test('cache policy: short public cache for CSS/JS and offers, no-cache for HTML', async () => {
+  await withServer(async baseUrl => {
+    for (const asset of ['/css/app.css', '/js/menu.js']) {
+      const res = await fetch(`${baseUrl}${asset}`);
+      assert.equal(res.status, 200, asset);
+      assert.equal(res.headers.get('cache-control'), 'public, max-age=300, stale-while-revalidate=86400', asset);
+      assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
+      assert.ok(res.headers.get('etag'));
+    }
+    const html = await fetch(`${baseUrl}/contact`);
+    assert.equal(html.status, 200);
+    assert.equal(html.headers.get('cache-control'), 'no-cache');
+
+    const offers = await fetch(`${baseUrl}/api/offers`);
+    assert.equal(offers.status, 200);
+    assert.equal(offers.headers.get('cache-control'), 'public, max-age=300');
+    assert.match(offers.headers.get('content-security-policy') || '', /default-src 'self'/);
+    assert.match(offers.headers.get('x-robots-tag') || '', /noindex/);
+    assert.ok((await offers.json()).offers.length > 0);
+  });
+});
+
+test('rate limiter never stores rejected hits, slides its window and caps tracked keys', () => {
+  let t = 0;
+  const limited = createRateLimiter({ windowMs: 1_000, max: 2, maxKeys: 3, now: () => t });
+  assert.equal(limited('a'), false);
+  assert.equal(limited('a'), false);
+  t = 900;
+  for (let i = 0; i < 50_000; i++) assert.equal(limited('a'), true);
+  t = 1_000;
+  assert.equal(limited('a'), true, 'previous window still weighs fully');
+  t = 1_500;
+  assert.equal(limited('a'), false, 'rejected flood must not extend the block');
+  t = 3_600;
+  assert.equal(limited('a'), false);
+  assert.equal(limited('a'), false);
+  assert.equal(limited('a'), true);
+
+  t = 4_000;
+  assert.equal(limited('b'), false);
+  assert.equal(limited('b'), false);
+  assert.equal(limited('b'), true);
+  limited('c');
+  limited('d');
+  limited('e');
+  assert.equal(limited('b'), false, 'oldest key evicted once maxKeys is reached');
 });
 
 test('static allowlist blocks source code, dotfiles, encoded traversal, and disallowed HTTP methods', async () => {
@@ -63,7 +145,7 @@ test('static allowlist blocks source code, dotfiles, encoded traversal, and disa
   assert.equal(isAllowedStaticPath('/tarifs.html'), true);
   assert.equal(isAllowedStaticPath('/services.html'), true);
   assert.equal(isAllowedStaticPath('/services/site-vitrine.html'), true);
-  assert.equal(resolveCleanRoute('/tarifs'), '/tarifs.html');
+  assert.equal(resolveCleanRoute('/tarifs'), '/tarifs');
   assert.equal(resolveCleanRoute('/services'), '/services.html');
   assert.equal(resolveCleanRoute('/services/site-vitrine'), '/services/site-vitrine.html');
   assert.equal(resolveCleanRoute('/services/site-vitrine/'), '/services/site-vitrine.html');

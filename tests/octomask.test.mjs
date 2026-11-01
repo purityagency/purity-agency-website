@@ -35,7 +35,7 @@ test('soft sanitizer repairs long suggestions and extra offerIds without burning
   assert.equal(validated.action, 'none');
 });
 test('rejects malformed output, unapproved navigation and false confirmations', () => {
-  for (const reply of ['', 'https://evil.example', 'Votre rendez-vous est confirmé.', 'J’ai envoyé votre demande.', '<script>alert(1)</script>', 'SORTIE JSON : reply']) {
+  for (const reply of ['', 'https://evil.example', 'Votre rendez-vous est confirmé.', 'J’ai envoyé votre demande.', '<script>alert(1)</script>', 'SORTIE JSON : reply', 'Nous avons 38 avis vérifiés.', 'Agence notée 4,9/5 par ses clients.', 'Nos clients nous donnent 5 étoiles.']) {
     assert.throws(() => validateReply({ ...valid, reply }));
   }
   assert.throws(() => validateReply({ ...valid, suggestions: ['https://evil.example'] }));

@@ -6,8 +6,10 @@
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      filterBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
       const filter = btn.dataset.filter;
       cards.forEach(card => {
         if (filter === 'all' || card.dataset.pillar === filter) {

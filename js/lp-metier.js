@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var rotateX = ((y - centerY) / centerY) * -5;
         var rotateY = ((x - centerX) / centerX) * 5;
         el.style.transform = 'perspective(1000px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) translateY(-3px)';
-        el.style.setProperty('--mouse-x', x + 'px');
-        el.style.setProperty('--mouse-y', y + 'px');
       });
       el.addEventListener('mouseleave', function () {
         el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
@@ -61,8 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
     try { feedbacks = JSON.parse(document.getElementById('lp-feedbacks').textContent); } catch (e) {}
     chips.forEach(function (chip, i) {
       chip.addEventListener('click', function () {
-        chips.forEach(function (c) { c.classList.remove('is-active'); });
-        chip.classList.add('is-active');
+        chips.forEach(function (c) {
+          c.classList.toggle('is-active', c === chip);
+          c.setAttribute('aria-pressed', String(c === chip));
+        });
         if (output && feedbacks[i]) {
           output.style.opacity = '0';
           setTimeout(function () {
@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var slotStatus = calWidget.querySelector('.cap-widget__slot-status');
     slots.forEach(function (slot) {
       slot.addEventListener('click', function () {
-        slots.forEach(function (s) { s.classList.remove('is-active'); });
-        slot.classList.add('is-active');
+        slots.forEach(function (s) {
+          s.classList.toggle('is-active', s === slot);
+          s.setAttribute('aria-pressed', String(s === slot));
+        });
         if (slotStatus) {
           slotStatus.textContent = 'Créneau de ' + slot.getAttribute('data-slot') + ' validé · Synchronisation agenda instantanée';
         }

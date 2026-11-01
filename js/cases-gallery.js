@@ -14,18 +14,20 @@
   if (introTitle) introTitle.textContent = 'Nos réalisations.';
   if (introKicker) introKicker.textContent = 'Portfolio Purity';
 
-  function updateScales() {
-    cards.forEach(function (card) {
-      var preview = card.querySelector('.case-preview');
-      if (!preview) return;
-      var screen = preview.querySelector('.case-preview__screen') || preview;
-      var w = screen.clientWidth;
-      if (w > 0) {
-        var scale = (w / 1280).toFixed(4);
-        preview.style.setProperty('--preview-scale', scale);
-      }
-    });
+  // --preview-scale ajuste l'iframe de 1280 px a la largeur de l'apercu.
+  var previews = cards.map(function (card) { return card.querySelector('.case-preview'); }).filter(Boolean);
+  function screenOf(preview) { return preview.querySelector('.case-preview__screen') || preview; }
+  function setScale(preview, width) {
+    if (width > 0) preview.style.setProperty('--preview-scale', (width / 1280).toFixed(4));
   }
+  function updateScales() {
+    // Toutes les lectures avant les ecritures : une seule mise en page.
+    var widths = previews.map(function (preview) { return screenOf(preview).clientWidth; });
+    previews.forEach(function (preview, i) { setScale(preview, widths[i]); });
+  }
+  var observer = 'ResizeObserver' in window ? new ResizeObserver(function (entries) {
+    entries.forEach(function (entry) { setScale(entry.target.closest('.case-preview'), entry.contentRect.width); });
+  }) : null;
 
   function apply(filter, shouldStore) {
     current = filter;
@@ -44,15 +46,19 @@
       if (visible) count++;
     });
     status.textContent = count === 1 ? '1 démonstration affichée.' : count + ' démonstrations affichées.';
-    requestAnimationFrame(updateScales);
+    if (!observer) requestAnimationFrame(updateScales);
   }
   buttons.forEach(function (button) { button.addEventListener('click', function () { apply(button.dataset.filter, true); }); });
   if (select) select.addEventListener('change', function () { apply(select.value, true); });
   apply(current, false);
 
-  updateScales();
-  window.addEventListener('resize', updateScales);
-  window.addEventListener('load', updateScales);
+  if (observer) {
+    previews.forEach(function (preview) { observer.observe(screenOf(preview)); });
+  } else {
+    updateScales();
+    window.addEventListener('resize', updateScales);
+    window.addEventListener('load', updateScales);
+  }
 
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reducedMotion && window.matchMedia && window.matchMedia('(hover: hover)').matches) {
@@ -61,7 +67,6 @@
       if (!preview) return;
 
       card.addEventListener('pointerenter', function () {
-        updateScales();
         card.classList.add('is-hovered');
         preview.classList.add('is-hovered');
       });
@@ -69,18 +74,9 @@
       card.addEventListener('pointerleave', function () {
         card.classList.remove('is-hovered');
         preview.classList.remove('is-hovered');
-        preview.style.removeProperty('--case-x');
-        preview.style.removeProperty('--case-y');
-      });
-
-      card.addEventListener('pointermove', function (event) {
-        var rect = preview.getBoundingClientRect();
-        preview.style.setProperty('--case-x', ((event.clientX - rect.left) / rect.width - .5).toFixed(3));
-        preview.style.setProperty('--case-y', ((event.clientY - rect.top) / rect.height - .5).toFixed(3));
       });
 
       card.addEventListener('focusin', function () {
-        updateScales();
         card.classList.add('is-hovered');
         preview.classList.add('is-hovered');
       });

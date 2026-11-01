@@ -1,6 +1,6 @@
 import { worlds } from '../data/demo-worlds.mjs';
 const e = v => String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const image = (id, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/visuals/${id}.png" alt="${e(worlds[id].eyebrow)}" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
+const image = (id, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/visuals/${id}.webp" alt="${e(worlds[id].eyebrow)}" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
 const architectureImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/architecture/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
 const decorationImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/decoration/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
 const propertyImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/immobilier/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
@@ -9,40 +9,40 @@ const renovationImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/
 const restaurantImage = (name, cls='', lazy=true) => `<img class="${cls}" src="/assets/cases/restaurant/${name}" alt="" width="1536" height="1024" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async">`;
 const worldImage = (item, placement, cls='', lazy=true) => {
   if (item.id === 'architecture') {
-    const name = placement === 'hero' ? 'ligne-claire-garden.png' : placement === 'model' ? 'ligne-claire-model.png' : 'ligne-claire-interior.png';
+    const name = placement === 'hero' ? 'ligne-claire-garden.webp' : placement === 'model' ? 'ligne-claire-model.webp' : 'ligne-claire-interior.webp';
     return architectureImage(name, cls, lazy);
   }
   if (item.id === 'decoration') {
-    const name = placement === 'hero' ? 'matiere-commune-vase.png' : 'matiere-commune-interior.png';
+    const name = placement === 'hero' ? 'matiere-commune-vase.webp' : 'matiere-commune-interior.webp';
     return decorationImage(name, cls, lazy);
   }
   if (item.id === 'immobilier') {
     const index = Number(String(placement).replace('property-', ''));
-    const names = ['beaux-jours-maison.png', 'beaux-jours-appartement.png', 'beaux-jours-longere.png', 'beaux-jours-appartement.png'];
+    const names = ['beaux-jours-maison.webp', 'beaux-jours-appartement.webp', 'beaux-jours-longere.webp', 'beaux-jours-appartement.webp'];
     return propertyImage(names[Number.isFinite(index) ? index : 0], cls, lazy);
   }
   if (item.id === 'garage') {
     const name = placement === 'hero'
-      ? 'atelier-noir-coupe.png'
+      ? 'atelier-noir-coupe.webp'
       : placement === 'story'
-        ? 'atelier-noir-mecanique.png'
-        : 'atelier-noir-restauration.png';
+        ? 'atelier-noir-mecanique.webp'
+        : 'atelier-noir-restauration.webp';
     return garageImage(name, cls, lazy);
   }
   if (item.id === 'renovation') {
     const name = placement === 'hero'
-      ? 'atelier-noma-cuisine.png'
+      ? 'atelier-noma-cuisine.webp'
       : placement === 'story'
-        ? 'atelier-noma-salon.png'
-        : 'atelier-noma-plan.png';
+        ? 'atelier-noma-salon.webp'
+        : 'atelier-noma-plan.webp';
     return renovationImage(name, cls, lazy);
   }
   if (item.id === 'restaurant') {
     const name = placement === 'hero'
-      ? 'table-serein-assiette.png'
+      ? 'table-serein-assiette.webp'
       : placement === 'story'
-        ? 'table-serein-salle.png'
-        : 'table-serein-cuisine.png';
+        ? 'table-serein-salle.webp'
+        : 'table-serein-cuisine.webp';
     return restaurantImage(name, cls, lazy);
   }
   return image(item.id, cls, lazy);

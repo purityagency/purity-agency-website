@@ -202,7 +202,7 @@ const DATA_METIERS = {
     widget3: {
       sender: "Maison Lune · Soin Beauté",
       text: "Rappel délicat : votre soin visage signature est prévu demain à 15h15. Prévoyez d'arriver 5 min avant. À demain avec plaisir !",
-      stat: "Taux de présence 99.2 % · Rappel SMS 24h avant"
+      stat: "Rappel SMS automatique 24 h avant chaque rendez-vous"
     }
   },
   immobilier: {
@@ -322,7 +322,7 @@ const DATA_METIERS = {
     widget3: {
       sender: "Cabinet Horizon · Kiné",
       text: "Rappel consultation : séance confirmée demain à 10h15 avec M. Laurent. Pensez à apporter votre prescription médicale et une vignette de mutuelle. Parking gratuit à l'arrière.",
-      stat: "100 % secret médical belge · Taux no-show : 0 %"
+      stat: "Secret médical respecté · Rappels automatiques des rendez-vous"
     }
   },
   animaux: {
@@ -487,7 +487,28 @@ const DATA_METIERS = {
   }
 };
 
+// Titres de recherche (65 caractères max avec le suffixe) : métier + lieu + bénéfice. Les H1 restent les accroches.
+const SEO_TITLES = {
+  renovation: "Rénovation à Charleroi : des chantiers qualifiés",
+  restaurant: "Restaurant à Charleroi : réservations en direct",
+  garage: "Garage à Charleroi : rendez-vous pris en ligne",
+  chauffage: "Chauffagiste à Charleroi : les urgences filtrées",
+  beaute: "Institut de beauté à Charleroi : planning rempli",
+  immobilier: "Agence immobilière à Charleroi : plus de mandats",
+  fiduciaire: "Fiduciaire à Charleroi : nouveaux clients PME",
+  sante: "Cabinet paramédical à Charleroi : agenda rempli",
+  animaux: "Toiletteur à Charleroi : créneaux avec acompte",
+  architecture: "Architecte à Charleroi : clients à fort budget",
+  decoration: "Boutique déco à Charleroi : Click & Collect",
+  sport: "Studio de sport à Charleroi : des cours complets"
+};
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const VAT_NOTE = 'Prix nets · TVA non applicable (franchise, art. 56bis CTVA)';
+const OFFER_NOTE = '-25 % sur la création si vous validez dans les 24 h suivant votre devis';
+
 for (const study of caseStudies) {
+  const seoTitle = `${SEO_TITLES[study.id] || `${study.category} à Charleroi : solution digitale`} | Purity Agency`;
+  if (seoTitle.length > 65) console.warn(`Titre trop long (${seoTitle.length}) : ${study.id}`);
   const meta = DATA_METIERS[study.id] || {
     kicker: `Solution Digitale Métier · ${study.category}`,
     h1: `${study.name} : La solution digitale pensée pour ${study.descriptor}.`,
@@ -530,18 +551,20 @@ for (const study of caseStudies) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${meta.h1.replace(/"/g, '')} | Purity Agency</title>
+<title>${escapeHtml(seoTitle)}</title>
 <meta name="description" content="${meta.subtitle.replace(/"/g, '')}">
 <link rel="canonical" href="https://purity-agency.be/cas-concrets/${study.id}.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="${meta.h1.replace(/"/g, '')} | Purity Agency">
+<meta property="og:title" content="${escapeHtml(seoTitle)}">
 <meta property="og:description" content="${meta.subtitle.replace(/"/g, '')}">
-<meta property="og:image" content="https://purity-agency.be/assets/cases/${study.id}-og.svg">
+<meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/css/app.css?v=16">
+<link rel="stylesheet" href="/css/app.css?v=20261101">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=26">
+<link rel="stylesheet" href="/css/cases.css?v=20261101">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -570,7 +593,7 @@ for (const study of caseStudies) {
   <a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
   <nav class="header__nav" aria-label="Principal">
     <a href="/#services">Services</a>
-    <a href="/tarifs.html">Tarifs</a>
+    <a href="/#services">Tarifs</a>
     <a aria-current="page" href="/cas-concrets.html">Nos réalisations</a>
     <a href="/contact.html">Contact</a>
   </nav>
@@ -587,7 +610,7 @@ for (const study of caseStudies) {
   </div>
   <nav class="menu__nav">
     <a href="/#services" style="--i:0">Services</a>
-    <a href="/tarifs.html" style="--i:1">Tarifs</a>
+    <a href="/#services" style="--i:1">Tarifs</a>
     <a href="/cas-concrets.html" style="--i:2">Nos réalisations</a>
     <a href="/contact.html" style="--i:3">Contact</a>
   </nav>
@@ -603,20 +626,20 @@ for (const study of caseStudies) {
   <!-- HERO HIGH-CONVERSION GOOGLE ADS -->
   <section class="case-detail__hero" style="--case-ink:${study.palette[0]};--case-paper:${study.palette[1]};--case-accent:${study.palette[2]}">
     <div>
-      <div class="lp-badge"><span class="lp-badge__dot"></span> OFFRE SPÉCIALE : -25 % SUR LA CRÉATION SOUS 24H</div>
+      <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> ${OFFER_NOTE}</div>
       <p class="section-kicker">${meta.kicker}</p>
       <h1>${meta.h1}</h1>
       <p>${meta.subtitle}</p>
 
       <div class="lp-hero__cta">
-        <a class="lp-btn-primary" href="#devis-direct">Demander mon devis sous 24h (-25 %) <span aria-hidden="true">→</span></a>
+        <a class="lp-btn-primary" href="#devis-direct">Demander mon devis <span aria-hidden="true">→</span></a>
         <a class="lp-btn-demo" href="${meta.demoUrl}">Tester la démo live en direct <span aria-hidden="true">↗</span></a>
       </div>
 
       <div class="lp-guarantee">
-        <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Prêt en 7 jours chrono</span>
-        <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Zéro commission cachée</span>
-        <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Accompagnement local Wallonie</span>
+        <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Prêt en 7 à 10 jours</span>
+        <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Zéro commission cachée</span>
+        <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Accompagnement local Wallonie</span>
       </div>
     </div>
 
@@ -682,7 +705,6 @@ for (const study of caseStudies) {
       <div class="capabilities-grid">
         <!-- Card 1: Interactive Formula Selector -->
         <article class="cap-card" data-tilt>
-          <div class="cap-card__glow" aria-hidden="true"></div>
           <div class="cap-card__header">
             <span class="cap-card__num">01</span>
             <span class="cap-card__tag">Prêt à l'emploi</span>
@@ -692,23 +714,22 @@ for (const study of caseStudies) {
             <p class="cap-card__desc">${meta.features[0].desc}</p>
           </div>
           <div class="cap-widget" data-type="formula">
-            <div class="cap-widget__chips" role="tablist" aria-label="Sélection de formule">
+            <div class="cap-widget__chips" role="group" aria-label="${escapeHtml(meta.widget1.label)}">
               ${meta.widget1.chips.map((c, idx) => `
-              <button type="button" class="cap-chip${idx === 0 ? ' is-active' : ''}" data-idx="${idx}">
+              <button type="button" class="cap-chip${idx === 0 ? ' is-active' : ''}" data-idx="${idx}" aria-pressed="${idx === 0}">
                 <span>${c.name}</span>
                 <span class="cap-chip__badge">${c.badge}</span>
               </button>`).join('')}
             </div>
             <div class="cap-widget__live-bar">
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" style="color:#6C3CAA;flex-shrink:0"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span class="cap-widget__output">${meta.widget1.feedback[0]}</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" style="color:#6C3CAA;flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="cap-widget__output" role="status">${meta.widget1.feedback[0]}</span>
             </div>
           </div>
         </article>
 
         <!-- Card 2: Interactive Realtime Calendar Booking -->
         <article class="cap-card" data-tilt>
-          <div class="cap-card__glow" aria-hidden="true"></div>
           <div class="cap-card__header">
             <span class="cap-card__num">02</span>
             <span class="cap-card__tag">Automatisation 24/7</span>
@@ -725,12 +746,12 @@ for (const study of caseStudies) {
               </div>
               <div class="cap-widget__slots" role="group" aria-label="Créneaux disponibles">
                 ${meta.widget2.slots.map((s, idx) => `
-                <button type="button" class="cap-slot${idx === 1 ? ' is-active' : ''}" data-slot="${s}">${s}</button>
+                <button type="button" class="cap-slot${idx === 1 ? ' is-active' : ''}" data-slot="${s}" aria-pressed="${idx === 1}">${s}</button>
                 `).join('')}
               </div>
               <div class="cap-widget__cal-footer">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                <span class="cap-widget__slot-status">Créneau synchronisé Google & Apple Calendar</span>
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span class="cap-widget__slot-status" role="status">Créneau synchronisé Google & Apple Calendar</span>
               </div>
             </div>
           </div>
@@ -738,7 +759,6 @@ for (const study of caseStudies) {
 
         <!-- Card 3: Interactive SMS & Anti-No-Show Engine -->
         <article class="cap-card" data-tilt>
-          <div class="cap-card__glow" aria-hidden="true"></div>
           <div class="cap-card__header">
             <span class="cap-card__num">03</span>
             <span class="cap-card__tag">Zéro Perte</span>
@@ -757,7 +777,7 @@ for (const study of caseStudies) {
                 <p class="cap-sms__text">${meta.widget3.text}</p>
               </div>
               <div class="cap-sms__stat">
-                <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                 <span>${meta.widget3.stat}</span>
               </div>
             </div>
@@ -775,23 +795,23 @@ for (const study of caseStudies) {
         <h2 class="lp-package__title">Votre solution digitale complète pour ${study.category.toLowerCase()}.</h2>
         <p class="lp-package__desc">Une architecture haute performance mobile-first, module métier personnalisé, nom de domaine sécurisé et référencement local Charleroi & Wallonie.</p>
         <ul class="lp-package__features">
-          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Conception éditoriale sur-mesure pour votre métier (Zéro modèle générique)</li>
-          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Module métier interactif spécifique (${meta.features[0].title})</li>
-          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Optimisation SEO Local Wallonie (Google Maps & fiches locales)</li>
-          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Intégration WhatsApp direct, contact rapide et conformité RGPD Belgique</li>
-          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Livraison complète garantie en 7 jours ouvrés avec accompagnement direct Amir Kebiyeb</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Conception éditoriale sur-mesure pour votre métier (Zéro modèle générique)</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Module métier interactif spécifique (${meta.features[0].title})</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Optimisation SEO Local Wallonie (Google Maps & fiches locales)</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Intégration WhatsApp direct, contact rapide et conformité RGPD Belgique</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Livraison complète garantie en 7 jours ouvrés avec accompagnement direct Amir Kebiyeb</li>
         </ul>
       </div>
 
       <div class="lp-package__pricing-box">
-        <span class="lp-package__strike">1 320 € HTVA</span>
         <div class="lp-package__price">
-          <span class="lp-package__num">990</span>
-          <span class="lp-package__unit">€ HTVA</span>
+          <span class="lp-package__num">1&nbsp;320</span>
+          <span class="lp-package__unit">€</span>
         </div>
-        <span class="lp-package__sub">Avec le coupon -25 % sous 24h</span>
-        <a class="lp-package__cta" href="#devis-direct">Réserver ce tarif (-25 %)</a>
-        <span class="lp-package__bonus">🎁 BONUS INCLUS : 1er mois de réseaux sociaux (3 posts/sem.) offert</span>
+        <span class="lp-package__sub">${VAT_NOTE}</span>
+        <p class="lp-package__offer">${OFFER_NOTE}, soit 990&nbsp;€.</p>
+        <a class="lp-package__cta" href="#devis-direct">Demander mon devis</a>
+        <span class="lp-package__bonus">1er mois de gestion des réseaux sociaux offert</span>
       </div>
     </div>
   </section>
@@ -799,7 +819,7 @@ for (const study of caseStudies) {
   <!-- FORMULAIRE DE CONVERSION DIRECT -->
   <section id="devis-direct" class="lp-lead-section">
     <div class="lp-lead-section__inner">
-      <div class="lp-badge"><span class="lp-badge__dot"></span> PROPOSITION SOUS 24H OUVRÉES</div>
+      <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> PROPOSITION SOUS 24H OUVRÉES</div>
       <h2>Discutons de votre projet pour ${study.category}.</h2>
       <p>Remplissez ces 3 informations. Amir Kebiyeb analyse votre besoin et vous recontacte avec une maquette indicative sous 24h.</p>
 
@@ -834,8 +854,8 @@ for (const study of caseStudies) {
           <textarea name="message" required placeholder="Décrivez votre besoin principal (ex: trouver plus de clients, refondre mon ancien site, automatiser mes réservations...)."></textarea>
         </label>
 
-        <button type="submit" class="lp-form__btn">Bloquer mon offre -25 % et recevoir ma proposition</button>
-        <div id="lp-status" class="lp-form__status"></div>
+        <button type="submit" class="lp-form__btn">Recevoir ma proposition</button>
+        <div id="lp-status" class="lp-form__status" role="status"></div>
         <p class="lp-form__note">🔒 100 % confidentiel · Zéro engagement · Réponse directe sous 24h par Amir Kebiyeb</p>
       </form>
     </div>
@@ -851,7 +871,7 @@ for (const study of caseStudies) {
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/#services">Services</a>
-      <a href="/tarifs.html">Tarifs</a>
+      <a href="/#services">Tarifs</a>
       <a href="/cas-concrets.html">Nos réalisations</a>
       <a href="/blog.html">Blog</a>
       <a href="/contact.html">Contact</a>
@@ -872,9 +892,9 @@ for (const study of caseStudies) {
   </div>
 </footer>
 
-<script src="/js/menu.js?v=2" defer></script>
+<script src="/js/menu.js?v=20261101" defer></script>
 <script type="application/json" id="lp-feedbacks">${JSON.stringify(meta.widget1.feedback).replace(/</g, String.fromCharCode(92) + 'u003c')}</script>
-<script src="/js/lp-metier.js?v=1" defer></script>
+<script src="/js/lp-metier.js?v=20261101" defer></script>
 </body>
 </html>`;
 

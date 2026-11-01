@@ -83,14 +83,56 @@ function renderFooter() {
 </footer>`;
 }
 
+const OG_IMAGE = `<meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">`;
+const VAT_NOTE = 'Prix nets · TVA non applicable (franchise, art. 56bis CTVA)';
+const OFFER_NOTE = '-25 % sur la création si vous validez dans les 24 h suivant votre devis';
+
+// Prix affiché = tarif réel ; la remise des 24 h n'est qu'une note conditionnelle.
+const isFree = svc => !/[1-9]/.test(svc.priceSetup);
+const displayPrice = svc => isFree(svc) ? (svc.promoSetup || 'Offert') : svc.priceSetup;
+function offerNotes(svc) {
+  if (isFree(svc) || !svc.promoTag) return [];
+  const notes = [`${OFFER_NOTE}.`];
+  if (!/25\s*%/.test(svc.promoTag)) notes.push(`${svc.promoTag}.`);
+  return notes;
+}
+
+// Descriptions de 140 à 160 caractères, propres à chaque page (le résumé complet reste dans la page).
+const tarif = s => `Tarif : ${s.priceSetup}${s.monthlyPrice ? ` + ${s.monthlyPrice}` : ''}.`;
+const META_DESCRIPTIONS = {
+  'diagnostic-digital': () => 'Diagnostic digital offert : 15 minutes en visio avec Amir Kebiyeb pour repérer ce qui freine vos demandes de devis et l’action la plus rentable à lancer.',
+  'page-essentielle': s => `Page Essentielle pour artisans et indépendants : une page pro claire et rapide qui présente votre métier, contact en un clic. ${tarif(s)}`,
+  'site-vitrine': s => `Site vitrine de 5 pages pour artisans et PME en Wallonie : prestations, réalisations avant/après et demande de devis. ${tarif(s)}`,
+  'site-complet': s => `Site complet de plus de 10 pages pour PME multi-métiers : une page par service et par ville d’intervention en Wallonie. ${tarif(s)}`,
+  'boutique-en-ligne': s => `Boutique en ligne pour commerçants et restaurateurs belges : paiement Bancontact, Payconiq et carte, retrait ou vente à emporter. ${tarif(s)}`,
+  'refonte-modernisation': s => `Refonte de votre site lent ou dépassé : reconstruction complète sans perdre vos adresses ni votre positionnement Google. ${tarif(s)}`,
+  'google-business': s => `Fiche Google Business optimisée pour apparaître sur Google Maps quand un client cherche votre métier près de chez lui, en Wallonie. ${tarif(s)}`,
+  'identite-visuelle-logo': s => `Logo et identité visuelle pour artisans, indépendants et commerces : une image nette, lisible sur camionnette, vêtements et devis. ${tarif(s)}`,
+  'pack-visuels-reels': s => `Vos vidéos de chantier filmées au smartphone deviennent des Reels sous-titrés et des visuels prêts à publier sur Instagram et Facebook. ${tarif(s)}`,
+  'referencement-local-seo': s => `Référencement local en Wallonie : être trouvé sur Google pour votre métier et votre commune, sans dépendre de la publicité. ${tarif(s)}`,
+  'gestion-reseaux-sociaux': s => `Gestion de vos réseaux sociaux : 3 publications par semaine, planning, rédaction, visuels et montage vidéo pris en charge. ${tarif(s)}`,
+  'pilote-automatique-essentiel': s => `Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis à J+3 et J+7 ou alerte devis urgent. ${tarif(s)}`,
+  'pilote-automatique-business': s => `Formulaires, e-mails, planning et facturation reliés : chaque nouveau contact crée son dossier complet, sans double saisie. ${tarif(s)}`,
+  'pilote-automatique-integral': s => `Assistant IA entraîné sur vos tarifs, vos zones et vos règles métier : il répond à vos clients le soir et le week-end. ${tarif(s)}`
+};
+
+function metaDescriptionFor(service) {
+  const build = META_DESCRIPTIONS[service.slug];
+  const desc = build ? build(service) : service.headline;
+  if (desc.length < 140 || desc.length > 160) console.warn(`Meta description hors 140-160 caractères (${desc.length}) : ${service.slug}`);
+  return desc;
+}
+
 function buildServiceDetailPage(service) {
   const canonicalUrl = `https://purity-agency.be/services/${service.slug}`;
   const pageTitle = `${service.name} : Livrables, Utilité & Tarifs | Purity Agency`;
-  const metaDesc = `${service.summary} Découvrez les livrables exacts, le déroulement de remise et le coût de l'inaction. Tarifs transparents sans surprise.`;
-  
-  const contactOfferUrl = service.id === 'M01' 
-    ? '/contact.html?solution=diagnostic&promo=novdec25'
-    : `/contact.html?offer=${service.id}&promo=novdec25`;
+  const metaDesc = metaDescriptionFor(service);
+
+  const contactOfferUrl = service.id === 'M01'
+    ? '/contact.html?solution=diagnostic'
+    : `/contact.html?offer=${service.id}`;
   const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Demander mon devis cadré';
 
   // Build FAQPage Schema.org structure
@@ -145,12 +187,6 @@ function buildServiceDetailPage(service) {
             "@type": "GeoCoordinates",
             "latitude": 50.4167,
             "longitude": 4.4444
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "bestRating": "5",
-            "reviewCount": "38"
           }
         },
         "areaServed": "Wallonie",
@@ -182,12 +218,13 @@ function buildServiceDetailPage(service) {
 <meta property="og:title" content="${escapeHtml(pageTitle)}">
 <meta property="og:description" content="${escapeHtml(metaDesc)}">
 <meta property="og:url" content="${canonicalUrl}">
+${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=34">
+<link rel="stylesheet" href="/css/app.css?v=20261101">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=3">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261101">
 <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
@@ -217,11 +254,12 @@ ${renderHeader('services')}
         <div class="sd-meta-card sd-meta-card--highlight">
           <span class="sd-meta-card__label">Tarif de mise en place</span>
           <div class="sd-meta-card__price-wrap">
-            ${service.promoSetup && service.promoSetup !== service.priceSetup ? `<span class="sd-meta-card__price-old">${escapeHtml(service.priceSetup)}</span>` : ''}
-            <span class="sd-meta-card__price-now">${escapeHtml(service.promoSetup || service.priceSetup)}</span>
-            ${service.promoTag ? `<span class="sd-meta-card__badge">${escapeHtml(service.promoTag)}</span>` : ''}
+            <span class="sd-meta-card__price-now">${escapeHtml(displayPrice(service))}</span>
+            ${isFree(service) && service.promoTag ? `<span class="sd-meta-card__badge">${escapeHtml(service.promoTag)}</span>` : ''}
           </div>
-          <span class="sd-meta-card__sub">${service.monthlyPrice ? `+ ${escapeHtml(service.monthlyPrice)} (suivi &amp; hébergement)` : 'Paiement unique · sans abonnement'}</span>
+          <span class="sd-meta-card__sub">${service.monthlyPrice ? `+ ${escapeHtml(service.monthlyPrice)} (suivi &amp; hébergement)` : isFree(service) ? 'Aucun paiement demandé' : 'Paiement unique · sans abonnement'}</span>
+          ${isFree(service) ? '' : `<span class="sd-meta-card__vat">${VAT_NOTE}</span>`}
+          ${offerNotes(service).map(note => `<span class="sd-meta-card__offer">${escapeHtml(note)}</span>`).join('')}
         </div>
 
         <div class="sd-meta-card">
@@ -244,10 +282,6 @@ ${renderHeader('services')}
 
       <!-- TRUST STRIP ABOVE THE FOLD -->
       <div class="sd-trust-strip" aria-label="Garanties et réassurance">
-        <div class="sd-trust-item">
-          <span class="sd-stars" aria-hidden="true">★★★★★</span>
-          <span><strong>4,8/5</strong> sur Google (38 avis vérifiés)</span>
-        </div>
         <div class="sd-trust-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
@@ -452,14 +486,15 @@ ${renderHeader('services')}
 <!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
-    <span class="sd-floating-price">${escapeHtml(service.promoSetup || service.priceSetup)}</span>
-    <span class="sd-floating-note">${service.promoTag ? escapeHtml(service.promoTag) : 'Tarif direct'}</span>
+    <span class="sd-floating-price">${escapeHtml(displayPrice(service))}</span>
+    <span class="sd-floating-note">${isFree(service) ? escapeHtml(service.promoTag || 'Sans engagement') : 'Prix net · TVA non applicable'}</span>
   </div>
   <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Diagnostic offert' : 'Demander devis'} <span aria-hidden="true">↗</span></a>
 </aside>
 
 ${renderFooter()}
 
+<script src="/js/menu.js?v=20261101" defer></script>
 </body>
 </html>`;
 }
@@ -467,7 +502,7 @@ ${renderFooter()}
 function buildServicesHubPage() {
   const canonicalUrl = `https://purity-agency.be/services`;
   const pageTitle = `Services & Tarifs Digitaux pour Indépendants et PME | Purity Agency`;
-  const metaDesc = `Catalogue complet des 14 solutions digitales Purity : création de sites vitrines, e-commerce, réseaux sociaux 3x/semaine, automatisation IA et outils métier en Wallonie.`;
+  const metaDesc = `Les 14 solutions digitales de Purity Agency pour indépendants et PME en Wallonie : sites web, e-commerce, réseaux sociaux, automatisation et IA, tarifs inclus.`;
 
   const schemaJson = {
     "@context": "https://schema.org",
@@ -506,12 +541,13 @@ function buildServicesHubPage() {
 <meta property="og:title" content="${escapeHtml(pageTitle)}">
 <meta property="og:description" content="${escapeHtml(metaDesc)}">
 <meta property="og:url" content="${canonicalUrl}">
+${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=34">
+<link rel="stylesheet" href="/css/app.css?v=20261101">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=3">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261101">
 <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
@@ -536,10 +572,6 @@ ${renderHeader('services')}
 
       <div class="sd-trust-strip" aria-label="Garanties">
         <div class="sd-trust-item">
-          <span class="sd-stars" aria-hidden="true">★★★★★</span>
-          <span><strong>4,8/5</strong> sur Google (38 avis vérifiés)</span>
-        </div>
-        <div class="sd-trust-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>Entreprise enregistrée BCE 1036.775.590</span>
         </div>
@@ -550,16 +582,17 @@ ${renderHeader('services')}
       </div>
 
       <!-- FILTER TABS -->
-      <div class="sd-hub-filter-bar" role="tablist" aria-label="Filtrer les services par pilier">
-        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all">Tous les services (14)</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1">01 · Sites Web &amp; Référencement</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2">02 · Réseaux Sociaux &amp; Image</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3">03 · Automatisation &amp; IA</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4">04 · Diagnostic</button>
+      <div class="sd-hub-filter-bar" role="group" aria-label="Filtrer les services par pilier">
+        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Tous les services (14)</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1" aria-pressed="false">01 · Sites Web &amp; Référencement</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2" aria-pressed="false">02 · Réseaux Sociaux &amp; Image</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3" aria-pressed="false">03 · Automatisation &amp; IA</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4" aria-pressed="false">04 · Diagnostic</button>
       </div>
     </section>
 
     <section class="sd-section" style="border-top: 1px solid var(--sd-border);">
+      <p class="sd-hub-price-note">${VAT_NOTE}. ${OFFER_NOTE}.</p>
       <div class="sd-hub-grid" id="services-grid">
         ${services.map((svc, idx) => {
           let pillarTag = 'pilier-1';
@@ -589,10 +622,10 @@ ${renderHeader('services')}
 
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">${escapeHtml(svc.promoSetup || svc.priceSetup)}</span>
+                <span class="sd-hub-card__price">${escapeHtml(displayPrice(svc))}</span>
                 <span class="sd-hub-card__delay">Livraison : ${escapeHtml(svc.delay)}</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/${svc.slug}" aria-label="Voir le détail et les livrables pour ${escapeHtml(svc.name)}">
+              <a class="sd-hub-card__btn" href="/services/${svc.slug}" aria-label="Voir en détail : ${escapeHtml(svc.name)}">
                 Voir en détail <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -614,10 +647,11 @@ ${renderHeader('services')}
   </div>
 </main>
 
-<script src="/js/services-hub.js?v=1" defer></script>
+<script src="/js/services-hub.js?v=20261101" defer></script>
 
 ${renderFooter()}
 
+<script src="/js/menu.js?v=20261101" defer></script>
 </body>
 </html>`;
 }

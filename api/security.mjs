@@ -296,6 +296,10 @@ export function resolveCleanRoute(rawPathname) {
   if (CLEAN_HTML_ROUTES.has(trimmed)) return `${trimmed}.html`;
   if (/^\/cas-concrets\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
   if (/^\/services\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
+  if (trimmed === '/agence-web') return '/agence-web/index.html';
+  if (/^\/agence-web\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
+  if (trimmed === '/site-internet') return '/site-internet/index.html';
+  if (/^\/site-internet\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
   return rawPathname;
 }
 
@@ -309,6 +313,8 @@ export function isAllowedStaticPath(path) {
     /^\/(?:assets|css|js)\/[a-zA-Z0-9_./-]+$/.test(path) ||
     /^\/cas-concrets\/[a-z0-9-]+\.html$/.test(path) ||
     /^\/services\/[a-z0-9-]+\.html$/.test(path) ||
+    /^\/agence-web\/[a-z0-9-]+\.html$/.test(path) ||
+    /^\/site-internet\/[a-z0-9-]+\.html$/.test(path) ||
     /^\/demos\/[a-z0-9-]+\/(?:index|services|univers|contact|studio)\.html$/.test(path)
   );
 }

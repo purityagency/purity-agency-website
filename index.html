@@ -33,12 +33,46 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Purity Agency",
-  "url": "https://purity-agency.be",
-  "email": "contact@purity-agency.be",
-  "areaServed": "Wallonie",
-  "address": { "@type": "PostalAddress", "streetAddress": "Boulevard Frans Dewandre 14", "postalCode": "6000", "addressLocality": "Charleroi", "addressRegion": "Hainaut", "addressCountry": "BE" }
+  "@graph": [
+    {
+      "@type": ["ProfessionalService","LocalBusiness"],
+      "@id": "https://purity-agency.be/#business",
+      "name": "Purity Agency",
+      "legalName": "Amir Kebiyeb",
+      "url": "https://purity-agency.be/",
+      "logo": "https://purity-agency.be/assets/logo-lockup.webp",
+      "image": "https://purity-agency.be/assets/og-purity.jpg",
+      "email": "contact@purity-agency.be",
+      "vatID": "BE1036775590",
+      "description": "Agence web à Charleroi : sites internet, e-commerce, référencement local, automatisation et intégration d'IA pour les indépendants et PME de Wallonie.",
+      "priceRange": "€€",
+      "address": { "@type": "PostalAddress", "streetAddress": "Boulevard Frans Dewandre 14", "postalCode": "6000", "addressLocality": "Charleroi", "addressRegion": "Hainaut", "addressCountry": "BE" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 50.4113, "longitude": 4.4456 },
+      "areaServed": [
+        {"@type":"City","name":"Charleroi"},{"@type":"City","name":"Namur"},{"@type":"City","name":"Mons"},
+        {"@type":"City","name":"La Louvière"},{"@type":"City","name":"Liège"},{"@type":"AdministrativeArea","name":"Brabant wallon"},
+        {"@type":"AdministrativeArea","name":"Wallonie"}
+      ],
+      "knowsAbout": ["Création de site internet","E-commerce","SEO local","Google Business Profile","Automatisation","Intelligence artificielle pour PME","Identité visuelle"],
+      "founder": { "@id": "https://purity-agency.be/#amir" },
+      "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Services Purity Agency", "url": "https://purity-agency.be/services.html" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://purity-agency.be/#amir",
+      "name": "Amir Kebiyeb",
+      "jobTitle": "Fondateur",
+      "worksFor": { "@id": "https://purity-agency.be/#business" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://purity-agency.be/#website",
+      "url": "https://purity-agency.be/",
+      "name": "Purity Agency",
+      "inLanguage": "fr-BE",
+      "publisher": { "@id": "https://purity-agency.be/#business" }
+    }
+  ]
 }
 </script>
 <meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"></head>

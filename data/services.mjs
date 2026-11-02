@@ -31,7 +31,7 @@ export const services = [
       { id: 'chauffage', name: 'Thermiq', sector: 'Chauffage & Énergie' }
     ],
     comparison: [
-      { aspect: 'Approche commerciale', others: 'Tentative de vous forcer la main pour signer un pack à 5 000 € dès la 5ème minute', purity: '100 % conseil transparent : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit' },
+      { aspect: 'Approche commerciale', others: 'Tentative de vous forcer la main pour signer un pack à 5 000 € dès la 5ème minute', purity: '100 % conseil transparent : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit' },
       { aspect: 'Interlocuteur', others: 'Commercial junior qui n’y connaît rien à votre métier et lit un argumentaire', purity: 'Échange direct avec Amir Kebiyeb, fondateur de l’agence' },
       { aspect: 'Ce que vous recevez', others: 'Un devis générique automatique envoyé sans explication', purity: 'Un récapitulatif clair sous 1h avec l’action prioritaire à mener' }
     ],
@@ -56,7 +56,7 @@ export const services = [
     lossOfInaction: [
       {
         title: 'Budget publicitaire jeté par les fenêtres',
-        desc: 'Payer des annonces Google ou Facebook qui envoient des clients vers un site lent ou mal fait : jusqu’à 500 € par mois gaspillés pour aucun appel entrant.'
+        desc: 'Payer des annonces Google ou Facebook qui envoient des clients vers un site lent ou mal fait : jusqu’à 500 € par mois gaspillés pour aucun appel entrant.'
       },
       {
         title: 'Des chantiers rentables qui partent chez vos concurrents',
@@ -101,10 +101,10 @@ export const services = [
     kicker: 'Lancement rapide · Artisans solos & Indépendants · Appels directs',
     headline: 'Une page professionnelle ultra-rapide qui présente votre métier et fait sonner votre téléphone.',
     summary: 'La formule idéale pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coaches) qui veulent remplacer une simple page Facebook ou un vieux site par une vitrine nette, crédible et contactable en 1 clic.',
-    price: '490 € + 79 €/mois',
-    priceSetup: '490 €',
+    price: '490 € + 79 €/mois',
+    priceSetup: '490 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '79 €/mois',
+    monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement haute vitesse, nom de domaine .be, boîte e-mail pro et modifications de vos coordonnées incluses.',
     delay: '5 à 7 jours ouvrés',
     targetAudience: 'Artisans solos, dépanneurs, réparateurs, indépendants en bâtiment et prestataires de services en Wallonie qui exercent une activité ciblée.',
@@ -122,7 +122,7 @@ export const services = [
     comparison: [
       { aspect: 'Vitesse sur smartphone', others: '3 à 6 secondes d’attente sur mobile (le client s’impatiente et appelle un autre artisan)', purity: 'Affichage instantané en moins d’une seconde : le client vous contacte tout de suite' },
       { aspect: 'Prise de contact mobile', others: 'Numéro minuscule caché dans un coin, impossible à cliquer avec les doigts', purity: 'Bouton d’appel et WhatsApp bien visible au pouce en 1 clic' },
-      { aspect: 'Mises à jour & Suivi', others: 'Facturées 80 € pour changer un tarif ou un numéro de téléphone', purity: 'Incluses dans votre forfait mensuel sans surcoût sur simple message' }
+      { aspect: 'Mises à jour & Suivi', others: 'Facturées 80 € pour changer un tarif ou un numéro de téléphone', purity: 'Incluses dans votre forfait mensuel sans surcoût sur simple message' }
     ],
     deliverables: [
       {
@@ -152,7 +152,7 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: '70 % des clients sur smartphone perdus si le site est lent',
+        title: 'Des clients sur smartphone perdus si le site est lent',
         desc: 'Sur téléphone, un particulier sur deux quitte une page si elle met plus de 3 secondes à s’ouvrir : vous perdez des appels sans même le savoir.'
       },
       {
@@ -198,10 +198,10 @@ export const services = [
     kicker: 'Le standard professionnel · Artisans confirmés & PME locales',
     headline: 'Le site vitrine complet pour asseoir votre réputation locale et signer des chantiers rentables.',
     summary: 'La formule la plus demandée : 5 pages complètes et structurées (Accueil rassurant, Prestations détaillées, Galerie de réalisations avec comparateur avant/après, Présentation de l’entreprise, Contact et demande de devis) conçues pour faire de vous le premier choix dans votre région.',
-    price: '1 490 € + 79 €/mois',
-    priceSetup: '1 490 €',
+    price: '1 490 € + 79 €/mois',
+    priceSetup: '1 490 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '79 €/mois',
+    monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.',
     delay: '7 à 10 jours ouvrés',
     targetAudience: 'Chauffagistes, entreprises de rénovation, carrosseries, garagistes, électriciens, plombiers, toitures et PME régionales en Wallonie.',
@@ -239,7 +239,7 @@ export const services = [
         desc: 'Un outil visuel sur lequel le client fait glisser son doigt pour voir la transformation avant et après vos travaux (idéal pour la rénovation, carrosserie, toiture).'
       },
       {
-        title: 'Référencement local certifié pour Google (Wallonie)',
+        title: 'Référencement local configuré pour Google (Wallonie)',
         desc: 'Configuration de vos communes d’intervention et de vos spécialités selon les critères officiels de Google pour ressortir en tête des recherches locales.'
       },
       {
@@ -249,8 +249,8 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: '15 à 30 gros chantiers perdus chaque année',
-        desc: 'Quand un propriétaire compare 3 devis pour une pompe à chaleur ou une toiture à 18 500 €, il choisit l’artisan dont le site donne immédiatement confiance avec des preuves de chantiers récents.'
+        title: 'Des gros chantiers qui partent chez un concurrent plus rassurant',
+        desc: 'Quand un propriétaire compare 3 devis pour une pompe à chaleur ou une toiture à 18 500 €, il choisit l’artisan dont le site donne immédiatement confiance avec des preuves de chantiers récents.'
       },
       {
         title: '2 heures perdues par jour sur des devis pour des curieux',
@@ -295,10 +295,10 @@ export const services = [
     kicker: 'Grandes PME · Multi-équipes & Multi-villes en Wallonie',
     headline: 'La plateforme complète pour les PME multi-métiers qui veulent dominer leur région sur Google.',
     summary: 'Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vos villes d’intervention en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles, Brabant Wallon), avec des formulaires spécifiques par équipe et un espace de recrutement.',
-    price: '2 490 € + 149 €/mois',
-    priceSetup: '2 490 €',
+    price: '2 490 € + 149 €/mois',
+    priceSetup: '2 490 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '149 €/mois',
+    monthlyPrice: '149 €/mois',
     monthlyNote: 'Maintenance avancée, sauvegardes bi-quotidiennes, interventions prioritaires et 2h de modifications incluses chaque mois.',
     delay: '12 à 18 jours ouvrés',
     targetAudience: 'Entreprises générales de bâtiment, bureaux d’études, promoteurs, concessions, installateurs avec plusieurs équipes sur la route.',
@@ -341,7 +341,7 @@ export const services = [
       },
       {
         title: 'Support technique prioritaire garanti sous 24h ouvrées',
-        desc: 'Canal direct réservé avec notre équipe technique pour toute mise à jour urgente de vos chantiers ou plannings.'
+        desc: 'Canal direct avec Amir pour toute mise à jour urgente de vos chantiers ou plannings.'
       }
     ],
     lossOfInaction: [
@@ -392,10 +392,10 @@ export const services = [
     kicker: 'Vente directe 24/7 · Bancontact & Payconiq · 0 % de commission',
     headline: 'Votre boutique en ligne pour vendre vos produits et services en Belgique sans commissions abusives.',
     summary: 'Une boutique rapide et sécurisée, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), adaptée aussi bien aux commerçants qu’aux restaurateurs (commandes à emporter et réservations anti-no-show).',
-    price: '3 990 € + 149 €/mois',
-    priceSetup: '3 990 €',
+    price: '3 990 € + 149 €/mois',
+    priceSetup: '3 990 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '149 €/mois',
+    monthlyPrice: '149 €/mois',
     monthlyNote: 'Sécurité bancaire continue, surveillance des paiements, maintenance des passerelles et assistance technique.',
     delay: '15 à 25 jours ouvrés',
     targetAudience: 'Commerçants, artisans créateurs, producteurs locaux, restaurateurs (Horeca) et distributeurs en Belgique souhaitant vendre en direct.',
@@ -443,11 +443,11 @@ export const services = [
     lossOfInaction: [
       {
         title: '30 % de vos marges abandonnées aux plateformes de livraison',
-        desc: 'Laisser 1 500 € à 3 000 € chaque mois à des intermédiaires au lieu de fidéliser votre propre clientèle sur votre site.'
+        desc: 'Laisser 1 500 € à 3 000 € chaque mois à des intermédiaires au lieu de fidéliser votre propre clientèle sur votre site.'
       },
       {
         title: 'Des commandes perdues en dehors de vos heures d’ouverture',
-        desc: '42 % des achats et réservations en ligne en Belgique se font entre 20h et minuit : sans boutique web, vos clients fidèles finissent par commander ailleurs.'
+        desc: 'Beaucoup de commandes en ligne se passent le soir, boutique fermée : sans boutique web, vos clients fidèles finissent par commander ailleurs.'
       },
       {
         title: 'Des tables réservées qui restent vides sans dédommagement',
@@ -457,14 +457,14 @@ export const services = [
     howItWorks: [
       { step: '01', title: 'Organisation de vos produits et tarifs', desc: 'On configure vos catégories, vos moyens de paiement et vos modes de livraison.' },
       { step: '02', title: 'Mise en valeur visuelle de vos articles', desc: 'Intégration de vos photos, rédaction des descriptions et tests d’affichage sur smartphone.' },
-      { step: '03', title: 'Test de paiement réel à 1 €', desc: 'On effectue une vraie commande de test avec Bancontact pour s’assurer que l’argent arrive bien sur votre compte et que vous recevez l’alerte.' },
+      { step: '03', title: 'Test de paiement réel à 1 €', desc: 'On effectue une vraie commande de test avec Bancontact pour s’assurer que l’argent arrive bien sur votre compte et que vous recevez l’alerte.' },
       { step: '04', title: 'Formation courte de 20 min', desc: 'On vous montre comment gérer vos commandes et modifier un prix en 10 secondes depuis votre téléphone.' }
     ],
     includedMaintenance: 'Sécurisation permanente des passerelles bancaires, sauvegardes quotidiennes de vos commandes et clients, et assistance technique réactive.',
     faq: [
       {
         q: 'Prenez-vous une commission sur mes ventes ?',
-        a: 'Non, 0 % de commission. Vous ne payez que les frais bancaires classiques de la passerelle (ex: environ 0,25 € par paiement Bancontact).'
+        a: 'Non, 0 % de commission. Vous ne payez que les frais bancaires classiques de la passerelle (ex: environ 0,25 € par paiement Bancontact).'
       },
       {
         q: 'Est-il facile de modifier un prix ou un stock ?',
@@ -488,10 +488,10 @@ export const services = [
     kicker: 'Zéro perte de vos clients · Fin des lenteurs · Score maximal',
     headline: 'Transformez votre vieux site lent et dépassé en une vitrine moderne qui redonne confiance.',
     summary: 'Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en conservant rigoureusement vos adresses et votre positionnement Google sans rien casser.',
-    price: '890 à 2 490 € + 79 €/mois',
-    priceSetup: 'dès 890 €',
+    price: '890 à 2 490 € + 79 €/mois',
+    priceSetup: 'dès 890 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '79 €/mois',
+    monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement, maintenance technique et garantie contractuelle de zéro perte de trafic Google.',
     delay: '7 à 14 jours ouvrés',
     targetAudience: 'Entreprises en Wallonie qui ont déjà un site web mais qui ont honte de le montrer, qui ne reçoivent plus de demandes, ou qui ont peur de tout perdre en le refaisant.',
@@ -572,7 +572,7 @@ export const services = [
       },
       {
         q: 'Quel est le prix exact pour moderniser mon site ?',
-        a: 'Le tarif dépend de la taille de votre site : 890 € pour un petit site ou une page unique, jusqu’à 2 490 € pour un grand site de plus de 10 pages. Le tarif est fixé à l’avance sans mauvaise surprise.'
+        a: 'Le tarif dépend de la taille de votre site : 890 € pour un petit site ou une page unique, jusqu’à 2 490 € pour un grand site de plus de 10 pages. Le tarif est fixé à l’avance sans mauvaise surprise.'
       }
     ]
   },
@@ -584,8 +584,8 @@ export const services = [
     kicker: 'Visibilité locale immédiate · Avis 5 étoiles · Appel en 1 clic',
     headline: 'Faites apparaître votre entreprise en tête de Google Maps sur votre commune.',
     summary: 'Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.',
-    price: '290 €',
-    priceSetup: '290 €',
+    price: '290 €',
+    priceSetup: '290 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique sans abonnement obligatoire.',
@@ -680,8 +680,8 @@ export const services = [
     kicker: 'Image haut de gamme · Camionnettes & Devis · Propriété totale',
     headline: 'Une identité visuelle claire qui inspire confiance et justifie vos devis.',
     summary: 'Fini les logos bricolés ou pixélisés : nous créons une identité de marque nette, lisible et professionnelle, pensée pour le monde réel (flocage de véhicules utilitaires, vêtements de travail, devis et factures).',
-    price: '690 €',
-    priceSetup: '690 €',
+    price: '690 €',
+    priceSetup: '690 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique · cession totale de propriété incluse.',
@@ -735,7 +735,7 @@ export const services = [
       },
       {
         title: 'Des frais supplémentaires chez les imprimeurs et floqueurs',
-        desc: 'Donner un fichier de mauvaise qualité à un enseigniste entraîne des frais de redessinage facturés entre 150 € et 300 € en plus.'
+        desc: 'Donner un fichier de mauvaise qualité à un enseigniste entraîne des frais de redessinage facturés entre 150 € et 300 € en plus.'
       },
       {
         title: 'Une entreprise vite oubliée une fois le chantier fini',
@@ -776,8 +776,8 @@ export const services = [
     kicker: '4 vidéos montées + 6 visuels · Chantiers réels · Prêt à publier',
     headline: 'Des vidéos courtes et des visuels soignés de vos chantiers pour attirer des clients sur Instagram et Facebook.',
     summary: 'Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.',
-    price: '390 €',
-    priceSetup: '390 €',
+    price: '390 €',
+    priceSetup: '390 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique sans abonnement.',
@@ -868,10 +868,10 @@ export const services = [
     kicker: 'Visibilité durable · Mots-clés chantiers · 1ère page Google en Wallonie',
     headline: 'Soyez le premier artisan appelé quand un client cherche votre métier sur Google dans votre région.',
     summary: 'Un travail régulier pour placer votre site web en tête des résultats Google dès qu’un habitant de votre région cherche une intervention précise (ex: "chauffagiste agréé Charleroi", "carrossier Namur", "rénovation toiture Mons") sans dépendre de publicités payantes.',
-    price: '590 € + 149 €/mois',
-    priceSetup: '590 €',
+    price: '590 € + 149 €/mois',
+    priceSetup: '590 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '149 €/mois',
+    monthlyPrice: '149 €/mois',
     monthlyNote: 'Optimisations continues, création de contenus mensuels sur vos chantiers et bilan transparent sans jargon.',
     delay: 'Mise en place : 10 jours ouvrés',
     targetAudience: 'Entreprises établies en Wallonie qui ne veulent plus dépendre du bouche-à-oreille aléatoire et souhaitent devenir la référence évidente sur leur secteur.',
@@ -961,10 +961,10 @@ export const services = [
     kicker: '3 vidéos + 3 posts par semaine · 1er mois offert · Réseaux au choix',
     headline: 'Une présence active et soignée sur vos réseaux sociaux sans y passer une seule minute de votre temps.',
     summary: 'Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.',
-    price: '290 € + 349 €/mois',
-    priceSetup: '290 €',
+    price: '290 € + 349 €/mois',
+    priceSetup: '290 €',
     promoTag: '1er mois offert',
-    monthlyPrice: '349 €/mois',
+    monthlyPrice: '349 €/mois',
     monthlyNote: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.',
     delay: 'Démarrage sous 5 jours ouvrés',
     targetAudience: 'Artisans, commerçants, restaurateurs et gérants de PME en Wallonie qui savent qu’il faut être visible sur les réseaux mais qui manquent de temps pour s’en occuper.',
@@ -1006,7 +1006,7 @@ export const services = [
       },
       {
         title: '1er mois d’abonnement offert pour essayer',
-        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous validez dans les 24 h suivant votre devis). Le premier mois de gestion est offert. Si vous continuez, l’abonnement est conclu pour 6 mois (349 €/mois).'
+        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous validez dans les 24 h suivant votre devis). Le premier mois de gestion est offert. Si vous continuez, l’abonnement est conclu pour 6 mois (349 €/mois).'
       }
     ],
     lossOfInaction: [
@@ -1037,7 +1037,7 @@ export const services = [
       },
       {
         q: 'Comment fonctionne le 1er mois offert ?',
-        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous validez dans les 24 h suivant votre devis). Le premier mois d’abonnement (valeur 349 €) est offert. Si vous continuez ensuite, l’abonnement est conclu pour 6 mois à 349 €/mois.'
+        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous validez dans les 24 h suivant votre devis). Le premier mois d’abonnement (valeur 349 €) est offert. Si vous continuez ensuite, l’abonnement est conclu pour 6 mois à 349 €/mois.'
       },
       {
         q: 'Puis-je continuer à poster moi-même de temps en temps ?',
@@ -1057,10 +1057,10 @@ export const services = [
     kicker: '1 tâche automatisée · Gain de 5h/semaine · Fin des no-shows & devis oubliés',
     headline: 'Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine.',
     summary: 'Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.',
-    price: '490 € + 39 €/mois',
-    priceSetup: '490 €',
+    price: '490 € + 39 €/mois',
+    priceSetup: '490 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '39 €/mois',
+    monthlyPrice: '39 €/mois',
     monthlyNote: 'Surveillance continue des connexions automatiques, alertes anti-erreurs et assistance technique.',
     delay: '5 à 7 jours ouvrés',
     targetAudience: 'Artisans et indépendants en Wallonie qui passent leurs soirées à taper les mêmes messages, relancer des devis non signés ou courir après des clients qui oublient leurs rendez-vous.',
@@ -1149,10 +1149,10 @@ export const services = [
     kicker: 'Écosystème PME · Devis, Facturation Peppol & Équipe · 0 ressaisie',
     headline: 'Reliez votre site, vos devis, votre planning et votre facturation sans aucune double saisie.',
     summary: 'Fini les post-its, les notes égarées et les ressaisies manuelles : nous connectons vos formulaires web, vos e-mails, votre planning d’équipe et votre logiciel de facturation pour que chaque nouveau contact crée son dossier complet automatiquement.',
-    price: '990 € + 69 €/mois',
-    priceSetup: '990 €',
+    price: '990 € + 69 €/mois',
+    priceSetup: '990 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '69 €/mois',
+    monthlyPrice: '69 €/mois',
     monthlyNote: 'Surveillance des liaisons multi-outils, ajustement des champs et assistance technique.',
     delay: '10 à 14 jours ouvrés',
     targetAudience: 'PME, entreprises du bâtiment avec plusieurs camionnettes sur la route, cabinets comptables et sociétés recevant plus de 10 demandes par semaine en Wallonie.',
@@ -1200,7 +1200,7 @@ export const services = [
       },
       {
         title: 'Des factures impayées oubliées qui plombent votre trésorerie',
-        desc: 'Jusqu’à 15 % de retards de paiement en plus faute d’un rappel automatique courtois envoyé quelques jours avant et après l’échéance.'
+        desc: 'Des retards de paiement évitables, faute d’un rappel automatique courtois envoyé quelques jours avant et après l’échéance.'
       },
       {
         title: 'Le patron qui passe 15h par semaine à faire le standardiste',
@@ -1241,10 +1241,10 @@ export const services = [
     kicker: 'Assistant IA métier · Réponse 24/7 Web & WhatsApp · Zéro réponse inventée',
     headline: 'Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger.',
     summary: 'La solution la plus aboutie : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.',
-    price: '1 990 € + 119 €/mois',
-    priceSetup: '1 990 €',
+    price: '1 990 € + 119 €/mois',
+    priceSetup: '1 990 €',
     promoTag: '-25 % si devis validé sous 24 h',
-    monthlyPrice: '119 €/mois',
+    monthlyPrice: '119 €/mois',
     monthlyNote: 'Surveillance de l’assistant, mises à jour de vos tarifs et ajustements continus.',
     delay: '15 à 20 jours ouvrés',
     targetAudience: 'Entreprises en forte croissance, sociétés de dépannage avec beaucoup d’appels et gérants qui n’en peuvent plus d’être dérangés en permanence pour des questions basiques.',
@@ -1292,12 +1292,12 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: 'Perte de 35 % des demandes envoyées le soir et le week-end',
+        title: 'Des demandes du soir et du week-end sans réponse',
         desc: 'Un client qui pose une question le samedi soir n’attend pas le lundi matin : si personne ne lui répond, il contacte immédiatement un concurrent.'
       },
       {
         title: 'Le coût d’une secrétaire téléphonique à temps plein',
-        desc: 'Embaucher une personne juste pour décrocher et noter les coordonnées coûte plus de 35 000 € par an avec les charges belges.'
+        desc: 'Embaucher une personne juste pour décrocher et noter les coordonnées coûte plus de 35 000 € par an avec les charges belges.'
       },
       {
         title: 'Être dérangé en permanence pendant vos chantiers ou le week-end',

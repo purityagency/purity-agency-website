@@ -1,0 +1,189 @@
+/* Maison Lune · montée en gamme V2 (prune, rose poudré, ivoire) */
+.world-beaute{
+  --plum:#402a38;--rose:#ce8b9a;--ivory:#f6efe9;--blush:#efe2db;--line:color-mix(in srgb,var(--plum) 16%,transparent);
+  --r-lg:28px;--r-md:16px;--r-sm:10px;--r-arch:999px 999px var(--r-md) var(--r-md);
+  --ease:cubic-bezier(.32,.72,0,1);--gutter:clamp(16px,5vw,72px);
+  --shadow:0 1px 2px rgb(64 42 56/.06),0 18px 40px -22px rgb(64 42 56/.28);
+  background:var(--ivory);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip
+}
+.world-beaute h1,.world-beaute h2,.world-beaute h3{text-wrap:balance}
+.world-beaute p{text-wrap:pretty}
+.world-beaute img{outline:1px solid rgb(0 0 0/.08);outline-offset:-1px}
+.world-beaute :focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:4px}
+
+/* Boutons */
+.world-beaute .action{display:inline-flex;align-items:center;gap:14px;min-height:52px;padding:8px 8px 8px 24px;border-radius:999px;background:var(--plum);color:var(--ivory);border:0;font-weight:500;transition:transform .2s var(--ease),background-color .3s var(--ease)}
+.world-beaute .action>span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgb(246 239 233/.14);transition:transform .4s var(--ease)}
+.world-beaute .action:hover{background:color-mix(in srgb,var(--plum) 88%,#000)}
+.world-beaute .action:hover>span{transform:translate(2px,-2px) scale(1.05)}
+.world-beaute .action:active{transform:scale(.97)}
+.world-beaute .text-action{display:inline-flex;gap:10px;align-items:center;min-height:44px;font-weight:500;color:var(--plum);text-underline-offset:5px}
+.world-beaute .text-action span{transition:transform .35s var(--ease)}
+.world-beaute .text-action:hover span{transform:translate(3px,-3px)}
+
+/* Navigation mobile plein écran */
+@media(max-width:700px){
+  .world-beaute .world-header{position:relative;z-index:20}
+  .world-beaute .menu-toggle{min-height:44px;border-radius:999px;padding:8px 18px;position:relative;z-index:22}
+  .world-beaute .menu-toggle span{transition:transform .35s var(--ease)}
+  .world-beaute .world-header.menu-ready nav{display:flex;position:fixed;inset:0;z-index:21;flex-direction:column;justify-content:center;gap:6px;padding:96px 24px 40px;background:var(--ivory);font:400 clamp(2.4rem,11vw,3.4rem)/1.1 var(--display);opacity:0;visibility:hidden}
+  .world-beaute .world-header.menu-open nav{opacity:1;visibility:visible;transition:opacity .35s var(--ease)}
+  .world-beaute .world-header.menu-ready nav a{padding:10px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;transform:translateY(16px);opacity:0;}
+  .world-beaute .world-header.menu-open nav a{transform:none;opacity:1;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+  .world-beaute .world-header.menu-open nav a:nth-child(2){transition-delay:.05s}
+  .world-beaute .world-header.menu-open nav a:nth-child(3){transition-delay:.1s}
+  .world-beaute .world-header.menu-open nav a:nth-child(4){transition-delay:.15s}
+  .world-beaute .world-header nav a:last-child{padding:10px 0}
+  .world-beaute .world-header.menu-open .world-brand{position:relative;z-index:22}
+}
+
+/* HERO : split asymétrique, image plein cadre à droite */
+.world-beaute .hero-ritual{position:relative;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,80px);padding:clamp(24px,4vw,56px) var(--gutter) clamp(40px,6vw,88px);min-height:min(820px,calc(100dvh - 120px));align-items:end;isolation:isolate}
+.world-beaute .hero-ritual .hero-copy{grid-column:1;grid-row:1;padding-bottom:clamp(8px,3vw,48px)}
+.world-beaute .hero-ritual .hero-photo{grid-column:2;grid-row:1;margin:0;height:100%;min-height:520px;border-radius:var(--r-arch);overflow:hidden;box-shadow:var(--shadow)}
+.world-beaute .hero-ritual .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 40%;filter:saturate(.9) contrast(1.02);animation:lune-hero 1.4s var(--ease) both}
+.world-beaute .hero-ritual h1{font-size:clamp(3.2rem,6.6vw,7.4rem);line-height:.95;margin:.25em 0 .35em}
+.world-beaute .hero-ritual .lead{max-width:34ch;font-size:clamp(1rem,1.2vw,1.15rem);margin-bottom:2rem}
+.world-beaute .hero-seal{left:auto;right:calc(var(--gutter) + 24px);bottom:clamp(60px,8vw,120px);width:118px;height:118px;background:var(--ivory);color:var(--plum);border-color:var(--line);box-shadow:var(--shadow);line-height:1.35;z-index:2}
+.world-beaute .ritual-word{left:var(--gutter);bottom:-.05em;font-size:22vw;z-index:-1}
+@keyframes lune-hero{from{transform:scale(1.06);opacity:0}to{transform:none;opacity:1}}
+
+/* Catalogue : grille d'offres illustrées */
+.world-beaute .section{padding-left:var(--gutter);padding-right:var(--gutter)}
+.world-beaute .treatment-list .catalog-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,40px);max-width:1280px;margin:0 auto}
+.world-beaute .treatment-list .offering,.world-beaute .treatment-list .offering:nth-child(even){position:relative;padding:8px;border-radius:var(--r-lg);background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.world-beaute .treatment-list .offering:nth-child(even){margin-top:clamp(0px,6vw,80px)}
+.world-beaute .treatment-list .offering:nth-child(odd){margin-bottom:clamp(0px,6vw,80px)}
+.world-beaute .offering-photo{margin:0;aspect-ratio:4/3;border-radius:calc(var(--r-lg) - 8px);overflow:hidden;background:var(--blush)}
+.world-beaute .offering-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.9);transition:transform .8s var(--ease)}
+.world-beaute .treatment-list .offering:hover{transform:translateY(-3px)}
+.world-beaute .treatment-list .offering:hover .offering-photo img{transform:scale(1.04)}
+.world-beaute .treatment-list .offering-copy{position:relative;padding:22px 18px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.world-beaute .treatment-list .offering-copy>*{margin:0}
+.world-beaute .treatment-list h3{font-size:clamp(1.8rem,2.6vw,2.4rem);line-height:1.05}
+.world-beaute .offering-number{position:absolute;top:22px;right:18px;font:400 1rem var(--display);color:color-mix(in srgb,var(--plum) 55%,transparent)}
+.world-beaute .treatment-list .eyebrow{font-variant-numeric:tabular-nums;color:color-mix(in srgb,var(--plum) 70%,transparent)}
+.world-beaute .treatment-list details{border-top:1px solid var(--line);margin-top:12px!important;padding-top:4px}
+.world-beaute .treatment-list summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none}
+.world-beaute .treatment-list summary::-webkit-details-marker{display:none}
+.world-beaute .treatment-list summary span{transition:transform .35s var(--ease)}
+.world-beaute .treatment-list details[open] summary span{transform:rotate(45deg)}
+.world-beaute .treatment-list .text-action{margin-top:auto!important;padding-top:8px}
+.world-beaute .section-link{display:table;margin:48px auto 0}
+
+/* Histoire : photo ambiance 3:4 en arche */
+.world-beaute .story-ritual{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,7vw,120px);align-items:center;max-width:1280px;margin:0 auto}
+.world-beaute .story-photo{margin:0;border-radius:var(--r-arch);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow);background:var(--blush)}
+.world-beaute .story-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.88) sepia(.04)}
+.world-beaute .story-photo figcaption{position:absolute;margin:-44px 0 0 20px;font-size:12px;color:var(--ivory)}
+.world-beaute .story-text h2{font-size:clamp(2.4rem,4.4vw,4.2rem);line-height:1}
+.world-beaute .story-text p{max-width:46ch}
+
+/* Bloc chiffré : bande prune */
+.world-beaute .lune-figures{background:var(--plum);color:var(--ivory);padding-top:clamp(56px,7vw,96px);padding-bottom:clamp(56px,7vw,96px)}
+.world-beaute .lune-figures dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1180px;margin:0 auto}
+.world-beaute .lune-figures div{display:flex;flex-direction:column-reverse;gap:8px;border-left:1px solid rgb(246 239 233/.22);padding-left:24px}
+.world-beaute .lune-figures dd{margin:0;font:400 clamp(3.6rem,7vw,6rem)/1 var(--display);font-variant-numeric:tabular-nums;color:var(--rose)}
+.world-beaute .lune-figures dt{font-size:14px;max-width:22ch;opacity:.85}
+
+/* Détail : photo 1:1 + colonnes */
+.world-beaute .detail-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:center;max-width:1280px;margin:0 auto}
+.world-beaute .detail-photo{margin:0;aspect-ratio:1;border-radius:var(--r-lg);overflow:hidden;background:var(--blush)}
+.world-beaute .detail-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.world-beaute .detail-layout .detail-columns{display:grid;grid-template-columns:1fr;gap:0;border-top:0;padding-top:0}
+.world-beaute .detail-layout .detail-columns article{display:grid;grid-template-columns:48px 1fr;column-gap:16px;padding:24px 0;border-top:1px solid var(--line)}
+.world-beaute .detail-layout .detail-columns article>span{grid-row:span 2;font:400 1.1rem var(--display);color:var(--rose)}
+.world-beaute .detail-layout .detail-columns h3,.world-beaute .detail-layout .detail-columns p{margin:0}
+.world-beaute .detail-layout .detail-columns h3{font-size:1.6rem;margin-bottom:4px}
+
+/* Galerie horizontale native */
+.world-beaute .lune-gallery{padding-right:0}
+.world-beaute .gallery-track{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(260px,38vw,520px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 20px 0;margin:0;list-style:none;scrollbar-width:thin;scrollbar-color:var(--rose) transparent;overscroll-behavior-x:contain}
+.world-beaute .gallery-track li{scroll-snap-align:start}
+.world-beaute .gallery-track figure{margin:0}
+.world-beaute .gallery-track img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover;border-radius:var(--r-lg);filter:saturate(.9)}
+.world-beaute .gallery-track figcaption{margin-top:12px;font:400 1.4rem var(--display)}
+
+/* Manifeste avec image (services) */
+.world-beaute .manifesto{position:relative;overflow:hidden;color:var(--ivory);isolation:isolate;min-height:clamp(380px,50vw,560px);display:grid;place-content:center;text-align:center;border-radius:var(--r-lg);margin:0 var(--gutter);padding:64px 24px}
+.world-beaute .manifesto-photo{position:absolute;inset:0;margin:0;z-index:-1}
+.world-beaute .manifesto-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) brightness(.62);outline:0}
+.world-beaute .manifesto>span{color:var(--rose)}
+.world-beaute .manifesto .action{background:var(--ivory);color:var(--plum);justify-self:center}
+.world-beaute .manifesto .action>span{background:rgb(64 42 56/.08)}
+
+/* Process */
+.world-beaute .process ol{max-width:1180px;margin-left:auto;margin-right:auto}
+.world-beaute .process li>span{font:400 2.4rem/1 var(--display);color:var(--rose)}
+
+/* FAQ en accordéon */
+.world-beaute .questions{max-width:1280px;margin:0 auto}
+.world-beaute .questions>div{display:block}
+.world-beaute .questions details{border-top:1px solid var(--line)}
+.world-beaute .questions details:last-child{border-bottom:1px solid var(--line)}
+.world-beaute .questions summary{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:64px;padding:16px 0;cursor:pointer;list-style:none;font:400 clamp(1.3rem,2vw,1.7rem)/1.2 var(--display)}
+.world-beaute .questions summary::-webkit-details-marker{display:none}
+.world-beaute .questions summary span{flex:none;position:relative;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);transition:transform .4s var(--ease),background-color .3s var(--ease)}
+.world-beaute .questions summary span::before,.world-beaute .questions summary span::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1px;background:currentColor;translate:-50% -50%}
+.world-beaute .questions summary span::after{rotate:90deg}
+.world-beaute .questions details[open] summary span{transform:rotate(45deg);background:var(--blush)}
+.world-beaute .questions summary:hover span{background:var(--blush)}
+.world-beaute .questions details p{margin:0 0 24px;max-width:60ch}
+
+/* Closing */
+.world-beaute .closing{background:var(--blush);border-radius:var(--r-lg);margin:0 var(--gutter) clamp(48px,6vw,96px);text-align:center}
+
+/* Contact */
+.world-beaute .booking-section{gap:clamp(32px,5vw,80px)}
+.world-beaute .booking-section fieldset{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;margin:0 0 20px;background:#fff}
+.world-beaute .booking-section legend{padding:0 8px;font:400 1.3rem var(--display)}
+.world-beaute .booking-section label{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.world-beaute .booking-section select,.world-beaute .booking-section textarea{min-height:52px;padding:12px 16px;border:1px solid color-mix(in srgb,var(--plum) 28%,transparent);border-radius:var(--r-sm);background:var(--ivory);color:var(--plum);font:inherit;font-weight:400;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.world-beaute .booking-section select:focus-visible,.world-beaute .booking-section textarea:focus-visible{outline:0;border-color:var(--plum);box-shadow:0 0 0 3px rgb(206 139 154/.45)}
+.world-beaute .booking-section :user-invalid{border-color:#a3263f}
+.world-beaute .booking-result{border-radius:var(--r-lg);border:1px solid var(--line);background:#fff}
+.world-beaute .booking-aside{border-radius:var(--r-lg);padding:8px 8px 24px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.world-beaute .booking-aside>*:not(.aside-photo){margin-left:18px;margin-right:18px}
+.world-beaute .aside-photo{margin:0 0 20px;aspect-ratio:1;border-radius:calc(var(--r-lg) - 8px);overflow:hidden}
+.world-beaute .aside-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+
+/* Studio */
+.world-beaute .page-heading-photo{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:8px 40px;align-items:end}
+.world-beaute .page-heading-photo>*:not(.heading-photo){grid-column:1}
+.world-beaute .heading-photo{grid-column:2;grid-row:1/span 3;margin:0;aspect-ratio:3/4;border-radius:var(--r-arch);overflow:hidden}
+.world-beaute .heading-photo img{width:100%;height:100%;object-fit:cover}
+.world-beaute .studio-check label{display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:12px 0;border-top:1px solid var(--line)}
+.world-beaute .studio-check input{accent-color:var(--plum);width:20px;height:20px;margin-top:2px}
+
+/* Révélation à l'entrée (posée par world-beaute.js) */
+.world-beaute .lune-reveal.lune-reveal.lune-reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease),box-shadow .5s var(--ease)}
+.world-beaute .lune-reveal.lune-reveal.is-in{opacity:1;transform:none}
+.world-beaute .treatment-list .offering.lune-reveal.is-in:hover{transform:translateY(-3px)}
+
+/* Mobile */
+@media(max-width:700px){
+  .world-beaute .hero-ritual{display:grid;grid-template-columns:1fr;min-height:0;padding:20px 16px 48px;gap:20px}
+  .world-beaute .hero-ritual .hero-photo{grid-column:1;grid-row:1;width:100%;height:auto;min-height:0;aspect-ratio:4/3;border-radius:var(--r-arch)}
+  .world-beaute .hero-ritual .hero-copy{grid-row:2;padding:0}
+  .world-beaute .hero-ritual h1{font-size:clamp(2.8rem,13vw,3.6rem)}
+  .world-beaute .hero-ritual .lead{margin-bottom:1.25rem}
+  .world-beaute .hero-seal{width:84px;height:84px;font-size:10px;right:28px;top:calc(20px + (100vw - 32px)*.75 - 60px);bottom:auto}
+  .world-beaute .hero-ritual .eyebrow{margin:0}
+  .world-beaute .section{padding-left:16px;padding-right:16px}
+  .world-beaute .treatment-list .catalog-items{display:grid;grid-template-columns:1fr;gap:20px}
+  .world-beaute .treatment-list .offering:nth-child(n){margin:0;padding:6px}
+  .world-beaute .story-ritual,.world-beaute .detail-layout{display:grid;grid-template-columns:1fr;gap:28px}
+  .world-beaute .story-photo{margin:0;aspect-ratio:4/5}
+  .world-beaute .story-photo img{height:100%}
+  .world-beaute .lune-figures dl{grid-template-columns:1fr;gap:28px}
+  .world-beaute .lune-gallery{padding-right:0}
+  .world-beaute .gallery-track{grid-auto-columns:78vw;padding-right:16px}
+  .world-beaute .manifesto,.world-beaute .closing{margin-left:16px;margin-right:16px}
+  .world-beaute .booking-section fieldset{padding:18px}
+  .world-beaute .page-heading-photo{grid-template-columns:1fr 96px;gap:8px 16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-beaute *,.world-beaute *::before,.world-beaute *::after{animation:none!important;transition:none!important}
+  .world-beaute .lune-reveal.lune-reveal.lune-reveal{opacity:1;transform:none}
+  .world-beaute .gallery-track{scroll-behavior:auto}
+}

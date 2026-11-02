@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { readFile } from 'node:fs/promises';
+
+process.env.PURITY_NO_LISTEN = '1';
+const { server } = await import('../server.mjs');
+await new Promise(r => server.listen(0, '127.0.0.1', r));
+const B = `http://127.0.0.1:${server.address().port}`;
+test.after(() => server.close());
+const get = (p, h = {}) => fetch(B + p, { redirect: 'manual', headers: h });
+
+test('les .html à canonical propre redirigent en 301 direct', async () => {
+  for (const [from, to] of [['/services/site-vitrine.html', '/services/site-vitrine'], ['/index.html', '/'], ['/agence-web/index.html', '/agence-web'], ['/agence-web-charleroi.html', '/agence-web/charleroi']]) {
+    const r = await get(from);
+    assert.equal(r.status, 301, from);
+    assert.equal(r.headers.get('location'), to);
+    assert.equal((await get(to)).status, 200, to);
+  }
+  assert.equal((await get('/contact.html')).status, 200);
+});
+
+test('HTML compressé brotli/gzip avec Vary, CSP conservée', async () => {
+  const br = await get('/', { 'Accept-Encoding': 'br' });
+  assert.equal(br.headers.get('content-encoding'), 'br');
+  assert.equal(br.headers.get('vary'), 'Accept-Encoding');
+  assert.ok(br.headers.get('content-security-policy'));
+  const gz = await get('/', { 'Accept-Encoding': 'gzip' });
+  assert.equal(gz.headers.get('content-encoding'), 'gzip');
+  const r304 = await get('/', { 'If-None-Match': br.headers.get('etag') });
+  assert.equal(r304.status, 304);
+});
+
+test('assets versionnés immuables, sitemap 200 et clé IndexNow servie', async () => {
+  const css = await get('/css/app.css?v=1');
+  assert.match(css.headers.get('cache-control'), /immutable/);
+  const sm = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
+  for (const m of sm.matchAll(/<loc>https:\/\/purity-agency\.be([^<]*)<\/loc>/g)) {
+    assert.equal((await get(m[1] || '/')).status, 200, m[1]);
+  }
+  const key = (await readFile(new URL('../scripts/indexnow.mjs', import.meta.url), 'utf8')).match(/KEY = '([0-9a-f]+)'/)[1];
+  assert.equal((await (await get(`/${key}.txt`)).text()).trim(), key);
+});

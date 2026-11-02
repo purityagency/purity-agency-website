@@ -1,0 +1,128 @@
+/* Garage Rive · UI v2. Noir atelier, gris clair, cuivre. Un seul rayon (--r), easing doux. */
+.world-garage{--r:6px;--ease:cubic-bezier(.22,.8,.24,1);--line:#ffffff24;--muted:#b9c0bb;--panel:#1e2226;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.world-garage h1,.world-garage h2,.world-garage h3{text-wrap:balance}
+.world-garage p{text-wrap:pretty}
+.world-garage img{display:block;max-width:100%;filter:saturate(.88) contrast(1.04);outline:1px solid #ffffff14;outline-offset:-1px}
+.world-garage :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* Boutons */
+.world-garage .action{border-radius:var(--r);min-height:48px;transition:transform .2s var(--ease),background-color .25s var(--ease),box-shadow .25s var(--ease)}
+.world-garage .action:hover{background:#d39566;box-shadow:0 10px 30px -12px #bd714399}
+.world-garage .action:active{transform:scale(.97)}
+.world-garage .action span,.world-garage .text-action span{display:inline-block;transition:transform .3s var(--ease)}
+.world-garage .action:hover span,.world-garage .text-action:hover span{transform:translate(3px,-3px)}
+
+/* Hero plein cadre */
+.world-garage .hero-workshop{position:relative;isolation:isolate;min-height:min(92svh,860px);overflow:hidden}
+.world-garage .hero-workshop .hero-photo{margin:0}
+.world-garage .hero-workshop .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;transform:translate(var(--depth-x,0),var(--depth-y,0)) scale(1.04);transition:transform .8s var(--ease)}
+.world-garage .hero-workshop:after{background:linear-gradient(90deg,#121416f2 0%,#121416c4 38%,#12141640 75%),linear-gradient(0deg,#121416d9,transparent 40%)}
+.world-garage .hero-workshop h1{font-size:clamp(3.4rem,7.6vw,8.6rem);max-width:11ch}
+.world-garage .hero-workshop .lead{max-width:40ch;color:#dfe4e0}
+.world-garage .workshop-rule{color:var(--muted);text-transform:uppercase}
+.world-garage .workshop-bottom span{color:#dfe4e0}
+@media (prefers-reduced-motion:no-preference){
+  .world-garage .hero-copy>*{animation:garage-rise .9s var(--ease) both}
+  .world-garage .hero-copy>*:nth-child(2){animation-delay:.08s}.world-garage .hero-copy>*:nth-child(3){animation-delay:.16s}.world-garage .hero-copy>*:nth-child(4){animation-delay:.24s}
+  .world-garage .hero-photo img{animation:garage-settle 1.6s var(--ease) both}
+}
+@keyframes garage-rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes garage-settle{from{opacity:.4;scale:1.06}}
+
+/* Diagnostic symptômes */
+.world-garage .symptoms{border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.world-garage .symptoms button{min-height:64px;font-size:1rem;cursor:pointer;transition:background-color .25s var(--ease),color .25s var(--ease)}
+.world-garage .symptoms button:last-child{border-right:0}
+.world-garage .symptom-response{color:var(--muted);max-width:60ch}
+
+/* Grille d'offres illustrées */
+.world-garage .service-manual .catalog-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+.world-garage .service-manual .offering{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;position:relative;transition:border-color .3s var(--ease),transform .4s var(--ease)}
+.world-garage .service-manual .offering:hover{border-color:#bd714380;transform:translateY(-3px)}
+.world-garage .offering-photo{order:-1;margin:0;aspect-ratio:4/3;overflow:hidden;background:#101214}
+.world-garage .offering-photo img{width:100%;height:100%;object-fit:cover;outline:0;transition:transform .7s var(--ease)}
+.world-garage .offering:hover .offering-photo img{transform:scale(1.045)}
+.world-garage .service-manual .offering-copy{padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;gap:10px;flex:1}
+.world-garage .service-manual h3{font-size:clamp(2rem,3vw,2.8rem);margin:0}
+.world-garage .service-manual .offering-number{position:absolute;top:14px;right:16px;float:none;font-size:14px;letter-spacing:.08em;color:#fff;background:#121416cc;padding:4px 8px;border-radius:var(--r);font-variant-numeric:tabular-nums}
+.world-garage .offering-tag{margin:0;color:var(--accent);font-size:.85rem;font-weight:600}
+.world-garage .offering-copy>p:not(.offering-tag){color:var(--muted);margin:0}
+.world-garage .offering details{border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.world-garage .offering summary{cursor:pointer;min-height:40px;display:flex;align-items:center;justify-content:space-between}
+.world-garage .offering .text-action{min-height:44px;display:inline-flex;align-items:center;gap:10px;color:var(--ink)}
+
+/* Bande éditoriale chiffrée */
+.world-garage .garage-band{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,6vw,96px);align-items:center;max-width:none}
+.world-garage .band-photo{margin:0;aspect-ratio:1;border-radius:var(--r);overflow:hidden}
+.world-garage .band-photo img{width:100%;height:100%;object-fit:cover;object-position:45% 60%}
+.world-garage .band-copy h2{text-transform:uppercase;font-size:clamp(2.4rem,4.6vw,4.6rem);line-height:.92;max-width:14ch}
+.world-garage .band-copy>p{color:var(--muted);max-width:46ch}
+.world-garage .band-figures{display:grid;grid-template-columns:repeat(3,1fr);margin:36px 0 0;border-top:1px solid var(--line)}
+.world-garage .band-figures div{padding:20px 16px 0 0}
+.world-garage .band-figures dt{font-family:var(--display),sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--accent);text-transform:uppercase;font-variant-numeric:tabular-nums}
+.world-garage .band-figures dd{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+
+/* Récit + ambiance 3:4 */
+.world-garage .story-workshop{align-items:center}
+.world-garage .story-photo{margin:0;aspect-ratio:3/4;max-height:760px;border-radius:var(--r);overflow:hidden}
+.world-garage .story-photo img{width:100%;height:100%;object-fit:cover}
+
+/* Galerie scroll-snap */
+.world-garage .gallery-track{list-style:none;margin:0;padding:0 0 18px;display:grid;grid-auto-flow:column;grid-auto-columns:clamp(260px,38vw,520px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--accent) transparent}
+.world-garage .gallery-track li{scroll-snap-align:start}
+.world-garage .gallery-track figure{margin:0}
+.world-garage .gallery-track img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r)}
+.world-garage .gallery-track figcaption{margin-top:10px;color:var(--muted);font-size:.9rem}
+
+/* Titres de page avec image */
+.world-garage .page-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:end}
+.world-garage .page-heading>:not(.heading-photo){grid-column:1}
+.world-garage .heading-photo{grid-column:2;grid-row:1/span 3;margin:0;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden}
+.world-garage .heading-photo img{width:100%;height:100%;object-fit:cover}
+.world-garage[data-page=studio] .heading-photo{aspect-ratio:16/10}
+.world-garage[data-page=studio] .heading-photo img{object-position:50% 60%}
+
+/* FAQ accordéon */
+.world-garage .faq-list{border-top:1px solid var(--line)}
+.world-garage .faq-list details{border-bottom:1px solid var(--line)}
+.world-garage .faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 0;min-height:56px;font-size:clamp(1.05rem,1.6vw,1.3rem);font-weight:600}
+.world-garage .faq-list summary::-webkit-details-marker{display:none}
+.world-garage .faq-list summary:after{content:"+";flex:none;width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--line);border-radius:var(--r);color:var(--accent);transition:transform .3s var(--ease)}
+.world-garage .faq-list details[open] summary:after{transform:rotate(45deg)}
+.world-garage .faq-list details p{margin:0 0 22px;color:var(--muted);max-width:62ch}
+
+/* Formulaire */
+.world-garage .booking-section label{display:flex;flex-direction:column;gap:8px;font-weight:600}
+.world-garage .booking-section input,.world-garage .booking-section select,.world-garage .booking-section textarea{min-height:52px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:var(--panel);border:1px solid #ffffff3a;border-radius:var(--r);transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.world-garage .booking-section input:focus,.world-garage .booking-section select:focus,.world-garage .booking-section textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px #bd714340}
+.world-garage .booking-section input:user-invalid,.world-garage .booking-section select:user-invalid{border-color:#e0806b}
+.world-garage .booking-section ::placeholder{color:#8f9792}
+.world-garage .booking-aside{border-radius:var(--r);background:var(--panel);border:1px solid var(--line)}
+.world-garage .aside-photo{margin:0 0 20px;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden}
+.world-garage .aside-photo img{width:100%;height:100%;object-fit:cover}
+.world-garage .booking-result{border-radius:var(--r);border:1px solid var(--accent)}
+
+/* Reveal à l'entrée (classe posée par world-garage.js) */
+@media (prefers-reduced-motion:no-preference){
+  .world-garage .g-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .world-garage .g-reveal.is-in{opacity:1;transform:none}
+}
+
+@media (max-width:900px){
+  .world-garage .garage-band,.world-garage .page-heading{grid-template-columns:1fr}
+  .world-garage .heading-photo{grid-column:1;grid-row:auto}
+}
+@media (max-width:700px){
+  .world-garage .hero-workshop{min-height:calc(100svh - 120px)}
+  .world-garage .hero-workshop .hero-copy{padding:40px 0}
+  .world-garage .hero-workshop h1{font-size:clamp(2.9rem,13vw,4rem)}
+  .world-garage .service-manual .catalog-items{display:grid;grid-template-columns:1fr}
+  .world-garage .band-figures{grid-template-columns:1fr 1fr 1fr}
+  .world-garage .band-figures dt{font-size:1.5rem}
+  .world-garage .gallery-track{grid-auto-columns:82%}
+  .world-garage .story-photo{aspect-ratio:4/5;margin-top:32px}
+  .world-garage .story-photo img{height:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .world-garage *{transition-duration:.01ms!important;animation:none!important}
+}

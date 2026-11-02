@@ -31,13 +31,13 @@
       help: "Décrivez ce qui bloque aujourd’hui : acquisition, image, organisation, outil métier ou suivi.",
       placeholder: 'Ex. Nous perdons du temps à relancer et à retrouver les informations…', type: 'textarea', required: true,
       recap: 'Situation',
-      check: function (v) { return v.length >= 10 ? null : 'Quelques mots de plus, pour que nous comprenions.'; } },
+      check: function (v) { return v.length >= 10 ? null : 'Ajoutez quelques mots (10 caractères minimum) pour que nous comprenions.'; } },
     { key: 'name', label: 'Votre nom', help: 'Pour savoir à qui nous répondons personnellement.',
       placeholder: 'Prénom et nom', type: 'text', required: true, recap: 'Nom',
-      check: function (v) { return v.length >= 2 ? null : 'Il nous faut au moins un prénom.'; } },
+      check: function (v) { return v.length >= 2 ? null : 'Indiquez au moins votre prénom.'; } },
     { key: 'email', label: 'Votre e-mail', help: "C’est là que nous vous répondons.",
       placeholder: 'vous@entreprise.be', type: 'email', required: true, recap: 'E-mail',
-      check: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? null : 'Cette adresse semble incomplète.'; } },
+      check: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? null : 'Indiquez une adresse complète, par exemple nom@entreprise.be.'; } },
     { key: 'phone', label: 'Votre téléphone', help: 'Facultatif. Utile si vous préférez un appel.',
       placeholder: '0470 12 34 56', type: 'tel', required: false, recap: 'Téléphone',
       check: function () { return null; } }
@@ -266,7 +266,7 @@
 
     if (s.required || v) {
       var msg = s.check(v);
-      if (msg) { error.hidden = false; error.textContent = msg; field.focus(); return; }
+      if (msg) { error.hidden = false; error.textContent = msg; field.setAttribute('aria-invalid', 'true'); field.setAttribute('aria-describedby', 'ask-help ask-error'); field.focus(); return; }
     }
 
     data[s.key] = v;
@@ -274,6 +274,15 @@
 
     if (step < STEPS.length - 1) { step++; showStep(); return; }
     submitAll();
+  });
+
+  // L'erreur disparait des la premiere frappe corrective.
+  form.addEventListener('input', function (e) {
+    if (e.target === field && !error.hidden) {
+      error.hidden = true;
+      field.removeAttribute('aria-invalid');
+      field.setAttribute('aria-describedby', 'ask-help');
+    }
   });
 
   // Entree valide l'etape ; Maj+Entree garde le retour a la ligne du message.

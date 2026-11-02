@@ -1,0 +1,152 @@
+/* Clarté & Associés (démo fiduciaire). Registre comptable éditorial : papier, encre vert sombre, olive en repère.
+   L'olive #aebc77 n'atteint pas 4.5:1 sur papier : filets, fonds et pastilles seulement, jamais texte courant. */
+.world-fiduciaire{
+  --ink-strong:#162925;
+  --ink-soft:#43574f;          /* 6.9:1 sur papier */
+  --rule:color-mix(in srgb,var(--ink) 16%,transparent);
+  --tint:#e8e8dc;
+  --r-lg:20px;--r-md:14px;--r-sm:8px;
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --photo:saturate(.88) contrast(1.03) sepia(.06);
+  --shadow:0 1px 2px rgb(22 41 37 / .06),0 18px 40px -22px rgb(22 41 37 / .28);
+  background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;
+}
+.world-fiduciaire h1,.world-fiduciaire h2,.world-fiduciaire h3{color:var(--ink-strong);text-wrap:balance;font-weight:400}
+.world-fiduciaire p,.world-fiduciaire li,.world-fiduciaire dd{text-wrap:pretty}
+.world-fiduciaire .lead{color:var(--ink-soft);font-size:clamp(1.05rem,1.2vw,1.2rem);line-height:1.6;max-width:40ch}
+.world-fiduciaire .eyebrow{color:var(--ink-soft);font-size:.75rem;letter-spacing:.12em}
+.world-fiduciaire .section{padding-block:clamp(4.5rem,9vw,8rem)}
+.world-fiduciaire .section-heading h2,.world-fiduciaire .questions h2,.world-fiduciaire .closing h2{font-size:clamp(2rem,3.6vw,3.3rem);line-height:1.14;letter-spacing:-.02em;max-width:20ch}
+
+/* Images : gradation unique du monde + filet neutre. */
+.world-fiduciaire figure{margin:0;overflow:hidden;border-radius:var(--r-lg);background:var(--tint)}
+.world-fiduciaire figure img{display:block;width:100%;height:100%;object-fit:cover;filter:var(--photo);outline:1px solid rgb(0 0 0 / .08);outline-offset:-1px}
+.world-fiduciaire figcaption{display:none}
+
+/* Actions */
+.world-fiduciaire .action{display:inline-flex;align-items:center;gap:.9rem;min-height:52px;padding:.4rem .45rem .4rem 1.4rem;border-radius:999px;background:var(--ink-strong);color:var(--paper);font-weight:500;text-decoration:none;transition:background-color .3s var(--ease),transform .2s var(--ease)}
+.world-fiduciaire .action span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--ink-strong);transition:transform .35s var(--ease)}
+.world-fiduciaire .action:hover{background:#0d1d1a}
+.world-fiduciaire .action:hover span{transform:translate(2px,-2px)}
+.world-fiduciaire .action:active{transform:scale(.97)}
+.world-fiduciaire :focus-visible{outline:2px solid var(--ink-strong);outline-offset:3px;border-radius:4px}
+.world-fiduciaire .text-action{font-weight:500;text-underline-offset:6px}
+.world-fiduciaire .text-action span{display:inline-block;transition:transform .3s var(--ease)}
+.world-fiduciaire .text-action:hover span{transform:translate(3px,-3px)}
+
+/* Nav mobile : tiroir plein écran (ouverture gérée par demo-worlds.js, Échap compris). */
+@media (max-width:900px){
+  .world-fiduciaire .world-header.menu-ready nav{position:fixed;inset:0;z-index:20;flex-direction:column;align-items:flex-start;justify-content:center;gap:1.4rem;padding:2rem 24px;background:var(--paper);font-family:var(--display);font-size:2rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
+  .world-fiduciaire .world-header.menu-open nav{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+  .world-fiduciaire .world-header nav a:last-child{border-radius:999px;font-size:1.1rem;font-family:var(--body);padding:.9rem 1.4rem}
+  .world-fiduciaire .menu-toggle{position:relative;z-index:21;min-height:44px;border-radius:999px;padding:8px 16px}
+  .world-fiduciaire .menu-toggle span{transition:transform .3s var(--ease)}
+  .world-fiduciaire .menu-open .menu-toggle span{transform:rotate(45deg)}
+}
+.world-fiduciaire .world-header nav a:last-child{border-radius:999px}
+
+/* Hero : split asymétrique, la photo occupe la hauteur de l'écran. */
+.world-fiduciaire .hero-ledger{grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:stretch;padding:clamp(1.5rem,3vw,2.5rem) 5% clamp(2.5rem,4vw,3.5rem);min-height:calc(100dvh - 120px)}
+.world-fiduciaire .ledger-cover{display:flex;flex-direction:column;justify-content:center}
+.world-fiduciaire .ledger-cover h1{font-size:clamp(2.6rem,5vw,5.4rem);line-height:1.1;letter-spacing:-.035em}
+.world-fiduciaire .ledger-index{border-color:var(--rule);font:500 .75rem/2.2 var(--body);letter-spacing:.1em;color:var(--ink-soft);max-width:20rem}
+.world-fiduciaire .ledger-side{display:grid;grid-template-rows:1fr auto auto;gap:1.4rem;align-content:stretch}
+.world-fiduciaire .ledger-side .hero-photo{height:auto;min-height:340px;box-shadow:var(--shadow)}
+.world-fiduciaire .ledger-side .lead{font-size:1.05rem;margin:0}
+.world-fiduciaire .ledger-side .action{justify-self:start}
+
+/* Bandeaux image des pages intérieures */
+.world-fiduciaire .fid-banner{margin-top:2.5rem;aspect-ratio:21/8;box-shadow:var(--shadow)}
+
+/* Récit : split éditorial avec portrait 3:4 */
+.world-fiduciaire .story{grid-template-columns:1fr minmax(0,.8fr);padding-inline:7%}
+.world-fiduciaire .story-text h2{font-size:clamp(2rem,3.4vw,3.2rem);line-height:1.14;letter-spacing:-.02em}
+.world-fiduciaire .story-text p{max-width:52ch;font-size:1.0625rem;line-height:1.65}
+.world-fiduciaire .story-photo{aspect-ratio:3/4;max-height:78vh;box-shadow:var(--shadow)}
+
+/* Catalogue : grille de cartes illustrées 2 colonnes */
+.world-fiduciaire .catalog-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.25rem,2.5vw,2.25rem);margin-top:2.5rem}
+.world-fiduciaire .offering{display:flex;flex-direction:column;padding:.5rem;border:1px solid var(--rule);border-radius:calc(var(--r-lg) + .5rem);background:color-mix(in srgb,#fff 45%,var(--paper));transition:border-color .3s var(--ease),box-shadow .4s var(--ease)}
+.world-fiduciaire .offering:hover{border-color:color-mix(in srgb,var(--ink) 32%,transparent);box-shadow:var(--shadow)}
+.world-fiduciaire .offering-media{aspect-ratio:4/3}
+.world-fiduciaire .offering-media img{transition:transform .7s var(--ease)}
+.world-fiduciaire .offering:hover .offering-media img{transform:scale(1.04)}
+.world-fiduciaire .practice-list .offering-copy{display:flex;flex-direction:column;gap:.35rem;padding:1.4rem 1.1rem 1.1rem;flex:1}
+.world-fiduciaire .offering .eyebrow{margin:0}
+.world-fiduciaire .offering h3{font-size:clamp(1.5rem,2vw,1.85rem);line-height:1.2;margin:0 0 .2rem}
+.world-fiduciaire .offering p{font-size:1rem;line-height:1.55;color:var(--ink-soft)}
+.world-fiduciaire .offering details{margin-top:.9rem;font-size:.875rem}
+.world-fiduciaire .offering summary{min-height:32px;display:inline-flex;align-items:center}
+.world-fiduciaire .offering .text-action{margin-top:auto;padding-top:1rem;min-height:44px;display:inline-flex;align-items:center;gap:.5rem}
+.world-fiduciaire .section-link{display:inline-block;margin-top:2rem}
+
+/* Checklist : split avec photo carrée */
+.world-fiduciaire .document-check{display:grid;grid-template-columns:minmax(0,.85fr) 1fr;column-gap:clamp(2rem,6vw,6rem);align-items:start;background:var(--tint)}
+.world-fiduciaire .document-check>*{grid-column:2}
+.world-fiduciaire .document-check .fid-detail-photo{grid-column:1;grid-row:1 / span 4;aspect-ratio:1;box-shadow:var(--shadow)}
+.world-fiduciaire .check-list label{min-height:56px;font-size:1rem;cursor:pointer;transition:background-color .2s var(--ease)}
+.world-fiduciaire .check-list label:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.world-fiduciaire .check-list input{width:22px;height:22px}
+.world-fiduciaire [data-document-status]{font-variant-numeric:tabular-nums;font-weight:500}
+
+/* Étapes : bloc sombre chiffré */
+.world-fiduciaire .process{background:var(--ink-strong);color:var(--paper)}
+.world-fiduciaire .process h2,.world-fiduciaire .process h3{color:var(--paper)}
+.world-fiduciaire .process .eyebrow,.world-fiduciaire .process p{color:color-mix(in srgb,var(--paper) 78%,transparent)}
+.world-fiduciaire .process ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.5rem,3vw,3rem);margin-top:3rem;padding:0;list-style:none}
+.world-fiduciaire .process li{display:block;border-top:1px solid var(--accent);padding-top:1.4rem}
+.world-fiduciaire .process li>span{display:block;font-family:var(--display);font-size:clamp(2.6rem,4vw,3.6rem);line-height:1;color:var(--accent);margin-bottom:1.2rem;font-variant-numeric:tabular-nums}
+
+/* Détail (univers) : photo + 3 colonnes */
+.world-fiduciaire .detail-section{display:grid;grid-template-columns:minmax(0,.7fr) 1fr;column-gap:clamp(2rem,6vw,6rem);align-items:center}
+.world-fiduciaire .detail-section .section-heading{grid-column:1 / -1}
+.world-fiduciaire .detail-section .fid-detail-photo{aspect-ratio:1;box-shadow:var(--shadow)}
+.world-fiduciaire .detail-columns{display:grid;gap:1.8rem}
+.world-fiduciaire .detail-columns article{border-top:1px solid var(--rule);padding-top:1.2rem}
+
+/* FAQ en accordéon */
+.world-fiduciaire .fid-faq{border-top:1px solid var(--rule)}
+.world-fiduciaire .fid-faq:last-child{border-bottom:1px solid var(--rule)}
+.world-fiduciaire .fid-faq summary{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;min-height:64px;padding-block:1rem;cursor:pointer;list-style:none;font-weight:500;font-size:1.0625rem;line-height:1.4}
+.world-fiduciaire .fid-faq summary::-webkit-details-marker{display:none}
+.world-fiduciaire .fid-faq summary span{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--rule);transition:transform .3s var(--ease),background-color .3s var(--ease)}
+.world-fiduciaire .fid-faq[open] summary span{transform:rotate(45deg);background:var(--accent)}
+.world-fiduciaire .fid-faq p{margin:0 0 1.3rem;max-width:60ch;color:var(--ink-soft);font-size:1rem;line-height:1.6}
+
+/* Fermeture : bande encre */
+.world-fiduciaire .closing{background:var(--accent);border:0}
+.world-fiduciaire .closing .eyebrow{color:var(--ink-strong)}
+.world-fiduciaire .closing .action span{background:var(--paper)}
+
+/* Contact */
+.world-fiduciaire .fid-aside-photo{aspect-ratio:4/3;margin-bottom:1.5rem}
+.world-fiduciaire .fid-aside-photo img{object-position:50% 40%}
+.world-fiduciaire form label{display:grid;gap:.5rem;font-weight:500;font-size:.875rem}
+.world-fiduciaire form select,.world-fiduciaire form textarea{min-height:52px;padding:.8rem 1rem;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);border-radius:var(--r-sm);background:#fff;font:400 1rem/1.5 var(--body);color:var(--ink);transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.world-fiduciaire form select:focus,.world-fiduciaire form textarea:focus{border-color:var(--ink-strong);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 55%,transparent);outline:0}
+.world-fiduciaire .booking-result{border-radius:var(--r-md);background:var(--tint);padding:1.5rem}
+
+/* Reveal à l'entrée (classe posée par world-fiduciaire.js) */
+.world-fiduciaire .fid-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.world-fiduciaire .fid-reveal.is-in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .world-fiduciaire .hero-ledger{display:flex;flex-direction:column;gap:1.5rem;min-height:0;padding:1.5rem 16px 2.5rem}
+  .world-fiduciaire .ledger-cover h1{font-size:clamp(2.3rem,10vw,3.2rem)}
+  .world-fiduciaire .ledger-index{display:none}
+  .world-fiduciaire .ledger-side{display:flex;flex-direction:column;margin:0;gap:1rem}
+  .world-fiduciaire .ledger-side .hero-photo{min-height:0;aspect-ratio:16/10}
+  .world-fiduciaire .section,.world-fiduciaire .story{padding-inline:16px}
+  .world-fiduciaire .story,.world-fiduciaire .document-check,.world-fiduciaire .detail-section,.world-fiduciaire .questions{grid-template-columns:1fr;gap:2rem}
+  .world-fiduciaire .document-check>*,.world-fiduciaire .document-check .fid-detail-photo{grid-column:1;grid-row:auto}
+  .world-fiduciaire .document-check .fid-detail-photo{max-width:420px}
+  .world-fiduciaire .story-photo{max-height:none;aspect-ratio:4/5}
+  .world-fiduciaire .catalog-items,.world-fiduciaire .process ol{grid-template-columns:1fr}
+  .world-fiduciaire .fid-banner{aspect-ratio:16/10;margin-top:1.8rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .world-fiduciaire *,.world-fiduciaire *::before{transition:none!important;animation:none!important}
+  .world-fiduciaire .fid-reveal{opacity:1;transform:none}
+  .world-fiduciaire .offering:hover .offering-media img{transform:none}
+}

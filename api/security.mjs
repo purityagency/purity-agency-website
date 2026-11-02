@@ -268,7 +268,7 @@ const LEGACY_REDIRECTS = new Map([
   ['/tarifs', '/#services'],
   ['/tarifs.html', '/#services'],
   ['/services.html', '/services'],
-  ['/agence-web-charleroi.html', '/#services'],
+  ['/agence-web-charleroi.html', '/agence-web/charleroi'],
   ['/liens.html', '/contact.html']
 ]);
 

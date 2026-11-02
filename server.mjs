@@ -2,7 +2,8 @@
 import { createHash } from 'node:crypto';
 import http from 'node:http';
 import { readFile, realpath, stat } from 'node:fs/promises';
-import { createReadStream, realpathSync } from 'node:fs';
+import { createReadStream, realpathSync, readdirSync, readFileSync } from 'node:fs';
+import { brotliCompressSync, gzipSync, constants as zlibConstants } from 'node:zlib';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditSite, normaliseUrl, isPublicUrl } from './api/audit.mjs';
@@ -82,6 +83,54 @@ async function contentEtag(file, info) {
   if (ETAG_CACHE.size > 5000) ETAG_CACHE.clear();
   ETAG_CACHE.set(file, { stamp, etag });
   return etag;
+}
+
+// Canonicals : /x.html dont la canonical est une URL propre -> 301 vers cette URL.
+// Construit une fois au démarrage depuis les <link rel=canonical> des pages (hors démos).
+export const CANONICAL_REDIRECTS = new Map();
+function scanCanonicals(dir, prefix) {
+  let entries = [];
+  try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return; }
+  for (const e of entries) {
+    if (e.name.startsWith('.')) continue;
+    if (e.isDirectory()) {
+      if (!prefix && ['agence-web', 'site-internet', 'services', 'cas-concrets'].includes(e.name)) scanCanonicals(join(dir, e.name), `/${e.name}`);
+      continue;
+    }
+    if (!e.name.endsWith('.html')) continue;
+    let html = '';
+    try { html = readFileSync(join(dir, e.name), 'utf8'); } catch { continue; }
+    const m = /<link[^>]+rel=["']canonical["'][^>]*href=["']https:\/\/purity-agency\.be([^"'#?]*)["']/i.exec(html);
+    if (!m) continue;
+    const canonical = m[1] || '/';
+    const reqPath = `${prefix}/${e.name}`;
+    if (canonical !== reqPath && !canonical.endsWith('.html')) CANONICAL_REDIRECTS.set(reqPath, canonical);
+  }
+}
+scanCanonicals(ROOT, '');
+
+// Compression brotli/gzip des réponses texte, mémorisée par ETag.
+const COMPRESSIBLE = new Set(['.html', '.css', '.js', '.json', '.xml', '.svg', '.txt']);
+const COMPRESS_CACHE = new Map();
+function compressed(file, etag, encoding) {
+  const key = `${encoding}:${file}:${etag}`;
+  let buf = COMPRESS_CACHE.get(key);
+  if (!buf) {
+    const raw = readFileSync(file);
+    buf = encoding === 'br'
+      ? brotliCompressSync(raw, { params: { [zlibConstants.BROTLI_PARAM_QUALITY]: 11, [zlibConstants.BROTLI_PARAM_SIZE_HINT]: raw.length } })
+      : gzipSync(raw, { level: 9 });
+    if (COMPRESS_CACHE.size > 1000) COMPRESS_CACHE.clear();
+    COMPRESS_CACHE.set(key, buf);
+  }
+  return buf;
+}
+function pickEncoding(header) {
+  const h = String(header || '').toLowerCase();
+  const ok = (name) => new RegExp(`(?:^|,)\\s*${name}\\s*(?:;\\s*q=(?!0(?:\\.0*)?\\s*(?:,|$))[0-9.]+)?\\s*(?:,|$)`).test(h);
+  if (ok('br')) return 'br';
+  if (ok('gzip')) return 'gzip';
+  return null;
 }
 
 export const server = http.createServer(async (req, res) => {
@@ -254,6 +303,13 @@ export const server = http.createServer(async (req, res) => {
       return;
     }
 
+    const canonicalTo = CANONICAL_REDIRECTS.get(path);
+    if (canonicalTo) {
+      const qs = rawUrl.includes('?') ? rawUrl.slice(rawUrl.indexOf('?')) : '';
+      res.writeHead(301, { Location: canonicalTo + qs, 'Cache-Control': 'public, max-age=86400' }).end();
+      return;
+    }
+
     const resolvedRoute = resolveCleanRoute(path);
     if (!resolvedRoute) {
       await notFound(res);
@@ -289,17 +345,35 @@ export const server = http.createServer(async (req, res) => {
     const etag = await contentEtag(realFile, info);
     const media = /^\.(?:webm|mp4|png|jpg|webp|svg|woff2|ico)$/.test(ext);
     const code = ext === '.css' || ext === '.js';
+    // Asset versionné (?v=...) : contenu figé pour cette URL -> cache 1 an immuable.
+    const versioned = /[?&]v=[^&]+/.test(rawUrl.slice(rawPath.length)) && (media || code);
+    const isText = COMPRESSIBLE.has(ext);
     const headers = {
       'Content-Type': MIME[ext] || 'application/octet-stream',
-      'Cache-Control': media
-        ? 'public, max-age=86400, stale-while-revalidate=604800'
-        : code ? 'public, max-age=300, stale-while-revalidate=86400' : 'no-cache',
+      'Cache-Control': versioned
+        ? 'public, max-age=31536000, immutable'
+        : media || ext === '.woff2'
+          ? 'public, max-age=604800, stale-while-revalidate=2592000'
+          : code ? 'public, max-age=300, stale-while-revalidate=86400'
+            : ext === '.html' ? 'no-cache' : 'public, max-age=3600',
       'ETag': etag,
       'Last-Modified': new Date(info.mtimeMs).toUTCString(),
       'Accept-Ranges': 'bytes'
     };
-    if (req.headers['if-none-match'] === etag) {
+    if (isText) headers.Vary = 'Accept-Encoding';
+    const inm = req.headers['if-none-match'];
+    const ims = Date.parse(req.headers['if-modified-since'] || '');
+    if ((inm && inm.split(',').map(s => s.trim()).includes(etag)) ||
+        (!inm && Number.isFinite(ims) && Math.floor(info.mtimeMs / 1000) <= Math.floor(ims / 1000))) {
       res.writeHead(304, headers).end();
+      return;
+    }
+    const encoding = isText && info.size > 512 && !req.headers.range ? pickEncoding(req.headers['accept-encoding']) : null;
+    if (encoding) {
+      const body = compressed(realFile, etag, encoding);
+      delete headers['Accept-Ranges'];
+      res.writeHead(200, { ...headers, 'Content-Encoding': encoding, 'Content-Length': body.length });
+      res.end(req.method === 'HEAD' ? undefined : body);
       return;
     }
     const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');

@@ -1,0 +1,151 @@
+/* Cadence Studio : monde sport, montée en gamme V2 */
+.world-sport{
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r:14px; --r-sm:8px;
+  --line:color-mix(in srgb,var(--ink) 14%,transparent);
+  --shadow:0 1px 2px rgb(32 34 37/.06),0 18px 40px -22px rgb(32 34 37/.35);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+}
+.world-sport h1,.world-sport h2,.world-sport h3{text-wrap:balance}
+.world-sport p{text-wrap:pretty}
+.world-sport img{outline:1px solid rgb(0 0 0/.08);outline-offset:-1px}
+
+/* Photo : gradation unique du monde */
+.world-sport :is(.hero-photo,.story-photo,.offering-photo,.detail-photo,.gallery-track figure,.page-photo,.aside-photo) img{
+  width:100%;height:100%;object-fit:cover;filter:saturate(.88) contrast(1.05);display:block}
+
+/* Boutons */
+.world-sport .action{border-radius:999px;padding:14px 16px 14px 24px;display:inline-flex;align-items:center;gap:14px;min-height:48px;
+  transition:transform .18s var(--ease),background-color .25s var(--ease),box-shadow .25s var(--ease);box-shadow:var(--shadow)}
+.world-sport .action>span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgb(32 34 37/.12);transition:transform .35s var(--ease)}
+.world-sport .action:hover>span{transform:translate(2px,-2px)}
+.world-sport .action:active{transform:scale(.97)}
+.world-sport :is(a,button,summary,select,input,textarea):focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* Hero cinétique : image plein cadre, mot géant conservé */
+.world-sport .hero-kinetic{position:relative;min-height:min(100svh,920px);padding:clamp(120px,14vh,170px) 6% 40px;align-content:end;overflow:hidden;color:#f5f1ea;background:#202225}
+.world-sport .hero-kinetic .hero-photo{position:absolute;inset:0;height:auto;transform:translate3d(var(--depth-x,0),var(--depth-y,0),0) scale(1.04);border:0;margin:0;z-index:0;transition:transform .8s var(--ease)}
+.world-sport .hero-kinetic .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(32 34 37/.35) 0%,rgb(32 34 37/.1) 40%,rgb(32 34 37/.82) 100%)}
+.world-sport .hero-kinetic .hero-photo figcaption{display:none}
+.world-sport .kinetic-word{z-index:1;top:auto;bottom:120px;left:4%;color:var(--accent);opacity:.92;transform:translateX(var(--kinetic-x,0)) rotate(calc(var(--kinetic-tilt,0deg)*-1));mix-blend-mode:normal;pointer-events:none}
+.world-sport .hero-kinetic .hero-copy{position:relative;z-index:2;grid-column:1/-1;padding:0;max-width:640px;align-self:end}
+.world-sport .hero-kinetic h1{color:#fff;font-size:clamp(2.8rem,6vw,6rem);margin:.2em 0 .25em}
+.world-sport .hero-kinetic .lead{color:#f5f1ea;max-width:34ch}
+.world-sport .hero-kinetic .eyebrow{color:#f5f1ea;opacity:.85}
+.world-sport .kinetic-strip{position:relative;z-index:2;border-top-color:rgb(245 241 234/.5);color:#f5f1ea;margin-top:36px}
+
+/* Pages intérieures : split asymétrique */
+.world-sport .sport-page-hero{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(24px,4vw,64px);align-items:end;padding:clamp(120px,14vh,160px) 6% 60px;max-width:none}
+.world-sport .sport-page-hero>*:not(.page-photo){grid-column:1}
+.world-sport .page-photo{grid-column:2;grid-row:1/span 4;margin:0;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.world-sport .sport-page-hero h1{font-size:clamp(2.4rem,5vw,5rem);text-transform:uppercase;line-height:1}
+
+/* Planning */
+.world-sport .timetable a{transition:color .25s var(--ease),padding .35s var(--ease)}
+.world-sport .timetable a b{transition:transform .35s var(--ease)}
+.world-sport .timetable a:hover b{transform:translate(4px,-4px)}
+.world-sport .timetable a span{font-variant-numeric:tabular-nums}
+
+/* Cartes d'offre illustrées */
+.world-sport .class-list .catalog-items{gap:clamp(20px,3vw,40px)}
+.world-sport .class-list .offering{display:flex;flex-direction:column;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:0;padding:0;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.world-sport .class-list .offering:hover{transform:translateY(-4px)}
+.world-sport .offering-photo{margin:0;aspect-ratio:4/3;overflow:hidden}
+.world-sport .offering-photo img{transition:transform .7s var(--ease)}
+.world-sport .offering:hover .offering-photo img,.world-sport .offering:focus-within .offering-photo img{transform:scale(1.045)}
+.world-sport .offering-copy{padding:24px 26px 28px;display:flex;flex-direction:column;gap:6px;flex:1}
+.world-sport .class-list .offering-number{float:none;order:-1;font-size:14px;letter-spacing:.08em;font-family:var(--body);font-weight:700}
+.world-sport .offering-coach{margin:0;font-size:.9rem;opacity:.75}
+.world-sport .class-list h3{margin:0;font-size:clamp(1.6rem,2.4vw,2.2rem)}
+.world-sport .offering .text-action{margin-top:auto;padding-top:14px;min-height:44px;display:inline-flex;align-items:center;gap:8px}
+.world-sport .offering .text-action span{transition:transform .35s var(--ease)}
+.world-sport .offering:hover .text-action span{transform:translate(3px,-3px)}
+.world-sport .catalog-filters button{border-radius:999px;min-height:44px;padding:0 18px;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.world-sport .catalog-filters button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+
+/* Récit : photo portrait */
+.world-sport .story-kinetic{display:grid;grid-template-columns:1fr minmax(280px,.8fr);gap:clamp(24px,5vw,80px);align-items:center}
+.world-sport .story-kinetic .story-photo{margin:0;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;position:relative}
+.world-sport .story-photo figcaption{position:absolute;left:14px;bottom:14px;background:var(--paper);color:var(--ink);padding:6px 12px;border-radius:999px;font-size:.8rem}
+
+/* Bloc chiffré */
+.world-sport .sport-figures{max-width:none;background:var(--accent);color:#202225}
+.world-sport .sport-figures dl{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:0;max-width:1200px;margin-inline:auto}
+.world-sport .sport-figures div{display:flex;flex-direction:column-reverse;gap:6px;border-top:2px solid #202225;padding-top:16px}
+.world-sport .sport-figures dd{margin:0;font:400 clamp(2.4rem,5vw,4.6rem)/1 var(--display);font-variant-numeric:tabular-nums}
+.world-sport .sport-figures dt{font-size:.95rem;font-weight:600}
+
+/* Détail : photo carrée + colonnes */
+.world-sport .detail-section{display:grid;grid-template-columns:minmax(240px,.7fr) 1.3fr;gap:clamp(24px,4vw,64px);align-items:start}
+.world-sport .detail-photo{grid-row:1/span 2;margin:0;aspect-ratio:1;border-radius:var(--r);overflow:hidden}
+.world-sport .detail-section>.section-heading,.world-sport .detail-columns{grid-column:2}
+
+/* Galerie scroll-snap natif */
+.world-sport .sport-gallery{max-width:none;padding-inline:0}
+.world-sport .sport-gallery .section-heading{padding-inline:6%}
+.world-sport .gallery-track{list-style:none;margin:0;padding:8px 6% 24px;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:6%;overscroll-behavior-x:contain;scrollbar-width:thin}
+.world-sport .gallery-track li{flex:0 0 clamp(220px,26vw,340px);scroll-snap-align:start}
+.world-sport .gallery-track li.wide{flex-basis:clamp(280px,42vw,560px)}
+.world-sport .gallery-track figure{margin:0;height:clamp(300px,36vw,460px);border-radius:var(--r);overflow:hidden;position:relative}
+.world-sport .gallery-track figcaption{position:absolute;left:12px;bottom:12px;background:var(--paper);padding:5px 12px;border-radius:999px;font-size:.8rem}
+
+/* FAQ accordéon */
+.world-sport .faq{display:grid;gap:0;border-top:1px solid var(--line)}
+.world-sport .faq details{border-bottom:1px solid var(--line)}
+.world-sport .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;min-height:44px;font-weight:700;font-size:1.1rem}
+.world-sport .faq summary::-webkit-details-marker{display:none}
+.world-sport .faq summary span{position:relative;width:18px;height:18px;flex:none}
+.world-sport .faq summary span::before,.world-sport .faq summary span::after{content:"";position:absolute;inset:8px 0 auto;height:2px;background:currentColor;transition:transform .3s var(--ease)}
+.world-sport .faq summary span::after{transform:rotate(90deg)}
+.world-sport .faq details[open] summary span::after{transform:rotate(0)}
+.world-sport .faq details p{margin:0 0 22px;max-width:62ch}
+
+/* Formulaire */
+.world-sport .booking-section :is(select,textarea,input){min-height:50px;border-radius:var(--r-sm);font-size:16px;padding:12px 14px}
+.world-sport .booking-section :is(select,textarea):invalid:not(:focus):user-invalid{border-color:#b3261e}
+.world-sport .booking-result{border-radius:var(--r);background:#fff;padding:24px;box-shadow:var(--shadow);border-left:4px solid var(--accent)}
+.world-sport .aside-photo{margin:0 0 20px;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden}
+
+/* Menu mobile plein écran */
+@media (max-width:700px){
+  .world-sport .world-header.menu-ready nav{transition:opacity .3s var(--ease),transform .4s var(--ease)}
+  .world-sport .world-header.menu-open nav{position:fixed;inset:0;z-index:40;background:var(--paper);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:24px}
+  .world-sport .world-header.menu-open nav a{font:400 clamp(2rem,10vw,3rem)/1.15 var(--display);text-transform:uppercase;min-height:48px}
+  .world-sport .world-header.menu-open .menu-toggle{position:relative;z-index:41}
+}
+
+/* Reveal (classe posée par world-sport.js) */
+.world-sport .sport-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.world-sport .sport-reveal.is-in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .world-sport .sport-page-hero,.world-sport .story-kinetic,.world-sport .detail-section{grid-template-columns:1fr}
+  .world-sport .page-photo,.world-sport .detail-photo,.world-sport .detail-section>.section-heading,.world-sport .detail-columns{grid-column:1;grid-row:auto}
+  .world-sport .sport-figures dl{grid-template-columns:1fr 1fr}
+}
+@media (max-width:700px){
+  .world-sport .hero-kinetic{min-height:100svh;padding:110px 20px 28px;display:flex;flex-direction:column;justify-content:flex-end}
+  .world-sport .hero-kinetic .hero-photo{order:0;height:auto;transform:none;border:0}
+  .world-sport .kinetic-word{bottom:auto;top:90px;font-size:24vw}
+  .world-sport .hero-kinetic h1{font-size:2.6rem}
+  .world-sport .sport-page-hero{padding:104px 20px 40px}
+  .world-sport .story-kinetic .story-photo{aspect-ratio:4/5}
+  .world-sport .detail-photo{aspect-ratio:4/3}
+  .world-sport .gallery-track{padding-inline:20px;scroll-padding-inline:20px}
+  .world-sport .sport-gallery .section-heading{padding-inline:20px}
+  .world-sport .gallery-track li,.world-sport .gallery-track li.wide{flex-basis:78vw}
+  .world-sport .gallery-track figure{height:360px}
+  .world-sport .class-list .offering{margin-bottom:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  .world-sport *,.world-sport *::before,.world-sport *::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .world-sport .sport-reveal{opacity:1;transform:none}
+  .world-sport .hero-kinetic .hero-photo{transform:none}
+}
+.world-sport .offering[hidden]{display:none}
+@media (min-width:701px){
+  .world-sport .hero-kinetic{grid-template-columns:1fr}
+  .world-sport .hero-kinetic .hero-photo{grid-column:auto;grid-row:auto;width:auto}
+  .world-sport .kinetic-word{top:clamp(90px,12vh,130px);bottom:auto;font-size:clamp(6rem,17vw,19rem)}
+}

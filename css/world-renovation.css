@@ -1,0 +1,194 @@
+/* Atelier Noma : monde rénovation, montée en gamme visuelle.
+   Système : rayons 4px (petit) / 10px (image), une seule ombre teintée, accent ocre unique. */
+body.world-renovation{
+  --line:color-mix(in srgb,var(--ink) 16%,transparent);
+  --muted:color-mix(in srgb,var(--ink) 72%,var(--paper));
+  --stone:color-mix(in srgb,var(--paper) 88%,var(--ink));
+  --r-sm:4px;--r-img:10px;
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --shadow:0 1px 2px rgb(32 33 31/.06),0 18px 40px -22px rgb(32 33 31/.35);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  background:var(--paper);overflow-x:clip
+}
+body.world-renovation h1,body.world-renovation h2,body.world-renovation h3{text-wrap:balance}
+body.world-renovation p{text-wrap:pretty}
+body.world-renovation img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.03) sepia(.06);outline:1px solid rgb(0 0 0/.08);outline-offset:-1px}
+body.world-renovation figure{margin:0}
+body.world-renovation figcaption{font-size:12px;color:var(--muted);padding-top:12px;letter-spacing:.01em}
+
+/* Boutons */
+body.world-renovation .action{border-radius:var(--r-sm);gap:22px;padding:15px 16px 15px 22px;transition:background-color .25s var(--ease),color .25s var(--ease),transform .15s var(--ease)}
+body.world-renovation .action span{display:grid;place-items:center;width:28px;height:28px;border-radius:var(--r-sm);background:color-mix(in srgb,var(--paper) 14%,transparent);font:16px/1 var(--body);transition:transform .3s var(--ease)}
+body.world-renovation .action:hover span{transform:translate(2px,-2px)}
+body.world-renovation .action:active{transform:scale(.97)}
+body.world-renovation .action:focus-visible,body.world-renovation .text-action:focus-visible,body.world-renovation summary:focus-visible,body.world-renovation .gallery-track:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+body.world-renovation .text-action{transition:gap .3s var(--ease),border-color .25s var(--ease)}
+body.world-renovation .text-action:hover{border-color:var(--accent)}
+
+/* Header + menu mobile plein écran */
+body.world-renovation .world-header{border-bottom-color:var(--line)}
+body.world-renovation .world-header nav a{transition:opacity .2s var(--ease)}
+body.world-renovation .world-header nav a:last-child{border-radius:var(--r-sm)}
+@media(max-width:700px){
+  body.world-renovation .menu-toggle{min-height:44px;padding:0 4px;position:relative;z-index:12}
+  body.world-renovation .world-header.menu-open nav{position:fixed;inset:0;z-index:11;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;padding:90px 24px 40px;background:var(--paper);font:400 clamp(2.2rem,10vw,3rem)/1.15 var(--display)}
+  body.world-renovation .world-header.menu-open nav a{padding:8px 0;border:0}
+  body.world-renovation .world-header.menu-open nav a:last-child{margin-top:18px;padding:14px 20px;border:1px solid currentColor;font:500 15px var(--body)}
+  body.world-renovation .world-header.menu-open nav a{animation:noma-in .5s var(--ease) both}
+  body.world-renovation .world-header.menu-open nav a:nth-child(2){animation-delay:.05s}
+  body.world-renovation .world-header.menu-open nav a:nth-child(3){animation-delay:.1s}
+  body.world-renovation .world-header.menu-open nav a:nth-child(4){animation-delay:.15s}
+}
+@keyframes noma-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* 1. Hero split asymétrique */
+body.world-renovation .noma-hero{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(28px,5vw,80px);align-items:end;padding:clamp(40px,5vw,72px) 5% clamp(40px,5vw,64px);min-height:min(calc(100dvh - 130px),860px)}
+body.world-renovation .noma-hero .hero-copy{padding:0 0 12px}
+body.world-renovation .noma-hero h1{font-size:clamp(3.4rem,7.2vw,8.4rem);line-height:.92;letter-spacing:-.03em;margin:18px 0 26px}
+body.world-renovation .noma-hero .lead{max-width:34ch;font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--muted)}
+body.world-renovation .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:30px}
+body.world-renovation .hero-actions .action,body.world-renovation .hero-actions .text-action{margin-top:0}
+body.world-renovation .noma-hero .hero-photo{min-height:0;height:100%;max-height:720px;aspect-ratio:4/3.4;border-radius:var(--r-img);overflow:hidden;position:relative;box-shadow:var(--shadow)}
+body.world-renovation .noma-hero .hero-photo img{object-position:50% 60%}
+body.world-renovation .noma-hero figcaption{position:absolute;left:16px;bottom:16px;padding:8px 12px;border-radius:var(--r-sm);background:var(--paper);color:var(--ink);font-size:12px}
+
+/* 2. Récit : image verticale + texte */
+body.world-renovation .noma-story{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(36px,8vw,140px)}
+body.world-renovation .noma-story .story-photo{aspect-ratio:3/4;border-radius:var(--r-img);max-height:760px}
+body.world-renovation .noma-story .story-photo img{height:100%}
+body.world-renovation .noma-story .story-text{max-width:52ch}
+body.world-renovation .noma-story .story-text h2{font-size:clamp(2.4rem,4.4vw,4.6rem);line-height:1;letter-spacing:-.02em}
+body.world-renovation .noma-story .story-text p{color:var(--muted);font-size:17px;line-height:1.7}
+body.world-renovation .univers .noma-story .story-photo,body.world-renovation[data-page=univers] .noma-story .story-photo{aspect-ratio:1}
+
+/* 3. Grille d'offres illustrées */
+body.world-renovation .catalog .section-heading{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px 40px;margin-bottom:clamp(30px,4vw,56px)}
+body.world-renovation .catalog .section-heading h2{font-size:clamp(2.4rem,4.4vw,4.6rem);line-height:1;letter-spacing:-.02em;margin:0}
+body.world-renovation .catalog .section-heading p{color:var(--muted);max-width:36ch;margin:0}
+body.world-renovation .intervention-list .catalog-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,4vw,64px) clamp(24px,3vw,44px)}
+body.world-renovation .intervention-list .offering{padding:0;border:0;display:flex;flex-direction:column}
+body.world-renovation .intervention-list .offering:nth-child(even){margin-top:clamp(0px,6vw,96px)}
+body.world-renovation .offering-media{aspect-ratio:4/3;border-radius:var(--r-img);overflow:hidden;background:var(--stone)}
+body.world-renovation .offering-media img{transition:transform .7s var(--ease)}
+body.world-renovation .offering:hover .offering-media img,body.world-renovation .offering:focus-within .offering-media img{transform:scale(1.04)}
+body.world-renovation .intervention-list .offering-copy{display:grid;grid-template-columns:auto 1fr;column-gap:16px;padding-top:22px;border-top:0}
+body.world-renovation .intervention-list .offering-number{grid-column:1;grid-row:1 / span 2;padding-top:6px;font-variant-numeric:tabular-nums;color:var(--muted);opacity:1}
+body.world-renovation .intervention-list .offering-copy>p.offering-kicker{grid-column:2;grid-row:auto;margin:0 0 6px;font-size:13px;color:var(--muted)}
+body.world-renovation .intervention-list .offering h3{grid-column:2;font-size:clamp(1.9rem,2.6vw,2.6rem);line-height:1.05;margin:0 0 10px}
+body.world-renovation .intervention-list .offering-copy>p:not(.offering-kicker):not(.eyebrow){grid-column:2;grid-row:auto;margin:0;font-size:16px}
+body.world-renovation .intervention-list details,body.world-renovation .intervention-list .text-action{grid-column:2;grid-row:auto}
+body.world-renovation .intervention-list .text-action{margin-top:18px}
+body.world-renovation .offering summary{min-height:32px;display:inline-flex;align-items:center}
+body.world-renovation .offering summary span{transition:transform .3s var(--ease)}
+body.world-renovation .catalog-status:empty{display:none}
+body.world-renovation .section-link{margin-top:48px}
+
+/* 4. Bloc matière : image carrée + colonnes */
+body.world-renovation .noma-detail{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(36px,7vw,120px);align-items:center;background:var(--ink);color:var(--paper);max-width:none;padding-top:clamp(70px,9vw,140px);padding-bottom:clamp(70px,9vw,140px)}
+body.world-renovation .noma-detail .detail-photo{aspect-ratio:1;border-radius:var(--r-img);overflow:hidden}
+body.world-renovation .noma-detail h2,body.world-renovation .noma-materials h2{font-size:clamp(2.2rem,3.8vw,4rem);line-height:1.02;letter-spacing:-.02em}
+body.world-renovation .noma-detail .detail-columns{grid-template-columns:1fr;gap:0;margin-top:34px}
+body.world-renovation .noma-detail .detail-columns article{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr);gap:24px;padding:22px 0;border-top:1px solid color-mix(in srgb,var(--paper) 20%,transparent)}
+body.world-renovation .noma-detail .detail-columns h3{margin:0;font-size:1.5rem}
+body.world-renovation .noma-detail .detail-columns p{margin:0;color:color-mix(in srgb,var(--paper) 80%,var(--ink))}
+body.world-renovation .noma-detail .detail-columns article h3::before{content:"";display:inline-block;width:8px;height:8px;margin-right:12px;vertical-align:middle;border-radius:2px;background:var(--accent)}
+body.world-renovation .noma-materials .detail-columns article{padding-top:22px;border-top:1px solid var(--line)}
+
+/* 5. Process : frise horizontale (vraie séquence) */
+body.world-renovation .process{display:block;border-top:0}
+body.world-renovation .process .section-heading h2{font-size:clamp(2.2rem,3.8vw,4rem);line-height:1.02;max-width:18ch;margin-bottom:clamp(30px,4vw,56px)}
+body.world-renovation .process ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,44px);counter-reset:none}
+body.world-renovation .process li{display:block;padding:24px 0 0;border-bottom:0;border-top:2px solid var(--ink)}
+body.world-renovation .process li:first-child{padding-top:24px;border-top-color:var(--accent)}
+body.world-renovation .process li>span{display:block;padding:0 0 18px;font-variant-numeric:tabular-nums;color:var(--muted)}
+body.world-renovation .process p{font-size:16px;color:var(--muted);max-width:32ch}
+
+/* 6. FAQ accordéon */
+body.world-renovation .questions{grid-template-columns:minmax(0,.7fr) minmax(0,1fr);gap:clamp(30px,8vw,120px);border-top:1px solid var(--line)}
+body.world-renovation .questions h2{font-size:clamp(2.2rem,3.6vw,3.8rem);line-height:1.02}
+body.world-renovation .faq-list details{border-bottom:1px solid var(--line)}
+body.world-renovation .faq-list details:first-child{border-top:1px solid var(--line)}
+body.world-renovation .faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:64px;padding:18px 0;font:600 17px/1.4 var(--body)}
+body.world-renovation .faq-list summary::-webkit-details-marker{display:none}
+body.world-renovation .faq-mark{position:relative;flex:none;width:14px;height:14px}
+body.world-renovation .faq-mark::before,body.world-renovation .faq-mark::after{content:"";position:absolute;left:0;top:6px;width:14px;height:2px;background:currentColor;transition:transform .3s var(--ease)}
+body.world-renovation .faq-mark::after{transform:rotate(90deg)}
+body.world-renovation .faq-list details[open] .faq-mark::after{transform:rotate(0)}
+body.world-renovation .faq-list details p{margin:0 0 22px;max-width:58ch;color:var(--muted);font-size:16px;line-height:1.7}
+body.world-renovation .faq-list details[open] p{animation:noma-in .4s var(--ease) both}
+
+/* 7. Clôture : bande pleine */
+body.world-renovation .closing{max-width:none;background:var(--stone);border-top:0;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:30px 60px}
+body.world-renovation .closing h2{margin:0;max-width:20ch;font-size:clamp(2.2rem,4.4vw,4.8rem);line-height:1;letter-spacing:-.02em}
+body.world-renovation .closing .action{margin:0}
+
+/* Pages intérieures : en-tête split avec image */
+body.world-renovation .noma-page-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:clamp(30px,6vw,100px);align-items:end;border-bottom:0}
+body.world-renovation .noma-page-heading h1{letter-spacing:-.025em;line-height:.98}
+body.world-renovation .noma-page-heading .lead{color:var(--muted)}
+body.world-renovation .noma-page-heading figure{aspect-ratio:4/5;max-height:560px;border-radius:var(--r-img);overflow:hidden;box-shadow:var(--shadow)}
+body.world-renovation .page-heading{border-bottom-color:var(--line)}
+body.world-renovation .manifesto{border-top:1px solid var(--line)}
+
+/* Galerie scroll-snap horizontal natif */
+body.world-renovation .noma-gallery{max-width:none;padding-right:0}
+body.world-renovation .noma-gallery h2{font-size:clamp(2.2rem,3.8vw,4rem);margin-bottom:clamp(24px,3vw,40px)}
+body.world-renovation .gallery-track{list-style:none;margin:0;padding:0 9% 18px 0;display:grid;grid-auto-flow:column;grid-auto-columns:clamp(260px,34vw,520px);gap:clamp(16px,2vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--ink) transparent}
+body.world-renovation .gallery-track li{scroll-snap-align:start}
+body.world-renovation .gallery-track li:first-child{grid-column:span 1}
+body.world-renovation .gallery-track figure>img{aspect-ratio:4/3;border-radius:var(--r-img)}
+
+/* Contact */
+body.world-renovation .booking-section legend{font:400 1.6rem var(--display);letter-spacing:0;padding-bottom:6px}
+body.world-renovation .booking-section fieldset{border-top-color:var(--line)}
+body.world-renovation .booking-section label{font-weight:600;font-size:14px;gap:8px}
+body.world-renovation input:not([type=range]):not([type=checkbox]),body.world-renovation select,body.world-renovation textarea{min-height:52px;padding:13px 14px;border-radius:var(--r-sm);font:16px var(--body);background:color-mix(in srgb,var(--paper) 60%,#fff);border-color:color-mix(in srgb,var(--ink) 28%,transparent);transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+body.world-renovation input:hover,body.world-renovation select:hover,body.world-renovation textarea:hover{border-color:var(--ink)}
+body.world-renovation input:focus-visible,body.world-renovation select:focus-visible,body.world-renovation textarea:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+body.world-renovation :is(input,select,textarea):user-invalid{border-color:#a3341f;box-shadow:inset 0 0 0 1px #a3341f}
+body.world-renovation .form-note{font-size:13px;color:var(--muted)}
+body.world-renovation .booking-aside{border-radius:var(--r-img);padding:10px 10px 28px;background:var(--stone)}
+body.world-renovation .booking-aside>*:not(figure){margin-left:18px;margin-right:18px}
+body.world-renovation .aside-photo{aspect-ratio:4/3;border-radius:6px;overflow:hidden;margin-bottom:22px}
+body.world-renovation .booking-result{border-radius:var(--r-img);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--paper))}
+
+/* Studio */
+body.world-renovation .studio [data-studio-record]{border:1px solid var(--line);border-radius:var(--r-img);padding:clamp(20px,3vw,36px);background:color-mix(in srgb,var(--paper) 60%,#fff)}
+body.world-renovation .studio-check label{display:flex;gap:14px;align-items:flex-start;min-height:52px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+body.world-renovation .studio-check input{width:20px;height:20px;accent-color:var(--ink);margin-top:2px;flex:none}
+body.world-renovation .studio-toolbar button,body.world-renovation .world-footer button{min-height:44px;border-radius:var(--r-sm)}
+
+/* Reveal natif au scroll, sans JS */
+@supports (animation-timeline:view()){
+  body.world-renovation :is(.offering,.story-photo,.detail-photo,.process li,.gallery-track li){animation:noma-in linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+}
+
+@media(max-width:1000px){
+  body.world-renovation .noma-hero{grid-template-columns:1fr;min-height:0}
+  body.world-renovation .noma-hero .hero-photo{aspect-ratio:16/10;height:auto}
+  body.world-renovation .noma-detail,body.world-renovation .noma-story,body.world-renovation .noma-page-heading{grid-template-columns:1fr}
+  body.world-renovation .noma-page-heading figure{aspect-ratio:16/10}
+}
+@media(max-width:700px){
+  body.world-renovation .noma-hero{padding:22px 16px 40px;gap:22px}
+  body.world-renovation .noma-hero h1{font-size:clamp(3rem,15vw,4rem);margin:12px 0 16px}
+  body.world-renovation .noma-hero .hero-photo{aspect-ratio:16/10;order:-1}
+  body.world-renovation .noma-hero .lead{font-size:16px}
+  body.world-renovation .menu-toggle{display:inline-flex;align-items:center;gap:10px}
+  body.world-renovation .noma-hero figcaption{display:none}
+  body.world-renovation .hero-actions{margin-top:22px}
+  body.world-renovation .section{padding-left:16px;padding-right:16px}
+  body.world-renovation .intervention-list .catalog-items,body.world-renovation .process ol{grid-template-columns:1fr}
+  body.world-renovation .intervention-list .offering:nth-child(even){margin-top:0}
+  body.world-renovation .intervention-list .offering-copy{display:grid}
+  body.world-renovation .noma-story .story-photo{aspect-ratio:4/5}
+  body.world-renovation .noma-detail .detail-columns article{grid-template-columns:1fr;gap:8px}
+  body.world-renovation .questions,body.world-renovation .closing{grid-template-columns:1fr}
+  body.world-renovation .noma-gallery{padding-right:0}
+  body.world-renovation .gallery-track{grid-auto-columns:82%;padding-right:16px}
+  body.world-renovation .booking-aside{position:static}
+}
+@media(prefers-reduced-motion:reduce){
+  body.world-renovation *,body.world-renovation *::before,body.world-renovation *::after{animation:none!important;transition-duration:.01ms!important}
+  body.world-renovation .offering:hover .offering-media img{transform:none}
+}

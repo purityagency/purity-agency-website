@@ -430,3 +430,14 @@
  border-color:#fff;
  transform:translateY(-1px)
 }
+
+/* Reassurance et etapes apres envoi (colonne agenda) */
+.reassure{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:.55rem}
+.reassure li{position:relative;padding-left:1.6rem;font-size:.95rem;font-weight:600;line-height:1.4;color:#fffaf4}
+.reassure li::before{content:"";position:absolute;left:.15rem;top:.32em;width:.8rem;height:.45rem;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+.next-steps__title{margin:1.8rem 0 .7rem;font-size:.8rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,250,244,.68)}
+.next-steps{list-style:none;counter-reset:ns;margin:0;padding:0;display:grid;gap:.8rem}
+.next-steps li{counter-increment:ns;position:relative;padding-left:2.3rem;font-size:.92rem;line-height:1.5;color:var(--contact-card-muted);text-wrap:pretty}
+.next-steps li::before{content:counter(ns);position:absolute;left:0;top:0;display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;border:1px solid rgba(255,255,255,.5);font-size:.8rem;font-weight:650;color:#fff;font-variant-numeric:tabular-nums}
+.next-steps strong{color:#fffaf4;font-weight:650}
+.ask__input[aria-invalid="true"]{border-color:#b42318}

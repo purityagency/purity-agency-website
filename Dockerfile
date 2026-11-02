@@ -19,7 +19,13 @@ COPY assets/ ./assets/
 COPY *.html ./
 COPY robots.txt ./
 COPY sitemap.xml ./
-COPY llms.txt ./
+COPY llms.txt llms-full.txt edf646f8d9e4f3409422adab12ffa6d1.txt ./
+COPY services/ ./services/
+COPY agence-web/ ./agence-web/
+COPY site-internet/ ./site-internet/
+COPY cas-concrets/ ./cas-concrets/
+COPY demos/ ./demos/
+COPY data/ ./data/
 
 # Vérification syntaxique stricte en phase de build (fail-fast si corruption)
 RUN for f in server.mjs api/*.mjs js/*.js; do node --check "$f" || exit 1; done

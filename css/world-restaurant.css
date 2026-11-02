@@ -1,0 +1,370 @@
+/* ============================================================================
+   Table Serein - world-restaurant.css
+   Monde "restaurant" (layout-supper). Mode redesign-preserve.
+   Rendu reel : fond bordeaux profond (--paper #642f37), texte creme
+   (--ink #f8f0e6), un seul accent chaud verrouille (--accent). Fraunces
+   en titrage, DM Sans en courant. Aucun JS, aucun style inline, CSP OK.
+   Charge apres demo-worlds.css + demo-motion.css : surcharge assumee.
+   ============================================================================ */
+
+/* 1. Accent verrouille + echelle de neutres chauds -------------------------- */
+.world-restaurant{
+  --accent:#d49a5c!important;         /* un seul accent, partout pareil */
+  --gold:var(--accent);
+  --line:color-mix(in srgb,var(--ink) 20%,transparent);
+  --line-soft:color-mix(in srgb,var(--ink) 11%,transparent);
+  --muted:color-mix(in srgb,var(--ink) 74%,var(--paper));
+  --surface:color-mix(in srgb,var(--paper) 90%,#000);
+  --raise:color-mix(in srgb,var(--paper) 90%,var(--ink));
+  --ease:cubic-bezier(.22,.7,.25,1);
+}
+
+/* Grain chaud discret, fixe et non interactif (jamais sur le contenu qui scrolle). */
+.world-restaurant::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+  mix-blend-mode:soft-light;
+}
+.world-restaurant>*:not(.skip){position:relative;z-index:1}
+
+/* 2. Reglages typographiques fins ------------------------------------------ */
+.world-restaurant h1,
+.world-restaurant h2,
+.world-restaurant .world-brand,
+.world-restaurant .footer-mark{font-weight:400}
+.world-restaurant .lead{color:var(--muted);line-height:1.6}
+.world-restaurant .eyebrow{color:var(--gold);opacity:.95}
+
+/* Fines capitales de rubrique (serif), alternative sobre aux eyebrows. */
+.world-restaurant .kicker{
+  display:block;font-family:var(--body),Arial,sans-serif;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;font-weight:500;
+}
+
+/* 3. Entete + bandeau + nav -------------------------------------------------- */
+.world-restaurant .world-header{backdrop-filter:none;border-bottom-color:var(--line)}
+.world-restaurant .world-brand{letter-spacing:.01em}
+.world-restaurant .world-header nav a{transition:color 180ms var(--ease)}
+.world-restaurant .world-header nav a:hover{color:var(--gold)}
+.world-restaurant .world-header nav a[aria-current=page]{text-decoration-color:var(--gold)}
+.world-restaurant .world-header nav a:last-child{border-color:var(--line)}
+.world-restaurant .world-header nav a:last-child:hover{background:var(--gold);color:var(--paper);border-color:var(--gold)}
+
+/* 4. Boutons ---------------------------------------------------------------- */
+.world-restaurant .action{
+  background:var(--gold);color:#2e1116;border-color:var(--gold);
+  border-radius:2px;letter-spacing:.01em;
+}
+.world-restaurant .action:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.world-restaurant .text-action,
+.world-restaurant .section-link{border-bottom-color:var(--gold);color:var(--ink)}
+.world-restaurant .text-action:hover,
+.world-restaurant .section-link:hover{color:var(--gold)}
+
+/* 5. HERO supper ------------------------------------------------------------ */
+.world-restaurant .hero-supper{padding-block:34px clamp(72px,9vw,120px);align-items:end}
+.world-restaurant .supper-topline{
+  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+  border-bottom-color:var(--line);font-size:11px;
+}
+.world-restaurant .hero-supper .hero-copy{padding-bottom:10px}
+.world-restaurant .hero-supper h1{letter-spacing:-.03em}
+.world-restaurant .hero-supper h1 em{font-style:italic;color:var(--gold)}
+.world-restaurant .hero-supper .lead{max-width:34ch;margin-top:30px}
+.world-restaurant .hero-supper .action{margin-top:34px}
+
+/* Photo cintree, cadre chaud et vignette basse pour la lisibilite du cartouche. */
+.world-restaurant .hero-supper .hero-photo{
+  height:clamp(420px,52vw,600px);border-radius:46% 46% 4px 4px;
+  box-shadow:0 1px 0 color-mix(in srgb,var(--gold) 55%,transparent) inset,
+             0 40px 80px -40px #000;
+}
+.world-restaurant .hero-supper .hero-photo::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,color-mix(in srgb,#2a0f14 70%,transparent));
+}
+.world-restaurant .hero-photo img{filter:saturate(1.04) contrast(1.02)}
+.world-restaurant .hero-photo figcaption{letter-spacing:.1em;text-transform:uppercase}
+
+/* Mot manuscrit : present mais discret, derriere le contenu. */
+.world-restaurant .supper-script{
+  color:color-mix(in srgb,var(--gold) 36%,transparent);
+  transform:rotate(-8deg);z-index:0;user-select:none;
+}
+
+/* Reveal du hero au chargement (une seule fois, discret). */
+@media (prefers-reduced-motion:no-preference){
+  .world-restaurant .hero-supper .hero-copy>*{
+    animation:supper-rise 720ms var(--ease) both;
+  }
+  .world-restaurant .hero-supper h1{animation-delay:60ms}
+  .world-restaurant .hero-supper .lead{animation-delay:140ms}
+  .world-restaurant .hero-supper .action{animation-delay:220ms}
+  .world-restaurant .hero-supper .hero-photo{animation:supper-photo 900ms var(--ease) both}
+}
+@keyframes supper-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes supper-photo{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+
+/* 6. LA CARTE (heros editorial, pas une liste a puces plate) ---------------- */
+.world-restaurant .menu-list{max-width:1180px}
+.world-restaurant .menu-list .section-heading{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:12px 40px;max-width:none;margin-bottom:12px;
+  padding-bottom:26px;border-bottom:1px solid var(--line);
+}
+.world-restaurant .menu-list .section-heading h2{letter-spacing:-.03em}
+.world-restaurant .menu-note{
+  color:var(--muted);font-size:14px;max-width:40ch;margin:0;
+}
+
+/* Groupes de plats : Entrees / Plats / Desserts. */
+.world-restaurant .catalog-items{display:block}
+.world-restaurant .menu-group{padding:40px 0;border-bottom:1px solid var(--line-soft)}
+.world-restaurant .menu-group:last-child{border-bottom:0}
+.world-restaurant .menu-group>.menu-group-title{
+  font-family:var(--body),Arial,sans-serif;font-weight:500;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 6px;
+}
+.world-restaurant .menu-group>.menu-group-sub{
+  font-size:13px;color:var(--muted);margin:0 0 20px;max-width:48ch;
+}
+
+/* Une ligne de plat : titre + conducteur pointille + prix aligne, sans filet. */
+.world-restaurant .menu-list .offering{border-top:0;padding:0}
+.world-restaurant .menu-list .offering+.offering{margin-top:30px}
+.world-restaurant .menu-list .offering-copy{padding:0;position:static}
+.world-restaurant .menu-line{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:14px;
+}
+.world-restaurant .menu-list .offering h3{
+  grid-column:1;margin:0;font-size:clamp(1.4rem,2.1vw,1.9rem);
+  line-height:1.15;letter-spacing:-.015em;
+}
+.world-restaurant .menu-leader{
+  grid-column:2;align-self:center;height:1px;margin-top:4px;
+  background-image:radial-gradient(circle,var(--line) 1px,transparent 1.4px);
+  background-size:8px 2px;background-repeat:repeat-x;background-position:left center;
+  opacity:.8;
+}
+.world-restaurant .menu-list .offering .price{
+  grid-column:3;margin:0;font-family:var(--display),Georgia,serif;
+  font-size:clamp(1.25rem,1.8vw,1.6rem);color:var(--gold);
+  letter-spacing:0;white-space:nowrap;
+}
+.world-restaurant .menu-list .offering>.offering-copy>p:not(.price):not(.menu-line){
+  margin:10px 0 0;color:var(--muted);font-size:15px;max-width:58ch;
+}
+.world-restaurant .menu-list .eyebrow{position:static;display:none}
+.world-restaurant .menu-list details{margin-top:12px;font-size:13px}
+.world-restaurant .menu-list details p{color:var(--muted)}
+.world-restaurant .menu-list summary{border-bottom-color:var(--line)}
+.world-restaurant .menu-list summary:hover{color:var(--gold)}
+
+/* Reveal au scroll des plats, sans JS, neutralise si reduced-motion. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .world-restaurant .menu-group{
+      animation:supper-rise linear both;
+      animation-timeline:view();animation-range:entry 0% cover 22%;
+    }
+  }
+}
+
+/* 7. Bandeau horaires (opening) --------------------------------------------- */
+.world-restaurant .opening{
+  text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--surface);max-width:none;
+}
+.world-restaurant .opening h2{max-width:20ch;margin:0 auto;letter-spacing:-.025em}
+.world-restaurant .opening dl{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:880px;
+  margin:46px auto 8px;text-align:center;
+}
+.world-restaurant .opening dl div{
+  display:block;padding:8px 18px;border-left:1px solid var(--line-soft);
+}
+.world-restaurant .opening dl div:first-child{border-left:0}
+.world-restaurant .opening dt{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;
+}
+.world-restaurant .opening dd{
+  font-family:var(--display),Georgia,serif;font-size:clamp(1.3rem,2vw,1.8rem);line-height:1.2;
+}
+
+/* 8. Recit (story) ---------------------------------------------------------- */
+.world-restaurant .story-supper{align-items:center}
+.world-restaurant .story-text p{color:var(--muted);max-width:46ch}
+.world-restaurant .story-text p+p{margin-top:1.1em}
+.world-restaurant .story-photo{border-radius:50% 50% 4px 4px}
+.world-restaurant .story-photo img{height:clamp(380px,46vw,560px);filter:saturate(1.03)}
+.world-restaurant .story-photo figcaption{
+  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+}
+
+/* 9. "Autour de l'assiette" : facettes, pas une sequence (numeros retires) --- */
+.world-restaurant .detail-section .section-heading h2{letter-spacing:-.03em}
+.world-restaurant .detail-columns{gap:clamp(32px,5vw,72px)}
+.world-restaurant .detail-columns article{
+  padding-top:24px;border-top:2px solid var(--gold);
+}
+.world-restaurant .detail-columns article>span{display:none}
+.world-restaurant .detail-columns h3{margin-bottom:14px}
+.world-restaurant .detail-columns p{color:var(--muted);line-height:1.75}
+
+/* 10. Etapes de reservation (process) : vraie sequence, numeros conserves ---- */
+.world-restaurant .process{border-top:1px solid var(--line)}
+.world-restaurant .process li{border-bottom-color:var(--line-soft)}
+.world-restaurant .process li>span{
+  color:var(--gold);font-family:var(--display),Georgia,serif;font-size:20px;padding-top:2px;
+}
+.world-restaurant .process h3{letter-spacing:-.01em}
+.world-restaurant .process p{color:var(--muted)}
+
+/* 11. Questions (FAQ) ------------------------------------------------------- */
+.world-restaurant .questions{border-top:1px solid var(--line)}
+.world-restaurant .questions h3{color:var(--ink)}
+.world-restaurant .questions p{color:var(--muted);opacity:1}
+.world-restaurant .questions article+article{
+  margin-top:28px;padding-top:28px;border-top:1px solid var(--line-soft);
+}
+
+/* 12. Cloture --------------------------------------------------------------- */
+.world-restaurant .closing{border-top:1px solid var(--line)}
+.world-restaurant .closing h2{max-width:16ch;letter-spacing:-.025em}
+
+/* 13. En-tete de page interieure ------------------------------------------- */
+.world-restaurant .page-heading{border-bottom-color:var(--line)}
+.world-restaurant .page-heading h1{letter-spacing:-.03em}
+.world-restaurant .page-heading .lead{color:var(--muted)}
+
+/* 14. Reservation (contact) ------------------------------------------------- */
+.world-restaurant .booking-section fieldset{border-top-color:var(--line)}
+.world-restaurant .booking-section legend{color:var(--gold);letter-spacing:.14em;text-transform:uppercase}
+.world-restaurant .booking-section label{color:var(--muted)}
+.world-restaurant input:not([type=range]):not([type=checkbox]),
+.world-restaurant select,
+.world-restaurant textarea{
+  border-color:var(--line);background:var(--surface);border-radius:2px;
+  transition:border-color 180ms var(--ease);
+}
+.world-restaurant input:focus-visible,
+.world-restaurant select:focus-visible,
+.world-restaurant textarea:focus-visible{outline-color:var(--gold);border-color:var(--gold)}
+.world-restaurant .form-note{color:var(--muted);opacity:1}
+.world-restaurant .booking-aside{
+  background:var(--surface);border:1px solid var(--line-soft);padding:34px;
+}
+.world-restaurant .booking-aside h2{letter-spacing:-.02em}
+.world-restaurant .booking-aside p{color:var(--muted)}
+.world-restaurant .booking-aside hr{border-top-color:var(--line-soft)}
+.world-restaurant .booking-aside a{color:var(--gold)}
+.world-restaurant .booking-result{border-color:var(--line)}
+
+/* 15. Studio ---------------------------------------------------------------- */
+.world-restaurant .studio-toolbar{border-bottom:1px solid var(--line);padding-bottom:26px}
+.world-restaurant .studio-toolbar button{border-color:var(--line);border-radius:2px}
+.world-restaurant .studio-toolbar button:hover{background:var(--gold);color:var(--paper);border-color:var(--gold)}
+.world-restaurant [data-studio-record] p{color:var(--muted)}
+.world-restaurant .studio-check{border-top-color:var(--line)}
+.world-restaurant .studio-check label{color:var(--muted)}
+
+/* 16. Pied de page ---------------------------------------------------------- */
+.world-restaurant .world-footer{border-top-color:var(--line)}
+.world-restaurant .world-footer nav a:hover{color:var(--gold)}
+.world-restaurant .footer-bottom{border-top-color:var(--line-soft)}
+
+/* 17. Responsive ajustements (complement du media partage) ------------------ */
+@media (max-width:760px){
+  .world-restaurant .opening dl{grid-template-columns:1fr;gap:0}
+  .world-restaurant .opening dl div{border-left:0;border-top:1px solid var(--line-soft);padding:18px}
+  .world-restaurant .opening dl div:first-child{border-top:0}
+  .world-restaurant .menu-line{grid-template-columns:1fr auto;gap:10px}
+  .world-restaurant .menu-leader{display:none}
+  .world-restaurant .menu-list .offering h3{grid-column:1}
+  .world-restaurant .menu-list .offering .price{grid-column:2}
+}
+
+/* 18. prefers-reduced-motion : tout mouvement non essentiel neutralise ------- */
+@media (prefers-reduced-motion:reduce){
+  .world-restaurant .hero-supper .hero-copy>*,
+  .world-restaurant .hero-supper .hero-photo,
+  .world-restaurant .menu-group{animation:none!important}
+}
+
+/* ===================== V2 visuel : images partout ======================== */
+/* Un seul systeme de rayons : 4px (photos, champs), 999px (boutons). */
+.world-restaurant{--r:4px;--ease-out:cubic-bezier(.22,1,.36,1)}
+.world-restaurant img{outline:1px solid rgba(255,255,255,.08);outline-offset:-1px}
+.world-restaurant .action{border-radius:999px;padding-inline:26px 10px;gap:22px;
+  transition:background-color 220ms var(--ease),color 220ms var(--ease),border-color 220ms var(--ease),transform 160ms var(--ease)}
+.world-restaurant .action span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:rgba(46,17,22,.12);font-size:16px;transition:transform 260ms var(--ease-out)}
+.world-restaurant .action:hover span{transform:translate(2px,-2px)}
+.world-restaurant .action:active{transform:scale(.97)}
+
+/* Plats illustres : vignette 4:3 + texte, rangee de carte. */
+.world-restaurant .menu-list .offering{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:clamp(18px,3vw,40px);align-items:center}
+.world-restaurant .dish-photo{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r);background:var(--surface)}
+.world-restaurant .dish-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(1.04) contrast(1.03);
+  transition:transform 600ms var(--ease-out)}
+.world-restaurant .menu-list .offering:hover .dish-photo img{transform:scale(1.045)}
+.world-restaurant .menu-list .offering+.offering{margin-top:36px}
+.world-restaurant #offre-2 .dish-photo img{object-position:60% 50%}
+
+/* Galerie horizontale native (scroll-snap, pas de hijack). */
+.world-restaurant .supper-gallery{max-width:none;padding-inline:0}
+.world-restaurant .supper-gallery .section-heading{padding-inline:clamp(24px,6vw,96px)}
+.world-restaurant .gallery-track{list-style:none;margin:0;display:grid;grid-auto-flow:column;
+  grid-auto-columns:min(78vw,620px);gap:clamp(14px,2vw,24px);overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;padding:0 clamp(24px,6vw,96px) 18px;scroll-padding-inline:clamp(24px,6vw,96px);
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.world-restaurant .gallery-track:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.world-restaurant .gallery-track li{scroll-snap-align:start}
+.world-restaurant .gallery-track figure{margin:0}
+.world-restaurant .gallery-track img{aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);filter:saturate(1.03)}
+.world-restaurant .gallery-track li:nth-child(3) img{aspect-ratio:3/4;object-position:50% 50%}
+.world-restaurant .gallery-track li:nth-child(3){grid-column:auto;width:min(58vw,440px)}
+.world-restaurant .gallery-track figcaption{margin-top:12px;font-size:13px;color:var(--muted)}
+
+/* Bande photo plein cadre (pages interieures). */
+.world-restaurant .supper-band{margin:0;max-width:1680px;margin-inline:auto;padding:clamp(24px,4vw,56px) clamp(24px,6vw,96px) 0}
+.world-restaurant .supper-band img{aspect-ratio:21/9;object-fit:cover;border-radius:var(--r);filter:saturate(1.03) contrast(1.02)}
+
+/* Reservation : photo en tete d'encart, champs tactiles. */
+.world-restaurant .aside-photo{margin:-34px -34px 28px;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r) var(--r) 0 0}
+.world-restaurant .aside-photo img{width:100%;height:100%;object-fit:cover;object-position:40% 55%}
+.world-restaurant .booking-aside{border-radius:var(--r);overflow:hidden}
+.world-restaurant .booking-section label{gap:8px;font-size:14px;color:var(--ink)}
+.world-restaurant input:not([type=range]):not([type=checkbox]),.world-restaurant select,.world-restaurant textarea{
+  min-height:52px;border-radius:var(--r);font-size:16px}
+.world-restaurant .booking-result{border-radius:var(--r);border-color:var(--gold)}
+
+/* FAQ en accordeon. */
+.world-restaurant .faq-item{border-top:1px solid var(--line-soft)}
+.world-restaurant .faq-item:last-child{border-bottom:1px solid var(--line-soft)}
+.world-restaurant .faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;
+  align-items:center;gap:24px;padding:22px 0;min-height:44px}
+.world-restaurant .faq-item summary::-webkit-details-marker{display:none}
+.world-restaurant .faq-item h3{margin:0;transition:color 200ms var(--ease)}
+.world-restaurant .faq-item summary:hover h3{color:var(--gold)}
+.world-restaurant .faq-mark{position:relative;flex:none;width:14px;height:14px}
+.world-restaurant .faq-mark::before,.world-restaurant .faq-mark::after{content:"";position:absolute;inset:6px 0 auto;height:1.5px;background:var(--gold);transition:transform 280ms var(--ease-out)}
+.world-restaurant .faq-mark::after{transform:rotate(90deg)}
+.world-restaurant .faq-item[open] .faq-mark::after{transform:rotate(0)}
+.world-restaurant .faq-item p{padding:0 0 24px;max-width:56ch}
+.world-restaurant summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+@media (max-width:700px){
+  .world-restaurant .menu-list .offering{grid-template-columns:1fr;gap:16px}
+  .world-restaurant .supper-band img{aspect-ratio:4/3}
+  .world-restaurant .aside-photo{margin:-25px -25px 22px}
+  .world-restaurant .gallery-track{grid-auto-columns:82vw}
+  .world-restaurant .gallery-track li:nth-child(3){width:70vw}
+  .world-restaurant .hero-supper .hero-photo{height:min(300px,42svh)}
+}
+@media (prefers-reduced-motion:reduce){
+  .world-restaurant .dish-photo img,.world-restaurant .action span,.world-restaurant .faq-mark::after{transition:none}
+  .world-restaurant .menu-list .offering:hover .dish-photo img{transform:none}
+}

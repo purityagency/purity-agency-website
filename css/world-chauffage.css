@@ -1,0 +1,137 @@
+/* Thermiq : monde chauffage. Montée en gamme visuelle, tokens du monde conservés. */
+.world-chauffage{
+  --night:#1d313b;--mist:#edf1ed;--sage:#dfe7e3;--line:#1d313b1f;--muted:#4b5f66;
+  --r-s:8px;--r-m:14px;--r-l:22px;
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --shadow:0 1px 2px #1d313b14,0 18px 40px -18px #1d313b40;
+  --gutter:clamp(16px,5vw,72px);
+  background:var(--mist);
+  -webkit-font-smoothing:antialiased;
+}
+.world-chauffage h1,.world-chauffage h2,.world-chauffage h3{text-wrap:balance}
+.world-chauffage p{text-wrap:pretty}
+.world-chauffage img{outline:1px solid #0000001a;outline-offset:-1px}
+.world-chauffage :focus-visible{outline:2px solid var(--night);outline-offset:3px}
+
+/* Boutons */
+.world-chauffage .action{border-radius:999px;padding:.95rem 1rem .95rem 1.5rem;gap:1rem;font-weight:600;
+  transition-property:transform,background-color,box-shadow;transition-duration:.25s;transition-timing-function:var(--ease)}
+.world-chauffage .action span{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:#1d313b14;
+  transition:transform .35s var(--ease)}
+.world-chauffage .action:hover{background:#ea9358;box-shadow:var(--shadow)}
+.world-chauffage .action:hover span{transform:translate(2px,-2px)}
+.world-chauffage .action:active{transform:scale(.97)}
+.world-chauffage .text-action span{display:inline-block;transition:transform .3s var(--ease)}
+
+/* Hero plein cadre : la photo occupe l'écran, la copie se pose sur un panneau clair */
+.world-chauffage .hero-technical{position:relative;display:grid;grid-template-columns:minmax(0,1fr);min-height:min(88svh,860px);
+  padding:var(--gutter);align-items:end;background:var(--night);overflow:hidden;isolation:isolate}
+.world-chauffage .hero-technical .hero-photo{position:absolute;inset:0;height:auto;margin:0;border-radius:0;z-index:-1}
+.world-chauffage .hero-technical .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;
+  filter:saturate(.9) contrast(1.03);outline:0;transform:translate(var(--depth-x,0),var(--depth-y,0)) scale(1.04);transition:transform .8s var(--ease)}
+.world-chauffage .hero-technical .hero-copy{max-width:600px;background:var(--mist);padding:clamp(24px,3.4vw,48px);border-radius:var(--r-l);box-shadow:var(--shadow)}
+.world-chauffage .hero-technical h1{font-size:clamp(2.5rem,4.6vw,4.6rem);line-height:1.02;letter-spacing:-.045em;margin:.4em 0 .35em}
+.world-chauffage .hero-technical .lead{color:var(--muted);max-width:44ch}
+.world-chauffage .technical-gauge{right:var(--gutter);bottom:var(--gutter);transform:none;background:var(--mist)}
+.world-chauffage .technical-gauge>span{font-size:9px;letter-spacing:.06em;padding:0 18px}
+
+/* Pages intérieures : en-tête split avec image */
+.world-chauffage .page-heading{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center;padding:clamp(40px,6vw,96px) var(--gutter)}
+.world-chauffage .page-heading h1{font-size:clamp(2.4rem,4.4vw,4.4rem);line-height:1.04;letter-spacing:-.04em}
+.world-chauffage .page-heading-media{margin:0;aspect-ratio:4/3;border-radius:var(--r-l);overflow:hidden;box-shadow:var(--shadow)}
+.world-chauffage .page-heading-media img,.world-chauffage .offering-media img,.world-chauffage .comfort-media img,
+.world-chauffage .aside-media img,.world-chauffage .systems-rail img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.03)}
+
+/* Bande sombre : confort + photo détail */
+.world-chauffage .comfort{max-width:none;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,6vw,96px);align-items:center;
+  background:var(--night);color:var(--mist);padding:clamp(64px,9vw,128px) var(--gutter)}
+.world-chauffage .comfort-media{margin:0;aspect-ratio:1;border-radius:var(--r-l);overflow:hidden}
+.world-chauffage .comfort h2{color:var(--mist)}
+.world-chauffage .comfort p{color:#c9d5d2;max-width:46ch}
+.world-chauffage .comfort input{accent-color:var(--accent);height:28px}
+.world-chauffage .comfort output{color:var(--accent)}
+
+/* Grille d'offres illustrées */
+.world-chauffage .technical-list .catalog-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px)}
+.world-chauffage .technical-list .offering{position:relative;display:flex;flex-direction:column;background:#f7f9f6;border-radius:var(--r-l);overflow:hidden;
+  box-shadow:0 0 0 1px var(--line);transition:box-shadow .35s var(--ease),transform .35s var(--ease)}
+.world-chauffage .technical-list .offering:hover{box-shadow:0 0 0 1px #1d313b33,var(--shadow);transform:translateY(-2px)}
+.world-chauffage .offering-media{margin:0;aspect-ratio:4/3;overflow:hidden}
+.world-chauffage .offering-media img{outline:0;transition:transform .7s var(--ease)}
+.world-chauffage .offering:hover .offering-media img{transform:scale(1.04)}
+.world-chauffage .offering:hover .text-action span{transform:translate(3px,-3px)}
+.world-chauffage .technical-list .offering-copy{padding:clamp(20px,2.4vw,32px)}
+.world-chauffage .technical-list h3{font-size:clamp(1.5rem,2.2vw,2rem);margin:.2em 0 .3em}
+.world-chauffage .technical-list .offering-number{font-size:clamp(1.6rem,2.4vw,2.4rem);color:#667e84}
+.world-chauffage .technical-list .offering .eyebrow{display:inline-block;padding:.3em .8em;border-radius:999px;background:var(--sage);color:var(--night);letter-spacing:.06em}
+.world-chauffage .technical-list .text-action{display:inline-flex;gap:.5em;min-height:44px;align-items:center;font-weight:600}
+
+/* Récit : photo portrait 3:4 */
+.world-chauffage .story-technical{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(28px,6vw,96px);align-items:center}
+.world-chauffage .story-photo{margin:0}
+.world-chauffage .story-photo img{aspect-ratio:3/4;height:auto;width:100%;object-fit:cover;border-radius:var(--r-l);filter:saturate(.9) contrast(1.03)}
+.world-chauffage .story-photo figcaption{margin-top:12px;font-size:13px;color:var(--muted)}
+
+/* Galerie scroll-snap horizontale native (univers) */
+.world-chauffage .systems{padding-right:0}
+.world-chauffage .systems-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,32%);gap:clamp(16px,2vw,28px);
+  overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--gutter) 20px 0;margin:0;list-style:none;scrollbar-width:thin}
+.world-chauffage .systems-rail li{scroll-snap-align:start}
+.world-chauffage .systems-rail figure{margin:0}
+.world-chauffage .systems-rail img{aspect-ratio:4/3;height:auto;border-radius:var(--r-m)}
+.world-chauffage .systems-rail figcaption{display:grid;gap:4px;padding-top:14px}
+.world-chauffage .systems-rail strong{font:500 1.2rem/1.2 var(--display)}
+.world-chauffage .systems-rail span{color:var(--muted);font-size:15px}
+
+/* FAQ accordéon */
+.world-chauffage .faq-list{border-top:1px solid var(--line)}
+.world-chauffage .faq-list details{border-bottom:1px solid var(--line)}
+.world-chauffage .faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;
+  min-height:64px;padding:18px 0;font:500 clamp(1.05rem,1.6vw,1.3rem)/1.3 var(--display)}
+.world-chauffage .faq-list summary::-webkit-details-marker{display:none}
+.world-chauffage .faq-list summary span{position:relative;flex:none;width:32px;height:32px;border-radius:50%;background:var(--sage);transition:transform .35s var(--ease),background-color .25s}
+.world-chauffage .faq-list summary span::before,.world-chauffage .faq-list summary span::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--night);translate:-50% -50%}
+.world-chauffage .faq-list summary span::after{rotate:90deg}
+.world-chauffage .faq-list details[open] summary span{transform:rotate(45deg);background:var(--accent)}
+.world-chauffage .faq-list details p{margin:0 0 22px;max-width:62ch;color:var(--muted)}
+
+/* Contact */
+.world-chauffage .booking-aside{border-radius:var(--r-l);overflow:hidden}
+.world-chauffage .aside-media{margin:-1px -1px 20px;aspect-ratio:3/4;max-height:340px;overflow:hidden;border-radius:var(--r-m)}
+.world-chauffage form select,.world-chauffage form textarea{min-height:48px;border-radius:var(--r-s);font-size:16px}
+.world-chauffage .closing{text-align:left}
+
+/* Menu mobile : panneau plein écran */
+@media (max-width:700px){
+  .world-chauffage .world-header.menu-open nav{position:fixed;inset:0;z-index:30;background:var(--mist);flex-direction:column;justify-content:center;
+    gap:8px;padding:80px 24px;font:500 2rem/1.2 var(--display)}
+  .world-chauffage .world-header.menu-open .menu-toggle{position:fixed;top:20px;right:22px;z-index:31;background:var(--mist)}
+  .world-chauffage .world-header.menu-open nav a{padding:10px 0;border-bottom:1px solid var(--line)}
+  .world-chauffage .menu-toggle{min-height:44px;border-radius:999px}
+  .world-chauffage .hero-technical{min-height:auto;display:flex;flex-direction:column;padding:0 0 24px;background:var(--mist)}
+  .world-chauffage .hero-technical .hero-photo{order:-1;position:relative;inset:auto;z-index:0;width:100%;height:auto;aspect-ratio:4/3}
+  .world-chauffage .hero-technical .hero-copy{margin:-36px 16px 0;padding:24px;position:relative}
+  .world-chauffage .hero-technical h1{font-size:2.35rem}
+  .world-chauffage .technical-gauge{display:none}
+  .world-chauffage .page-heading{grid-template-columns:1fr;padding:32px 16px}
+  .world-chauffage .page-heading h1{font-size:2.4rem}
+  .world-chauffage .comfort,.world-chauffage .story-technical{display:grid;grid-template-columns:1fr;padding:56px 16px}
+  .world-chauffage .technical-list .catalog-items{display:grid;grid-template-columns:1fr}
+  .world-chauffage .section{padding-left:16px;padding-right:16px}
+  .world-chauffage .systems{padding-right:0}
+  .world-chauffage .systems-rail{grid-auto-columns:80%}
+  .world-chauffage .story-photo img{height:auto}
+}
+
+/* Reveal à l'entrée, natif (pas de listener scroll) */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .world-chauffage .offering,.world-chauffage .systems-rail li,.world-chauffage .story-photo,.world-chauffage .comfort-media{
+      animation:thq-rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  }
+}
+@keyframes thq-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .world-chauffage *{transition-duration:.01ms!important;animation:none!important}
+  .world-chauffage .hero-technical .hero-photo img{transform:none}
+}

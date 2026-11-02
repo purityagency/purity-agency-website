@@ -1,0 +1,207 @@
+/* Cabinet Horizon (demo sante). Clinique premium apaisante : air, filets fins, un seul accent vert d'eau.
+   Accent #79a89d n'atteint pas 4.5:1 sur papier : il sert aux filets, fonds et repères, jamais au texte courant. */
+.world-sante{
+  --ink-strong:#173b47;      /* titres, 10.9:1 sur papier */
+  --ink-soft:#3d6370;        /* texte secondaire, 6.1:1 sur papier */
+  --rule:#c9ddd5;            /* filets */
+  --tint:#e2eee8;            /* surfaces calmes */
+  --ease-care:cubic-bezier(.22,.8,.24,1);
+  background:var(--paper);color:var(--ink);
+}
+.world-sante h1,.world-sante h2,.world-sante h3{color:var(--ink-strong);text-wrap:balance;font-weight:500}
+.world-sante p,.world-sante li,.world-sante dd{text-wrap:pretty}
+.world-sante .lead{color:var(--ink-soft);font-size:clamp(1.08rem,1.25vw,1.25rem);line-height:1.6;max-width:34ch}
+.world-sante .eyebrow{color:var(--ink-soft);letter-spacing:.14em}
+.world-sante .section{padding-block:clamp(4.5rem,9vw,8.5rem)}
+.world-sante .section-heading h2,.world-sante .questions h2,.world-sante .closing h2{font-size:clamp(2rem,3.6vw,3.4rem);line-height:1.12;letter-spacing:-.025em;max-width:22ch}
+
+/* Actions : fond encre + texte papier (contraste 7.6:1), l'accent marque le survol. */
+.world-sante .action{background:var(--ink-strong);color:var(--paper);border-radius:999px;padding:.95rem 1.5rem;transition:background-color .35s var(--ease-care),transform .35s var(--ease-care)}
+.world-sante .action:hover{background:#0f2c35}
+.world-sante .action:active{transform:scale(.98)}
+.world-sante .text-action,.world-sante .section-link{color:var(--ink-strong);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.3em}
+.world-sante :focus-visible{outline:3px solid var(--ink-strong);outline-offset:3px}
+
+/* Hero : split asymétrique, photo à arche, carte pratique sous la copie. */
+.world-sante .hero-care{min-height:min(88dvh,820px);align-items:center}
+.world-sante .hero-care h1{font-size:clamp(2.6rem,5vw,5.2rem);line-height:1.06;letter-spacing:-.035em;max-width:13ch}
+.world-sante .hero-care .hero-photo{position:relative;overflow:hidden;background:var(--tint)}
+.world-sante .hero-care .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;filter:saturate(.82) contrast(1.02)}
+.world-sante .hero-care .hero-photo figcaption{position:absolute;left:1rem;bottom:1rem;background:var(--paper);color:var(--ink-strong);padding:.4rem .75rem;border-radius:999px;font-size:.82rem}
+.world-sante .care-facts{grid-column:1;display:grid;grid-template-columns:repeat(3,auto);gap:.4rem 2.2rem;margin:0;padding-top:1.4rem;border-top:1px solid var(--rule);font-size:.95rem;color:var(--ink-soft)}
+.world-sante .care-facts dt{font-size:.8rem;color:var(--ink-soft)}
+.world-sante .care-facts dd{margin:0;color:var(--ink-strong);font-weight:600}
+.world-sante .hero-copy .action{margin-top:1.6rem}
+
+/* Récit : photo recadrée en duotone doux, bande d'accent. */
+.world-sante .story-care .story-photo{position:relative;border-radius:8px 8px 8px 120px;overflow:hidden}
+.world-sante .story-care .story-photo img{object-position:25% 40%;filter:grayscale(.35) saturate(.8)}
+.world-sante .story-care .story-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;background:var(--accent)}
+.world-sante .story-care figcaption{color:var(--ink-soft)}
+
+/* Motifs : liste typographique en deux colonnes, filets fins (famille différente des cartes). */
+.world-sante .care-reasons{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+.world-sante .care-reasons ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2.5rem}
+.world-sante .care-reasons li{padding:1.1rem 0;border-top:1px solid var(--rule);font-family:var(--display);font-size:clamp(1.15rem,1.6vw,1.45rem);color:var(--ink-strong)}
+.world-sante .care-reasons li small{display:block;font-family:var(--body);font-size:.9rem;color:var(--ink-soft);margin-top:.25rem}
+.world-sante .care-reasons > div > p{color:var(--ink-soft);max-width:36ch}
+
+/* Catalogue : rangées tabulaires plutôt que cartes. */
+.world-sante .care-list .offering{border-top:1px solid var(--rule);background:transparent;box-shadow:none}
+.world-sante .care-list .offering:last-child{border-bottom:1px solid var(--rule)}
+.world-sante .care-list .offering-number{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.world-sante .offer-meta{margin:.2rem 0 .5rem;font-size:.92rem;color:var(--ink-soft)}
+.world-sante details summary{cursor:pointer;color:var(--ink-strong)}
+.world-sante details[open] summary span{display:inline-block;transform:rotate(45deg);transition:transform .3s var(--ease-care)}
+
+/* Process : rail vertical d'accent. */
+.world-sante .process ol{counter-reset:none}
+.world-sante .process li{border-left:2px solid var(--accent);padding-left:1.4rem}
+.world-sante .process li > span{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+/* FAQ et fermeture. */
+.world-sante .questions article{border-top:1px solid var(--rule);padding-top:1.2rem}
+.world-sante .questions article p{color:var(--ink-soft);max-width:60ch}
+.world-sante .closing{background:var(--tint);border-radius:28px;margin-inline:clamp(1rem,4vw,3rem);text-align:left}
+.world-sante .closing p{color:var(--ink-soft);max-width:44ch}
+.world-sante .care-note{font-size:.92rem;color:var(--ink-soft);max-width:60ch;border-left:2px solid var(--accent);padding-left:1rem}
+
+/* Pages intérieures. */
+.world-sante .page-heading h1{font-size:clamp(2.4rem,4.6vw,4.4rem);line-height:1.08;letter-spacing:-.03em;max-width:16ch}
+.world-sante .manifesto h2{max-width:20ch}
+.world-sante .manifesto > span{color:var(--accent)}
+
+/* Formulaire : libellés au-dessus, champs nets. */
+.world-sante form select,.world-sante form textarea{background:#fff;border:1px solid #8fb0a6;border-radius:10px;color:var(--ink-strong);padding:.75rem .9rem;font:inherit}
+.world-sante form select:focus-visible,.world-sante form textarea:focus-visible{outline:3px solid var(--ink-strong);outline-offset:2px;border-color:var(--ink-strong)}
+.world-sante legend{font-family:var(--display);color:var(--ink-strong);font-size:1.2rem}
+.world-sante .form-note,.world-sante textarea::placeholder{color:var(--ink-soft)}
+.world-sante .booking-aside{background:var(--tint);border-radius:20px;padding:clamp(1.4rem,3vw,2.2rem)}
+.world-sante .booking-aside hr{border:0;border-top:1px solid var(--rule)}
+.world-sante .studio-check label{border-top:1px solid var(--rule);padding:.9rem 0}
+.world-sante .studio-check input{accent-color:var(--ink-strong);width:1.2rem;height:1.2rem}
+
+/* Une seule entrée orchestrée : la photo du hero se découvre. */
+@keyframes care-unveil{from{clip-path:inset(8% 0 0 0 round 140px 8px 8px 8px);opacity:.4}to{clip-path:inset(0 0 0 0 round 140px 8px 8px 8px);opacity:1}}
+.world-sante .hero-care .hero-photo img{animation:care-unveil 1.1s var(--ease-care) both}
+
+@media(max-width:860px){
+  .world-sante .care-reasons{grid-template-columns:1fr}
+  .world-sante .care-reasons ul{grid-template-columns:1fr}
+  .world-sante .care-facts{grid-template-columns:1fr 1fr}
+  .world-sante .hero-care{min-height:0}
+  .world-sante .story-care .story-photo{border-radius:8px 8px 8px 60px}
+  .world-sante .closing{margin-inline:1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-sante .hero-care .hero-photo img{animation:none}
+  .world-sante .action,.world-sante details summary span{transition:none}
+}
+
+/* ===== V2 visuel : images partout, un seul système de rayons (8 / 20 / 28 / pilule). ===== */
+.world-sante{--r-s:8px;--r-m:20px;--r-l:28px;--shadow-care:0 1px 2px rgba(23,59,71,.06),0 18px 40px -24px rgba(23,59,71,.28);-webkit-font-smoothing:antialiased}
+.world-sante img{outline:1px solid rgba(0,0,0,.08);outline-offset:-1px}
+.world-sante .care-facts dd,.world-sante .detail-columns span{font-variant-numeric:tabular-nums}
+
+/* Boutons : pilule + pastille de flèche qui glisse. */
+.world-sante .action{display:inline-flex;align-items:center;gap:.85rem;min-height:48px;padding:.4rem .45rem .4rem 1.4rem;font-weight:600;transition-property:background-color,transform,box-shadow;transition-duration:.35s;transition-timing-function:var(--ease-care)}
+.world-sante .action > span[aria-hidden]{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(239,246,242,.14);transition:transform .35s var(--ease-care)}
+.world-sante .action:hover{box-shadow:var(--shadow-care)}
+.world-sante .action:hover > span[aria-hidden]{transform:translate(2px,-2px)}
+.world-sante .action:active{transform:scale(.97)}
+
+/* Hero : la photo prend toute la hauteur du premier écran. */
+.world-sante .hero-care{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(2rem,5vw,5rem);padding:clamp(1rem,2vw,1.5rem) clamp(1rem,3vw,2rem) clamp(1.5rem,3vw,2.5rem) clamp(1.25rem,6vw,96px);min-height:min(calc(100dvh - 120px),860px)}
+.world-sante .hero-care .hero-copy{grid-column:1;grid-row:1;align-self:end;padding-bottom:1rem}
+.world-sante .hero-care .hero-photo{grid-column:2;grid-row:1 / span 2;border-radius:140px var(--r-s) var(--r-s) var(--r-s);min-height:520px;box-shadow:var(--shadow-care)}
+.world-sante .hero-care .hero-photo img{position:absolute;inset:0;height:100%}
+.world-sante .hero-care .hero-photo figcaption{letter-spacing:0;text-shadow:none;font-size:.82rem;font-family:var(--body)}
+.world-sante .care-facts{grid-column:1;grid-row:2;align-self:end}
+
+/* Récit : portrait 3:4. */
+.world-sante .story-care .story-photo img{aspect-ratio:3/4;height:auto;max-height:680px;object-fit:cover;object-position:50% 45%;filter:saturate(.88) contrast(1.02)}
+
+/* Motifs : photo carrée du geste sous l'intro. */
+.world-sante .reasons-photo{margin-top:2rem;border-radius:var(--r-m);overflow:hidden;max-width:420px}
+.world-sante .reasons-photo img{aspect-ratio:1;object-fit:cover;filter:saturate(.88)}
+
+/* Catalogue : cartes illustrées 4:3 (remplace les rangées). */
+.world-sante .care-list .catalog-items{gap:clamp(1.5rem,3vw,2.5rem)}
+.world-sante .care-list .offering,.world-sante .care-list .offering:last-child{position:relative;display:flex;flex-direction:column;padding:.5rem;border:1px solid var(--rule);border-radius:var(--r-l);background:#f8fbf9;transition:box-shadow .45s var(--ease-care),border-color .45s var(--ease-care)}
+.world-sante .care-list .offering:hover{box-shadow:var(--shadow-care);border-color:#a9c7bd}
+.world-sante .offer-photo{border-radius:calc(var(--r-l) - .5rem);overflow:hidden;aspect-ratio:4/3;background:var(--tint)}
+.world-sante .offer-photo img{height:100%;object-fit:cover;filter:saturate(.86) contrast(1.02);transition:transform .7s var(--ease-care)}
+.world-sante .care-list .offering:hover .offer-photo img{transform:scale(1.04)}
+.world-sante .care-list .offering-copy{display:flex;flex-direction:column;flex:1;padding:1.4rem 1.1rem 1.1rem}
+.world-sante .care-list .offering-copy .text-action{margin-top:auto;padding-top:1.2rem;display:inline-flex;gap:.5rem;min-height:44px;align-items:center;align-self:flex-start}
+.world-sante .text-action span,.world-sante .section-link span{display:inline-block;transition:transform .35s var(--ease-care)}
+.world-sante .text-action:hover span,.world-sante .section-link:hover span{transform:translate(3px,-3px)}
+.world-sante .offering details{margin-top:1rem}
+.world-sante .offering summary{min-height:44px;display:inline-flex;align-items:center}
+
+/* Manifeste (soins) : bande photo, fond encre. */
+.world-sante .manifesto-photo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.5rem clamp(2rem,6vw,6rem);align-items:center;background:var(--ink-strong);color:var(--paper);border-radius:var(--r-l);margin-inline:clamp(1rem,4vw,3rem);padding:clamp(.75rem,1.5vw,1rem)}
+.world-sante .manifesto-photo .manifesto-media{grid-row:1 / span 3;border-radius:calc(var(--r-l) - .75rem);overflow:hidden}
+.world-sante .manifesto-photo .manifesto-media img{aspect-ratio:3/4;max-height:620px;object-fit:cover;filter:saturate(.8)}
+.world-sante .manifesto-photo h2{color:var(--paper);grid-column:2;padding-right:clamp(1rem,4vw,4rem)}
+.world-sante .manifesto-photo > span{grid-column:2;color:var(--accent);opacity:1;align-self:end}
+.world-sante .manifesto-photo .action{grid-column:2;justify-self:start;background:var(--paper);color:var(--ink-strong);align-self:start}
+.world-sante .manifesto-photo .action:hover{background:#fff}
+.world-sante .manifesto-photo .action > span[aria-hidden]{background:var(--tint)}
+
+/* Minutage (première séance) et aside contact. */
+.world-sante .timing-photo{margin-top:2rem;border-radius:var(--r-m);overflow:hidden;max-width:560px}
+.world-sante .timing-photo img{aspect-ratio:4/3;object-fit:cover;filter:saturate(.86)}
+.world-sante .detail-section .detail-columns article{background:var(--paper);border-radius:var(--r-m);padding:1.4rem}
+.world-sante .aside-photo{margin:0 0 1.4rem;border-radius:calc(var(--r-m) - .5rem);overflow:hidden}
+.world-sante .aside-photo img{aspect-ratio:4/3;object-fit:cover;filter:saturate(.86)}
+.world-sante .booking-aside{padding:.5rem .5rem clamp(1.2rem,2.5vw,1.8rem)}
+.world-sante .booking-aside > :not(.aside-photo){margin-inline:clamp(.75rem,2vw,1.3rem)}
+.world-sante .booking-aside a{display:inline-flex;min-height:44px;align-items:center;color:var(--ink-strong)}
+
+/* Formulaire : gros champs tactiles. */
+.world-sante form select,.world-sante form textarea{min-height:52px;font-size:1rem;transition:border-color .25s var(--ease-care)}
+.world-sante form select:hover,.world-sante form textarea:hover{border-color:var(--ink-strong)}
+.world-sante form :user-invalid{border-color:#a3392c}
+.world-sante .booking-result{margin-top:1.5rem;padding:1.4rem;border-radius:var(--r-m);background:var(--tint);border-left:4px solid var(--ink-strong)}
+
+/* FAQ en accordéon. */
+.world-sante .questions details{border-top:1px solid var(--rule)}
+.world-sante .questions details:last-child{border-bottom:1px solid var(--rule)}
+.world-sante .questions summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;min-height:64px;padding:1rem 0;cursor:pointer}
+.world-sante .questions summary::-webkit-details-marker{display:none}
+.world-sante .questions summary h3{margin:0;font-size:1.15rem}
+.world-sante .questions summary > span{flex:none;position:relative;width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid var(--rule);transition:transform .35s var(--ease-care),background-color .35s var(--ease-care)}
+.world-sante .questions summary > span::before,.world-sante .questions summary > span::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink-strong);transform:translate(-50%,-50%)}
+.world-sante .questions summary > span::after{transform:translate(-50%,-50%) rotate(90deg)}
+.world-sante .questions details[open] summary > span{transform:rotate(45deg);background:var(--tint)}
+.world-sante .questions summary:hover h3{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.3em}
+.world-sante .questions details p{padding:0 3.5rem 1.4rem 0;color:var(--ink-soft);max-width:60ch;font-size:1rem;opacity:1}
+
+@media(max-width:860px){
+  .world-sante .world-header.menu-open nav a{min-height:48px;display:flex;align-items:center;border-bottom:1px solid var(--rule);font-family:var(--display);font-size:1.4rem}
+  .world-sante .hero-care{grid-template-columns:1fr;padding:1rem 1rem 2rem;gap:1.25rem;min-height:0}
+  .world-sante .hero-care .hero-photo{grid-column:1;grid-row:1;min-height:0;aspect-ratio:16/10;border-radius:72px var(--r-s) var(--r-s) var(--r-s)}
+  .world-sante .hero-care .hero-copy{grid-column:1;grid-row:2;padding:0}
+  .world-sante .hero-care h1{font-size:clamp(2.2rem,9vw,2.8rem)}
+  .world-sante .care-facts{grid-row:3}
+  .world-sante .care-list .catalog-items{grid-template-columns:1fr}
+  .world-sante .manifesto-photo{grid-template-columns:1fr;margin-inline:1rem}
+  .world-sante .manifesto-photo .manifesto-media{grid-row:auto}
+  .world-sante .manifesto-photo h2,.world-sante .manifesto-photo > span,.world-sante .manifesto-photo .action{grid-column:1;margin-inline:.5rem;padding-right:0}
+  .world-sante .manifesto-photo .action{margin-bottom:1rem}
+  .world-sante .manifesto-photo .manifesto-media img{aspect-ratio:4/3}
+  .world-sante .questions details p{padding-right:0}
+}
+
+/* Entrées à la vue (CSS natif, sans écouteur de scroll). */
+@supports (animation-timeline:view()){
+  @media(prefers-reduced-motion:no-preference){
+    @keyframes care-rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+    .world-sante .offering,.world-sante .reasons-photo,.world-sante .timing-photo,.world-sante .manifesto-media,.world-sante .story-care .story-photo{animation:care-rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-sante .action,.world-sante .action > span[aria-hidden],.world-sante .offer-photo img,.world-sante .questions summary > span,.world-sante .text-action span{transition:none}
+  .world-sante .care-list .offering:hover .offer-photo img{transform:none}
+}

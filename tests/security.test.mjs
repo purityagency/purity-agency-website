@@ -52,7 +52,7 @@ test('legacy URLs redirect in 301 (trailing slash included) without loops', asyn
     '/tarifs.html/': '/#services',
     '/services.html': '/services',
     '/services.html/': '/services',
-    '/agence-web-charleroi.html': '/#services',
+    '/agence-web-charleroi.html': '/agence-web/charleroi',
     '/liens.html': '/contact.html'
   };
   for (const [from, to] of Object.entries(expected)) {
@@ -88,7 +88,7 @@ test('client offers are no longer served on the main domain', async () => {
   });
 });
 
-test('cache policy: short public cache for CSS/JS and offers, no-cache for HTML', async () => {
+test('cache policy: short cache for unversioned CSS/JS, immutable for ?v= assets, offers, no-cache for HTML', async () => {
   await withServer(async baseUrl => {
     for (const asset of ['/css/app.css', '/js/menu.js']) {
       const res = await fetch(`${baseUrl}${asset}`);
@@ -97,6 +97,8 @@ test('cache policy: short public cache for CSS/JS and offers, no-cache for HTML'
       assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
       assert.ok(res.headers.get('etag'));
     }
+    const versioned = await fetch(`${baseUrl}/css/app.css?v=42`);
+    assert.equal(versioned.headers.get('cache-control'), 'public, max-age=31536000, immutable');
     const html = await fetch(`${baseUrl}/contact`);
     assert.equal(html.status, 200);
     assert.equal(html.headers.get('cache-control'), 'no-cache');

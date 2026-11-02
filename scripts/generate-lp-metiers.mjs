@@ -30,9 +30,9 @@ const DATA_METIERS = {
         { name: "Rénovation complète maison", badge: "1 à 3 mois" }
       ],
       feedback: [
-        "Budget estimatif 12 000 - 18 000 € · 3 photos requises · Déplacement 100 % qualifié",
-        "Budget estimatif 20 000 - 35 000 € · Plan d'implantation requis · Qualification prioritaire",
-        "Enveloppe globale > 60 000 € · Métré complet sur place · Dossier technique complet"
+        "Budget estimatif 12 000 - 18 000 € · 3 photos requises · Déplacement 100 % qualifié",
+        "Budget estimatif 20 000 - 35 000 € · Plan d'implantation requis · Qualification prioritaire",
+        "Enveloppe globale > 60 000 € · Métré complet sur place · Dossier technique complet"
       ]
     },
     widget2: {
@@ -65,7 +65,7 @@ const DATA_METIERS = {
     widget1: {
       label: "Sélection du service & table",
       chips: [
-        { name: "Déjeuner lunch (2 pers.)", badge: "Formule 28 €" },
+        { name: "Déjeuner lunch (2 pers.)", badge: "Formule 28 €" },
         { name: "Dîner dégustation (4 pers.)", badge: "Carte du chef" },
         { name: "Grande tablée privative (8+)", badge: "Menu sur-mesure" }
       ],
@@ -152,7 +152,7 @@ const DATA_METIERS = {
       feedback: [
         "Attestation conforme Région Wallonne délivrée · Relance annuelle programmée",
         "Aiguillage d'urgence activé · Diagnostic pièce à distance avant déplacement",
-        "Prime Habitation estimée : jusqu'à 4 500 € · Devis détaillé avec étude thermique"
+        "Prime Habitation estimée : jusqu'à 4 500 € · Devis détaillé avec étude thermique"
       ]
     },
     widget2: {
@@ -185,12 +185,12 @@ const DATA_METIERS = {
     widget1: {
       label: "Rituel de soin en cabine",
       chips: [
-        { name: "Soin visage éclat & hydratation", badge: "75 € · 1h00" },
-        { name: "Manucure russe & semi-permanent", badge: "55 € · 45 min" },
-        { name: "Rituel massage relaxant signature", badge: "90 € · 1h15" }
+        { name: "Soin visage éclat & hydratation", badge: "75 € · 1h00" },
+        { name: "Manucure russe & semi-permanent", badge: "55 € · 45 min" },
+        { name: "Rituel massage relaxant signature", badge: "90 € · 1h15" }
       ],
       feedback: [
-        "Cabine 1 allouée · Temps de pose intégré · Acompte Bancontact 15 € validé",
+        "Cabine 1 allouée · Temps de pose intégré · Acompte Bancontact 15 € validé",
         "Espace Nail réservé · Choix de couleur guidé en amont · 0 temps d'attente",
         "Cabine duo disponible · Huiles bio sélectionnées · Carte cadeau acceptée"
       ]
@@ -345,9 +345,9 @@ const DATA_METIERS = {
     widget1: {
       label: "Gabarit & formule de toilettage",
       chips: [
-        { name: "Petit chien (- de 10 kg) bain & coupe", badge: "45 € · 45 min" },
-        { name: "Chien moyen / grand pelage épais", badge: "65 € · 1h15" },
-        { name: "Démêlage & soin félin doux", badge: "55 € · Sans stress" }
+        { name: "Petit chien (- de 10 kg) bain & coupe", badge: "45 € · 45 min" },
+        { name: "Chien moyen / grand pelage épais", badge: "65 € · 1h15" },
+        { name: "Démêlage & soin félin doux", badge: "55 € · Sans stress" }
       ],
       feedback: [
         "Durée estimée 45 min · Table de travail réservée · Shampoing doux hypoallergénique",

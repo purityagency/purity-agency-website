@@ -610,3 +610,11 @@ main[tabindex="-1"]:focus{outline:none}
  .rating{transition:none}
  .rating:hover{transform:none}
 }
+/* Widget pieuvre : ne masque plus le texte sur mobile */
+@media (max-width:600px){
+ html .octo-float{right:max(10px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+ html .octo-float,html .octo-float img{width:48px;height:48px}
+ html .octo__teaser{right:12px;bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+ .site-footer{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+}
+h1,h2,h3{text-wrap:balance}

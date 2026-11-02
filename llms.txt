@@ -4,52 +4,82 @@
 
 Purity Agency est le nom commercial d'Amir Kebiyeb, entreprise personne physique. Numéro d'entreprise (BCE) et TVA : BE 1036.775.590. Régime de la franchise TVA (article 56bis du Code de la TVA) : TVA non applicable. Adresse : Boulevard Frans Dewandre 14, 6000 Charleroi, Belgique. Contact : contact@purity-agency.be.
 
+Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège, Brabant wallon), à distance ou sur place. Langue : français.
+
 ## Pages principales
 
 - [Accueil](https://purity-agency.be/): présentation de l'agence et de ses solutions.
 - [Services et tarifs](https://purity-agency.be/services): les 14 solutions, avec leurs repères de prix.
+- [Agence web par ville](https://purity-agency.be/agence-web): Charleroi, Namur, Mons, La Louvière, Liège, Brabant wallon.
+- [Site internet par métier](https://purity-agency.be/site-internet/): pages dédiées à 12 métiers.
 - [Nos réalisations](https://purity-agency.be/cas-concrets.html): 12 démonstrations interactives par métier.
 - [Blog](https://purity-agency.be/blog.html): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
 - [Contact](https://purity-agency.be/contact.html): formulaire et réservation d'un appel de 15 minutes, sans engagement.
+- [Version détaillée pour IA](https://purity-agency.be/llms-full.txt): offres, livrables, délais et FAQ complets.
 
-## Services
+## Services et prix indicatifs
 
-- [Diagnostic digital (15 min)](https://purity-agency.be/services/diagnostic-digital): échange gratuit pour identifier l'action la plus utile avant toute dépense.
-- [Page Essentielle (1 page)](https://purity-agency.be/services/page-essentielle): une page nette et contactable pour artisans et indépendants.
-- [Site Vitrine (5 pages)](https://purity-agency.be/services/site-vitrine): accueil, prestations, réalisations, présentation et contact.
-- [Site Complet (10+ pages)](https://purity-agency.be/services/site-complet): une page par métier et par ville d'intervention.
-- [Boutique en ligne](https://purity-agency.be/services/boutique-en-ligne): e-commerce avec les moyens de paiement utilisés en Belgique.
-- [Refonte et modernisation](https://purity-agency.be/services/refonte-modernisation): reconstruction d'un site existant en conservant ses adresses et son positionnement Google.
-- [Fiche Google Business et Maps](https://purity-agency.be/services/google-business): validation et optimisation de la fiche d'établissement.
-- [Référencement local (SEO)](https://purity-agency.be/services/referencement-local-seo): travail régulier de visibilité sur les recherches locales.
-- [Réseaux sociaux](https://purity-agency.be/services/gestion-reseaux-sociaux): planning, rédaction, visuels et programmation des publications.
-- [Pack Visuels et Reels](https://purity-agency.be/services/pack-visuels-reels): vidéos de smartphone transformées en contenus sous-titrés prêts à publier.
-- [Identité visuelle et logo](https://purity-agency.be/services/identite-visuelle-logo): identité de marque lisible et professionnelle.
-- [Pilote Automatique Essentiel](https://purity-agency.be/services/pilote-automatique-essentiel): une automatisation ciblée (rappels SMS, relance de devis, alertes).
-- [Pilote Automatique Business](https://purity-agency.be/services/pilote-automatique-business): formulaires, e-mails, planning et facturation connectés.
-- [Pilote Automatique Intégral](https://purity-agency.be/services/pilote-automatique-integral): assistant IA configuré sur les tarifs, zones et règles métier du client.
+- [Diagnostic digital (15 min)](https://purity-agency.be/services/diagnostic-digital): Offert — délai Créneau immédiat (15 min chrono). Avant de dépenser le moindre euro dans un site web, des réseaux sociaux ou de la publicité, Amir Kebiyeb examine votre situation avec vous et vous indique l’action concrète la plus rentable pour décrocher plus de chantiers.
+- [Page Essentielle (1 page)](https://purity-agency.be/services/page-essentielle): 490 € + 79 €/mois — délai 5 à 7 jours ouvrés. La formule idéale pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coaches) qui veulent remplacer une simple page Facebook ou un vieux site par une vitrine nette, crédible et contactable en 1 clic.
+- [Site Vitrine (5 pages)](https://purity-agency.be/services/site-vitrine): 1 490 € + 79 €/mois — délai 7 à 10 jours ouvrés. La formule la plus demandée : 5 pages complètes et structurées (Accueil rassurant, Prestations détaillées, Galerie de réalisations avec comparateur avant/après, Présentation de l’entreprise, Contact et demande de devis) conçues pour faire de vous le premier choix dans votre région.
+- [Site Complet (10+ pages)](https://purity-agency.be/services/site-complet): 2 490 € + 149 €/mois — délai 12 à 18 jours ouvrés. Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vos villes d’intervention en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles, Brabant Wallon), avec des formulaires spécifiques par équipe et un espace de recrutement.
+- [Boutique en ligne (E-commerce)](https://purity-agency.be/services/boutique-en-ligne): 3 990 € + 149 €/mois — délai 15 à 25 jours ouvrés. Une boutique rapide et sécurisée, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), adaptée aussi bien aux commerçants qu’aux restaurateurs (commandes à emporter et réservations anti-no-show).
+- [Refonte & modernisation de site web](https://purity-agency.be/services/refonte-modernisation): 890 à 2 490 € + 79 €/mois — délai 7 à 14 jours ouvrés. Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en conservant rigoureusement vos adresses et votre positionnement Google sans rien casser.
+- [Fiche Google Business & Maps](https://purity-agency.be/services/google-business): 290 € — délai 3 à 5 jours ouvrés. Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.
+- [Identité visuelle & Logo](https://purity-agency.be/services/identite-visuelle-logo): 690 € — délai 7 à 10 jours ouvrés. Fini les logos bricolés ou pixélisés : nous créons une identité de marque nette, lisible et professionnelle, pensée pour le monde réel (flocage de véhicules utilitaires, vêtements de travail, devis et factures).
+- [Pack Visuels & Reels Studio](https://purity-agency.be/services/pack-visuels-reels): 390 € — délai 4 à 7 jours ouvrés. Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.
+- [Référencement local (SEO)](https://purity-agency.be/services/referencement-local-seo): 590 € + 149 €/mois — délai Mise en place : 10 jours ouvrés. Un travail régulier pour placer votre site web en tête des résultats Google dès qu’un habitant de votre région cherche une intervention précise (ex: "chauffagiste agréé Charleroi", "carrossier Namur", "rénovation toiture Mons") sans dépendre de publicités payantes.
+- [Réseaux sociaux (3x/semaine)](https://purity-agency.be/services/gestion-reseaux-sociaux): 290 € + 349 €/mois — délai Démarrage sous 5 jours ouvrés. Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.
+- [Pilote Automatique Essentiel](https://purity-agency.be/services/pilote-automatique-essentiel): 490 € + 39 €/mois — délai 5 à 7 jours ouvrés. Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.
+- [Pilote Automatique Business](https://purity-agency.be/services/pilote-automatique-business): 990 € + 69 €/mois — délai 10 à 14 jours ouvrés. Fini les post-its, les notes égarées et les ressaisies manuelles : nous connectons vos formulaires web, vos e-mails, votre planning d’équipe et votre logiciel de facturation pour que chaque nouveau contact crée son dossier complet automatiquement.
+- [Pilote Automatique Intégral](https://purity-agency.be/services/pilote-automatique-integral): 1 990 € + 119 €/mois — délai 15 à 20 jours ouvrés. La solution la plus aboutie : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.
 
-## Nos réalisations (démonstrations)
+## Agence web par ville
 
-Les entreprises présentées dans ces démonstrations sont fictives : ce sont des exemples de parcours client par métier, pas des références clients.
+- [Agence web en Brabant wallon : sites et IA](https://purity-agency.be/agence-web/brabant-wallon): Création de site internet, SEO local et automatisation pour PME du Brabant wallon : Wavre, Nivelles, Louvain-la-Neuve, Waterloo. Dès 490 €.
+- [Agence web à Charleroi : sites, SEO et IA](https://purity-agency.be/agence-web/charleroi): Agence web basée à Charleroi : sites internet, SEO local, automatisation et IA pour indépendants et PME. Site vitrine dès 1 490 € + 79 €/mois.
+- [Agence web à La Louvière : sites et SEO local](https://purity-agency.be/agence-web/la-louviere): Création de site internet, SEO local et automatisation pour artisans et PME de La Louvière et de la région du Centre. Agence à Charleroi. Dès 490 €.
+- [Agence web pour PME à Liège : sites, SEO, IA](https://purity-agency.be/agence-web/liege): Sites internet, référencement local, automatisation et IA pour indépendants et PME liégeoises. Agence basée à Charleroi, à distance ou sur place.
+- [Agence web à Mons : création de site et SEO](https://purity-agency.be/agence-web/mons): Sites internet, référencement local et automatisation pour indépendants et PME à Mons et dans le Borinage. Agence basée à Charleroi. Dès 490 €.
+- [Agence web à Namur : sites et IA pour PME](https://purity-agency.be/agence-web/namur): Création de site internet, SEO local et automatisation pour indépendants et PME à Namur. Agence basée à Charleroi, déplacement possible. Dès 490 €.
 
-- [Rénovation](https://purity-agency.be/cas-concrets/renovation.html)
-- [Beauté](https://purity-agency.be/cas-concrets/beaute.html)
-- [Garage et carrosserie](https://purity-agency.be/cas-concrets/garage.html)
-- [Décoration](https://purity-agency.be/cas-concrets/decoration.html)
-- [Immobilier](https://purity-agency.be/cas-concrets/immobilier.html)
-- [Fiduciaire](https://purity-agency.be/cas-concrets/fiduciaire.html)
-- [Restaurant](https://purity-agency.be/cas-concrets/restaurant.html)
-- [Sport](https://purity-agency.be/cas-concrets/sport.html)
-- [Santé](https://purity-agency.be/cas-concrets/sante.html)
-- [Animaux](https://purity-agency.be/cas-concrets/animaux.html)
-- [Architecture](https://purity-agency.be/cas-concrets/architecture.html)
-- [Chauffage](https://purity-agency.be/cas-concrets/chauffage.html)
+## Site internet par métier
+
+- [Site internet pour agence immobilière en Wallonie](https://purity-agency.be/site-internet/agence-immobiliere): Site internet pour agence immobilière en Wallonie : biens à vendre et à louer, estimation en ligne pour capter des mandats, visites qualifiées.
+- [Site internet pour architecte en Wallonie](https://purity-agency.be/site-internet/architecte): Site internet pour architecte en Wallonie : portfolio de projets, démarche, permis d’urbanisme expliqué et demandes de projet qualifiées.
+- [Site internet pour boutique de décoration en Wallonie](https://purity-agency.be/site-internet/boutique-decoration): Site internet pour boutique de décoration en Wallonie : e-commerce, retrait en magasin, paiement Bancontact et stock synchronisé. Dès 3 990 €.
+- [Site internet pour chauffagiste en Wallonie](https://purity-agency.be/site-internet/chauffagiste): Site internet pour chauffagiste en Wallonie : urgences filtrées, devis pompe à chaleur avec photos, entretien chaudière et zone d’intervention.
+- [Site internet pour comptable et fiduciaire en Wallonie](https://purity-agency.be/site-internet/comptable): Site internet pour comptable et fiduciaire en Wallonie : attirer des PME solvables, prise de RDV, dépôt sécurisé des pièces et automatisation.
+- [Site internet pour entreprise de rénovation en Wallonie](https://purity-agency.be/site-internet/entreprise-renovation): Site internet pour entreprise de rénovation en Wallonie : chantiers avant et après, devis avec photos et m², zone d’intervention et SEO local.
+- [Site internet pour garage en Wallonie](https://purity-agency.be/site-internet/garage): Site internet pour garage et carrosserie en Wallonie : RDV entretien en ligne, devis carrosserie avec photos, véhicules en vente. Dès 1 490 €.
+- [Site internet pour institut de beauté en Wallonie](https://purity-agency.be/site-internet/institut-beaute): Site internet pour institut de beauté en Wallonie : réservation 24h/24, acompte contre les rendez-vous manqués, carte des soins et cartes cadeaux.
+- [Site internet pour kinésithérapeute en Wallonie](https://purity-agency.be/site-internet/kinesitherapeute): Site internet pour kiné en Wallonie : prise de RDV en ligne, motifs de consultation, infos INAMI et tarifs clairs, dans le respect de la déontologie.
+- [Site internet pour restaurant en Wallonie](https://purity-agency.be/site-internet/restaurant): Site internet pour restaurant en Wallonie : carte à jour, réservation en ligne sans commission, avis Google et SEO local. Dès 1 490 € + 79 €/mois.
+- [Site internet pour salle de sport en Wallonie](https://purity-agency.be/site-internet/salle-de-sport): Site internet pour salle de sport et studio en Wallonie : planning des cours, réservation de places, essai gratuit et abonnements en ligne.
+- [Site internet pour toiletteur en Wallonie](https://purity-agency.be/site-internet/toiletteur): Site internet pour toiletteur canin et félin en Wallonie : réservation par race et taille, acompte, tarifs clairs et rappels automatiques.
+
+## Nos réalisations (démonstrations fictives)
+
+- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux.html)
+- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture.html)
+- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute.html)
+- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage.html)
+- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration.html)
+- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire.html)
+- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage.html)
+- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier.html)
+- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation.html)
+- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant.html)
+- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante.html)
+- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport.html)
 
 ## Informations fiables
 
 - Les repères de prix affichés sur le site sont indicatifs ; le devis accepté par écrit fixe le périmètre et le prix.
+- Le client reste propriétaire de son site, de ses contenus et de son nom de domaine.
+- Les entreprises présentées dans « Nos réalisations » sont fictives : ce sont des démonstrations par métier, pas des références clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
+- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact.html ou par e-mail à contact@purity-agency.be.
 
 ## Pages légales
 

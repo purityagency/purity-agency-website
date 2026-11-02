@@ -1,3 +1,4 @@
+import { answerFor, objectionsFor, linksFor, notForHtml } from './service-page-extras.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -106,14 +107,14 @@ const META_DESCRIPTIONS = {
   'page-essentielle': s => `Page Essentielle pour artisans et indépendants : une page pro claire et rapide qui présente votre métier, contact en un clic. ${tarif(s)}`,
   'site-vitrine': s => `Site vitrine de 5 pages pour artisans et PME en Wallonie : prestations, réalisations avant/après et demande de devis. ${tarif(s)}`,
   'site-complet': s => `Site complet de plus de 10 pages pour PME multi-métiers : une page par service et par ville d’intervention en Wallonie. ${tarif(s)}`,
-  'boutique-en-ligne': s => `Boutique en ligne pour commerçants et restaurateurs belges : paiement Bancontact, Payconiq et carte, retrait ou vente à emporter. ${tarif(s)}`,
+  'boutique-en-ligne': s => `Boutique en ligne pour commerçants et restaurateurs belges : paiement Bancontact, Payconiq et carte, retrait sur place. ${tarif(s)}`,
   'refonte-modernisation': s => `Refonte de votre site lent ou dépassé : reconstruction complète sans perdre vos adresses ni votre positionnement Google. ${tarif(s)}`,
   'google-business': s => `Fiche Google Business optimisée pour apparaître sur Google Maps quand un client cherche votre métier près de chez lui, en Wallonie. ${tarif(s)}`,
   'identite-visuelle-logo': s => `Logo et identité visuelle pour artisans, indépendants et commerces : une image nette, lisible sur camionnette, vêtements et devis. ${tarif(s)}`,
   'pack-visuels-reels': s => `Vos vidéos de chantier filmées au smartphone deviennent des Reels sous-titrés et des visuels prêts à publier sur Instagram et Facebook. ${tarif(s)}`,
   'referencement-local-seo': s => `Référencement local en Wallonie : être trouvé sur Google pour votre métier et votre commune, sans dépendre de la publicité. ${tarif(s)}`,
   'gestion-reseaux-sociaux': s => `Vos réseaux sociaux gérés : 3 vidéos courtes et 3 publications par semaine, sur les réseaux de votre choix. ${tarif(s)}`,
-  'pilote-automatique-essentiel': s => `Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis à J+3 et J+7 ou alerte devis urgent. ${tarif(s)}`,
+  'pilote-automatique-essentiel': s => `Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis ou alerte devis urgent. ${tarif(s)}`,
   'pilote-automatique-business': s => `Formulaires, e-mails, planning et facturation reliés : chaque nouveau contact crée son dossier complet, sans double saisie. ${tarif(s)}`,
   'pilote-automatique-integral': s => `Assistant IA entraîné sur vos tarifs, vos zones et vos règles métier : il répond à vos clients le soir et le week-end. ${tarif(s)}`
 };
@@ -121,13 +122,15 @@ const META_DESCRIPTIONS = {
 function metaDescriptionFor(service) {
   const build = META_DESCRIPTIONS[service.slug];
   const desc = build ? build(service) : service.headline;
-  if (desc.length < 140 || desc.length > 160) console.warn(`Meta description hors 140-160 caractères (${desc.length}) : ${service.slug}`);
+  if (desc.length < 120 || desc.length > 154) console.warn(`Meta description hors 120-154 caractères (${desc.length}) : ${service.slug}`);
   return desc;
 }
 
 function buildServiceDetailPage(service) {
   const canonicalUrl = `https://purity-agency.be/services/${service.slug}`;
-  const pageTitle = `${service.name} : Livrables, Utilité & Tarifs | Purity Agency`;
+  const pageTitle = [' : tarif et livrables | Purity Agency', ' : tarif | Purity Agency', ' | Purity Agency'].map(x => service.name + x).find(t => t.length < 60);
+  const allFaq = [...service.faq, ...objectionsFor(service)];
+  const answer = answerFor(service);
   const metaDesc = metaDescriptionFor(service);
 
   const contactOfferUrl = service.id === 'M01'
@@ -136,7 +139,7 @@ function buildServiceDetailPage(service) {
   const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Demander mon devis cadré';
 
   // Build FAQPage Schema.org structure
-  const faqSchemaItems = (service.faq || []).map(f => ({
+  const faqSchemaItems = allFaq.map(f => ({
     "@type": "Question",
     "name": f.q,
     "acceptedAnswer": {
@@ -171,24 +174,7 @@ function buildServiceDetailPage(service) {
         "@type": "Service",
         "name": service.name,
         "description": service.summary,
-        "provider": {
-          "@type": "ProfessionalService",
-          "name": "Purity Agency",
-          "url": "https://purity-agency.be",
-          "telephone": "+32499874830",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Boulevard Frans Dewandre 14",
-            "addressLocality": "Charleroi",
-            "postalCode": "6000",
-            "addressCountry": "BE"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 50.4167,
-            "longitude": 4.4444
-          }
-        },
+        "provider": { "@id": "https://purity-agency.be/#business" },
         "areaServed": "Wallonie",
         "offers": {
           "@type": "Offer",
@@ -224,7 +210,7 @@ ${OG_IMAGE}
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261101">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
 <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
@@ -247,7 +233,7 @@ ${renderHeader('services')}
     <section class="sd-hero" aria-labelledby="service-title">
       <div class="sd-hero__pill"><i aria-hidden="true"></i> ${escapeHtml(service.pillar)}</div>
       <h1 class="sd-hero__title" id="service-title">${escapeHtml(service.name)}</h1>
-      <p class="sd-hero__headline">${escapeHtml(service.headline)}</p>
+      <p class="sd-hero__answer">${escapeHtml(answer)}</p>
       <p class="sd-hero__summary">${escapeHtml(service.summary)}</p>
 
       <div class="sd-hero__meta">
@@ -265,7 +251,7 @@ ${renderHeader('services')}
         <div class="sd-meta-card">
           <span class="sd-meta-card__label">Délai d'exécution</span>
           <span class="sd-meta-card__value">${escapeHtml(service.delay)}</span>
-          <span class="sd-meta-card__sub">Engagement de livraison contractuel</span>
+          <span class="sd-meta-card__sub">Écrit dans votre devis</span>
         </div>
 
         <div class="sd-meta-card">
@@ -318,6 +304,7 @@ ${renderHeader('services')}
           <p>${escapeHtml(service.utility)}</p>
         </div>
       </div>
+      ${notForHtml(service, escapeHtml)}
     </section>
 
     <!-- SECTION LIVRABLES EXACTS -->
@@ -325,7 +312,7 @@ ${renderHeader('services')}
       <div class="sd-section-header">
         <span class="sd-kicker">Ce que vous recevez</span>
         <h2 class="sd-heading">La liste exhaustive de vos livrables</h2>
-        <p class="sd-subheading">Zéro flou artistique. Voici exactement ce que notre équipe conçoit, code et met entre vos mains.</p>
+        <p class="sd-subheading">Zéro flou artistique. Voici exactement ce qui est conçu, construit et remis entre vos mains.</p>
       </div>
 
       <div class="sd-deliverables-grid">
@@ -457,7 +444,7 @@ ${renderHeader('services')}
       </div>
 
       <div class="sd-faq-list">
-        ${service.faq.map(item => `
+        ${allFaq.map(item => `
           <details class="sd-faq-item">
             <summary>${escapeHtml(item.q)}</summary>
             <div class="sd-faq-body">
@@ -468,13 +455,24 @@ ${renderHeader('services')}
       </div>
     </section>
 
+    <!-- MAILLAGE INTERNE -->
+    <section class="sd-section" aria-labelledby="sd-links-title">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Pour aller plus loin</span>
+        <h2 class="sd-heading" id="sd-links-title">Exemples par métier et guides utiles</h2>
+      </div>
+      <ul class="sd-links">
+        ${linksFor(service, escapeHtml)}
+      </ul>
+    </section>
+
     <!-- BOTTOM CTA -->
     <section class="sd-bottom-cta">
       <div class="sd-bottom-cta__inner">
         <span class="sd-kicker">Votre projet</span>
-        <h2>Prêt à donner un avantage décisif à votre entreprise&nbsp;?</h2>
-        <p>Validez votre cadrage directement avec Amir Kebiyeb. Devis clair et engagement ferme sur le résultat.</p>
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <h2>On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <p>Vous parlez directement à Amir Kebiyeb. Devis écrit avec prix, délai et livrables, sans engagement tant que vous ne l’avez pas signé.</p>
+        <div class="sd-bottom-cta__actions">
           <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span aria-hidden="true">↗</span></a>
           <a class="sd-btn-secondary" href="/services">Voir tous les autres services <span aria-hidden="true">→</span></a>
         </div>
@@ -501,8 +499,8 @@ ${renderFooter()}
 
 function buildServicesHubPage() {
   const canonicalUrl = `https://purity-agency.be/services`;
-  const pageTitle = `Services & Tarifs Digitaux pour Indépendants et PME | Purity Agency`;
-  const metaDesc = `Les 14 solutions digitales de Purity Agency pour indépendants et PME en Wallonie : sites web, e-commerce, réseaux sociaux, automatisation et IA, tarifs inclus.`;
+  const pageTitle = `Services et tarifs : sites, SEO et IA | Purity Agency`;
+  const metaDesc = `Les 14 services de Purity Agency pour indépendants et PME en Wallonie : sites web, e-commerce, réseaux sociaux, automatisation et IA, prix affichés.`;
 
   const schemaJson = {
     "@context": "https://schema.org",
@@ -547,7 +545,7 @@ ${OG_IMAGE}
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261101">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
 <script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
@@ -564,10 +562,10 @@ ${renderHeader('services')}
       <span aria-current="page">Services &amp; Tarifs</span>
     </nav>
 
-    <section class="sd-hero" style="border-bottom: none; padding-bottom: 1.5rem;">
+    <section class="sd-hero sd-hero--hub">
       <div class="sd-hero__pill"><i aria-hidden="true"></i> Catalogue Officiel &amp; Tarifs 2026-2027</div>
       <h1 class="sd-hero__title">Des solutions concrètes.<br>Des livrables précis.</h1>
-      <p class="sd-hero__headline">Cliquez sur un service pour inspecter ses livrables complets, son utilité et le coût de l'inaction.</p>
+      <p class="sd-hero__answer">Purity Agency, agence web à Charleroi, crée des sites, des fiches Google, du contenu pour les réseaux et des automatisations pour les indépendants et PME de Wallonie. Chaque service affiche son prix, son délai et ses livrables. Vous ne savez pas lequel choisir ? Le diagnostic de 15 minutes est gratuit et sans engagement.</p>
       <p class="sd-hero__summary">Tous nos tarifs sont transparents et affichés sans devis à la tête du client. Hébergement rapide, sécurité et maintenance incluses.</p>
 
       <div class="sd-trust-strip" aria-label="Garanties">
@@ -591,7 +589,7 @@ ${renderHeader('services')}
       </div>
     </section>
 
-    <section class="sd-section" style="border-top: 1px solid var(--sd-border);">
+    <section class="sd-section sd-section--ruled">
       <p class="sd-hub-price-note">${VAT_NOTE}. ${OFFER_NOTE}.</p>
       <div class="sd-hub-grid" id="services-grid">
         ${services.map((svc, idx) => {

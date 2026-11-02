@@ -160,3 +160,13 @@ html{-moz-osx-font-smoothing:grayscale}
  .sector-demo-chip,.sector-demo-chip__shot,.sector-demo-chip__arrow{transition:none}
  .sector-demo-chip:hover,.sector-demo-chip:active,.sector-demo-chip:hover .sector-demo-chip__shot{transform:none}
 }
+
+/* CTA unique : libelle plus long, jamais de debordement a 375 px */
+@media (max-width:520px){
+ .hero__actions{flex-direction:column;align-items:stretch}
+ .hero__actions .btn,.menu__foot .btn{width:100%;justify-content:center;text-align:center;white-space:normal}
+ .method__cta{max-width:100%}
+ .method__cta-label{white-space:normal}
+}
+.hero__trust{text-wrap:balance}
+.site-footer__inner a[href^="/contact.html"]{display:block;font-weight:600;color:var(--accent);margin-bottom:.5rem}

@@ -1,4 +1,5 @@
 // Serveur HTTP haute securite (Zero-Dependency) pour Purity Agency v2.
+import { createHash } from 'node:crypto';
 import http from 'node:http';
 import { readFile, realpath, stat } from 'node:fs/promises';
 import { createReadStream, realpathSync } from 'node:fs';
@@ -63,6 +64,24 @@ async function notFound(res) {
   } catch {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }).end('404');
   }
+}
+
+// ETag fondé sur le contenu (petits fichiers) : un déploiement qui ne change pas un fichier
+// ne l'invalide plus. Mémorisé par chemin tant que taille et mtime restent identiques.
+const ETAG_CACHE = new Map();
+async function contentEtag(file, info) {
+  const stamp = `${info.size}-${Math.floor(info.mtimeMs)}`;
+  const hit = ETAG_CACHE.get(file);
+  if (hit && hit.stamp === stamp) return hit.etag;
+  let etag = `W/"${info.size.toString(16)}-${Math.floor(info.mtimeMs).toString(16)}"`;
+  if (info.size <= 2_000_000) {
+    try {
+      etag = `W/"${info.size.toString(16)}-${createHash('sha1').update(await readFile(file)).digest('base64url').slice(0, 16)}"`;
+    } catch { /* repli sur mtime */ }
+  }
+  if (ETAG_CACHE.size > 5000) ETAG_CACHE.clear();
+  ETAG_CACHE.set(file, { stamp, etag });
+  return etag;
 }
 
 export const server = http.createServer(async (req, res) => {
@@ -267,7 +286,7 @@ export const server = http.createServer(async (req, res) => {
     }
 
     const ext = extname(file).toLowerCase();
-    const etag = `W/"${info.size.toString(16)}-${Math.floor(info.mtimeMs).toString(16)}"`;
+    const etag = await contentEtag(realFile, info);
     const media = /^\.(?:webm|mp4|png|jpg|webp|svg|woff2|ico)$/.test(ext);
     const code = ext === '.css' || ext === '.js';
     const headers = {

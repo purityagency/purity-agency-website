@@ -263,7 +263,7 @@ export const services = [
         desc: 'Quand un propriétaire compare 3 devis pour une pompe à chaleur ou une toiture à 18 500 €, il choisit l’artisan dont le site donne immédiatement confiance avec des preuves de chantiers récents.'
       },
       {
-        title: '2 heures perdues par jour sur des devis pour des curieux',
+        title: 'Des soirées perdues sur des devis pour des curieux',
         desc: 'Passer ses soirées à faire des chiffrages à l’aveugle pour des personnes qui n’ont pas le budget, faute d’avoir un formulaire qui qualifie le projet au préalable.'
       },
       {

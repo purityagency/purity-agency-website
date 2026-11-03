@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -167,10 +167,10 @@
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>
-    <a href="/blog.html" style="--i:2">Blog</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/services">Services &amp; Tarifs</a>
+    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
 </div>
 
@@ -184,373 +184,242 @@
       <span aria-current="page">Pilote Automatique Intégral</span>
     </nav>
 
-    <!-- HERO DU SERVICE -->
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Pilier 03 · Automatisation &amp; Agents IA</div>
-      <h1 class="sd-hero__title" id="service-title">Pilote Automatique Intégral</h1>
-      <p class="sd-hero__answer">Pilote Automatique Intégral par Purity Agency, à Charleroi : 1 990 € de mise en place, puis 119 €/mois de suivi, résiliable chaque mois. Délai : 15 à 20 jours ouvrés. Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
-      <p class="sd-hero__summary">Notre formule la plus complète : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Tarif de mise en place</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">1 990 €</span>
-            
-          </div>
-          <span class="sd-meta-card__sub">+ 119 €/mois (suivi &amp; hébergement)</span>
-          <span class="sd-meta-card__vat">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
-          <span class="sd-meta-card__offer">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
+    <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
+      <div class="sd-hero__text">
+        <div class="sd-hero__pill">Automatisation &amp; Agents IA</div>
+        <h1 class="sd-hero__title" id="service-title">Pilote Automatique Intégral</h1>
+        <p class="sd-hero__lead">Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger.</p>
+        <div class="sd-hero__price"><strong>1 990 €</strong><span>+ 119 €/mois de suivi</span></div>
+        <ul class="sd-hero__chips">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>15 à 20 jours ouvrés</li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c1.8.9 3 2.9 3 5.5"/></svg>Amir, de A à Z</li>
+        </ul>
+        <div class="sd-hero__actions">
+          <a class="sd-btn-primary" href="/contact.html?offer=M23">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>
         </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Délai</span>
-          <span class="sd-meta-card__value">15 à 20 jours ouvrés</span>
-          <span class="sd-meta-card__sub">Écrit dans votre devis</span>
-        </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Votre interlocuteur</span>
-          <span class="sd-meta-card__value">Amir, de A à Z</span>
-          <span class="sd-meta-card__sub">Prix écrit au devis · Sans frais cachés</span>
+        <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
+        <div class="sd-trust-strip" aria-label="Garanties et réassurance">
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7.5-3.5 7.5-9.5V5.5L12 3 4.5 5.5v6C4.5 17.5 12 21 12 21z"/><path d="m9 12 2 2 4-4"/></svg>BCE &amp; TVA <strong>BE 1036.775.590</strong></span>
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Charleroi &amp; Wallonie</span>
         </div>
       </div>
-
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html?offer=M23">Recevoir mon devis écrit <span aria-hidden="true">↗</span></a>
-        <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir d’abord <span aria-hidden="true">→</span></a>
-      </div>
-
-      <!-- TRUST STRIP ABOVE THE FOLD -->
-      <div class="sd-trust-strip" aria-label="Garanties et réassurance">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
-        </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi &amp; Wallonie</span>
-        </div>
+      <div class="sd-hero__visual">
+        <figure class="sd-stage sd-stage--flow">
+        <ol class="sd-flow">
+          <li class="sd-flow__node"><span class="sd-flow__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></span><span class="sd-flow__label">Message à 21 h</span><span class="sd-flow__num" aria-hidden="true">1</span></li>
+          <li class="sd-flow__node"><span class="sd-flow__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg></span><span class="sd-flow__label">L’assistant répond</span><span class="sd-flow__num" aria-hidden="true">2</span></li>
+          <li class="sd-flow__node"><span class="sd-flow__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"/></svg></span><span class="sd-flow__label">Demande triée</span><span class="sd-flow__num" aria-hidden="true">3</span></li>
+          <li class="sd-flow__node"><span class="sd-flow__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="sd-flow__label">Dossier sur votre téléphone</span><span class="sd-flow__num" aria-hidden="true">4</span></li>
+        </ol>
+        <figcaption>Le soir et le week-end, l’assistant répond et vous prépare le dossier</figcaption>
+      </figure>
       </div>
     </section>
 
-    <!-- SECTION POUR QUI & UTILITÉ -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour qui, pour quoi</span>
-        <h2 class="sd-heading">Ce que ça change pour votre activité</h2>
-        <p class="sd-subheading">Pour qui c’est fait, et ce que vous y gagnez concrètement.</p>
-      </div>
-
-      <div class="sd-duo-grid">
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            À qui s'adresse cette formule&nbsp;?
-          </h3>
-          <p>Entreprises en forte croissance, sociétés de dépannage avec beaucoup d’appels et gérants qui n’en peuvent plus d’être dérangés en permanence pour des questions basiques.</p>
-        </div>
-
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            Ce que vous y gagnez
-          </h3>
-          <p>Répondre poliment aux clients le dimanche soir ou à 23h, vérifier si le projet entre dans votre secteur et votre budget, et ne vous passer que les dossiers chauds et qualifiés.</p>
-        </div>
-      </div>
-      <div class="sd-notfor"><strong>Ce n’est pas pour vous si</strong><p>Vous voulez qu’une IA décide à votre place ou s’engage sur des prix sans contrôle : elle répond, vous gardez la main.</p></div>
-    </section>
-
-    <!-- SECTION LIVRABLES EXACTS -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-deliv-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Ce que vous recevez</span>
-        <h2 class="sd-heading">Tout ce qui est livré, noir sur blanc</h2>
-        <p class="sd-subheading">Voici exactement ce que vous recevez. Rien n’est laissé dans le flou.</p>
+        <h2 class="sd-heading" id="sd-deliv-title">Tout est livré, noir sur blanc</h2>
       </div>
-
-      <div class="sd-deliverables-grid">
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Assistant IA réglé sur vos tarifs, vos délais et vos règles</strong>
-            </div>
-            <p>Il répond avec vos prix, vos délais et vos conditions. S’il ne connaît pas la réponse, il prend les coordonnées et vous transmet la demande au lieu d’improviser. Aucune remise sans votre accord.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Disponible là où vos clients vous écrivent (Site web &amp; WhatsApp)</strong>
-            </div>
-            <p>L’assistant répond instantanément aux questions de vos clients 24h/24 et 7j/7, y compris les soirs et les week-ends quand vous êtes en famille.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Filtrage automatique des demandes &amp; tri des chantiers rentables</strong>
-            </div>
-            <p>L’assistant demande les informations indispensables (commune, type de travaux, photos, urgence) et vérifie si le client se trouve bien dans votre secteur avant de vous alerter.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Dossier pré-rempli envoyé directement sur votre téléphone</strong>
-            </div>
-            <p>Dès qu’une demande sérieuse est qualifiée, vous recevez une fiche résumée claire sur votre smartphone avec toutes les informations nécessaires pour rappeler et signer.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Tableau de bord pour consulter toutes les discussions</strong>
-            </div>
-            <p>Vous pouvez relire l’ensemble des échanges menés par l’assistant à tout moment et reprendre la main sur une discussion quand vous le souhaitez.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Mise en conformité AI Act et RGPD accompagnée</strong>
-            </div>
-            <p>Avertissement clair indiquant au client qu’il dialogue avec un assistant automatisé, et coordonnées limitées à votre usage, sans réutilisation externe.</p>
-          </div>
-        
-      </div>
+      <ul class="sd-deliverables-grid">
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg></span><span class="sd-tile__label">Réglé sur vos tarifs et règles</span><span class="sd-tile__num" aria-hidden="true">01</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg></span><span class="sd-tile__label">Sur le site et WhatsApp</span><span class="sd-tile__num" aria-hidden="true">02</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"/></svg></span><span class="sd-tile__label">Demandes triées pour vous</span><span class="sd-tile__num" aria-hidden="true">03</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="sd-tile__label">Dossier sur votre téléphone</span><span class="sd-tile__num" aria-hidden="true">04</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="m8 15 3-4 3 2 5-6"/></svg></span><span class="sd-tile__label">Toutes les discussions visibles</span><span class="sd-tile__num" aria-hidden="true">05</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7.5-3.5 7.5-9.5V5.5L12 3 4.5 5.5v6C4.5 17.5 12 21 12 21z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="sd-tile__label">AI Act et RGPD accompagnés</span><span class="sd-tile__num" aria-hidden="true">06</span></li>
+      </ul>
     </section>
 
-    <!-- SECTION COMPARATIVE AVEC PURITY VS AUTRES -->
-    
-    <section class="sd-section">
+    <section class="sd-section sd-section--vs" aria-labelledby="sd-vs-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Pourquoi Purity</span>
-        <h2 class="sd-heading">Ce qui change par rapport à ce que vous avez peut-être déjà vécu</h2>
-        <p class="sd-subheading">À gauche, ce qu’on voit souvent chez les prestataires ou en bricolant soi-même. À droite, ce que Purity fait à la place.</p>
+        <h2 class="sd-heading" id="sd-vs-title">Ailleurs, et chez Purity</h2>
       </div>
-
       <div class="sd-comparison-wrap">
         <table class="sd-comparison-table">
           <thead>
             <tr>
-              <th scope="col">Point</th>
-              <th scope="col">Ce qu’on voit souvent</th>
-              <th scope="col" class="sd-col-purity">Avec Purity</th>
+              <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
+              <th scope="col"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>Souvent ailleurs</span></th>
+              <th scope="col" class="sd-col-purity"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Chez Purity</span></th>
             </tr>
           </thead>
           <tbody>
-            
-              <tr>
-                <td class="sd-col-aspect">Intelligence des réponses</td>
-                <td class="sd-col-others">Vieux robot bête qui répète en boucle &quot;Je n’ai pas compris votre question&quot;</td>
-                <td class="sd-col-purity"><strong>✓</strong> Assistant moderne qui comprend le langage courant de vos clients et répond avec précision</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Respect de vos prix</td>
-                <td class="sd-col-others">IA mal réglée qui invente des faux prix ou promet des réductions impossibles</td>
-                <td class="sd-col-purity"><strong>✓</strong> L’assistant ne donne que vos tarifs ; hors de votre grille, il vous passe la main</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Conformité aux lois européennes</td>
-                <td class="sd-col-others">Données clients envoyées n’importe où sans respecter la loi</td>
-                <td class="sd-col-purity"><strong>✓</strong> Mise en conformité AI Act et RGPD accompagnée : le client sait qu’il parle à un assistant</td>
-              </tr>
-            
+            <tr>
+              <th scope="row" class="sd-col-aspect">Intelligence des réponses</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>« Je n’ai pas compris » en boucle</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Il comprend le langage courant</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Respect de vos prix</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Des prix inventés</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Vos tarifs, sinon il vous passe la main</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Conformité aux lois européennes</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Des données envoyées n’importe où</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Client informé, RGPD respecté</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
-    
 
-    <!-- SECTION LE COÛT DE L'INACTION -->
-    <section class="sd-section">
-      <div class="sd-loss-card">
-        <span class="sd-kicker">Ne pas agir a un coût</span>
-        <h2 class="sd-heading">Ce que vous perdez chaque mois sans cette solution</h2>
-        <p class="sd-subheading">Ces pertes n’apparaissent sur aucune facture. Elles vous coûtent quand même, chaque mois.</p>
+    <section class="sd-section sd-loss" aria-labelledby="sd-loss-title">
+      <div class="sd-loss__head">
+        <h2 class="sd-heading" id="sd-loss-title">Ce que vous perdez chaque mois sans cette solution</h2>
+      </div>
+      <ol class="sd-loss__list">
+        <li><span class="sd-loss__num" aria-hidden="true">01</span><span>Des demandes du soir et du week-end sans réponse</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">02</span><span>Le coût d’une secrétaire téléphonique à temps plein</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">03</span><span>Être dérangé en permanence pendant vos chantiers ou le week-end</span></li>
+      </ol>
+    </section>
 
-        <div class="sd-loss-grid">
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Des demandes du soir et du week-end sans réponse</span>
-              </div>
-              <p>Un client qui pose une question le samedi soir n’attend pas le lundi matin : si personne ne lui répond, il contacte immédiatement un concurrent.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Le coût d’une secrétaire téléphonique à temps plein</span>
-              </div>
-              <p>Embaucher une personne juste pour décrocher et noter les coordonnées coûte plus de 35 000 € par an avec les charges belges.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Être dérangé en permanence pendant vos chantiers ou le week-end</span>
-              </div>
-              <p>Avoir les mains pleines de plâtre ou de cambouis et devoir décrocher pour des personnes qui demandent juste une information basique disponible sur le site.</p>
-            </div>
-          
+    <section class="sd-section" aria-labelledby="sd-steps-title">
+      <div class="sd-section-header sd-section-header--row">
+        <div>
+          <span class="sd-kicker">Comment ça se passe</span>
+          <h2 class="sd-heading" id="sd-steps-title">4 étapes, très peu de travail pour vous</h2>
         </div>
+        <span class="sd-steps__delay"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Livré en 15 à 20 jours ouvrés</span>
       </div>
+      <ol class="sd-timeline">
+        <li class="sd-timeline__step"><span class="sd-timeline__num">01</span><strong>Notations de vos règles et tarifs</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">02</span><strong>Entraînement de l’assistant sur vos cas réels</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">03</span><strong>Connexion à votre site et à votre téléphone</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">04</span><strong>Mise en route sous surveillance</strong></li>
+      </ol>
     </section>
 
-    <!-- SECTION COMMENT ÇA SE PASSE / DÉROULEMENT -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Comment ça se passe</span>
-        <h2 class="sd-heading">4 étapes, et très peu de travail pour vous</h2>
-        <p class="sd-subheading">Vous expliquez votre métier, on s’occupe du reste. Rien n’est mis en ligne sans votre accord.</p>
-      </div>
-
-      <div class="sd-steps-grid">
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Notations de vos règles et tarifs</strong>
-            <p>On consigne vos prix, vos délais habituels, vos communes d’intervention et les questions fréquentes de vos clients.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Entraînement de l’assistant sur vos cas réels</strong>
-            <p>Tests complets sur plus de 50 questions pièges de clients (tarifs, délais, urgences, secteur) pour valider qu’il répond toujours exactement comme vous le souhaitez.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Connexion à votre site et à votre téléphone</strong>
-            <p>On branche l’assistant sur votre site web ou sur votre messagerie WhatsApp professionnelle.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">04</div>
-            <strong>Mise en route sous surveillance</strong>
-            <p>On relit avec vous les premières conversations et on corrige ce qui doit l’être.</p>
-          </div>
-        
-      </div>
-    </section>
-
-    <!-- SECTION CAS CONCRETS ASSOCIÉS (PREUVE SOCIALE & MAILLAGE) -->
-    
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Démos par métier</span>
-        <h2 class="sd-heading">Voyez à quoi ça ressemble pour un métier proche du vôtre</h2>
-        <p class="sd-subheading">Ce sont des démonstrations construites par Purity pour montrer le résultat, pas des sites de clients. Testez-les sur votre téléphone.</p>
+        <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
+        <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
-
       <div class="sd-cases-grid">
-        
-          <a class="sd-case-card" href="/cas-concrets/fiduciaire.html">
-            <span class="sd-case-card__sector">Fiduciaire</span>
-            <h3>Clarté &amp; Associés</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
-          <a class="sd-case-card" href="/cas-concrets/immobilier.html">
-            <span class="sd-case-card__sector">Immobilier</span>
-            <h3>Beaux Jours</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
+        <a class="sd-case-card" href="/cas-concrets/fiduciaire.html">
+          <img src="/assets/shots/fiduciaire-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Clarté &amp; Associés, fiduciaire" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Fiduciaire</span><strong>Clarté &amp; Associés</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="sd-case-card" href="/cas-concrets/immobilier.html">
+          <img src="/assets/shots/immobilier-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Beaux Jours, immobilier" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Immobilier</span><strong>Beaux Jours</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
       </div>
     </section>
-    
 
-    <!-- SECTION MAINTENANCE & SUIVI -->
-    
-    <section class="sd-section">
-      <div class="sd-maintenance-box">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        <div>
-          <h4>Ce qui est inclus dans votre suivi mensuel (119 €/mois)</h4>
-          <p>Mise à jour régulière de vos tarifs et conditions, surveillance anti-erreur et réponse sous 24 h ouvrées.</p>
+    <section class="sd-section" aria-labelledby="sd-offer-title">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Le prix</span>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+      </div>
+      <div class="sd-offer">
+        <div class="sd-offer__price">
+          <span class="sd-offer__label">Mise en place</span>
+          <strong class="sd-offer__amount">1 990 €</strong>
+          <span class="sd-offer__sub">+ 119 €/mois de suivi et hébergement</span>
+          <span class="sd-offer__note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
+          <span class="sd-offer__promo">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
         </div>
+        <ul class="sd-offer__side">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg><div><strong>Inclus dans le suivi (119 €/mois)</strong><p>Mise à jour régulière de vos tarifs et conditions, surveillance anti-erreur et réponse sous 24 h ouvrées.</p></div></li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></svg><div><strong>Résiliable chaque mois</strong><p>Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p></div></li>
+        </ul>
       </div>
     </section>
-    
 
-    <!-- FAQ SECTION (SERP RICH SNIPPETS) -->
-    <section class="sd-section">
-      <div class="sd-section-header">
+    <section class="sd-section sd-faq" aria-labelledby="sd-faq-title">
+      <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
-        <h2 class="sd-heading">Questions fréquentes sur cette formule</h2>
-        <p class="sd-subheading">Des réponses franches, avant que vous décidiez.</p>
+        <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
+        <a class="sd-link-arrow" href="/contact.html?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
-
       <div class="sd-faq-list">
-        
-          <details class="sd-faq-item">
-            <summary>L’assistant peut-il inventer des prix ou promettre n’importe quoi ?</summary>
-            <div class="sd-faq-body">
-              <p>Non. Nous intégrons un verrouillage strict de ses connaissances. Si un client pose une question qui sort de votre grille de tarifs ou de vos compétences, l’assistant lui propose poliment de vous transmettre ses coordonnées pour que vous le rappeliez directement.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>L’outil respecte-t-il les lois européennes sur l’IA et la vie privée ?</summary>
-            <div class="sd-faq-body">
-              <p>On met l’outil en conformité avec vous : le client est clairement averti qu’il s’agit d’une assistance automatisée et ses données ne sont pas utilisées en dehors de votre entreprise.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Combien de temps faut-il pour qu’il soit opérationnel ?</summary>
-            <div class="sd-faq-body">
-              <p>La préparation, les tests de questions pièges et la mise en route prennent entre 15 et 20 jours ouvrés pour une solution livrée clés en main.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Puis-je couper l’assistant si je préfère ?</summary>
-            <div class="sd-faq-body">
-              <p>Oui, un simple bouton dans votre tableau de bord vous permet de mettre l’assistant en pause à tout moment pour repasser en formulaire classique.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Est-ce que je m’engage sur une durée ?</summary>
-            <div class="sd-faq-body">
-              <p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Que se passe-t-il si j’arrête le suivi ?</summary>
-            <div class="sd-faq-body">
-              <p>Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>À qui appartient ce qui est livré ?</summary>
-            <div class="sd-faq-body">
-              <p>À vous. Une fois la facture réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Purity garde seulement ses outils et méthodes génériques.</p>
-            </div>
-          </details>
-        
+        <details class="sd-faq-item">
+          <summary>L’assistant peut-il inventer des prix ou promettre n’importe quoi ?</summary>
+          <div class="sd-faq-body"><p>Non. Nous intégrons un verrouillage strict de ses connaissances. Si un client pose une question qui sort de votre grille de tarifs ou de vos compétences, l’assistant lui propose poliment de vous transmettre ses coordonnées pour que vous le rappeliez directement.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>L’outil respecte-t-il les lois européennes sur l’IA et la vie privée ?</summary>
+          <div class="sd-faq-body"><p>On met l’outil en conformité avec vous : le client est clairement averti qu’il s’agit d’une assistance automatisée et ses données ne sont pas utilisées en dehors de votre entreprise.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Combien de temps faut-il pour qu’il soit opérationnel ?</summary>
+          <div class="sd-faq-body"><p>La préparation, les tests de questions pièges et la mise en route prennent entre 15 et 20 jours ouvrés pour une solution livrée clés en main.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Puis-je couper l’assistant si je préfère ?</summary>
+          <div class="sd-faq-body"><p>Oui, un simple bouton dans votre tableau de bord vous permet de mettre l’assistant en pause à tout moment pour repasser en formulaire classique.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Est-ce que je m’engage sur une durée ?</summary>
+          <div class="sd-faq-body"><p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Que se passe-t-il si j’arrête le suivi ?</summary>
+          <div class="sd-faq-body"><p>Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>À qui appartient ce qui est livré ?</summary>
+          <div class="sd-faq-body"><p>À vous. Une fois la facture réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Purity garde seulement ses outils et méthodes génériques.</p></div>
+        </details>
       </div>
     </section>
 
-    <!-- MAILLAGE INTERNE -->
-    <section class="sd-section" aria-labelledby="sd-links-title">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour aller plus loin</span>
-        <h2 class="sd-heading" id="sd-links-title">Exemples par métier et guides utiles</h2>
-      </div>
+    <section class="sd-section sd-section--more" aria-label="Description détaillée">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur Pilote Automatique Intégral</span><span class="sd-more__hint">Détail complet</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">Pilote Automatique Intégral par Purity Agency, à Charleroi : 1 990 € de mise en place, puis 119 €/mois de suivi, résiliable chaque mois. Délai : 15 à 20 jours ouvrés. Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
+          <p>Notre formule la plus complète : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.</p>
+          <h3>Pour qui</h3>
+          <p>Entreprises en forte croissance, sociétés de dépannage avec beaucoup d’appels et gérants qui n’en peuvent plus d’être dérangés en permanence pour des questions basiques.</p>
+          <h3>Ce n’est pas pour vous si</h3>
+          <p>Vous voulez qu’une IA décide à votre place ou s’engage sur des prix sans contrôle : elle répond, vous gardez la main.</p>
+          <h3>Ce que vous y gagnez</h3>
+          <p>Répondre poliment aux clients le dimanche soir ou à 23h, vérifier si le projet entre dans votre secteur et votre budget, et ne vous passer que les dossiers chauds et qualifiés.</p>
+          <h3>Le détail des livrables</h3>
+          <dl>
+            <dt>Assistant IA réglé sur vos tarifs, vos délais et vos règles</dt><dd>Il répond avec vos prix, vos délais et vos conditions. S’il ne connaît pas la réponse, il prend les coordonnées et vous transmet la demande au lieu d’improviser. Aucune remise sans votre accord.</dd>
+            <dt>Disponible là où vos clients vous écrivent (Site web &amp; WhatsApp)</dt><dd>L’assistant répond instantanément aux questions de vos clients 24h/24 et 7j/7, y compris les soirs et les week-ends quand vous êtes en famille.</dd>
+            <dt>Filtrage automatique des demandes &amp; tri des chantiers rentables</dt><dd>L’assistant demande les informations indispensables (commune, type de travaux, photos, urgence) et vérifie si le client se trouve bien dans votre secteur avant de vous alerter.</dd>
+            <dt>Dossier pré-rempli envoyé directement sur votre téléphone</dt><dd>Dès qu’une demande sérieuse est qualifiée, vous recevez une fiche résumée claire sur votre smartphone avec toutes les informations nécessaires pour rappeler et signer.</dd>
+            <dt>Tableau de bord pour consulter toutes les discussions</dt><dd>Vous pouvez relire l’ensemble des échanges menés par l’assistant à tout moment et reprendre la main sur une discussion quand vous le souhaitez.</dd>
+            <dt>Mise en conformité AI Act et RGPD accompagnée</dt><dd>Avertissement clair indiquant au client qu’il dialogue avec un assistant automatisé, et coordonnées limitées à votre usage, sans réutilisation externe.</dd>
+          </dl>
+          <h3>Le comparatif en détail</h3>
+          <dl>
+            <dt>Intelligence des réponses</dt><dd>Souvent ailleurs : Vieux robot bête qui répète en boucle &quot;Je n’ai pas compris votre question&quot;. Avec Purity : Assistant moderne qui comprend le langage courant de vos clients et répond avec précision.</dd>
+            <dt>Respect de vos prix</dt><dd>Souvent ailleurs : IA mal réglée qui invente des faux prix ou promet des réductions impossibles. Avec Purity : L’assistant ne donne que vos tarifs ; hors de votre grille, il vous passe la main.</dd>
+            <dt>Conformité aux lois européennes</dt><dd>Souvent ailleurs : Données clients envoyées n’importe où sans respecter la loi. Avec Purity : Mise en conformité AI Act et RGPD accompagnée : le client sait qu’il parle à un assistant.</dd>
+          </dl>
+          <h3>Ce que l’inaction coûte</h3>
+          <dl>
+            <dt>Des demandes du soir et du week-end sans réponse</dt><dd>Un client qui pose une question le samedi soir n’attend pas le lundi matin : si personne ne lui répond, il contacte immédiatement un concurrent.</dd>
+            <dt>Le coût d’une secrétaire téléphonique à temps plein</dt><dd>Embaucher une personne juste pour décrocher et noter les coordonnées coûte plus de 35 000 € par an avec les charges belges.</dd>
+            <dt>Être dérangé en permanence pendant vos chantiers ou le week-end</dt><dd>Avoir les mains pleines de plâtre ou de cambouis et devoir décrocher pour des personnes qui demandent juste une information basique disponible sur le site.</dd>
+          </dl>
+          <h3>Les étapes</h3>
+          <dl>
+            <dt>01 · Notations de vos règles et tarifs</dt><dd>On consigne vos prix, vos délais habituels, vos communes d’intervention et les questions fréquentes de vos clients.</dd>
+            <dt>02 · Entraînement de l’assistant sur vos cas réels</dt><dd>Tests complets sur plus de 50 questions pièges de clients (tarifs, délais, urgences, secteur) pour valider qu’il répond toujours exactement comme vous le souhaitez.</dd>
+            <dt>03 · Connexion à votre site et à votre téléphone</dt><dd>On branche l’assistant sur votre site web ou sur votre messagerie WhatsApp professionnelle.</dd>
+            <dt>04 · Mise en route sous surveillance</dt><dd>On relit avec vous les premières conversations et on corrige ce qui doit l’être.</dd>
+          </dl>
+          <h3>Engagement</h3>
+          <p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p>
+        </div>
+      </details>
+    </section>
+
+    <nav class="sd-section sd-section--links" aria-labelledby="sd-links-title">
+      <h2 class="sd-mini-title" id="sd-links-title">Exemples par métier et guides utiles</h2>
       <ul class="sd-links">
         <li><a href="/agence-web/charleroi">Agence web à Charleroi : qui on est, où on intervient</a></li>
         <li><a href="/site-internet/agence-immobiliere">Site internet pour agence immobilière</a></li>
@@ -559,28 +428,25 @@
         <li><a href="/article-ia-pme-belgique.html">L’IA utile pour une PME belge</a></li>
         <li><a href="/article-cheques-entreprises-wallonie.html">Les chèques-entreprises en Wallonie</a></li>
       </ul>
-    </section>
+    </nav>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
-        <p>Vous parlez directement à Amir Kebiyeb. Récapitulatif écrit après l’appel, puis devis ferme avec prix, délai et livrables, sans engagement tant que vous ne l’avez pas signé.</p>
+        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <p>Vous parlez directement à Amir Kebiyeb. Réponse personnelle sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="/contact.html?offer=M23">Recevoir mon devis écrit <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les autres services <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="/contact.html?offer=M23">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Prendre rendez-vous <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
   </div>
 </main>
 
-<!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
     <span class="sd-floating-price">1 990 €</span>
-    <span class="sd-floating-note">Prix net · TVA non applicable</span>
+    <span class="sd-floating-note">+ 119 €/mois · prix net</span>
   </div>
   <a class="sd-floating-cta" href="/contact.html?offer=M23">Recevoir mon devis <span aria-hidden="true">↗</span></a>
 </aside>

@@ -171,7 +171,7 @@ export const VISUALS = {
   },
   'page-essentielle': {
     tiles: [['pen', 'Votre métier, avec vos mots'], ['bolt', 'Rapide sur smartphone'], ['phone', 'Appel et WhatsApp en 1 clic'], ['globe', 'Domaine .be et e-mail pro'], ['shield', 'Conforme BCE, TVA et RGPD'], ['key', 'Tout reste à votre nom']],
-    vs: [['Des secondes d’attente sur mobile', 'Une page légère, ouverte tout de suite'], ['Un numéro caché, pas cliquable', 'Le bouton d’appel sous le pouce'], ['80 € pour changer un tarif', 'Les modifications incluses dans le suivi']],
+    vs: [['Des secondes d’attente sur mobile', 'Une page légère, ouverte tout de suite'], ['Un numéro caché, pas cliquable', 'Le bouton d’appel sous le pouce'], ['80 € pour changer un tarif', 'Les modifications incluses dans le suivi']],
     hero: { type: 'device', demo: 'chauffage', name: 'Thermiq', sector: 'Chauffage' }
   },
   'site-vitrine': {

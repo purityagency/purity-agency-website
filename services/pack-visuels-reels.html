@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -167,10 +167,10 @@
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>
-    <a href="/blog.html" style="--i:2">Blog</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/services">Services &amp; Tarifs</a>
+    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
 </div>
 
@@ -184,348 +184,246 @@
       <span aria-current="page">Pack Visuels &amp; Reels Studio</span>
     </nav>
 
-    <!-- HERO DU SERVICE -->
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Pilier 02 · Réseaux Sociaux &amp; Image</div>
-      <h1 class="sd-hero__title" id="service-title">Pack Visuels &amp; Reels Studio</h1>
-      <p class="sd-hero__answer">Pack Visuels &amp; Reels Studio par Purity Agency, à Charleroi : 390 € en paiement unique, sans abonnement. Délai : 4 à 7 jours ouvrés. Des vidéos courtes et des visuels soignés de vos chantiers pour attirer des clients sur Instagram et Facebook. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
-      <p class="sd-hero__summary">Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Tarif de mise en place</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">390 €</span>
-            
+    <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
+      <div class="sd-hero__text">
+        <div class="sd-hero__pill">Réseaux Sociaux &amp; Image</div>
+        <h1 class="sd-hero__title" id="service-title">Pack Visuels &amp; Reels Studio</h1>
+        <p class="sd-hero__lead">Des vidéos courtes et des visuels soignés de vos chantiers pour attirer des clients sur Instagram et Facebook.</p>
+        <div class="sd-hero__price"><strong>390 €</strong><span>paiement unique</span></div>
+        <ul class="sd-hero__chips">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 à 7 jours ouvrés</li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c1.8.9 3 2.9 3 5.5"/></svg>Amir, de A à Z</li>
+        </ul>
+        <div class="sd-hero__actions">
+          <a class="sd-btn-primary" href="/contact.html?offer=M10">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
+        <div class="sd-trust-strip" aria-label="Garanties et réassurance">
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7.5-3.5 7.5-9.5V5.5L12 3 4.5 5.5v6C4.5 17.5 12 21 12 21z"/><path d="m9 12 2 2 4-4"/></svg>BCE &amp; TVA <strong>BE 1036.775.590</strong></span>
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Charleroi &amp; Wallonie</span>
+        </div>
+      </div>
+      <div class="sd-hero__visual">
+        <figure class="sd-stage sd-stage--phones">
+        <div class="sd-phones">
+          <div class="sd-phone sd-phone--reel">
+            <img src="/assets/shots/sport-mobile-0.webp" width="390" height="844" alt="Format vertical illustré avec la démo Cadence Studio" decoding="async">
+            <span class="sd-reel__play" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="sd-reel__sub" aria-hidden="true">On bouge ensemble</span>
           </div>
-          <span class="sd-meta-card__sub">Paiement unique · sans abonnement</span>
-          <span class="sd-meta-card__vat">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
-          <span class="sd-meta-card__offer">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
+          <div class="sd-phone sd-phone--reel">
+            <img src="/assets/shots/restaurant-mobile-0.webp" width="390" height="844" alt="Format vertical illustré avec la démo Table Serein" decoding="async" fetchpriority="high">
+            <span class="sd-reel__play" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="sd-reel__sub" aria-hidden="true">Le plat de saison</span>
+          </div>
+          <div class="sd-phone sd-phone--reel">
+            <img src="/assets/shots/beaute-mobile-0.webp" width="390" height="844" alt="Format vertical illustré avec la démo Maison Lune" decoding="async">
+            <span class="sd-reel__play" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="sd-reel__sub" aria-hidden="true">Un soin, un moment</span>
+          </div>
         </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Délai</span>
-          <span class="sd-meta-card__value">4 à 7 jours ouvrés</span>
-          <span class="sd-meta-card__sub">Écrit dans votre devis</span>
-        </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Votre interlocuteur</span>
-          <span class="sd-meta-card__value">Amir, de A à Z</span>
-          <span class="sd-meta-card__sub">Prix écrit au devis · Sans frais cachés</span>
-        </div>
-      </div>
-
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html?offer=M10">Recevoir mon devis écrit <span aria-hidden="true">↗</span></a>
-        <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir d’abord <span aria-hidden="true">→</span></a>
-      </div>
-
-      <!-- TRUST STRIP ABOVE THE FOLD -->
-      <div class="sd-trust-strip" aria-label="Garanties et réassurance">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
-        </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi &amp; Wallonie</span>
-        </div>
+        <figcaption>Formats illustrés avec les démos Purity : vertical, sous-titré, prêt à publier.</figcaption>
+      </figure>
       </div>
     </section>
 
-    <!-- SECTION POUR QUI & UTILITÉ -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour qui, pour quoi</span>
-        <h2 class="sd-heading">Ce que ça change pour votre activité</h2>
-        <p class="sd-subheading">Pour qui c’est fait, et ce que vous y gagnez concrètement.</p>
-      </div>
-
-      <div class="sd-duo-grid">
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            À qui s'adresse cette formule&nbsp;?
-          </h3>
-          <p>Artisans du bâtiment, restaurateurs, instituts de beauté et commerçants qui veulent montrer la qualité de leur travail en vidéo sans y passer leurs soirées.</p>
-        </div>
-
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            Ce que vous y gagnez
-          </h3>
-          <p>Disposer d’un pack de contenus vidéo professionnels pour faire vivre vos réseaux sociaux, rassurer vos futurs clients et donner envie de faire appel à vous.</p>
-        </div>
-      </div>
-      <div class="sd-notfor"><strong>Ce n’est pas pour vous si</strong><p>Vous ne pouvez pas filmer quelques séquences au smartphone : sans matière brute, pas de Reels.</p></div>
-    </section>
-
-    <!-- SECTION LIVRABLES EXACTS -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-deliv-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Ce que vous recevez</span>
-        <h2 class="sd-heading">Tout ce qui est livré, noir sur blanc</h2>
-        <p class="sd-subheading">Voici exactement ce que vous recevez. Rien n’est laissé dans le flou.</p>
+        <h2 class="sd-heading" id="sd-deliv-title">Tout est livré, noir sur blanc</h2>
       </div>
-
-      <div class="sd-deliverables-grid">
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>4 vidéos courtes (Reels / TikToks) montées de A à Z</strong>
-            </div>
-            <p>Montage rythmé mettant en avant votre savoir-faire dès les premières secondes, avec transitions soignées et musique adaptée.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Sous-titres dynamiques synchronisés mot à mot</strong>
-            </div>
-            <p>Beaucoup de gens regardent les vidéos sans le son (transports, salle d’attente, en famille) : avec les sous-titres, votre message passe quand même.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>6 visuels carrés ou carrousels de réalisations</strong>
-            </div>
-            <p>Mise en page graphique soignée présentant vos étapes de chantier, vos avant/après et les avis de vos clients.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Textes de publication &amp; mots-clés locaux rédigés</strong>
-            </div>
-            <p>Textes prêts à être copiés-collés avec des mots-clés ciblés sur votre région pour être vu par des clients près de chez vous.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Images de couverture personnalisées</strong>
-            </div>
-            <p>Des vignettes propres pour que votre page Instagram ou Facebook ait une allure soignée et cohérente.</p>
-          </div>
-        
-      </div>
+      <ul class="sd-deliverables-grid">
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span><span class="sd-tile__label">4 Reels montés</span><span class="sd-tile__num" aria-hidden="true">01</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 11h16M4 16h10"/></svg></span><span class="sd-tile__label">Sous-titres mot à mot</span><span class="sd-tile__num" aria-hidden="true">02</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg></span><span class="sd-tile__label">6 visuels de réalisations</span><span class="sd-tile__num" aria-hidden="true">03</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13 7 4 4"/></svg></span><span class="sd-tile__label">Textes et mots-clés locaux</span><span class="sd-tile__num" aria-hidden="true">04</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m9 9 6 3-6 3z"/></svg></span><span class="sd-tile__label">Couvertures de vidéo personnalisées</span><span class="sd-tile__num" aria-hidden="true">05</span></li>
+      </ul>
     </section>
 
-    <!-- SECTION COMPARATIVE AVEC PURITY VS AUTRES -->
-    
-    <section class="sd-section">
+    <section class="sd-section sd-section--vs" aria-labelledby="sd-vs-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Pourquoi Purity</span>
-        <h2 class="sd-heading">Ce qui change par rapport à ce que vous avez peut-être déjà vécu</h2>
-        <p class="sd-subheading">À gauche, ce qu’on voit souvent chez les prestataires ou en bricolant soi-même. À droite, ce que Purity fait à la place.</p>
+        <h2 class="sd-heading" id="sd-vs-title">Ailleurs, et chez Purity</h2>
       </div>
-
       <div class="sd-comparison-wrap">
         <table class="sd-comparison-table">
           <thead>
             <tr>
-              <th scope="col">Point</th>
-              <th scope="col">Ce qu’on voit souvent</th>
-              <th scope="col" class="sd-col-purity">Avec Purity</th>
+              <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
+              <th scope="col"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>Souvent ailleurs</span></th>
+              <th scope="col" class="sd-col-purity"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Chez Purity</span></th>
             </tr>
           </thead>
           <tbody>
-            
-              <tr>
-                <td class="sd-col-aspect">Qualité vidéo</td>
-                <td class="sd-col-others">Vidéos bancales sans rythme ni texte que personne ne regarde jusqu’au bout</td>
-                <td class="sd-col-purity"><strong>✓</strong> Montage dynamique au bon format avec sous-titres synchronisés faciles à lire</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Temps passé</td>
-                <td class="sd-col-others">3 heures de galère sur son téléphone le soir pour un résultat décevant</td>
-                <td class="sd-col-purity"><strong>✓</strong> Vous envoyez vos vidéos sur WhatsApp, nous nous occupons de tout le montage</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Droits musicaux</td>
-                <td class="sd-col-others">Vidéos muettes ou coupées par Instagram pour droits musicaux</td>
-                <td class="sd-col-purity"><strong>✓</strong> Musiques autorisées pour les comptes professionnels sans risque de coupure</td>
-              </tr>
-            
+            <tr>
+              <th scope="row" class="sd-col-aspect">Qualité vidéo</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Des vidéos sans rythme ni texte</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Un montage rythmé et sous-titré</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Temps passé</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>3 heures de montage le soir</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Vous envoyez, on monte</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Droits musicaux</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Le son coupé pour droits musicaux</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Des musiques autorisées pour les pros</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
-    
 
-    <!-- SECTION LE COÛT DE L'INACTION -->
-    <section class="sd-section">
-      <div class="sd-loss-card">
-        <span class="sd-kicker">Ne pas agir a un coût</span>
-        <h2 class="sd-heading">Ce que vous perdez chaque mois sans cette solution</h2>
-        <p class="sd-subheading">Ces pertes n’apparaissent sur aucune facture. Elles vous coûtent quand même, chaque mois.</p>
+    <section class="sd-section sd-loss" aria-labelledby="sd-loss-title">
+      <div class="sd-loss__head">
+        <h2 class="sd-heading" id="sd-loss-title">Ce que vous perdez chaque mois sans cette solution</h2>
+      </div>
+      <ol class="sd-loss__list">
+        <li><span class="sd-loss__num" aria-hidden="true">01</span><span>Des photos simples que plus personne ne voit sur les réseaux</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">02</span><span>Des heures perdues à bricoler des vidéos sur son téléphone</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">03</span><span>Une image terne face aux confrères qui montrent leurs chantiers</span></li>
+      </ol>
+    </section>
 
-        <div class="sd-loss-grid">
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Des photos simples que plus personne ne voit sur les réseaux</span>
-              </div>
-              <p>Instagram et Facebook mettent désormais en avant presque uniquement les vidéos : une simple photo statique ne touche quasiment plus aucun nouveau client.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Des heures perdues à bricoler des vidéos sur son téléphone</span>
-              </div>
-              <p>Passer son dimanche soir à galérer sur des applications de montage complexes au lieu de se reposer avant la semaine de chantiers.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Une image terne face aux confrères qui montrent leurs chantiers</span>
-              </div>
-              <p>Les artisans qui publient des vidéos propres de leurs réalisations attirent naturellement les meilleurs clients de la région.</p>
-            </div>
-          
+    <section class="sd-section" aria-labelledby="sd-steps-title">
+      <div class="sd-section-header sd-section-header--row">
+        <div>
+          <span class="sd-kicker">Comment ça se passe</span>
+          <h2 class="sd-heading" id="sd-steps-title">4 étapes, très peu de travail pour vous</h2>
         </div>
+        <span class="sd-steps__delay"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Livré en 4 à 7 jours ouvrés</span>
       </div>
+      <ol class="sd-timeline">
+        <li class="sd-timeline__step"><span class="sd-timeline__num">01</span><strong>Envoi de vos vidéos brutes</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">02</span><strong>Montage et sous-titrage</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">03</span><strong>Aperçu sur votre smartphone</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">04</span><strong>Livraison des fichiers prêts à poster</strong></li>
+      </ol>
     </section>
 
-    <!-- SECTION COMMENT ÇA SE PASSE / DÉROULEMENT -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Comment ça se passe</span>
-        <h2 class="sd-heading">4 étapes, et très peu de travail pour vous</h2>
-        <p class="sd-subheading">Vous expliquez votre métier, on s’occupe du reste. Rien n’est mis en ligne sans votre accord.</p>
-      </div>
-
-      <div class="sd-steps-grid">
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Envoi de vos vidéos brutes</strong>
-            <p>Vous filmez quelques secondes avec votre smartphone sur vos chantiers et vous nous les envoyez par WhatsApp ou lien partagé.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Montage et sous-titrage</strong>
-            <p>Nous coupons les passages inutiles, ajustons le rythme sur la musique et ajoutons les textes explicatifs.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Aperçu sur votre smartphone</strong>
-            <p>Vous regardez les vidéos sur votre téléphone et nous ajustons un mot ou une coupe si vous le souhaitez.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">04</div>
-            <strong>Livraison des fichiers prêts à poster</strong>
-            <p>Vous recevez vos vidéos et vos textes prêts à être mis en ligne en un clic.</p>
-          </div>
-        
-      </div>
-    </section>
-
-    <!-- SECTION CAS CONCRETS ASSOCIÉS (PREUVE SOCIALE & MAILLAGE) -->
-    
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Démos par métier</span>
-        <h2 class="sd-heading">Voyez à quoi ça ressemble pour un métier proche du vôtre</h2>
-        <p class="sd-subheading">Ce sont des démonstrations construites par Purity pour montrer le résultat, pas des sites de clients. Testez-les sur votre téléphone.</p>
+        <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
+        <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
-
-      <div class="sd-cases-grid">
-        
-          <a class="sd-case-card" href="/cas-concrets/animaux.html">
-            <span class="sd-case-card__sector">Commerce Local</span>
-            <h3>Patte Douce</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
+      <div class="sd-cases-grid sd-cases-grid--solo">
+        <a class="sd-case-card" href="/cas-concrets/animaux.html">
+          <img src="/assets/shots/animaux-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Patte Douce, commerce local" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Commerce Local</span><strong>Patte Douce</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
       </div>
     </section>
-    
 
-    <!-- SECTION MAINTENANCE & SUIVI -->
-    
-
-    <!-- FAQ SECTION (SERP RICH SNIPPETS) -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-offer-title">
       <div class="sd-section-header">
+        <span class="sd-kicker">Le prix</span>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+      </div>
+      <div class="sd-offer">
+        <div class="sd-offer__price">
+          <span class="sd-offer__label">Mise en place</span>
+          <strong class="sd-offer__amount">390 €</strong>
+          <span class="sd-offer__sub">Paiement unique, sans abonnement</span>
+          <span class="sd-offer__note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
+          <span class="sd-offer__promo">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
+        </div>
+        <ul class="sd-offer__side">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg><div><strong>Après la livraison</strong><p>Livraison sous forme de pack de fichiers. Si vous préférez que nous nous occupions aussi de publier vos vidéos chaque semaine, découvrez notre formule M16.</p></div></li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></svg><div><strong>Sans abonnement</strong><p>Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sd-section sd-faq" aria-labelledby="sd-faq-title">
+      <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
-        <h2 class="sd-heading">Questions fréquentes sur cette formule</h2>
-        <p class="sd-subheading">Des réponses franches, avant que vous décidiez.</p>
+        <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
+        <a class="sd-link-arrow" href="/contact.html?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
-
       <div class="sd-faq-list">
-        
-          <details class="sd-faq-item">
-            <summary>Faut-il du matériel vidéo professionnel ?</summary>
-            <div class="sd-faq-body">
-              <p>Pas du tout ! Votre smartphone habituel suffit amplement. La qualité des caméras actuelles est excellente : notre travail consiste à faire le tri, le montage et le sous-titrage.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Comment filmer sur chantier sans perdre de temps ?</summary>
-            <div class="sd-faq-body">
-              <p>On vous donne 3 conseils très simples : poser le téléphone quelques secondes pendant que vous travaillez, filmer un plan avant et un plan après, c’est tout.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Puis-je mettre ces vidéos sur mon site internet ?</summary>
-            <div class="sd-faq-body">
-              <p>Oui, nous pouvons les ajouter directement sur votre site vitrine pour montrer vos chantiers à vos futurs clients.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Les musiques utilisées risquent-elles d’être bloquées ?</summary>
-            <div class="sd-faq-body">
-              <p>Non, nous choisissons des musiques autorisées pour un usage professionnel pour éviter toute coupure de son.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Est-ce que je m’engage sur une durée ?</summary>
-            <div class="sd-faq-body">
-              <p>Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>À qui appartient ce qui est livré ?</summary>
-            <div class="sd-faq-body">
-              <p>À vous. Une fois la facture réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Purity garde seulement ses outils et méthodes génériques.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Quand est-ce prêt ?</summary>
-            <div class="sd-faq-body">
-              <p>Comptez 4 à 7 jours ouvrés après l’entretien de cadrage. Le délai est écrit dans votre devis.</p>
-            </div>
-          </details>
-        
+        <details class="sd-faq-item">
+          <summary>Faut-il du matériel vidéo professionnel ?</summary>
+          <div class="sd-faq-body"><p>Pas du tout ! Votre smartphone habituel suffit amplement. La qualité des caméras actuelles est excellente : notre travail consiste à faire le tri, le montage et le sous-titrage.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Comment filmer sur chantier sans perdre de temps ?</summary>
+          <div class="sd-faq-body"><p>On vous donne 3 conseils très simples : poser le téléphone quelques secondes pendant que vous travaillez, filmer un plan avant et un plan après, c’est tout.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Puis-je mettre ces vidéos sur mon site internet ?</summary>
+          <div class="sd-faq-body"><p>Oui, nous pouvons les ajouter directement sur votre site vitrine pour montrer vos chantiers à vos futurs clients.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Les musiques utilisées risquent-elles d’être bloquées ?</summary>
+          <div class="sd-faq-body"><p>Non, nous choisissons des musiques autorisées pour un usage professionnel pour éviter toute coupure de son.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Est-ce que je m’engage sur une durée ?</summary>
+          <div class="sd-faq-body"><p>Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>À qui appartient ce qui est livré ?</summary>
+          <div class="sd-faq-body"><p>À vous. Une fois la facture réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Purity garde seulement ses outils et méthodes génériques.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Quand est-ce prêt ?</summary>
+          <div class="sd-faq-body"><p>Comptez 4 à 7 jours ouvrés après l’entretien de cadrage. Le délai est écrit dans votre devis.</p></div>
+        </details>
       </div>
     </section>
 
-    <!-- MAILLAGE INTERNE -->
-    <section class="sd-section" aria-labelledby="sd-links-title">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour aller plus loin</span>
-        <h2 class="sd-heading" id="sd-links-title">Exemples par métier et guides utiles</h2>
-      </div>
+    <section class="sd-section sd-section--more" aria-label="Description détaillée">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur Pack Visuels &amp; Reels Studio</span><span class="sd-more__hint">Détail complet</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">Pack Visuels &amp; Reels Studio par Purity Agency, à Charleroi : 390 € en paiement unique, sans abonnement. Délai : 4 à 7 jours ouvrés. Des vidéos courtes et des visuels soignés de vos chantiers pour attirer des clients sur Instagram et Facebook. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
+          <p>Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.</p>
+          <h3>Pour qui</h3>
+          <p>Artisans du bâtiment, restaurateurs, instituts de beauté et commerçants qui veulent montrer la qualité de leur travail en vidéo sans y passer leurs soirées.</p>
+          <h3>Ce n’est pas pour vous si</h3>
+          <p>Vous ne pouvez pas filmer quelques séquences au smartphone : sans matière brute, pas de Reels.</p>
+          <h3>Ce que vous y gagnez</h3>
+          <p>Disposer d’un pack de contenus vidéo professionnels pour faire vivre vos réseaux sociaux, rassurer vos futurs clients et donner envie de faire appel à vous.</p>
+          <h3>Le détail des livrables</h3>
+          <dl>
+            <dt>4 vidéos courtes (Reels / TikToks) montées de A à Z</dt><dd>Montage rythmé mettant en avant votre savoir-faire dès les premières secondes, avec transitions soignées et musique adaptée.</dd>
+            <dt>Sous-titres dynamiques synchronisés mot à mot</dt><dd>Beaucoup de gens regardent les vidéos sans le son (transports, salle d’attente, en famille) : avec les sous-titres, votre message passe quand même.</dd>
+            <dt>6 visuels carrés ou carrousels de réalisations</dt><dd>Mise en page graphique soignée présentant vos étapes de chantier, vos avant/après et les avis de vos clients.</dd>
+            <dt>Textes de publication &amp; mots-clés locaux rédigés</dt><dd>Textes prêts à être copiés-collés avec des mots-clés ciblés sur votre région pour être vu par des clients près de chez vous.</dd>
+            <dt>Images de couverture personnalisées</dt><dd>Des vignettes propres pour que votre page Instagram ou Facebook ait une allure soignée et cohérente.</dd>
+          </dl>
+          <h3>Le comparatif en détail</h3>
+          <dl>
+            <dt>Qualité vidéo</dt><dd>Souvent ailleurs : Vidéos bancales sans rythme ni texte que personne ne regarde jusqu’au bout. Avec Purity : Montage dynamique au bon format avec sous-titres synchronisés faciles à lire.</dd>
+            <dt>Temps passé</dt><dd>Souvent ailleurs : 3 heures de galère sur son téléphone le soir pour un résultat décevant. Avec Purity : Vous envoyez vos vidéos sur WhatsApp, nous nous occupons de tout le montage.</dd>
+            <dt>Droits musicaux</dt><dd>Souvent ailleurs : Vidéos muettes ou coupées par Instagram pour droits musicaux. Avec Purity : Musiques autorisées pour les comptes professionnels sans risque de coupure.</dd>
+          </dl>
+          <h3>Ce que l’inaction coûte</h3>
+          <dl>
+            <dt>Des photos simples que plus personne ne voit sur les réseaux</dt><dd>Instagram et Facebook mettent désormais en avant presque uniquement les vidéos : une simple photo statique ne touche quasiment plus aucun nouveau client.</dd>
+            <dt>Des heures perdues à bricoler des vidéos sur son téléphone</dt><dd>Passer son dimanche soir à galérer sur des applications de montage complexes au lieu de se reposer avant la semaine de chantiers.</dd>
+            <dt>Une image terne face aux confrères qui montrent leurs chantiers</dt><dd>Les artisans qui publient des vidéos propres de leurs réalisations attirent naturellement les meilleurs clients de la région.</dd>
+          </dl>
+          <h3>Les étapes</h3>
+          <dl>
+            <dt>01 · Envoi de vos vidéos brutes</dt><dd>Vous filmez quelques secondes avec votre smartphone sur vos chantiers et vous nous les envoyez par WhatsApp ou lien partagé.</dd>
+            <dt>02 · Montage et sous-titrage</dt><dd>Nous coupons les passages inutiles, ajustons le rythme sur la musique et ajoutons les textes explicatifs.</dd>
+            <dt>03 · Aperçu sur votre smartphone</dt><dd>Vous regardez les vidéos sur votre téléphone et nous ajustons un mot ou une coupe si vous le souhaitez.</dd>
+            <dt>04 · Livraison des fichiers prêts à poster</dt><dd>Vous recevez vos vidéos et vos textes prêts à être mis en ligne en un clic.</dd>
+          </dl>
+          <h3>Engagement</h3>
+          <p>Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.</p>
+        </div>
+      </details>
+    </section>
+
+    <nav class="sd-section sd-section--links" aria-labelledby="sd-links-title">
+      <h2 class="sd-mini-title" id="sd-links-title">Exemples par métier et guides utiles</h2>
       <ul class="sd-links">
         <li><a href="/agence-web/charleroi">Agence web à Charleroi : qui on est, où on intervient</a></li>
         <li><a href="/site-internet/salle-de-sport">Site internet pour salle de sport</a></li>
@@ -534,28 +432,25 @@
         <li><a href="/article-instagram-commerce-physique-clients.html">Instagram pour un commerce physique</a></li>
         <li><a href="/article-e-e-a-t-artisan-pme-locale.html">Inspirer confiance en ligne quand on est artisan</a></li>
       </ul>
-    </section>
+    </nav>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
-        <p>Vous parlez directement à Amir Kebiyeb. Récapitulatif écrit après l’appel, puis devis ferme avec prix, délai et livrables, sans engagement tant que vous ne l’avez pas signé.</p>
+        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <p>Vous parlez directement à Amir Kebiyeb. Réponse personnelle sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="/contact.html?offer=M10">Recevoir mon devis écrit <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les autres services <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="/contact.html?offer=M10">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Prendre rendez-vous <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
   </div>
 </main>
 
-<!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
     <span class="sd-floating-price">390 €</span>
-    <span class="sd-floating-note">Prix net · TVA non applicable</span>
+    <span class="sd-floating-note">Paiement unique · prix net</span>
   </div>
   <a class="sd-floating-cta" href="/contact.html?offer=M10">Recevoir mon devis <span aria-hidden="true">↗</span></a>
 </aside>

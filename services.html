@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -84,10 +84,10 @@
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>
-    <a href="/blog.html" style="--i:2">Blog</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/services">Services &amp; Tarifs</a>
+    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
 </div>
 
@@ -99,589 +99,293 @@
       <span aria-current="page">Services &amp; Tarifs</span>
     </nav>
 
-    <section class="sd-hero sd-hero--hub">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Services et prix 2026-2027</div>
-      <h1 class="sd-hero__title">Des solutions concrètes.<br>Des prix affichés.</h1>
-      <p class="sd-hero__answer">Purity Agency, agence web à Charleroi, crée des sites, des fiches Google, du contenu pour les réseaux et des automatisations pour les indépendants et PME de Wallonie. Chaque service affiche son prix, son délai et ses livrables. Vous ne savez pas lequel choisir ? Le diagnostic de 15 minutes est gratuit et sans engagement.</p>
-      <p class="sd-hero__summary">Les prix affichés sont ceux de votre devis, pas un tarif à la tête du client. Pour les sites, l’hébergement, la sécurité et les petites modifications sont compris dans le suivi mensuel.</p>
-
-      <div class="sd-trust-strip" aria-label="Garanties">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Entreprise enregistrée BCE 1036.775.590</span>
+    <section class="sd-hero sd-hero--hub" aria-labelledby="hub-title">
+      <div class="sd-hub-hero">
+        <div>
+          <div class="sd-hero__pill">Services et prix 2026-2027</div>
+          <h1 class="sd-hero__title" id="hub-title">Des solutions concrètes.<br>Des prix affichés.</h1>
         </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi · Namur · Mons · Liège · Wallonie</span>
+        <div class="sd-hub-hero__side">
+          <p class="sd-hero__lead">Sites, fiche Google, réseaux et automatisation pour les indépendants et PME de Wallonie. Chaque prix est celui de votre devis.</p>
+          <div class="sd-hero__actions">
+            <a class="sd-btn-primary" href="/contact.html?intent=rdv">Diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
         </div>
       </div>
+      <div class="sd-trust-strip" aria-label="Garanties">
+        <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7.5-3.5 7.5-9.5V5.5L12 3 4.5 5.5v6C4.5 17.5 12 21 12 21z"/><path d="m9 12 2 2 4-4"/></svg>Entreprise enregistrée BCE 1036.775.590</span>
+        <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Charleroi · Namur · Mons · Liège · Wallonie</span>
+      </div>
 
-      <!-- FILTER TABS -->
       <div class="sd-hub-filter-bar" role="group" aria-label="Filtrer les services par pilier">
-        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Tous les services (14)</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1" aria-pressed="false">01 · Sites Web &amp; Référencement</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2" aria-pressed="false">02 · Réseaux Sociaux &amp; Image</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3" aria-pressed="false">03 · Automatisation &amp; IA</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4" aria-pressed="false">04 · Diagnostic</button>
+        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Tous (14)</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1" aria-pressed="false">Sites &amp; référencement</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2" aria-pressed="false">Réseaux &amp; image</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3" aria-pressed="false">Automatisation &amp; IA</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4" aria-pressed="false">Diagnostic</button>
       </div>
     </section>
 
-    <section class="sd-section sd-section--ruled">
+    <section class="sd-section sd-section--hub" aria-label="Tous les services">
       <p class="sd-hub-price-note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA). -25 % sur la création si vous validez dans les 24 h suivant votre devis.</p>
       <div class="sd-hub-grid" id="services-grid">
-        
-          <article class="sd-hub-card" data-pillar="pilier-4">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#01</span>
-              <span class="sd-hub-card__pillar">Diagnostic &amp; Cadrage</span>
-            </div>
+        <article class="sd-hub-card" data-pillar="pilier-4">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/audit-compare/before-artisan.webp" width="820" height="612" alt="Exemple de site daté passé en revue pendant un diagnostic" decoding="async" fetchpriority="high"><span class="sd-hub-card__tag">Exemple de site daté</span>
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Diagnostic &amp; Cadrage</span>
             <h2 class="sd-hub-card__title"><a href="/services/diagnostic-digital">Diagnostic digital (15 min)</a></h2>
-            <p class="sd-hub-card__summary">Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec Amir Kebiyeb pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Vérification en direct de votre visibilité sur votre commune</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Test de vitesse et d’affichage sur smartphone (4G)</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Contrôle de vos boîtes e-mails (Anti-Spam devis)</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Découvrez en 15 minutes ce qui freine vos demandes de devis et ce qu’il faut corriger en priorité.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">Offert</span>
-                <span class="sd-hub-card__delay">15 min par téléphone ou en visio</span>
+                <span class="sd-hub-card__price">Gratuit</span><span class="sd-hub-card__monthly">15 min, sans engagement</span>
+                <span class="sd-hub-card__delay">Par téléphone ou en visio</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/diagnostic-digital" aria-label="Voir ce qui est inclus : Diagnostic digital (15 min)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#02</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb sd-hub-card__thumb--tall">
+            <img src="/assets/shots/chauffage-mobile-0.webp" width="390" height="844" alt="Page d’accueil mobile de la démo chauffagiste Thermiq" decoding="async">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/page-essentielle">Page Essentielle (1 page)</a></h2>
-            <p class="sd-hub-card__summary">Pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coachs) qui n’ont qu’une page Facebook ou un vieux site : une page nette qui inspire confiance, où le client vous appelle ou vous écrit en 1 clic.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Votre métier présenté avec vos mots, pas un modèle tout fait</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Affichage instantané sur smartphone en moins d’une seconde</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Bouton d’appel direct &amp; WhatsApp au pouce</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Une page pro qui s’ouvre vite sur téléphone, présente votre métier et vous fait appeler en 1 clic.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">490 €</span>
-                <span class="sd-hub-card__delay">+ 79 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 5 à 7 jours ouvrés</span>
+                <span class="sd-hub-card__price">490 €</span><span class="sd-hub-card__monthly">+ 79 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">5 à 7 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/page-essentielle" aria-label="Voir ce qui est inclus : Page Essentielle (1 page)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#03</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/renovation-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo rénovation Atelier Noma" decoding="async">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/site-vitrine">Site Vitrine (5 pages)</a></h2>
-            <p class="sd-hub-card__summary">Accueil, prestations détaillées, réalisations avec comparateur avant/après, présentation de l’entreprise, contact et demande de devis. De quoi être choisi quand un client compare trois artisans de votre région.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>5 pages complètes pour rassurer et convaincre vos clients</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Formulaire de devis avec photos smartphone (Chiffrage avant déplacement)</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Filtre kilométrique de zone d’intervention (ex: 25 km)</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">5 pages qui montrent votre travail, rassurent le client et trient les demandes avant que vous preniez la route.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">1 490 €</span>
-                <span class="sd-hub-card__delay">+ 79 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 7 à 10 jours ouvrés</span>
+                <span class="sd-hub-card__price">1 490 €</span><span class="sd-hub-card__monthly">+ 79 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">7 à 10 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/site-vitrine" aria-label="Voir ce qui est inclus : Site Vitrine (5 pages)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#04</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/architecture-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo bureau d’architecture Ligne Claire" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/site-complet">Site Complet (10+ pages)</a></h2>
-            <p class="sd-hub-card__summary">Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vos villes d’intervention en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles, Brabant Wallon), avec des formulaires spécifiques par équipe et un espace de recrutement.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Arborescence complète de 10 à 15 pages sur mesure</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Une page par ville et par spécialité</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Formulaires de devis avec envoi direct au bon conducteur de travaux</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Une page pour chaque métier et chaque ville où vous travaillez, pour être trouvé partout dans votre région.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">2 490 €</span>
-                <span class="sd-hub-card__delay">+ 149 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 12 à 18 jours ouvrés</span>
+                <span class="sd-hub-card__price">2 490 €</span><span class="sd-hub-card__monthly">+ 149 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">12 à 18 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/site-complet" aria-label="Voir ce qui est inclus : Site Complet (10+ pages)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#05</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/decoration-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo boutique de décoration Matière Commune" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/boutique-en-ligne">Boutique en ligne (E-commerce)</a></h2>
-            <p class="sd-hub-card__summary">Une boutique rapide et sécurisée, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), adaptée aussi bien aux commerçants qu’aux restaurateurs (commandes à emporter et réservations anti-no-show).</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Catalogue jusqu’à 100 produits ou formules</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Paiements belges sécurisés (Bancontact &amp; Payconiq en direct)</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Paiement rapide en un seul écran (Anti-abandon de panier)</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Votre boutique en ligne pour vendre vos produits et services en Belgique sans commissions abusives.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">3 990 €</span>
-                <span class="sd-hub-card__delay">+ 149 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 15 à 25 jours ouvrés</span>
+                <span class="sd-hub-card__price">3 990 €</span><span class="sd-hub-card__monthly">+ 149 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">15 à 25 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/boutique-en-ligne" aria-label="Voir ce qui est inclus : Boutique en ligne (E-commerce)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#06</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/immobilier-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo agence immobilière Beaux Jours" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/refonte-modernisation">Refonte &amp; modernisation de site web</a></h2>
-            <p class="sd-hub-card__summary">Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en redirigeant chaque ancienne adresse pour préserver votre référencement.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Inventaire complet de votre ancien site sans rien oublier</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Chaque ancienne adresse redirigée vers sa nouvelle page</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Modernisation visuelle pensée pour vos clients locaux</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Transformez votre vieux site lent et dépassé en une vitrine moderne qui redonne confiance.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">dès 890 €</span>
-                <span class="sd-hub-card__delay">+ 79 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 7 à 14 jours ouvrés</span>
+                <span class="sd-hub-card__price">dès 890 €</span><span class="sd-hub-card__monthly">+ 79 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">7 à 14 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/refonte-modernisation" aria-label="Voir ce qui est inclus : Refonte &amp; modernisation de site web">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#07</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/cases/visuals/garage.webp" width="1200" height="800" alt="Atelier de garage, visuel de la démo Garage Rive" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/google-business">Fiche Google Business &amp; Maps</a></h2>
-            <p class="sd-hub-card__summary">Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Validation officielle de votre fiche avec Google</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Choix des catégories de métiers les plus recherchées</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Protection de votre adresse privée si vous travaillez à domicile</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Soyez trouvé sur Google Maps quand un client cherche votre métier près de chez lui.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">290 €</span>
-                <span class="sd-hub-card__delay">Livraison : 3 à 5 jours ouvrés</span>
+                <span class="sd-hub-card__price">290 €</span><span class="sd-hub-card__monthly">paiement unique</span>
+                <span class="sd-hub-card__delay">3 à 5 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/google-business" aria-label="Voir ce qui est inclus : Fiche Google Business &amp; Maps">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-2">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#08</span>
-              <span class="sd-hub-card__pillar">Réseaux Sociaux &amp; Image</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-2">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/beaute-desktop-0.webp" width="1440" height="900" alt="Identité de la démo institut de beauté Maison Lune" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Réseaux Sociaux &amp; Image</span>
             <h2 class="sd-hub-card__title"><a href="/services/identite-visuelle-logo">Identité visuelle &amp; Logo</a></h2>
-            <p class="sd-hub-card__summary">Fini les logos bricolés ou pixélisés : nous créons une identité de marque nette, lisible et professionnelle, pensée pour le monde réel (flocage de véhicules utilitaires, vêtements de travail, devis et factures).</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>3 propositions de logos uniques adaptées à votre métier</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Fichiers professionnels haute définition (Pour imprimeur et lettrage)</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Pack d’images prêtes pour votre site et vos réseaux</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Une identité visuelle claire qui inspire confiance et justifie vos devis.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">690 €</span>
-                <span class="sd-hub-card__delay">Livraison : 7 à 10 jours ouvrés</span>
+                <span class="sd-hub-card__price">690 €</span><span class="sd-hub-card__monthly">paiement unique</span>
+                <span class="sd-hub-card__delay">7 à 10 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/identite-visuelle-logo" aria-label="Voir ce qui est inclus : Identité visuelle &amp; Logo">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-2">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#09</span>
-              <span class="sd-hub-card__pillar">Réseaux Sociaux &amp; Image</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-2">
+          <div class="sd-hub-card__thumb sd-hub-card__thumb--tall">
+            <img src="/assets/shots/sport-mobile-0.webp" width="390" height="844" alt="Écran mobile de la démo salle de sport Cadence" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Réseaux Sociaux &amp; Image</span>
             <h2 class="sd-hub-card__title"><a href="/services/pack-visuels-reels">Pack Visuels &amp; Reels Studio</a></h2>
-            <p class="sd-hub-card__summary">Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>4 vidéos courtes (Reels / TikToks) montées de A à Z</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Sous-titres dynamiques synchronisés mot à mot</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>6 visuels carrés ou carrousels de réalisations</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Des vidéos courtes et des visuels soignés de vos chantiers pour attirer des clients sur Instagram et Facebook.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">390 €</span>
-                <span class="sd-hub-card__delay">Livraison : 4 à 7 jours ouvrés</span>
+                <span class="sd-hub-card__price">390 €</span><span class="sd-hub-card__monthly">paiement unique</span>
+                <span class="sd-hub-card__delay">4 à 7 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/pack-visuels-reels" aria-label="Voir ce qui est inclus : Pack Visuels &amp; Reels Studio">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-1">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#10</span>
-              <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-1">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/cases/visuals/chauffage.webp" width="1200" height="800" alt="Chauffagiste au travail, visuel de la démo Thermiq" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Sites Web &amp; Référencement</span>
             <h2 class="sd-hub-card__title"><a href="/services/referencement-local-seo">Référencement local (SEO)</a></h2>
-            <p class="sd-hub-card__summary">Un travail régulier pour placer votre site web en tête des résultats Google dès qu’un habitant de votre région cherche une intervention précise (ex: &quot;chauffagiste agréé Charleroi&quot;, &quot;carrossier Namur&quot;, &quot;rénovation toiture Mons&quot;) sans dépendre de publicités payantes.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Sélection des 20 recherches les plus rentables dans votre zone</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Optimisation technique continue de votre site pour Google</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Rédaction mensuelle de fiches chantiers et conseils pratiques</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Soyez le premier artisan appelé quand un client cherche votre métier sur Google dans votre région.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">590 €</span>
-                <span class="sd-hub-card__delay">+ 149 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : Mise en place : 10 jours ouvrés</span>
+                <span class="sd-hub-card__price">590 €</span><span class="sd-hub-card__monthly">+ 149 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">10 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/referencement-local-seo" aria-label="Voir ce qui est inclus : Référencement local (SEO)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-2">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#11</span>
-              <span class="sd-hub-card__pillar">Réseaux Sociaux &amp; Image</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-2">
+          <div class="sd-hub-card__thumb sd-hub-card__thumb--tall">
+            <img src="/assets/shots/restaurant-mobile-0.webp" width="390" height="844" alt="Écran mobile de la démo restaurant Table Serein" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Réseaux Sociaux &amp; Image</span>
             <h2 class="sd-hub-card__title"><a href="/services/gestion-reseaux-sociaux">Réseaux sociaux (3x/semaine)</a></h2>
-            <p class="sd-hub-card__summary">Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>3 publications soignées par semaine, sur les réseaux de votre choix</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>3 vidéos courtes par semaine (Reels, TikTok ou Shorts, au choix)</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Rédaction complète des textes sans aucun jargon</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Des réseaux sociaux actifs chaque semaine, pour 5 minutes de validation par mois.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">290 €</span>
-                <span class="sd-hub-card__delay">+ 349 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : Démarrage sous 5 jours ouvrés</span>
+                <span class="sd-hub-card__price">290 €</span><span class="sd-hub-card__monthly">+ 349 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">Démarrage sous 5 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/gestion-reseaux-sociaux" aria-label="Voir ce qui est inclus : Réseaux sociaux (3x/semaine)">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-3">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#12</span>
-              <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-3">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/sante-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo cabinet de santé Horizon" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
             <h2 class="sd-hub-card__title"><a href="/services/pilote-automatique-essentiel">Pilote Automatique Essentiel</a></h2>
-            <p class="sd-hub-card__summary">Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Mise en place de votre automatisation n°1 au choix</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Connexion directe avec vos outils habituels</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Modèles de messages rédigés dans votre ton naturel</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">490 €</span>
-                <span class="sd-hub-card__delay">+ 39 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 5 à 7 jours ouvrés</span>
+                <span class="sd-hub-card__price">490 €</span><span class="sd-hub-card__monthly">+ 39 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">5 à 7 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/pilote-automatique-essentiel" aria-label="Voir ce qui est inclus : Pilote Automatique Essentiel">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-3">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#13</span>
-              <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-3">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/fiduciaire-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo fiduciaire Clarté et Associés" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
             <h2 class="sd-hub-card__title"><a href="/services/pilote-automatique-business">Pilote Automatique Business</a></h2>
-            <p class="sd-hub-card__summary">Fini les post-its, les notes égarées et les ressaisies manuelles : nous connectons vos formulaires web, vos e-mails, votre planning d’équipe et votre logiciel de facturation pour que chaque nouveau contact crée son dossier complet automatiquement.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Fin des post-its et des doubles saisies administratives</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Connexion de 3 à 5 logiciels de votre entreprise</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Tableau de bord de suivi partagé entre le bureau et le terrain</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Reliez votre site, vos devis, votre planning et votre facturation sans aucune double saisie.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">990 €</span>
-                <span class="sd-hub-card__delay">+ 69 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 10 à 14 jours ouvrés</span>
+                <span class="sd-hub-card__price">990 €</span><span class="sd-hub-card__monthly">+ 69 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">10 à 14 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/pilote-automatique-business" aria-label="Voir ce qui est inclus : Pilote Automatique Business">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
-          <article class="sd-hub-card" data-pillar="pilier-3">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#14</span>
-              <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
-            </div>
+          </div>
+        </article>
+        <article class="sd-hub-card" data-pillar="pilier-3">
+          <div class="sd-hub-card__thumb">
+            <img src="/assets/shots/immobilier-desktop-1.webp" width="1440" height="900" alt="Recherche de biens de la démo agence immobilière Beaux Jours" decoding="async" loading="lazy">
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
             <h2 class="sd-hub-card__title"><a href="/services/pilote-automatique-integral">Pilote Automatique Intégral</a></h2>
-            <p class="sd-hub-card__summary">Notre formule la plus complète : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Assistant IA réglé sur vos tarifs, vos délais et vos règles</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Disponible là où vos clients vous écrivent (Site web &amp; WhatsApp)</span>
-                </li>
-              
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>Filtrage automatique des demandes &amp; tri des chantiers rentables</span>
-                </li>
-              
-            </ul>
-
+            <p class="sd-hub-card__summary">Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger.</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">1 990 €</span>
-                <span class="sd-hub-card__delay">+ 119 €/mois de suivi</span>
-                <span class="sd-hub-card__delay">Livraison : 15 à 20 jours ouvrés</span>
+                <span class="sd-hub-card__price">1 990 €</span><span class="sd-hub-card__monthly">+ 119 €/mois de suivi</span>
+                <span class="sd-hub-card__delay">15 à 20 jours ouvrés</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/pilote-automatique-integral" aria-label="Voir ce qui est inclus : Pilote Automatique Intégral">
-                Voir ce qui est inclus <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
-          </article>
-          
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-section sd-section--more" aria-label="À propos des services">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur nos services</span><span class="sd-more__hint">Comment on travaille</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">Purity Agency, agence web à Charleroi, crée des sites, des fiches Google, du contenu pour les réseaux et des automatisations pour les indépendants et PME de Wallonie. Chaque service affiche son prix, son délai et ses livrables. Vous ne savez pas lequel choisir ? Le diagnostic de 15 minutes est gratuit et sans engagement.</p>
+          <p>Les prix affichés sont ceux de votre devis, pas un tarif à la tête du client. Pour les sites, l’hébergement, la sécurité et les petites modifications sont compris dans le suivi mensuel.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="sd-bottom-cta" aria-labelledby="hub-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Pas sûr de votre choix</span>
-        <h2>Vous ne savez pas par quoi commencer&nbsp;?</h2>
-        <p>15 minutes avec Amir, au téléphone ou en visio. Il vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. Gratuit, sans engagement.</p>
-        <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic 15 min offert <span aria-hidden="true">↗</span></a>
+        <h2 id="hub-cta-title">Vous ne savez pas par quoi commencer&nbsp;?</h2>
+        <p>15 minutes avec Amir. Il vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. Réponse personnelle sous 24 h ouvrées.</p>
+        <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
       </div>
     </section>
   </div>

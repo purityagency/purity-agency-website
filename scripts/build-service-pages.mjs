@@ -363,7 +363,7 @@ function buildServiceDetailPage(service) {
 
   const heroChips = free
     ? [['clock', '15 min chrono'], ['users', 'Avec Amir, le fondateur'], ['file', 'Récap écrit après l’appel']]
-    : [['clock', cleanDelay(service.delay)], ['users', 'Amir, de A à Z'], ['shield', 'Prix écrit au devis']];
+    : [['clock', cleanDelay(service.delay)], ['users', 'Amir, de A à Z']];
 
   const notFor = NOT_FOR[service.slug];
 
@@ -447,14 +447,16 @@ ${renderHeader('services')}
         <table class="sd-comparison-table">
           <thead>
             <tr>
+              <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
               <th scope="col"><span class="sd-vs__h">${icon('cross')}Souvent ailleurs</span></th>
               <th scope="col" class="sd-col-purity"><span class="sd-vs__h">${icon('tick')}Chez Purity</span></th>
             </tr>
           </thead>
           <tbody>
             ${vis.vs.map(([o, p], i) => `<tr>
-              <td class="sd-col-others"><span class="sd-vs__aspect">${e(service.comparison[i].aspect)}</span>${e(o)}</td>
-              <td class="sd-col-purity"><span class="sd-vs__aspect">${e(service.comparison[i].aspect)}</span>${e(p)}</td>
+              <th scope="row" class="sd-col-aspect">${e(service.comparison[i].aspect)}</th>
+              <td class="sd-col-others">${icon('cross')}<span>${e(o)}</span></td>
+              <td class="sd-col-purity">${icon('tick')}<span>${e(p)}</span></td>
             </tr>`).join('\n            ')}
           </tbody>
         </table>
@@ -463,7 +465,6 @@ ${renderHeader('services')}
 
     <section class="sd-section sd-loss" aria-labelledby="sd-loss-title">
       <div class="sd-loss__head">
-        <span class="sd-kicker">Ne pas agir a un coût</span>
         <h2 class="sd-heading" id="sd-loss-title">Ce que vous perdez chaque mois sans cette solution</h2>
       </div>
       <ol class="sd-loss__list">
@@ -508,7 +509,6 @@ ${renderHeader('services')}
         ${priceCard}
         <ul class="sd-offer__side">
           ${offerSide.map(([ic, t, d]) => `<li>${icon(ic)}<div><strong>${e(t)}</strong><p>${e(d)}</p></div></li>`).join('\n          ')}
-          ${notFor ? `<li class="sd-notfor">${icon('alert')}<div><strong>Pas pour vous si</strong><p>${e(notFor)}</p></div></li>` : ''}
         </ul>
       </div>
     </section>
@@ -535,6 +535,8 @@ ${renderHeader('services')}
           <p>${e(service.summary)}</p>
           <h3>Pour qui</h3>
           <p>${e(service.targetAudience)}</p>
+          ${notFor ? `<h3>Ce n’est pas pour vous si</h3>
+          <p>${e(notFor)}</p>` : ''}
           <h3>Ce que vous y gagnez</h3>
           <p>${e(service.utility)}</p>
           <h3>Le détail des livrables</h3>
@@ -582,7 +584,7 @@ ${renderHeader('services')}
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
     <span class="sd-floating-price">${e(displayPrice(service))}</span>
-    <span class="sd-floating-note">${free ? e(service.promoTag || 'Sans engagement') : 'Prix net · TVA non applicable'}</span>
+    <span class="sd-floating-note">${free ? e(service.promoTag || 'Sans engagement') : (service.monthlyPrice ? `+ ${e(service.monthlyPrice)} · prix net` : 'Paiement unique · prix net')}</span>
   </div>
   <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Réserver 15 min' : 'Recevoir mon devis'} <span aria-hidden="true">↗</span></a>
 </aside>
@@ -683,7 +685,7 @@ ${renderHeader('services')}
           const tall = h > w;
           return `<article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
           <div class="sd-hub-card__thumb${tall ? ' sd-hub-card__thumb--tall' : ''}">
-            <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? (idx === 0 ? ' fetchpriority="high"' : '') : ' loading="lazy"'}>
+            <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? (idx === 0 ? ' fetchpriority="high"' : '') : ' loading="lazy"'}>${svc.slug === 'diagnostic-digital' ? '<span class="sd-hub-card__tag">Exemple de site daté</span>' : ''}
           </div>
           <div class="sd-hub-card__body">
             <span class="sd-hub-card__pillar">${e(svc.pillar.replace(/Pilier \d+ · /, ''))}</span>

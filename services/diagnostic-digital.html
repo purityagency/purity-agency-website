@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -143,10 +143,10 @@
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>
-    <a href="/blog.html" style="--i:2">Blog</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/services">Services &amp; Tarifs</a>
+    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
 </div>
 
@@ -160,323 +160,230 @@
       <span aria-current="page">Diagnostic digital (15 min)</span>
     </nav>
 
-    <!-- HERO DU SERVICE -->
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Pilier 04 · Diagnostic &amp; Cadrage</div>
-      <h1 class="sd-hero__title" id="service-title">Diagnostic digital (15 min)</h1>
-      <p class="sd-hero__answer">Le diagnostic digital est un appel gratuit de 15 minutes avec Amir Kebiyeb, fondateur de Purity Agency à Charleroi. Il regarde votre site, votre fiche Google et vos concurrents locaux, puis vous dit quoi corriger en premier. Vous recevez un récapitulatif écrit après l’appel. Aucun paiement, aucun engagement, et parfois la réponse est qu’il ne faut rien acheter.</p>
-      <p class="sd-hero__summary">Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec Amir Kebiyeb pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Ce que ça coûte</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">Gratuit</span>
-          </div>
-          <span class="sd-meta-card__sub">Aucun paiement, aucun engagement</span>
+    <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
+      <div class="sd-hero__text">
+        <div class="sd-hero__pill">Diagnostic &amp; Cadrage</div>
+        <h1 class="sd-hero__title" id="service-title">Diagnostic digital (15 min)</h1>
+        <p class="sd-hero__lead">Découvrez en 15 minutes ce qui freine vos demandes de devis et ce qu’il faut corriger en priorité.</p>
+        <div class="sd-hero__price"><strong>Gratuit</strong><span>15 min par téléphone ou en visio</span></div>
+        <ul class="sd-hero__chips">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>15 min chrono</li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c1.8.9 3 2.9 3 5.5"/></svg>Avec Amir, le fondateur</li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg>Récap écrit après l’appel</li>
+        </ul>
+        <div class="sd-hero__actions">
+          <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic offert (15 min) <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          
         </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Format</span>
-          <span class="sd-meta-card__value">15 min</span>
-          <span class="sd-meta-card__sub">Par téléphone ou en visio</span>
-        </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Après l’appel</span>
-          <span class="sd-meta-card__value">Récapitulatif écrit</span>
-          <span class="sd-meta-card__sub">Devis ferme seulement si vous le demandez</span>
+        <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
+        <div class="sd-trust-strip" aria-label="Garanties et réassurance">
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7.5-3.5 7.5-9.5V5.5L12 3 4.5 5.5v6C4.5 17.5 12 21 12 21z"/><path d="m9 12 2 2 4-4"/></svg>BCE &amp; TVA <strong>BE 1036.775.590</strong></span>
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Charleroi &amp; Wallonie</span>
         </div>
       </div>
-
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic offert (15 min) <span aria-hidden="true">↗</span></a>
-        
-      </div>
-
-      <!-- TRUST STRIP ABOVE THE FOLD -->
-      <div class="sd-trust-strip" aria-label="Garanties et réassurance">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
+      <div class="sd-hero__visual">
+        <figure class="sd-stage sd-stage--audit">
+        <div class="sd-audit">
+          <img src="/assets/audit-compare/before-resto.webp" width="820" height="612" alt="Exemple de site de restaurant daté : menu en PDF, horaires dans un tableau, numéro non cliquable" decoding="async" fetchpriority="high">
+          <span class="sd-audit__pin sd-audit__pin--1" aria-hidden="true">1</span>
+          <span class="sd-audit__pin sd-audit__pin--2" aria-hidden="true">2</span>
+          <span class="sd-audit__pin sd-audit__pin--3" aria-hidden="true">3</span>
         </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi &amp; Wallonie</span>
-        </div>
+        <ol class="sd-audit__legend">
+          <li>Menu en PDF à télécharger</li>
+          <li>Numéro non cliquable</li>
+          <li>Horaires illisibles sur téléphone</li>
+        </ol>
+        <figcaption>Exemple type : ce qu’on repère ensemble en 15 minutes.</figcaption>
+      </figure>
       </div>
     </section>
 
-    <!-- SECTION POUR QUI & UTILITÉ -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour qui, pour quoi</span>
-        <h2 class="sd-heading">Ce que ça change pour votre activité</h2>
-        <p class="sd-subheading">Pour qui c’est fait, et ce que vous y gagnez concrètement.</p>
-      </div>
-
-      <div class="sd-duo-grid">
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            À qui s'adresse cette formule&nbsp;?
-          </h3>
-          <p>Indépendants, artisans du bâtiment, dépanneurs et gérants de PME en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles) qui veulent savoir pourquoi leur présence en ligne ne leur rapporte pas assez d’appels.</p>
-        </div>
-
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            Ce que vous y gagnez
-          </h3>
-          <p>Ne plus payer pour des outils ou des publicités qui ne ramènent rien. Vous repartez avec un avis franc et chiffré sur votre situation, et la première chose à corriger.</p>
-        </div>
-      </div>
-      <div class="sd-notfor"><strong>Ce n’est pas pour vous si</strong><p>Vous attendez un audit écrit de 40 pages ou une étude de marché : ici, c’est 15 minutes pour trouver la priorité.</p></div>
-    </section>
-
-    <!-- SECTION LIVRABLES EXACTS -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-deliv-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Ce que vous recevez</span>
-        <h2 class="sd-heading">Tout ce qui est livré, noir sur blanc</h2>
-        <p class="sd-subheading">Voici exactement ce que vous recevez. Rien n’est laissé dans le flou.</p>
+        <h2 class="sd-heading" id="sd-deliv-title">Tout est livré, noir sur blanc</h2>
       </div>
-
-      <div class="sd-deliverables-grid">
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Vérification en direct de votre visibilité sur votre commune</strong>
-            </div>
-            <p>On regarde ensemble comment votre entreprise apparaît sur Google et Google Maps par rapport à vos 3 principaux concurrents locaux (Charleroi, Namur, Mons, etc.).</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Test de vitesse et d’affichage sur smartphone (4G)</strong>
-            </div>
-            <p>Vérification du temps de chargement sur téléphone : si votre site met plus de 2,5 secondes à s’ouvrir, vos clients s’impatientent et appellent un autre artisan.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Contrôle de vos boîtes e-mails (Anti-Spam devis)</strong>
-            </div>
-            <p>Vérification que vos devis envoyés aux clients n’atterrissent pas directement dans leur dossier de courriers indésirables (spams).</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Récapitulatif écrit après l’appel</strong>
-            </div>
-            <p>Un e-mail de synthèse simple et sans jargon : les points faibles constatés, la solution la plus rentable et une fourchette de budget. Si vous voulez aller plus loin, le devis ferme suit l’appel.</p>
-          </div>
-        
-      </div>
+      <ul class="sd-deliverables-grid">
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span><span class="sd-tile__label">Visibilité locale vérifiée en direct</span><span class="sd-tile__num" aria-hidden="true">01</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="sd-tile__label">Test vitesse sur smartphone</span><span class="sd-tile__num" aria-hidden="true">02</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span class="sd-tile__label">Devis hors des spams</span><span class="sd-tile__num" aria-hidden="true">03</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg></span><span class="sd-tile__label">Récapitulatif écrit après l’appel</span><span class="sd-tile__num" aria-hidden="true">04</span></li>
+      </ul>
     </section>
 
-    <!-- SECTION COMPARATIVE AVEC PURITY VS AUTRES -->
-    
-    <section class="sd-section">
+    <section class="sd-section sd-section--vs" aria-labelledby="sd-vs-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Pourquoi Purity</span>
-        <h2 class="sd-heading">Ce qui change par rapport à ce que vous avez peut-être déjà vécu</h2>
-        <p class="sd-subheading">À gauche, ce qu’on voit souvent chez les prestataires ou en bricolant soi-même. À droite, ce que Purity fait à la place.</p>
+        <h2 class="sd-heading" id="sd-vs-title">Ailleurs, et chez Purity</h2>
       </div>
-
       <div class="sd-comparison-wrap">
         <table class="sd-comparison-table">
           <thead>
             <tr>
-              <th scope="col">Point</th>
-              <th scope="col">Ce qu’on voit souvent</th>
-              <th scope="col" class="sd-col-purity">Avec Purity</th>
+              <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
+              <th scope="col"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>Souvent ailleurs</span></th>
+              <th scope="col" class="sd-col-purity"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Chez Purity</span></th>
             </tr>
           </thead>
           <tbody>
-            
-              <tr>
-                <td class="sd-col-aspect">Approche commerciale</td>
-                <td class="sd-col-others">On essaie de vous faire signer un pack à 5 000 € dès la 5e minute</td>
-                <td class="sd-col-purity"><strong>✓</strong> Du conseil franc : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Interlocuteur</td>
-                <td class="sd-col-others">Commercial junior qui n’y connaît rien à votre métier et lit un argumentaire</td>
-                <td class="sd-col-purity"><strong>✓</strong> Échange direct avec Amir Kebiyeb, fondateur de l’agence</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Ce que vous recevez</td>
-                <td class="sd-col-others">Un devis générique automatique envoyé sans explication</td>
-                <td class="sd-col-purity"><strong>✓</strong> Un récapitulatif écrit après l’appel, avec l’action prioritaire à mener</td>
-              </tr>
-            
+            <tr>
+              <th scope="row" class="sd-col-aspect">Approche commerciale</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Un pack vendu dès la 5e minute</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Un avis franc, même « rien à acheter »</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Interlocuteur</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Un commercial qui lit un script</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Amir, le fondateur, en direct</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Ce que vous recevez</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Un devis générique sans explication</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Un récap écrit et l’action prioritaire</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
-    
 
-    <!-- SECTION LE COÛT DE L'INACTION -->
-    <section class="sd-section">
-      <div class="sd-loss-card">
-        <span class="sd-kicker">Ne pas agir a un coût</span>
-        <h2 class="sd-heading">Ce que vous perdez chaque mois sans cette solution</h2>
-        <p class="sd-subheading">Ces pertes n’apparaissent sur aucune facture. Elles vous coûtent quand même, chaque mois.</p>
+    <section class="sd-section sd-loss" aria-labelledby="sd-loss-title">
+      <div class="sd-loss__head">
+        <h2 class="sd-heading" id="sd-loss-title">Ce que vous perdez chaque mois sans cette solution</h2>
+      </div>
+      <ol class="sd-loss__list">
+        <li><span class="sd-loss__num" aria-hidden="true">01</span><span>Budget publicitaire jeté par les fenêtres</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">02</span><span>Des chantiers rentables qui partent chez vos concurrents</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">03</span><span>Des devis qui dorment dans les spams de vos clients</span></li>
+      </ol>
+    </section>
 
-        <div class="sd-loss-grid">
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Budget publicitaire jeté par les fenêtres</span>
-              </div>
-              <p>Payer des annonces Google ou Facebook qui envoient des clients vers un site lent ou mal fait : jusqu’à 500 € par mois gaspillés pour aucun appel entrant.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Des chantiers rentables qui partent chez vos concurrents</span>
-              </div>
-              <p>Pendant que vous hésitez, les confrères de votre région modernisent leur présence et signent les plus gros chantiers.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Des devis qui dorment dans les spams de vos clients</span>
-              </div>
-              <p>Croire qu’un client ne donne pas suite à votre devis alors qu’il ne l’a tout simplement jamais reçu dans sa boîte de réception.</p>
-            </div>
-          
+    <section class="sd-section" aria-labelledby="sd-steps-title">
+      <div class="sd-section-header sd-section-header--row">
+        <div>
+          <span class="sd-kicker">Comment ça se passe</span>
+          <h2 class="sd-heading" id="sd-steps-title">4 étapes, très peu de travail pour vous</h2>
         </div>
+        <span class="sd-steps__delay"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>15 min, au créneau choisi</span>
       </div>
+      <ol class="sd-timeline">
+        <li class="sd-timeline__step"><span class="sd-timeline__num">01</span><strong>Choix de votre créneau</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">02</span><strong>Préparation du dossier</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">03</span><strong>Échange de 15 minutes chrono</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">04</span><strong>Récapitulatif écrit</strong></li>
+      </ol>
     </section>
 
-    <!-- SECTION COMMENT ÇA SE PASSE / DÉROULEMENT -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Comment ça se passe</span>
-        <h2 class="sd-heading">4 étapes, et très peu de travail pour vous</h2>
-        <p class="sd-subheading">Vous choisissez un créneau, Amir prépare l’appel, vous repartez avec la priorité et un récapitulatif écrit.</p>
-      </div>
-
-      <div class="sd-steps-grid">
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Choix de votre créneau</strong>
-            <p>Vous sélectionnez l’heure qui vous convient le mieux dans l’agenda en ligne, selon vos disponibilités entre deux chantiers.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Préparation du dossier</strong>
-            <p>Amir regarde votre site et vos concurrents locaux avant l’appel pour ne pas vous faire perdre une minute.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Échange de 15 minutes chrono</strong>
-            <p>Par téléphone ou en visio sur votre écran, droit au but, centré uniquement sur la rentabilité de votre entreprise.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">04</div>
-            <strong>Récapitulatif écrit</strong>
-            <p>Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec nous.</p>
-          </div>
-        
-      </div>
-    </section>
-
-    <!-- SECTION CAS CONCRETS ASSOCIÉS (PREUVE SOCIALE & MAILLAGE) -->
-    
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Démos par métier</span>
-        <h2 class="sd-heading">Voyez à quoi ça ressemble pour un métier proche du vôtre</h2>
-        <p class="sd-subheading">Ce sont des démonstrations construites par Purity pour montrer le résultat, pas des sites de clients. Testez-les sur votre téléphone.</p>
+        <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
+        <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
-
       <div class="sd-cases-grid">
-        
-          <a class="sd-case-card" href="/cas-concrets/renovation.html">
-            <span class="sd-case-card__sector">Rénovation &amp; Bâtiment</span>
-            <h3>Atelier Noma</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
-          <a class="sd-case-card" href="/cas-concrets/chauffage.html">
-            <span class="sd-case-card__sector">Chauffage &amp; Énergie</span>
-            <h3>Thermiq</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
+        <a class="sd-case-card" href="/cas-concrets/renovation.html">
+          <img src="/assets/shots/renovation-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Atelier Noma, rénovation &amp; bâtiment" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Rénovation &amp; Bâtiment</span><strong>Atelier Noma</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="sd-case-card" href="/cas-concrets/chauffage.html">
+          <img src="/assets/shots/chauffage-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Thermiq, chauffage &amp; énergie" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Chauffage &amp; Énergie</span><strong>Thermiq</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
       </div>
     </section>
-    
 
-    <!-- SECTION MAINTENANCE & SUIVI -->
-    
-
-    <!-- FAQ SECTION (SERP RICH SNIPPETS) -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-offer-title">
       <div class="sd-section-header">
+        <span class="sd-kicker">Le prix</span>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+      </div>
+      <div class="sd-offer">
+        <div class="sd-offer__price">
+          <span class="sd-offer__label">Ce que ça coûte</span>
+          <strong class="sd-offer__amount">Gratuit</strong>
+          <span class="sd-offer__sub">Aucun paiement, aucun engagement</span>
+          <span class="sd-offer__note">Devis ferme seulement si vous le demandez</span>
+        </div>
+        <ul class="sd-offer__side">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><div><strong>Par téléphone ou en visio</strong><p>Un lien en un clic, rien à installer.</p></div></li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg><div><strong>Récapitulatif écrit</strong><p>Les points faibles, la priorité, une fourchette de budget.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sd-section sd-faq" aria-labelledby="sd-faq-title">
+      <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
-        <h2 class="sd-heading">Questions fréquentes sur cette formule</h2>
-        <p class="sd-subheading">Des réponses franches, avant que vous décidiez.</p>
+        <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
+        <a class="sd-link-arrow" href="/contact.html?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
-
       <div class="sd-faq-list">
-        
-          <details class="sd-faq-item">
-            <summary>Est-ce vraiment 100 % gratuit sans aucun engagement ?</summary>
-            <div class="sd-faq-body">
-              <p>Oui, totalement. Aucun numéro de carte bancaire n’est demandé. Le but est de vérifier si nous pouvons réellement vous faire gagner du temps et des chantiers avant de vous proposer quoi que ce soit.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>De quoi ai-je besoin pour le rendez-vous ?</summary>
-            <div class="sd-faq-body">
-              <p>De rien de particulier : juste de votre adresse de site web (ou page Facebook si vous n’avez pas de site) et de nous expliquer le type de chantiers que vous aimeriez décrocher davantage.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Que se passe-t-il après le diagnostic ?</summary>
-            <div class="sd-faq-body">
-              <p>Vous repartez avec les idées claires. Si une solution Purity est pertinente pour votre activité, on vous envoie une offre détaillée. Si ce que vous avez déjà fonctionne très bien, on vous conseille de ne rien changer.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Comment se passe l’échange ?</summary>
-            <div class="sd-faq-body">
-              <p>Soit par un simple coup de téléphone, soit par un lien Google Meet en un clic sur votre smartphone ou PC, sans rien devoir installer.</p>
-            </div>
-          </details>
-        
+        <details class="sd-faq-item">
+          <summary>Est-ce vraiment 100 % gratuit sans aucun engagement ?</summary>
+          <div class="sd-faq-body"><p>Oui, totalement. Aucun numéro de carte bancaire n’est demandé. Le but est de vérifier si nous pouvons réellement vous faire gagner du temps et des chantiers avant de vous proposer quoi que ce soit.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>De quoi ai-je besoin pour le rendez-vous ?</summary>
+          <div class="sd-faq-body"><p>De rien de particulier : juste de votre adresse de site web (ou page Facebook si vous n’avez pas de site) et de nous expliquer le type de chantiers que vous aimeriez décrocher davantage.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Que se passe-t-il après le diagnostic ?</summary>
+          <div class="sd-faq-body"><p>Vous repartez avec les idées claires. Si une solution Purity est pertinente pour votre activité, on vous envoie une offre détaillée. Si ce que vous avez déjà fonctionne très bien, on vous conseille de ne rien changer.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Comment se passe l’échange ?</summary>
+          <div class="sd-faq-body"><p>Soit par un simple coup de téléphone, soit par un lien Google Meet en un clic sur votre smartphone ou PC, sans rien devoir installer.</p></div>
+        </details>
       </div>
     </section>
 
-    <!-- MAILLAGE INTERNE -->
-    <section class="sd-section" aria-labelledby="sd-links-title">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour aller plus loin</span>
-        <h2 class="sd-heading" id="sd-links-title">Exemples par métier et guides utiles</h2>
-      </div>
+    <section class="sd-section sd-section--more" aria-label="Description détaillée">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur Diagnostic digital (15 min)</span><span class="sd-more__hint">Détail complet</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">Le diagnostic digital est un appel gratuit de 15 minutes avec Amir Kebiyeb, fondateur de Purity Agency à Charleroi. Il regarde votre site, votre fiche Google et vos concurrents locaux, puis vous dit quoi corriger en premier. Vous recevez un récapitulatif écrit après l’appel. Aucun paiement, aucun engagement, et parfois la réponse est qu’il ne faut rien acheter.</p>
+          <p>Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec Amir Kebiyeb pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.</p>
+          <h3>Pour qui</h3>
+          <p>Indépendants, artisans du bâtiment, dépanneurs et gérants de PME en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles) qui veulent savoir pourquoi leur présence en ligne ne leur rapporte pas assez d’appels.</p>
+          <h3>Ce n’est pas pour vous si</h3>
+          <p>Vous attendez un audit écrit de 40 pages ou une étude de marché : ici, c’est 15 minutes pour trouver la priorité.</p>
+          <h3>Ce que vous y gagnez</h3>
+          <p>Ne plus payer pour des outils ou des publicités qui ne ramènent rien. Vous repartez avec un avis franc et chiffré sur votre situation, et la première chose à corriger.</p>
+          <h3>Le détail des livrables</h3>
+          <dl>
+            <dt>Vérification en direct de votre visibilité sur votre commune</dt><dd>On regarde ensemble comment votre entreprise apparaît sur Google et Google Maps par rapport à vos 3 principaux concurrents locaux (Charleroi, Namur, Mons, etc.).</dd>
+            <dt>Test de vitesse et d’affichage sur smartphone (4G)</dt><dd>Vérification du temps de chargement sur téléphone : si votre site met plus de 2,5 secondes à s’ouvrir, vos clients s’impatientent et appellent un autre artisan.</dd>
+            <dt>Contrôle de vos boîtes e-mails (Anti-Spam devis)</dt><dd>Vérification que vos devis envoyés aux clients n’atterrissent pas directement dans leur dossier de courriers indésirables (spams).</dd>
+            <dt>Récapitulatif écrit après l’appel</dt><dd>Un e-mail de synthèse simple et sans jargon : les points faibles constatés, la solution la plus rentable et une fourchette de budget. Si vous voulez aller plus loin, le devis ferme suit l’appel.</dd>
+          </dl>
+          <h3>Le comparatif en détail</h3>
+          <dl>
+            <dt>Approche commerciale</dt><dd>Souvent ailleurs : On essaie de vous faire signer un pack à 5 000 € dès la 5e minute. Avec Purity : Du conseil franc : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit.</dd>
+            <dt>Interlocuteur</dt><dd>Souvent ailleurs : Commercial junior qui n’y connaît rien à votre métier et lit un argumentaire. Avec Purity : Échange direct avec Amir Kebiyeb, fondateur de l’agence.</dd>
+            <dt>Ce que vous recevez</dt><dd>Souvent ailleurs : Un devis générique automatique envoyé sans explication. Avec Purity : Un récapitulatif écrit après l’appel, avec l’action prioritaire à mener.</dd>
+          </dl>
+          <h3>Ce que l’inaction coûte</h3>
+          <dl>
+            <dt>Budget publicitaire jeté par les fenêtres</dt><dd>Payer des annonces Google ou Facebook qui envoient des clients vers un site lent ou mal fait : jusqu’à 500 € par mois gaspillés pour aucun appel entrant.</dd>
+            <dt>Des chantiers rentables qui partent chez vos concurrents</dt><dd>Pendant que vous hésitez, les confrères de votre région modernisent leur présence et signent les plus gros chantiers.</dd>
+            <dt>Des devis qui dorment dans les spams de vos clients</dt><dd>Croire qu’un client ne donne pas suite à votre devis alors qu’il ne l’a tout simplement jamais reçu dans sa boîte de réception.</dd>
+          </dl>
+          <h3>Les étapes</h3>
+          <dl>
+            <dt>01 · Choix de votre créneau</dt><dd>Vous sélectionnez l’heure qui vous convient le mieux dans l’agenda en ligne, selon vos disponibilités entre deux chantiers.</dd>
+            <dt>02 · Préparation du dossier</dt><dd>Amir regarde votre site et vos concurrents locaux avant l’appel pour ne pas vous faire perdre une minute.</dd>
+            <dt>03 · Échange de 15 minutes chrono</dt><dd>Par téléphone ou en visio sur votre écran, droit au but, centré uniquement sur la rentabilité de votre entreprise.</dd>
+            <dt>04 · Récapitulatif écrit</dt><dd>Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec nous.</dd>
+          </dl>
+          
+        </div>
+      </details>
+    </section>
+
+    <nav class="sd-section sd-section--links" aria-labelledby="sd-links-title">
+      <h2 class="sd-mini-title" id="sd-links-title">Exemples par métier et guides utiles</h2>
       <ul class="sd-links">
         <li><a href="/agence-web/charleroi">Agence web à Charleroi : qui on est, où on intervient</a></li>
         <li><a href="/site-internet/chauffagiste">Site internet pour chauffagiste</a></li>
@@ -485,24 +392,21 @@
         <li><a href="/article-prix-site-web-belgique.html">Combien coûte un site web en Belgique</a></li>
         <li><a href="/article-site-ne-convertit-pas.html">Pourquoi un site ne génère pas de demandes</a></li>
       </ul>
-    </section>
+    </nav>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
-        <p>Vous parlez directement à Amir Kebiyeb. 15 min par téléphone ou en visio, récapitulatif écrit après l’appel, devis ferme seulement si vous le demandez.</p>
+        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <p>Vous parlez directement à Amir Kebiyeb. Réponse personnelle sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic offert (15 min) <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les autres services <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic offert (15 min) <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/services">Voir les autres services <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
   </div>
 </main>
 
-<!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
     <span class="sd-floating-price">Offert</span>

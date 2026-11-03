@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -159,10 +159,10 @@
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>
-    <a href="/blog.html" style="--i:2">Blog</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/services">Services &amp; Tarifs</a>
+    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
 </div>
 
@@ -176,366 +176,239 @@
       <span aria-current="page">Site Vitrine (5 pages)</span>
     </nav>
 
-    <!-- HERO DU SERVICE -->
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Pilier 01 · Sites Web &amp; Référencement</div>
-      <h1 class="sd-hero__title" id="service-title">Site Vitrine (5 pages)</h1>
-      <p class="sd-hero__answer">Site Vitrine (5 pages) par Purity Agency, à Charleroi : 1 490 € de mise en place, puis 79 €/mois de suivi, résiliable chaque mois. Délai : 7 à 10 jours ouvrés. 5 pages qui montrent votre travail, rassurent le client et trient les demandes avant que vous preniez la route. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
-      <p class="sd-hero__summary">Accueil, prestations détaillées, réalisations avec comparateur avant/après, présentation de l’entreprise, contact et demande de devis. De quoi être choisi quand un client compare trois artisans de votre région.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Tarif de mise en place</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">1 490 €</span>
-            
-          </div>
-          <span class="sd-meta-card__sub">+ 79 €/mois (suivi &amp; hébergement)</span>
-          <span class="sd-meta-card__vat">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
-          <span class="sd-meta-card__offer">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
+    <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
+      <div class="sd-hero__text">
+        <div class="sd-hero__pill">Sites Web &amp; Référencement</div>
+        <h1 class="sd-hero__title" id="service-title">Site Vitrine (5 pages)</h1>
+        <p class="sd-hero__lead">5 pages qui montrent votre travail, rassurent le client et trient les demandes avant que vous preniez la route.</p>
+        <div class="sd-hero__price"><strong>1 490 €</strong><span>+ 79 €/mois de suivi</span></div>
+        <ul class="sd-hero__chips">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 à 10 jours ouvrés</li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c1.8.9 3 2.9 3 5.5"/></svg>Amir, de A à Z</li>
+        </ul>
+        <div class="sd-hero__actions">
+          <a class="sd-btn-primary" href="/contact.html?offer=M04">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>
         </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Délai</span>
-          <span class="sd-meta-card__value">7 à 10 jours ouvrés</span>
-          <span class="sd-meta-card__sub">Écrit dans votre devis</span>
-        </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Votre interlocuteur</span>
-          <span class="sd-meta-card__value">Amir, de A à Z</span>
-          <span class="sd-meta-card__sub">Prix écrit au devis · Sans frais cachés</span>
+        <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
+        <div class="sd-trust-strip" aria-label="Garanties et réassurance">
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7.5-3.5 7.5-9.5V5.5L12 3 4.5 5.5v6C4.5 17.5 12 21 12 21z"/><path d="m9 12 2 2 4-4"/></svg>BCE &amp; TVA <strong>BE 1036.775.590</strong></span>
+          <span class="sd-trust-item"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Charleroi &amp; Wallonie</span>
         </div>
       </div>
-
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html?offer=M04">Recevoir mon devis écrit <span aria-hidden="true">↗</span></a>
-        <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir d’abord <span aria-hidden="true">→</span></a>
-      </div>
-
-      <!-- TRUST STRIP ABOVE THE FOLD -->
-      <div class="sd-trust-strip" aria-label="Garanties et réassurance">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
+      <div class="sd-hero__visual">
+        <figure class="sd-stage sd-stage--device">
+        <div class="sd-browser">
+          <div class="sd-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>Démo · Atelier Noma</span></div>
+          <img src="/assets/shots/renovation-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Atelier Noma (Rénovation) conçue par Purity, vue sur ordinateur" decoding="async" fetchpriority="high">
         </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi &amp; Wallonie</span>
+        <div class="sd-phone">
+          <img src="/assets/shots/renovation-mobile-0.webp" width="390" height="844" alt="La même démo Atelier Noma sur téléphone" decoding="async">
         </div>
+        <figcaption>Démo conçue par Purity · <a href="/cas-concrets/renovation.html">Tester Atelier Noma</a></figcaption>
+      </figure>
       </div>
     </section>
 
-    <!-- SECTION POUR QUI & UTILITÉ -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour qui, pour quoi</span>
-        <h2 class="sd-heading">Ce que ça change pour votre activité</h2>
-        <p class="sd-subheading">Pour qui c’est fait, et ce que vous y gagnez concrètement.</p>
-      </div>
-
-      <div class="sd-duo-grid">
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            À qui s'adresse cette formule&nbsp;?
-          </h3>
-          <p>Chauffagistes, entreprises de rénovation, carrosseries, garagistes, électriciens, plombiers, toitures et PME régionales en Wallonie.</p>
-        </div>
-
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            Ce que vous y gagnez
-          </h3>
-          <p>Être celui qu’on appelle dans votre commune, et ne plus vous déplacer pour des curieux sans budget : la demande arrive avec les photos et les infos utiles.</p>
-        </div>
-      </div>
-      <div class="sd-notfor"><strong>Ce n’est pas pour vous si</strong><p>Vous vendez en ligne (voyez la Boutique) ou vous couvrez de nombreuses villes et services (voyez le Site Complet).</p></div>
-    </section>
-
-    <!-- SECTION LIVRABLES EXACTS -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-deliv-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Ce que vous recevez</span>
-        <h2 class="sd-heading">Tout ce qui est livré, noir sur blanc</h2>
-        <p class="sd-subheading">Voici exactement ce que vous recevez. Rien n’est laissé dans le flou.</p>
+        <h2 class="sd-heading" id="sd-deliv-title">Tout est livré, noir sur blanc</h2>
       </div>
-
-      <div class="sd-deliverables-grid">
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>5 pages complètes pour rassurer et convaincre vos clients</strong>
-            </div>
-            <p>Accueil rassurant, fiches détaillées pour chaque prestation, galerie de réalisations concrètes, présentation de votre entreprise et formulaire de contact guidé.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Formulaire de devis avec photos smartphone (Chiffrage avant déplacement)</strong>
-            </div>
-            <p>Vos clients peuvent joindre directement des photos de leur problème depuis leur smartphone (ex: photos chaudière et m² pour un chauffagiste, 4 photos dégâts pour un carrossier, photos toiture) : vous estimez le projet avant de prendre la route.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Filtre kilométrique de zone d’intervention (ex: 25 km)</strong>
-            </div>
-            <p>Définition claire de votre secteur pour éliminer les demandes trop lointaines et ne plus perdre 2h par jour dans les bouchons pour des petites interventions non rentables.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Curseur interactif tactile Avant / Après</strong>
-            </div>
-            <p>Un outil visuel sur lequel le client fait glisser son doigt pour voir la transformation avant et après vos travaux (idéal pour la rénovation, carrosserie, toiture).</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Référencement local configuré pour Google (Wallonie)</strong>
-            </div>
-            <p>Vos communes d’intervention et vos spécialités sont indiquées comme Google le demande, pour qu’il sache où vous travaillez et ce que vous faites.</p>
-          </div>
-        
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Chargement ultra-rapide &amp; remise de vos accès</strong>
-            </div>
-            <p>Ouverture rapide sur téléphone (utile aussi si vous faites de la publicité Google) et remise de tous les accès : vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine.</p>
-          </div>
-        
-      </div>
+      <ul class="sd-deliverables-grid">
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="13" height="17" rx="2"/><path d="M8 8h5M8 12h5M8 16h3"/><path d="M20 7v12a2 2 0 0 1-2 2H8"/></svg></span><span class="sd-tile__label">5 pages qui rassurent</span><span class="sd-tile__num" aria-hidden="true">01</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="sd-tile__label">Devis avec photos du client</span><span class="sd-tile__num" aria-hidden="true">02</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span class="sd-tile__label">Filtre de zone en km</span><span class="sd-tile__num" aria-hidden="true">03</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14"/><path d="m9 10-2 2 2 2M15 10l2 2-2 2"/></svg></span><span class="sd-tile__label">Curseur avant / après</span><span class="sd-tile__num" aria-hidden="true">04</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span><span class="sd-tile__label">Référencement local réglé</span><span class="sd-tile__num" aria-hidden="true">05</span></li>
+        <li class="sd-tile"><span class="sd-tile__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></svg></span><span class="sd-tile__label">Site rapide, accès remis</span><span class="sd-tile__num" aria-hidden="true">06</span></li>
+      </ul>
     </section>
 
-    <!-- SECTION COMPARATIVE AVEC PURITY VS AUTRES -->
-    
-    <section class="sd-section">
+    <section class="sd-section sd-section--vs" aria-labelledby="sd-vs-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Pourquoi Purity</span>
-        <h2 class="sd-heading">Ce qui change par rapport à ce que vous avez peut-être déjà vécu</h2>
-        <p class="sd-subheading">À gauche, ce qu’on voit souvent chez les prestataires ou en bricolant soi-même. À droite, ce que Purity fait à la place.</p>
+        <h2 class="sd-heading" id="sd-vs-title">Ailleurs, et chez Purity</h2>
       </div>
-
       <div class="sd-comparison-wrap">
         <table class="sd-comparison-table">
           <thead>
             <tr>
-              <th scope="col">Point</th>
-              <th scope="col">Ce qu’on voit souvent</th>
-              <th scope="col" class="sd-col-purity">Avec Purity</th>
+              <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
+              <th scope="col"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>Souvent ailleurs</span></th>
+              <th scope="col" class="sd-col-purity"><span class="sd-vs__h"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Chez Purity</span></th>
             </tr>
           </thead>
           <tbody>
-            
-              <tr>
-                <td class="sd-col-aspect">Filtrage des curieux</td>
-                <td class="sd-col-others">Formulaire basique : vous perdez votre temps sur des devis sans budget</td>
-                <td class="sd-col-purity"><strong>✓</strong> Formulaire de devis avec critères et photos smartphone pour chiffrer avant déplacement</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Preuve de savoir-faire</td>
-                <td class="sd-col-others">Quelques photos mal cadrées que personne ne regarde</td>
-                <td class="sd-col-purity"><strong>✓</strong> Curseur interactif tactile Avant / Après qui met en valeur la qualité de votre travail</td>
-              </tr>
-            
-              <tr>
-                <td class="sd-col-aspect">Présence locale</td>
-                <td class="sd-col-others">Site invisible dès qu’on dépasse le bout de votre rue</td>
-                <td class="sd-col-purity"><strong>✓</strong> Référencement calé sur votre zone réelle pour capter les chantiers de vos communes cibles</td>
-              </tr>
-            
+            <tr>
+              <th scope="row" class="sd-col-aspect">Filtrage des curieux</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Des devis pour des curieux sans budget</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Un formulaire qui trie avant le déplacement</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Preuve de savoir-faire</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Des photos mal cadrées</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Un avant / après tactile</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="sd-col-aspect">Présence locale</th>
+              <td class="sd-col-others"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg><span>Invisible au bout de votre rue</span></td>
+              <td class="sd-col-purity"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Calé sur vos communes</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
-    
 
-    <!-- SECTION LE COÛT DE L'INACTION -->
-    <section class="sd-section">
-      <div class="sd-loss-card">
-        <span class="sd-kicker">Ne pas agir a un coût</span>
-        <h2 class="sd-heading">Ce que vous perdez chaque mois sans cette solution</h2>
-        <p class="sd-subheading">Ces pertes n’apparaissent sur aucune facture. Elles vous coûtent quand même, chaque mois.</p>
+    <section class="sd-section sd-loss" aria-labelledby="sd-loss-title">
+      <div class="sd-loss__head">
+        <h2 class="sd-heading" id="sd-loss-title">Ce que vous perdez chaque mois sans cette solution</h2>
+      </div>
+      <ol class="sd-loss__list">
+        <li><span class="sd-loss__num" aria-hidden="true">01</span><span>Des gros chantiers qui partent chez un concurrent plus rassurant</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">02</span><span>Des soirées perdues sur des devis pour des curieux</span></li>
+        <li><span class="sd-loss__num" aria-hidden="true">03</span><span>Dépendance dangereuse au seul bouche-à-oreille</span></li>
+      </ol>
+    </section>
 
-        <div class="sd-loss-grid">
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Des gros chantiers qui partent chez un concurrent plus rassurant</span>
-              </div>
-              <p>Quand un propriétaire compare 3 devis pour une pompe à chaleur ou une toiture à 18 500 €, il choisit l’artisan dont le site donne immédiatement confiance avec des preuves de chantiers récents.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>2 heures perdues par jour sur des devis pour des curieux</span>
-              </div>
-              <p>Passer ses soirées à faire des chiffrages à l’aveugle pour des personnes qui n’ont pas le budget, faute d’avoir un formulaire qui qualifie le projet au préalable.</p>
-            </div>
-          
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Dépendance dangereuse au seul bouche-à-oreille</span>
-              </div>
-              <p>Le bouche-à-oreille est précieux mais imprévisible : un site vitrine solide vous assure un flux régulier de nouveaux contacts toute l’année.</p>
-            </div>
-          
+    <section class="sd-section" aria-labelledby="sd-steps-title">
+      <div class="sd-section-header sd-section-header--row">
+        <div>
+          <span class="sd-kicker">Comment ça se passe</span>
+          <h2 class="sd-heading" id="sd-steps-title">4 étapes, très peu de travail pour vous</h2>
         </div>
+        <span class="sd-steps__delay"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Livré en 7 à 10 jours ouvrés</span>
       </div>
+      <ol class="sd-timeline">
+        <li class="sd-timeline__step"><span class="sd-timeline__num">01</span><strong>Entretien de cadrage (30 min)</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">02</span><strong>Création et rédaction de vos 5 pages</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">03</span><strong>Validation ensemble sur smartphone</strong></li>
+        <li class="sd-timeline__step"><span class="sd-timeline__num">04</span><strong>Mise en ligne &amp; Remise des clés</strong></li>
+      </ol>
     </section>
 
-    <!-- SECTION COMMENT ÇA SE PASSE / DÉROULEMENT -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Comment ça se passe</span>
-        <h2 class="sd-heading">4 étapes, et très peu de travail pour vous</h2>
-        <p class="sd-subheading">Vous expliquez votre métier, on s’occupe du reste. Rien n’est mis en ligne sans votre accord.</p>
-      </div>
-
-      <div class="sd-steps-grid">
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Entretien de cadrage (30 min)</strong>
-            <p>On liste vos prestations les plus rentables, vos tarifs indicatifs et les communes où vous voulez travailler en priorité.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Création et rédaction de vos 5 pages</strong>
-            <p>Nous rédigeons les textes, mettons en forme vos photos de chantiers et créons un parcours de contact sans friction.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Validation ensemble sur smartphone</strong>
-            <p>Vous testez la version interactive sur votre téléphone et nous ajustons chaque détail selon vos préférences.</p>
-          </div>
-        
-          <div class="sd-step-item">
-            <div class="sd-step-num">04</div>
-            <strong>Mise en ligne &amp; Remise des clés</strong>
-            <p>Activation de votre nom de domaine .be, signalement à Google et envoi de vos accès.</p>
-          </div>
-        
-      </div>
-    </section>
-
-    <!-- SECTION CAS CONCRETS ASSOCIÉS (PREUVE SOCIALE & MAILLAGE) -->
-    
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Démos par métier</span>
-        <h2 class="sd-heading">Voyez à quoi ça ressemble pour un métier proche du vôtre</h2>
-        <p class="sd-subheading">Ce sont des démonstrations construites par Purity pour montrer le résultat, pas des sites de clients. Testez-les sur votre téléphone.</p>
+        <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
+        <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
-
       <div class="sd-cases-grid">
-        
-          <a class="sd-case-card" href="/cas-concrets/renovation.html">
-            <span class="sd-case-card__sector">Rénovation Intérieure</span>
-            <h3>Atelier Noma</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
-          <a class="sd-case-card" href="/cas-concrets/garage.html">
-            <span class="sd-case-card__sector">Garage &amp; Carrosserie</span>
-            <h3>Garage Rive</h3>
-            <p>Une démo à tester : les pages, le parcours de contact et les détails propres au métier.</p>
-            <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
-          </a>
-        
+        <a class="sd-case-card" href="/cas-concrets/renovation.html">
+          <img src="/assets/shots/renovation-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Atelier Noma, rénovation intérieure" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Rénovation Intérieure</span><strong>Atelier Noma</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="sd-case-card" href="/cas-concrets/garage.html">
+          <img src="/assets/shots/garage-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Garage Rive, garage &amp; carrosserie" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">Garage &amp; Carrosserie</span><strong>Garage Rive</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>
       </div>
     </section>
-    
 
-    <!-- SECTION MAINTENANCE & SUIVI -->
-    
-    <section class="sd-section">
-      <div class="sd-maintenance-box">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        <div>
-          <h4>Ce qui est inclus dans votre suivi mensuel (79 €/mois)</h4>
-          <p>Hébergement infogéré haute vitesse, sauvegardes quotidiennes automatiques, surveillance anti-panne et ajout de vos nouveaux chantiers ou avis clients sur simple message WhatsApp.</p>
+    <section class="sd-section" aria-labelledby="sd-offer-title">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Le prix</span>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+      </div>
+      <div class="sd-offer">
+        <div class="sd-offer__price">
+          <span class="sd-offer__label">Mise en place</span>
+          <strong class="sd-offer__amount">1 490 €</strong>
+          <span class="sd-offer__sub">+ 79 €/mois de suivi et hébergement</span>
+          <span class="sd-offer__note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
+          <span class="sd-offer__promo">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
         </div>
+        <ul class="sd-offer__side">
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg><div><strong>Inclus dans le suivi (79 €/mois)</strong><p>Hébergement infogéré haute vitesse, sauvegardes quotidiennes automatiques, surveillance anti-panne et ajout de vos nouveaux chantiers ou avis clients sur simple message WhatsApp.</p></div></li>
+          <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></svg><div><strong>Résiliable chaque mois</strong><p>Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p></div></li>
+        </ul>
       </div>
     </section>
-    
 
-    <!-- FAQ SECTION (SERP RICH SNIPPETS) -->
-    <section class="sd-section">
-      <div class="sd-section-header">
+    <section class="sd-section sd-faq" aria-labelledby="sd-faq-title">
+      <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
-        <h2 class="sd-heading">Questions fréquentes sur cette formule</h2>
-        <p class="sd-subheading">Des réponses franches, avant que vous décidiez.</p>
+        <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
+        <a class="sd-link-arrow" href="/contact.html?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
-
       <div class="sd-faq-list">
-        
-          <details class="sd-faq-item">
-            <summary>Suis-je propriétaire de mes contenus et de mon nom de domaine ?</summary>
-            <div class="sd-faq-body">
-              <p>Oui. Une fois la création réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Vous n’êtes jamais enfermé chez nous : vos fichiers vous sont remis si vous partez.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Combien de temps le projet va-t-il me prendre ?</summary>
-            <div class="sd-faq-body">
-              <p>Environ 45 minutes en tout : 30 minutes au début pour nous expliquer votre activité, et 15 minutes à la fin pour valider le résultat. Nous nous occupons de toute la rédaction et de la technique.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Puis-je modifier mes tarifs ou mes photos moi-même ?</summary>
-            <div class="sd-faq-body">
-              <p>Oui, vous avez un accès simple si vous le souhaitez. Mais le plus pratique reste de nous envoyer un message : nous faisons vos mises à jour sans surcoût dans le cadre de votre suivi.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Ce site est-il adapté si je veux lancer de la pub Google Ads ?</summary>
-            <div class="sd-faq-body">
-              <p>Oui. Un site rapide avec un formulaire bien placé aide à obtenir une bonne note de qualité sur Google Ads, ce qui fait baisser le prix de chaque clic.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Est-ce que je m’engage sur une durée ?</summary>
-            <div class="sd-faq-body">
-              <p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p>
-            </div>
-          </details>
-        
-          <details class="sd-faq-item">
-            <summary>Que se passe-t-il si j’arrête le suivi ?</summary>
-            <div class="sd-faq-body">
-              <p>Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez.</p>
-            </div>
-          </details>
-        
+        <details class="sd-faq-item">
+          <summary>Suis-je propriétaire de mes contenus et de mon nom de domaine ?</summary>
+          <div class="sd-faq-body"><p>Oui. Une fois la création réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Vous n’êtes jamais enfermé chez nous : vos fichiers vous sont remis si vous partez.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Combien de temps le projet va-t-il me prendre ?</summary>
+          <div class="sd-faq-body"><p>Environ 45 minutes en tout : 30 minutes au début pour nous expliquer votre activité, et 15 minutes à la fin pour valider le résultat. Nous nous occupons de toute la rédaction et de la technique.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Puis-je modifier mes tarifs ou mes photos moi-même ?</summary>
+          <div class="sd-faq-body"><p>Oui, vous avez un accès simple si vous le souhaitez. Mais le plus pratique reste de nous envoyer un message : nous faisons vos mises à jour sans surcoût dans le cadre de votre suivi.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Ce site est-il adapté si je veux lancer de la pub Google Ads ?</summary>
+          <div class="sd-faq-body"><p>Oui. Un site rapide avec un formulaire bien placé aide à obtenir une bonne note de qualité sur Google Ads, ce qui fait baisser le prix de chaque clic.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Est-ce que je m’engage sur une durée ?</summary>
+          <div class="sd-faq-body"><p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p></div>
+        </details>
+        <details class="sd-faq-item">
+          <summary>Que se passe-t-il si j’arrête le suivi ?</summary>
+          <div class="sd-faq-body"><p>Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez.</p></div>
+        </details>
       </div>
     </section>
 
-    <!-- MAILLAGE INTERNE -->
-    <section class="sd-section" aria-labelledby="sd-links-title">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour aller plus loin</span>
-        <h2 class="sd-heading" id="sd-links-title">Exemples par métier et guides utiles</h2>
-      </div>
+    <section class="sd-section sd-section--more" aria-label="Description détaillée">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur Site Vitrine (5 pages)</span><span class="sd-more__hint">Détail complet</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">Site Vitrine (5 pages) par Purity Agency, à Charleroi : 1 490 € de mise en place, puis 79 €/mois de suivi, résiliable chaque mois. Délai : 7 à 10 jours ouvrés. 5 pages qui montrent votre travail, rassurent le client et trient les demandes avant que vous preniez la route. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
+          <p>Accueil, prestations détaillées, réalisations avec comparateur avant/après, présentation de l’entreprise, contact et demande de devis. De quoi être choisi quand un client compare trois artisans de votre région.</p>
+          <h3>Pour qui</h3>
+          <p>Chauffagistes, entreprises de rénovation, carrosseries, garagistes, électriciens, plombiers, toitures et PME régionales en Wallonie.</p>
+          <h3>Ce n’est pas pour vous si</h3>
+          <p>Vous vendez en ligne (voyez la Boutique) ou vous couvrez de nombreuses villes et services (voyez le Site Complet).</p>
+          <h3>Ce que vous y gagnez</h3>
+          <p>Être celui qu’on appelle dans votre commune, et ne plus vous déplacer pour des curieux sans budget : la demande arrive avec les photos et les infos utiles.</p>
+          <h3>Le détail des livrables</h3>
+          <dl>
+            <dt>5 pages complètes pour rassurer et convaincre vos clients</dt><dd>Accueil rassurant, fiches détaillées pour chaque prestation, galerie de réalisations concrètes, présentation de votre entreprise et formulaire de contact guidé.</dd>
+            <dt>Formulaire de devis avec photos smartphone (Chiffrage avant déplacement)</dt><dd>Vos clients peuvent joindre directement des photos de leur problème depuis leur smartphone (ex: photos chaudière et m² pour un chauffagiste, 4 photos dégâts pour un carrossier, photos toiture) : vous estimez le projet avant de prendre la route.</dd>
+            <dt>Filtre kilométrique de zone d’intervention (ex: 25 km)</dt><dd>Définition claire de votre secteur pour éliminer les demandes trop lointaines et ne plus perdre 2h par jour dans les bouchons pour des petites interventions non rentables.</dd>
+            <dt>Curseur interactif tactile Avant / Après</dt><dd>Un outil visuel sur lequel le client fait glisser son doigt pour voir la transformation avant et après vos travaux (idéal pour la rénovation, carrosserie, toiture).</dd>
+            <dt>Référencement local configuré pour Google (Wallonie)</dt><dd>Vos communes d’intervention et vos spécialités sont indiquées comme Google le demande, pour qu’il sache où vous travaillez et ce que vous faites.</dd>
+            <dt>Chargement ultra-rapide &amp; remise de vos accès</dt><dd>Ouverture rapide sur téléphone (utile aussi si vous faites de la publicité Google) et remise de tous les accès : vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine.</dd>
+          </dl>
+          <h3>Le comparatif en détail</h3>
+          <dl>
+            <dt>Filtrage des curieux</dt><dd>Souvent ailleurs : Formulaire basique : vous perdez votre temps sur des devis sans budget. Avec Purity : Formulaire de devis avec critères et photos smartphone pour chiffrer avant déplacement.</dd>
+            <dt>Preuve de savoir-faire</dt><dd>Souvent ailleurs : Quelques photos mal cadrées que personne ne regarde. Avec Purity : Curseur interactif tactile Avant / Après qui met en valeur la qualité de votre travail.</dd>
+            <dt>Présence locale</dt><dd>Souvent ailleurs : Site invisible dès qu’on dépasse le bout de votre rue. Avec Purity : Référencement calé sur votre zone réelle pour capter les chantiers de vos communes cibles.</dd>
+          </dl>
+          <h3>Ce que l’inaction coûte</h3>
+          <dl>
+            <dt>Des gros chantiers qui partent chez un concurrent plus rassurant</dt><dd>Quand un propriétaire compare 3 devis pour une pompe à chaleur ou une toiture à 18 500 €, il choisit l’artisan dont le site donne immédiatement confiance avec des preuves de chantiers récents.</dd>
+            <dt>Des soirées perdues sur des devis pour des curieux</dt><dd>Passer ses soirées à faire des chiffrages à l’aveugle pour des personnes qui n’ont pas le budget, faute d’avoir un formulaire qui qualifie le projet au préalable.</dd>
+            <dt>Dépendance dangereuse au seul bouche-à-oreille</dt><dd>Le bouche-à-oreille est précieux mais imprévisible : un site vitrine solide vous assure un flux régulier de nouveaux contacts toute l’année.</dd>
+          </dl>
+          <h3>Les étapes</h3>
+          <dl>
+            <dt>01 · Entretien de cadrage (30 min)</dt><dd>On liste vos prestations les plus rentables, vos tarifs indicatifs et les communes où vous voulez travailler en priorité.</dd>
+            <dt>02 · Création et rédaction de vos 5 pages</dt><dd>Nous rédigeons les textes, mettons en forme vos photos de chantiers et créons un parcours de contact sans friction.</dd>
+            <dt>03 · Validation ensemble sur smartphone</dt><dd>Vous testez la version interactive sur votre téléphone et nous ajustons chaque détail selon vos préférences.</dd>
+            <dt>04 · Mise en ligne &amp; Remise des clés</dt><dd>Activation de votre nom de domaine .be, signalement à Google et envoi de vos accès.</dd>
+          </dl>
+          <h3>Engagement</h3>
+          <p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p>
+        </div>
+      </details>
+    </section>
+
+    <nav class="sd-section sd-section--links" aria-labelledby="sd-links-title">
+      <h2 class="sd-mini-title" id="sd-links-title">Exemples par métier et guides utiles</h2>
       <ul class="sd-links">
         <li><a href="/agence-web/charleroi">Agence web à Charleroi : qui on est, où on intervient</a></li>
         <li><a href="/site-internet/chauffagiste">Site internet pour chauffagiste</a></li>
@@ -544,28 +417,25 @@
         <li><a href="/article-prix-site-web-belgique.html">Combien coûte un site web en Belgique</a></li>
         <li><a href="/article-site-ne-convertit-pas.html">Pourquoi un site ne génère pas de demandes</a></li>
       </ul>
-    </section>
+    </nav>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
-        <p>Vous parlez directement à Amir Kebiyeb. Récapitulatif écrit après l’appel, puis devis ferme avec prix, délai et livrables, sans engagement tant que vous ne l’avez pas signé.</p>
+        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <p>Vous parlez directement à Amir Kebiyeb. Réponse personnelle sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="/contact.html?offer=M04">Recevoir mon devis écrit <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les autres services <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="/contact.html?offer=M04">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Prendre rendez-vous <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
   </div>
 </main>
 
-<!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
     <span class="sd-floating-price">1 490 €</span>
-    <span class="sd-floating-note">Prix net · TVA non applicable</span>
+    <span class="sd-floating-note">+ 79 €/mois · prix net</span>
   </div>
   <a class="sd-floating-cta" href="/contact.html?offer=M04">Recevoir mon devis <span aria-hidden="true">↗</span></a>
 </aside>

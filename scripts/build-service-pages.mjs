@@ -1,4 +1,4 @@
-import { answerFor, objectionsFor, linksFor, commitmentAnswer, NOT_FOR, VISUALS, HUB_THUMB, icon } from './service-page-extras.mjs';
+import { answerFor, objectionsFor, linksFor, commitmentAnswer, NOT_FOR, VISUALS, HUB_THUMB, photoImg, RESULT_PHOTO, weekImg, icon } from './service-page-extras.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SERVICES_DIR = path.join(ROOT, 'services');
-const CSS_VERSION = '20261104';
+const CSS_VERSION = '20261105';
 
 if (!fs.existsSync(SERVICES_DIR)) {
   fs.mkdirSync(SERVICES_DIR, { recursive: true });
@@ -278,7 +278,7 @@ function heroVisual(svc) {
         <div class="sd-week">
           <div class="sd-week__head"><span>Planning de la semaine</span><span class="sd-week__ok">${icon('tick')}Validé</span></div>
           <ol class="sd-week__grid">
-            ${days.map(([d, k, img], i) => `<li class="sd-week__day${k === 'Vidéo' ? ' is-video' : ''}"><span class="sd-week__d">${d}</span><img src="/assets/cases/visuals/${img}.webp" width="1200" height="800" alt="" decoding="async"${i < 2 ? ' fetchpriority="high"' : ''}><span class="sd-week__k">${k === 'Vidéo' ? icon('play') : icon('image')}${k}</span></li>`).join('\n            ')}
+            ${days.map(([d, k, img], i) => `<li class="sd-week__day${k === 'Vidéo' ? ' is-video' : ''}"><span class="sd-week__d">${d}</span>${weekImg(img, i)}<span class="sd-week__k">${k === 'Vidéo' ? icon('play') : icon('image')}${k}</span></li>`).join('\n            ')}
             <li class="sd-week__day sd-week__day--off"><span class="sd-week__d">Dim</span><span class="sd-week__rest">Repos</span></li>
           </ol>
         </div>
@@ -299,9 +299,31 @@ function heroVisual(svc) {
         </div>
         <figcaption>Identités créées pour nos démos par métier.</figcaption>
       </figure>`;
+    case 'photo':
+      return `<figure class="sd-stage sd-stage--photo">
+        ${photoImg(v.id, { lazy: false, high: true, sizes: '(min-width: 1000px) 560px, 92vw' })}
+      </figure>`;
     default:
       return '';
   }
+}
+
+// Bloc photo « au quotidien » (voir RESULT_PHOTO).
+function resultSection(service) {
+  const r = RESULT_PHOTO[service.slug];
+  if (!r) return '';
+  return `<section class="sd-section sd-result" aria-labelledby="sd-result-title">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Au quotidien</span>
+        <h2 class="sd-heading" id="sd-result-title">Ce que ça change pour vous</h2>
+      </div>
+      <figure class="sd-result__fig">
+        ${photoImg(r.id, { sizes: '(min-width: 1000px) 520px, 92vw' })}
+        <figcaption>${e(r.caption)}</figcaption>
+      </figure>
+    </section>
+
+    `;
 }
 
 // --------------------------------------------------------------------------
@@ -488,7 +510,7 @@ ${renderHeader('services')}
       </ol>
     </section>
 
-    ${service.relatedCases && service.relatedCases.length ? `<section class="sd-section" aria-labelledby="sd-cases-title">
+    ${resultSection(service)}${service.relatedCases && service.relatedCases.length && !(RESULT_PHOTO[service.slug] && RESULT_PHOTO[service.slug].replaceCases) ? `<section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Démos par métier</span>
         <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
@@ -686,7 +708,7 @@ ${renderHeader('services')}
       <div class="sd-hub-grid" id="services-grid">
         ${services.map((svc, idx) => {
           const [, src, w, h, alt] = HUB_THUMB[svc.slug];
-          const tall = h > w;
+          const tall = h > w && !src.startsWith('/assets/visuals/');
           return `<article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
           <div class="sd-hub-card__thumb${tall ? ' sd-hub-card__thumb--tall' : ''}">
             <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? (idx === 0 ? ' fetchpriority="high"' : '') : ' loading="lazy"'}>${svc.slug === 'diagnostic-digital' ? '<span class="sd-hub-card__tag">Exemple de site daté</span>' : ''}

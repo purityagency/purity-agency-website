@@ -2611,3 +2611,6 @@ html{-moz-osx-font-smoothing:grayscale}
  .site-footer__brand{min-height:44px}
 }
 .hero .hero__price,.hero .hero__links{margin:0}
+.home-reach__photo{margin:0 0 2.4rem}
+.home-reach__photo img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;border-radius:18px;outline:1px solid rgba(0,0,0,.08);outline-offset:-1px}
+@media (max-width:640px){.home-reach__photo img{aspect-ratio:16/10;border-radius:14px}}

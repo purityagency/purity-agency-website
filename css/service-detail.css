@@ -1131,3 +1131,11 @@ body.service-page {
 @media (max-width: 767px) {
   .sd-breadcrumbs a, .sd-link-arrow { min-height: 44px; align-items: center; display: inline-flex; }
 }
+
+/* Visuels photo (hero et bloc « au quotidien ») */
+.sd-stage--photo img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; outline: 1px solid rgba(0, 0, 0, 0.08); outline-offset: -1px; box-shadow: var(--sd-shadow); }
+.sd-result__fig { margin: 0; display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: clamp(1.2rem, 3vw, 2.5rem); align-items: end; }
+.sd-result__fig img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px; outline: 1px solid rgba(0, 0, 0, 0.08); outline-offset: -1px; }
+.sd-result__fig figcaption { max-width: 34ch; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.4; font-weight: 560; letter-spacing: -0.01em; color: var(--sd-ink, #17141c); text-wrap: pretty; }
+.sd-hub-card__thumb img[src^="/assets/visuals/"] { object-position: center; }
+@media (max-width: 720px) { .sd-result__fig { grid-template-columns: minmax(0, 1fr); } .sd-result__fig img { aspect-ratio: 4 / 3; } }

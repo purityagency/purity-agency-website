@@ -162,7 +162,7 @@ export const icon = (name, cls = 'sd-ico') =>
 
 // hero.type : device (navigateur + téléphone d'une démo), beforeafter, audit,
 // gbp (fiche composée), serp, flow (schéma), phones (Reels), week (planning),
-// brands (identités des démos).
+// brands (identités des démos), photo (visuel de /assets/visuals/).
 export const VISUALS = {
   'diagnostic-digital': {
     tiles: [['search', 'Visibilité locale vérifiée en direct'], ['phone', 'Test vitesse sur smartphone'], ['mail', 'Devis hors des spams'], ['file', 'Récapitulatif écrit après l’appel']],
@@ -202,12 +202,12 @@ export const VISUALS = {
   'identite-visuelle-logo': {
     tiles: [['brush', '3 propositions de logo'], ['file', 'Fichiers HD pour l’imprimeur'], ['image', 'Images site et réseaux'], ['palette', 'Fiche de vos couleurs'], ['truck', 'Gabarits lettrage et flocage'], ['key', 'Droits d’auteur cédés']],
     vs: [['Un JPEG pixélisé refusé', 'Des vectoriels pour toutes les tailles'], ['Des droits refacturés par support', 'Droits cédés, sans frais par support'], ['Illisible sur la camionnette', 'Pensé pour véhicule et vêtements']],
-    hero: { type: 'brands', demos: ['renovation', 'garage', 'decoration', 'beaute'] }
+    hero: { type: 'photo', id: 'service-identite-visuelle-logo-hero' }
   },
   'pack-visuels-reels': {
     tiles: [['video', '4 Reels montés'], ['text', 'Sous-titres mot à mot'], ['image', '6 visuels de réalisations'], ['pen', 'Textes et mots-clés locaux'], ['frame', 'Couvertures de vidéo personnalisées']],
     vs: [['Des vidéos sans rythme ni texte', 'Un montage rythmé et sous-titré'], ['3 heures de montage le soir', 'Vous envoyez, on monte'], ['Le son coupé pour droits musicaux', 'Des musiques autorisées pour les pros']],
-    hero: { type: 'phones', demos: ['sport', 'restaurant', 'beaute'], captions: ['On bouge ensemble', 'Le plat de saison', 'Un soin, un moment'] }
+    hero: { type: 'photo', id: 'service-pack-visuels-reels-hero' }
   },
   'referencement-local-seo': {
     tiles: [['target', '20 recherches rentables ciblées'], ['gear', 'Site optimisé en continu'], ['pen', 'Contenus rédigés chaque mois'], ['list', 'Annuaires belges reconnus'], ['chart', 'Bilan mensuel d’une page']],
@@ -238,18 +238,73 @@ export const VISUALS = {
 
 // Vignette de la carte du hub : capture réelle d'une démo ou visuel composé.
 export const HUB_THUMB = {
-  'diagnostic-digital': ['img', '/assets/audit-compare/before-artisan.webp', 820, 612, 'Exemple de site daté passé en revue pendant un diagnostic'],
+  'diagnostic-digital': ['img', '/assets/visuals/service-diagnostic-digital-hero.webp', 1195, 896, "Deux personnes à une table de café qui passent en revue une page web sur un ordinateur, un sablier à côté"],
   'page-essentielle': ['img', '/assets/shots/chauffage-mobile-0.webp', 390, 844, 'Page d’accueil mobile de la démo chauffagiste Thermiq'],
   'site-vitrine': ['img', '/assets/shots/renovation-desktop-0.webp', 1440, 900, 'Accueil de la démo rénovation Atelier Noma'],
   'site-complet': ['img', '/assets/shots/architecture-desktop-0.webp', 1440, 900, 'Accueil de la démo bureau d’architecture Ligne Claire'],
   'boutique-en-ligne': ['img', '/assets/shots/decoration-desktop-0.webp', 1440, 900, 'Accueil de la démo boutique de décoration Matière Commune'],
   'refonte-modernisation': ['img', '/assets/shots/immobilier-desktop-0.webp', 1440, 900, 'Accueil de la démo agence immobilière Beaux Jours'],
-  'google-business': ['img', '/assets/cases/visuals/garage.webp', 1200, 800, 'Atelier de garage, visuel de la démo Garage Rive'],
+  'google-business': ['img', '/assets/visuals/service-google-business-hero.webp', 1024, 768, "Smartphone affichant une carte, tenu dans une ruelle pavée de briques"],
   'identite-visuelle-logo': ['img', '/assets/shots/beaute-desktop-0.webp', 1440, 900, 'Identité de la démo institut de beauté Maison Lune'],
-  'pack-visuels-reels': ['img', '/assets/shots/sport-mobile-0.webp', 390, 844, 'Écran mobile de la démo salle de sport Cadence'],
-  'referencement-local-seo': ['img', '/assets/cases/visuals/chauffage.webp', 1200, 800, 'Chauffagiste au travail, visuel de la démo Thermiq'],
-  'gestion-reseaux-sociaux': ['img', '/assets/shots/restaurant-mobile-0.webp', 390, 844, 'Écran mobile de la démo restaurant Table Serein'],
-  'pilote-automatique-essentiel': ['img', '/assets/shots/sante-desktop-0.webp', 1440, 900, 'Accueil de la démo cabinet de santé Horizon'],
-  'pilote-automatique-business': ['img', '/assets/shots/fiduciaire-desktop-0.webp', 1440, 900, 'Accueil de la démo fiduciaire Clarté et Associés'],
-  'pilote-automatique-integral': ['img', '/assets/shots/immobilier-desktop-1.webp', 1440, 900, 'Recherche de biens de la démo agence immobilière Beaux Jours']
+  'pack-visuels-reels': ['img', '/assets/visuals/service-pack-visuels-reels-hero.webp', 1195, 896, "Smartphone sur trépied qui filme un potier au tour dans son atelier"],
+  'referencement-local-seo': ['img', '/assets/visuals/service-referencement-local-seo-hero.webp', 1195, 896, "Vue en hauteur sur les toits de briques de Charleroi et un terril"],
+  'gestion-reseaux-sociaux': ['img', '/assets/visuals/service-gestion-reseaux-sociaux-resultat.webp', 896, 1195, "Commerçante souriante qui regarde son téléphone derrière son comptoir"],
+  'pilote-automatique-essentiel': ['img', '/assets/visuals/service-pilote-automatique-essentiel-hero.webp', 1024, 768, "Commerçant devant son rideau baissé le soir, qui regarde une notification sur son téléphone"],
+  'pilote-automatique-business': ['img', '/assets/visuals/service-pilote-automatique-business-hero.webp', 1195, 896, "Imprimante qui sort une facture dans un petit bureau administratif"],
+  'pilote-automatique-integral': ['img', '/assets/visuals/service-pilote-automatique-integral-hero.webp', 1024, 768, "Coiffeuse qui consulte ses rendez-vous sur une tablette à l’accueil de son salon"]
 };
+
+// Visuels photo de /assets/visuals/ : [largeur, hauteur, variante 800 px, alt].
+export const PHOTOS = {
+  'service-identite-visuelle-logo-hero': [1195, 896, true, "Mains d’un designer qui esquisse un monogramme, nuanciers et cartes vierges sur la table"],
+  'service-pack-visuels-reels-hero': [1195, 896, true, "Smartphone sur trépied qui filme un potier au tour dans son atelier"],
+  'service-diagnostic-digital-hero': [1195, 896, true, "Deux personnes à une table de café qui passent en revue une page web sur un ordinateur, un sablier à côté"],
+  'service-google-business-hero': [1024, 768, true, "Smartphone affichant une carte, tenu dans une ruelle pavée de briques"],
+  'service-referencement-local-seo-hero': [1195, 896, true, "Vue en hauteur sur les toits de briques de Charleroi et un terril"],
+  'service-gestion-reseaux-sociaux-resultat': [896, 1195, true, "Commerçante souriante qui regarde son téléphone derrière son comptoir"],
+  'service-pilote-automatique-essentiel-hero': [1024, 768, true, "Commerçant devant son rideau baissé le soir, qui regarde une notification sur son téléphone"],
+  'service-pilote-automatique-business-hero': [1195, 896, true, "Imprimante qui sort une facture dans un petit bureau administratif"],
+  'service-pilote-automatique-integral-hero': [1024, 768, true, "Coiffeuse qui consulte ses rendez-vous sur une tablette à l’accueil de son salon"],
+  'service-identite-visuelle-logo-resultat': [576, 768, false, "Artisan qui sort une carte de visite vierge de sa ceinture à outils"],
+  'service-pack-visuels-reels-resultat': [896, 1195, true, "Smartphone qui affiche une vidéo de poteries tenu devant les étagères d’un atelier"],
+  'service-pilote-automatique-business-resultat': [896, 1195, true, "Petit bureau administratif rangé, classeurs et ordinateur, sans personne"],
+  'service-pilote-automatique-integral-resultat': [896, 1195, true, "Commerçant qui ferme la porte de sa boutique le soir, vu de dos"],
+  'social-sport-post': [1024, 1024, true, "Mains d’un coach qui se mettent de la magnésie dans une salle de sport"],
+  'social-restaurant-post': [1024, 1024, true, "Mains d’un chef qui dressent une assiette de saison en cuisine"],
+  'social-decoration-post': [768, 768, false, "Mains qui emballent un vase en céramique dans du papier kraft sur un comptoir de boutique"],
+  'social-garage-post': [768, 768, false, "Mains d’un mécanicien qui serrent un écrou de roue avec une clé"]
+};
+
+// <img> d'un visuel photo, avec srcset 800 px quand la variante existe.
+export function photoImg(id, { lazy = true, high = false, sizes = '100vw' } = {}) {
+  const [w, h, small, alt] = PHOTOS[id];
+  const src = `/assets/visuals/${id}.webp`;
+  const set = small ? ` srcset="/assets/visuals/${id}-800.webp 800w, ${src} ${w}w" sizes="${sizes}"` : '';
+  const esc = s => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  return `<img src="${src}"${set} width="${w}" height="${h}" alt="${esc(alt)}"${lazy ? ' loading="lazy"' : ''}${high ? ' fetchpriority="high"' : ''} decoding="async">`;
+}
+
+// Bloc « au quotidien » : photo du résultat attendu. replaceCases : remplace les
+// captures de démos (hors sujet pour une automatisation).
+export const RESULT_PHOTO = {
+  'identite-visuelle-logo': { id: 'service-identite-visuelle-logo-resultat', caption: 'Votre carte de visite, toujours sous la main sur le chantier.' },
+  'pack-visuels-reels': { id: 'service-pack-visuels-reels-resultat', caption: 'Vos réalisations en vidéo verticale, prêtes à publier.' },
+  'gestion-reseaux-sociaux': { id: 'service-gestion-reseaux-sociaux-resultat', caption: 'Vous suivez vos publications d’un coup d’œil, sans y passer vos soirées.' },
+  'pilote-automatique-essentiel': { id: 'service-pilote-automatique-essentiel-hero', caption: 'Le message arrive après la fermeture : la réponse est déjà partie.', replaceCases: true },
+  'pilote-automatique-business': { id: 'service-pilote-automatique-business-resultat', caption: 'Le bureau reste rangé : chaque demande remplit son dossier toute seule.', replaceCases: true },
+  'pilote-automatique-integral': { id: 'service-pilote-automatique-integral-resultat', caption: 'Vous fermez boutique, l’assistant continue de répondre.', replaceCases: true }
+};
+
+// Planning réseaux sociaux : visuel photo du jour quand il existe, sinon visuel de démo.
+export const WEEK_PHOTOS = { sport: 'social-sport-post', restaurant: 'social-restaurant-post', decoration: 'social-decoration-post', garage: 'social-garage-post' };
+
+// <img> d'une case du planning (variante 800 px si elle existe).
+export function weekImg(key, i) {
+  const pr = i < 2 ? ' fetchpriority="high"' : '';
+  const id = WEEK_PHOTOS[key];
+  if (!id) return `<img src="/assets/cases/visuals/${key}.webp" width="1200" height="800" alt="" decoding="async"${pr}>`;
+  const [w, h, small] = PHOTOS[id];
+  return small
+    ? `<img src="/assets/visuals/${id}-800.webp" width="800" height="${Math.round(800 * h / w)}" alt="" decoding="async"${pr}>`
+    : `<img src="/assets/visuals/${id}.webp" width="${w}" height="${h}" alt="" decoding="async"${pr}>`;
+}

@@ -28,7 +28,14 @@
   // pousse par le mot a l'arrivee et le suit quand il repart — jamais de trou.
   const ARRIVAL = [22, 43, 65, 87, 111, 136, 162, 188, 215, 243, 271, 299, 327, 355, 383, 412, 439, 467, 494, 521, 546, 572, 597, 621, 644, 667, 689, 709, 729, 749, 767, 785, 801, 817, 831, 844, 857, 868, 878, 887, 897, 905, 912, 919, 925, 930, 935, 940, 944, 948, 951, 954, 957, 959, 961, 963, 964, 965, 966, 967, 968, 969, 970];
   const EXIT = [966, 959, 948, 934, 918, 899, 879, 856, 833, 807, 780, 752, 723, 693, 661, 627, 595, 561, 526, 489, 453, 417, 381, 343, 305, 267, 229, 191, 155, 119, 83, 45, 11];
-  const SOURCES = [
+  // Sous 767 px : meme film en 640x728 (~450 Ko au lieu de ~2,5 Mo), meme
+  // geometrie relative (marge 8 px) : le shader et le calage restent identiques.
+  const SMALL = matchMedia("(max-width: 767px)").matches;
+  const SOURCES = SMALL ? [
+    ["/assets/hero-tentacle-stacked-av1-640.mp4", 'video/mp4; codecs="av01.0.04M.08"', 3.5e5, 640],
+    ["/assets/hero-tentacle-stacked-hevc-640.mp4", 'video/mp4; codecs="hvc1.1.6.L90.90"', 3.5e5, 640],
+    ["/assets/hero-tentacle-stacked-h264-640.mp4", 'video/mp4; codecs="avc1.64001f"', 3.8e5, 640],
+  ] : [
     ['/assets/hero-tentacle-stacked-av1.mp4', 'video/mp4; codecs="av01.0.08M.08"', 1.98e6],
     ['/assets/hero-tentacle-stacked-hevc.mp4', 'video/mp4; codecs="hvc1.1.6.L120.90"', 2.36e6],
     ['/assets/hero-tentacle-stacked-h264.mp4', 'video/mp4; codecs="avc1.640028"', 2.39e6],
@@ -178,9 +185,9 @@ void main(){
       try {
         // Jamais plus d'une seconde d'attente : sans reponse, premier codec lisible.
         const infos = await Promise.race([
-          Promise.all(playable.map(([, contentType, bitrate]) => navigator.mediaCapabilities.decodingInfo({
+          Promise.all(playable.map(([, contentType, bitrate, w = FRAME_W]) => navigator.mediaCapabilities.decodingInfo({
             type: 'file',
-            video: { contentType, width: FRAME_W, height: FRAME_H * 2 + PAD, bitrate, framerate: FPS },
+            video: { contentType, width: w, height: Math.round((FRAME_H * 2 + PAD) * w / FRAME_W), bitrate, framerate: FPS },
           }))),
           new Promise((_, reject) => setTimeout(reject, 1000)),
         ]);

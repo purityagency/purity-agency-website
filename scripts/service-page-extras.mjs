@@ -249,7 +249,7 @@ export const HUB_THUMB = {
   'pack-visuels-reels': ['img', '/assets/visuals/service-pack-visuels-reels-hero.webp', 1195, 896, "Smartphone sur trépied qui filme un potier au tour dans son atelier"],
   'referencement-local-seo': ['img', '/assets/visuals/service-referencement-local-seo-hero.webp', 1195, 896, "Vue en hauteur sur les toits de briques de Charleroi et un terril"],
   'gestion-reseaux-sociaux': ['img', '/assets/visuals/service-gestion-reseaux-sociaux-hero.webp', 1194, 896, "Smartphone sur mini trépied qui filme un pâtissier en train de poser une tarte sur une table en marbre"],
-  'pilote-automatique-essentiel': ['img', '/assets/visuals/service-pilote-automatique-essentiel-hero.webp', 1024, 768, "Commerçant devant son rideau baissé le soir, qui regarde une notification sur son téléphone"],
+  'pilote-automatique-essentiel': ['img', '/assets/visuals/service-pilote-automatique-essentiel-resultat.webp', 896, 1194, "Artisan qui charge sa camionnette dans une rue de briques, en fin de journée"],
   'pilote-automatique-business': ['img', '/assets/visuals/service-pilote-automatique-business-hero.webp', 1195, 896, "Imprimante qui sort une facture dans un petit bureau administratif"],
   'pilote-automatique-integral': ['img', '/assets/visuals/service-pilote-automatique-integral-hero.webp', 1024, 768, "Coiffeuse qui consulte ses rendez-vous sur une tablette à l’accueil de son salon"]
 };

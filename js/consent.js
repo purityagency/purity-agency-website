@@ -52,12 +52,15 @@
   };
 
   const grant = () => {
+    w['ga-disable-' + GA4_ID] = false;
     gtag('consent', 'update', { analytics_storage: 'granted' });
     loadGtm();
   };
 
   // Retrait du consentement : on coupe et on efface les cookies _ga*.
   const revoke = () => {
+    // Coupe aussi gtag.js deja charge dans cette page (aucun hit apres le retrait).
+    w['ga-disable-' + GA4_ID] = true;
     gtag('consent', 'update', { analytics_storage: 'denied' });
     const host = location.hostname.replace(/^www\./, '');
     document.cookie.split(';').map(c => c.trim().split('=')[0]).filter(n => /^_ga|^_gid|^_gcl/.test(n)).forEach(n => {

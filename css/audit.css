@@ -52,11 +52,11 @@
  padding:.12rem .46rem;
  border-radius:999px;
  background:rgba(15,122,61,.1);
- color:#0F7A3D;
- font-size:.68rem;
+ color:#0B6B34;
+ font-size:.75rem;
  font-variant-numeric:tabular-nums
 }
-.audit-compare__delta s{color:#B3200F;opacity:.75;font-weight:500}
+.audit-compare__delta s{color:#A8402F;font-weight:500}
 .audit-compare__delta strong{font-weight:760}
 .audit-compare__viewport{
  position:relative;

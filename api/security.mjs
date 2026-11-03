@@ -26,15 +26,12 @@ const CSP_DIRECTIVES = [
 
 const PERMISSIONS_POLICY = [
   'accelerometer=()',
-  'ambient-light-sensor=()',
   'autoplay=(self)',
-  'battery=()',
   'browsing-topics=()',
   'camera=()',
   'clipboard-read=()',
   'clipboard-write=(self)',
   'display-capture=()',
-  'document-domain=()',
   'encrypted-media=()',
   'fullscreen=(self)',
   'gamepad=()',

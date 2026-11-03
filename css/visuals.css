@@ -53,3 +53,6 @@
 @media (prefers-reduced-motion:reduce){.vz *{animation:none!important;transition:none!important}}
 .vz-lab{max-width:1180px;margin:auto;padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,3rem) clamp(4rem,9vw,7rem);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:clamp(1.5rem,3vw,2.5rem)}
 .vz-lab__item h2{margin:0 0 .25rem;font-size:1.05rem;letter-spacing:-.01em}.vz-lab__item p{margin:0 0 .9rem;color:var(--muted,#4a4640);font-size:.92rem;line-height:1.5}
+/* Mobile : le SVG (viewBox 400) est reduit a ~0,8x ; on grossit les libelles pour rester >= 11 px a l'ecran. */
+@media (max-width:720px){.vz text{font-size:14px}.vz .m,.vz .sm{font-size:13.5px}.vz .t{font-size:15px}}
+@media (max-width:400px){.vz text{font-size:15px}.vz .m,.vz .sm{font-size:14.5px}.vz .t{font-size:16px}}

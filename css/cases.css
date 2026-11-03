@@ -23,9 +23,9 @@
 .case-preview__dots{display:flex;align-items:center;gap:.38rem}
 .case-preview__dot{width:7.5px;height:7.5px;border-radius:50%}
 .case-preview__dot--r,.case-preview__dot--y,.case-preview__dot--g{background:#d4d4d8}
-.case-preview__url{display:inline-flex;align-items:center;gap:.35rem;padding:.18rem .65rem;border-radius:999px;background:#fff;border:1px solid rgba(11,10,12,.08);color:#55504a;font-size:.68rem;font-weight:600;letter-spacing:.02em;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.case-preview__url{display:inline-flex;align-items:center;gap:.35rem;padding:.18rem .65rem;border-radius:999px;background:#fff;border:1px solid rgba(11,10,12,.08);color:#55504a;font-size:.75rem;font-weight:600;letter-spacing:.02em;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
 .case-preview__tag{font-size:.65rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:.35rem}
-.case-preview__tag::before{content:"";width:5px;height:5px;border-radius:50%;background:#16a34a}
+.case-preview__tag::before{content:"";width:5px;height:5px;border-radius:50%;background:#15803d}
 .case-preview__screen{position:absolute;top:34px;left:0;right:0;bottom:0;overflow:hidden;background:var(--case-paper)}
 .case-preview__poster{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;overflow:hidden}
 .case-preview{--preview-scale:0.42}
@@ -106,14 +106,14 @@
 /* Calendar Slot Simulator Widget */
 .cap-widget__calendar{padding:.9rem;border-radius:.85rem;background:#FAF9FC;border:1px solid rgba(11,10,12,.06)}
 .cap-widget__cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;font-size:.78rem;font-weight:650;color:var(--muted)}
-.cap-widget__cal-tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;color:#16A34A;font-weight:700}
-.cap-widget__cal-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#16A34A}
+.cap-widget__cal-tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;color:#15803D;font-weight:700}
+.cap-widget__cal-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#15803D}
 .cap-widget__slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
 .cap-slot{padding:.5rem .2rem;text-align:center;border-radius:.6rem;background:#fff;border:1px solid rgba(11,10,12,.08);font-size:.82rem;font-weight:700;color:var(--ink);cursor:pointer;transition:background-color .2s cubic-bezier(.16,1,.3,1),border-color .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1),transform .15s ease-out}
 .cap-slot:hover{border-color:#6C3CAA;background:#F4F1FA}
 .cap-slot.is-active{background:#6C3CAA;color:#fff;border-color:#582C94;transform:scale(1.04)}
 .cap-widget__cal-footer{margin-top:.75rem;font-size:.75rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
-.cap-widget__cal-footer svg{width:14px;height:14px;color:#16A34A;flex-shrink:0}
+.cap-widget__cal-footer svg{width:14px;height:14px;color:#15803D;flex-shrink:0}
 
 /* SMS Engine Simulator Widget */
 .cap-widget__sms{display:flex;flex-direction:column;gap:.6rem}
@@ -121,7 +121,7 @@
 .cap-sms__sender{display:flex;align-items:center;justify-content:space-between;font-size:.72rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:#6C3CAA;margin-bottom:.35rem}
 .cap-sms__time{font-size:.7rem;color:#8C8782;font-weight:500;text-transform:none}
 .cap-sms__text{font-size:.82rem;line-height:1.45;color:var(--ink);margin:0}
-.cap-sms__stat{display:flex;align-items:center;gap:.45rem;font-size:.75rem;font-weight:650;color:#16A34A;padding:.35rem .65rem;border-radius:.5rem;background:rgba(22,163,74,.07);border:1px solid rgba(22,163,74,.18)}
+.cap-sms__stat{display:flex;align-items:center;gap:.45rem;font-size:.75rem;font-weight:650;color:#15803D;padding:.35rem .65rem;border-radius:.5rem;background:rgba(22,163,74,.07);border:1px solid rgba(22,163,74,.18)}
 
 .case-detail__limits{display:grid;grid-template-columns:1fr .9fr;gap:clamp(2rem,8vw,7rem);padding-block:clamp(3.5rem,8vw,7rem);border-top:1px solid var(--line)}
 .text-link{font-weight:650;color:var(--accent)}
@@ -142,7 +142,7 @@
 
 .lp-guarantee{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:1.4rem;color:var(--muted);font-size:.86rem;font-weight:500}
 .lp-guarantee span{display:inline-flex;align-items:center;gap:.4rem}
-.lp-guarantee svg{width:16px;height:16px;color:#16A34A;flex-shrink:0}
+.lp-guarantee svg{width:16px;height:16px;color:#15803D;flex-shrink:0}
 
 /* Editorial Contrast Section */
 .lp-contrast{padding-block:clamp(4.5rem,9vw,8rem);background:#faf9fc;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -161,11 +161,11 @@
 .lp-contrast__col--good{background:#fff;border:2px solid #6C3CAA;border-radius:1.5rem;padding:clamp(2rem,4vw,2.8rem);box-shadow:0 18px 45px rgba(11,10,12,.05);display:flex;flex-direction:column;position:relative}
 .lp-contrast__good-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(108,60,170,.15)}
 .lp-contrast__good-head h3{display:flex;align-items:center;gap:.6rem;font-size:1.15rem;font-weight:700;letter-spacing:-.03em;color:var(--ink);margin:0}
-.lp-icon-good{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(22,163,74,.1);color:#16A34A;font-size:.85rem;font-weight:800}
+.lp-icon-good{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(22,163,74,.1);color:#15803D;font-size:.85rem;font-weight:800}
 .lp-contrast__pill{display:inline-flex;align-items:center;padding:.26rem .8rem;border-radius:999px;background:rgba(108,60,170,.08);border:1px solid rgba(108,60,170,.25);color:#6C3CAA;font-size:.74rem;font-weight:750;letter-spacing:.05em;text-transform:uppercase}
 .lp-contrast__col--good .lp-contrast__list{list-style:none;padding:0;margin:0;display:grid;gap:1.2rem}
 .lp-contrast__col--good .lp-contrast__list li{display:flex;align-items:baseline;gap:.8rem;color:var(--ink);font-size:.95rem;line-height:1.55}
-.lp-contrast__col--good .lp-contrast__list li b{color:#16A34A;font-weight:700}
+.lp-contrast__col--good .lp-contrast__list li b{color:#15803D;font-weight:700}
 
 /* Editorial Package & Transparent Pricing */
 .lp-package{padding-block:clamp(4.5rem,9vw,8rem);max-width:var(--case-wrap);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
@@ -175,7 +175,7 @@
 .lp-package__desc{color:var(--muted);font-size:1.05rem;line-height:1.65;margin:0 0 2rem;max-width:54ch}
 .lp-package__features{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
 .lp-package__features li{display:flex;align-items:center;gap:.75rem;font-size:.95rem;color:var(--ink);line-height:1.5;font-weight:550}
-.lp-package__features svg{width:18px;height:18px;color:#16A34A;flex-shrink:0}
+.lp-package__features svg{width:18px;height:18px;color:#15803D;flex-shrink:0}
 .lp-package__pricing-box{background:#fafafa;border:1px solid rgba(11,10,12,.1);border-radius:1.5rem;padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center}
 .lp-package__price{display:flex;align-items:baseline;justify-content:center;gap:.4rem;margin:0 0 .4rem}
 .lp-package__num{font-size:clamp(3.2rem,5.5vw,4.5rem);font-weight:850;letter-spacing:-.05em;color:var(--ink);line-height:1}
@@ -201,7 +201,7 @@
 .lp-form__btn:hover{background:#53288C;transform:translateY(-2px);box-shadow:0 8px 18px rgba(11,10,12,.14)}
 .lp-form__note{text-align:center;color:#6E6A65;font-size:.82rem;margin-top:.5rem}
 .lp-form__status{display:none;padding:1rem;border-radius:.75rem;font-weight:650;text-align:center}
-.lp-form__status.is-success{display:block;background:rgba(22,163,74,.1);border:1px solid #16A34A;color:#16A34A}
+.lp-form__status.is-success{display:block;background:rgba(22,163,74,.1);border:1px solid #15803D;color:#15803D}
 .lp-form__status.is-error{display:block;background:rgba(220,38,38,.1);border:1px solid #DC2626;color:#DC2626}
 .lp-form__status-text{margin:0}
 .lp-form__booking{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:.85rem;padding:0 1.4rem;border-radius:.85rem;background:#6C3CAA;color:#fff;font-weight:700;text-decoration:none;border:1px solid #582C94}
@@ -283,7 +283,7 @@
 .case-visual .mock__browser{display:block;overflow:hidden;border-radius:12px;background:#fff;outline:1px solid rgba(18,14,23,.08);outline-offset:-1px;box-shadow:0 1px 1px rgba(18,14,23,.04),0 24px 46px -26px rgba(30,14,50,.4);transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .case-visual .mock__bar{display:flex;align-items:center;gap:5px;height:24px;padding:0 10px;background:#F7F6F8;border-bottom:1px solid rgba(18,14,23,.06)}
 .case-visual .mock__bar i{flex:none;width:7px;height:7px;border-radius:50%;background:#D7D2DC}
-.case-visual .mock__url{flex:1;min-width:0;margin:0 26px 0 10px;padding:1px 8px;border-radius:6px;background:#fff;color:#6E6876;font-size:.62rem;line-height:1.45;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-visual .mock__url{flex:1;min-width:0;margin:0 26px 0 10px;padding:1px 8px;border-radius:6px;background:#fff;color:#6E6876;font-size:.75rem;line-height:1.3;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .case-visual .mock__url::before{content:attr(data-url)}
 .case-visual .mock__screen{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
 .case-visual .mock__phone{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:390/790;padding:4px;border-radius:clamp(14px,2vw,22px);background:#120E17;box-shadow:0 22px 40px -18px rgba(18,14,23,.6);transition:transform .6s cubic-bezier(.22,1,.36,1)}
@@ -306,3 +306,6 @@
 /* ---- Passe UX (nov. 2026) : cibles tactiles et contraste ---- */
 .case-card__case-link{display:inline-flex;align-items:center;min-height:44px;padding-inline:.2rem;color:#5a5a66}
 .lp-badge{color:#5a5a66}
+
+/* Puces de soins : le badge passe sous le libelle plutot que de deborder (mobile). */
+.cap-chip{flex-wrap:wrap;min-width:0;text-align:left}

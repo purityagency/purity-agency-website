@@ -14,7 +14,7 @@ const SERVICES_DIR = path.join(ROOT, 'services');
 const CSS_VERSION = '20261106';
 // Snippet SVG lu tel quel dans partials/visuals (pas d'include côté serveur).
 const vzSnippet = name => fs.readFileSync(path.join(ROOT, 'partials', 'visuals', `${name}.html`), 'utf8').trim();
-const VZ_ASSETS = `<link rel="stylesheet" href="/css/visuals.css?v=1">
+const VZ_ASSETS = `<link rel="stylesheet" href="/css/visuals.css?v=20261107">
 <script src="/js/visuals.js?v=1" defer></script>
 `;
 
@@ -130,7 +130,7 @@ ${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=20261104b">
+<link rel="stylesheet" href="/css/app.css?v=20261107">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=${CSS_VERSION}">
 ${vz ? VZ_ASSETS : ''}<script type="application/ld+json">
@@ -144,12 +144,20 @@ ${JSON.stringify(typoJson(schemaJson), null, 2)}
 // volontairement neutres (aucun avis, aucune note, aucun chiffre inventé).
 // --------------------------------------------------------------------------
 const shot = (demo, kind, i = 0) => `/assets/shots/${demo}-${kind}-${i}.webp`;
+// srcset des captures (variante 720 px) et des visuels (variante 800 px) quand elle existe.
+const respSet = (src, w, sizes) => {
+  const small = /\/assets\/shots\/.*-desktop-\d\.webp$/.test(src) ? [src.replace(/\.webp$/, '-720.webp'), 720]
+    : /^\/assets\/visuals\/.*\.webp$/.test(src) && !/-800\.webp$/.test(src) ? [src.replace(/\.webp$/, '-800.webp'), 800] : null;
+  return small && fs.existsSync(path.join(ROOT, small[0])) ? ` srcset="${small[0]} ${small[1]}w, ${src} ${w}w" sizes="${sizes}"` : '';
+};
+// Démos « métier proche » sans celle déjà montrée dans le hero de la page.
+const relOf = svc => (svc.relatedCases || []).filter(rc => rc.id !== VISUALS[svc.slug]?.hero?.demo);
 const demoName = id => (caseById?.[id]?.name) || id;
 
 function browserFrame(demo, label, alt, priority) {
   return `<div class="sd-browser">
           <div class="sd-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>${e(label)}</span></div>
-          <img src="${shot(demo, 'desktop')}" width="1440" height="900" alt="${e(alt)}" decoding="async"${priority ? ' fetchpriority="high"' : ' loading="lazy"'}>
+          <img src="${shot(demo, 'desktop')}"${respSet(shot(demo, 'desktop'), 1440, '(max-width: 767px) 80vw, 480px')} width="1440" height="900" alt="${e(alt)}" decoding="async"${priority ? ' fetchpriority="high"' : ' loading="lazy"'}>
         </div>`;
 }
 function phoneFrame(demo, alt, extra = '') {
@@ -219,7 +227,7 @@ function heroVisual(svc) {
         <div class="sd-serp">
           <div class="sd-serp__search">${icon('search')}<span>chauffagiste charleroi</span></div>
           <div class="sd-serp__result sd-serp__result--you">
-            <img src="${shot('chauffage', 'desktop')}" width="1440" height="900" alt="Page de la démo chauffagiste Thermiq" decoding="async" fetchpriority="high">
+            <img src="${shot('chauffage', 'desktop')}"${respSet(shot('chauffage', 'desktop'), 1440, '(max-width: 767px) 92vw, 560px')} width="1440" height="900" alt="Page de la démo chauffagiste Thermiq" decoding="async" fetchpriority="high">
             <div>
               <span class="sd-serp__url">votre-site.be › chauffagiste-charleroi</span>
               <strong>Chauffagiste à Charleroi · Votre entreprise</strong>
@@ -296,7 +304,7 @@ function resultSection(service) {
         <h2 class="sd-heading" id="sd-result-title">Ce que ça change pour vous</h2>
       </div>
       <figure class="sd-result__fig${svg ? ' sd-result__fig--vz' : ''}">
-        ${svg ? vzSnippet(svg) : photoImg(r.id, { sizes: '(min-width: 1000px) 520px, 92vw' })}
+        ${svg ? vzSnippet(svg) : photoImg(r.id, { sizes: '(min-width: 1000px) 560px, 92vw' })}
         <figcaption>${e(r.caption)}</figcaption>
       </figure>
     </section>
@@ -488,15 +496,15 @@ ${renderHeader('services')}
       </div>` : ''}
     </section>
 
-    ${resultSection(service)}${service.relatedCases && service.relatedCases.length && !(RESULT_PHOTO[service.slug] && RESULT_PHOTO[service.slug].replaceCases) ? `<section class="sd-section" aria-labelledby="sd-cases-title">
+    ${resultSection(service)}${relOf(service).length && !(RESULT_PHOTO[service.slug] && RESULT_PHOTO[service.slug].replaceCases) ? `<section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Démos par métier</span>
         <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
         <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
-      <div class="sd-cases-grid${service.relatedCases.length === 1 ? ' sd-cases-grid--solo' : ''}">
-        ${service.relatedCases.map(rc => `<a class="sd-case-card" href="/cas-concrets/${e(rc.id)}">
-          <img src="${shot(rc.id, 'desktop')}" width="1440" height="900" alt="Accueil de la démo ${e(rc.name)}, ${e(rc.sector.toLowerCase())}" loading="lazy" decoding="async">
+      <div class="sd-cases-grid${relOf(service).length === 1 ? ' sd-cases-grid--solo' : ''}">
+        ${relOf(service).map(rc => `<a class="sd-case-card" href="/cas-concrets/${e(rc.id)}">
+          <img src="${shot(rc.id, 'desktop')}"${respSet(shot(rc.id, 'desktop'), 1440, '(max-width: 767px) 92vw, 550px')} width="1440" height="900" alt="Accueil de la démo ${e(rc.name)}, ${e(rc.sector.toLowerCase())}" loading="lazy" decoding="async">
           <span class="sd-case-card__meta"><span class="sd-case-card__sector">${e(rc.sector)}</span><strong>${e(rc.name)}</strong></span>
           <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
         </a>`).join('\n        ')}
@@ -594,7 +602,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=20261104b" defer></script>
+<script src="/js/menu.js?v=20261107" defer></script>
 </body>
 </html>`;
 }
@@ -692,7 +700,7 @@ ${renderHeader('services')}
           const tall = h > w && !src.startsWith('/assets/visuals/');
           return `<article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
           <div class="sd-hub-card__thumb${tall ? ' sd-hub-card__thumb--tall' : ''}">
-            <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? '' : ' loading="lazy"'}>${svc.slug === 'diagnostic-digital' ? '<span class="sd-hub-card__tag">Exemple de site daté</span>' : ''}
+            <img src="${src}"${respSet(src, w, '(max-width: 767px) 92vw, 380px')} width="${w}" height="${h}" alt="${e(alt)}" decoding="async" loading="lazy">
           </div>
           <div class="sd-hub-card__body">
             <span class="sd-hub-card__pillar">${e(svc.pillar.replace(/Pilier \d+ · /, ''))}</span>
@@ -741,7 +749,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=20261104b" defer></script>
+<script src="/js/menu.js?v=20261107" defer></script>
 </body>
 </html>`;
 }

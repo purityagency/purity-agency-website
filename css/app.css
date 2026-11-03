@@ -637,3 +637,7 @@ h1,h2,h3{text-wrap:balance}
  .site-footer nav,.site-footer__inner>div:last-child{gap:.2rem}
  .site-footer__legal{gap:0}
 }
+
+/* Titres : coupe equilibree ; mots longs (kinesitherapeute...) coupes proprement sur petit ecran. */
+h1:not(.hero__title){text-wrap:balance;overflow-wrap:anywhere}
+@media(max-width:520px){h1:not(.hero__title){hyphens:auto;-webkit-hyphens:auto}}

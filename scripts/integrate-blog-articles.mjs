@@ -431,10 +431,10 @@ function relatedHtml(links = []) {
   return `<aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">Pour aller plus loin</h2><ul>${items}</ul></aside>`;
 }
 
-const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=20261104b">
+const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=20261107">
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/site-additions.css?v=20261101">
-<link rel="stylesheet" href="/css/content.css?v=20261101">`;
+<link rel="stylesheet" href="/css/content.css?v=20261107">`;
 
 const ogImage = `<meta property="og:image" content="${siteUrl}/assets/og-purity.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">`;
 
@@ -484,7 +484,7 @@ function footer() {
     <a href="/conditions-generales">CGV</a>
   </div>
 </footer>
-<script src="/js/menu.js?v=20261104b" defer></script>
+<script src="/js/menu.js?v=20261107" defer></script>
 <script src="/js/cookie-notice.js" defer></script>`;
 }
 

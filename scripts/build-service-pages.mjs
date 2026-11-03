@@ -1,13 +1,15 @@
-import { answerFor, objectionsFor, linksFor, notForHtml } from './service-page-extras.mjs';
+import { answerFor, objectionsFor, linksFor, commitmentAnswer, NOT_FOR, VISUALS, HUB_THUMB, icon } from './service-page-extras.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { services } from '../data/services.mjs';
+import { caseById } from '../data/case-studies.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SERVICES_DIR = path.join(ROOT, 'services');
+const CSS_VERSION = '20261103b';
 
 if (!fs.existsSync(SERVICES_DIR)) {
   fs.mkdirSync(SERVICES_DIR, { recursive: true });
@@ -18,7 +20,10 @@ function escapeHtml(str) {
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[c]));
 }
+const e = escapeHtml;
 
+// Le décalage de cascade du menu (--i) est posé en CSS (nth-child) : aucun
+// attribut style= dans les pages générées.
 function renderHeader(activePage = 'services') {
   return `<header class="header">
   <a class="header__brand" href="/">
@@ -46,10 +51,10 @@ function renderHeader(activePage = 'services') {
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>
-    <a href="/blog.html" style="--i:2">Blog</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/services">Services &amp; Tarifs</a>
+    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
   </nav>
 </div>`;
 }
@@ -62,7 +67,7 @@ function renderFooter() {
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
@@ -89,10 +94,13 @@ const OG_IMAGE = `<meta property="og:image" content="https://purity-agency.be/as
 <meta property="og:image:height" content="630">`;
 const VAT_NOTE = 'Prix nets · TVA non applicable (franchise, art. 56bis CTVA)';
 const OFFER_NOTE = '-25 % sur la création si vous validez dans les 24 h suivant votre devis';
+const PROMISE = 'Réponse personnelle sous 24 h ouvrées';
+const RDV_URL = '/contact.html?intent=rdv';
 
 // Prix affiché = tarif réel ; la remise des 24 h n'est qu'une note conditionnelle.
 const isFree = svc => !/[1-9]/.test(svc.priceSetup);
 const displayPrice = svc => isFree(svc) ? (svc.promoSetup || 'Offert') : svc.priceSetup;
+const cleanDelay = d => d.replace(/^Mise en place : /, '');
 function offerNotes(svc) {
   if (isFree(svc) || !svc.promoTag) return [];
   const notes = [`${OFFER_NOTE}.`];
@@ -103,12 +111,12 @@ function offerNotes(svc) {
 // Descriptions de 140 à 160 caractères, propres à chaque page (le résumé complet reste dans la page).
 const tarif = s => `Tarif : ${s.priceSetup}${s.monthlyPrice ? ` + ${s.monthlyPrice}` : ''}.`;
 const META_DESCRIPTIONS = {
-  'diagnostic-digital': () => 'Diagnostic digital offert : 15 minutes en visio avec Amir Kebiyeb pour repérer ce qui freine vos demandes de devis et l’action la plus rentable à lancer.',
+  'diagnostic-digital': () => 'Diagnostic digital offert : 15 minutes par téléphone ou en visio avec Amir Kebiyeb pour repérer ce qui freine vos demandes et l’action la plus rentable.',
   'page-essentielle': s => `Page Essentielle pour artisans et indépendants : une page pro claire et rapide qui présente votre métier, contact en un clic. ${tarif(s)}`,
   'site-vitrine': s => `Site vitrine de 5 pages pour artisans et PME en Wallonie : prestations, réalisations avant/après et demande de devis. ${tarif(s)}`,
   'site-complet': s => `Site complet de plus de 10 pages pour PME multi-métiers : une page par service et par ville d’intervention en Wallonie. ${tarif(s)}`,
   'boutique-en-ligne': s => `Boutique en ligne pour commerçants et restaurateurs belges : paiement Bancontact, Payconiq et carte, retrait sur place. ${tarif(s)}`,
-  'refonte-modernisation': s => `Refonte de votre site lent ou dépassé : reconstruction complète sans perdre vos adresses ni votre positionnement Google. ${tarif(s)}`,
+  'refonte-modernisation': s => `Refonte de votre site lent ou dépassé : chaque ancienne adresse est redirigée pour préserver votre référencement. ${tarif(s)}`,
   'google-business': s => `Fiche Google Business optimisée pour apparaître sur Google Maps quand un client cherche votre métier près de chez lui, en Wallonie. ${tarif(s)}`,
   'identite-visuelle-logo': s => `Logo et identité visuelle pour artisans, indépendants et commerces : une image nette, lisible sur camionnette, vêtements et devis. ${tarif(s)}`,
   'pack-visuels-reels': s => `Vos vidéos de chantier filmées au smartphone deviennent des Reels sous-titrés et des visuels prêts à publier sur Instagram et Facebook. ${tarif(s)}`,
@@ -126,27 +134,189 @@ function metaDescriptionFor(service) {
   return desc;
 }
 
+function headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson }) {
+  return `<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${e(pageTitle)}</title>
+<meta name="description" content="${e(metaDesc)}">
+<link rel="canonical" href="${canonicalUrl}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_BE">
+<meta property="og:title" content="${e(pageTitle)}">
+<meta property="og:description" content="${e(metaDesc)}">
+<meta property="og:url" content="${canonicalUrl}">
+${OG_IMAGE}
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
+<link rel="stylesheet" href="/css/app.css?v=2026110102">
+<link rel="stylesheet" href="/css/menu.css?v=3">
+<link rel="stylesheet" href="/css/service-detail.css?v=${CSS_VERSION}">
+<script type="application/ld+json">
+${JSON.stringify(schemaJson, null, 2)}
+</script>
+</head>`;
+}
+
+// --------------------------------------------------------------------------
+// Visuels du hero : captures réelles des démos Purity ou compositions HTML
+// volontairement neutres (aucun avis, aucune note, aucun chiffre inventé).
+// --------------------------------------------------------------------------
+const shot = (demo, kind, i = 0) => `/assets/shots/${demo}-${kind}-${i}.webp`;
+const demoName = id => (caseById?.[id]?.name) || id;
+
+function browserFrame(demo, label, alt, priority) {
+  return `<div class="sd-browser">
+          <div class="sd-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>${e(label)}</span></div>
+          <img src="${shot(demo, 'desktop')}" width="1440" height="900" alt="${e(alt)}" decoding="async"${priority ? ' fetchpriority="high"' : ' loading="lazy"'}>
+        </div>`;
+}
+function phoneFrame(demo, alt, extra = '') {
+  return `<div class="sd-phone">
+          <img src="${shot(demo, 'mobile')}" width="390" height="844" alt="${e(alt)}" decoding="async">${extra}
+        </div>`;
+}
+
+function heroVisual(svc) {
+  const v = VISUALS[svc.slug].hero;
+  switch (v.type) {
+    case 'device':
+      return `<figure class="sd-stage sd-stage--device">
+        ${browserFrame(v.demo, `Démo · ${v.name}`, `Accueil de la démo ${v.name} (${v.sector}) conçue par Purity, vue sur ordinateur`, true)}
+        ${phoneFrame(v.demo, `La même démo ${v.name} sur téléphone`)}
+        <figcaption>Démo conçue par Purity · <a href="/cas-concrets/${v.demo}.html">Tester ${e(v.name)}</a></figcaption>
+      </figure>`;
+    case 'beforeafter':
+      return `<figure class="sd-stage sd-stage--ba">
+        <div class="sd-ba">
+          <div class="sd-ba__item sd-ba__item--before">
+            <span class="sd-ba__tag">Avant</span>
+            <img src="/assets/audit-compare/before-artisan.webp" width="820" height="612" alt="Exemple de site d’artisan daté : menu bleu, textes serrés, photos minuscules" decoding="async" fetchpriority="high">
+          </div>
+          <div class="sd-ba__item sd-ba__item--after">
+            <span class="sd-ba__tag sd-ba__tag--accent">Après</span>
+            ${browserFrame(v.demo, `Démo · ${v.name}`, `Accueil moderne de la démo ${v.name} conçue par Purity`, false).replace(' loading="lazy"', '')}
+          </div>
+        </div>
+        <figcaption>Avant : exemple type de site daté. Après : <a href="/cas-concrets/${v.demo}.html">démo ${e(v.name)}</a> conçue par Purity.</figcaption>
+      </figure>`;
+    case 'audit':
+      return `<figure class="sd-stage sd-stage--audit">
+        <div class="sd-audit">
+          <img src="/assets/audit-compare/before-resto.webp" width="820" height="612" alt="Exemple de site de restaurant daté : menu en PDF, horaires dans un tableau, numéro non cliquable" decoding="async" fetchpriority="high">
+          <span class="sd-audit__pin sd-audit__pin--1" aria-hidden="true">1</span>
+          <span class="sd-audit__pin sd-audit__pin--2" aria-hidden="true">2</span>
+          <span class="sd-audit__pin sd-audit__pin--3" aria-hidden="true">3</span>
+        </div>
+        <ol class="sd-audit__legend">
+          <li>Menu en PDF à télécharger</li>
+          <li>Numéro non cliquable</li>
+          <li>Horaires illisibles sur téléphone</li>
+        </ol>
+        <figcaption>Exemple type : ce qu’on repère ensemble en 15 minutes.</figcaption>
+      </figure>`;
+    case 'gbp':
+      return `<figure class="sd-stage sd-stage--gbp">
+        <div class="sd-gbp">
+          <div class="sd-gbp__search">${icon('search')}<span>garage carrosserie charleroi</span></div>
+          <div class="sd-gbp__map" aria-hidden="true"><i></i><i></i><i></i><span class="sd-gbp__marker">${icon('pin')}</span></div>
+          <div class="sd-gbp__body">
+            <strong class="sd-gbp__name">Votre entreprise</strong>
+            <span class="sd-gbp__cat">Garage automobile · Charleroi</span>
+            <span class="sd-gbp__open"><b>Ouvert</b> · horaires à jour</span>
+            <div class="sd-gbp__actions" aria-hidden="true"><span>${icon('phone')}Appeler</span><span>${icon('route')}Itinéraire</span><span>${icon('globe')}Site web</span></div>
+            <div class="sd-gbp__photos">
+              <img src="/assets/cases/visuals/garage.webp" width="1200" height="800" alt="Photo d’atelier ajoutée à la fiche" decoding="async" fetchpriority="high">
+            </div>
+            <ul class="sd-gbp__chips" aria-label="Prestations listées"><li>Entretien</li><li>Carrosserie</li><li>Pneus</li><li>Diagnostic</li></ul>
+          </div>
+        </div>
+        <figcaption>Aperçu illustratif d’une fiche complète. Les avis viendront de vos vrais clients.</figcaption>
+      </figure>`;
+    case 'serp':
+      return `<figure class="sd-stage sd-stage--serp">
+        <div class="sd-serp">
+          <div class="sd-serp__search">${icon('search')}<span>chauffagiste charleroi</span></div>
+          <div class="sd-serp__result sd-serp__result--you">
+            <img src="${shot('chauffage', 'desktop')}" width="1440" height="900" alt="Page de la démo chauffagiste Thermiq" decoding="async" fetchpriority="high">
+            <div>
+              <span class="sd-serp__url">votre-site.be › chauffagiste-charleroi</span>
+              <strong>Chauffagiste à Charleroi · Votre entreprise</strong>
+              <span class="sd-serp__line"></span><span class="sd-serp__line sd-serp__line--short"></span>
+            </div>
+          </div>
+          <div class="sd-serp__result" aria-hidden="true"><span class="sd-serp__ghost"></span><div><span class="sd-serp__line sd-serp__line--mid"></span><span class="sd-serp__line"></span><span class="sd-serp__line sd-serp__line--short"></span></div></div>
+          <div class="sd-serp__result" aria-hidden="true"><span class="sd-serp__ghost"></span><div><span class="sd-serp__line sd-serp__line--mid"></span><span class="sd-serp__line"></span><span class="sd-serp__line sd-serp__line--short"></span></div></div>
+        </div>
+        <figcaption>Résultat illustratif : l’objectif, c’est cette ligne. Aucune position n’est garantie.</figcaption>
+      </figure>`;
+    case 'flow':
+      return `<figure class="sd-stage sd-stage--flow">
+        <ol class="sd-flow">
+          ${v.steps.map(([ic, label], i) => `<li class="sd-flow__node"><span class="sd-flow__icon">${icon(ic)}</span><span class="sd-flow__label">${e(label)}</span><span class="sd-flow__num" aria-hidden="true">${i + 1}</span></li>`).join('\n          ')}
+        </ol>
+        <figcaption>${e(v.caption)}</figcaption>
+      </figure>`;
+    case 'phones':
+      return `<figure class="sd-stage sd-stage--phones">
+        <div class="sd-phones">
+          ${v.demos.map((d, i) => `<div class="sd-phone sd-phone--reel">
+            <img src="${shot(d, 'mobile')}" width="390" height="844" alt="Format vertical illustré avec la démo ${e(demoName(d))}" decoding="async"${i === 1 ? ' fetchpriority="high"' : ''}>
+            <span class="sd-reel__play" aria-hidden="true">${icon('play')}</span>
+            <span class="sd-reel__sub" aria-hidden="true">${e(v.captions[i])}</span>
+          </div>`).join('\n          ')}
+        </div>
+        <figcaption>Formats illustrés avec les démos Purity : vertical, sous-titré, prêt à publier.</figcaption>
+      </figure>`;
+    case 'week': {
+      const days = [['Lun', 'Vidéo', 'sport'], ['Mar', 'Post', 'restaurant'], ['Mer', 'Vidéo', 'beaute'], ['Jeu', 'Post', 'decoration'], ['Ven', 'Vidéo', 'garage'], ['Sam', 'Post', 'animaux']];
+      return `<figure class="sd-stage sd-stage--week">
+        <div class="sd-week">
+          <div class="sd-week__head"><span>Planning de la semaine</span><span class="sd-week__ok">${icon('tick')}Validé</span></div>
+          <ol class="sd-week__grid">
+            ${days.map(([d, k, img], i) => `<li class="sd-week__day${k === 'Vidéo' ? ' is-video' : ''}"><span class="sd-week__d">${d}</span><img src="/assets/cases/visuals/${img}.webp" width="1200" height="800" alt="" decoding="async"${i < 2 ? ' fetchpriority="high"' : ''}><span class="sd-week__k">${k === 'Vidéo' ? icon('play') : icon('image')}${k}</span></li>`).join('\n            ')}
+            <li class="sd-week__day sd-week__day--off"><span class="sd-week__d">Dim</span><span class="sd-week__rest">Repos</span></li>
+          </ol>
+        </div>
+        <figcaption>Semaine type : 3 vidéos et 3 publications, validées à l’avance.</figcaption>
+      </figure>`;
+    }
+    case 'brands':
+      return `<figure class="sd-stage sd-stage--brands">
+        <div class="sd-brands">
+          ${v.demos.map((d, i) => {
+            const c = caseById[d];
+            return `<a class="sd-brand sd-brand--${d}" href="/cas-concrets/${d}.html">
+            <img src="${shot(d, 'mobile')}" width="390" height="844" alt="En-tête de la démo ${e(c.name)}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ''}>
+            <span class="sd-brand__name">${e(c.name)}</span>
+            <span class="sd-brand__swatches" aria-hidden="true"><i></i><i></i><i></i></span>
+          </a>`;
+          }).join('\n          ')}
+        </div>
+        <figcaption>Identités créées pour nos démos par métier.</figcaption>
+      </figure>`;
+    default:
+      return '';
+  }
+}
+
+// --------------------------------------------------------------------------
+// PAGE DÉTAIL
+// --------------------------------------------------------------------------
 function buildServiceDetailPage(service) {
   const canonicalUrl = `https://purity-agency.be/services/${service.slug}`;
   const pageTitle = [' : tarif et livrables | Purity Agency', ' : tarif | Purity Agency', ' | Purity Agency'].map(x => service.name + x).find(t => t.length < 60);
   const allFaq = [...service.faq, ...objectionsFor(service)];
   const answer = answerFor(service);
   const metaDesc = metaDescriptionFor(service);
+  const vis = VISUALS[service.slug];
+  const free = isFree(service);
 
-  const contactOfferUrl = service.id === 'M01'
-    ? '/contact.html?solution=diagnostic'
-    : `/contact.html?offer=${service.id}`;
-  const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Demander mon devis cadré';
-
-  // Build FAQPage Schema.org structure
-  const faqSchemaItems = allFaq.map(f => ({
-    "@type": "Question",
-    "name": f.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": f.a
-    }
-  }));
+  const contactOfferUrl = service.id === 'M01' ? RDV_URL : `/contact.html?offer=${service.id}`;
+  const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Recevoir mon devis écrit';
 
   const schemaJson = {
     "@context": "https://schema.org",
@@ -156,11 +326,7 @@ function buildServiceDetailPage(service) {
         "name": pageTitle,
         "description": metaDesc,
         "url": canonicalUrl,
-        "isPartOf": {
-          "@type": "WebSite",
-          "name": "Purity Agency",
-          "url": "https://purity-agency.be/"
-        }
+        "isPartOf": { "@type": "WebSite", "name": "Purity Agency", "url": "https://purity-agency.be/" }
       },
       {
         "@type": "BreadcrumbList",
@@ -186,35 +352,44 @@ function buildServiceDetailPage(service) {
       },
       {
         "@type": "FAQPage",
-        "mainEntity": faqSchemaItems
+        "mainEntity": allFaq.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
       }
     ]
   };
 
-  return `<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escapeHtml(pageTitle)}</title>
-<meta name="description" content="${escapeHtml(metaDesc)}">
-<link rel="canonical" href="${canonicalUrl}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="fr_BE">
-<meta property="og:title" content="${escapeHtml(pageTitle)}">
-<meta property="og:description" content="${escapeHtml(metaDesc)}">
-<meta property="og:url" content="${canonicalUrl}">
-${OG_IMAGE}
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
-<link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
-<script type="application/ld+json">
-${JSON.stringify(schemaJson, null, 2)}
-</script>
-</head>
+  const heroPrice = free
+    ? `<div class="sd-hero__price"><strong>Gratuit</strong><span>15 min par téléphone ou en visio</span></div>`
+    : `<div class="sd-hero__price"><strong>${e(service.priceSetup)}</strong><span>${service.monthlyPrice ? `+ ${e(service.monthlyPrice)} de suivi` : 'paiement unique'}</span></div>`;
+
+  const heroChips = free
+    ? [['clock', '15 min chrono'], ['users', 'Avec Amir, le fondateur'], ['file', 'Récap écrit après l’appel']]
+    : [['clock', cleanDelay(service.delay)], ['users', 'Amir, de A à Z'], ['shield', 'Prix écrit au devis']];
+
+  const notFor = NOT_FOR[service.slug];
+
+  const priceCard = free
+    ? `<div class="sd-offer__price">
+          <span class="sd-offer__label">Ce que ça coûte</span>
+          <strong class="sd-offer__amount">Gratuit</strong>
+          <span class="sd-offer__sub">Aucun paiement, aucun engagement</span>
+          <span class="sd-offer__note">Devis ferme seulement si vous le demandez</span>
+        </div>`
+    : `<div class="sd-offer__price">
+          <span class="sd-offer__label">Mise en place</span>
+          <strong class="sd-offer__amount">${e(displayPrice(service))}</strong>
+          <span class="sd-offer__sub">${service.monthlyPrice ? `+ ${e(service.monthlyPrice)} de suivi et hébergement` : 'Paiement unique, sans abonnement'}</span>
+          <span class="sd-offer__note">${e(VAT_NOTE)}</span>
+          ${offerNotes(service).map(n => `<span class="sd-offer__promo">${e(n)}</span>`).join('\n          ')}
+        </div>`;
+
+  const offerSide = free
+    ? [['phone', 'Par téléphone ou en visio', 'Un lien en un clic, rien à installer.'], ['file', 'Récapitulatif écrit', 'Les points faibles, la priorité, une fourchette de budget.']]
+    : [
+        ['refresh', service.monthlyPrice ? `Inclus dans le suivi (${service.monthlyPrice})` : 'Après la livraison', service.includedMaintenance],
+        ['key', service.monthlyPrice && service.commitment && service.commitment.minMonths ? `Engagement de ${service.commitment.minMonths} mois` : (service.monthlyPrice ? 'Résiliable chaque mois' : 'Sans abonnement'), service.commitment ? service.commitment.text : '']
+      ];
+
+  return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson })}
 <body class="service-page">
 
 ${renderHeader('services')}
@@ -226,275 +401,212 @@ ${renderHeader('services')}
       <span class="sd-breadcrumbs__sep">/</span>
       <a href="/services">Services</a>
       <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">${escapeHtml(service.name)}</span>
+      <span aria-current="page">${e(service.name)}</span>
     </nav>
 
-    <!-- HERO DU SERVICE -->
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> ${escapeHtml(service.pillar)}</div>
-      <h1 class="sd-hero__title" id="service-title">${escapeHtml(service.name)}</h1>
-      <p class="sd-hero__answer">${escapeHtml(answer)}</p>
-      <p class="sd-hero__summary">${escapeHtml(service.summary)}</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Tarif de mise en place</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">${escapeHtml(displayPrice(service))}</span>
-            ${isFree(service) && service.promoTag ? `<span class="sd-meta-card__badge">${escapeHtml(service.promoTag)}</span>` : ''}
-          </div>
-          <span class="sd-meta-card__sub">${service.monthlyPrice ? `+ ${escapeHtml(service.monthlyPrice)} (suivi &amp; hébergement)` : isFree(service) ? 'Aucun paiement demandé' : 'Paiement unique · sans abonnement'}</span>
-          ${isFree(service) ? '' : `<span class="sd-meta-card__vat">${VAT_NOTE}</span>`}
-          ${offerNotes(service).map(note => `<span class="sd-meta-card__offer">${escapeHtml(note)}</span>`).join('')}
+    <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
+      <div class="sd-hero__text">
+        <div class="sd-hero__pill">${e(service.pillar.replace(/Pilier \d+ · /, ''))}</div>
+        <h1 class="sd-hero__title" id="service-title">${e(service.name)}</h1>
+        <p class="sd-hero__lead">${e(service.headline)}</p>
+        ${heroPrice}
+        <ul class="sd-hero__chips">
+          ${heroChips.map(([ic, t]) => `<li>${icon(ic)}${e(t)}</li>`).join('\n          ')}
+        </ul>
+        <div class="sd-hero__actions">
+          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>` : ''}
         </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Délai d'exécution</span>
-          <span class="sd-meta-card__value">${escapeHtml(service.delay)}</span>
-          <span class="sd-meta-card__sub">Écrit dans votre devis</span>
-        </div>
-
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Garantie &amp; Accompagnement</span>
-          <span class="sd-meta-card__value">100 % Clé en main</span>
-          <span class="sd-meta-card__sub">Sans frais cachés · Interlocuteur unique (Amir)</span>
+        <p class="sd-hero__promise">${icon('clock')}${PROMISE}</p>
+        <div class="sd-trust-strip" aria-label="Garanties et réassurance">
+          <span class="sd-trust-item">${icon('shield')}BCE &amp; TVA <strong>BE 1036.775.590</strong></span>
+          <span class="sd-trust-item">${icon('pin')}Charleroi &amp; Wallonie</span>
         </div>
       </div>
-
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span aria-hidden="true">↗</span></a>
-        ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="/contact.html?solution=diagnostic">Échanger 15 min en visio d'abord <span aria-hidden="true">→</span></a>` : ''}
-      </div>
-
-      <!-- TRUST STRIP ABOVE THE FOLD -->
-      <div class="sd-trust-strip" aria-label="Garanties et réassurance">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>BCE &amp; TVA : <strong>BE 1036.775.590</strong></span>
-        </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi &amp; Wallonie</span>
-        </div>
+      <div class="sd-hero__visual">
+        ${heroVisual(service)}
       </div>
     </section>
 
-    <!-- SECTION POUR QUI & UTILITÉ -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Cadrage &amp; Impact</span>
-        <h2 class="sd-heading">Pourquoi ce service est indispensable à votre activité</h2>
-        <p class="sd-subheading">Comprendre l'utilité directe sur votre chiffre d'affaires et la cible exacte concernée.</p>
-      </div>
-
-      <div class="sd-duo-grid">
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            À qui s'adresse cette formule&nbsp;?
-          </h3>
-          <p>${escapeHtml(service.targetAudience)}</p>
-        </div>
-
-        <div class="sd-duo-card">
-          <h3>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            L'utilité concrète pour votre business
-          </h3>
-          <p>${escapeHtml(service.utility)}</p>
-        </div>
-      </div>
-      ${notForHtml(service, escapeHtml)}
-    </section>
-
-    <!-- SECTION LIVRABLES EXACTS -->
-    <section class="sd-section">
+    <section class="sd-section" aria-labelledby="sd-deliv-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Ce que vous recevez</span>
-        <h2 class="sd-heading">La liste exhaustive de vos livrables</h2>
-        <p class="sd-subheading">Zéro flou artistique. Voici exactement ce qui est conçu, construit et remis entre vos mains.</p>
+        <h2 class="sd-heading" id="sd-deliv-title">Tout est livré, noir sur blanc</h2>
       </div>
-
-      <div class="sd-deliverables-grid">
-        ${service.deliverables.map(deliv => `
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>${escapeHtml(deliv.title)}</strong>
-            </div>
-            <p>${escapeHtml(deliv.desc)}</p>
-          </div>
-        `).join('')}
-      </div>
+      <ul class="sd-deliverables-grid">
+        ${vis.tiles.map(([ic, label], i) => `<li class="sd-tile"><span class="sd-tile__icon">${icon(ic)}</span><span class="sd-tile__label">${e(label)}</span><span class="sd-tile__num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span></li>`).join('\n        ')}
+      </ul>
     </section>
 
-    <!-- SECTION COMPARATIVE AVEC PURITY VS AUTRES -->
-    ${service.comparison && service.comparison.length ? `
-    <section class="sd-section">
+    <section class="sd-section sd-section--vs" aria-labelledby="sd-vs-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Pourquoi Purity</span>
-        <h2 class="sd-heading">La différence concrète face aux prestataires classiques</h2>
-        <p class="sd-subheading">Voyez exactement ce qui change lorsque vous travaillez avec un studio axé sur la performance et la rentabilité.</p>
+        <h2 class="sd-heading" id="sd-vs-title">Ailleurs, et chez Purity</h2>
       </div>
-
       <div class="sd-comparison-wrap">
         <table class="sd-comparison-table">
           <thead>
             <tr>
-              <th scope="col">Critère clé</th>
-              <th scope="col">Prestataire classique / Bricolage</th>
-              <th scope="col" class="sd-col-purity">Approche Purity Agency</th>
+              <th scope="col"><span class="sd-vs__h">${icon('cross')}Souvent ailleurs</span></th>
+              <th scope="col" class="sd-col-purity"><span class="sd-vs__h">${icon('tick')}Chez Purity</span></th>
             </tr>
           </thead>
           <tbody>
-            ${service.comparison.map(c => `
-              <tr>
-                <td class="sd-col-aspect">${escapeHtml(c.aspect)}</td>
-                <td class="sd-col-others">${escapeHtml(c.others)}</td>
-                <td class="sd-col-purity"><strong>✓</strong> ${escapeHtml(c.purity)}</td>
-              </tr>
-            `).join('')}
+            ${vis.vs.map(([o, p], i) => `<tr>
+              <td class="sd-col-others"><span class="sd-vs__aspect">${e(service.comparison[i].aspect)}</span>${e(o)}</td>
+              <td class="sd-col-purity"><span class="sd-vs__aspect">${e(service.comparison[i].aspect)}</span>${e(p)}</td>
+            </tr>`).join('\n            ')}
           </tbody>
         </table>
       </div>
     </section>
-    ` : ''}
 
-    <!-- SECTION LE COÛT DE L'INACTION -->
-    <section class="sd-section">
-      <div class="sd-loss-card">
+    <section class="sd-section sd-loss" aria-labelledby="sd-loss-title">
+      <div class="sd-loss__head">
         <span class="sd-kicker">Ne pas agir a un coût</span>
-        <h2 class="sd-heading">Ce que vous perdez chaque mois sans cette solution</h2>
-        <p class="sd-subheading">Ce n'est pas le coût de la solution qui est cher, c'est ce que son absence vous fait perdre en continu.</p>
-
-        <div class="sd-loss-grid">
-          ${service.lossOfInaction.map(loss => `
-            <div class="sd-loss-item">
-              <div class="sd-loss-item__title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>${escapeHtml(loss.title)}</span>
-              </div>
-              <p>${escapeHtml(loss.desc)}</p>
-            </div>
-          `).join('')}
-        </div>
+        <h2 class="sd-heading" id="sd-loss-title">Ce que vous perdez chaque mois sans cette solution</h2>
       </div>
+      <ol class="sd-loss__list">
+        ${service.lossOfInaction.map((l, i) => `<li><span class="sd-loss__num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><span>${e(l.title)}</span></li>`).join('\n        ')}
+      </ol>
     </section>
 
-    <!-- SECTION COMMENT ÇA SE PASSE / DÉROULEMENT -->
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Déroulement &amp; Remise</span>
-        <h2 class="sd-heading">Comment se passe la réalisation de A à Z</h2>
-        <p class="sd-subheading">Un processus cadré en 4 étapes pour un lancement serein sans vous surcharger de travail.</p>
-      </div>
-
-      <div class="sd-steps-grid">
-        ${service.howItWorks.map(step => `
-          <div class="sd-step-item">
-            <div class="sd-step-num">${escapeHtml(step.step)}</div>
-            <strong>${escapeHtml(step.title)}</strong>
-            <p>${escapeHtml(step.desc)}</p>
-          </div>
-        `).join('')}
-      </div>
-    </section>
-
-    <!-- SECTION CAS CONCRETS ASSOCIÉS (PREUVE SOCIALE & MAILLAGE) -->
-    ${service.relatedCases && service.relatedCases.length ? `
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Exemples réels</span>
-        <h2 class="sd-heading">Voyez ce que nous avons créé pour d'autres métiers</h2>
-        <p class="sd-subheading">Découvrez les démonstrations interactives et cas concrets déployés pour les artisans et PME de Wallonie.</p>
-      </div>
-
-      <div class="sd-cases-grid">
-        ${service.relatedCases.map(rc => `
-          <a class="sd-case-card" href="/cas-concrets/${escapeHtml(rc.id)}.html">
-            <span class="sd-case-card__sector">${escapeHtml(rc.sector)}</span>
-            <h3>${escapeHtml(rc.name)}</h3>
-            <p>Voir le cas d'étude détaillé, l'architecture de conversion et la démonstration interactive en ligne.</p>
-            <span class="sd-case-card__cta">Explorer le cas d'étude <span aria-hidden="true">→</span></span>
-          </a>
-        `).join('')}
-      </div>
-    </section>
-    ` : ''}
-
-    <!-- SECTION MAINTENANCE & SUIVI -->
-    ${service.monthlyPrice ? `
-    <section class="sd-section">
-      <div class="sd-maintenance-box">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+    <section class="sd-section" aria-labelledby="sd-steps-title">
+      <div class="sd-section-header sd-section-header--row">
         <div>
-          <h4>Ce qui est inclus dans votre suivi mensuel (${escapeHtml(service.monthlyPrice)})</h4>
-          <p>${escapeHtml(service.includedMaintenance)}</p>
+          <span class="sd-kicker">Comment ça se passe</span>
+          <h2 class="sd-heading" id="sd-steps-title">4 étapes, très peu de travail pour vous</h2>
         </div>
+        <span class="sd-steps__delay">${icon('clock')}${free ? '15 min, au créneau choisi' : `Livré en ${e(cleanDelay(service.delay))}`}</span>
+      </div>
+      <ol class="sd-timeline">
+        ${service.howItWorks.map(s => `<li class="sd-timeline__step"><span class="sd-timeline__num">${e(s.step)}</span><strong>${e(s.title)}</strong></li>`).join('\n        ')}
+      </ol>
+    </section>
+
+    ${service.relatedCases && service.relatedCases.length ? `<section class="sd-section" aria-labelledby="sd-cases-title">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Démos par métier</span>
+        <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
+        <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
+      </div>
+      <div class="sd-cases-grid${service.relatedCases.length === 1 ? ' sd-cases-grid--solo' : ''}">
+        ${service.relatedCases.map(rc => `<a class="sd-case-card" href="/cas-concrets/${e(rc.id)}.html">
+          <img src="${shot(rc.id, 'desktop')}" width="1440" height="900" alt="Accueil de la démo ${e(rc.name)}, ${e(rc.sector.toLowerCase())}" loading="lazy" decoding="async">
+          <span class="sd-case-card__meta"><span class="sd-case-card__sector">${e(rc.sector)}</span><strong>${e(rc.name)}</strong></span>
+          <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
+        </a>`).join('\n        ')}
+      </div>
+    </section>` : ''}
+
+    <section class="sd-section" aria-labelledby="sd-offer-title">
+      <div class="sd-section-header">
+        <span class="sd-kicker">Le prix</span>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+      </div>
+      <div class="sd-offer">
+        ${priceCard}
+        <ul class="sd-offer__side">
+          ${offerSide.map(([ic, t, d]) => `<li>${icon(ic)}<div><strong>${e(t)}</strong><p>${e(d)}</p></div></li>`).join('\n          ')}
+          ${notFor ? `<li class="sd-notfor">${icon('alert')}<div><strong>Pas pour vous si</strong><p>${e(notFor)}</p></div></li>` : ''}
+        </ul>
       </div>
     </section>
-    ` : ''}
 
-    <!-- FAQ SECTION (SERP RICH SNIPPETS) -->
-    <section class="sd-section">
-      <div class="sd-section-header">
+    <section class="sd-section sd-faq" aria-labelledby="sd-faq-title">
+      <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
-        <h2 class="sd-heading">Questions fréquentes sur cette formule</h2>
-        <p class="sd-subheading">Toutes les réponses directes avant de prendre votre décision.</p>
+        <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
+        <a class="sd-link-arrow" href="${RDV_URL}">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
-
       <div class="sd-faq-list">
-        ${allFaq.map(item => `
-          <details class="sd-faq-item">
-            <summary>${escapeHtml(item.q)}</summary>
-            <div class="sd-faq-body">
-              <p>${escapeHtml(item.a)}</p>
-            </div>
-          </details>
-        `).join('')}
+        ${allFaq.map(item => `<details class="sd-faq-item">
+          <summary>${e(item.q)}</summary>
+          <div class="sd-faq-body"><p>${e(item.a)}</p></div>
+        </details>`).join('\n        ')}
       </div>
     </section>
 
-    <!-- MAILLAGE INTERNE -->
-    <section class="sd-section" aria-labelledby="sd-links-title">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Pour aller plus loin</span>
-        <h2 class="sd-heading" id="sd-links-title">Exemples par métier et guides utiles</h2>
-      </div>
+    <section class="sd-section sd-section--more" aria-label="Description détaillée">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur ${e(service.name)}</span><span class="sd-more__hint">Détail complet</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">${e(answer)}</p>
+          <p>${e(service.summary)}</p>
+          <h3>Pour qui</h3>
+          <p>${e(service.targetAudience)}</p>
+          <h3>Ce que vous y gagnez</h3>
+          <p>${e(service.utility)}</p>
+          <h3>Le détail des livrables</h3>
+          <dl>
+            ${service.deliverables.map(d => `<dt>${e(d.title)}</dt><dd>${e(d.desc)}</dd>`).join('\n            ')}
+          </dl>
+          <h3>Le comparatif en détail</h3>
+          <dl>
+            ${service.comparison.map(c => `<dt>${e(c.aspect)}</dt><dd>Souvent ailleurs : ${e(c.others)}. Avec Purity : ${e(c.purity)}.</dd>`).join('\n            ')}
+          </dl>
+          <h3>Ce que l’inaction coûte</h3>
+          <dl>
+            ${service.lossOfInaction.map(l => `<dt>${e(l.title)}</dt><dd>${e(l.desc)}</dd>`).join('\n            ')}
+          </dl>
+          <h3>Les étapes</h3>
+          <dl>
+            ${service.howItWorks.map(s => `<dt>${e(s.step)} · ${e(s.title)}</dt><dd>${e(s.desc)}</dd>`).join('\n            ')}
+          </dl>
+          ${free ? '' : `<h3>Engagement</h3>
+          <p>${e(commitmentAnswer(service))}</p>`}
+        </div>
+      </details>
+    </section>
+
+    <nav class="sd-section sd-section--links" aria-labelledby="sd-links-title">
+      <h2 class="sd-mini-title" id="sd-links-title">Exemples par métier et guides utiles</h2>
       <ul class="sd-links">
-        ${linksFor(service, escapeHtml)}
+        ${linksFor(service, e)}
       </ul>
-    </section>
+    </nav>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
-        <p>Vous parlez directement à Amir Kebiyeb. Devis écrit avec prix, délai et livrables, sans engagement tant que vous ne l’avez pas signé.</p>
+        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <p>Vous parlez directement à Amir Kebiyeb. ${PROMISE}.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les autres services <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Prendre rendez-vous <span aria-hidden="true">→</span></a>` : `<a class="sd-btn-secondary" href="/services">Voir les autres services <span aria-hidden="true">→</span></a>`}
         </div>
       </div>
     </section>
   </div>
 </main>
 
-<!-- MOBILE FLOATING ACTION BAR (CONVERSION GOOGLE ADS) -->
 <aside class="sd-floating-bar" aria-label="Action rapide">
   <div class="sd-floating-info">
-    <span class="sd-floating-price">${escapeHtml(displayPrice(service))}</span>
-    <span class="sd-floating-note">${isFree(service) ? escapeHtml(service.promoTag || 'Sans engagement') : 'Prix net · TVA non applicable'}</span>
+    <span class="sd-floating-price">${e(displayPrice(service))}</span>
+    <span class="sd-floating-note">${free ? e(service.promoTag || 'Sans engagement') : 'Prix net · TVA non applicable'}</span>
   </div>
-  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Diagnostic offert' : 'Demander devis'} <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Réserver 15 min' : 'Recevoir mon devis'} <span aria-hidden="true">↗</span></a>
 </aside>
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=2026110102" defer></script>
+<script src="/js/menu.js?v=2026110301" defer></script>
 </body>
 </html>`;
+}
+
+// --------------------------------------------------------------------------
+// HUB /services
+// --------------------------------------------------------------------------
+function pillarTagOf(svc) {
+  if (svc.pillar.includes('Pilier 02')) return 'pilier-2';
+  if (svc.pillar.includes('Pilier 03')) return 'pilier-3';
+  if (svc.pillar.includes('Pilier 04')) return 'pilier-4';
+  return 'pilier-1';
+}
+
+function hubPriceHtml(svc) {
+  if (isFree(svc)) return `<span class="sd-hub-card__price">Gratuit</span><span class="sd-hub-card__monthly">15 min, sans engagement</span>`;
+  return `<span class="sd-hub-card__price">${e(svc.priceSetup)}</span><span class="sd-hub-card__monthly">${svc.monthlyPrice ? `+ ${e(svc.monthlyPrice)} de suivi` : 'paiement unique'}</span>`;
 }
 
 function buildServicesHubPage() {
@@ -510,11 +622,7 @@ function buildServicesHubPage() {
         "name": pageTitle,
         "description": metaDesc,
         "url": canonicalUrl,
-        "isPartOf": {
-          "@type": "WebSite",
-          "name": "Purity Agency",
-          "url": "https://purity-agency.be/"
-        }
+        "isPartOf": { "@type": "WebSite", "name": "Purity Agency", "url": "https://purity-agency.be/" }
       },
       {
         "@type": "BreadcrumbList",
@@ -526,30 +634,7 @@ function buildServicesHubPage() {
     ]
   };
 
-  return `<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escapeHtml(pageTitle)}</title>
-<meta name="description" content="${escapeHtml(metaDesc)}">
-<link rel="canonical" href="${canonicalUrl}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="fr_BE">
-<meta property="og:title" content="${escapeHtml(pageTitle)}">
-<meta property="og:description" content="${escapeHtml(metaDesc)}">
-<meta property="og:url" content="${canonicalUrl}">
-${OG_IMAGE}
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
-<link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103">
-<script type="application/ld+json">
-${JSON.stringify(schemaJson, null, 2)}
-</script>
-</head>
+  return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson })}
 <body class="service-page">
 
 ${renderHeader('services')}
@@ -562,84 +647,76 @@ ${renderHeader('services')}
       <span aria-current="page">Services &amp; Tarifs</span>
     </nav>
 
-    <section class="sd-hero sd-hero--hub">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Catalogue Officiel &amp; Tarifs 2026-2027</div>
-      <h1 class="sd-hero__title">Des solutions concrètes.<br>Des livrables précis.</h1>
-      <p class="sd-hero__answer">Purity Agency, agence web à Charleroi, crée des sites, des fiches Google, du contenu pour les réseaux et des automatisations pour les indépendants et PME de Wallonie. Chaque service affiche son prix, son délai et ses livrables. Vous ne savez pas lequel choisir ? Le diagnostic de 15 minutes est gratuit et sans engagement.</p>
-      <p class="sd-hero__summary">Tous nos tarifs sont transparents et affichés sans devis à la tête du client. Hébergement rapide, sécurité et maintenance incluses.</p>
-
-      <div class="sd-trust-strip" aria-label="Garanties">
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Entreprise enregistrée BCE 1036.775.590</span>
+    <section class="sd-hero sd-hero--hub" aria-labelledby="hub-title">
+      <div class="sd-hub-hero">
+        <div>
+          <div class="sd-hero__pill">Services et prix 2026-2027</div>
+          <h1 class="sd-hero__title" id="hub-title">Des solutions concrètes.<br>Des prix affichés.</h1>
         </div>
-        <div class="sd-trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Charleroi · Namur · Mons · Liège · Wallonie</span>
+        <div class="sd-hub-hero__side">
+          <p class="sd-hero__lead">Sites, fiche Google, réseaux et automatisation pour les indépendants et PME de Wallonie. Chaque prix est celui de votre devis.</p>
+          <div class="sd-hero__actions">
+            <a class="sd-btn-primary" href="${RDV_URL}">Diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="sd-hero__promise">${icon('clock')}${PROMISE}</p>
         </div>
       </div>
+      <div class="sd-trust-strip" aria-label="Garanties">
+        <span class="sd-trust-item">${icon('shield')}Entreprise enregistrée BCE 1036.775.590</span>
+        <span class="sd-trust-item">${icon('pin')}Charleroi · Namur · Mons · Liège · Wallonie</span>
+      </div>
 
-      <!-- FILTER TABS -->
       <div class="sd-hub-filter-bar" role="group" aria-label="Filtrer les services par pilier">
-        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Tous les services (14)</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1" aria-pressed="false">01 · Sites Web &amp; Référencement</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2" aria-pressed="false">02 · Réseaux Sociaux &amp; Image</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3" aria-pressed="false">03 · Automatisation &amp; IA</button>
-        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4" aria-pressed="false">04 · Diagnostic</button>
+        <button class="sd-hub-filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Tous (14)</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-1" aria-pressed="false">Sites &amp; référencement</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-2" aria-pressed="false">Réseaux &amp; image</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-3" aria-pressed="false">Automatisation &amp; IA</button>
+        <button class="sd-hub-filter-btn" type="button" data-filter="pilier-4" aria-pressed="false">Diagnostic</button>
       </div>
     </section>
 
-    <section class="sd-section sd-section--ruled">
+    <section class="sd-section sd-section--hub" aria-label="Tous les services">
       <p class="sd-hub-price-note">${VAT_NOTE}. ${OFFER_NOTE}.</p>
       <div class="sd-hub-grid" id="services-grid">
         ${services.map((svc, idx) => {
-          let pillarTag = 'pilier-1';
-          if (svc.pillar.includes('Pilier 02')) pillarTag = 'pilier-2';
-          else if (svc.pillar.includes('Pilier 03')) pillarTag = 'pilier-3';
-          else if (svc.pillar.includes('Pilier 04')) pillarTag = 'pilier-4';
-
-          const numStr = String(idx + 1).padStart(2, '0');
-
-          return `
-          <article class="sd-hub-card" data-pillar="${pillarTag}">
-            <div class="sd-hub-card__top">
-              <span class="sd-hub-card__num">#${numStr}</span>
-              <span class="sd-hub-card__pillar">${escapeHtml(svc.pillar.replace(/Pilier \d+ · /, ''))}</span>
-            </div>
-            <h2 class="sd-hub-card__title"><a href="/services/${svc.slug}">${escapeHtml(svc.name)}</a></h2>
-            <p class="sd-hub-card__summary">${escapeHtml(svc.summary)}</p>
-
-            <ul class="sd-hub-card__deliverables-preview" aria-label="Livrables clés inclus">
-              ${svc.deliverables.slice(0, 3).map(deliv => `
-                <li>
-                  <span class="sd-hub-card__check" aria-hidden="true">✓</span>
-                  <span>${escapeHtml(deliv.title)}</span>
-                </li>
-              `).join('')}
-            </ul>
-
+          const [, src, w, h, alt] = HUB_THUMB[svc.slug];
+          const tall = h > w;
+          return `<article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
+          <div class="sd-hub-card__thumb${tall ? ' sd-hub-card__thumb--tall' : ''}">
+            <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? (idx === 0 ? ' fetchpriority="high"' : '') : ' loading="lazy"'}>
+          </div>
+          <div class="sd-hub-card__body">
+            <span class="sd-hub-card__pillar">${e(svc.pillar.replace(/Pilier \d+ · /, ''))}</span>
+            <h2 class="sd-hub-card__title"><a href="/services/${svc.slug}">${e(svc.name)}</a></h2>
+            <p class="sd-hub-card__summary">${e(svc.headline)}</p>
             <div class="sd-hub-card__footer">
               <div class="sd-hub-card__price-wrap">
-                <span class="sd-hub-card__price">${escapeHtml(displayPrice(svc))}</span>
-                <span class="sd-hub-card__delay">Livraison : ${escapeHtml(svc.delay)}</span>
+                ${hubPriceHtml(svc)}
+                <span class="sd-hub-card__delay">${isFree(svc) ? 'Par téléphone ou en visio' : e(cleanDelay(svc.delay))}</span>
               </div>
-              <a class="sd-hub-card__btn" href="/services/${svc.slug}" aria-label="Voir en détail : ${escapeHtml(svc.name)}">
-                Voir en détail <span aria-hidden="true">→</span>
-              </a>
+              <span class="sd-hub-card__btn" aria-hidden="true">${icon('arrow')}</span>
             </div>
-          </article>
-          `;
-        }).join('')}
+          </div>
+        </article>`;
+        }).join('\n        ')}
       </div>
     </section>
 
-    <!-- BOTTOM CTA -->
-    <section class="sd-bottom-cta">
+    <section class="sd-section sd-section--more" aria-label="À propos des services">
+      <details class="sd-more">
+        <summary><span>En savoir plus sur nos services</span><span class="sd-more__hint">Comment on travaille</span></summary>
+        <div class="sd-more__body">
+          <p class="sd-more__lead">Purity Agency, agence web à Charleroi, crée des sites, des fiches Google, du contenu pour les réseaux et des automatisations pour les indépendants et PME de Wallonie. Chaque service affiche son prix, son délai et ses livrables. Vous ne savez pas lequel choisir ? Le diagnostic de 15 minutes est gratuit et sans engagement.</p>
+          <p>Les prix affichés sont ceux de votre devis, pas un tarif à la tête du client. Pour les sites, l’hébergement, la sécurité et les petites modifications sont compris dans le suivi mensuel.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="sd-bottom-cta" aria-labelledby="hub-cta-title">
       <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Cadrage rapide</span>
-        <h2>Vous ne savez pas par quoi commencer&nbsp;?</h2>
-        <p>Réservez un créneau de 15 minutes en visio avec Amir. C'est 100 % gratuit et sans aucun engagement.</p>
-        <a class="sd-btn-primary" href="/contact.html?solution=diagnostic">Réserver mon diagnostic 15 min offert <span aria-hidden="true">↗</span></a>
+        <h2 id="hub-cta-title">Vous ne savez pas par quoi commencer&nbsp;?</h2>
+        <p>15 minutes avec Amir. Il vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. ${PROMISE}.</p>
+        <a class="sd-btn-primary" href="${RDV_URL}">Réserver mon diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
       </div>
     </section>
   </div>
@@ -649,22 +726,16 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=2026110102" defer></script>
+<script src="/js/menu.js?v=2026110301" defer></script>
 </body>
 </html>`;
 }
 
-// Generate all individual service pages
 let count = 0;
 for (const svc of services) {
-  const html = buildServiceDetailPage(svc);
-  const outPath = path.join(SERVICES_DIR, `${svc.slug}.html`);
-  fs.writeFileSync(outPath, html, 'utf8');
+  fs.writeFileSync(path.join(SERVICES_DIR, `${svc.slug}.html`), buildServiceDetailPage(svc), 'utf8');
   count++;
 }
 console.log(`Generated ${count} individual service detail pages in services/*.html`);
-
-// Generate hub page services.html at root
-const hubHtml = buildServicesHubPage();
-fs.writeFileSync(path.join(ROOT, 'services.html'), hubHtml, 'utf8');
+fs.writeFileSync(path.join(ROOT, 'services.html'), buildServicesHubPage(), 'utf8');
 console.log(`Generated services.html hub page at root`);

@@ -32,7 +32,7 @@ Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège,
 const FIABLE = `## Informations fiables
 
 - Les repères de prix affichés sur le site sont indicatifs ; le devis accepté par écrit fixe le périmètre et le prix.
-- Le client reste propriétaire de son site, de ses contenus et de son nom de domaine.
+- Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
 - Les entreprises présentées dans « Nos réalisations » sont fictives : ce sont des démonstrations par métier, pas des références clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
 - Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur ${O}/contact.html ou par e-mail à contact@purity-agency.be.`;
@@ -59,7 +59,7 @@ const short = `${HEAD}
 
 ## Services et prix indicatifs
 
-${services.map(s => `- [${s.name}](${O}/services/${s.slug}): ${prix(s)}${s.delay ? ` — délai ${s.delay}` : ''}. ${s.summary || ''}`.trim()).join('\n')}
+${services.map(s => `- [${s.name}](${O}/services/${s.slug}): ${prix(s)}${s.delay ? `, délai ${s.delay}` : ''}. ${s.summary || ''}`.trim()).join('\n')}
 
 ## Agence web par ville
 
@@ -86,7 +86,7 @@ ${services.map(s => `## ${s.name}
 
 URL : ${O}/services/${s.slug}
 Prix indicatif : ${prix(s)}${s.monthlyNote ? ` (mensuel : ${s.monthlyNote})` : ''}
-${s.delay ? `Délai : ${s.delay}\n` : ''}Pour qui : ${s.targetAudience}
+${s.delay ? `Délai : ${s.delay}\n` : ''}${s.commitment ? `Engagement : ${s.commitment.text}\n` : ''}Pour qui : ${s.targetAudience}
 Utilité : ${s.utility}
 ${s.summary ? `\n${s.summary}\n` : ''}
 Livrables :

@@ -30,6 +30,9 @@ export async function sendContact(b, { fetcher = fetch, apiKey = key(), journal 
   const phone = clean(b.phone, 40);
   const message = String(b.message == null ? '' : b.message).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]+/g, '').trim().slice(0, 4000);
   const slot = clean(b.slot, 40);
+  // Contexte de la page d'origine (ex. cas concret), distinct du creneau.
+  // Texte brut, caracteres de controle retires, longueur bornee.
+  const context = clean(b.context, 200);
 
   if (!name || !email || !message) return { ok: false, reason: 'missing' };
   if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,24}$/.test(email)) return { ok: false, reason: 'bad-email' };
@@ -37,12 +40,13 @@ export async function sendContact(b, { fetcher = fetch, apiKey = key(), journal 
   const lines = [`Nom : ${name}`, `E-mail : ${email}`];
   if (phone) lines.push(`Téléphone : ${phone}`);
   if (slot) lines.push(`Créneau souhaité : ${slot}`);
+  if (context) lines.push(`Contexte : ${context}`);
   lines.push('', message);
   const body = lines.join('\n');
 
   let saved = false;
   try {
-    const entry = JSON.stringify({ at: new Date().toISOString(), name, email, phone, slot, message }) + '\n';
+    const entry = JSON.stringify({ at: new Date().toISOString(), name, email, phone, slot, context, message }) + '\n';
     if (journal) journal(entry);
     else {
       const now = Date.now();

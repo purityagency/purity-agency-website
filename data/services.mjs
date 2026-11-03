@@ -3,23 +3,33 @@
 // Zéro jargon d'agence web, zéro terme technique prétentieux, 100 % concret, rentable et orienté résultats métier.
 // Mentions légales réelles : BCE 1036.775.590 · Régime particulier art. 56bis CTVA · Conformité Peppol 2026.
 
+// Durées d'engagement du suivi mensuel. Les pages services (paragraphe-réponse,
+// FAQ « Est-ce que je m’engage ? ») lisent ce champ : aucune phrase générée ne
+// doit le contredire. Par défaut : CGV art. 3, résiliable chaque mois avec un
+// mois de préavis.
+const RESILIABLE = 'Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.';
+const ONE_OFF = { minMonths: 0, text: 'Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.' };
+const MONTHLY = { minMonths: 0, text: RESILIABLE };
+
 export const services = [
   {
     id: 'M01',
     slug: 'diagnostic-digital',
     name: 'Diagnostic digital (15 min)',
     pillar: 'Pilier 04 · Diagnostic & Cadrage',
-    kicker: '15 min par téléphone ou visio · 100 % gratuit · Sans engagement',
+    kicker: '15 min par téléphone ou en visio · 100 % gratuit · Sans engagement',
+    cardDescription: 'En 15 minutes par téléphone ou en visio, on regarde votre site ou vos réseaux et on identifie la priorité qui ramènera des clients le plus vite.',
+    commitment: { minMonths: 0, text: 'Aucun engagement : l’appel est gratuit et ne vous oblige à rien acheter.' },
     headline: 'Découvrez en 15 minutes ce qui freine vos demandes de devis et ce qu’il faut corriger en priorité.',
-    summary: 'Avant de dépenser le moindre euro dans un site web, des réseaux sociaux ou de la publicité, Amir Kebiyeb examine votre situation avec vous et vous indique l’action concrète la plus rentable pour décrocher plus de chantiers.',
+    summary: 'Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec Amir Kebiyeb pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.',
     price: 'Offert',
     priceSetup: 'Offert',
     promoTag: 'Gratuit · sans engagement',
     monthlyPrice: null,
     monthlyNote: 'Aucun abonnement, aucun moyen de paiement requis.',
-    delay: 'Créneau immédiat (15 min chrono)',
+    delay: 'Créneau au choix dans l’agenda (15 min)',
     targetAudience: 'Indépendants, artisans du bâtiment, dépanneurs et gérants de PME en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles) qui veulent savoir pourquoi leur présence en ligne ne leur rapporte pas assez d’appels.',
-    utility: 'Éviter de jeter votre argent par les fenêtres dans des outils ou des publicités inutiles. Vous repartez avec un avis d’expert direct, honnête et chiffré sur votre situation locale.',
+    utility: 'Ne plus payer pour des outils ou des publicités qui ne ramènent rien. Vous repartez avec un avis franc et chiffré sur votre situation, et la première chose à corriger.',
     searchIntentKeywords: [
       'audit site internet gratuit charleroi',
       'diagnostic digital pme wallonie',
@@ -31,9 +41,9 @@ export const services = [
       { id: 'chauffage', name: 'Thermiq', sector: 'Chauffage & Énergie' }
     ],
     comparison: [
-      { aspect: 'Approche commerciale', others: 'Tentative de vous forcer la main pour signer un pack à 5 000 € dès la 5ème minute', purity: '100 % conseil transparent : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit' },
+      { aspect: 'Approche commerciale', others: 'On essaie de vous faire signer un pack à 5 000 € dès la 5e minute', purity: 'Du conseil franc : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit' },
       { aspect: 'Interlocuteur', others: 'Commercial junior qui n’y connaît rien à votre métier et lit un argumentaire', purity: 'Échange direct avec Amir Kebiyeb, fondateur de l’agence' },
-      { aspect: 'Ce que vous recevez', others: 'Un devis générique automatique envoyé sans explication', purity: 'Un récapitulatif clair sous 1h avec l’action prioritaire à mener' }
+      { aspect: 'Ce que vous recevez', others: 'Un devis générique automatique envoyé sans explication', purity: 'Un récapitulatif écrit après l’appel, avec l’action prioritaire à mener' }
     ],
     deliverables: [
       {
@@ -49,8 +59,8 @@ export const services = [
         desc: 'Vérification que vos devis envoyés aux clients n’atterrissent pas directement dans leur dossier de courriers indésirables (spams).'
       },
       {
-        title: 'Feuille de route écrite envoyée sous 1 heure',
-        desc: 'Un e-mail de synthèse simple et sans jargon récapitulant les points faibles constatés, la solution la plus rentable et le budget exact à prévoir.'
+        title: 'Récapitulatif écrit après l’appel',
+        desc: 'Un e-mail de synthèse simple et sans jargon : les points faibles constatés, la solution la plus rentable et une fourchette de budget. Si vous voulez aller plus loin, le devis ferme suit l’appel.'
       }
     ],
     lossOfInaction: [
@@ -71,7 +81,7 @@ export const services = [
       { step: '01', title: 'Choix de votre créneau', desc: 'Vous sélectionnez l’heure qui vous convient le mieux dans l’agenda en ligne, selon vos disponibilités entre deux chantiers.' },
       { step: '02', title: 'Préparation du dossier', desc: 'Amir regarde votre site et vos concurrents locaux avant l’appel pour ne pas vous faire perdre une minute.' },
       { step: '03', title: 'Échange de 15 minutes chrono', desc: 'Par téléphone ou en visio sur votre écran, droit au but, centré uniquement sur la rentabilité de votre entreprise.' },
-      { step: '04', title: 'Récapitulatif écrit', desc: 'Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec notre accompagnement.' }
+      { step: '04', title: 'Récapitulatif écrit', desc: 'Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec nous.' }
     ],
     includedMaintenance: 'Non applicable (rendez-vous de diagnostic 100 % offert).',
     faq: [
@@ -98,9 +108,11 @@ export const services = [
     slug: 'page-essentielle',
     name: 'Page Essentielle (1 page)',
     pillar: 'Pilier 01 · Sites Web & Référencement',
-    kicker: 'Lancement rapide · Artisans solos & Indépendants · Appels directs',
-    headline: 'Une page professionnelle ultra-rapide qui présente votre métier et fait sonner votre téléphone.',
-    summary: 'La formule idéale pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coaches) qui veulent remplacer une simple page Facebook ou un vieux site par une vitrine nette, crédible et contactable en 1 clic.',
+    kicker: 'En ligne en 5 à 7 jours · Artisans solos & Indépendants · Appel en 1 clic',
+    cardDescription: 'Une page pro ultra-claire pour présenter votre offre et recevoir des appels ou demandes de devis. Maintenance incluse.',
+    commitment: { minMonths: 12, text: 'Le suivi mensuel est conclu pour 12 mois, pour amortir la mise en place. Ensuite, il se résilie par écrit chaque mois, avec un mois de préavis.' },
+    headline: 'Une page pro qui s’ouvre vite sur téléphone, présente votre métier et vous fait appeler en 1 clic.',
+    summary: 'Pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coachs) qui n’ont qu’une page Facebook ou un vieux site : une page nette qui inspire confiance, où le client vous appelle ou vous écrit en 1 clic.',
     price: '490 € + 79 €/mois',
     priceSetup: '490 €',
     promoTag: '-25 % si devis validé sous 24 h',
@@ -126,7 +138,7 @@ export const services = [
     ],
     deliverables: [
       {
-        title: 'Présentation sur-mesure de votre métier (Zéro modèle générique)',
+        title: 'Votre métier présenté avec vos mots, pas un modèle tout fait',
         desc: 'Mise en valeur de vos vrais chantiers, de vos compétences clés et de vos tarifs indicatifs : une présentation nette qui donne immédiatement confiance à vos clients locaux et justifie vos devis.'
       },
       {
@@ -146,8 +158,8 @@ export const services = [
         desc: 'Mentions légales obligatoires en Belgique (numéro BCE, régime de franchise TVA art. 56bis ou numéro de TVA) pour être 100 % en règle avec l’administration.'
       },
       {
-        title: 'Vous êtes propriétaire à 100 % de votre site',
-        desc: 'Zéro location forcée, zéro abonnement logiciel captif : votre nom de domaine et tous vos fichiers vous appartiennent définitivement.'
+        title: 'Vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine',
+        desc: 'Zéro location forcée : une fois la création réglée, vos textes, photos, visuels et votre nom de domaine sont à vous, et vos fichiers vous sont remis si vous partez ailleurs.'
       }
     ],
     lossOfInaction: [
@@ -183,10 +195,6 @@ export const services = [
       {
         q: 'Le site fonctionne-t-il sur tous les téléphones ?',
         a: 'Oui, le site est rigoureusement testé sur iPhone et Android, pour que chaque bouton soit parfaitement cliquable avec le pouce.'
-      },
-      {
-        q: 'Combien de temps suis-je engagé pour le suivi ?',
-        a: 'L’engagement initial est de 12 mois pour amortir les frais techniques de mise en place, puis renouvelable au mois le mois sans frais de résiliation.'
       }
     ]
   },
@@ -195,9 +203,11 @@ export const services = [
     slug: 'site-vitrine',
     name: 'Site Vitrine (5 pages)',
     pillar: 'Pilier 01 · Sites Web & Référencement',
-    kicker: 'Le standard professionnel · Artisans confirmés & PME locales',
-    headline: 'Le site vitrine complet pour asseoir votre réputation locale et signer des chantiers rentables.',
-    summary: 'La formule la plus demandée : 5 pages complètes et structurées (Accueil rassurant, Prestations détaillées, Galerie de réalisations avec comparateur avant/après, Présentation de l’entreprise, Contact et demande de devis) conçues pour faire de vous le premier choix dans votre région.',
+    kicker: '5 pages · Artisans confirmés & PME locales · Devis triés avant déplacement',
+    cardDescription: 'Le site complet pour PME et indépendants : accueil, services détaillés, réalisations et contact direct. Maintenance incluse.',
+    commitment: MONTHLY,
+    headline: '5 pages qui montrent votre travail, rassurent le client et trient les demandes avant que vous preniez la route.',
+    summary: 'Accueil, prestations détaillées, réalisations avec comparateur avant/après, présentation de l’entreprise, contact et demande de devis. De quoi être choisi quand un client compare trois artisans de votre région.',
     price: '1 490 € + 79 €/mois',
     priceSetup: '1 490 €',
     promoTag: '-25 % si devis validé sous 24 h',
@@ -205,7 +215,7 @@ export const services = [
     monthlyNote: 'Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.',
     delay: '7 à 10 jours ouvrés',
     targetAudience: 'Chauffagistes, entreprises de rénovation, carrosseries, garagistes, électriciens, plombiers, toitures et PME régionales en Wallonie.',
-    utility: 'Devenir le professionnel de référence dans votre commune et filtrer les demandes pour ne vous déplacer que sur des chantiers rentables avec des clients sérieux.',
+    utility: 'Être celui qu’on appelle dans votre commune, et ne plus vous déplacer pour des curieux sans budget : la demande arrive avec les photos et les infos utiles.',
     searchIntentKeywords: [
       'création site vitrine pme charleroi',
       'tarif création site web artisan wallonie',
@@ -240,11 +250,11 @@ export const services = [
       },
       {
         title: 'Référencement local configuré pour Google (Wallonie)',
-        desc: 'Configuration de vos communes d’intervention et de vos spécialités selon les critères officiels de Google pour ressortir en tête des recherches locales.'
+        desc: 'Vos communes d’intervention et vos spécialités sont indiquées comme Google le demande, pour qu’il sache où vous travaillez et ce que vous faites.'
       },
       {
-        title: 'Chargement ultra-rapide & Propriété totale du site',
-        desc: 'Ouverture instantanée sur smartphone (Quality Score maximal pour la publicité Google) et remise complète des accès : vous êtes propriétaire de votre site à vie.'
+        title: 'Chargement ultra-rapide & remise de vos accès',
+        desc: 'Ouverture rapide sur téléphone (utile aussi si vous faites de la publicité Google) et remise de tous les accès : vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine.'
       }
     ],
     lossOfInaction: [
@@ -270,8 +280,8 @@ export const services = [
     includedMaintenance: 'Hébergement infogéré haute vitesse, sauvegardes quotidiennes automatiques, surveillance anti-panne et ajout de vos nouveaux chantiers ou avis clients sur simple message WhatsApp.',
     faq: [
       {
-        q: 'Suis-je propriétaire de mon site et de mon nom de domaine ?',
-        a: 'Oui, à 100 %. Tous les fichiers, les textes, les photos et le nom de domaine sont votre entière propriété. Vous n’êtes jamais enfermé chez nous.'
+        q: 'Suis-je propriétaire de mes contenus et de mon nom de domaine ?',
+        a: 'Oui. Une fois la création réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Vous n’êtes jamais enfermé chez nous : vos fichiers vous sont remis si vous partez.'
       },
       {
         q: 'Combien de temps le projet va-t-il me prendre ?',
@@ -283,7 +293,7 @@ export const services = [
       },
       {
         q: 'Ce site est-il adapté si je veux lancer de la pub Google Ads ?',
-        a: 'Parfaitement. Sa rapidité d’ouverture et son formulaire bien placé permettent d’obtenir la meilleure note de qualité sur Google Ads, ce qui réduit le coût de chaque clic.'
+        a: 'Oui. Un site rapide avec un formulaire bien placé aide à obtenir une bonne note de qualité sur Google Ads, ce qui fait baisser le prix de chaque clic.'
       }
     ]
   },
@@ -293,13 +303,15 @@ export const services = [
     name: 'Site Complet (10+ pages)',
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Grandes PME · Multi-équipes & Multi-villes en Wallonie',
-    headline: 'La plateforme complète pour les PME multi-métiers qui veulent dominer leur région sur Google.',
+    cardDescription: 'Pour les entreprises avec plusieurs métiers ou zones géographiques à référencer sur Google. Maintenance incluse.',
+    commitment: MONTHLY,
+    headline: 'Une page pour chaque métier et chaque ville où vous travaillez, pour être trouvé partout dans votre région.',
     summary: 'Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vos villes d’intervention en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles, Brabant Wallon), avec des formulaires spécifiques par équipe et un espace de recrutement.',
     price: '2 490 € + 149 €/mois',
     priceSetup: '2 490 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '149 €/mois',
-    monthlyNote: 'Maintenance avancée, sauvegardes bi-quotidiennes, interventions prioritaires et 2h de modifications incluses chaque mois.',
+    monthlyNote: 'Maintenance avancée, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 h de modifications incluses chaque mois.',
     delay: '12 à 18 jours ouvrés',
     targetAudience: 'Entreprises générales de bâtiment, bureaux d’études, promoteurs, concessions, installateurs avec plusieurs équipes sur la route.',
     utility: 'Capter les plus gros contrats de votre région en ayant une page dédiée pour chaque spécialité et chaque grande commune, tout en facilitant le recrutement d’ouvriers qualifiés.',
@@ -316,7 +328,7 @@ export const services = [
     comparison: [
       { aspect: 'Couverture géographique', others: 'Une seule page générale qui n’apparaît que dans sa propre commune', purity: 'Pages dédiées par ville et arrondissement pour capter les chantiers de toute la région' },
       { aspect: 'Tri des demandes', others: 'Tous les messages mélangés dans une boîte mail unique', purity: 'Formulaires intelligents qui envoient directement le devis au bon responsable d’équipe' },
-      { aspect: 'Assistance technique', others: 'Délai d’attente de 5 à 10 jours pour la moindre modification', purity: 'Ligne directe prioritaire avec prise en charge sous 24h ouvrées' }
+      { aspect: 'Assistance technique', others: 'Délai d’attente de 5 à 10 jours pour la moindre modification', purity: 'Contact direct avec Amir, réponse sous 24 h ouvrées' }
     ],
     deliverables: [
       {
@@ -324,8 +336,8 @@ export const services = [
         desc: 'Une page détaillée pour chaque corps de métier, des pages géographiques par grande commune de Wallonie, des études de chantiers détaillées et un espace carrières.'
       },
       {
-        title: 'Pages dédiées par ville et spécialité pour dominer votre région',
-        desc: 'Chaque ville ciblée (Charleroi, Namur, Mons, Liège, Nivelles, etc.) dispose de sa propre page optimisée pour que Google vous affiche en tête sur les chantiers à fort panier.'
+        title: 'Une page par ville et par spécialité',
+        desc: 'Chaque ville ciblée (Charleroi, Namur, Mons, Liège, Nivelles, etc.) a sa propre page, pour que Google vous montre aux clients de cette ville qui cherchent votre métier.'
       },
       {
         title: 'Formulaires de devis avec envoi direct au bon conducteur de travaux',
@@ -340,8 +352,8 @@ export const services = [
         desc: 'Un tableau de bord clair pour voir combien de personnes consultent vos pages et d’où viennent vos demandes, sans bandeau de cookies pénible pour vos visiteurs.'
       },
       {
-        title: 'Support technique prioritaire garanti sous 24h ouvrées',
-        desc: 'Canal direct avec Amir pour toute mise à jour urgente de vos chantiers ou plannings.'
+        title: 'Réponse sous 24 h ouvrées pour vos mises à jour',
+        desc: 'Contact direct avec Amir pour toute mise à jour de vos chantiers ou plannings.'
       }
     ],
     lossOfInaction: [
@@ -360,11 +372,11 @@ export const services = [
     ],
     howItWorks: [
       { step: '01', title: 'Plan d’arborescence par ville et métier', desc: 'On valide ensemble les communes clés et les spécialités que vous voulez développer en priorité.' },
-      { step: '02', title: 'Rédaction de toutes vos pages', desc: 'Notre équipe rédige chaque fiche métier avec vos photos de réalisations et vos conditions d’intervention.' },
+      { step: '02', title: 'Rédaction de toutes vos pages', desc: 'Nous rédigeons chaque fiche métier avec vos photos de réalisations et vos conditions d’intervention.' },
       { step: '03', title: 'Validation et réglage des formulaires', desc: 'Test complet de l’envoi des demandes vers vos différents responsables d’équipes.' },
       { step: '04', title: 'Mise en ligne et indexation Google', desc: 'Déploiement complet et enregistrement de toutes vos nouvelles pages auprès de Google.' }
     ],
-    includedMaintenance: 'Supervision continue 24/7, sauvegardes automatiques de sécurité, support prioritaire sous 24h et 2 heures de modifications incluses chaque mois pour vos contenus.',
+    includedMaintenance: 'Surveillance automatique de disponibilité, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 heures de modifications incluses chaque mois pour vos contenus.',
     faq: [
       {
         q: 'Combien de pages exactes sont incluses ?',
@@ -390,6 +402,8 @@ export const services = [
     name: 'Boutique en ligne (E-commerce)',
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Vente directe 24/7 · Bancontact & Payconiq · 0 % de commission',
+    cardDescription: 'Catalogue produits, paiement sécurisé (Bancontact, carte) et gestion simple des commandes. Maintenance incluse.',
+    commitment: MONTHLY,
     headline: 'Votre boutique en ligne pour vendre vos produits et services en Belgique sans commissions abusives.',
     summary: 'Une boutique rapide et sécurisée, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), adaptée aussi bien aux commerçants qu’aux restaurateurs (commandes à emporter et réservations anti-no-show).',
     price: '3 990 € + 149 €/mois',
@@ -460,7 +474,7 @@ export const services = [
       { step: '03', title: 'Test de paiement réel à 1 €', desc: 'On effectue une vraie commande de test avec Bancontact pour s’assurer que l’argent arrive bien sur votre compte et que vous recevez l’alerte.' },
       { step: '04', title: 'Formation courte de 20 min', desc: 'On vous montre comment gérer vos commandes et modifier un prix en 10 secondes depuis votre téléphone.' }
     ],
-    includedMaintenance: 'Sécurisation permanente des passerelles bancaires, sauvegardes quotidiennes de vos commandes et clients, et assistance technique réactive.',
+    includedMaintenance: 'Sécurisation permanente des passerelles bancaires, sauvegardes quotidiennes automatiques de vos commandes et clients, et réponse sous 24 h ouvrées.',
     faq: [
       {
         q: 'Prenez-vous une commission sur mes ventes ?',
@@ -485,17 +499,19 @@ export const services = [
     slug: 'refonte-modernisation',
     name: 'Refonte & modernisation de site web',
     pillar: 'Pilier 01 · Sites Web & Référencement',
-    kicker: 'Zéro perte de vos clients · Fin des lenteurs · Score maximal',
+    kicker: 'Vos liens Google conservés · Fin des lenteurs · Site que vous osez montrer',
+    cardDescription: 'On modernise votre site existant pour qu’il inspire confiance sur mobile et génère enfin des demandes, en redirigeant chaque ancienne adresse. Maintenance requise.',
+    commitment: MONTHLY,
     headline: 'Transformez votre vieux site lent et dépassé en une vitrine moderne qui redonne confiance.',
-    summary: 'Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en conservant rigoureusement vos adresses et votre positionnement Google sans rien casser.',
+    summary: 'Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en redirigeant chaque ancienne adresse pour préserver votre référencement.',
     price: '890 à 2 490 € + 79 €/mois',
     priceSetup: 'dès 890 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '79 €/mois',
-    monthlyNote: 'Hébergement, maintenance technique et garantie contractuelle de zéro perte de trafic Google.',
+    monthlyNote: 'Hébergement, maintenance technique et redirection de chaque ancienne adresse, vérifiée page par page.',
     delay: '7 à 14 jours ouvrés',
     targetAudience: 'Entreprises en Wallonie qui ont déjà un site web mais qui ont honte de le montrer, qui ne reçoivent plus de demandes, ou qui ont peur de tout perdre en le refaisant.',
-    utility: 'Diviser par 4 le temps de chargement, récupérer vos visiteurs mobiles et doubler vos demandes de devis sans perdre un seul lien Google déjà acquis.',
+    utility: 'Un site qui s’ouvre vite sur téléphone, que vous n’avez plus honte de montrer, avec un formulaire de devis clair. Sans perdre les liens Google déjà acquis.',
     searchIntentKeywords: [
       'refonte site internet charleroi avis',
       'moderniser vieux site web entreprise belgique',
@@ -506,9 +522,9 @@ export const services = [
       { id: 'renovation', name: 'Atelier Noma', sector: 'Rénovation' }
     ],
     comparison: [
-      { aspect: 'Conservation de vos liens Google', others: 'Liens cassés et chute de moitié de vos visites Google après la refonte', purity: 'Garantie zéro lien cassé : chaque ancienne adresse renvoie vers la nouvelle page' },
+      { aspect: 'Conservation de vos liens Google', others: 'Liens cassés et chute de moitié de vos visites Google après la refonte', purity: 'Redirection de chaque ancienne adresse pour préserver votre référencement' },
       { aspect: 'Technologie employée', others: 'Nouveau thème WordPress lourd avec des dizaines d’extensions qui ralentiront dans 6 mois', purity: 'Code artisanal ultra-léger et durable, sans mises à jour qui cassent votre affichage' },
-      { aspect: 'Sécurité & Fiabilité', others: 'Risque permanent d’attaques et de piratages sur les vieux plugins', purity: 'Structure sécurisée et fermée, impossible à pirater par les robots du web' }
+      { aspect: 'Sécurité & Fiabilité', others: 'Risque permanent d’attaques et de piratages sur les vieux plugins', purity: 'Pas d’extensions à mettre à jour : beaucoup moins de portes d’entrée pour les pirates' }
     ],
     deliverables: [
       {
@@ -516,8 +532,8 @@ export const services = [
         desc: 'Relevé de l’ensemble de vos anciennes pages et de vos photos pour s’assurer qu’aucun contenu utile ni aucun contact régulier ne soit perdu lors de la modernisation.'
       },
       {
-        title: 'Garantie de zéro perte de positionnement Google',
-        desc: 'Chaque ancienne adresse internet de votre site est redirigée de manière transparente vers sa nouvelle page équivalente pour préserver 100 % de votre historique.'
+        title: 'Chaque ancienne adresse redirigée vers sa nouvelle page',
+        desc: 'Chaque ancienne adresse de votre site renvoie vers la page équivalente du nouveau site, pour que Google et vos clients retrouvent tout.'
       },
       {
         title: 'Modernisation visuelle pensée pour vos clients locaux',
@@ -538,29 +554,29 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: 'Pénalités de Google et recul dans les résultats de recherche',
-        desc: 'Google relègue systématiquement en deuxième page les sites trop lents qui mettent plus de 3 secondes à s’afficher sur mobile.'
+        title: 'Un recul dans les résultats Google',
+        desc: 'Google tient compte de la vitesse sur téléphone : un site lent recule face à des concurrents plus rapides.'
       },
       {
         title: 'Risque de piratage et avertissement rouge de sécurité',
-        desc: 'Les vieux sites non mis à jour finissent par afficher un message d’alerte de sécurité sur Google qui fait fuir 100 % de vos visiteurs.'
+        desc: 'Un vieux site jamais mis à jour peut finir avec une alerte de sécurité dans le navigateur. Presque personne ne clique après ça.'
       },
       {
-        title: 'Plus des trois quarts des visiteurs sur smartphone perdus',
+        title: 'Des visiteurs sur téléphone qui repartent aussitôt',
         desc: 'Un site qui s’affiche mal sur les téléphones modernes décourage immédiatement les clients qui tentent de vous appeler.'
       }
     ],
     howItWorks: [
       { step: '01', title: 'Inventaire de ce qui fonctionne', desc: 'On relève les pages qui vous rapportent déjà des contacts et vos plus belles photos de chantiers.' },
       { step: '02', title: 'Création du nouveau site en privé', desc: 'Nous concevons la nouvelle version sur un espace de test privé : votre ancien site continue de tourner sans interruption.' },
-      { step: '03', title: 'Vérification complète de tous les liens', desc: 'Contrôle méticuleux pour garantir que chaque ancien lien renvoie immédiatement vers la bonne page sans jamais afficher d’erreur.' },
+      { step: '03', title: 'Vérification complète de tous les liens', desc: 'Contrôle méticuleux pour vérifier que chaque ancien lien renvoie vers la bonne page sans afficher d’erreur.' },
       { step: '04', title: 'Bascule transparente en quelques minutes', desc: 'Le nouveau site prend le relais sans aucune coupure pour vos clients.' }
     ],
     includedMaintenance: 'Hébergement haute vitesse, renouvellement du domaine .be, surveillance anti-panne et assistance réactive pour vos mises à jour.',
     faq: [
       {
         q: 'Vais-je perdre ma place sur Google ?',
-        a: 'Non. Nous redirigeons rigoureusement chaque ancienne adresse vers la nouvelle page. Google comprend tout de suite que le site a été modernisé et maintient votre visibilité.'
+        a: 'Chaque ancienne adresse est redirigée vers la nouvelle page et contrôlée avant la bascule : c’est ce qui préserve votre référencement. Le classement lui-même dépend de Google et personne ne peut le promettre, mais on ne casse rien de ce que vous avez acquis.'
       },
       {
         q: 'Mon site sera-t-il coupé pendant les travaux ?',
@@ -581,8 +597,10 @@ export const services = [
     slug: 'google-business',
     name: 'Fiche Google Business & Maps',
     pillar: 'Pilier 01 · Sites Web & Référencement',
-    kicker: 'Visibilité locale immédiate · Avis 5 étoiles · Appel en 1 clic',
-    headline: 'Faites apparaître votre entreprise en tête de Google Maps sur votre commune.',
+    kicker: 'Fiche vérifiée · Kit d’avis QR Code · Appel en 1 clic',
+    cardDescription: 'Optimisation complète de votre fiche Google Maps pour ressortir quand on cherche votre métier dans votre ville.',
+    commitment: ONE_OFF,
+    headline: 'Soyez trouvé sur Google Maps quand un client cherche votre métier près de chez lui.',
     summary: 'Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.',
     price: '290 €',
     priceSetup: '290 €',
@@ -602,14 +620,14 @@ export const services = [
       { id: 'garage', name: 'Garage Rive', sector: 'Carrosserie' }
     ],
     comparison: [
-      { aspect: 'Validation officielle', others: 'Fiche bloquée en attente de code postal pendant des semaines', purity: 'Validation officielle garantie avec Google sans blocage' },
+      { aspect: 'Validation officielle', others: 'Fiche bloquée en attente de code postal pendant des semaines', purity: 'On gère la validation avec Google, et les relances si elle bloque' },
       { aspect: 'Collecte des avis', others: 'Aucun système : 3 vieux avis qui datent de 2 ans', purity: 'Kit QR Code imprimable + lien direct pour récolter facilement des 5 étoiles' },
       { aspect: 'Présentation de vos tarifs', others: 'Fiche vide sans prestations ni photos', purity: 'Catalogue complet de vos spécialités avec photos valorisées' }
     ],
     deliverables: [
       {
         title: 'Validation officielle de votre fiche avec Google',
-        desc: 'Prise en charge complète des démarches auprès de Google pour obtenir le badge officiel vérifié sans blocage administratif.'
+        desc: 'On fait les démarches auprès de Google pour obtenir la fiche vérifiée. Si Google bloque, on s’occupe des relances.'
       },
       {
         title: 'Choix des catégories de métiers les plus recherchées',
@@ -652,7 +670,7 @@ export const services = [
       { step: '03', title: 'Sélection de vos meilleures photos', desc: 'Mise en ligne de vos réalisations pour donner envie aux clients de vous choisir.' },
       { step: '04', title: 'Envoi de votre kit d’avis QR Code', desc: 'Vous recevez votre lien et votre QR Code pour commencer à récolter des avis positifs immédiatement.' }
     ],
-    includedMaintenance: 'Prestation ponctuelle sans abonnement. Vos accès vous sont remis pour que la fiche vous appartienne définitivement.',
+    includedMaintenance: 'Prestation ponctuelle sans abonnement. Vos accès vous sont remis : la fiche reste à votre nom.',
     faq: [
       {
         q: 'Je travaille chez moi, mon adresse privée sera-t-elle visible ?',
@@ -660,7 +678,7 @@ export const services = [
       },
       {
         q: 'Combien de temps faut-il pour voir les résultats ?',
-        a: 'La fiche est active immédiatement après validation. Vos premiers appels arrivent généralement dès les premières semaines grâce aux avis récoltés.'
+        a: 'La fiche est visible dès sa validation. Le nombre d’appels dépend de votre commune et de vos concurrents : la fiche vous montre elle-même ses vues et ses appels, vous suivez l’effet réel.'
       },
       {
         q: 'J’ai déjà des avis sur ma fiche, vais-je les perdre ?',
@@ -676,15 +694,17 @@ export const services = [
     id: 'M09',
     slug: 'identite-visuelle-logo',
     name: 'Identité visuelle & Logo',
-    pillar: 'Pilier 02 · Image de Marque & Studio',
-    kicker: 'Image haut de gamme · Camionnettes & Devis · Propriété totale',
+    pillar: 'Pilier 02 · Réseaux Sociaux & Image',
+    kicker: 'Image haut de gamme · Camionnettes & Devis · Droits du logo cédés',
+    cardDescription: 'Création ou refonte de votre logo, palette de couleurs, typographies et charte graphique professionnelle.',
+    commitment: ONE_OFF,
     headline: 'Une identité visuelle claire qui inspire confiance et justifie vos devis.',
     summary: 'Fini les logos bricolés ou pixélisés : nous créons une identité de marque nette, lisible et professionnelle, pensée pour le monde réel (flocage de véhicules utilitaires, vêtements de travail, devis et factures).',
     price: '690 €',
     priceSetup: '690 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: null,
-    monthlyNote: 'Paiement unique · cession totale de propriété incluse.',
+    monthlyNote: 'Paiement unique · cession des droits du logo livré incluse.',
     delay: '7 à 10 jours ouvrés',
     targetAudience: 'Artisans du bâtiment, indépendants qui se lancent, commerces locaux et entreprises voulant une image sérieuse qui inspire confiance dès le premier coup d’œil.',
     utility: 'Inspirer le sérieux et la solidité, éviter d’être pris pour un travailleur du dimanche et donner envie aux clients de signer vos devis sans marchander.',
@@ -699,7 +719,7 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Fichiers fournis', others: 'Une simple image JPEG pixélisée que votre imprimeur refuse', purity: 'Fichiers vectoriels professionnels haute définition utilisables pour toute taille' },
-      { aspect: 'Propriété du logo', others: 'Droits conservés par le graphiste avec factures supplémentaires pour chaque support', purity: 'Cession totale et définitive de tous les droits de propriété' },
+      { aspect: 'Propriété du logo', others: 'Droits conservés par le graphiste avec factures supplémentaires pour chaque support', purity: 'Cession des droits d’auteur du logo livré, sans frais par support' },
       { aspect: 'Usage sur camionnette', others: 'Logo trop complexe illisible quand le véhicule roule', purity: 'Pensé spécifiquement pour le lettrage de véhicules et les vêtements de travail' }
     ],
     deliverables: [
@@ -724,8 +744,8 @@ export const services = [
         desc: 'Des fichiers préparés aux bonnes normes pour que votre prestataire de lettrage puisse travailler sans vous facturer de frais techniques.'
       },
       {
-        title: 'Cession totale et définitive des droits d’auteur',
-        desc: 'Un contrat officiel attestant que vous êtes le propriétaire exclusif de votre logo pour toujours.'
+        title: 'Cession des droits d’auteur du logo livré',
+        desc: 'Un document de cession écrit : une fois la facture réglée, les droits d’auteur sur le logo livré vous sont cédés.'
       }
     ],
     lossOfInaction: [
@@ -760,7 +780,7 @@ export const services = [
       },
       {
         q: 'Puis-je déposer ce logo comme marque si je le souhaite ?',
-        a: 'Oui, le logo est 100 % original et vous en recevez la propriété totale, ce qui vous permet de le déposer officiellement auprès du bureau des marques (OBPI) si vous le souhaitez.'
+        a: 'Oui, le logo est original et ses droits d’auteur vous sont cédés, ce qui vous permet de le déposer officiellement auprès du bureau des marques (OBPI) si vous le souhaitez.'
       },
       {
         q: 'Que se passe-t-il si aucune des 3 premières pistes ne me plaît ?',
@@ -772,8 +792,10 @@ export const services = [
     id: 'M10',
     slug: 'pack-visuels-reels',
     name: 'Pack Visuels & Reels Studio',
-    pillar: 'Pilier 02 · Image de Marque & Studio',
+    pillar: 'Pilier 02 · Réseaux Sociaux & Image',
     kicker: '4 vidéos montées + 6 visuels · Chantiers réels · Prêt à publier',
+    cardDescription: 'Création de visuels sur mesure et vidéos courtes (Reels / TikTok) prêts à publier pour valoriser votre savoir-faire.',
+    commitment: ONE_OFF,
     headline: 'Des vidéos courtes et des visuels soignés de vos chantiers pour attirer des clients sur Instagram et Facebook.',
     summary: 'Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.',
     price: '390 €',
@@ -805,7 +827,7 @@ export const services = [
       },
       {
         title: 'Sous-titres dynamiques synchronisés mot à mot',
-        desc: '80 % des gens regardent les vidéos sans le son dans les transports ou en famille : les sous-titres permettent à tout le monde de comprendre votre message.'
+        desc: 'Beaucoup de gens regardent les vidéos sans le son (transports, salle d’attente, en famille) : avec les sous-titres, votre message passe quand même.'
       },
       {
         title: '6 visuels carrés ou carrousels de réalisations',
@@ -865,7 +887,9 @@ export const services = [
     slug: 'referencement-local-seo',
     name: 'Référencement local (SEO)',
     pillar: 'Pilier 01 · Sites Web & Référencement',
-    kicker: 'Visibilité durable · Mots-clés chantiers · 1ère page Google en Wallonie',
+    kicker: 'Visibilité durable · Recherches de vos clients · Objectif première page Google',
+    cardDescription: 'Optimisation continue pour remonter sur Google dans votre région en Wallonie, avec suivi mensuel.',
+    commitment: { minMonths: 0, text: RESILIABLE + ' Nous recommandons de compter environ 6 mois pour juger les résultats : c’est une recommandation, pas un engagement.' },
     headline: 'Soyez le premier artisan appelé quand un client cherche votre métier sur Google dans votre région.',
     summary: 'Un travail régulier pour placer votre site web en tête des résultats Google dès qu’un habitant de votre région cherche une intervention précise (ex: "chauffagiste agréé Charleroi", "carrossier Namur", "rénovation toiture Mons") sans dépendre de publicités payantes.',
     price: '590 € + 149 €/mois',
@@ -924,7 +948,7 @@ export const services = [
       },
       {
         title: 'Des demandes hors secteur venant de trop loin',
-        desc: 'Recevoir des appels inexploitations venant de Bruxelles ou de France parce que votre site n’est pas clairement calé sur votre zone d’intervention.'
+        desc: 'Recevoir des appels inutiles de Bruxelles ou de France parce que votre site ne dit pas clairement où vous intervenez.'
       }
     ],
     howItWorks: [
@@ -941,15 +965,11 @@ export const services = [
       },
       {
         q: 'Pouvez-vous garantir la première place absolue sur Google ?',
-        a: 'Aucune agence sérieuse ne peut garantir contractuellement la première place à 100 %, car l’algorithme appartient à Google. En revanche, nous appliquons les méthodes exactes qui placent nos clients réguliers sur le podium.'
-      },
-      {
-        q: 'Puis-je suspendre le suivi si je le souhaite ?',
-        a: 'Nous recommandons une première période de 6 mois pour installer solidement vos positions. Ensuite, le suivi est renouvelable au mois le mois avec arrêt sur simple e-mail.'
+        a: 'Non, et méfiez-vous de ceux qui le promettent : le classement appartient à Google. Ce à quoi on s’engage : le travail fait chaque mois et un bilan honnête de vos positions réelles.'
       },
       {
         q: 'Dois-je écrire des articles moi-même ?',
-        a: 'Non, pas du tout. Notre équipe rédige l’ensemble des textes après avoir validé les sujets principaux avec vous.'
+        a: 'Non. Nous rédigeons tous les textes après avoir validé les sujets avec vous.'
       }
     ]
   },
@@ -957,9 +977,11 @@ export const services = [
     id: 'M16',
     slug: 'gestion-reseaux-sociaux',
     name: 'Réseaux sociaux (3x/semaine)',
-    pillar: 'Pilier 02 · Image de Marque & Studio',
+    pillar: 'Pilier 02 · Réseaux Sociaux & Image',
     kicker: '3 vidéos + 3 posts par semaine · 1er mois offert · Réseaux au choix',
-    headline: 'Une présence active et soignée sur vos réseaux sociaux sans y passer une seule minute de votre temps.',
+    cardDescription: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. 1er mois d’abonnement offert pour essayer, puis engagement de 6 mois si vous continuez.',
+    commitment: { minMonths: 6, text: 'Le 1er mois d’abonnement est offert pour essayer. Si vous continuez, l’abonnement est conclu pour 6 mois, puis il se résilie par écrit chaque mois, avec un mois de préavis.' },
+    headline: 'Des réseaux sociaux actifs chaque semaine, pour 5 minutes de validation par mois.',
     summary: 'Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.',
     price: '290 € + 349 €/mois',
     priceSetup: '290 €',
@@ -968,7 +990,7 @@ export const services = [
     monthlyNote: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.',
     delay: 'Démarrage sous 5 jours ouvrés',
     targetAudience: 'Artisans, commerçants, restaurateurs et gérants de PME en Wallonie qui savent qu’il faut être visible sur les réseaux mais qui manquent de temps pour s’en occuper.',
-    utility: 'Avoir une vitrine active et professionnelle qui rassure vos prospects et fait parler de votre entreprise, sans que vous n’ayez à toucher à votre téléphone après le travail.',
+    utility: 'Une page qui montre que vous êtes actif et sérieux, et qui rappelle votre nom à vos anciens clients. Votre seul travail : envoyer quelques photos sur WhatsApp et valider le mois en 5 minutes.',
     searchIntentKeywords: [
       'gestion réseaux sociaux pme wallonie',
       'community manager artisan charleroi',
@@ -1054,17 +1076,19 @@ export const services = [
     slug: 'pilote-automatique-essentiel',
     name: 'Pilote Automatique Essentiel',
     pillar: 'Pilier 03 · Automatisation & Agents IA',
-    kicker: '1 tâche automatisée · Gain de 5h/semaine · Fin des no-shows & devis oubliés',
+    kicker: '1 tâche automatisée · Fin des rendez-vous oubliés · Devis relancés sans y penser',
+    cardDescription: 'Automatiser une tâche précise qui vous fait perdre du temps (prise de RDV, tri de demandes ou relance).',
+    commitment: MONTHLY,
     headline: 'Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine.',
     summary: 'Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.',
     price: '490 € + 39 €/mois',
     priceSetup: '490 €',
     promoTag: '-25 % si devis validé sous 24 h',
     monthlyPrice: '39 €/mois',
-    monthlyNote: 'Surveillance continue des connexions automatiques, alertes anti-erreurs et assistance technique.',
+    monthlyNote: 'Surveillance automatique des connexions, alertes anti-erreurs et assistance technique.',
     delay: '5 à 7 jours ouvrés',
     targetAudience: 'Artisans et indépendants en Wallonie qui passent leurs soirées à taper les mêmes messages, relancer des devis non signés ou courir après des clients qui oublient leurs rendez-vous.',
-    utility: 'Récupérer immédiatement 3 à 5 heures de temps libre chaque semaine, stopper les déplacements pour rien et signer plus de devis sans effort commercial supplémentaire.',
+    utility: 'Ne plus taper les mêmes messages le soir, ne plus vous déplacer pour rien et relancer chaque devis sans y penser.',
     searchIntentKeywords: [
       'automatiser devis artisan belgique',
       'prise de rendez-vous automatique pme wallonie',
@@ -1093,8 +1117,8 @@ export const services = [
         desc: 'Les SMS et e-mails automatiques sont rédigés poliment et chaleureusement : vos clients ont l’impression exacte que vous leur écrivez personnellement.'
       },
       {
-        title: 'Tests complets pour garantir zéro faux pas',
-        desc: 'Vérification méticuleuse de tous les cas (annulations, doublons, week-ends) pour s’assurer que le système tourne sans le moindre bug.'
+        title: 'Tous les cas testés avant la mise en route',
+        desc: 'On teste les annulations, les doublons et les week-ends avec vous avant d’allumer le système.'
       },
       {
         title: 'Fiche d’utilisation simple d’une seule page',
@@ -1103,16 +1127,16 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: '40 % des devis oubliés qui finissent chez un concurrent',
+        title: 'Des devis jamais relancés qui finissent chez un concurrent',
         desc: 'Un client qui ne reçoit aucune relance finit très souvent par signer chez l’artisan qui a simplement pris la peine de lui envoyer un petit message de suivi.'
       },
       {
-        title: '5 heures de paperasse inutile chaque semaine',
+        title: 'Des soirées perdues à retaper les mêmes messages',
         desc: 'Ressaisir manuellement des coordonnées ou retaper les mêmes e-mails types le soir au lieu de se détendre en famille.'
       },
       {
         title: 'Des rendez-vous manqués qui vous font perdre votre temps',
-        desc: 'Sans rappel automatique par SMS la veille, un client sur cinq oublie sa présence et vous fait perdre un déplacement ou un créneau d’intervention.'
+        desc: 'Sans rappel par SMS la veille, des clients oublient leur rendez-vous : vous perdez un déplacement ou un créneau que vous auriez pu donner à un autre.'
       }
     ],
     howItWorks: [
@@ -1121,7 +1145,7 @@ export const services = [
       { step: '03', title: 'Réglage des messages et des délais', desc: 'On configure ensemble le texte des messages et les moments précis où ils doivent partir.' },
       { step: '04', title: 'Mise en route & tranquillité', desc: 'Le système tourne tout seul en arrière-plan sans que vous n’ayez plus à vous en soucier.' }
     ],
-    includedMaintenance: 'Surveillance technique permanente, maintien des connexions avec vos outils et dépannage rapide en cas de mise à jour.',
+    includedMaintenance: 'Surveillance automatique des connexions, maintien des liaisons avec vos outils et réponse sous 24 h ouvrées en cas de souci.',
     faq: [
       {
         q: 'Mes clients vont-ils voir que c’est automatique ?',
@@ -1137,7 +1161,7 @@ export const services = [
       },
       {
         q: 'Mes données clients sont-elles en sécurité ?',
-        a: 'Oui, à 100 %. Tout est traité selon les normes européennes strictes (RGPD) sans revente de données.'
+        a: 'Oui. Tout est traité selon le RGPD, les règles européennes sur les données. Rien n’est revendu.'
       }
     ]
   },
@@ -1146,7 +1170,9 @@ export const services = [
     slug: 'pilote-automatique-business',
     name: 'Pilote Automatique Business',
     pillar: 'Pilier 03 · Automatisation & Agents IA',
-    kicker: 'Écosystème PME · Devis, Facturation Peppol & Équipe · 0 ressaisie',
+    kicker: 'Devis, planning et facturation reliés · Peppol 2026 · Zéro ressaisie',
+    cardDescription: 'Connecter votre site, vos e-mails, votre agenda et votre suivi client pour ne plus rien ressaisir à la main.',
+    commitment: MONTHLY,
     headline: 'Reliez votre site, vos devis, votre planning et votre facturation sans aucune double saisie.',
     summary: 'Fini les post-its, les notes égarées et les ressaisies manuelles : nous connectons vos formulaires web, vos e-mails, votre planning d’équipe et votre logiciel de facturation pour que chaque nouveau contact crée son dossier complet automatiquement.',
     price: '990 € + 69 €/mois',
@@ -1203,7 +1229,7 @@ export const services = [
         desc: 'Des retards de paiement évitables, faute d’un rappel automatique courtois envoyé quelques jours avant et après l’échéance.'
       },
       {
-        title: 'Le patron qui passe 15h par semaine à faire le standardiste',
+        title: 'Le patron qui passe ses journées à faire le standardiste',
         desc: 'Passer son temps à coordonner les plannings au téléphone au lieu de chiffrer des chantiers rentables et de développer l’entreprise.'
       }
     ],
@@ -1238,9 +1264,11 @@ export const services = [
     slug: 'pilote-automatique-integral',
     name: 'Pilote Automatique Intégral',
     pillar: 'Pilier 03 · Automatisation & Agents IA',
-    kicker: 'Assistant IA métier · Réponse 24/7 Web & WhatsApp · Zéro réponse inventée',
+    kicker: 'Assistant IA métier · Réponse 24/7 Web & WhatsApp · Limité à vos vrais tarifs',
+    cardDescription: 'Système complet sur mesure avec agent IA, automatisations métier et tableau de suivi centralisé.',
+    commitment: MONTHLY,
     headline: 'Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger.',
-    summary: 'La solution la plus aboutie : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.',
+    summary: 'Notre formule la plus complète : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.',
     price: '1 990 € + 119 €/mois',
     priceSetup: '1 990 €',
     promoTag: '-25 % si devis validé sous 24 h',
@@ -1261,13 +1289,13 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Intelligence des réponses', others: 'Vieux robot bête qui répète en boucle "Je n’ai pas compris votre question"', purity: 'Assistant moderne qui comprend le langage courant de vos clients et répond avec précision' },
-      { aspect: 'Respect de vos prix', others: 'IA mal réglée qui invente des faux prix ou promet des réductions impossibles', purity: 'Verrouillage strict : l’assistant ne sort jamais de votre grille de tarifs officielle' },
-      { aspect: 'Conformité aux lois européennes', others: 'Données clients envoyées n’importe où sans respecter la loi', purity: '100 % en règle avec les règles européennes RGPD et IA (transparence obligatoire)' }
+      { aspect: 'Respect de vos prix', others: 'IA mal réglée qui invente des faux prix ou promet des réductions impossibles', purity: 'L’assistant ne donne que vos tarifs ; hors de votre grille, il vous passe la main' },
+      { aspect: 'Conformité aux lois européennes', others: 'Données clients envoyées n’importe où sans respecter la loi', purity: 'Mise en conformité AI Act et RGPD accompagnée : le client sait qu’il parle à un assistant' }
     ],
     deliverables: [
       {
-        title: 'Assistant IA paramétré sur vos règles métier exactes (Zéro réponse inventée)',
-        desc: 'Votre assistant est programmé pour respecter scrupuleusement vos prix officiels, vos délais et vos conditions : il n’invente jamais un tarif, n’accorde aucune remise sans accord et reste toujours poli et professionnel.'
+        title: 'Assistant IA réglé sur vos tarifs, vos délais et vos règles',
+        desc: 'Il répond avec vos prix, vos délais et vos conditions. S’il ne connaît pas la réponse, il prend les coordonnées et vous transmet la demande au lieu d’improviser. Aucune remise sans votre accord.'
       },
       {
         title: 'Disponible là où vos clients vous écrivent (Site web & WhatsApp)',
@@ -1286,8 +1314,8 @@ export const services = [
         desc: 'Vous pouvez relire l’ensemble des échanges menés par l’assistant à tout moment et reprendre la main sur une discussion quand vous le souhaitez.'
       },
       {
-        title: 'Conformité légale européenne garantie (AI Act & RGPD)',
-        desc: 'Avertissement clair indiquant au client qu’il dialogue avec un assistant automatisé, et sécurisation totale des coordonnées sans réutilisation externe.'
+        title: 'Mise en conformité AI Act et RGPD accompagnée',
+        desc: 'Avertissement clair indiquant au client qu’il dialogue avec un assistant automatisé, et coordonnées limitées à votre usage, sans réutilisation externe.'
       }
     ],
     lossOfInaction: [
@@ -1308,9 +1336,9 @@ export const services = [
       { step: '01', title: 'Notations de vos règles et tarifs', desc: 'On consigne vos prix, vos délais habituels, vos communes d’intervention et les questions fréquentes de vos clients.' },
       { step: '02', title: 'Entraînement de l’assistant sur vos cas réels', desc: 'Tests complets sur plus de 50 questions pièges de clients (tarifs, délais, urgences, secteur) pour valider qu’il répond toujours exactement comme vous le souhaitez.' },
       { step: '03', title: 'Connexion à votre site et à votre téléphone', desc: 'On branche l’assistant sur votre site web ou sur votre messagerie WhatsApp professionnelle.' },
-      { step: '04', title: 'Mise en route sous surveillance', desc: 'Lancement avec vérification des premières conversations pour s’assurer d’un fonctionnement fluide à 100 %.' }
+      { step: '04', title: 'Mise en route sous surveillance', desc: 'On relit avec vous les premières conversations et on corrige ce qui doit l’être.' }
     ],
-    includedMaintenance: 'Mise à jour régulière de vos tarifs et conditions, surveillance anti-erreur et assistance prioritaire 6 jours sur 7.',
+    includedMaintenance: 'Mise à jour régulière de vos tarifs et conditions, surveillance anti-erreur et réponse sous 24 h ouvrées.',
     faq: [
       {
         q: 'L’assistant peut-il inventer des prix ou promettre n’importe quoi ?',
@@ -1318,7 +1346,7 @@ export const services = [
       },
       {
         q: 'L’outil respecte-t-il les lois européennes sur l’IA et la vie privée ?',
-        a: 'Oui, scrupuleusement. Le client est clairement averti qu’il s’agit d’une assistance automatisée et aucune donnée n’est utilisée en dehors de votre entreprise.'
+        a: 'On met l’outil en conformité avec vous : le client est clairement averti qu’il s’agit d’une assistance automatisée et ses données ne sont pas utilisées en dehors de votre entreprise.'
       },
       {
         q: 'Combien de temps faut-il pour qu’il soit opérationnel ?',
@@ -1336,7 +1364,7 @@ export const serviceGroups = {
   acquisition: ['M03', 'M04', 'M05', 'M06', 'M07', 'M08', 'M13'],
   visibilite: ['M16', 'M09', 'M10'],
   automatisation: ['M21', 'M22', 'M23'],
-  outils: ['M01', 'M22', 'M23']
+  diagnostic: ['M01']
 };
 
 export function getServiceBySlug(slug) {

@@ -87,7 +87,19 @@
     requestAnimationFrame(frame);
   }
 
+  // Le contexte du test suit le visiteur jusqu'au formulaire de contact
+  // (clé lue par contact.js) : il n'a pas à réexpliquer son site.
+  function saveDraft(message) {
+    try {
+      sessionStorage.setItem('purity-contact-draft', JSON.stringify({ at: Date.now(), source: 'audit', message: message }));
+    } catch (_) { /* Le formulaire reste utilisable sans stockage. */ }
+  }
+
   function render(d) {
+    var site = d.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    saveDraft('J’ai fait le test express de mon site ' + site + ' : score ' + d.score + '/100, ' +
+      d.issuesTotal + ' problème' + (d.issuesTotal > 1 ? 's' : '') + ' relevé' + (d.issuesTotal > 1 ? 's' : '') +
+      '. Je voudrais savoir quoi corriger en premier. Mon métier : ');
     var tone = d.score >= 80 ? 'good' : d.score >= 55 ? 'warn' : 'bad';
     var verdict = d.score >= 80
       ? 'Votre site tient la route. Reste à le faire travailler pour vous.'
@@ -213,6 +225,7 @@
           showOut();
           return;
         }
+        saveDraft('Le test express n’arrive pas à joindre mon site ' + v.slice(0, 200) + '. Je voudrais le faire vérifier. Mon métier : ');
         message('<p class="panel__sentence">Nous n&rsquo;arrivons pas à joindre ce site.</p>' +
           '<p class="panel__note">Soit l&rsquo;adresse comporte une erreur, soit le site ne répond pas. Dans le second cas, le problème est déjà sérieux.</p>' +
           '<a class="btn btn--primary panel__cta" href="/contact.html">Faites-le vérifier</a>');

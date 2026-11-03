@@ -15,30 +15,40 @@
   var done = document.getElementById('thread-done');
   var dots = document.querySelectorAll('#progress .progress__dot');
   var quickWrap = document.getElementById('contact-quick');
+  // Texte pré-rempli à compléter : envoyé tel quel, il n'apprendrait rien à Amir.
+  var templatePrefill = '';
   if (quickWrap) {
     quickWrap.addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-quick]');
       if (!btn || step !== 0) return;
       field.value = btn.getAttribute('data-quick');
+      templatePrefill = field.value;
       field.dispatchEvent(new Event('input'));
       field.focus();
       field.setSelectionRange(field.value.length, field.value.length);
     });
   }
 
+  function isUnfinished(v) {
+    return /:\s*$/.test(v) || (templatePrefill && v === templatePrefill.trim());
+  }
+
   var STEPS = [
-    { key: 'message', label: 'Le problème à résoudre',
-      help: "Décrivez ce qui bloque aujourd’hui : acquisition, image, organisation, outil métier ou suivi.",
-      placeholder: 'Ex. Nous perdons du temps à relancer et à retrouver les informations…', type: 'textarea', required: true,
-      recap: 'Situation',
-      check: function (v) { return v.length >= 10 ? null : 'Ajoutez quelques mots (10 caractères minimum) pour que nous comprenions.'; } },
-    { key: 'name', label: 'Votre nom', help: 'Pour savoir à qui nous répondons personnellement.',
+    { key: 'message', label: 'Votre besoin, en une phrase',
+      help: "Ce qui coince aujourd’hui : pas assez d’appels, des devis jamais relancés, un site qui date… Avec vos mots.",
+      placeholder: 'Ex. Je rate des appels quand je suis sur chantier…', type: 'textarea', required: true,
+      recap: 'Besoin',
+      check: function (v) {
+        if (isUnfinished(v)) return 'Complétez la phrase avec votre métier et ce qui coince : quelques mots suffisent.';
+        return v.length >= 10 ? null : 'Écrivez au moins une courte phrase (10 caractères) pour qu’on comprenne votre besoin.';
+      } },
+    { key: 'name', label: 'Votre nom', help: 'Amir vous répond personnellement, pas un robot.',
       placeholder: 'Prénom et nom', type: 'text', required: true, recap: 'Nom',
-      check: function (v) { return v.length >= 2 ? null : 'Indiquez au moins votre prénom.'; } },
-    { key: 'email', label: 'Votre e-mail', help: "C’est là que nous vous répondons.",
+      check: function (v) { return v.length >= 2 ? null : 'Votre prénom suffit pour continuer.'; } },
+    { key: 'email', label: 'Votre e-mail', help: "C’est là qu’arrive la réponse. Pas de newsletter.",
       placeholder: 'vous@entreprise.be', type: 'email', required: true, recap: 'E-mail',
-      check: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? null : 'Indiquez une adresse complète, par exemple nom@entreprise.be.'; } },
-    { key: 'phone', label: 'Votre téléphone', help: 'Facultatif. Utile si vous préférez un appel.',
+      check: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? null : 'Il manque une partie de l’adresse. Exemple : nom@entreprise.be'; } },
+    { key: 'phone', label: 'Votre téléphone', help: 'Facultatif. Laissez-le si vous préférez qu’on vous appelle.',
       placeholder: '0470 12 34 56', type: 'tel', required: false, recap: 'Téléphone',
       check: function () { return null; } }
   ];
@@ -51,6 +61,12 @@
   var solution = params.get('solution');
   var caseId = params.get('case');
   var promo = params.get('promo');
+  // ?promo= ne sert qu'aux demandes de devis ; « novdec25 » reste accepté pour
+  // les anciens liens déjà partagés.
+  var promoActive = promo === 'lancement' || promo === 'novdec25';
+  var PROMO_TEXT = '-25 % sur la création si vous validez dans les 24 h suivant votre devis, 1er mois de réseaux sociaux offert';
+  // Un rendez-vous n'est pas une demande de devis : on mène au bloc de réservation.
+  var wantsBooking = params.get('intent') === 'rdv' || solution === 'diagnostic' || offer === 'M01';
   var caseLabels = {
     renovation: 'la démonstration Rénovation intérieure', beaute: 'la démonstration Institut de beauté',
     garage: 'la démonstration Garage / carrosserie', decoration: 'la démonstration Boutique de décoration',
@@ -59,46 +75,74 @@
     sante: 'la démonstration Cabinet de santé', animaux: 'la démonstration Service animalier',
     architecture: 'la démonstration Atelier d’architecture', chauffage: 'la démonstration Artisan chauffagiste'
   };
+  var solutionLabels = {
+    'acquisition': 'attirer plus de clients',
+    'automatisation': 'arrêter de perdre du temps sur le suivi des demandes',
+    'outil-metier': 'mieux organiser mon activité',
+    'presence-marque': 'renforcer ma présence et mon image'
+  };
   if (caseId && caseLabels[caseId]) {
-    field.value = 'Je souhaite une solution proche de ' + caseLabels[caseId] + '.';
-    help.textContent = 'Cette demande a été préparée depuis un cas concret Purity. Modifiez-la avant de continuer : rien n’est encore envoyé.';
+    field.value = 'Je voudrais quelque chose de proche de ' + caseLabels[caseId] + '. Mon métier : ';
+    help.textContent = 'Votre message est prérempli depuis la démo. Complétez-le : rien n’est envoyé avant votre validation.';
+  } else if (wantsBooking) {
+    // Aucun devis pré-rempli : le champ reste libre pour qui préfère écrire.
   } else if (offer && /^[A-Z]\d{2}$/.test(offer)) {
     // Noms lisibles du catalogue (data/services.mjs) : le visiteur ne doit pas
     // recevoir un code interne dans son propre message.
     var offerNames = {
-      M01: 'Diagnostic digital (15 min)', M03: 'Page Essentielle (1 page)', M04: 'Site Vitrine (5 pages)',
+      M03: 'Page Essentielle (1 page)', M04: 'Site Vitrine (5 pages)',
       M05: 'Site Complet (10+ pages)', M06: 'Boutique en ligne (E-commerce)', M07: 'Refonte & modernisation de site web',
       M08: 'Fiche Google Business & Maps', M09: 'Identité visuelle & Logo', M10: 'Pack Visuels & Reels Studio',
       M13: 'Référencement local (SEO)', M16: 'Réseaux sociaux (3x/semaine)', M21: 'Pilote Automatique Essentiel',
       M22: 'Pilote Automatique Business', M23: 'Pilote Automatique Intégral'
     };
     field.value = offerNames[offer]
-      ? 'Je souhaite en savoir plus sur l’offre « ' + offerNames[offer] + ' ».'
-      : 'Je souhaite en savoir plus sur vos offres.';
-    help.textContent = 'Cette demande a été préparée depuis la page Tarifs. Modifiez-la avant de continuer : rien n’est encore envoyé.';
-  } else if (promo) {
-    field.value = 'Je souhaite demander un devis (-25 % sur la création si je valide dans les 24 h suivant le devis, 1er mois de gestion des réseaux sociaux offert). Mon activité : ';
-    help.textContent = 'Offre rappelée dans votre message : -25 % sur la création si vous validez dans les 24 h suivant votre devis, 1er mois de réseaux sociaux offert. Précisez votre activité en une phrase avant de continuer.';
+      ? 'Je voudrais un devis pour l’offre « ' + offerNames[offer] + ' ». Mon métier : '
+      : 'Je voudrais un devis. Mon métier : ';
+    help.textContent = 'Votre message est prérempli avec l’offre choisie. Complétez-le : rien n’est envoyé avant votre validation.';
+  } else if (solution && solutionLabels[solution]) {
+    field.value = 'Je cherche à ' + solutionLabels[solution] + '. Mon métier : ';
+    help.textContent = 'Votre message est prérempli depuis votre choix. Complétez-le : rien n’est envoyé avant votre validation.';
+  } else if (promoActive) {
+    field.value = 'Je voudrais un devis (' + PROMO_TEXT.replace(/vous validez/, 'je valide').replace(/votre devis/, 'le devis') + '). Mon métier et ce qui coince : ';
+    help.textContent = 'L’offre est rappelée dans votre message : ' + PROMO_TEXT + '. Ajoutez votre métier et ce qui coince.';
   }
-  if (!caseId && !offer && solution && /^[a-z-]{3,40}$/.test(solution)) {
-    var solutionLabels = {
-      'acquisition': 'attirer plus de clients',
-      'automatisation': 'arrêter de perdre du temps sur le suivi',
-      'outil-metier': 'mieux organiser mon activité',
-      'presence-marque': 'renforcer ma présence et mon image'
-    };
-    if (solutionLabels[solution]) {
-      field.value = 'Je souhaite explorer comment ' + solutionLabels[solution] + '.';
-      help.textContent = 'Cette demande a été préparée depuis les systèmes Purity. Modifiez-la avant de continuer : rien n’est encore envoyé.';
-    }
+  if (promoActive && field.value && !wantsBooking && !/-25/.test(field.value)) {
+    help.textContent += ' Offre de lancement : ' + PROMO_TEXT + '.';
   }
+  templatePrefill = field.value;
   try {
     var draft = JSON.parse(sessionStorage.getItem('purity-contact-draft'));
     if (!caseId && !offer && draft && Date.now() - draft.at < 30 * 60 * 1000 && typeof draft.message === 'string' && draft.message) {
       field.value = draft.message.slice(0, 3400);
-      help.textContent = 'Voici le contexte préparé avec OctoMask. Modifiez-le avant de continuer : rien n’est encore envoyé.';
+      // Le résumé OctoMask peut partir tel quel ; le résultat du test express
+      // se termine par « Mon métier : » et doit être complété.
+      templatePrefill = draft.source === 'audit' ? field.value : '';
+      help.textContent = draft.source === 'audit'
+        ? 'Votre message reprend le résultat du test express de votre site. Ajoutez votre métier : rien n’est envoyé avant votre validation.'
+        : 'Voici le résumé de votre échange avec OctoMask. Modifiez-le si besoin : rien n’est envoyé avant votre validation.';
     }
   } catch { /* Le formulaire reste utilisable sans stockage local. */ }
+
+  // Rendez-vous demandé : le bloc de réservation passe au premier plan.
+  if (wantsBooking) {
+    var booking = document.querySelector('.booking');
+    var bookingBtn = booking && booking.querySelector('.booking__external');
+    if (booking) {
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(function () {
+        booking.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
+        if (bookingBtn) bookingBtn.focus({ preventScroll: true });
+        if (!still && booking.animate) {
+          booking.animate([
+            { boxShadow: '0 0 0 0 rgba(91,42,143,0)' },
+            { boxShadow: '0 0 0 6px rgba(91,42,143,.45)' },
+            { boxShadow: '0 0 0 0 rgba(91,42,143,0)' }
+          ], { duration: 1400, iterations: 2, easing: 'ease-in-out' });
+        }
+      }, 60);
+    }
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -160,8 +204,8 @@
     // La question qui remplace la precedente doit etre annoncee : sans cela
     // un lecteur d'ecran reste sur l'ancien libelle apres validation.
     label.setAttribute('aria-live', 'polite');
-    next.textContent = step === STEPS.length - 1 ? 'Envoyer' : 'Continuer';
-    if (!s.required) next.textContent = 'Envoyer';
+    next.textContent = step === STEPS.length - 1 ? 'Envoyer ma demande' : 'Continuer';
+    if (!s.required) next.textContent = 'Envoyer ma demande';
     ask.classList.remove('is-in');
     void ask.offsetWidth;          // relance l'animation d'entree
     ask.classList.add('is-in');
@@ -199,49 +243,29 @@
     var trap = form.querySelector('[name="_hp"]');
     var hp = trap ? trap.value : '';
 
-    // Un creneau choisi doit aussi poser le rendez-vous dans l'agenda, sinon
-    // le visiteur croit avoir reserve alors que rien n'est bloque.
-    var send = fetch('/api/contact', {
+    // La reservation passe par le lien Google Agenda de la page : ce formulaire
+    // n'envoie que le message.
+    fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(Object.assign({}, data, { _hp: hp }))
-    }).then(function (r) { return r.json(); });
-
-    var chain = data.slot
-      ? send.then(function (d) {
-          if (!d.ok) return d;
-          return fetch('/api/book', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ start: data.slot, name: data.name, email: data.email,
-                                   phone: data.phone, message: data.message, _hp: hp })
-          }).then(function (r) { return r.json(); })
-            .then(function (b) { return Object.assign({}, d, { booked: b.ok }); })
-            .catch(function () { return d; });
-        })
-      : send;
-
-    chain
+    }).then(function (r) { return r.json(); })
       .then(function (d) {
         var s = document.querySelector('.thread__sending');
         if (s) s.remove();
         if (!d.ok) {
           ask.hidden = false;
           error.hidden = false;
-          error.textContent = "L'envoi a échoué. Réessayez, ou écrivez-nous à contact@purity-agency.be.";
+          error.textContent = "Votre demande n’est pas partie, mais vos réponses sont gardées. Réessayez, ou écrivez à contact@purity-agency.be.";
           return;
         }
         log.hidden = true;
         done.hidden = false;
+        // Seul le paragraphe change : le bouton « Choisir mon créneau
+        // maintenant » reste en place sous le texte.
         done.querySelector('.thread__done-text').textContent = d.delivered
-          ? 'Votre message a été transmis à Purity. Nous revenons vers vous après lecture.'
-          : 'Votre demande est enregistrée sur notre serveur, mais l’e-mail de notification n’a pas pu être envoyé. Pour un contact direct : contact@purity-agency.be.';
-        if (data.slot && d.booked) {
-          done.querySelector('.thread__done-text').textContent =
-            'Votre rendez-vous est enregistré dans notre agenda. Notez le créneau choisi ; aucune invitation e-mail automatique n’est envoyée par ce formulaire.';
-        } else if (data.slot) {
-          done.querySelector('.thread__done-text').textContent += ' Le rendez-vous n’a pas été réservé : l’équipe doit vous confirmer un créneau.';
-        }
+          ? 'Amir a reçu votre message. Réponse personnelle sous 24 h ouvrées, par e-mail, ou par téléphone si vous avez laissé votre numéro.'
+          : 'Votre demande est bien enregistrée. Réponse personnelle sous 24 h ouvrées ; sans nouvelles d’ici là, écrivez à contact@purity-agency.be.';
         try { sessionStorage.removeItem('purity-contact-draft'); } catch {}
         // Le focus va sur la confirmation : sans cela il reste sur un bouton
         // qui vient de disparaitre.
@@ -253,7 +277,7 @@
         if (s) s.remove();
         ask.hidden = false;
         error.hidden = false;
-        error.textContent = "L'envoi a échoué. Réessayez, ou écrivez-nous à contact@purity-agency.be.";
+        error.textContent = "Votre demande n’est pas partie, mais vos réponses sont gardées. Vérifiez votre connexion et réessayez, ou écrivez à contact@purity-agency.be.";
       }).finally(function () { sending = false; });
   }
 
@@ -295,110 +319,4 @@
 
   paintDots();
   tuneField(field);
-
-  // ── Agenda ────────────────────────────────────────────────────────────
-  var daysEl = document.getElementById('booking-days');
-  var slotsEl = document.getElementById('booking-slots');
-  if (!daysEl || !slotsEl) return;
-
-  var fmtDay = new Intl.DateTimeFormat('fr-BE', { weekday: 'short', timeZone: 'Europe/Brussels' });
-  var fmtNum = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', timeZone: 'Europe/Brussels' });
-  var fmtFull = new Intl.DateTimeFormat('fr-BE', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Brussels' });
-  var selected = null;
-  var slotsRequest = 0;
-
-  function isoDay(d) {
-    return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Brussels' }).format(d);
-  }
-
-  function buildDays() {
-    var out = '';
-    var d = new Date();
-    var added = 0;
-    while (added < 10) {
-      d = new Date(d.getTime() + 86400000);
-      var dow = d.getDay();
-      if (dow === 0 || dow === 6) continue;      // week-end ferme
-      var iso = isoDay(d);
-      out += '<button type="button" class="day" aria-pressed="false" data-date="' + iso + '">' +
-               '<span class="day__name">' + fmtDay.format(d).replace('.', '') + '</span>' +
-               '<span class="day__num">' + fmtNum.format(d) + '</span>' +
-             '</button>';
-      added++;
-    }
-    daysEl.innerHTML = out;
-    var first = daysEl.querySelector('.day');
-    if (first) first.click();
-  }
-
-  function loadSlots(iso, btn) {
-    var request = ++slotsRequest;
-    selected = null;
-    delete data.slot;
-    var previousSlot = log.querySelector('.recap--slot');
-    if (previousSlot) previousSlot.remove();
-    daysEl.querySelectorAll('.day').forEach(function (b) {
-      var on = b === btn;
-      b.classList.toggle('is-on', on);
-      b.setAttribute('aria-pressed', String(on));
-    });
-    slotsEl.innerHTML = '<p class="booking__state">Lecture de l\'agenda…</p>';
-
-    fetch('/api/slots?date=' + encodeURIComponent(iso))
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (request !== slotsRequest) return;
-        if (!d.ok) {
-          slotsEl.innerHTML = '<p class="booking__state booking__state--off">' +
-            'La réservation en ligne est momentanément indisponible.<br>' +
-            'Écrivez-nous votre message, nous vous proposons un créneau en retour.</p>';
-          return;
-        }
-        if (!d.slots.length) {
-          slotsEl.innerHTML = '<p class="booking__state">Aucun créneau libre ce jour-là. Essayez un autre jour.</p>';
-          return;
-        }
-        slotsEl.innerHTML = '<p class="booking__on">' + fmtFull.format(new Date(iso + 'T12:00:00Z')) + '</p>' +
-          '<div class="slots">' + d.slots.map(function (s) {
-            return '<button type="button" class="slot" aria-pressed="false" data-start="' +
-                   s.start + '" aria-label="Reserver a ' + s.label + '">' + s.label + '</button>';
-          }).join('') + '</div>';
-      })
-      .catch(function () {
-        if (request !== slotsRequest) return;
-        slotsEl.innerHTML = '<p class="booking__state booking__state--off">Agenda injoignable pour le moment.</p>';
-      });
-  }
-
-  daysEl.addEventListener('click', function (e) {
-    var b = e.target.closest('.day');
-    if (b) loadSlots(b.dataset.date, b);
-  });
-
-  slotsEl.addEventListener('click', function (e) {
-    var b = e.target.closest('.slot');
-    if (!b) return;
-    selected = b.dataset.start;
-    slotsEl.querySelectorAll('.slot').forEach(function (s) {
-      var on = s === b;
-      s.classList.toggle('is-on', on);
-      s.setAttribute('aria-pressed', String(on));
-    });
-
-    // Le creneau choisi rejoint le fil de gauche : une seule saisie pour les
-    // deux parcours, au lieu d'un second formulaire.
-    data.slot = selected;
-    var old = log.querySelector('.recap--slot');
-    if (old) old.remove();
-    var row = document.createElement('span');
-    row.className = 'recap recap--slot';
-    row.innerHTML = '<span class="recap__key">Rendez-vous</span>' +
-      '<span class="recap__val">' + b.textContent + ' le ' +
-      fmtFull.format(new Date(selected)) + '</span>';
-    log.insertBefore(row, log.firstChild);
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelector('.thread').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-  });
-
-  buildDays();
 })();

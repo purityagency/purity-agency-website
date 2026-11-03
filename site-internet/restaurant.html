@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=20261101">
+<link rel="stylesheet" href="/css/landing-visual.css?v=1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -168,7 +169,7 @@
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main lv-main">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -178,217 +179,170 @@
       <span aria-current="page">Restaurant</span>
     </nav>
 
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Site internet par métier · Restaurant</div>
-      <h1 class="sd-hero__title" id="service-title">Site internet pour restaurant en Wallonie</h1>
-      <p class="sd-hero__headline">Une carte lisible sur smartphone et des réservations qui arrivent chez vous, pas chez une plateforme.</p>
-      <p class="sd-hero__summary">Un bon site internet de restaurant affiche la carte à jour, les horaires réels et un bouton de réservation directe visible dès l’ouverture sur smartphone. Purity Agency conçoit à Charleroi des sites pour restaurants wallons, avec réservation sans commission, référencement local et mise à jour de la carte sur simple message.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Formule conseillée · Site Vitrine (5 pages)</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">1 490 €</span>
-          </div>
-          <span class="sd-meta-card__sub">+ 79 €/mois (suivi &amp; hébergement)</span>
-          <span class="sd-meta-card__vat">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
+    <section class="lv-hero" aria-labelledby="service-title">
+      <div class="lv-hero__copy">
+        <span class="lv-eyebrow">Site internet par métier · Restaurant</span>
+        <h1 class="lv-h1" id="service-title">Site internet pour restaurant en Wallonie</h1>
+        <p class="lv-lede">Vos clients lisent la carte sur leur téléphone et réservent leur table chez vous, sans commission par couvert.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/demos/restaurant/">Essayer la démo <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--ghost" href="/contact.html">Demander mon devis <span aria-hidden="true">→</span></a>
         </div>
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Démonstration à visiter</span>
-          <span class="sd-meta-card__value">Table Serein</span>
-          <span class="sd-meta-card__sub">Exemple de site conçu pour illustrer, pas un client réel</span>
+        <dl class="lv-facts">
+          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
+        </dl>
+      </div>
+      <figure class="lv-device">
+        <div class="lv-device__stage">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/restaurant</span></div>
+          <img src="/assets/shots/restaurant-desktop-0.webp" alt="Capture de la démo Table Serein conçue par Purity, page d’accueil sur ordinateur" width="1440" height="900" fetchpriority="high" decoding="async" sizes="(max-width: 900px) 92vw, 640px">
         </div>
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Accompagnement</span>
-          <span class="sd-meta-card__value">100 % Clé en main</span>
-          <span class="sd-meta-card__sub">Interlocuteur unique (Amir) · Charleroi &amp; Wallonie</span>
+          <div class="lv-phone lv-device__phone"><img src="/assets/shots/restaurant-mobile-0.webp" alt="Capture de la démo Table Serein conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-      </div>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Table Serein n’est pas un client réel. <a href="/cas-concrets/restaurant">Lire le cas concret</a></figcaption>
+      </figure>
+    </section>
 
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html">Parler de mon site <span aria-hidden="true">↗</span></a>
-        <a class="sd-btn-secondary" href="/demos/restaurant/">Voir la démo Table Serein <span aria-hidden="true">→</span></a>
+    <section class="lv-section lv-pain" aria-labelledby="pain-title">
+      <div class="lv-pain__head">
+        <span class="lv-kicker lv-kicker--onink">Aujourd’hui</span>
+        <h2 class="lv-h2" id="pain-title">Une carte en PDF et un téléphone qui sonne en plein service, ce sont des tables qui partent chez le voisin</h2>
+      </div>
+      <ol class="lv-pain__list">
+        <li><span class="lv-pain__n">01</span>La carte en PDF ne s’ouvre pas</li>
+        <li><span class="lv-pain__n">02</span>Il arrive devant une porte fermée</li>
+        <li><span class="lv-pain__n">03</span>Il appelle pour réserver en plein coup de feu</li>
+        <li><span class="lv-pain__n">04</span>Il ne sait pas si son groupe a sa place</li>
+      </ol>
+    </section>
+
+    <section class="lv-section" aria-labelledby="feat-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Ce que le site change</span>
+        <h2 class="lv-h2"><span id="feat-title">Plus de réservations en direct, moins d’appels en plein service</span></h2>
+      </div>
+      <div class="lv-bento">
+        <figure class="lv-bento__hero">
+          <img src="/assets/cases/visuals/restaurant.webp" alt="Visuel d’ambiance de la démo Table Serein conçue par Purity" width="1200" height="800" loading="lazy" decoding="async">
+          <figcaption><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11"/><path d="M4.5 7h.01M4.5 12h.01M4.5 17h.01"/></svg><strong>Une carte qui s’ouvre sur téléphone</strong></figcaption>
+        </figure>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><strong>Vos réservations sans commission par couvert</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>Les mêmes horaires sur Google et sur le site</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15.5h6"/></svg><strong>Les groupes et privatisations en un formulaire</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><strong>Des bons cadeaux à offrir</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Une page qui s’ouvre tout de suite en 4G</strong></div>
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Vos clients</span>
-        <h2 class="sd-heading">Ce que les clients d’un restaurant cherchent en ligne</h2>
-        <p class="sd-subheading">Les questions qu’ils se posent avant de vous contacter. Le site doit y répondre sans qu’ils aient à téléphoner.</p>
+<section class="lv-section" aria-labelledby="gallery-title">
+      <div class="lv-head">
+        <span class="lv-kicker">La démo en images</span>
+        <h2 class="lv-h2"><span id="gallery-title">Parcourez Table Serein, écran par écran</span></h2>
       </div>
-      <div class="sd-deliverables-grid">
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>La carte et les prix, tout de suite</strong>
-            </div>
-            <p>Avant de réserver, le client veut voir vos plats et vos prix. Une carte en PDF illisible sur téléphone le fait repartir vers le restaurant d’à côté.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Les horaires exacts, jours de fermeture compris</strong>
-            </div>
-            <p>Rien n’agace plus qu’arriver devant une porte fermée. Horaires, congés et service du midi doivent être justes sur le site comme sur Google.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Une réservation en deux gestes</strong>
-            </div>
-            <p>Choisir la date, le nombre de couverts et confirmer, sans télécharger une application ni créer de compte.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>L’ambiance et l’accès</strong>
-            </div>
-            <p>Photos de la salle et de la terrasse, accès PMR, parking proche, possibilité de privatiser pour un groupe ou un événement.</p>
-          </div>
+      <div class="lv-gallery lv-gallery--2 lv-scroll" tabindex="0" aria-label="Captures de la démo Table Serein">
+        <figure class="lv-gallery__item">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/restaurant</span></div>
+          <img src="/assets/shots/restaurant-desktop-1.webp" alt="Capture de la démo Table Serein conçue par Purity, deuxième section de la page d’accueil sur ordinateur" width="1440" height="900" loading="lazy" decoding="async">
+        </div>
+          <figcaption><span>02</span> Plus bas sur l’accueil</figcaption>
+        </figure>
+        <figure class="lv-gallery__item lv-gallery__item--low">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/restaurant</span></div>
+          <img src="/assets/shots/restaurant-desktop-2.webp" alt="Capture de la démo Table Serein conçue par Purity, troisième section de la page d’accueil sur ordinateur" width="1440" height="900" loading="lazy" decoding="async">
+        </div>
+          <figcaption><span>03</span> Encore un écran plus bas</figcaption>
+        </figure>
+      </div>
+      <div class="lv-actions lv-actions--center">
+        <a class="lv-btn lv-btn--primary" href="/demos/restaurant/">Essayer la démo <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Fonctionnalités</span>
-        <h2 class="sd-heading">Les fonctionnalités clés d’un site pour restaurants</h2>
-        <p class="sd-subheading">Ce que nous mettons en place pour votre métier, pas un modèle générique.</p>
+    <section class="lv-section" aria-labelledby="auto-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Automatisation &amp; IA</span>
+        <h2 class="lv-h2"><span id="auto-title">Moins de tables vides par oubli, moins d’appels pour des questions simples</span></h2>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé.</p>
       </div>
-      <div class="sd-deliverables-grid">
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Carte en HTML, pas en PDF</strong>
-            </div>
-            <p>Une carte lisible, indexée par Google et facile à modifier : plats du jour, suggestions, allergènes signalés selon la réglementation européenne.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Réservation directe sans commission</strong>
-            </div>
-            <p>Un module de réservation qui vous envoie la demande par mail ou WhatsApp, sans les 2 à 3 € par couvert que facturent certaines plateformes.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Fiche Google cohérente avec le site</strong>
-            </div>
-            <p>Horaires, menu et lien de réservation alignés entre le site et votre fiche Google pour ressortir sur « restaurant près de moi ».</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Page groupes et privatisation</strong>
-            </div>
-            <p>Un formulaire dédié aux anniversaires, repas d’entreprise et communions, avec nombre de personnes et budget indicatif.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Bons cadeaux</strong>
-            </div>
-            <p>Une page pour présenter vos bons cadeaux, utile en fin d’année et pour la fête des mères.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Chargement rapide en 4G</strong>
-            </div>
-            <p>La plupart de vos visiteurs consultent le site dans la rue ou en voiture : la page doit s’ouvrir immédiatement.</p>
-          </div>
-      </div>
+      <ol class="lv-flow">
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg><span class="lv-flow__n">01</span><strong>Rappel automatique la veille</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/></svg><span class="lv-flow__n">02</span><strong>Réponses aux questions fréquentes</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15.5h6"/></svg><span class="lv-flow__n">03</span><strong>Demande d’avis après le repas</strong></li>
+      </ol>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Automatisation &amp; IA</span>
-        <h2 class="sd-heading">L’automatisation et l’IA utiles, concrètement</h2>
-        <p class="sd-subheading">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé.</p>
+    <section class="lv-section" aria-labelledby="price-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Tarifs</span>
+        <h2 class="lv-h2"><span id="price-title">Combien coûte un site pour votre restaurant</span></h2>
+        <p class="lv-sub">Le même prix pour tout le monde, affiché d’avance.</p>
       </div>
-      <div class="sd-steps-grid">
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Rappel automatique la veille</strong>
-            <p>Un message de confirmation envoyé la veille de la réservation réduit les tables vides par oubli.</p>
-          </div>
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Réponses aux questions fréquentes</strong>
-            <p>Un assistant sur le site répond aux questions simples (parking, terrasse, plats végétariens, chiens acceptés) à partir des informations que vous avez validées.</p>
-          </div>
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Demande d’avis après le repas</strong>
-            <p>Un message envoyé le lendemain invite les clients satisfaits à laisser un avis Google, sans jamais acheter ni inventer d’avis.</p>
-          </div>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Tarifs</span>
-        <h2 class="sd-heading">Combien coûte un site internet pour restaurants</h2>
-        <p class="sd-subheading">Prix nets publiés sur notre page services. TVA non applicable (franchise, art. 56bis CTVA).</p>
-      </div>
-      <div class="sd-comparison-wrap">
-        <table class="sd-comparison-table">
-          <thead>
-            <tr>
-              <th scope="col">Formule</th>
-              <th scope="col">Création</th>
-              <th scope="col" class="sd-col-purity">Mensuel</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/site-vitrine">Site Vitrine (5 pages)</a></td>
-                <td class="sd-col-others">1 490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/page-essentielle">Page Essentielle (1 page)</a></td>
-                <td class="sd-col-others">490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/pilote-automatique-essentiel">Pilote Automatique Essentiel</a></td>
-                <td class="sd-col-others">490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Démonstration</span>
-        <h2 class="sd-heading">Voyez un exemple : la démo Table Serein</h2>
-        <p class="sd-subheading">Table Serein est un exemple de site que nous avons conçu pour illustrer ce qu’un site de restaurant peut faire. Ce n’est pas un client réel : aucun chiffre ni avis n’y est présenté comme vrai.</p>
-      </div>
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/demos/restaurant/">
-          <span class="sd-case-card__sector">Démonstration interactive</span>
-          <h3>Table Serein</h3>
-          <p>Parcourez la démo comme le ferait un client : navigation, parcours de contact et fonctionnalités du métier.</p>
-          <span class="sd-case-card__cta">Ouvrir la démo <span aria-hidden="true">→</span></span>
+      <div class="lv-prices">
+        <a class="lv-price lv-price--reco" href="/services/site-vitrine">
+          <span class="lv-price__flag">Conseillé</span>
+          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__amount">1 490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
-        <a class="sd-case-card" href="/cas-concrets/restaurant">
-          <span class="sd-case-card__sector">Cas concret</span>
-          <h3>Table Serein expliqué</h3>
-          <p>Les choix de conception derrière la démo : problème du métier, parcours, fonctionnalités et automatisations.</p>
-          <span class="sd-case-card__cta">Lire le cas concret <span aria-hidden="true">→</span></span>
+        <a class="lv-price" href="/services/page-essentielle">
+          
+          <span class="lv-price__name">Page Essentielle (1 page)</span>
+          <span class="lv-price__amount">490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
+        </a>
+        <a class="lv-price" href="/services/pilote-automatique-essentiel">
+          
+          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__amount">490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
         </a>
       </div>
+      <p class="lv-fine">Prix nets · TVA non applicable (franchise, art. 56bis CTVA).</p>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Questions fréquentes</span>
-        <h2 class="sd-heading">Questions fréquentes sur le site internet d’un restaurant</h2>
-        <p class="sd-subheading">Des réponses directes avant de prendre votre décision.</p>
+    <details class="lv-more">
+      <summary><span>En savoir plus sur un site internet pour ce métier</span><span class="lv-more__plus" aria-hidden="true"></span></summary>
+      <div class="lv-more__body">
+        <p>Un bon site internet de restaurant affiche la carte à jour, les horaires réels et un bouton de réservation directe visible dès l’ouverture sur smartphone. Purity Agency conçoit à Charleroi des sites pour restaurants wallons, avec réservation sans commission, référencement local et mise à jour de la carte sur simple message.</p>
+        <h3>Ce qui coince aujourd’hui</h3>
+        <dl>
+          <dt>La carte en PDF ne s’ouvre pas</dt><dd>Avant de réserver, le client veut voir vos plats et vos prix. Une carte en PDF illisible sur téléphone le fait repartir vers le restaurant d’à côté.</dd>
+          <dt>Il arrive devant une porte fermée</dt><dd>Horaires faux, congés oubliés, service du midi mal indiqué : c’est un client déçu qui ne revient pas. Les horaires doivent être justes sur le site comme sur Google.</dd>
+          <dt>Il appelle pour réserver en plein coup de feu</dt><dd>Personne ne décroche pendant le service : il réserve ailleurs. En ligne, il choisit la date, le nombre de couverts et confirme, sans application ni compte.</dd>
+          <dt>Il ne sait pas si son groupe a sa place</dt><dd>Photos de la salle et de la terrasse, accès PMR, parking, privatisation : sans réponse, l’anniversaire se fête ailleurs.</dd>
+        </dl>
+        <h3>Ce que le site change</h3>
+        <dl>
+          <dt>Une carte qui s’ouvre sur téléphone</dt><dd>Une carte lisible, trouvée par Google et facile à modifier : plats du jour, suggestions, allergènes signalés selon la réglementation européenne.</dd>
+          <dt>Vos réservations sans commission par couvert</dt><dd>Un module de réservation qui vous envoie la demande par mail ou WhatsApp, sans la commission par couvert que prennent certaines plateformes.</dd>
+          <dt>Les mêmes horaires sur Google et sur le site</dt><dd>Horaires, menu et lien de réservation alignés entre le site et votre fiche Google pour ressortir sur « restaurant près de moi ».</dd>
+          <dt>Les groupes et privatisations en un formulaire</dt><dd>Un formulaire dédié aux anniversaires, repas d’entreprise et communions, avec nombre de personnes et budget indicatif.</dd>
+          <dt>Des bons cadeaux à offrir</dt><dd>Une page pour présenter vos bons cadeaux, utile en fin d’année et pour la fête des mères.</dd>
+          <dt>Une page qui s’ouvre tout de suite en 4G</dt><dd>Beaucoup de vos visiteurs consultent le site dans la rue ou en voiture : la page doit s’ouvrir immédiatement.</dd>
+        </dl>
+        <h3>Automatisations possibles</h3>
+        <dl>
+          <dt>Rappel automatique la veille</dt><dd>Un message de confirmation envoyé la veille de la réservation réduit les tables vides par oubli.</dd>
+          <dt>Réponses aux questions fréquentes</dt><dd>Un assistant sur le site répond aux questions simples (parking, terrasse, plats végétariens, chiens acceptés) à partir des informations que vous avez validées.</dd>
+          <dt>Demande d’avis après le repas</dt><dd>Un message envoyé le lendemain invite les clients satisfaits à laisser un avis Google, sans jamais acheter ni inventer d’avis.</dd>
+        </dl>
+        <h3>Dans la démo Table Serein</h3>
+        <p>Réservez comme un client : nombre de convives, jour, début de service encore libre, puis la précision pour une allergie. Parcourez aussi la carte courte, allergènes indiqués plat par plat.</p>
+      </div>
+    </details>
+
+    <section class="lv-section lv-faq" aria-labelledby="faq-title">
+      <div class="lv-faq__aside">
+        <span class="lv-kicker">Questions fréquentes</span>
+        <h2 class="lv-h2" id="faq-title">Questions fréquentes sur le site internet d’un restaurant</h2>
+        <a class="lv-link" href="/contact.html">Écrire à Amir <span aria-hidden="true">→</span></a>
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
@@ -424,48 +378,38 @@
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Métiers proches</span>
-        <h2 class="sd-heading">Pages par métier</h2>
-        <p class="sd-subheading">Nous concevons aussi des sites pour ces activités.</p>
+    <section class="lv-section" aria-labelledby="near-title">
+      <div class="lv-head lv-head--row">
+        <span class="lv-kicker">Métiers proches</span>
+        <h2 class="lv-h2"><span id="near-title">Métiers voisins</span></h2>
       </div>
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/site-internet/salle-de-sport">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+      <div class="lv-thumbs lv-thumbs--4">
+        <a class="lv-thumb" href="/site-internet/salle-de-sport">
+          <span class="lv-thumb__img"><img src="/assets/shots/sport-desktop-0.webp" alt="Aperçu de la démo Cadence Studio conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Salle de sport</h3>
-          <p>Un planning de cours consultable partout et des places réservées sans gestion manuelle.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/institut-beaute">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/institut-beaute">
+          <span class="lv-thumb__img"><img src="/assets/shots/beaute-desktop-0.webp" alt="Aperçu de la démo Maison Lune conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Institut de beauté</h3>
-          <p>Un planning qui se remplit la nuit et moins de rendez-vous non honorés.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/boutique-decoration">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/boutique-decoration">
+          <span class="lv-thumb__img"><img src="/assets/shots/decoration-desktop-0.webp" alt="Aperçu de la démo Matière Commune conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Boutique de décoration</h3>
-          <p>Vendre en ligne et faire venir en boutique, avec retrait sur place et paiement Bancontact.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/toiletteur">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/toiletteur">
+          <span class="lv-thumb__img"><img src="/assets/shots/animaux-desktop-0.webp" alt="Aperçu de la démo Patte Douce conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Toiletteur</h3>
-          <p>Des créneaux réservés selon la race et la taille, avec acompte, sans jongler au téléphone.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
 
-    <section class="sd-bottom-cta">
-      <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>Parlons du site de votre restaurant</h2>
-        <p>Écrivez à Amir Kebiyeb, fondateur de Purity Agency à Charleroi. Réponse personnelle, devis clair et sans engagement. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
-        <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="/contact.html">Demander mon devis <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les services <span aria-hidden="true">→</span></a>
+    <section class="lv-cta">
+      <div class="lv-cta__inner">
+        <h2 class="lv-cta__title">Vos tables réservées chez vous, pas chez une plateforme</h2>
+        <p>Amir Kebiyeb vous répond lui-même avec un devis à prix fixe, sans engagement. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/contact.html">Demander mon devis <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--light" href="/services">Comparer les formules <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -477,7 +421,7 @@
     <span class="sd-floating-price">1 490 €</span>
     <span class="sd-floating-note">Prix net · TVA non applicable</span>
   </div>
-  <a class="sd-floating-cta" href="/contact.html">Demander devis <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="/contact.html">Demander mon devis <span aria-hidden="true">↗</span></a>
 </aside>
 
 <footer class="site-footer">

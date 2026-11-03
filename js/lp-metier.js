@@ -113,22 +113,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // --- FORM SUBMISSION ---
+  // Meme lien de reservation que contact.html (.booking__external).
+  var BOOKING_URL = 'https://calendar.app.google/yybUurryQkpLmyCQ9';
   var form = document.getElementById('lp-form');
   var status = document.getElementById('lp-status');
   if (form && status) {
+    var sending = false;
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      // Bouton jamais desactive : un second clic pendant l'envoi est simplement ignore.
+      if (sending) return;
+      sending = true;
       var btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
       btn.textContent = 'Envoi en cours...';
 
       var formData = new FormData(form);
+      // Le contexte du cas part dans un champ dedie : il ne doit plus apparaitre
+      // comme un creneau dans l'e-mail recu.
       var payload = {
         name: formData.get('name'),
         email: formData.get('email'),
-        phone: formData.get('phone'),
-        slot: formData.get('slot'),
-        message: 'Ville: ' + (formData.get('location') || 'Non précisée') + ' | ' + formData.get('message'),
+        phone: formData.get('phone') || '',
+        context: formData.get('context') || '',
+        message: 'Ville : ' + (formData.get('location') || 'Non précisée') + ' | ' + formData.get('message'),
         _hp: formData.get('_hp')
       };
 
@@ -141,17 +149,30 @@ document.addEventListener('DOMContentLoaded', function () {
         var data = await res.json();
         if (res.ok && data.ok) {
           status.className = 'lp-form__status is-success';
-          status.textContent = '✓ Demande bien reçue ! Amir Kebiyeb vous recontacte sous 24h avec votre proposition personnalisée.';
+          status.textContent = '';
+          var text = document.createElement('p');
+          text.className = 'lp-form__status-text';
+          text.textContent = '✓ Demande bien reçue. Réponse personnelle sous 24 h ouvrées. Pour aller plus vite, réservez directement un appel de 15 minutes.';
+          var booking = document.createElement('a');
+          booking.className = 'lp-form__booking';
+          booking.href = BOOKING_URL;
+          booking.target = '_blank';
+          booking.rel = 'noopener';
+          booking.textContent = 'Choisir mon créneau maintenant';
+          status.appendChild(text);
+          status.appendChild(booking);
           form.reset();
-          btn.textContent = 'Demande envoyée !';
+          btn.textContent = 'Demande envoyée';
         } else {
           throw new Error(data.error || 'Erreur lors de l’envoi');
         }
       } catch (err) {
         status.className = 'lp-form__status is-error';
-        status.textContent = 'Une erreur est survenue. Contactez-nous directement à contact@purity-agency.be';
-        btn.disabled = false;
+        status.textContent = 'Une erreur est survenue. Vos réponses sont conservées : réessayez, ou écrivez directement à contact@purity-agency.be';
         btn.textContent = 'Réessayer';
+      } finally {
+        sending = false;
+        btn.removeAttribute('aria-busy');
       }
     });
   }

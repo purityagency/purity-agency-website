@@ -9,7 +9,7 @@ const valid = { reply: 'Pour une présentation en cinq pages, le Site Vitrine es
 const provider = output => async () => ({ ok: true, json: async () => ({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify(output) }] } }] }) });
 test('prices come from the catalogue including required monthly maintenance', () => {
   const result = validateReply(valid);
-  assert.equal(result.offers[0].price, '1 490 € + 79 €/mois');
+  assert.equal(result.offers[0].price.replace(/\s/g, ' '), '1 490 € + 79 €/mois'); // catalogue unique : espaces insécables avant €
   assert.throws(() => validateReply({ ...valid, reply: 'Le site coûte 12 €.' }));
   assert.throws(() => validateReply({ ...valid, offerIds: ['FREE'] }));
 });
@@ -70,7 +70,7 @@ test('invalid model price gets one repair attempt before display', async () => {
   const result = await chat({ messages: [], busy: false }, 'Prix ?', { apiKey: 'test', fetcher });
   assert.equal(calls, 2);
   assert.equal(result.status, 200);
-  assert.equal(result.offers[0].price, '1 490 € + 79 €/mois');
+  assert.equal(result.offers[0].price.replace(/\s/g, ' '), '1 490 € + 79 €/mois'); // catalogue unique : espaces insécables avant €
 });
 test('contact never claims success if neither journal nor email succeeds', async () => {
   const lead = { name: 'Test', email: 'synthetic@example.com', message: 'Synthetic test only' };

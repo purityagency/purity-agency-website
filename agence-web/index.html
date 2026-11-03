@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=20261101">
+<link rel="stylesheet" href="/css/landing-visual.css?v=1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -92,66 +93,107 @@
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main lv-main">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
       <span class="sd-breadcrumbs__sep">/</span>
       <span aria-current="page">Agence web</span>
     </nav>
-    <section class="sd-hero" aria-labelledby="hub-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Wallonie</div>
-      <h1 class="sd-hero__title" id="hub-title">Agence web en Wallonie</h1>
-      <p class="sd-hero__summary">Purity Agency est basée à Charleroi et travaille pour les indépendants et PME de toute la Wallonie : sites internet, référencement local, automatisation et intégration d’IA. Mêmes prix publics partout, rendez-vous sur place ou en visio.</p>
+
+    <section class="lv-hero lv-hero--city" aria-labelledby="hub-title">
+      <div class="lv-hero__copy">
+        <span class="lv-eyebrow">Wallonie</span>
+        <h1 class="lv-h1" id="hub-title">Agence web en Wallonie</h1>
+        <p class="lv-lede">Purity Agency est basée à Charleroi et travaille pour les indépendants et PME de toute la Wallonie : sites internet, référencement local, automatisation et intégration d’IA.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/contact.html">Demander mon devis <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--ghost" href="/services">Comparer les formules <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <figure class="lv-mosaic">
+        <div class="lv-mosaic__stage">
+          <div class="lv-browser lv-mosaic__a">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/renovation</span></div>
+          <img src="/assets/shots/renovation-desktop-0.webp" alt="Capture de la démo Atelier Noma conçue par Purity, page d’accueil sur ordinateur" width="1440" height="900" fetchpriority="high" decoding="async" sizes="(max-width: 900px) 92vw, 600px">
+        </div>
+          <div class="lv-browser lv-mosaic__b">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/fiduciaire</span></div>
+          <img src="/assets/shots/fiduciaire-desktop-0.webp" alt="Capture de la démo Clarté &amp; Associés conçue par Purity, page d’accueil sur ordinateur" width="1440" height="900" decoding="async" sizes="(max-width: 900px) 46vw, 300px">
+        </div>
+          <div class="lv-browser lv-mosaic__c">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/restaurant</span></div>
+          <img src="/assets/shots/restaurant-desktop-0.webp" alt="Capture de la démo Table Serein conçue par Purity, page d’accueil sur ordinateur" width="1440" height="900" decoding="async" sizes="(max-width: 900px) 46vw, 300px">
+        </div>
+          <div class="lv-phone lv-mosaic__phone"><img src="/assets/shots/sport-mobile-0.webp" alt="Capture de la démo Cadence Studio conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
+        </div>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstrations conçues par Purity, pas des clients réels.</figcaption>
+      </figure>
     </section>
-    <section class="sd-section">
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/agence-web/charleroi">
-          <span class="sd-case-card__sector">Notre base</span>
+
+    <section class="lv-section" aria-label="Nos villes">
+      <div class="lv-cities">
+        <a class="lv-city" href="/agence-web/charleroi">
+          <span class="lv-city__img"><img src="/assets/shots/renovation-desktop-0.webp" alt="Aperçu de la démo Atelier Noma conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 92vw, 360px"></span>
+          <span class="lv-thumb__label">Notre base</span>
           <h2>Charleroi</h2>
-          <p>Une ville industrielle qui s’est réinventée, et où la concurrence locale se joue désormais aussi sur Google.</p>
-          <span class="sd-case-card__cta">Voir la page Charleroi <span aria-hidden="true">→</span></span>
+          <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="sd-case-card" href="/agence-web/namur">
-          <span class="sd-case-card__sector">Déplacement ou visio</span>
+        <a class="lv-city" href="/agence-web/namur">
+          <span class="lv-city__img"><img src="/assets/shots/sante-desktop-0.webp" alt="Aperçu de la démo Cabinet Horizon conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 92vw, 360px"></span>
+          <span class="lv-thumb__label">Déplacement ou visio</span>
           <h2>Namur</h2>
-          <p>Une économie portée par l’administration, l’enseignement, le commerce et les services aux entreprises.</p>
-          <span class="sd-case-card__cta">Voir la page Namur <span aria-hidden="true">→</span></span>
+          <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="sd-case-card" href="/agence-web/mons">
-          <span class="sd-case-card__sector">Déplacement ou visio</span>
+        <a class="lv-city" href="/agence-web/mons">
+          <span class="lv-city__img"><img src="/assets/shots/restaurant-desktop-0.webp" alt="Aperçu de la démo Table Serein conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 92vw, 360px"></span>
+          <span class="lv-thumb__label">Déplacement ou visio</span>
           <h2>Mons</h2>
-          <p>Une ville de patrimoine qui attire étudiants, visiteurs et entreprises technologiques.</p>
-          <span class="sd-case-card__cta">Voir la page Mons <span aria-hidden="true">→</span></span>
+          <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="sd-case-card" href="/agence-web/la-louviere">
-          <span class="sd-case-card__sector">Déplacement ou visio</span>
+        <a class="lv-city" href="/agence-web/la-louviere">
+          <span class="lv-city__img"><img src="/assets/shots/chauffage-desktop-0.webp" alt="Aperçu de la démo Thermiq conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 92vw, 360px"></span>
+          <span class="lv-thumb__label">Déplacement ou visio</span>
           <h2>La Louvière</h2>
-          <p>Un héritage industriel fort et un tissu dense d’entreprises de construction, de services et de commerce.</p>
-          <span class="sd-case-card__cta">Voir la page La Louvière <span aria-hidden="true">→</span></span>
+          <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="sd-case-card" href="/agence-web/liege">
-          <span class="sd-case-card__sector">Déplacement ou visio</span>
+        <a class="lv-city" href="/agence-web/liege">
+          <span class="lv-city__img"><img src="/assets/shots/immobilier-desktop-0.webp" alt="Aperçu de la démo Beaux Jours conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 92vw, 360px"></span>
+          <span class="lv-thumb__label">Déplacement ou visio</span>
           <h2>Liège</h2>
-          <p>Logistique, industrie de pointe, université et un commerce urbain très dense.</p>
-          <span class="sd-case-card__cta">Voir la page Liège <span aria-hidden="true">→</span></span>
+          <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="sd-case-card" href="/agence-web/brabant-wallon">
-          <span class="sd-case-card__sector">Déplacement ou visio</span>
+        <a class="lv-city" href="/agence-web/brabant-wallon">
+          <span class="lv-city__img"><img src="/assets/shots/architecture-desktop-0.webp" alt="Aperçu de la démo Ligne Claire conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 92vw, 360px"></span>
+          <span class="lv-thumb__label">Déplacement ou visio</span>
           <h2>Brabant wallon</h2>
-          <p>Recherche, pharmacie, services aux entreprises et une clientèle habituée au numérique.</p>
-          <span class="sd-case-card__cta">Voir la page Brabant wallon <span aria-hidden="true">→</span></span>
+          <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
       </div>
     </section>
-    <section class="sd-bottom-cta">
-      <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>Votre ville n’est pas dans la liste&nbsp;?</h2>
-        <p>Nous travaillons partout en Wallonie. Décrivez votre projet, nous vous répondons rapidement.</p>
-        <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="/contact.html">Me contacter <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir les services <span aria-hidden="true">→</span></a>
+
+    <details class="lv-more">
+      <summary><span>En savoir plus sur notre présence en Wallonie</span><span class="lv-more__plus" aria-hidden="true"></span></summary>
+      <div class="lv-more__body">
+        <p>Purity Agency est basée à Charleroi et travaille pour les indépendants et PME de toute la Wallonie : sites internet, référencement local, automatisation et intégration d’IA. Mêmes prix publics partout, rendez-vous sur place ou en visio. Choisissez votre ville : chaque page parle de vos communes et de vos clients, pas d’une Wallonie générique.</p>
+        <dl>
+          <dt>Charleroi</dt><dd>Notre adresse, Boulevard Frans Dewandre. Ici, on vous cherche par commune : Gilly, Jumet, Marcinelle, Gosselies.</dd>
+          <dt>Namur</dt><dd>Cabinets, bureaux d’études, commerces du centre : une clientèle qui vous juge sur votre sérieux avant d’appeler.</dd>
+          <dt>Mons</dt><dd>Visiteurs du centre, étudiants, clients du Borinage : tous décident sur leur téléphone.</dd>
+          <dt>La Louvière</dt><dd>Artisans et PME de la région du Centre : des chantiers montrés en photos et des devis plus sérieux.</dd>
+          <dt>Liège</dt><dd>Une grande ville, beaucoup de concurrents : sortir du lot quartier par quartier.</dd>
+          <dt>Brabant wallon</dt><dd>De Wavre à Nivelles, une clientèle qui compare en ligne et remarque vite un site daté.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <section class="lv-cta">
+      <div class="lv-cta__inner">
+        <h2 class="lv-cta__title">Votre ville n’est pas dans la liste&nbsp;?</h2>
+        <p>Amir Kebiyeb vous répond lui-même avec un devis à prix fixe, sans engagement. Partout en Wallonie, sur place ou en visio.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/contact.html">Demander mon devis <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--light" href="/services">Comparer les formules <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>

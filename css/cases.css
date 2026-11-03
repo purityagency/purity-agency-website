@@ -203,6 +203,14 @@
 .lp-form__status{display:none;padding:1rem;border-radius:.75rem;font-weight:650;text-align:center}
 .lp-form__status.is-success{display:block;background:rgba(22,163,74,.1);border:1px solid #16A34A;color:#16A34A}
 .lp-form__status.is-error{display:block;background:rgba(220,38,38,.1);border:1px solid #DC2626;color:#DC2626}
+.lp-form__status-text{margin:0}
+.lp-form__booking{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:.85rem;padding:0 1.4rem;border-radius:.85rem;background:#6C3CAA;color:#fff;font-weight:700;text-decoration:none;border:1px solid #582C94}
+.lp-form__booking:hover{background:#53288C}
+.lp-form__booking:focus-visible{outline:2px solid #6C3CAA;outline-offset:3px}
+.lp-form .lp-form__hp{display:none!important}
+.lp-form__privacy{margin:0;text-align:center;color:#6E6A65;font-size:.8rem;line-height:1.5}
+.lp-form__privacy a{color:#5b21b6;text-decoration:underline;text-underline-offset:.2em}
+.lp-form__btn[aria-busy="true"]{cursor:progress;opacity:.85}
 
 /* Scroll-Linked Reveal Classes */
 .reveal-on-scroll{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
@@ -221,7 +229,7 @@
   .case-select-label{position:static;display:grid;gap:.45rem;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;margin-top:1rem;font-weight:600}
   .case-select{height:48px;width:100%;padding:0 .8rem;border:1px solid var(--line);border-radius:.5rem;background:#fff;font:inherit}
   .case-detail__hero,.case-detail__story,.case-detail__limits{grid-template-columns:1fr}
-  .case-detail__hero .case-preview{order:-1}
+  .case-detail__hero .case-detail__visual{order:-1}
   .case-detail__related{display:block}
   .case-detail__related a{display:block;text-align:left;margin-top:.55rem}
 }
@@ -244,6 +252,9 @@
 /* Mention demonstration + suite du parcours (pages cas concrets) */
 .case-demo-note{max-width:60ch;margin:1.4rem 0 0;padding:.85rem 1rem;border-left:3px solid #6d28d9;background:rgba(109,40,217,.06);border-radius:0 10px 10px 0;font-size:.92rem;line-height:1.5;color:inherit;text-wrap:pretty}
 .case-demo-note strong{font-weight:650}
+/* La mention precede l apercu de demo, sur ordinateur comme sur mobile */
+.case-detail__visual{display:grid;gap:.9rem;min-width:0}
+.case-detail__hero .case-detail__visual>.case-demo-note{max-width:none;margin:0;font-size:.92rem;color:inherit}
 .case-next{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1rem}
 .case-next a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;color:#5b21b6;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
 .case-next a:hover{text-decoration-thickness:2px}

@@ -1,3 +1,6 @@
+// NE PAS RELANCER les générateurs qui lisent ce fichier (scripts/generate-case-studies.mjs,
+// scripts/generate-lp-metiers.mjs) : les pages cas-concrets ont été réécrites à la main le
+// 2026-11-03 ; ces générateurs produiraient d’anciens textes. Ce fichier reste lu par les tests.
 // Données éditoriales relues pour les démonstrations Purity. Elles alimentent
 // la galerie, les fiches indexables et les parcours volontairement fictifs.
 export const caseStudies = [

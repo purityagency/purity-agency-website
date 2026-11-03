@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=20261101">
+<link rel="stylesheet" href="/css/landing-visual.css?v=1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -168,7 +169,7 @@
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main lv-main">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -178,217 +179,170 @@
       <span aria-current="page">Kinésithérapeute</span>
     </nav>
 
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Site internet par métier · Kinésithérapeute</div>
-      <h1 class="sd-hero__title" id="service-title">Site internet pour kinésithérapeute en Wallonie</h1>
-      <p class="sd-hero__headline">Un agenda qui se remplit en ligne et un secrétariat téléphonique qui respire enfin.</p>
-      <p class="sd-hero__summary">Un site internet de kinésithérapeute doit permettre de prendre rendez-vous en ligne selon le motif, indiquer clairement le statut de conventionnement INAMI, les tarifs et l’accès au cabinet. Purity Agency crée à Charleroi des sites sobres pour kinés wallons, conformes aux règles déontologiques, sans faux avis ni promesse de guérison.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Formule conseillée · Site Vitrine (5 pages)</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">1 490 €</span>
-          </div>
-          <span class="sd-meta-card__sub">+ 79 €/mois (suivi &amp; hébergement)</span>
-          <span class="sd-meta-card__vat">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
+    <section class="lv-hero" aria-labelledby="service-title">
+      <div class="lv-hero__copy">
+        <span class="lv-eyebrow">Site internet par métier · Kinésithérapeute</span>
+        <h1 class="lv-h1" id="service-title">Site internet pour kinésithérapeute en Wallonie</h1>
+        <p class="lv-lede">Le patient réserve en ligne selon son motif, même le soir. Vous restez en séance au lieu de décrocher.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/demos/sante/">Essayer la démo <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--ghost" href="/contact.html">Demander mon devis <span aria-hidden="true">→</span></a>
         </div>
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Démonstration à visiter</span>
-          <span class="sd-meta-card__value">Cabinet Horizon</span>
-          <span class="sd-meta-card__sub">Exemple de site conçu pour illustrer, pas un client réel</span>
+        <dl class="lv-facts">
+          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
+        </dl>
+      </div>
+      <figure class="lv-device">
+        <div class="lv-device__stage">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/sante</span></div>
+          <img src="/assets/shots/sante-desktop-0.webp" alt="Capture de la démo Cabinet Horizon conçue par Purity, page d’accueil sur ordinateur" width="1440" height="900" fetchpriority="high" decoding="async" sizes="(max-width: 900px) 92vw, 640px">
         </div>
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Accompagnement</span>
-          <span class="sd-meta-card__value">100 % Clé en main</span>
-          <span class="sd-meta-card__sub">Interlocuteur unique (Amir) · Charleroi &amp; Wallonie</span>
+          <div class="lv-phone lv-device__phone"><img src="/assets/shots/sante-mobile-0.webp" alt="Capture de la démo Cabinet Horizon conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-      </div>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Cabinet Horizon n’est pas un client réel. <a href="/cas-concrets/sante">Lire le cas concret</a></figcaption>
+      </figure>
+    </section>
 
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html">Parler de mon site <span aria-hidden="true">↗</span></a>
-        <a class="sd-btn-secondary" href="/demos/sante/">Voir la démo Cabinet Horizon <span aria-hidden="true">→</span></a>
+    <section class="lv-section lv-pain" aria-labelledby="pain-title">
+      <div class="lv-pain__head">
+        <span class="lv-kicker lv-kicker--onink">Aujourd’hui</span>
+        <h2 class="lv-h2" id="pain-title">Le téléphone sonne en pleine séance, et le patient qui n’obtient pas de réponse réserve ailleurs</h2>
+      </div>
+      <ol class="lv-pain__list">
+        <li><span class="lv-pain__n">01</span>Prescription en main, il cherche le soir</li>
+        <li><span class="lv-pain__n">02</span>Il ne sait pas si vous traitez son problème</li>
+        <li><span class="lv-pain__n">03</span>« Vous êtes conventionné ? C’est combien ? »</li>
+        <li><span class="lv-pain__n">04</span>« Vous venez à domicile ? »</li>
+      </ol>
+    </section>
+
+    <section class="lv-section" aria-labelledby="feat-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Ce que le site change</span>
+        <h2 class="lv-h2"><span id="feat-title">Les réponses sont en ligne, l’agenda se remplit sans vous</span></h2>
+      </div>
+      <div class="lv-bento">
+        <figure class="lv-bento__hero">
+          <img src="/assets/cases/visuals/sante.webp" alt="Visuel d’ambiance de la démo Cabinet Horizon conçue par Purity" width="1200" height="800" loading="lazy" decoding="async">
+          <figcaption><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><strong>Le patient réserve le bon motif</strong></figcaption>
+        </figure>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Une page par prise en charge</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7.2A6 6 0 1 0 17 16.8"/><path d="M5 10.5h8M5 13.5h8"/></svg><strong>Conventionnement et tarifs affichés</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15.5h6"/></svg><strong>Fini l’appel de la veille pour les documents</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>Parking, accès PMR et communes à domicile</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Un site conforme à la déontologie</strong></div>
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Vos clients</span>
-        <h2 class="sd-heading">Ce que les clients d’un kinésithérapeute cherchent en ligne</h2>
-        <p class="sd-subheading">Les questions qu’ils se posent avant de vous contacter. Le site doit y répondre sans qu’ils aient à téléphoner.</p>
+<section class="lv-section" aria-labelledby="gallery-title">
+      <div class="lv-head">
+        <span class="lv-kicker">La démo en images</span>
+        <h2 class="lv-h2"><span id="gallery-title">Parcourez Cabinet Horizon, écran par écran</span></h2>
       </div>
-      <div class="sd-deliverables-grid">
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Un créneau disponible rapidement</strong>
-            </div>
-            <p>Le patient qui sort de chez son médecin avec une prescription cherche le premier rendez-vous libre près de chez lui, souvent le soir.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Savoir si vous traitez son problème</strong>
-            </div>
-            <p>Lombalgie, rééducation après opération, kiné respiratoire, périnée, sport : il veut voir que vous prenez en charge son motif.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Conventionné ou non, et combien</strong>
-            </div>
-            <p>Le statut INAMI, le prix de la séance et le remboursement attendu sont les premières questions posées au téléphone.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Domicile ou cabinet</strong>
-            </div>
-            <p>Les patients âgés ou opérés veulent savoir si vous vous déplacez et dans quelles communes.</p>
-          </div>
+      <div class="lv-gallery lv-gallery--2 lv-scroll" tabindex="0" aria-label="Captures de la démo Cabinet Horizon">
+        <figure class="lv-gallery__item">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/sante</span></div>
+          <img src="/assets/shots/sante-desktop-1.webp" alt="Capture de la démo Cabinet Horizon conçue par Purity, deuxième section de la page d’accueil sur ordinateur" width="1440" height="900" loading="lazy" decoding="async">
+        </div>
+          <figcaption><span>02</span> Plus bas sur l’accueil</figcaption>
+        </figure>
+        <figure class="lv-gallery__item lv-gallery__item--low">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/sante</span></div>
+          <img src="/assets/shots/sante-desktop-2.webp" alt="Capture de la démo Cabinet Horizon conçue par Purity, troisième section de la page d’accueil sur ordinateur" width="1440" height="900" loading="lazy" decoding="async">
+        </div>
+          <figcaption><span>03</span> Encore un écran plus bas</figcaption>
+        </figure>
+      </div>
+      <div class="lv-actions lv-actions--center">
+        <a class="lv-btn lv-btn--primary" href="/demos/sante/">Essayer la démo <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Fonctionnalités</span>
-        <h2 class="sd-heading">Les fonctionnalités clés d’un site pour kinés</h2>
-        <p class="sd-subheading">Ce que nous mettons en place pour votre métier, pas un modèle générique.</p>
+    <section class="lv-section" aria-labelledby="auto-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Automatisation &amp; IA</span>
+        <h2 class="lv-h2"><span id="auto-title">Moins de séances oubliées, des désistements rattrapés</span></h2>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé.</p>
       </div>
-      <div class="sd-deliverables-grid">
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Prise de rendez-vous par motif</strong>
-            </div>
-            <p>Le patient choisit son motif (première séance, suivi, domicile) et la durée du créneau s’adapte, ce qui évite les erreurs d’agenda.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Pages par type de prise en charge</strong>
-            </div>
-            <p>Une page claire par spécialité réellement pratiquée au cabinet, rédigée de façon informative et sans promesse de résultat.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Informations INAMI honnêtes</strong>
-            </div>
-            <p>Statut de conventionnement, tarifs appliqués et lien vers les informations officielles de remboursement, sans approximation.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Ce qu’il faut apporter</strong>
-            </div>
-            <p>Prescription, carte d’identité, tenue, imageries : une page pratique qui réduit les questions avant la première séance.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Accès et zone de domicile</strong>
-            </div>
-            <p>Plan, parking, accessibilité PMR et liste des communes desservies pour les soins à domicile.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Respect de la déontologie</strong>
-            </div>
-            <p>Pas de témoignages de patients, pas de comparaison avec des confrères, pas de formulation publicitaire excessive.</p>
-          </div>
-      </div>
+      <ol class="lv-flow">
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg><span class="lv-flow__n">01</span><strong>Rappel SMS ou mail avant la séance</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><span class="lv-flow__n">02</span><strong>Liste d’attente sur désistement</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/></svg><span class="lv-flow__n">03</span><strong>Assistant pour les questions pratiques</strong></li>
+      </ol>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Automatisation &amp; IA</span>
-        <h2 class="sd-heading">L’automatisation et l’IA utiles, concrètement</h2>
-        <p class="sd-subheading">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé.</p>
+    <section class="lv-section" aria-labelledby="price-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Tarifs</span>
+        <h2 class="lv-h2"><span id="price-title">Combien coûte un site pour votre cabinet de kiné</span></h2>
+        <p class="lv-sub">Le même prix pour tout le monde, affiché d’avance.</p>
       </div>
-      <div class="sd-steps-grid">
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Rappel SMS ou mail avant la séance</strong>
-            <p>Un rappel automatique la veille diminue les rendez-vous oubliés, sans tâche supplémentaire pour vous.</p>
-          </div>
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Liste d’attente sur désistement</strong>
-            <p>Quand un patient annule, le créneau libéré peut être proposé automatiquement aux patients en attente.</p>
-          </div>
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Assistant pour les questions pratiques</strong>
-            <p>Un assistant répond aux questions sur les horaires, l’accès et les documents à apporter. Il ne donne aucun avis médical et oriente vers le cabinet.</p>
-          </div>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Tarifs</span>
-        <h2 class="sd-heading">Combien coûte un site internet pour kinés</h2>
-        <p class="sd-subheading">Prix nets publiés sur notre page services. TVA non applicable (franchise, art. 56bis CTVA).</p>
-      </div>
-      <div class="sd-comparison-wrap">
-        <table class="sd-comparison-table">
-          <thead>
-            <tr>
-              <th scope="col">Formule</th>
-              <th scope="col">Création</th>
-              <th scope="col" class="sd-col-purity">Mensuel</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/site-vitrine">Site Vitrine (5 pages)</a></td>
-                <td class="sd-col-others">1 490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/page-essentielle">Page Essentielle (1 page)</a></td>
-                <td class="sd-col-others">490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/pilote-automatique-essentiel">Pilote Automatique Essentiel</a></td>
-                <td class="sd-col-others">490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Démonstration</span>
-        <h2 class="sd-heading">Voyez un exemple : la démo Cabinet Horizon</h2>
-        <p class="sd-subheading">Cabinet Horizon est un exemple de site que nous avons conçu pour illustrer ce qu’un site de kinésithérapeute peut faire. Ce n’est pas un client réel : aucun chiffre ni avis n’y est présenté comme vrai.</p>
-      </div>
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/demos/sante/">
-          <span class="sd-case-card__sector">Démonstration interactive</span>
-          <h3>Cabinet Horizon</h3>
-          <p>Parcourez la démo comme le ferait un client : navigation, parcours de contact et fonctionnalités du métier.</p>
-          <span class="sd-case-card__cta">Ouvrir la démo <span aria-hidden="true">→</span></span>
+      <div class="lv-prices">
+        <a class="lv-price lv-price--reco" href="/services/site-vitrine">
+          <span class="lv-price__flag">Conseillé</span>
+          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__amount">1 490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
-        <a class="sd-case-card" href="/cas-concrets/sante">
-          <span class="sd-case-card__sector">Cas concret</span>
-          <h3>Cabinet Horizon expliqué</h3>
-          <p>Les choix de conception derrière la démo : problème du métier, parcours, fonctionnalités et automatisations.</p>
-          <span class="sd-case-card__cta">Lire le cas concret <span aria-hidden="true">→</span></span>
+        <a class="lv-price" href="/services/page-essentielle">
+          
+          <span class="lv-price__name">Page Essentielle (1 page)</span>
+          <span class="lv-price__amount">490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
+        </a>
+        <a class="lv-price" href="/services/pilote-automatique-essentiel">
+          
+          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__amount">490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
         </a>
       </div>
+      <p class="lv-fine">Prix nets · TVA non applicable (franchise, art. 56bis CTVA).</p>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Questions fréquentes</span>
-        <h2 class="sd-heading">Questions fréquentes sur le site internet d’un kinésithérapeute</h2>
-        <p class="sd-subheading">Des réponses directes avant de prendre votre décision.</p>
+    <details class="lv-more">
+      <summary><span>En savoir plus sur un site internet pour ce métier</span><span class="lv-more__plus" aria-hidden="true"></span></summary>
+      <div class="lv-more__body">
+        <p>Un site internet de kinésithérapeute doit permettre de prendre rendez-vous en ligne selon le motif, indiquer clairement le statut de conventionnement INAMI, les tarifs et l’accès au cabinet. Purity Agency crée à Charleroi des sites sobres pour kinés wallons, conformes aux règles déontologiques, sans faux avis ni promesse de guérison.</p>
+        <h3>Ce qui coince aujourd’hui</h3>
+        <dl>
+          <dt>Prescription en main, il cherche le soir</dt><dd>Le cabinet est fermé, personne ne décroche. Il prend le premier créneau proposé en ligne, chez un confrère.</dd>
+          <dt>Il ne sait pas si vous traitez son problème</dt><dd>Lombalgie, rééducation après opération, kiné respiratoire, périnée, sport : sans page claire, il appelle pour demander, ou il passe son chemin.</dd>
+          <dt>« Vous êtes conventionné ? C’est combien ? »</dt><dd>La même question plusieurs fois par jour, qui vous sort de séance pour une réponse qui tient en deux lignes.</dd>
+          <dt>« Vous venez à domicile ? »</dt><dd>Les patients âgés ou opérés appellent pour savoir si vous passez dans leur commune. Vous répondez au cas par cas, entre deux patients.</dd>
+        </dl>
+        <h3>Ce que le site change</h3>
+        <dl>
+          <dt>Le patient réserve le bon motif</dt><dd>Le patient choisit son motif (première séance, suivi, domicile) et la durée du créneau s’adapte, ce qui évite les erreurs d’agenda.</dd>
+          <dt>Une page par prise en charge</dt><dd>Une page claire par spécialité réellement pratiquée au cabinet, rédigée de façon informative et sans promesse de résultat.</dd>
+          <dt>Conventionnement et tarifs affichés</dt><dd>Statut de conventionnement, tarifs appliqués et lien vers les informations officielles de remboursement, sans approximation.</dd>
+          <dt>Fini l’appel de la veille pour les documents</dt><dd>Prescription, carte d’identité, tenue, imageries : le patient arrive prêt à sa première séance.</dd>
+          <dt>Parking, accès PMR et communes à domicile</dt><dd>Plan, parking, accessibilité PMR et liste des communes desservies pour les soins à domicile.</dd>
+          <dt>Un site conforme à la déontologie</dt><dd>Pas de témoignages de patients, pas de comparaison avec des confrères, pas de formulation publicitaire excessive.</dd>
+        </dl>
+        <h3>Automatisations possibles</h3>
+        <dl>
+          <dt>Rappel SMS ou mail avant la séance</dt><dd>Un rappel automatique la veille, avec ce qu’il faut apporter. Moins de séances oubliées, rien à faire de votre côté.</dd>
+          <dt>Liste d’attente sur désistement</dt><dd>Quand un patient annule, le créneau libéré peut être proposé automatiquement aux patients en attente.</dd>
+          <dt>Assistant pour les questions pratiques</dt><dd>Un assistant répond aux questions sur les horaires, l’accès et les documents à apporter. Il ne donne aucun avis médical et oriente vers le cabinet.</dd>
+        </dl>
+        <h3>Dans la démo Cabinet Horizon</h3>
+        <p>Réservez comme un patient : chaque soin (kiné, ostéopathie, rééducation périnéale) affiche sa durée et sa prise en charge. Ouvrez ensuite l’agenda tel que le secrétariat le voit.</p>
+      </div>
+    </details>
+
+    <section class="lv-section lv-faq" aria-labelledby="faq-title">
+      <div class="lv-faq__aside">
+        <span class="lv-kicker">Questions fréquentes</span>
+        <h2 class="lv-h2" id="faq-title">Questions fréquentes sur le site internet d’un kinésithérapeute</h2>
+        <a class="lv-link" href="/contact.html">Écrire à Amir <span aria-hidden="true">→</span></a>
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
@@ -424,48 +378,38 @@
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Métiers proches</span>
-        <h2 class="sd-heading">Pages par métier</h2>
-        <p class="sd-subheading">Nous concevons aussi des sites pour ces activités.</p>
+    <section class="lv-section" aria-labelledby="near-title">
+      <div class="lv-head lv-head--row">
+        <span class="lv-kicker">Métiers proches</span>
+        <h2 class="lv-h2"><span id="near-title">Métiers voisins</span></h2>
       </div>
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/site-internet/salle-de-sport">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+      <div class="lv-thumbs lv-thumbs--4">
+        <a class="lv-thumb" href="/site-internet/salle-de-sport">
+          <span class="lv-thumb__img"><img src="/assets/shots/sport-desktop-0.webp" alt="Aperçu de la démo Cadence Studio conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Salle de sport</h3>
-          <p>Un planning de cours consultable partout et des places réservées sans gestion manuelle.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/institut-beaute">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/institut-beaute">
+          <span class="lv-thumb__img"><img src="/assets/shots/beaute-desktop-0.webp" alt="Aperçu de la démo Maison Lune conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Institut de beauté</h3>
-          <p>Un planning qui se remplit la nuit et moins de rendez-vous non honorés.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/comptable">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/comptable">
+          <span class="lv-thumb__img"><img src="/assets/shots/fiduciaire-desktop-0.webp" alt="Aperçu de la démo Clarté &amp; Associés conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Comptable</h3>
-          <p>Attirer les indépendants et PME qui vous correspondent, et cesser de courir après les pièces.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/architecte">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/architecte">
+          <span class="lv-thumb__img"><img src="/assets/shots/architecture-desktop-0.webp" alt="Aperçu de la démo Ligne Claire conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Architecte</h3>
-          <p>Un portfolio qui met vos réalisations en valeur et attire des maîtres d’ouvrage au projet mûr.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
 
-    <section class="sd-bottom-cta">
-      <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>Parlons du site de votre kinésithérapeute</h2>
-        <p>Écrivez à Amir Kebiyeb, fondateur de Purity Agency à Charleroi. Réponse personnelle, devis clair et sans engagement. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
-        <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="/contact.html">Demander mon devis <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les services <span aria-hidden="true">→</span></a>
+    <section class="lv-cta">
+      <div class="lv-cta__inner">
+        <h2 class="lv-cta__title">Vos patients réservent, vous soignez</h2>
+        <p>Amir Kebiyeb vous répond lui-même avec un devis à prix fixe, sans engagement. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/contact.html">Demander mon devis <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--light" href="/services">Comparer les formules <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -477,7 +421,7 @@
     <span class="sd-floating-price">1 490 €</span>
     <span class="sd-floating-note">Prix net · TVA non applicable</span>
   </div>
-  <a class="sd-floating-cta" href="/contact.html">Demander devis <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="/contact.html">Demander mon devis <span aria-hidden="true">↗</span></a>
 </aside>
 
 <footer class="site-footer">

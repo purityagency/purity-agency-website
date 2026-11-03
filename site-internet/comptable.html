@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/css/app.css?v=2026110102">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=20261101">
+<link rel="stylesheet" href="/css/landing-visual.css?v=1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -168,7 +169,7 @@
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main lv-main">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -178,217 +179,146 @@
       <span aria-current="page">Comptable</span>
     </nav>
 
-    <section class="sd-hero" aria-labelledby="service-title">
-      <div class="sd-hero__pill"><i aria-hidden="true"></i> Site internet par métier · Comptable</div>
-      <h1 class="sd-hero__title" id="service-title">Site internet pour comptable et fiduciaire en Wallonie</h1>
-      <p class="sd-hero__headline">Attirer les indépendants et PME qui vous correspondent, et cesser de courir après les pièces.</p>
-      <p class="sd-hero__summary">Un site internet de comptable ou de fiduciaire doit expliquer clairement à quels profils vous vous adressez, vos missions et votre façon de travailler, et permettre un premier rendez-vous en ligne. Purity Agency crée à Charleroi des sites pour cabinets comptables wallons, avec qualification des demandes et automatisation de la collecte des pièces.</p>
-
-      <div class="sd-hero__meta">
-        <div class="sd-meta-card sd-meta-card--highlight">
-          <span class="sd-meta-card__label">Formule conseillée · Site Vitrine (5 pages)</span>
-          <div class="sd-meta-card__price-wrap">
-            <span class="sd-meta-card__price-now">1 490 €</span>
-          </div>
-          <span class="sd-meta-card__sub">+ 79 €/mois (suivi &amp; hébergement)</span>
-          <span class="sd-meta-card__vat">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
+    <section class="lv-hero" aria-labelledby="service-title">
+      <div class="lv-hero__copy">
+        <span class="lv-eyebrow">Site internet par métier · Comptable</span>
+        <h1 class="lv-h1" id="service-title">Site internet pour comptable et fiduciaire en Wallonie</h1>
+        <p class="lv-lede">Des indépendants et des PME qui correspondent à votre cabinet, et des pièces qui arrivent avant l’échéance TVA, pas la veille.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/demos/fiduciaire/">Essayer la démo <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--ghost" href="/contact.html">Demander mon devis <span aria-hidden="true">→</span></a>
         </div>
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Démonstration à visiter</span>
-          <span class="sd-meta-card__value">Clarté &amp; Associés</span>
-          <span class="sd-meta-card__sub">Exemple de site conçu pour illustrer, pas un client réel</span>
+        <dl class="lv-facts">
+          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
+        </dl>
+      </div>
+      <figure class="lv-device">
+        <div class="lv-device__stage">
+          <div class="lv-browser">
+          <div class="lv-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>purity-agency.be/demos/fiduciaire</span></div>
+          <img src="/assets/shots/fiduciaire-desktop-0.webp" alt="Capture de la démo Clarté &amp; Associés conçue par Purity, page d’accueil sur ordinateur" width="1440" height="900" fetchpriority="high" decoding="async" sizes="(max-width: 900px) 92vw, 640px">
         </div>
-        <div class="sd-meta-card">
-          <span class="sd-meta-card__label">Accompagnement</span>
-          <span class="sd-meta-card__value">100 % Clé en main</span>
-          <span class="sd-meta-card__sub">Interlocuteur unique (Amir) · Charleroi &amp; Wallonie</span>
+          <div class="lv-phone lv-device__phone"><img src="/assets/shots/fiduciaire-mobile-0.webp" alt="Capture de la démo Clarté &amp; Associés conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-      </div>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Clarté &amp; Associés n’est pas un client réel. <a href="/cas-concrets/fiduciaire">Lire le cas concret</a></figcaption>
+      </figure>
+    </section>
 
-      <div class="sd-hero__actions">
-        <a class="sd-btn-primary" href="/contact.html">Parler de mon site <span aria-hidden="true">↗</span></a>
-        <a class="sd-btn-secondary" href="/demos/fiduciaire/">Voir la démo Clarté &amp; Associés <span aria-hidden="true">→</span></a>
+    <section class="lv-section lv-pain" aria-labelledby="pain-title">
+      <div class="lv-pain__head">
+        <span class="lv-kicker lv-kicker--onink">Aujourd’hui</span>
+        <h2 class="lv-h2" id="pain-title">Un dossier mal ciblé ou une pièce en retard, ce sont des heures que vous ne facturez pas</h2>
+      </div>
+      <ol class="lv-pain__list">
+        <li><span class="lv-pain__n">01</span>Il ne sait pas si vous prenez son profil</li>
+        <li><span class="lv-pain__n">02</span>Il ne voit pas ce qui est inclus</li>
+        <li><span class="lv-pain__n">03</span>Il redoute la facture surprise</li>
+        <li><span class="lv-pain__n">04</span>Le premier contact traîne</li>
+      </ol>
+    </section>
+
+    <section class="lv-section" aria-labelledby="feat-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Ce que le site change</span>
+        <h2 class="lv-h2"><span id="feat-title">Des prospects qui vous correspondent, des pièces au bon endroit</span></h2>
+      </div>
+      <div class="lv-bento">
+        <figure class="lv-bento__hero">
+          <img src="/assets/cases/visuals/fiduciaire.webp" alt="Visuel d’ambiance de la démo Clarté &amp; Associés conçue par Purity" width="1200" height="800" loading="lazy" decoding="async">
+          <figcaption><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Chaque profil trouve sa page</strong></figcaption>
+        </figure>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><strong>Le dossier évalué avant le rendez-vous</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><strong>Le rendez-vous découverte sans aller-retour</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15.5h6"/></svg><strong>Les pièces au même endroit, plus dans les mails</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Les échéances expliquées une fois pour toutes</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Votre titre professionnel affiché en règle</strong></div>
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Vos clients</span>
-        <h2 class="sd-heading">Ce que les clients d’un comptable cherchent en ligne</h2>
-        <p class="sd-subheading">Les questions qu’ils se posent avant de vous contacter. Le site doit y répondre sans qu’ils aient à téléphoner.</p>
+
+
+    <section class="lv-section" aria-labelledby="auto-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Automatisation &amp; IA</span>
+        <h2 class="lv-h2"><span id="auto-title">Vos clients déposent leurs factures avant l’échéance TVA, pas la veille</span></h2>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé.</p>
       </div>
-      <div class="sd-deliverables-grid">
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Savoir si vous prenez son profil</strong>
-            </div>
-            <p>Starter en personne physique, SRL, profession libérale, horeca : le prospect veut voir que vous connaissez sa situation.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Comprendre ce qui est inclus</strong>
-            </div>
-            <p>Tenue comptable, déclarations TVA, impôt des personnes physiques, bilan, conseil : la différence entre deux cabinets doit sauter aux yeux.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Un ordre de prix</strong>
-            </div>
-            <p>Les indépendants redoutent les factures surprises. Une fourchette ou une méthode de tarification claire les rassure.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Un premier contact simple</strong>
-            </div>
-            <p>Un rendez-vous découverte en visio ou au cabinet, réservé en ligne sans aller-retour de mails.</p>
-          </div>
-      </div>
+      <ol class="lv-flow">
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg><span class="lv-flow__n">01</span><strong>Relances automatiques des pièces</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><span class="lv-flow__n">02</span><strong>Lecture des factures par IA</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/></svg><span class="lv-flow__n">03</span><strong>Réponses aux questions récurrentes</strong></li>
+      </ol>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Fonctionnalités</span>
-        <h2 class="sd-heading">Les fonctionnalités clés d’un site pour comptables et fiduciaires</h2>
-        <p class="sd-subheading">Ce que nous mettons en place pour votre métier, pas un modèle générique.</p>
+    <section class="lv-section" aria-labelledby="price-title">
+      <div class="lv-head">
+        <span class="lv-kicker">Tarifs</span>
+        <h2 class="lv-h2"><span id="price-title">Combien coûte un site internet pour un comptable ou une fiduciaire</span></h2>
+        <p class="lv-sub">Le même prix pour tout le monde, affiché d’avance.</p>
       </div>
-      <div class="sd-deliverables-grid">
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Pages par profil de client</strong>
-            </div>
-            <p>Une page pour les starters, une pour les sociétés, une pour les professions libérales, avec leurs questions propres.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Formulaire de qualification</strong>
-            </div>
-            <p>Forme juridique, chiffre d’affaires approximatif, volume de factures : vous savez avant le rendez-vous si le dossier vous correspond.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Prise de rendez-vous découverte</strong>
-            </div>
-            <p>Un créneau réservé directement dans votre agenda, en visio ou au cabinet.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Dépôt sécurisé des documents</strong>
-            </div>
-            <p>Un espace d’envoi pour les pièces, plutôt que des pièces jointes éparpillées dans les mails.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Calendrier fiscal pédagogique</strong>
-            </div>
-            <p>Une page qui rappelle les grandes échéances belges (TVA, IPP, comptes annuels), utile et bien référencée.</p>
-          </div>
-          <div class="sd-deliverable-item">
-            <div class="sd-deliverable-item__head">
-              <span class="sd-deliverable-item__check" aria-hidden="true">✓</span>
-              <strong>Mentions professionnelles</strong>
-            </div>
-            <p>Votre titre professionnel et votre institut de rattachement indiqués correctement, comme l’exige la profession.</p>
-          </div>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Automatisation &amp; IA</span>
-        <h2 class="sd-heading">L’automatisation et l’IA utiles, concrètement</h2>
-        <p class="sd-subheading">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé.</p>
-      </div>
-      <div class="sd-steps-grid">
-          <div class="sd-step-item">
-            <div class="sd-step-num">01</div>
-            <strong>Relances automatiques des pièces</strong>
-            <p>Un rappel envoyé au client avant chaque échéance TVA pour qu’il dépose ses factures à temps.</p>
-          </div>
-          <div class="sd-step-item">
-            <div class="sd-step-num">02</div>
-            <strong>Lecture des factures par IA</strong>
-            <p>Les factures reçues sont lues et pré classées (fournisseur, montant, date) pour accélérer l’encodage, sous votre contrôle.</p>
-          </div>
-          <div class="sd-step-item">
-            <div class="sd-step-num">03</div>
-            <strong>Réponses aux questions récurrentes</strong>
-            <p>Un assistant répond aux questions générales (délais, documents à fournir) et renvoie toute question de conseil vers le cabinet.</p>
-          </div>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Tarifs</span>
-        <h2 class="sd-heading">Combien coûte un site internet pour comptables et fiduciaires</h2>
-        <p class="sd-subheading">Prix nets publiés sur notre page services. TVA non applicable (franchise, art. 56bis CTVA).</p>
-      </div>
-      <div class="sd-comparison-wrap">
-        <table class="sd-comparison-table">
-          <thead>
-            <tr>
-              <th scope="col">Formule</th>
-              <th scope="col">Création</th>
-              <th scope="col" class="sd-col-purity">Mensuel</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/site-vitrine">Site Vitrine (5 pages)</a></td>
-                <td class="sd-col-others">1 490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/site-complet">Site Complet (10+ pages)</a></td>
-                <td class="sd-col-others">2 490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-              <tr>
-                <td class="sd-col-aspect"><a href="/services/pilote-automatique-essentiel">Pilote Automatique Essentiel</a></td>
-                <td class="sd-col-others">490 € de mise en place</td>
-                <td class="sd-col-purity"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Démonstration</span>
-        <h2 class="sd-heading">Voyez un exemple : la démo Clarté &amp; Associés</h2>
-        <p class="sd-subheading">Clarté &amp; Associés est un exemple de site que nous avons conçu pour illustrer ce qu’un site de comptable peut faire. Ce n’est pas un client réel : aucun chiffre ni avis n’y est présenté comme vrai.</p>
-      </div>
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/demos/fiduciaire/">
-          <span class="sd-case-card__sector">Démonstration interactive</span>
-          <h3>Clarté &amp; Associés</h3>
-          <p>Parcourez la démo comme le ferait un client : navigation, parcours de contact et fonctionnalités du métier.</p>
-          <span class="sd-case-card__cta">Ouvrir la démo <span aria-hidden="true">→</span></span>
+      <div class="lv-prices">
+        <a class="lv-price lv-price--reco" href="/services/site-vitrine">
+          <span class="lv-price__flag">Conseillé</span>
+          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__amount">1 490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
-        <a class="sd-case-card" href="/cas-concrets/fiduciaire">
-          <span class="sd-case-card__sector">Cas concret</span>
-          <h3>Clarté &amp; Associés expliqué</h3>
-          <p>Les choix de conception derrière la démo : problème du métier, parcours, fonctionnalités et automatisations.</p>
-          <span class="sd-case-card__cta">Lire le cas concret <span aria-hidden="true">→</span></span>
+        <a class="lv-price" href="/services/site-complet">
+          
+          <span class="lv-price__name">Site Complet (10+ pages)</span>
+          <span class="lv-price__amount">2 490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
+        </a>
+        <a class="lv-price" href="/services/pilote-automatique-essentiel">
+          
+          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__amount">490 €</span>
+          <span class="lv-price__note">de mise en place</span>
+          <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
         </a>
       </div>
+      <p class="lv-fine">Prix nets · TVA non applicable (franchise, art. 56bis CTVA).</p>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Questions fréquentes</span>
-        <h2 class="sd-heading">Questions fréquentes sur le site internet d’un comptable</h2>
-        <p class="sd-subheading">Des réponses directes avant de prendre votre décision.</p>
+    <details class="lv-more">
+      <summary><span>En savoir plus sur un site internet pour ce métier</span><span class="lv-more__plus" aria-hidden="true"></span></summary>
+      <div class="lv-more__body">
+        <p>Un site internet de comptable ou de fiduciaire doit expliquer clairement à quels profils vous vous adressez, vos missions et votre façon de travailler, et permettre un premier rendez-vous en ligne. Purity Agency crée à Charleroi des sites pour cabinets comptables wallons, avec qualification des demandes et automatisation de la collecte des pièces.</p>
+        <h3>Ce qui coince aujourd’hui</h3>
+        <dl>
+          <dt>Il ne sait pas si vous prenez son profil</dt><dd>Starter en personne physique, SRL, profession libérale, horeca : s’il ne voit pas sa situation, il appelle un autre cabinet, ou vous envoie un dossier qui ne vous correspond pas.</dd>
+          <dt>Il ne voit pas ce qui est inclus</dt><dd>Tenue comptable, déclarations TVA, impôt des personnes physiques, bilan, conseil : sans détail, il compare les cabinets sur le seul prix.</dd>
+          <dt>Il redoute la facture surprise</dt><dd>Sans fourchette ni méthode de tarification claire, l’indépendant remet sa décision à plus tard, ou choisit le cabinet qui affiche ses prix.</dd>
+          <dt>Le premier contact traîne</dt><dd>Des allers-retours de mails pour fixer un rendez-vous découverte, et le prospect a déjà signé ailleurs.</dd>
+        </dl>
+        <h3>Ce que le site change</h3>
+        <dl>
+          <dt>Chaque profil trouve sa page</dt><dd>Une page pour les starters, une pour les sociétés, une pour les professions libérales, avec leurs questions propres.</dd>
+          <dt>Le dossier évalué avant le rendez-vous</dt><dd>Forme juridique, chiffre d’affaires approximatif, volume de factures : vous savez avant le rendez-vous si le dossier vous correspond.</dd>
+          <dt>Le rendez-vous découverte sans aller-retour</dt><dd>Un créneau réservé directement dans votre agenda, en visio ou au cabinet.</dd>
+          <dt>Les pièces au même endroit, plus dans les mails</dt><dd>Un espace d’envoi pour les pièces, plutôt que des pièces jointes éparpillées dans les mails.</dd>
+          <dt>Les échéances expliquées une fois pour toutes</dt><dd>Une page qui rappelle les grandes échéances belges (TVA, IPP, comptes annuels), utile et bien référencée.</dd>
+          <dt>Votre titre professionnel affiché en règle</dt><dd>Votre titre professionnel et votre institut de rattachement indiqués correctement, comme l’exige la profession.</dd>
+        </dl>
+        <h3>Automatisations possibles</h3>
+        <dl>
+          <dt>Relances automatiques des pièces</dt><dd>Un rappel envoyé au client avant chaque échéance TVA pour qu’il dépose ses factures à temps.</dd>
+          <dt>Lecture des factures par IA</dt><dd>Les factures reçues sont lues et préclassées (fournisseur, montant, date) pour accélérer l’encodage, sous votre contrôle.</dd>
+          <dt>Réponses aux questions récurrentes</dt><dd>Un assistant répond aux questions générales (délais, documents à fournir) et renvoie toute question de conseil vers le cabinet.</dd>
+        </dl>
+        <h3>Dans la démo Clarté &amp; Associés</h3>
+        <p>Parcourez-la comme un indépendant : votre situation (démarrer son activité, suivi comptable, accompagner une société, lire ses indicateurs), un créneau, puis le récapitulatif prêt à envoyer.</p>
+      </div>
+    </details>
+
+    <section class="lv-section lv-faq" aria-labelledby="faq-title">
+      <div class="lv-faq__aside">
+        <span class="lv-kicker">Questions fréquentes</span>
+        <h2 class="lv-h2" id="faq-title">Questions fréquentes sur le site internet d’un comptable</h2>
+        <a class="lv-link" href="/contact.html">Écrire à Amir <span aria-hidden="true">→</span></a>
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
@@ -424,48 +354,38 @@
       </div>
     </section>
 
-    <section class="sd-section">
-      <div class="sd-section-header">
-        <span class="sd-kicker">Métiers proches</span>
-        <h2 class="sd-heading">Pages par métier</h2>
-        <p class="sd-subheading">Nous concevons aussi des sites pour ces activités.</p>
+    <section class="lv-section" aria-labelledby="near-title">
+      <div class="lv-head lv-head--row">
+        <span class="lv-kicker">Métiers proches</span>
+        <h2 class="lv-h2"><span id="near-title">Métiers voisins</span></h2>
       </div>
-      <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/site-internet/architecte">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+      <div class="lv-thumbs lv-thumbs--4">
+        <a class="lv-thumb" href="/site-internet/architecte">
+          <span class="lv-thumb__img"><img src="/assets/shots/architecture-desktop-0.webp" alt="Aperçu de la démo Ligne Claire conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Architecte</h3>
-          <p>Un portfolio qui met vos réalisations en valeur et attire des maîtres d’ouvrage au projet mûr.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/agence-immobiliere">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/agence-immobiliere">
+          <span class="lv-thumb__img"><img src="/assets/shots/immobilier-desktop-0.webp" alt="Aperçu de la démo Beaux Jours conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Agence immobilière</h3>
-          <p>Plus de demandes d’estimation, et des visites réservées par des acheteurs sérieux.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/kinesitherapeute">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/kinesitherapeute">
+          <span class="lv-thumb__img"><img src="/assets/shots/sante-desktop-0.webp" alt="Aperçu de la démo Cabinet Horizon conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Kinésithérapeute</h3>
-          <p>Un agenda qui se remplit en ligne et un secrétariat téléphonique qui respire enfin.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/site-internet/garage">
-          <span class="sd-case-card__sector">Site internet par métier</span>
+        <a class="lv-thumb" href="/site-internet/garage">
+          <span class="lv-thumb__img"><img src="/assets/shots/garage-desktop-0.webp" alt="Aperçu de la démo Garage Rive conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Garage</h3>
-          <p>Des rendez-vous d’entretien pris en ligne et des devis carrosserie chiffrés sur photos.</p>
-          <span class="sd-case-card__cta">Voir la page métier <span aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
 
-    <section class="sd-bottom-cta">
-      <div class="sd-bottom-cta__inner">
-        <span class="sd-kicker">Votre projet</span>
-        <h2>Parlons du site de votre comptable</h2>
-        <p>Écrivez à Amir Kebiyeb, fondateur de Purity Agency à Charleroi. Réponse personnelle, devis clair et sans engagement. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
-        <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="/contact.html">Demander mon devis <span aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/services">Voir tous les services <span aria-hidden="true">→</span></a>
+    <section class="lv-cta">
+      <div class="lv-cta__inner">
+        <h2 class="lv-cta__title">Moins de relances, des clients qui vous ressemblent</h2>
+        <p>Amir Kebiyeb vous répond lui-même avec un devis à prix fixe, sans engagement. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+        <div class="lv-actions">
+          <a class="lv-btn lv-btn--primary" href="/contact.html">Demander mon devis <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+          <a class="lv-btn lv-btn--light" href="/services">Comparer les formules <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -477,7 +397,7 @@
     <span class="sd-floating-price">1 490 €</span>
     <span class="sd-floating-note">Prix net · TVA non applicable</span>
   </div>
-  <a class="sd-floating-cta" href="/contact.html">Demander devis <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="/contact.html">Demander mon devis <span aria-hidden="true">↗</span></a>
 </aside>
 
 <footer class="site-footer">

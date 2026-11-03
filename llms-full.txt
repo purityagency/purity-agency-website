@@ -12,17 +12,18 @@ Ce fichier détaille chaque offre (prix indicatifs, délais, livrables, FAQ). In
 
 URL : https://purity-agency.be/services/diagnostic-digital
 Prix indicatif : Offert (mensuel : Aucun abonnement, aucun moyen de paiement requis.)
-Délai : Créneau immédiat (15 min chrono)
+Délai : Créneau au choix dans l’agenda (15 min)
+Engagement : Aucun engagement : l’appel est gratuit et ne vous oblige à rien acheter.
 Pour qui : Indépendants, artisans du bâtiment, dépanneurs et gérants de PME en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles) qui veulent savoir pourquoi leur présence en ligne ne leur rapporte pas assez d’appels.
-Utilité : Éviter de jeter votre argent par les fenêtres dans des outils ou des publicités inutiles. Vous repartez avec un avis d’expert direct, honnête et chiffré sur votre situation locale.
+Utilité : Ne plus payer pour des outils ou des publicités qui ne ramènent rien. Vous repartez avec un avis franc et chiffré sur votre situation, et la première chose à corriger.
 
-Avant de dépenser le moindre euro dans un site web, des réseaux sociaux ou de la publicité, Amir Kebiyeb examine votre situation avec vous et vous indique l’action concrète la plus rentable pour décrocher plus de chantiers.
+Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec Amir Kebiyeb pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.
 
 Livrables :
 - Vérification en direct de votre visibilité sur votre commune : On regarde ensemble comment votre entreprise apparaît sur Google et Google Maps par rapport à vos 3 principaux concurrents locaux (Charleroi, Namur, Mons, etc.).
 - Test de vitesse et d’affichage sur smartphone (4G) : Vérification du temps de chargement sur téléphone : si votre site met plus de 2,5 secondes à s’ouvrir, vos clients s’impatientent et appellent un autre artisan.
 - Contrôle de vos boîtes e-mails (Anti-Spam devis) : Vérification que vos devis envoyés aux clients n’atterrissent pas directement dans leur dossier de courriers indésirables (spams).
-- Feuille de route écrite envoyée sous 1 heure : Un e-mail de synthèse simple et sans jargon récapitulant les points faibles constatés, la solution la plus rentable et le budget exact à prévoir.
+- Récapitulatif écrit après l’appel : Un e-mail de synthèse simple et sans jargon : les points faibles constatés, la solution la plus rentable et une fourchette de budget. Si vous voulez aller plus loin, le devis ferme suit l’appel.
 
 Inclus dans le suivi : Non applicable (rendez-vous de diagnostic 100 % offert).
 
@@ -30,7 +31,7 @@ Déroulement :
 1. Choix de votre créneau : Vous sélectionnez l’heure qui vous convient le mieux dans l’agenda en ligne, selon vos disponibilités entre deux chantiers.
 2. Préparation du dossier : Amir regarde votre site et vos concurrents locaux avant l’appel pour ne pas vous faire perdre une minute.
 3. Échange de 15 minutes chrono : Par téléphone ou en visio sur votre écran, droit au but, centré uniquement sur la rentabilité de votre entreprise.
-4. Récapitulatif écrit : Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec notre accompagnement.
+4. Récapitulatif écrit : Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec nous.
 
 Questions fréquentes :
 - Est-ce vraiment 100 % gratuit sans aucun engagement ?
@@ -47,18 +48,19 @@ Questions fréquentes :
 URL : https://purity-agency.be/services/page-essentielle
 Prix indicatif : 490 € + 79 €/mois (mensuel : Hébergement haute vitesse, nom de domaine .be, boîte e-mail pro et modifications de vos coordonnées incluses.)
 Délai : 5 à 7 jours ouvrés
+Engagement : Le suivi mensuel est conclu pour 12 mois, pour amortir la mise en place. Ensuite, il se résilie par écrit chaque mois, avec un mois de préavis.
 Pour qui : Artisans solos, dépanneurs, réparateurs, indépendants en bâtiment et prestataires de services en Wallonie qui exercent une activité ciblée.
 Utilité : Rassurer immédiatement un client local qui cherche votre métier sur son smartphone et lui permettre de vous appeler ou de vous écrire sur WhatsApp sans chercher votre numéro.
 
-La formule idéale pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coaches) qui veulent remplacer une simple page Facebook ou un vieux site par une vitrine nette, crédible et contactable en 1 clic.
+Pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coachs) qui n’ont qu’une page Facebook ou un vieux site : une page nette qui inspire confiance, où le client vous appelle ou vous écrit en 1 clic.
 
 Livrables :
-- Présentation sur-mesure de votre métier (Zéro modèle générique) : Mise en valeur de vos vrais chantiers, de vos compétences clés et de vos tarifs indicatifs : une présentation nette qui donne immédiatement confiance à vos clients locaux et justifie vos devis.
+- Votre métier présenté avec vos mots, pas un modèle tout fait : Mise en valeur de vos vrais chantiers, de vos compétences clés et de vos tarifs indicatifs : une présentation nette qui donne immédiatement confiance à vos clients locaux et justifie vos devis.
 - Affichage instantané sur smartphone en moins d’une seconde : Le site s’ouvre immédiatement sur le téléphone de vos clients sans lenteur ni temps de chargement, ce qui évite qu’ils repartent voir un confrère.
 - Bouton d’appel direct & WhatsApp au pouce : Un bouton toujours accessible en bas de l’écran sur mobile : le client appuie avec son pouce et votre téléphone sonne directement sans qu’il doive recopier votre numéro.
 - Votre nom de domaine officiel .be & Boîte e-mail pro : Votre adresse internet officielle (ex: www.votre-nom.be) et une adresse e-mail professionnelle (contact@votre-nom.be) synchronisée sur votre smartphone.
 - Conformité légale belge complète (BCE, TVA, RGPD) : Mentions légales obligatoires en Belgique (numéro BCE, régime de franchise TVA art. 56bis ou numéro de TVA) pour être 100 % en règle avec l’administration.
-- Vous êtes propriétaire à 100 % de votre site : Zéro location forcée, zéro abonnement logiciel captif : votre nom de domaine et tous vos fichiers vous appartiennent définitivement.
+- Vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine : Zéro location forcée : une fois la création réglée, vos textes, photos, visuels et votre nom de domaine sont à vous, et vos fichiers vous sont remis si vous partez ailleurs.
 
 Inclus dans le suivi : Hébergement haute performance, renouvellement annuel de votre nom de domaine .be, surveillance anti-panne et prise en charge rapide de vos changements de tarifs, horaires ou photos.
 
@@ -75,26 +77,25 @@ Questions fréquentes :
   Non, pas du tout. Nous rédigeons l’ensemble des textes à partir des quelques questions posées lors de notre premier appel de cadrage.
 - Le site fonctionne-t-il sur tous les téléphones ?
   Oui, le site est rigoureusement testé sur iPhone et Android, pour que chaque bouton soit parfaitement cliquable avec le pouce.
-- Combien de temps suis-je engagé pour le suivi ?
-  L’engagement initial est de 12 mois pour amortir les frais techniques de mise en place, puis renouvelable au mois le mois sans frais de résiliation.
 
 ## Site Vitrine (5 pages)
 
 URL : https://purity-agency.be/services/site-vitrine
 Prix indicatif : 1 490 € + 79 €/mois (mensuel : Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.)
 Délai : 7 à 10 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Chauffagistes, entreprises de rénovation, carrosseries, garagistes, électriciens, plombiers, toitures et PME régionales en Wallonie.
-Utilité : Devenir le professionnel de référence dans votre commune et filtrer les demandes pour ne vous déplacer que sur des chantiers rentables avec des clients sérieux.
+Utilité : Être celui qu’on appelle dans votre commune, et ne plus vous déplacer pour des curieux sans budget : la demande arrive avec les photos et les infos utiles.
 
-La formule la plus demandée : 5 pages complètes et structurées (Accueil rassurant, Prestations détaillées, Galerie de réalisations avec comparateur avant/après, Présentation de l’entreprise, Contact et demande de devis) conçues pour faire de vous le premier choix dans votre région.
+Accueil, prestations détaillées, réalisations avec comparateur avant/après, présentation de l’entreprise, contact et demande de devis. De quoi être choisi quand un client compare trois artisans de votre région.
 
 Livrables :
 - 5 pages complètes pour rassurer et convaincre vos clients : Accueil rassurant, fiches détaillées pour chaque prestation, galerie de réalisations concrètes, présentation de votre entreprise et formulaire de contact guidé.
 - Formulaire de devis avec photos smartphone (Chiffrage avant déplacement) : Vos clients peuvent joindre directement des photos de leur problème depuis leur smartphone (ex: photos chaudière et m² pour un chauffagiste, 4 photos dégâts pour un carrossier, photos toiture) : vous estimez le projet avant de prendre la route.
 - Filtre kilométrique de zone d’intervention (ex: 25 km) : Définition claire de votre secteur pour éliminer les demandes trop lointaines et ne plus perdre 2h par jour dans les bouchons pour des petites interventions non rentables.
 - Curseur interactif tactile Avant / Après : Un outil visuel sur lequel le client fait glisser son doigt pour voir la transformation avant et après vos travaux (idéal pour la rénovation, carrosserie, toiture).
-- Référencement local configuré pour Google (Wallonie) : Configuration de vos communes d’intervention et de vos spécialités selon les critères officiels de Google pour ressortir en tête des recherches locales.
-- Chargement ultra-rapide & Propriété totale du site : Ouverture instantanée sur smartphone (Quality Score maximal pour la publicité Google) et remise complète des accès : vous êtes propriétaire de votre site à vie.
+- Référencement local configuré pour Google (Wallonie) : Vos communes d’intervention et vos spécialités sont indiquées comme Google le demande, pour qu’il sache où vous travaillez et ce que vous faites.
+- Chargement ultra-rapide & remise de vos accès : Ouverture rapide sur téléphone (utile aussi si vous faites de la publicité Google) et remise de tous les accès : vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine.
 
 Inclus dans le suivi : Hébergement infogéré haute vitesse, sauvegardes quotidiennes automatiques, surveillance anti-panne et ajout de vos nouveaux chantiers ou avis clients sur simple message WhatsApp.
 
@@ -105,20 +106,21 @@ Déroulement :
 4. Mise en ligne & Remise des clés : Activation de votre nom de domaine .be, signalement à Google et envoi de vos accès.
 
 Questions fréquentes :
-- Suis-je propriétaire de mon site et de mon nom de domaine ?
-  Oui, à 100 %. Tous les fichiers, les textes, les photos et le nom de domaine sont votre entière propriété. Vous n’êtes jamais enfermé chez nous.
+- Suis-je propriétaire de mes contenus et de mon nom de domaine ?
+  Oui. Une fois la création réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Vous n’êtes jamais enfermé chez nous : vos fichiers vous sont remis si vous partez.
 - Combien de temps le projet va-t-il me prendre ?
   Environ 45 minutes en tout : 30 minutes au début pour nous expliquer votre activité, et 15 minutes à la fin pour valider le résultat. Nous nous occupons de toute la rédaction et de la technique.
 - Puis-je modifier mes tarifs ou mes photos moi-même ?
   Oui, vous avez un accès simple si vous le souhaitez. Mais le plus pratique reste de nous envoyer un message : nous faisons vos mises à jour sans surcoût dans le cadre de votre suivi.
 - Ce site est-il adapté si je veux lancer de la pub Google Ads ?
-  Parfaitement. Sa rapidité d’ouverture et son formulaire bien placé permettent d’obtenir la meilleure note de qualité sur Google Ads, ce qui réduit le coût de chaque clic.
+  Oui. Un site rapide avec un formulaire bien placé aide à obtenir une bonne note de qualité sur Google Ads, ce qui fait baisser le prix de chaque clic.
 
 ## Site Complet (10+ pages)
 
 URL : https://purity-agency.be/services/site-complet
-Prix indicatif : 2 490 € + 149 €/mois (mensuel : Maintenance avancée, sauvegardes bi-quotidiennes, interventions prioritaires et 2h de modifications incluses chaque mois.)
+Prix indicatif : 2 490 € + 149 €/mois (mensuel : Maintenance avancée, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 h de modifications incluses chaque mois.)
 Délai : 12 à 18 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Entreprises générales de bâtiment, bureaux d’études, promoteurs, concessions, installateurs avec plusieurs équipes sur la route.
 Utilité : Capter les plus gros contrats de votre région en ayant une page dédiée pour chaque spécialité et chaque grande commune, tout en facilitant le recrutement d’ouvriers qualifiés.
 
@@ -126,17 +128,17 @@ Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vo
 
 Livrables :
 - Arborescence complète de 10 à 15 pages sur mesure : Une page détaillée pour chaque corps de métier, des pages géographiques par grande commune de Wallonie, des études de chantiers détaillées et un espace carrières.
-- Pages dédiées par ville et spécialité pour dominer votre région : Chaque ville ciblée (Charleroi, Namur, Mons, Liège, Nivelles, etc.) dispose de sa propre page optimisée pour que Google vous affiche en tête sur les chantiers à fort panier.
+- Une page par ville et par spécialité : Chaque ville ciblée (Charleroi, Namur, Mons, Liège, Nivelles, etc.) a sa propre page, pour que Google vous montre aux clients de cette ville qui cherchent votre métier.
 - Formulaires de devis avec envoi direct au bon conducteur de travaux : Le formulaire adapte ses questions selon le métier choisi (ex: toiture, chauffage, maçonnerie) et transmet le dossier pré-rempli directement au chef d’équipe concerné.
 - Espace Recrutement pour attirer des ouvriers qualifiés (CP 124) : Une page soignée pour attirer des techniciens et chefs d’équipe sérieux, qui refusent de postuler dans des entreprises à l’image vieillissante.
 - Statistiques de visites simples et privées (100 % conforme RGPD) : Un tableau de bord clair pour voir combien de personnes consultent vos pages et d’où viennent vos demandes, sans bandeau de cookies pénible pour vos visiteurs.
-- Support technique prioritaire garanti sous 24h ouvrées : Canal direct avec Amir pour toute mise à jour urgente de vos chantiers ou plannings.
+- Réponse sous 24 h ouvrées pour vos mises à jour : Contact direct avec Amir pour toute mise à jour de vos chantiers ou plannings.
 
-Inclus dans le suivi : Supervision continue 24/7, sauvegardes automatiques de sécurité, support prioritaire sous 24h et 2 heures de modifications incluses chaque mois pour vos contenus.
+Inclus dans le suivi : Surveillance automatique de disponibilité, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 heures de modifications incluses chaque mois pour vos contenus.
 
 Déroulement :
 1. Plan d’arborescence par ville et métier : On valide ensemble les communes clés et les spécialités que vous voulez développer en priorité.
-2. Rédaction de toutes vos pages : Notre équipe rédige chaque fiche métier avec vos photos de réalisations et vos conditions d’intervention.
+2. Rédaction de toutes vos pages : Nous rédigeons chaque fiche métier avec vos photos de réalisations et vos conditions d’intervention.
 3. Validation et réglage des formulaires : Test complet de l’envoi des demandes vers vos différents responsables d’équipes.
 4. Mise en ligne et indexation Google : Déploiement complet et enregistrement de toutes vos nouvelles pages auprès de Google.
 
@@ -155,6 +157,7 @@ Questions fréquentes :
 URL : https://purity-agency.be/services/boutique-en-ligne
 Prix indicatif : 3 990 € + 149 €/mois (mensuel : Sécurité bancaire continue, surveillance des paiements, maintenance des passerelles et assistance technique.)
 Délai : 15 à 25 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Commerçants, artisans créateurs, producteurs locaux, restaurateurs (Horeca) et distributeurs en Belgique souhaitant vendre en direct.
 Utilité : Encaisser des commandes 24h/24 et 7j/7 sans reverser 30 % de vos marges à des plateformes tierces, avec une expérience d’achat sur smartphone simple et rassurante.
 
@@ -168,7 +171,7 @@ Livrables :
 - Commande directe à 0 % de commission & Empreinte anti-no-show : Pour l’Horeca et les traiteurs : commande directe à emporter sans payer de commission aux plateformes, et prise d’empreinte bancaire pour bloquer les no-shows lors des réservations de tables.
 - Factures automatiques conformes TVA belge (6 % et 21 %) & Peppol 2026 : Génération instantanée de factures PDF légales avec distinction stricte des taux de TVA belges et formats prêts pour votre comptable.
 
-Inclus dans le suivi : Sécurisation permanente des passerelles bancaires, sauvegardes quotidiennes de vos commandes et clients, et assistance technique réactive.
+Inclus dans le suivi : Sécurisation permanente des passerelles bancaires, sauvegardes quotidiennes automatiques de vos commandes et clients, et réponse sous 24 h ouvrées.
 
 Déroulement :
 1. Organisation de vos produits et tarifs : On configure vos catégories, vos moyens de paiement et vos modes de livraison.
@@ -189,16 +192,17 @@ Questions fréquentes :
 ## Refonte & modernisation de site web
 
 URL : https://purity-agency.be/services/refonte-modernisation
-Prix indicatif : 890 à 2 490 € + 79 €/mois (mensuel : Hébergement, maintenance technique et garantie contractuelle de zéro perte de trafic Google.)
+Prix indicatif : 890 à 2 490 € + 79 €/mois (mensuel : Hébergement, maintenance technique et redirection de chaque ancienne adresse, vérifiée page par page.)
 Délai : 7 à 14 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Entreprises en Wallonie qui ont déjà un site web mais qui ont honte de le montrer, qui ne reçoivent plus de demandes, ou qui ont peur de tout perdre en le refaisant.
-Utilité : Diviser par 4 le temps de chargement, récupérer vos visiteurs mobiles et doubler vos demandes de devis sans perdre un seul lien Google déjà acquis.
+Utilité : Un site qui s’ouvre vite sur téléphone, que vous n’avez plus honte de montrer, avec un formulaire de devis clair. Sans perdre les liens Google déjà acquis.
 
-Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en conservant rigoureusement vos adresses et votre positionnement Google sans rien casser.
+Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en redirigeant chaque ancienne adresse pour préserver votre référencement.
 
 Livrables :
 - Inventaire complet de votre ancien site sans rien oublier : Relevé de l’ensemble de vos anciennes pages et de vos photos pour s’assurer qu’aucun contenu utile ni aucun contact régulier ne soit perdu lors de la modernisation.
-- Garantie de zéro perte de positionnement Google : Chaque ancienne adresse internet de votre site est redirigée de manière transparente vers sa nouvelle page équivalente pour préserver 100 % de votre historique.
+- Chaque ancienne adresse redirigée vers sa nouvelle page : Chaque ancienne adresse de votre site renvoie vers la page équivalente du nouveau site, pour que Google et vos clients retrouvent tout.
 - Modernisation visuelle pensée pour vos clients locaux : Remplacement de votre ancien site vieillot par une vitrine lumineuse, moderne et rassurante : vos réalisations récentes et vos avis clients 5 étoiles sont mis en premier plan.
 - Suppression définitive des extensions lourdes & des failles de sécurité : Élimination des dizaines de plugins qui ralentissent votre site et créent des failles de piratage, au profit d’un code propre et fiable qui démarre au quart de tour.
 - Formulaire de devis moderne avec questions clés : Remplacement de votre vieux formulaire spammé par un parcours clair demandant la commune, le type de projet et le délai souhaité.
@@ -209,12 +213,12 @@ Inclus dans le suivi : Hébergement haute vitesse, renouvellement du domaine .be
 Déroulement :
 1. Inventaire de ce qui fonctionne : On relève les pages qui vous rapportent déjà des contacts et vos plus belles photos de chantiers.
 2. Création du nouveau site en privé : Nous concevons la nouvelle version sur un espace de test privé : votre ancien site continue de tourner sans interruption.
-3. Vérification complète de tous les liens : Contrôle méticuleux pour garantir que chaque ancien lien renvoie immédiatement vers la bonne page sans jamais afficher d’erreur.
+3. Vérification complète de tous les liens : Contrôle méticuleux pour vérifier que chaque ancien lien renvoie vers la bonne page sans afficher d’erreur.
 4. Bascule transparente en quelques minutes : Le nouveau site prend le relais sans aucune coupure pour vos clients.
 
 Questions fréquentes :
 - Vais-je perdre ma place sur Google ?
-  Non. Nous redirigeons rigoureusement chaque ancienne adresse vers la nouvelle page. Google comprend tout de suite que le site a été modernisé et maintient votre visibilité.
+  Chaque ancienne adresse est redirigée vers la nouvelle page et contrôlée avant la bascule : c’est ce qui préserve votre référencement. Le classement lui-même dépend de Google et personne ne peut le promettre, mais on ne casse rien de ce que vous avez acquis.
 - Mon site sera-t-il coupé pendant les travaux ?
   Pas une seule seconde. Le nouveau site est préparé sur un serveur de test privé. La bascule finale se fait en quelques minutes sans aucune interruption.
 - Mes adresses e-mails vont-elles continuer de fonctionner ?
@@ -227,20 +231,21 @@ Questions fréquentes :
 URL : https://purity-agency.be/services/google-business
 Prix indicatif : 290 € (mensuel : Paiement unique sans abonnement obligatoire.)
 Délai : 3 à 5 jours ouvrés
+Engagement : Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.
 Pour qui : Tous les artisans, dépanneurs, commerçants et PME en Wallonie dont les clients se trouvent dans un rayon de 10 à 30 km.
 Utilité : Capter les appels directs des personnes qui ont un besoin immédiat dans votre commune et s’assurer que votre entreprise affiche des avis 5 étoiles rassurants.
 
 Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.
 
 Livrables :
-- Validation officielle de votre fiche avec Google : Prise en charge complète des démarches auprès de Google pour obtenir le badge officiel vérifié sans blocage administratif.
+- Validation officielle de votre fiche avec Google : On fait les démarches auprès de Google pour obtenir la fiche vérifiée. Si Google bloque, on s’occupe des relances.
 - Choix des catégories de métiers les plus recherchées : Sélection des catégories précises pour que votre fiche apparaisse dès qu’un client tape votre métier dans votre commune.
 - Protection de votre adresse privée si vous travaillez à domicile : Configuration de votre zone d’intervention sans afficher votre adresse privée si votre atelier ou bureau se trouve chez vous.
 - Catalogue complet de vos prestations et tarifs indicatifs : Mise en ligne de vos services phares avec photos de chantiers pour que le client voie immédiatement votre savoir-faire.
 - Kit d’avis clients 5 étoiles avec QR Code prêt à imprimer : Un QR Code à faire scanner par vos clients satisfaits sur votre camionnette, vos factures ou au comptoir pour récolter des avis 5 étoiles en 5 secondes.
 - Cohérence complète de vos coordonnées avec le registre BCE : Vérification que votre nom, adresse et téléphone sont identiques partout pour renforcer votre crédibilité auprès de Google.
 
-Inclus dans le suivi : Prestation ponctuelle sans abonnement. Vos accès vous sont remis pour que la fiche vous appartienne définitivement.
+Inclus dans le suivi : Prestation ponctuelle sans abonnement. Vos accès vous sont remis : la fiche reste à votre nom.
 
 Déroulement :
 1. Vérification de votre situation : On regarde si vous avez déjà une fiche créée, des doublons ou des accès perdus à récupérer.
@@ -252,7 +257,7 @@ Questions fréquentes :
 - Je travaille chez moi, mon adresse privée sera-t-elle visible ?
   Non. Nous configurons la fiche en "zone desservie" : Google affiche les communes où vous vous déplacez sans jamais afficher l’adresse de votre maison.
 - Combien de temps faut-il pour voir les résultats ?
-  La fiche est active immédiatement après validation. Vos premiers appels arrivent généralement dès les premières semaines grâce aux avis récoltés.
+  La fiche est visible dès sa validation. Le nombre d’appels dépend de votre commune et de vos concurrents : la fiche vous montre elle-même ses vues et ses appels, vous suivez l’effet réel.
 - J’ai déjà des avis sur ma fiche, vais-je les perdre ?
   Non, absolument pas. Nous reprenons et améliorons votre fiche existante sans rien supprimer.
 - Comment mes clients utilisent-ils le QR Code ?
@@ -261,8 +266,9 @@ Questions fréquentes :
 ## Identité visuelle & Logo
 
 URL : https://purity-agency.be/services/identite-visuelle-logo
-Prix indicatif : 690 € (mensuel : Paiement unique · cession totale de propriété incluse.)
+Prix indicatif : 690 € (mensuel : Paiement unique · cession des droits du logo livré incluse.)
 Délai : 7 à 10 jours ouvrés
+Engagement : Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.
 Pour qui : Artisans du bâtiment, indépendants qui se lancent, commerces locaux et entreprises voulant une image sérieuse qui inspire confiance dès le premier coup d’œil.
 Utilité : Inspirer le sérieux et la solidité, éviter d’être pris pour un travailleur du dimanche et donner envie aux clients de signer vos devis sans marchander.
 
@@ -274,7 +280,7 @@ Livrables :
 - Pack d’images prêtes pour votre site et vos réseaux : Images au fond transparent prêtes à l’emploi pour votre site web, votre profil Facebook/WhatsApp et vos factures.
 - Fiche mémo de vos couleurs officielles : Un document d’une page avec les références exactes de vos couleurs pour que vos futurs t-shirts ou autocollants soient toujours identiques.
 - Gabarits prêts pour votre enseigniste ou floqueur : Des fichiers préparés aux bonnes normes pour que votre prestataire de lettrage puisse travailler sans vous facturer de frais techniques.
-- Cession totale et définitive des droits d’auteur : Un contrat officiel attestant que vous êtes le propriétaire exclusif de votre logo pour toujours.
+- Cession des droits d’auteur du logo livré : Un document de cession écrit : une fois la facture réglée, les droits d’auteur sur le logo livré vous sont cédés.
 
 Inclus dans le suivi : Prestation ponctuelle sans abonnement. Vos fichiers restent sauvegardés sur nos serveurs si vous les perdez un jour.
 
@@ -290,7 +296,7 @@ Questions fréquentes :
 - Mon floqueur de camionnette pourra-t-il utiliser ces fichiers ?
   Oui, tout à fait. Nous livrons exactement les fichiers professionnels (vectoriels) que demandent tous les enseignistes et imprimeurs en Belgique.
 - Puis-je déposer ce logo comme marque si je le souhaite ?
-  Oui, le logo est 100 % original et vous en recevez la propriété totale, ce qui vous permet de le déposer officiellement auprès du bureau des marques (OBPI) si vous le souhaitez.
+  Oui, le logo est original et ses droits d’auteur vous sont cédés, ce qui vous permet de le déposer officiellement auprès du bureau des marques (OBPI) si vous le souhaitez.
 - Que se passe-t-il si aucune des 3 premières pistes ne me plaît ?
   Notre échange initial permet de bien cerner ce que vous voulez. Si nécessaire, on discute de ce qui coince et on vous prépare une proposition alternative sans surcoût.
 
@@ -299,6 +305,7 @@ Questions fréquentes :
 URL : https://purity-agency.be/services/pack-visuels-reels
 Prix indicatif : 390 € (mensuel : Paiement unique sans abonnement.)
 Délai : 4 à 7 jours ouvrés
+Engagement : Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.
 Pour qui : Artisans du bâtiment, restaurateurs, instituts de beauté et commerçants qui veulent montrer la qualité de leur travail en vidéo sans y passer leurs soirées.
 Utilité : Disposer d’un pack de contenus vidéo professionnels pour faire vivre vos réseaux sociaux, rassurer vos futurs clients et donner envie de faire appel à vous.
 
@@ -306,7 +313,7 @@ Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vid
 
 Livrables :
 - 4 vidéos courtes (Reels / TikToks) montées de A à Z : Montage rythmé mettant en avant votre savoir-faire dès les premières secondes, avec transitions soignées et musique adaptée.
-- Sous-titres dynamiques synchronisés mot à mot : 80 % des gens regardent les vidéos sans le son dans les transports ou en famille : les sous-titres permettent à tout le monde de comprendre votre message.
+- Sous-titres dynamiques synchronisés mot à mot : Beaucoup de gens regardent les vidéos sans le son (transports, salle d’attente, en famille) : avec les sous-titres, votre message passe quand même.
 - 6 visuels carrés ou carrousels de réalisations : Mise en page graphique soignée présentant vos étapes de chantier, vos avant/après et les avis de vos clients.
 - Textes de publication & mots-clés locaux rédigés : Textes prêts à être copiés-collés avec des mots-clés ciblés sur votre région pour être vu par des clients près de chez vous.
 - Images de couverture personnalisées : Des vignettes propres pour que votre page Instagram ou Facebook ait une allure soignée et cohérente.
@@ -334,6 +341,7 @@ Questions fréquentes :
 URL : https://purity-agency.be/services/referencement-local-seo
 Prix indicatif : 590 € + 149 €/mois (mensuel : Optimisations continues, création de contenus mensuels sur vos chantiers et bilan transparent sans jargon.)
 Délai : Mise en place : 10 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale. Nous recommandons de compter environ 6 mois pour juger les résultats : c’est une recommandation, pas un engagement.
 Pour qui : Entreprises établies en Wallonie qui ne veulent plus dépendre du bouche-à-oreille aléatoire et souhaitent devenir la référence évidente sur leur secteur.
 Utilité : Générer des demandes de chantiers régulières chaque semaine sans devoir payer pour chaque clic publicitaire, en étant tout en haut de Google au moment précis où le client en a besoin.
 
@@ -358,19 +366,18 @@ Questions fréquentes :
 - Au bout de combien de temps voit-on les premiers résultats ?
   En référencement local, les premières remontées visibles arrivent généralement entre 6 et 12 semaines. C’est un travail régulier qui sécurise vos chantiers sur le long terme.
 - Pouvez-vous garantir la première place absolue sur Google ?
-  Aucune agence sérieuse ne peut garantir contractuellement la première place à 100 %, car l’algorithme appartient à Google. En revanche, nous appliquons les méthodes exactes qui placent nos clients réguliers sur le podium.
-- Puis-je suspendre le suivi si je le souhaite ?
-  Nous recommandons une première période de 6 mois pour installer solidement vos positions. Ensuite, le suivi est renouvelable au mois le mois avec arrêt sur simple e-mail.
+  Non, et méfiez-vous de ceux qui le promettent : le classement appartient à Google. Ce à quoi on s’engage : le travail fait chaque mois et un bilan honnête de vos positions réelles.
 - Dois-je écrire des articles moi-même ?
-  Non, pas du tout. Notre équipe rédige l’ensemble des textes après avoir validé les sujets principaux avec vous.
+  Non. Nous rédigeons tous les textes après avoir validé les sujets avec vous.
 
 ## Réseaux sociaux (3x/semaine)
 
 URL : https://purity-agency.be/services/gestion-reseaux-sociaux
 Prix indicatif : 290 € + 349 €/mois (mensuel : Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.)
 Délai : Démarrage sous 5 jours ouvrés
+Engagement : Le 1er mois d’abonnement est offert pour essayer. Si vous continuez, l’abonnement est conclu pour 6 mois, puis il se résilie par écrit chaque mois, avec un mois de préavis.
 Pour qui : Artisans, commerçants, restaurateurs et gérants de PME en Wallonie qui savent qu’il faut être visible sur les réseaux mais qui manquent de temps pour s’en occuper.
-Utilité : Avoir une vitrine active et professionnelle qui rassure vos prospects et fait parler de votre entreprise, sans que vous n’ayez à toucher à votre téléphone après le travail.
+Utilité : Une page qui montre que vous êtes actif et sérieux, et qui rappelle votre nom à vos anciens clients. Votre seul travail : envoyer quelques photos sur WhatsApp et valider le mois en 5 minutes.
 
 Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.
 
@@ -403,10 +410,11 @@ Questions fréquentes :
 ## Pilote Automatique Essentiel
 
 URL : https://purity-agency.be/services/pilote-automatique-essentiel
-Prix indicatif : 490 € + 39 €/mois (mensuel : Surveillance continue des connexions automatiques, alertes anti-erreurs et assistance technique.)
+Prix indicatif : 490 € + 39 €/mois (mensuel : Surveillance automatique des connexions, alertes anti-erreurs et assistance technique.)
 Délai : 5 à 7 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Artisans et indépendants en Wallonie qui passent leurs soirées à taper les mêmes messages, relancer des devis non signés ou courir après des clients qui oublient leurs rendez-vous.
-Utilité : Récupérer immédiatement 3 à 5 heures de temps libre chaque semaine, stopper les déplacements pour rien et signer plus de devis sans effort commercial supplémentaire.
+Utilité : Ne plus taper les mêmes messages le soir, ne plus vous déplacer pour rien et relancer chaque devis sans y penser.
 
 Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.
 
@@ -414,10 +422,10 @@ Livrables :
 - Mise en place de votre automatisation n°1 au choix : Exemples concrets : Prise de rendez-vous en ligne avec rappel SMS automatique 24h avant, relance automatique des devis non signés à J+3 et J+7, ou alerte SMS instantanée sur votre smartphone dès qu’un gros chantier arrive.
 - Connexion directe avec vos outils habituels : Liaison directe avec votre boîte e-mail, votre agenda Google/Outlook ou votre numéro de téléphone sans changer vos habitudes.
 - Modèles de messages rédigés dans votre ton naturel : Les SMS et e-mails automatiques sont rédigés poliment et chaleureusement : vos clients ont l’impression exacte que vous leur écrivez personnellement.
-- Tests complets pour garantir zéro faux pas : Vérification méticuleuse de tous les cas (annulations, doublons, week-ends) pour s’assurer que le système tourne sans le moindre bug.
+- Tous les cas testés avant la mise en route : On teste les annulations, les doublons et les week-ends avec vous avant d’allumer le système.
 - Fiche d’utilisation simple d’une seule page : Un mémo clair pour savoir comment suspendre le système en vacances ou modifier un texte en 30 secondes en toute autonomie.
 
-Inclus dans le suivi : Surveillance technique permanente, maintien des connexions avec vos outils et dépannage rapide en cas de mise à jour.
+Inclus dans le suivi : Surveillance automatique des connexions, maintien des liaisons avec vos outils et réponse sous 24 h ouvrées en cas de souci.
 
 Déroulement :
 1. Choix de votre corvée prioritaire : On identifie ensemble la tâche administrative qui vous prend le plus la tête au quotidien.
@@ -433,13 +441,14 @@ Questions fréquentes :
 - Que se passe-t-il si un client répond au message automatique ?
   La réponse arrive directement dans votre boîte de réception ou sur votre téléphone comme d’habitude : vous reprenez la main immédiatement.
 - Mes données clients sont-elles en sécurité ?
-  Oui, à 100 %. Tout est traité selon les normes européennes strictes (RGPD) sans revente de données.
+  Oui. Tout est traité selon le RGPD, les règles européennes sur les données. Rien n’est revendu.
 
 ## Pilote Automatique Business
 
 URL : https://purity-agency.be/services/pilote-automatique-business
 Prix indicatif : 990 € + 69 €/mois (mensuel : Surveillance des liaisons multi-outils, ajustement des champs et assistance technique.)
 Délai : 10 à 14 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : PME, entreprises du bâtiment avec plusieurs camionnettes sur la route, cabinets comptables et sociétés recevant plus de 10 demandes par semaine en Wallonie.
 Utilité : Faire tourner votre entreprise comme une horloge : chaque demande web crée la fiche client, prévient l’équipe sur le terrain avec le lien GPS et prépare l’ébauche de facture sans rien taper.
 
@@ -475,32 +484,33 @@ Questions fréquentes :
 URL : https://purity-agency.be/services/pilote-automatique-integral
 Prix indicatif : 1 990 € + 119 €/mois (mensuel : Surveillance de l’assistant, mises à jour de vos tarifs et ajustements continus.)
 Délai : 15 à 20 jours ouvrés
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Entreprises en forte croissance, sociétés de dépannage avec beaucoup d’appels et gérants qui n’en peuvent plus d’être dérangés en permanence pour des questions basiques.
 Utilité : Répondre poliment aux clients le dimanche soir ou à 23h, vérifier si le projet entre dans votre secteur et votre budget, et ne vous passer que les dossiers chauds et qualifiés.
 
-La solution la plus aboutie : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.
+Notre formule la plus complète : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.
 
 Livrables :
-- Assistant IA paramétré sur vos règles métier exactes (Zéro réponse inventée) : Votre assistant est programmé pour respecter scrupuleusement vos prix officiels, vos délais et vos conditions : il n’invente jamais un tarif, n’accorde aucune remise sans accord et reste toujours poli et professionnel.
+- Assistant IA réglé sur vos tarifs, vos délais et vos règles : Il répond avec vos prix, vos délais et vos conditions. S’il ne connaît pas la réponse, il prend les coordonnées et vous transmet la demande au lieu d’improviser. Aucune remise sans votre accord.
 - Disponible là où vos clients vous écrivent (Site web & WhatsApp) : L’assistant répond instantanément aux questions de vos clients 24h/24 et 7j/7, y compris les soirs et les week-ends quand vous êtes en famille.
 - Filtrage automatique des demandes & tri des chantiers rentables : L’assistant demande les informations indispensables (commune, type de travaux, photos, urgence) et vérifie si le client se trouve bien dans votre secteur avant de vous alerter.
 - Dossier pré-rempli envoyé directement sur votre téléphone : Dès qu’une demande sérieuse est qualifiée, vous recevez une fiche résumée claire sur votre smartphone avec toutes les informations nécessaires pour rappeler et signer.
 - Tableau de bord pour consulter toutes les discussions : Vous pouvez relire l’ensemble des échanges menés par l’assistant à tout moment et reprendre la main sur une discussion quand vous le souhaitez.
-- Conformité légale européenne garantie (AI Act & RGPD) : Avertissement clair indiquant au client qu’il dialogue avec un assistant automatisé, et sécurisation totale des coordonnées sans réutilisation externe.
+- Mise en conformité AI Act et RGPD accompagnée : Avertissement clair indiquant au client qu’il dialogue avec un assistant automatisé, et coordonnées limitées à votre usage, sans réutilisation externe.
 
-Inclus dans le suivi : Mise à jour régulière de vos tarifs et conditions, surveillance anti-erreur et assistance prioritaire 6 jours sur 7.
+Inclus dans le suivi : Mise à jour régulière de vos tarifs et conditions, surveillance anti-erreur et réponse sous 24 h ouvrées.
 
 Déroulement :
 1. Notations de vos règles et tarifs : On consigne vos prix, vos délais habituels, vos communes d’intervention et les questions fréquentes de vos clients.
 2. Entraînement de l’assistant sur vos cas réels : Tests complets sur plus de 50 questions pièges de clients (tarifs, délais, urgences, secteur) pour valider qu’il répond toujours exactement comme vous le souhaitez.
 3. Connexion à votre site et à votre téléphone : On branche l’assistant sur votre site web ou sur votre messagerie WhatsApp professionnelle.
-4. Mise en route sous surveillance : Lancement avec vérification des premières conversations pour s’assurer d’un fonctionnement fluide à 100 %.
+4. Mise en route sous surveillance : On relit avec vous les premières conversations et on corrige ce qui doit l’être.
 
 Questions fréquentes :
 - L’assistant peut-il inventer des prix ou promettre n’importe quoi ?
   Non. Nous intégrons un verrouillage strict de ses connaissances. Si un client pose une question qui sort de votre grille de tarifs ou de vos compétences, l’assistant lui propose poliment de vous transmettre ses coordonnées pour que vous le rappeliez directement.
 - L’outil respecte-t-il les lois européennes sur l’IA et la vie privée ?
-  Oui, scrupuleusement. Le client est clairement averti qu’il s’agit d’une assistance automatisée et aucune donnée n’est utilisée en dehors de votre entreprise.
+  On met l’outil en conformité avec vous : le client est clairement averti qu’il s’agit d’une assistance automatisée et ses données ne sont pas utilisées en dehors de votre entreprise.
 - Combien de temps faut-il pour qu’il soit opérationnel ?
   La préparation, les tests de questions pièges et la mise en route prennent entre 15 et 20 jours ouvrés pour une solution livrée clés en main.
 - Puis-je couper l’assistant si je préfère ?
@@ -556,23 +566,23 @@ Questions fréquentes :
 
 ## Nos réalisations (démonstrations fictives)
 
-- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux.html): Toiletteurs et éducateurs canins : ne perdez plus de temps au téléphone les mains dans le shampoing. Laissez vos clients réserver leur créneau selon la race de leur animal.
-- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture.html): Architectes et concepteurs d'intérieur : remplacez les portfolios PDF indigestes par une vitrine éditoriale minimaliste qui fait signer les projets résidentiels et tertiaires d'envergure.
-- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute.html): Esthéticiennes et gérantes de centres de soins : ne perdez plus vos soirées à fixer des créneaux par message Instagram. Automatisez vos réservations avec acompte.
-- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage.html): Chauffagistes et installateurs sanitaires en Wallonie : séparez les pannes nocturnes des gros devis de pompes à chaleur grâce à un système de qualification intelligent.
-- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration.html): Commerces de décoration et créateurs en Wallonie : donnez une seconde vie à votre boutique physique grâce à une vitrine digitale avec Click & Collect et paiement sécurisé.
-- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire.html): Experts-comptables et fiscalistes : modernisez votre image de marque, attirez des entrepreneurs à forte valeur et éliminez les relances incessantes de factures manquantes.
-- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage.html): Garagistes et carrossiers indépendants : recevez la plaque, les photos des dégâts et la description de panne directement sur votre atelier avant même le premier appel.
-- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier.html): Agents immobiliers IPI en Wallonie : démarquez-vous des grands réseaux franchisés avec une vitrine valorisante et un outil d'estimation qui génère des mandats de vente.
-- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation.html): Artisans & entrepreneurs du bâtiment en Wallonie : filtrez les curieux sans budget et signez des chantiers rentables grâce à un parcours client pensé pour votre métier.
-- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant.html): Restaurateurs à Charleroi & Wallonie : reprenez le contrôle direct de vos clients avec une carte mobile instantanée et des réservations de table sans intermédiaire.
-- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante.html): Kinésithérapeutes, ostéopathes et centres de santé en Wallonie : offrez une prise de rendez-vous intuitive conforme aux normes belges de confidentialité et gagnez 6h par semaine.
-- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport.html): Gérants de studios et coachs sportifs : éliminez les messages WhatsApp pour réserver un tapis et les relances de cotisations. Automatisez vos inscriptions et remplissez chaque séance.
+- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux.html): Toiletteurs en Wallonie : vos clients réservent en ligne selon la race, le poil et le gabarit. Le téléphone ne sonne plus pendant le bain.
+- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture.html): Architecte en Wallonie : vos réalisations lisibles sur téléphone et un brief terrain, surface et budget avant le premier rendez-vous. Une démo à essayer.
+- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute.html): Esthéticiennes et instituts en Wallonie : vos clientes choisissent soin et créneau en ligne, avec rappel et acompte. Fini les rendez-vous calés sur Instagram.
+- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage.html): Chauffagiste en Wallonie : le client choisit panne, entretien ou projet d’installation, avec marque et photos de la chaudière. Une démo à essayer.
+- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration.html): Boutiques de déco et créateurs en Wallonie : vos pièces visibles en ligne, réservées et payées sur téléphone, retirées en magasin.
+- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire.html): Fiduciaire en Wallonie : attirez les indépendants et PME que vous voulez suivre, recevez leurs pièces avant l’échéance, sans relancer à la main. Démo.
+- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage.html): Garage et carrosserie : le client réserve entretien ou pneus en ligne et envoie plaque et photos du choc avant d’appeler. Une démo à essayer.
+- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier.html): Agent immobilier en Wallonie : une estimation en ligne pour rencontrer les vendeurs, des visites demandées par des acheteurs qui ont parlé financement.
+- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation.html): Entreprise de rénovation en Wallonie : le client envoie photos, surface et budget avant votre visite. Vous savez avant de vous déplacer. Une démo à essayer.
+- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant.html): Restaurateurs en Wallonie : vos clients lisent la carte sur téléphone et réservent leur table en direct. Sans commission, sans appel en plein coup de feu.
+- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante.html): Kinés, ostéos et cabinets paramédicaux en Wallonie : vos patients réservent selon leur motif et savent quoi apporter, sans appeler le cabinet.
+- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport.html): Studios et coachs en Wallonie : vos membres réservent leur place, l’essai se prend en ligne et la liste d’attente se gère seule. Fini le comptage sur WhatsApp.
 
 ## Informations fiables
 
 - Les repères de prix affichés sur le site sont indicatifs ; le devis accepté par écrit fixe le périmètre et le prix.
-- Le client reste propriétaire de son site, de ses contenus et de son nom de domaine.
+- Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
 - Les entreprises présentées dans « Nos réalisations » sont fictives : ce sont des démonstrations par métier, pas des références clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
 - Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact.html ou par e-mail à contact@purity-agency.be.

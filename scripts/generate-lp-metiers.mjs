@@ -1,6 +1,16 @@
+// NE PAS RELANCER : les pages cas-concrets ont été réécrites à la main le 2026-11-03 ;
+// ce générateur produirait d’anciens textes et écraserait les pages actuelles.
+// Il refuse de s’exécuter sans le flag --force (à n’utiliser qu’après avoir
+// reporté dans ce script tous les textes réécrits).
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { caseStudies } from '../data/case-studies.mjs';
+
+if (!process.argv.includes("--force")) {
+  console.error("Refusé : les pages cas-concrets ont été réécrites à la main le 2026-11-03. Ce générateur produirait d’anciens textes. Relancer avec --force uniquement après mise à jour du script.");
+  process.exit(1);
+}
 
 const targetDir = 'cas-concrets';
 

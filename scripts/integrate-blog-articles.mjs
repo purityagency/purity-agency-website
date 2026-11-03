@@ -77,7 +77,7 @@ const newArticles = [
       ['/article-seo-local-wallonie.html', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.'],
       ['/article-gerer-avis-client-negatif-google.html', 'Répondre à un avis négatif sur Google', 'La méthode pour protéger votre réputation sans envenimer l’échange.']
     ],
-    cta: ['Vous voulez sécuriser votre visibilité locale ?', '/contact.html?service=seo-local', 'Faire vérifier ma présence locale']
+    cta: ['Vous voulez sécuriser votre visibilité locale ?', '/contact.html', 'Faire vérifier ma présence locale']
   },
   {
     slug: 'article-mots-cles-large-google-ads-perte-budget',
@@ -99,7 +99,7 @@ const newArticles = [
       ['/article-mots-cles-faible-volume-seo-b2b.html', 'Mots-clés à faible volume en SEO', 'Pourquoi une recherche précise vaut souvent mieux qu’un gros volume, en référencement naturel aussi.'],
       ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Vérifier avec vous si la publicité est vraiment la dépense la plus utile pour votre activité.']
     ],
-    cta: ['Votre budget pub part trop vite ?', '/contact.html?service=campagnes', 'Auditer mes campagnes']
+    cta: ['Votre budget pub part trop vite ?', '/contact.html', 'Auditer mes campagnes']
   },
   {
     slug: 'article-cacher-prix-site-web-conversion',
@@ -120,7 +120,7 @@ const newArticles = [
       ['/article-prix-site-web-belgique.html', 'Combien coûte un site web professionnel en Belgique ?', 'Les fourchettes courantes et ce qui fait réellement varier un devis.'],
       ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Ce que le visiteur doit comprendre dès le premier écran.']
     ],
-    cta: ['Vous voulez des prix plus clairs sans vous enfermer ?', '/contact.html?service=conversion', 'Revoir ma stratégie de conversion']
+    cta: ['Vous voulez des prix plus clairs sans vous enfermer ?', '/contact.html', 'Revoir ma stratégie de conversion']
   },
   {
     slug: 'article-core-web-vitals-impact-chiffre-affaires',
@@ -142,7 +142,7 @@ const newArticles = [
       ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'La lenteur arrive en tête, mais elle n’est pas la seule fuite.'],
       ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Ce qui doit s’afficher en premier, et ce qu’il vaut mieux retirer.']
     ],
-    cta: ['Votre site semble beau mais lent ?', '/contact.html?service=conversion', 'Demander un audit technique']
+    cta: ['Votre site semble beau mais lent ?', '/contact.html', 'Demander un audit technique']
   },
   {
     slug: 'article-recuperer-paniers-abandones-emails-e-commerce',
@@ -164,7 +164,7 @@ const newArticles = [
       ['/article-ia-pme-belgique.html', 'IA et automatisation : par où commencer ?', 'Choisir une seule tâche à automatiser et garder la main sur les messages sensibles.'],
       ['/article-rgpd-cookies-popins-prospects.html', 'RGPD et cookies : informer sans faire fuir', 'Rester clair sur les données collectées sans alourdir le parcours.']
     ],
-    cta: ['Vous perdez des ventes après le panier ?', '/contact.html?service=relances', 'Automatiser mes relances']
+    cta: ['Vous perdez des ventes après le panier ?', '/contact.html', 'Automatiser mes relances']
   },
   {
     slug: 'article-site-one-page-ou-multi-pages-lancement',
@@ -186,7 +186,7 @@ const newArticles = [
       ['/services/site-vitrine', 'Site Vitrine (5 pages)', 'Accueil, prestations, réalisations, présentation de l’entreprise et contact.'],
       ['/services/site-complet', 'Site Complet (10 pages et plus)', 'Une page par métier et par ville d’intervention.']
     ],
-    cta: ['Vous lancez une activité et hésitez sur le format ?', '/contact.html?service=conversion', 'Choisir la bonne structure']
+    cta: ['Vous lancez une activité et hésitez sur le format ?', '/contact.html', 'Choisir la bonne structure']
   },
   {
     slug: 'article-gerer-avis-client-negatif-google',
@@ -208,7 +208,7 @@ const newArticles = [
       ['/article-google-business-profile-suspendu-recuperation.html', 'Fiche Google suspendue : l’éviter et la récupérer', 'Les erreurs qui déclenchent une suspension et la méthode pour revenir en conformité.'],
       ['/article-e-e-a-t-artisan-pme-locale.html', 'E-E-A-T : prouver votre sérieux sur votre site', 'Les signes concrets qui rendent une entreprise locale vérifiable.']
     ],
-    cta: ['Votre image locale manque de méthode ?', '/contact.html?service=presence-marque', 'Structurer ma réputation']
+    cta: ['Votre image locale manque de méthode ?', '/contact.html', 'Structurer ma réputation']
   },
   {
     slug: 'article-mots-cles-faible-volume-seo-b2b',
@@ -229,7 +229,7 @@ const newArticles = [
       ['/services/referencement-local-seo', 'Référencement local (SEO)', 'Un travail régulier pour apparaître sur les recherches précises de votre région.'],
       ['/services/site-complet', 'Site Complet (10 pages et plus)', 'Une page par métier et par ville d’intervention.']
     ],
-    cta: ['Votre activité est spécifique et difficile à expliquer ?', '/contact.html?service=seo-local', 'Construire ma stratégie SEO']
+    cta: ['Votre activité est spécifique et difficile à expliquer ?', '/contact.html', 'Construire ma stratégie SEO']
   },
   {
     slug: 'article-instagram-commerce-physique-clients',
@@ -251,7 +251,7 @@ const newArticles = [
       ['/services/pack-visuels-reels', 'Pack Visuels et Reels', 'Vos vidéos brutes filmées au smartphone transformées en vidéos sous-titrées prêtes à publier.'],
       ['/article-minimalisme-digital-strategie-micro-entreprise.html', 'Minimalisme digital : moins de canaux, mieux tenus', 'Choisir les canaux où vos clients prennent vraiment leur décision.']
     ],
-    cta: ['Votre présence sociale ne ramène pas assez de clients ?', '/contact.html?service=studio', 'Structurer mes contenus']
+    cta: ['Votre présence sociale ne ramène pas assez de clients ?', '/contact.html', 'Structurer mes contenus']
   },
   {
     slug: 'article-rgpd-cookies-popins-prospects',
@@ -273,7 +273,7 @@ const newArticles = [
       ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Pourquoi une pop-in immédiate coûte cher dans le premier écran.'],
       ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Un échange pour repérer l’action la plus utile sur votre présence en ligne.']
     ],
-    cta: ['Vos parcours manquent de clarté et de confiance ?', '/contact.html?service=conversion', 'Clarifier mon parcours']
+    cta: ['Vos parcours manquent de clarté et de confiance ?', '/contact.html', 'Clarifier mon parcours']
   },
   {
     slug: 'article-retargeting-pme-visiteurs-indecis',
@@ -295,7 +295,7 @@ const newArticles = [
       ['/article-rgpd-cookies-popins-prospects.html', 'RGPD et cookies : informer sans faire fuir', 'Un pixel publicitaire suppose le consentement du visiteur : comment le demander sans casser le parcours.'],
       ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Corriger les fuites du site avant de payer pour faire revenir les visiteurs.']
     ],
-    cta: ['Vous payez déjà du trafic ?', '/contact.html?service=campagnes', 'Rentabiliser mes visiteurs']
+    cta: ['Vous payez déjà du trafic ?', '/contact.html', 'Rentabiliser mes visiteurs']
   },
   {
     slug: 'article-e-e-a-t-artisan-pme-locale',
@@ -317,7 +317,7 @@ const newArticles = [
       ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée, premier signal local que voient vos clients.'],
       ['/article-seo-local-wallonie.html', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.']
     ],
-    cta: ['Votre site ne prouve pas assez votre sérieux ?', '/contact.html?service=presence-marque', 'Renforcer ma crédibilité']
+    cta: ['Votre site ne prouve pas assez votre sérieux ?', '/contact.html', 'Renforcer ma crédibilité']
   },
   {
     slug: 'article-minimalisme-digital-strategie-micro-entreprise',
@@ -360,7 +360,7 @@ const newArticles = [
       ['/article-core-web-vitals-impact-chiffre-affaires.html', 'Core Web Vitals : quand la technique coûte des ventes', 'Un premier écran qui s’affiche trop tard perd le visiteur avant le message.'],
       ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site vieillissant en conservant vos adresses et votre positionnement Google.']
     ],
-    cta: ['Votre haut de page ne convertit pas assez vite ?', '/contact.html?service=conversion', 'Repenser mon premier écran']
+    cta: ['Votre haut de page ne convertit pas assez vite ?', '/contact.html', 'Repenser mon premier écran']
   },
   {
     slug: 'article-piratage-wordpress-cout-pme-prevention',
@@ -382,7 +382,7 @@ const newArticles = [
       ['/article-prix-site-web-belgique.html', 'Combien coûte un site web professionnel en Belgique ?', 'Maintenance, hébergement et licences : les coûts à prévoir dès le devis.'],
       ['/article-core-web-vitals-impact-chiffre-affaires.html', 'Core Web Vitals : quand la technique coûte des ventes', 'Vitesse, réactivité et stabilité : ce que mesurent les indicateurs de Google.']
     ],
-    cta: ['Votre site WordPress est-il vraiment maintenu ?', '/contact.html?service=hebergement', 'Sécuriser mon site']
+    cta: ['Votre site WordPress est-il vraiment maintenu ?', '/contact.html', 'Sécuriser mon site']
   },
   {
     slug: 'article-maillage-interne-seo-pages-services',
@@ -403,7 +403,7 @@ const newArticles = [
       ['/services/referencement-local-seo', 'Référencement local (SEO)', 'Un travail régulier pour apparaître sur les recherches précises de votre région.'],
       ['/article-mots-cles-faible-volume-seo-b2b.html', 'Mots-clés à faible volume en SEO', 'Les recherches précises qui méritent chacune leur page.']
     ],
-    cta: ['Vos contenus n’envoient pas assez vers vos offres ?', '/contact.html?service=seo-local', 'Auditer mon maillage']
+    cta: ['Vos contenus n’envoient pas assez vers vos offres ?', '/contact.html', 'Auditer mon maillage']
   }
 ];
 

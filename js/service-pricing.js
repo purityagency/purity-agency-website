@@ -4,11 +4,13 @@
   const blocks = [...document.querySelectorAll('[data-service-pricing]')];
   if (!blocks.length) return;
 
+  // Mêmes groupes que serviceGroups (data/services.mjs) : chaque offre dans un
+  // seul pilier, le diagnostic sert de porte d'entrée.
   const offerGroups = {
-    acquisition: ['M03', 'M04', 'M07', 'M08', 'M13', 'M16'],
-    visibilite: ['M16', 'M09', 'M10', 'M05', 'M06'],
+    acquisition: ['M03', 'M04', 'M05', 'M06', 'M07', 'M08', 'M13'],
+    visibilite: ['M16', 'M10', 'M09'],
     automatisation: ['M21', 'M22', 'M23'],
-    outils: ['M01', 'M22', 'M23']
+    diagnostic: ['M01']
   };
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -32,7 +34,7 @@
         <em class="promo-pill promo-pill--free">Gratuit · sans engagement</em>
       </div>
       <div class="price-recurring price-recurring--free">
-        <span class="price-recurring__note">15 min en visio · sans aucun engagement</span>
+        <span class="price-recurring__note">15 min par téléphone ou en visio · sans engagement</span>
       </div>`;
     }
 
@@ -59,6 +61,10 @@
 
   const renderOffer = offer => {
     const ctaLabel = offer.id === 'M01' ? 'Réserver mon créneau' : 'Profiter de l’offre';
+    // Rendez-vous : bloc de réservation. Devis : offre rappelée avec la remise.
+    const ctaUrl = offer.id === 'M01'
+      ? '/contact.html?intent=rdv'
+      : `/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=lancement`;
     const detailUrl = offer.slug ? `/services/${encodeURIComponent(offer.slug)}` : '/services';
     return `<article class="service-offer-row">
       <div class="service-offer-row__copy">
@@ -68,7 +74,7 @@
       <div class="service-offer-row__price" aria-label="Prix ${escapeHtml(offer.price)}">${priceMarkup(offer)}</div>
       <div class="service-offer-row__actions">
         <a class="service-offer-row__detail" href="${detailUrl}">Détails &amp; livrables <span aria-hidden="true">→</span></a>
-        <a class="service-offer-row__cta" href="/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=novdec25">${ctaLabel} <span aria-hidden="true">↗</span></a>
+        <a class="service-offer-row__cta" href="${ctaUrl}">${ctaLabel} <span aria-hidden="true">↗</span></a>
       </div>
     </article>`;
   };
@@ -90,7 +96,7 @@
         const ids = offerGroups[block.dataset.servicePricing] || [];
         const selected = ids.map(id => offers.get(id)).filter(Boolean);
         if (!target || !selected.length) return setError(block);
-        target.innerHTML = selected.map(renderOffer).join('') + pricingNote;
+        target.innerHTML = selected.map(renderOffer).join('') + (block.dataset.servicePricing === 'diagnostic' ? '' : pricingNote);
       });
     })
     .catch(() => blocks.forEach(setError));

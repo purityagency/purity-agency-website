@@ -166,3 +166,12 @@
 .prose blockquote.legal-form p{margin:.4rem 0}
 @media(max-width:700px){.legal-table thead{display:none}.legal-table tr{display:block;padding:1rem 0;border-bottom:1px solid var(--line)}.legal-table td{display:block;padding:.2rem 0;border:0}.legal-table td:first-child{font-weight:700}}
 @media(max-width:700px){.legal-table td::before{display:block;color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.legal-table--priv td:nth-child(2)::before{content:"Données et finalité"}.legal-table--priv td:nth-child(3)::before{content:"Base légale"}.legal-table--priv td:nth-child(4)::before,.legal-table--cookies td:nth-child(3)::before{content:"Durée"}.legal-table td+td{margin-top:.5rem}}
+.about-card{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(1.5rem,4vw,2.5rem);align-items:start;margin:0 0 1rem}
+.about-portrait{margin:0}
+.about-portrait img{display:block;width:100%;height:auto;border-radius:18px;background:#f2f2f2}
+.about-facts{display:grid;gap:0;margin:0}
+.about-facts div{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr);gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.about-facts div:first-child{border-top:1px solid var(--line)}
+.about-facts dt{color:var(--muted);font-size:.9rem}
+.about-facts dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
+@media(max-width:700px){.about-card{grid-template-columns:1fr}.about-portrait{max-width:240px}.about-facts div{grid-template-columns:1fr;gap:.2rem}}

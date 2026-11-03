@@ -557,7 +557,7 @@ for (const study of caseStudies) {
   };
 
   const html = `<!doctype html>
-<html lang="fr">
+<html lang="fr-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">

@@ -497,7 +497,7 @@ export const services = [
   {
     id: 'M07',
     slug: 'refonte-modernisation',
-    name: 'Refonte & modernisation de site web',
+    name: 'Refonte et modernisation de site web',
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Vos liens Google conservés · Fin des lenteurs · Site que vous osez montrer',
     cardDescription: 'On modernise votre site existant pour qu’il inspire confiance sur mobile et génère enfin des demandes, en redirigeant chaque ancienne adresse. Maintenance requise.',
@@ -595,7 +595,7 @@ export const services = [
   {
     id: 'M08',
     slug: 'google-business',
-    name: 'Fiche Google Business & Maps',
+    name: 'Fiche Google Business et Maps',
     pillar: 'Pilier 01 · Sites Web & Référencement',
     kicker: 'Fiche vérifiée · Kit d’avis QR Code · Appel en 1 clic',
     cardDescription: 'Optimisation complète de votre fiche Google Maps pour ressortir quand on cherche votre métier dans votre ville.',
@@ -693,7 +693,7 @@ export const services = [
   {
     id: 'M09',
     slug: 'identite-visuelle-logo',
-    name: 'Identité visuelle & Logo',
+    name: 'Identité visuelle et Logo',
     pillar: 'Pilier 02 · Réseaux Sociaux & Image',
     kicker: 'Image haut de gamme · Camionnettes & Devis · Droits du logo cédés',
     cardDescription: 'Création ou refonte de votre logo, palette de couleurs, typographies et charte graphique professionnelle.',
@@ -791,7 +791,7 @@ export const services = [
   {
     id: 'M10',
     slug: 'pack-visuels-reels',
-    name: 'Pack Visuels & Reels Studio',
+    name: 'Pack Visuels et Reels Studio',
     pillar: 'Pilier 02 · Réseaux Sociaux & Image',
     kicker: '4 vidéos montées + 6 visuels · Chantiers réels · Prêt à publier',
     cardDescription: 'Création de visuels sur mesure et vidéos courtes (Reels / TikTok) prêts à publier pour valoriser votre savoir-faire.',

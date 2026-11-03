@@ -74,6 +74,7 @@ function renderFooter() {
       <a href="/services">Services &amp; Tarifs</a>
       <a href="/cas-concrets.html">Nos réalisations</a>
       <a href="/blog.html">Blog</a>
+      <a href="/a-propos">À propos</a>
       <a href="/contact.html">Contact</a>
     </nav>
     <div>
@@ -136,7 +137,7 @@ function metaDescriptionFor(service) {
 
 function headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson }) {
   return `<!doctype html>
-<html lang="fr">
+<html lang="fr-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -308,7 +309,8 @@ function heroVisual(svc) {
 // --------------------------------------------------------------------------
 function buildServiceDetailPage(service) {
   const canonicalUrl = `https://purity-agency.be/services/${service.slug}`;
-  const pageTitle = [' : tarif et livrables | Purity Agency', ' : tarif | Purity Agency', ' | Purity Agency'].map(x => service.name + x).find(t => t.length < 60);
+  const plainName = service.name.replace(/\s*&\s*/g, ' et ');
+  const pageTitle = [' : tarif et livrables | Purity Agency', ' : tarif | Purity Agency', ' | Purity Agency'].map(x => plainName + x).find(t => t.length < 60);
   const allFaq = [...service.faq, ...objectionsFor(service)];
   const answer = answerFor(service);
   const metaDesc = metaDescriptionFor(service);

@@ -283,6 +283,7 @@ const CLEAN_HTML_ROUTES = new Set([
   '/cas-concrets',
   '/services',
   '/blog',
+  '/a-propos',
   '/legal',
   '/confidentialite',
   '/cookies',

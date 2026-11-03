@@ -508,7 +508,7 @@ function articleHtml(article) {
   };
 
   return `<!doctype html>
-<html lang="fr">
+<html lang="fr-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -562,7 +562,7 @@ function blogHtml() {
   };
 
   return `<!doctype html>
-<html lang="fr">
+<html lang="fr-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">

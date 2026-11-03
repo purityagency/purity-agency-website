@@ -93,8 +93,15 @@ export function validateEnvironment() {
     }
   }
 
+  // Les leads dependent de Resend : sans cle, le formulaire ne marche qu'en mode
+  // « enregistre mais non envoye ». Erreur bien visible dans les logs, sans planter.
+  const resendOk = Boolean(process.env.RESEND_API_KEY?.trim()) || existsSync(resolve(SECRETS_DIR, '.resend-key'));
+  if (!resendOk) {
+    console.error('[AppSec ERREUR] RESEND_API_KEY absente : les e-mails de contact ne partiront PAS (les demandes seront seulement journalisees). Definir RESEND_API_KEY dans les variables Render.');
+  }
+
   // Rapport de démarrage
-  if (warnings.length > 0 && !isProd) {
+  if (warnings.length > 0) {
     for (const w of warnings) {
       console.warn(`[AppSec Warning] ${w}`);
     }

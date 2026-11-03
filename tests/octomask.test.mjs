@@ -75,10 +75,16 @@ test('invalid model price gets one repair attempt before display', async () => {
 test('contact never claims success if neither journal nor email succeeds', async () => {
   const lead = { name: 'Test', email: 'synthetic@example.com', message: 'Synthetic test only' };
   const fail = () => { throw new Error('unavailable'); };
-  assert.deepEqual(await sendContact(lead, { apiKey: '', journal: fail }), { ok: false, saved: false, delivered: false });
-  assert.deepEqual(await sendContact(lead, { apiKey: '', journal: () => {} }), { ok: true, saved: true, delivered: false });
-  assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: fail, fetcher: async () => ({ ok: true }) }), { ok: true, saved: false, delivered: true });
-  assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: fail, fetcher: fail }), { ok: false, saved: false, delivered: false });
+  const origErr = console.error; const logged = []; console.error = (m) => logged.push(String(m));
+  try {
+    assert.deepEqual(await sendContact(lead, { apiKey: '', journal: fail }), { ok: false, saved: false, delivered: false, reason: 'mail-not-configured' });
+    assert.deepEqual(await sendContact(lead, { apiKey: '', journal: () => {} }), { ok: true, saved: true, delivered: false, reason: 'mail-not-configured' });
+    assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: fail, fetcher: async () => ({ ok: true }) }), { ok: true, saved: false, delivered: true });
+    assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: fail, fetcher: fail }), { ok: false, saved: false, delivered: false, reason: 'mail-failed' });
+    // Resend repond une erreur HTTP : demande gardee, mais jamais presentee comme livree.
+    assert.deepEqual(await sendContact(lead, { apiKey: 'test', journal: () => {}, fetcher: async () => ({ ok: false, status: 503 }) }), { ok: true, saved: true, delivered: false, reason: 'mail-failed' });
+  } finally { console.error = origErr; }
+  assert.ok(logged.length === 4 && logged.every((l) => l.startsWith('[LEAD NON LIVRE]')), 'chaque lead non livre est journalise en console.error');
 });
 test('public audit rejects unsafe protocols, credentials, ports and private addresses', () => {
   assert.equal(normaliseUrl('file:///etc/passwd'), null);

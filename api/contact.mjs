@@ -68,8 +68,17 @@ export async function sendContact(b, { fetcher = fetch, apiKey = key(), journal 
     saved = true;
   } catch { /* Report success only when at least one delivery path worked. */ }
 
+  // Le disque de Render gratuit est ephemere : si l'e-mail n'est pas parti, la
+  // demande est reecrite dans les logs (console.error) pour ne jamais se perdre.
+  const lost = (why) => {
+    console.error(`[LEAD NON LIVRE] ${why} | enregistre sur disque : ${saved} | ${JSON.stringify({ at: new Date().toISOString(), name, email, phone, slot, context, message })}`);
+  };
+
   const k = apiKey;
-  if (!k) return { ok: saved, saved, delivered: false };
+  if (!k) {
+    lost('RESEND_API_KEY absente');
+    return { ok: saved, saved, delivered: false, reason: 'mail-not-configured' };
+  }
 
   try {
     const r = await fetcher('https://api.resend.com/emails', {
@@ -84,8 +93,11 @@ export async function sendContact(b, { fetcher = fetch, apiKey = key(), journal 
       }),
       signal: AbortSignal.timeout(10000)
     });
-    return { ok: r.ok || saved, saved, delivered: r.ok };
-  } catch {
-    return { ok: saved, saved, delivered: false };
+    if (r.ok) return { ok: true, saved, delivered: true };
+    lost(`Resend a repondu HTTP ${r.status}`);
+    return { ok: saved, saved, delivered: false, reason: 'mail-failed' };
+  } catch (err) {
+    lost(`Resend injoignable (${err && err.name ? err.name : 'erreur'})`);
+    return { ok: saved, saved, delivered: false, reason: 'mail-failed' };
   }
 }

@@ -40,3 +40,17 @@ test('assets versionnés immuables, sitemap 200 et clé IndexNow servie', async 
   const key = (await readFile(new URL('../scripts/indexnow.mjs', import.meta.url), 'utf8')).match(/KEY = '([0-9a-f]+)'/)[1];
   assert.equal((await (await get(`/${key}.txt`)).text()).trim(), key);
 });
+
+test('page À propos routée, pages légales en noindex et hors sitemap', async () => {
+  assert.equal((await get('/a-propos')).status, 200);
+  const r = await get('/a-propos.html');
+  assert.equal(r.status, 301);
+  assert.equal(r.headers.get('location'), '/a-propos');
+  const sm = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
+  assert.match(sm, /<loc>https:\/\/purity-agency\.be\/a-propos<\/loc>/);
+  for (const p of ['legal', 'conditions-generales', 'confidentialite', 'cookies']) {
+    assert.ok(!sm.includes(`/${p}.html<`), `${p} ne doit pas être dans le sitemap`);
+    const html = await (await get(`/${p}`)).text();
+    assert.match(html, /<meta name="robots" content="noindex,follow">/, p);
+  }
+});

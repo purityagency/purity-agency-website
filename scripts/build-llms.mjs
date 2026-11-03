@@ -54,6 +54,7 @@ const short = `${HEAD}
 - [Site internet par métier](${O}/site-internet/): pages dédiées à ${metiers.length} métiers.
 - [Nos réalisations](${O}/cas-concrets.html): ${cases.length} démonstrations interactives par métier.
 - [Blog](${O}/blog.html): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
+- [À propos](${O}/a-propos): Amir Kebiyeb, fondateur, statut d'entreprise (personne physique, BCE 1036.775.590) et façon de travailler.
 - [Contact](${O}/contact.html): formulaire et réservation d'un appel de 15 minutes, sans engagement.
 - [Version détaillée pour IA](${O}/llms-full.txt): offres, livrables, délais et FAQ complets.
 

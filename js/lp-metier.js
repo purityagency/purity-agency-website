@@ -153,7 +153,9 @@ document.addEventListener('DOMContentLoaded', function () {
           status.textContent = '';
           var text = document.createElement('p');
           text.className = 'lp-form__status-text';
-          text.textContent = '✓ Demande bien reçue. Réponse personnelle sous 24 h ouvrées. Pour aller plus vite, réservez directement un appel de 15 minutes.';
+          text.textContent = data.delivered === false
+            ? 'Votre demande est bien enregistrée. Réponse personnelle sous 24 h ouvrées ; sans nouvelles d’ici là, écrivez à contact@purity-agency.be. Pour aller plus vite, réservez un appel de 15 minutes.'
+            : '✓ Demande bien reçue. Réponse personnelle sous 24 h ouvrées. Pour aller plus vite, réservez directement un appel de 15 minutes.';
           var booking = document.createElement('a');
           booking.className = 'lp-form__booking';
           booking.href = BOOKING_URL;

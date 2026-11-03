@@ -1,5 +1,5 @@
 // Génère sitemap.xml depuis les pages HTML indexables (canonical = URL servie, pas de noindex).
-// lastmod = date de dernière modif git du fichier (repli : mtime). Usage : node scripts/build-sitemap.mjs
+// lastmod = date réelle du fichier : dernier commit git s'il est propre, sinon date de modification (mtime). Usage : node scripts/build-sitemap.mjs
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
@@ -9,6 +9,17 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const ORIGIN = 'https://purity-agency.be';
 const DIRS = ['', 'services', 'agence-web', 'site-internet', 'cas-concrets'];
 const EXCLUDE = new Set(['404.html']);
+// Pages légales : jamais dans le sitemap, et elles doivent porter <meta robots noindex,follow>.
+// Le script s'arrête si l'une d'elles redevient indexable, pour que la règle tienne.
+const LEGAL_NOINDEX = ['legal.html', 'conditions-generales.html', 'confidentialite.html', 'cookies.html'];
+for (const name of LEGAL_NOINDEX) {
+  EXCLUDE.add(name);
+  const html = readFileSync(join(ROOT, name), 'utf8');
+  if (!/<meta[^>]+name=["']robots["'][^>]*content=["']noindex,follow["']/i.test(html)) {
+    console.error(`${name} doit contenir <meta name="robots" content="noindex,follow">`);
+    process.exit(1);
+  }
+}
 
 function lastmod(file) {
   try {

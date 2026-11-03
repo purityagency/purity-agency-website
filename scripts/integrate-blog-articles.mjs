@@ -1,3 +1,6 @@
+// NE PAS RELANCER : les articles ont été retouchés à la main le 2026-11-03 (images, visuels SVG, maillage).
+// Ce script écraserait ces retouches. Il refuse de tourner sans --force.
+if (!process.argv.includes('--force')) { console.error('integrate-blog-articles : refusé sans --force (écraserait les articles retouchés).'); process.exit(1); }
 // Genere les 16 articles « newArticles », la page blog.html et met a jour sitemap.xml.
 // Les 5 articles « oldArticles » sont ecrits a la main : seules leurs cartes et leurs
 // entrees de sitemap viennent d'ici. Les gabarits (en-tete, pied de page, versions CSS/JS)

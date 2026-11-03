@@ -303,6 +303,16 @@ export const RESULT_PHOTO = {
   'pilote-automatique-integral': { id: 'service-pilote-automatique-integral-resultat', caption: 'Vous fermez boutique, l’assistant continue de répondre.', replaceCases: true }
 };
 
+// Visuels SVG animés (partials/visuals) : steps = sous la frise « Comment ça se passe »,
+// result = remplace la photo du bloc « Au quotidien ». Pas de doublon avec le hero :
+// réseaux sociaux et refonte gardent leur planning et leur avant / après en photos réelles.
+export const SVG_VISUALS = {
+  'pilote-automatique-essentiel': { steps: 'flux-automatisation' },
+  'pilote-automatique-business': { steps: 'relance-devis' },
+  'pilote-automatique-integral': { steps: 'agenda-reservation', result: 'notifications-telephone' },
+  'google-business': { steps: 'fiche-google-local' }
+};
+
 // Planning réseaux sociaux : visuel photo du jour quand il existe, sinon visuel de démo.
 export const WEEK_PHOTOS = { sport: 'social-sport-post', restaurant: 'social-restaurant-post', beaute: 'social-beaute-post', decoration: 'social-decoration-post', garage: 'social-garage-post', animaux: 'social-animaux-post' };
 

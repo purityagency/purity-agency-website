@@ -1,4 +1,4 @@
-import { answerFor, objectionsFor, linksFor, commitmentAnswer, NOT_FOR, VISUALS, HUB_THUMB, photoImg, RESULT_PHOTO, weekImg, icon } from './service-page-extras.mjs';
+import { answerFor, objectionsFor, linksFor, commitmentAnswer, NOT_FOR, VISUALS, HUB_THUMB, photoImg, RESULT_PHOTO, weekImg, icon, SVG_VISUALS } from './service-page-extras.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SERVICES_DIR = path.join(ROOT, 'services');
-const CSS_VERSION = '20261105';
+const CSS_VERSION = '20261106';
+// Snippet SVG lu tel quel dans partials/visuals (pas d'include côté serveur).
+const vzSnippet = name => fs.readFileSync(path.join(ROOT, 'partials', 'visuals', `${name}.html`), 'utf8').trim();
+const VZ_ASSETS = `<link rel="stylesheet" href="/css/visuals.css?v=1">
+<script src="/js/visuals.js?v=1" defer></script>
+`;
 
 if (!fs.existsSync(SERVICES_DIR)) {
   fs.mkdirSync(SERVICES_DIR, { recursive: true });
@@ -135,7 +140,7 @@ function metaDescriptionFor(service) {
   return desc;
 }
 
-function headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson }) {
+function headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson, vz = false }) {
   return `<!doctype html>
 <html lang="fr-BE">
 <head>
@@ -156,7 +161,7 @@ ${OG_IMAGE}
 <link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=${CSS_VERSION}">
-<script type="application/ld+json">
+${vz ? VZ_ASSETS : ''}<script type="application/ld+json">
 ${JSON.stringify(schemaJson, null, 2)}
 </script>
 </head>`;
@@ -312,13 +317,14 @@ function heroVisual(svc) {
 function resultSection(service) {
   const r = RESULT_PHOTO[service.slug];
   if (!r) return '';
+  const svg = SVG_VISUALS[service.slug] && SVG_VISUALS[service.slug].result;
   return `<section class="sd-section sd-result" aria-labelledby="sd-result-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Au quotidien</span>
         <h2 class="sd-heading" id="sd-result-title">Ce que ça change pour vous</h2>
       </div>
-      <figure class="sd-result__fig">
-        ${photoImg(r.id, { sizes: '(min-width: 1000px) 520px, 92vw' })}
+      <figure class="sd-result__fig${svg ? ' sd-result__fig--vz' : ''}">
+        ${svg ? vzSnippet(svg) : photoImg(r.id, { sizes: '(min-width: 1000px) 520px, 92vw' })}
         <figcaption>${e(r.caption)}</figcaption>
       </figure>
     </section>
@@ -413,7 +419,7 @@ function buildServiceDetailPage(service) {
         ['key', service.monthlyPrice && service.commitment && service.commitment.minMonths ? `Engagement de ${service.commitment.minMonths} mois` : (service.monthlyPrice ? 'Résiliable chaque mois' : 'Sans abonnement'), service.commitment ? service.commitment.text : '']
       ];
 
-  return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson })}
+  return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson, vz: Boolean(SVG_VISUALS[service.slug]) })}
 <body class="service-page">
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 
@@ -507,7 +513,10 @@ ${renderHeader('services')}
       </div>
       <ol class="sd-timeline">
         ${service.howItWorks.map(s => `<li class="sd-timeline__step"><span class="sd-timeline__num">${e(s.step)}</span><strong>${e(s.title)}</strong></li>`).join('\n        ')}
-      </ol>
+      </ol>${SVG_VISUALS[service.slug] && SVG_VISUALS[service.slug].steps ? `
+      <div class="sd-vz-slot">
+        ${vzSnippet(SVG_VISUALS[service.slug].steps)}
+      </div>` : ''}
     </section>
 
     ${resultSection(service)}${service.relatedCases && service.relatedCases.length && !(RESULT_PHOTO[service.slug] && RESULT_PHOTO[service.slug].replaceCases) ? `<section class="sd-section" aria-labelledby="sd-cases-title">
@@ -661,7 +670,7 @@ function buildServicesHubPage() {
     ]
   };
 
-  return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson })}
+  return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson, vz: true })}
 <body class="service-page">
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 
@@ -730,6 +739,12 @@ ${renderHeader('services')}
           </div>
         </article>`;
         }).join('\n        ')}
+      </div>
+    </section>
+
+    <section class="sd-section sd-hub-steps" aria-label="Les étapes d’un projet">
+      <div class="sd-vz-slot">
+        ${vzSnippet('etapes-projet')}
       </div>
     </section>
 

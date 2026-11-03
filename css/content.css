@@ -175,3 +175,4 @@
 .about-facts dt{color:var(--muted);font-size:.9rem}
 .about-facts dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 @media(max-width:700px){.about-card{grid-template-columns:1fr}.about-portrait{max-width:240px}.about-facts div{grid-template-columns:1fr;gap:.2rem}}
+.prose .vz{max-width:580px;margin:2.2rem auto 2.4rem}

@@ -1142,3 +1142,8 @@ body.service-page {
 .sd-result__fig figcaption { max-width: 34ch; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.4; font-weight: 560; letter-spacing: -0.01em; color: var(--sd-ink, #17141c); text-wrap: pretty; }
 .sd-hub-card__thumb img[src^="/assets/visuals/"] { object-position: center; }
 @media (max-width: 720px) { .sd-result__fig { grid-template-columns: minmax(0, 1fr); } .sd-result__fig img { aspect-ratio: 4 / 3; } }
+
+/* Visuels SVG animés (partials/visuals, styles dans visuals.css) */
+.sd-vz-slot { max-width: 580px; margin: clamp(1.8rem, 4vw, 2.8rem) auto 0; }
+.sd-hub-steps .sd-vz-slot { margin-top: 0; }
+.sd-result__fig--vz { align-items: center; }

@@ -689,6 +689,9 @@ ${renderHeader('services')}
           <p class="sd-hero__promise">${icon('clock')}${PROMISE}</p>
         </div>
       </div>
+      <figure class="sd-hub-hero__photo">
+        ${photoImg('service-hub-wallonie-hero', { lazy: false, high: true, sizes: '(min-width: 1240px) 1180px, 92vw' })}
+      </figure>
       <div class="sd-trust-strip" aria-label="Garanties">
         <span class="sd-trust-item">${icon('shield')}Entreprise enregistrée BCE 1036.775.590</span>
         <span class="sd-trust-item">${icon('pin')}Charleroi · Namur · Mons · Liège · Wallonie</span>
@@ -711,7 +714,7 @@ ${renderHeader('services')}
           const tall = h > w && !src.startsWith('/assets/visuals/');
           return `<article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
           <div class="sd-hub-card__thumb${tall ? ' sd-hub-card__thumb--tall' : ''}">
-            <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? (idx === 0 ? ' fetchpriority="high"' : '') : ' loading="lazy"'}>${svc.slug === 'diagnostic-digital' ? '<span class="sd-hub-card__tag">Exemple de site daté</span>' : ''}
+            <img src="${src}" width="${w}" height="${h}" alt="${e(alt)}" decoding="async"${idx < 3 ? '' : ' loading="lazy"'}>${svc.slug === 'diagnostic-digital' ? '<span class="sd-hub-card__tag">Exemple de site daté</span>' : ''}
           </div>
           <div class="sd-hub-card__body">
             <span class="sd-hub-card__pillar">${e(svc.pillar.replace(/Pilier \d+ · /, ''))}</span>

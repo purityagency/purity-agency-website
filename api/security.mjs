@@ -287,7 +287,8 @@ const CLEAN_HTML_ROUTES = new Set([
   '/legal',
   '/confidentialite',
   '/cookies',
-  '/conditions-generales'
+  '/conditions-generales',
+  '/labo-visuels'
 ]);
 
 export function resolveCleanRoute(rawPathname) {

@@ -243,12 +243,12 @@ export const HUB_THUMB = {
   'site-vitrine': ['img', '/assets/shots/renovation-desktop-0.webp', 1440, 900, 'Accueil de la démo rénovation Atelier Noma'],
   'site-complet': ['img', '/assets/shots/architecture-desktop-0.webp', 1440, 900, 'Accueil de la démo bureau d’architecture Ligne Claire'],
   'boutique-en-ligne': ['img', '/assets/shots/decoration-desktop-0.webp', 1440, 900, 'Accueil de la démo boutique de décoration Matière Commune'],
-  'refonte-modernisation': ['img', '/assets/shots/immobilier-desktop-0.webp', 1440, 900, 'Accueil de la démo agence immobilière Beaux Jours'],
+  'refonte-modernisation': ['img', '/assets/visuals/service-refonte-modernisation-hero.webp', 1194, 896, "Vieil écran cathodique beige à côté d’un ordinateur portable moderne, sur une étagère encombrée de classeurs"],
   'google-business': ['img', '/assets/visuals/service-google-business-hero.webp', 1024, 768, "Smartphone affichant une carte, tenu dans une ruelle pavée de briques"],
   'identite-visuelle-logo': ['img', '/assets/shots/beaute-desktop-0.webp', 1440, 900, 'Identité de la démo institut de beauté Maison Lune'],
   'pack-visuels-reels': ['img', '/assets/visuals/service-pack-visuels-reels-hero.webp', 1195, 896, "Smartphone sur trépied qui filme un potier au tour dans son atelier"],
   'referencement-local-seo': ['img', '/assets/visuals/service-referencement-local-seo-hero.webp', 1195, 896, "Vue en hauteur sur les toits de briques de Charleroi et un terril"],
-  'gestion-reseaux-sociaux': ['img', '/assets/visuals/service-gestion-reseaux-sociaux-resultat.webp', 896, 1195, "Commerçante souriante qui regarde son téléphone derrière son comptoir"],
+  'gestion-reseaux-sociaux': ['img', '/assets/visuals/service-gestion-reseaux-sociaux-hero.webp', 1194, 896, "Smartphone sur mini trépied qui filme un pâtissier en train de poser une tarte sur une table en marbre"],
   'pilote-automatique-essentiel': ['img', '/assets/visuals/service-pilote-automatique-essentiel-hero.webp', 1024, 768, "Commerçant devant son rideau baissé le soir, qui regarde une notification sur son téléphone"],
   'pilote-automatique-business': ['img', '/assets/visuals/service-pilote-automatique-business-hero.webp', 1195, 896, "Imprimante qui sort une facture dans un petit bureau administratif"],
   'pilote-automatique-integral': ['img', '/assets/visuals/service-pilote-automatique-integral-hero.webp', 1024, 768, "Coiffeuse qui consulte ses rendez-vous sur une tablette à l’accueil de son salon"]
@@ -271,7 +271,14 @@ export const PHOTOS = {
   'service-pilote-automatique-integral-resultat': [896, 1195, true, "Commerçant qui ferme la porte de sa boutique le soir, vu de dos"],
   'social-sport-post': [1024, 1024, true, "Mains d’un coach qui se mettent de la magnésie dans une salle de sport"],
   'social-restaurant-post': [1024, 1024, true, "Mains d’un chef qui dressent une assiette de saison en cuisine"],
-  'social-decoration-post': [768, 768, false, "Mains qui emballent un vase en céramique dans du papier kraft sur un comptoir de boutique"],
+  'social-decoration-post': [1024, 1024, true, "Étagères en bois d’une boutique de décoration, céramiques et linges pliés"],
+  'social-beaute-post': [1024, 1024, true, "Mains d’une esthéticienne qui rangent des flacons ambrés sur une étagère en pierre"],
+  'social-animaux-post': [1024, 1024, true, "Toiletteur qui brosse un petit chien calme sur sa table de toilettage"],
+  'service-refonte-modernisation-hero': [1194, 896, true, "Vieil écran cathodique beige à côté d’un ordinateur portable moderne, sur une étagère encombrée de classeurs"],
+  'service-refonte-modernisation-resultat': [896, 1194, true, "Ordinateur portable ouvert sur un site clair, posé sur un bureau en bois rangé près d’une fenêtre"],
+  'service-gestion-reseaux-sociaux-hero': [1194, 896, true, "Smartphone sur mini trépied qui filme un pâtissier en train de poser une tarte sur une table en marbre"],
+  'service-pilote-automatique-essentiel-resultat': [896, 1194, true, "Artisan qui charge sa camionnette dans une rue de briques, en fin de journée"],
+  'service-hub-wallonie-hero': [1365, 768, true, "Coin de rue wallonne au petit matin, une boulangerie éclairée sous un rideau à moitié levé"],
   'social-garage-post': [768, 768, false, "Mains d’un mécanicien qui serrent un écrou de roue avec une clé"]
 };
 
@@ -290,13 +297,14 @@ export const RESULT_PHOTO = {
   'identite-visuelle-logo': { id: 'service-identite-visuelle-logo-resultat', caption: 'Votre carte de visite, toujours sous la main sur le chantier.' },
   'pack-visuels-reels': { id: 'service-pack-visuels-reels-resultat', caption: 'Vos réalisations en vidéo verticale, prêtes à publier.' },
   'gestion-reseaux-sociaux': { id: 'service-gestion-reseaux-sociaux-resultat', caption: 'Vous suivez vos publications d’un coup d’œil, sans y passer vos soirées.' },
-  'pilote-automatique-essentiel': { id: 'service-pilote-automatique-essentiel-hero', caption: 'Le message arrive après la fermeture : la réponse est déjà partie.', replaceCases: true },
+  'refonte-modernisation': { id: 'service-refonte-modernisation-resultat', caption: 'Un site net et rapide, que vous ouvrez sans appréhension.' },
+  'pilote-automatique-essentiel': { id: 'service-pilote-automatique-essentiel-resultat', caption: 'Vous chargez la camionnette : la réponse au client est déjà partie.', replaceCases: true },
   'pilote-automatique-business': { id: 'service-pilote-automatique-business-resultat', caption: 'Le bureau reste rangé : chaque demande remplit son dossier toute seule.', replaceCases: true },
   'pilote-automatique-integral': { id: 'service-pilote-automatique-integral-resultat', caption: 'Vous fermez boutique, l’assistant continue de répondre.', replaceCases: true }
 };
 
 // Planning réseaux sociaux : visuel photo du jour quand il existe, sinon visuel de démo.
-export const WEEK_PHOTOS = { sport: 'social-sport-post', restaurant: 'social-restaurant-post', decoration: 'social-decoration-post', garage: 'social-garage-post' };
+export const WEEK_PHOTOS = { sport: 'social-sport-post', restaurant: 'social-restaurant-post', beaute: 'social-beaute-post', decoration: 'social-decoration-post', garage: 'social-garage-post', animaux: 'social-animaux-post' };
 
 // <img> d'une case du planning (variante 800 px si elle existe).
 export function weekImg(key, i) {

@@ -950,6 +950,9 @@ body.service-page {
 .sd-hub-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 2rem 4rem; align-items: end; }
 .sd-hub-hero .sd-hero__title { margin-bottom: 0; font-size: clamp(2.4rem, 5.6vw, 4.6rem); }
 .sd-hub-hero .sd-hero__lead { margin-bottom: 1.3rem; }
+.sd-hub-hero__photo { margin: clamp(1.6rem, 3.5vw, 2.6rem) 0 0; }
+.sd-hub-hero__photo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 7; object-fit: cover; border-radius: 20px; outline: 1px solid rgba(0, 0, 0, 0.08); outline-offset: -1px; }
+@media (max-width: 720px) { .sd-hub-hero__photo img { aspect-ratio: 4 / 3; } }
 .sd-hub-filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
 .sd-hub-filter-btn {
   min-height: 44px;

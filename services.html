@@ -17,9 +17,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
+<link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261104">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,6 +57,7 @@
 </script>
 </head>
 <body class="service-page">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
 <header class="header">
   <a class="header__brand" href="/">
@@ -65,9 +66,9 @@
   </a>
   <nav class="header__nav" aria-label="Principal">
     <a href="/services" aria-current="page">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
@@ -85,13 +86,13 @@
   </div>
   <nav class="menu__nav">
     <a href="/services">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -108,7 +109,7 @@
         <div class="sd-hub-hero__side">
           <p class="sd-hero__lead">Sites, fiche Google, réseaux et automatisation pour les indépendants et PME de Wallonie. Chaque prix est celui de votre devis.</p>
           <div class="sd-hero__actions">
-            <a class="sd-btn-primary" href="/contact.html?intent=rdv">Diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+            <a class="sd-btn-primary" href="/contact?intent=rdv">Diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
           </div>
           <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
         </div>
@@ -322,7 +323,7 @@
             <img src="/assets/shots/sante-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo cabinet de santé Horizon" decoding="async" loading="lazy">
           </div>
           <div class="sd-hub-card__body">
-            <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
+            <span class="sd-hub-card__pillar">Réponses et relances automatiques</span>
             <h2 class="sd-hub-card__title"><a href="/services/pilote-automatique-essentiel">Pilote Automatique Essentiel</a></h2>
             <p class="sd-hub-card__summary">Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine.</p>
             <div class="sd-hub-card__footer">
@@ -339,7 +340,7 @@
             <img src="/assets/shots/fiduciaire-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo fiduciaire Clarté et Associés" decoding="async" loading="lazy">
           </div>
           <div class="sd-hub-card__body">
-            <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
+            <span class="sd-hub-card__pillar">Réponses et relances automatiques</span>
             <h2 class="sd-hub-card__title"><a href="/services/pilote-automatique-business">Pilote Automatique Business</a></h2>
             <p class="sd-hub-card__summary">Reliez votre site, vos devis, votre planning et votre facturation sans aucune double saisie.</p>
             <div class="sd-hub-card__footer">
@@ -356,7 +357,7 @@
             <img src="/assets/shots/immobilier-desktop-1.webp" width="1440" height="900" alt="Recherche de biens de la démo agence immobilière Beaux Jours" decoding="async" loading="lazy">
           </div>
           <div class="sd-hub-card__body">
-            <span class="sd-hub-card__pillar">Automatisation &amp; Agents IA</span>
+            <span class="sd-hub-card__pillar">Réponses et relances automatiques</span>
             <h2 class="sd-hub-card__title"><a href="/services/pilote-automatique-integral">Pilote Automatique Intégral</a></h2>
             <p class="sd-hub-card__summary">Un assistant intelligent 24h/24 pour renseigner vos clients et filtrer les demandes avant de vous déranger.</p>
             <div class="sd-hub-card__footer">
@@ -385,7 +386,7 @@
       <div class="sd-bottom-cta__inner">
         <h2 id="hub-cta-title">Vous ne savez pas par quoi commencer&nbsp;?</h2>
         <p>15 minutes avec Amir. Il vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. Réponse personnelle sous 24 h ouvrées.</p>
-        <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+        <a class="sd-btn-primary" href="/contact?intent=rdv">Réserver mon diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
       </div>
     </section>
   </div>
@@ -405,10 +406,10 @@
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets.html">Nos réalisations</a>
-      <a href="/blog.html">Blog</a>
+      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
@@ -418,10 +419,10 @@
   <div class="site-footer__legal">
     <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
-    <span><a href="/legal.html">Mentions légales</a> · <a href="/confidentialite.html">Confidentialité</a> · <a href="/cookies.html">Cookies</a></span>
+    <span><a href="/legal">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cookies">Cookies</a></span>
   </div>
 </footer>
 
-<script src="/js/menu.js?v=2026110301" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 </body>
 </html>

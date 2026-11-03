@@ -302,3 +302,7 @@
  .case-visual,.case-visual .mock__browser,.case-visual .mock__phone{transition:none}
  .case-card__link:hover .mock__browser,.case-card__link:hover .mock__phone{transform:none}
 }
+
+/* ---- Passe UX (nov. 2026) : cibles tactiles et contraste ---- */
+.case-card__case-link{display:inline-flex;align-items:center;min-height:44px;padding-inline:.2rem;color:#5a5a66}
+.lp-badge{color:#5a5a66}

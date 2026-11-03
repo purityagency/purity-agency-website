@@ -9,15 +9,15 @@ const today = '2026-09-30';
 function addCasesNavigation(html) {
   // Desktop header nav: check specifically inside header__nav
   const headerNavMatch = html.match(/<nav class="header__nav"[^>]*>([\s\S]*?)<\/nav>/i);
-  if (headerNavMatch && !headerNavMatch[1].includes('href="/cas-concrets.html"')) {
+  if (headerNavMatch && !headerNavMatch[1].includes('href="/cas-concrets"')) {
     html = html.replace(/(<nav class="header__nav"[^>]*>[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
-      return `${p1}\n    <a href="/cas-concrets.html">Nos réalisations</a>${p2}`;
+      return `${p1}\n    <a href="/cas-concrets">Nos réalisations</a>${p2}`;
     });
   }
   // Mobile popover menu nav
   html = html.replace(/(<nav class="menu__nav">[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*style="--i:0"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
-    if (m.includes('/cas-concrets.html')) return m;
-    return `${p1}\n    <a href="/cas-concrets.html" style="--i:1">Nos réalisations</a>${p2}`;
+    if (m.includes('/cas-concrets')) return m;
+    return `${p1}\n    <a href="/cas-concrets" style="--i:1">Nos réalisations</a>${p2}`;
   });
   return html.replace(/(<a [^>]*href="\/?blog\.html"[^>]*style=")--i:1("[^>]*>Blog<\/a>)/gi, '$1--i:2$2');
 }
@@ -42,8 +42,8 @@ await writeFile(sitemapPath, sitemap);
 
 const llmsPath = join(root, 'llms.txt');
 let llms = await readFile(llmsPath, 'utf8');
-if (!llms.includes('/cas-concrets.html')) {
-  llms += `\n## Cas concrets\n- https://purity-agency.be/cas-concrets.html — Douze démonstrations de solutions digitales par métier.\n`;
+if (!llms.includes('/cas-concrets')) {
+  llms += `\n## Cas concrets\n- https://purity-agency.be/cas-concrets — Douze démonstrations de solutions digitales par métier.\n`;
 }
 await writeFile(llmsPath, llms);
 

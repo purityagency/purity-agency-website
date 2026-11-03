@@ -35,13 +35,13 @@ const FIABLE = `## Informations fiables
 - Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
 - Les entreprises présentées dans « Nos réalisations » sont fictives : ce sont des démonstrations par métier, pas des références clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
-- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur ${O}/contact.html ou par e-mail à contact@purity-agency.be.`;
+- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur ${O}/contact ou par e-mail à contact@purity-agency.be.`;
 const LEGAL = `## Pages légales
 
-- [Mentions légales](${O}/legal.html)
-- [Politique de confidentialité](${O}/confidentialite.html)
-- [Cookies](${O}/cookies.html)
-- [Conditions générales](${O}/conditions-generales.html)`;
+- [Mentions légales](${O}/legal)
+- [Politique de confidentialité](${O}/confidentialite)
+- [Cookies](${O}/cookies)
+- [Conditions générales](${O}/conditions-generales)`;
 const list = (arr) => arr.map(p => `- [${p.t}](${p.c}): ${p.d}`).join('\n');
 
 const short = `${HEAD}
@@ -52,10 +52,10 @@ const short = `${HEAD}
 - [Services et tarifs](${O}/services): les ${services.length} solutions, avec leurs repères de prix.
 - [Agence web par ville](${O}/agence-web): Charleroi, Namur, Mons, La Louvière, Liège, Brabant wallon.
 - [Site internet par métier](${O}/site-internet/): pages dédiées à ${metiers.length} métiers.
-- [Nos réalisations](${O}/cas-concrets.html): ${cases.length} démonstrations interactives par métier.
-- [Blog](${O}/blog.html): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
+- [Nos réalisations](${O}/cas-concrets): ${cases.length} démonstrations interactives par métier.
+- [Blog](${O}/blog): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
 - [À propos](${O}/a-propos): Amir Kebiyeb, fondateur, statut d'entreprise (personne physique, BCE 1036.775.590) et façon de travailler.
-- [Contact](${O}/contact.html): formulaire et réservation d'un appel de 15 minutes, sans engagement.
+- [Contact](${O}/contact): formulaire et réservation d'un appel de 15 minutes, sans engagement.
 - [Version détaillée pour IA](${O}/llms-full.txt): offres, livrables, délais et FAQ complets.
 
 ## Services et prix indicatifs

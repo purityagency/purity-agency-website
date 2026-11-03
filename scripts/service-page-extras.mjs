@@ -90,7 +90,7 @@ export function linksFor(svc, esc) {
   const items = [
     ['/agence-web/charleroi', 'Agence web à Charleroi : qui on est, où on intervient'],
     ...(METIERS[svc.slug] || []).map(m => [`/site-internet/${m}`, `Site internet pour ${METIER_LABEL[m]}`]),
-    ...ARTICLES[articleGroup(svc.slug)].map(([u, t]) => [`/${u}.html`, t])
+    ...ARTICLES[articleGroup(svc.slug)].map(([u, t]) => [`/${u}`, t])
   ];
   return items.map(([h, t]) => `<li><a href="${h}">${esc(t)}</a></li>`).join('\n        ');
 }

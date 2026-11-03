@@ -73,3 +73,14 @@
 /* Maillage vers metiers / villes / blog */
 .article-local{margin:2rem 0 0;font-size:.95rem;color:var(--muted,#4A4640)}
 .article-related__all{margin:1rem 0 0;font-size:.9rem}
+
+/* ---- Passe UX (nov. 2026) ---- */
+/* CTA mi-article : vrai bouton plein (pleine largeur sur mobile) */
+.prose .article-midcta a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.6rem 1.4rem;border-radius:999px;background:var(--accent-deep,#4b2a8f);color:#fff;font-weight:700;text-decoration:none;white-space:normal;text-align:center}
+.prose .article-midcta a:hover{background:var(--accent,#6c3caa);color:#fff}
+.prose .article-midcta a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:700px){.prose .article-midcta a{flex:1 1 100%;width:100%}}
+/* Tableau large : ombres de bord (visibles tant qu'il reste du contenu à défiler) + indice texte sur mobile */
+.table-wrap{background:linear-gradient(to right,#fff 30%,rgba(255,255,255,0)) 0 0/36px 100% no-repeat local,linear-gradient(to left,#fff 30%,rgba(255,255,255,0)) 100% 0/36px 100% no-repeat local,radial-gradient(farthest-side at 0 50%,rgba(20,14,30,.22),rgba(20,14,30,0)) 0 0/12px 100% no-repeat scroll,radial-gradient(farthest-side at 100% 50%,rgba(20,14,30,.22),rgba(20,14,30,0)) 100% 0/12px 100% no-repeat scroll;-webkit-overflow-scrolling:touch}
+.table-hint{display:none;margin:1.5rem 0 -1rem;color:#5a5a66;font-size:.85rem;font-weight:600}
+@media (max-width:700px){.table-hint{display:block}}

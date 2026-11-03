@@ -17,9 +17,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
+<link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261104">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -148,6 +148,7 @@
 </script>
 </head>
 <body class="service-page">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
 <header class="header">
   <a class="header__brand" href="/">
@@ -156,9 +157,9 @@
   </a>
   <nav class="header__nav" aria-label="Principal">
     <a href="/services" aria-current="page">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
@@ -176,13 +177,13 @@
   </div>
   <nav class="menu__nav">
     <a href="/services">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -203,8 +204,8 @@
           <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c1.8.9 3 2.9 3 5.5"/></svg>Amir, de A à Z</li>
         </ul>
         <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="/contact.html?offer=M05">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="/contact?offer=M05">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact?intent=rdv">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>
         </div>
         <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
         <div class="sd-trust-strip" aria-label="Garanties et réassurance">
@@ -221,7 +222,7 @@
         <div class="sd-phone">
           <img src="/assets/shots/architecture-mobile-0.webp" width="390" height="844" alt="La même démo Ligne Claire sur téléphone" decoding="async">
         </div>
-        <figcaption>Démo conçue par Purity · <a href="/cas-concrets/architecture.html">Tester Ligne Claire</a></figcaption>
+        <figcaption>Démo conçue par Purity · <a href="/cas-concrets/architecture">Tester Ligne Claire</a></figcaption>
       </figure>
       </div>
     </section>
@@ -310,12 +311,12 @@
         <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
       <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/cas-concrets/architecture.html">
+        <a class="sd-case-card" href="/cas-concrets/architecture">
           <img src="/assets/shots/architecture-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Ligne Claire, bureau d’architecture" loading="lazy" decoding="async">
           <span class="sd-case-card__meta"><span class="sd-case-card__sector">Bureau d’Architecture</span><strong>Ligne Claire</strong></span>
           <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/cas-concrets/immobilier.html">
+        <a class="sd-case-card" href="/cas-concrets/immobilier">
           <img src="/assets/shots/immobilier-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Beaux Jours, agence immobilière" loading="lazy" decoding="async">
           <span class="sd-case-card__meta"><span class="sd-case-card__sector">Agence Immobilière</span><strong>Beaux Jours</strong></span>
           <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
@@ -326,13 +327,13 @@
     <section class="sd-section" aria-labelledby="sd-offer-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Le prix</span>
-        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise : prix affichés, devis écrit</h2>
       </div>
       <div class="sd-offer">
         <div class="sd-offer__price">
           <span class="sd-offer__label">Mise en place</span>
           <strong class="sd-offer__amount">2 490 €</strong>
-          <span class="sd-offer__sub">+ 149 €/mois de suivi et hébergement</span>
+          <span class="sd-offer__sub">2 490 € + 149 €/mois de suivi (résiliable chaque mois)</span>
           <span class="sd-offer__note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
           <span class="sd-offer__promo">-25 % sur la création si vous validez dans les 24 h suivant votre devis.</span>
         </div>
@@ -347,7 +348,7 @@
       <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
         <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
-        <a class="sd-link-arrow" href="/contact.html?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
+        <a class="sd-link-arrow" href="/contact?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
       <div class="sd-faq-list">
         <details class="sd-faq-item">
@@ -438,8 +439,8 @@
         <li><a href="/site-internet/entreprise-renovation">Site internet pour entreprise de rénovation</a></li>
         <li><a href="/site-internet/architecte">Site internet pour architecte</a></li>
         <li><a href="/site-internet/agence-immobiliere">Site internet pour agence immobilière</a></li>
-        <li><a href="/article-prix-site-web-belgique.html">Combien coûte un site web en Belgique</a></li>
-        <li><a href="/article-site-ne-convertit-pas.html">Pourquoi un site ne génère pas de demandes</a></li>
+        <li><a href="/article-prix-site-web-belgique">Combien coûte un site web en Belgique</a></li>
+        <li><a href="/article-site-ne-convertit-pas">Pourquoi un site ne génère pas de demandes</a></li>
       </ul>
     </nav>
 
@@ -448,8 +449,8 @@
         <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
         <p>Vous parlez directement à Amir Kebiyeb. Réponse personnelle sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="/contact.html?offer=M05">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
-          <a class="sd-btn-secondary" href="/contact.html?intent=rdv">Prendre rendez-vous <span aria-hidden="true">→</span></a>
+          <a class="sd-btn-primary" href="/contact?offer=M05">Recevoir mon devis écrit <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-secondary" href="/contact?intent=rdv">Prendre rendez-vous <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -461,7 +462,7 @@
     <span class="sd-floating-price">2 490 €</span>
     <span class="sd-floating-note">+ 149 €/mois · prix net</span>
   </div>
-  <a class="sd-floating-cta" href="/contact.html?offer=M05">Recevoir mon devis <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="/contact?offer=M05">Recevoir mon devis <span aria-hidden="true">↗</span></a>
 </aside>
 
 <footer class="site-footer">
@@ -476,10 +477,10 @@
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets.html">Nos réalisations</a>
-      <a href="/blog.html">Blog</a>
+      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
@@ -489,10 +490,10 @@
   <div class="site-footer__legal">
     <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
-    <span><a href="/legal.html">Mentions légales</a> · <a href="/confidentialite.html">Confidentialité</a> · <a href="/cookies.html">Cookies</a></span>
+    <span><a href="/legal">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cookies">Cookies</a></span>
   </div>
 </footer>
 
-<script src="/js/menu.js?v=2026110301" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 </body>
 </html>

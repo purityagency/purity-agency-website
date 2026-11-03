@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SERVICES_DIR = path.join(ROOT, 'services');
-const CSS_VERSION = '20261103b';
+const CSS_VERSION = '20261104';
 
 if (!fs.existsSync(SERVICES_DIR)) {
   fs.mkdirSync(SERVICES_DIR, { recursive: true });
@@ -32,9 +32,9 @@ function renderHeader(activePage = 'services') {
   </a>
   <nav class="header__nav" aria-label="Principal">
     <a href="/services" ${activePage === 'services' ? 'aria-current="page"' : ''}>Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
@@ -52,9 +52,9 @@ function renderHeader(activePage = 'services') {
   </div>
   <nav class="menu__nav">
     <a href="/services">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
 </div>`;
 }
@@ -72,10 +72,10 @@ function renderFooter() {
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets.html">Nos réalisations</a>
-      <a href="/blog.html">Blog</a>
+      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
@@ -85,7 +85,7 @@ function renderFooter() {
   <div class="site-footer__legal">
     <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
-    <span><a href="/legal.html">Mentions légales</a> · <a href="/confidentialite.html">Confidentialité</a> · <a href="/cookies.html">Cookies</a></span>
+    <span><a href="/legal">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cookies">Cookies</a></span>
   </div>
 </footer>`;
 }
@@ -96,7 +96,7 @@ const OG_IMAGE = `<meta property="og:image" content="https://purity-agency.be/as
 const VAT_NOTE = 'Prix nets · TVA non applicable (franchise, art. 56bis CTVA)';
 const OFFER_NOTE = '-25 % sur la création si vous validez dans les 24 h suivant votre devis';
 const PROMISE = 'Réponse personnelle sous 24 h ouvrées';
-const RDV_URL = '/contact.html?intent=rdv';
+const RDV_URL = '/contact?intent=rdv';
 
 // Prix affiché = tarif réel ; la remise des 24 h n'est qu'une note conditionnelle.
 const isFree = svc => !/[1-9]/.test(svc.priceSetup);
@@ -153,7 +153,7 @@ ${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
+<link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=${CSS_VERSION}">
 <script type="application/ld+json">
@@ -188,7 +188,7 @@ function heroVisual(svc) {
       return `<figure class="sd-stage sd-stage--device">
         ${browserFrame(v.demo, `Démo · ${v.name}`, `Accueil de la démo ${v.name} (${v.sector}) conçue par Purity, vue sur ordinateur`, true)}
         ${phoneFrame(v.demo, `La même démo ${v.name} sur téléphone`)}
-        <figcaption>Démo conçue par Purity · <a href="/cas-concrets/${v.demo}.html">Tester ${e(v.name)}</a></figcaption>
+        <figcaption>Démo conçue par Purity · <a href="/cas-concrets/${v.demo}">Tester ${e(v.name)}</a></figcaption>
       </figure>`;
     case 'beforeafter':
       return `<figure class="sd-stage sd-stage--ba">
@@ -202,7 +202,7 @@ function heroVisual(svc) {
             ${browserFrame(v.demo, `Démo · ${v.name}`, `Accueil moderne de la démo ${v.name} conçue par Purity`, false).replace(' loading="lazy"', '')}
           </div>
         </div>
-        <figcaption>Avant : exemple type de site daté. Après : <a href="/cas-concrets/${v.demo}.html">démo ${e(v.name)}</a> conçue par Purity.</figcaption>
+        <figcaption>Avant : exemple type de site daté. Après : <a href="/cas-concrets/${v.demo}">démo ${e(v.name)}</a> conçue par Purity.</figcaption>
       </figure>`;
     case 'audit':
       return `<figure class="sd-stage sd-stage--audit">
@@ -290,7 +290,7 @@ function heroVisual(svc) {
         <div class="sd-brands">
           ${v.demos.map((d, i) => {
             const c = caseById[d];
-            return `<a class="sd-brand sd-brand--${d}" href="/cas-concrets/${d}.html">
+            return `<a class="sd-brand sd-brand--${d}" href="/cas-concrets/${d}">
             <img src="${shot(d, 'mobile')}" width="390" height="844" alt="En-tête de la démo ${e(c.name)}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ''}>
             <span class="sd-brand__name">${e(c.name)}</span>
             <span class="sd-brand__swatches" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -317,7 +317,7 @@ function buildServiceDetailPage(service) {
   const vis = VISUALS[service.slug];
   const free = isFree(service);
 
-  const contactOfferUrl = service.id === 'M01' ? RDV_URL : `/contact.html?offer=${service.id}`;
+  const contactOfferUrl = service.id === 'M01' ? RDV_URL : `/contact?offer=${service.id}`;
   const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Recevoir mon devis écrit';
 
   const schemaJson = {
@@ -379,7 +379,7 @@ function buildServiceDetailPage(service) {
     : `<div class="sd-offer__price">
           <span class="sd-offer__label">Mise en place</span>
           <strong class="sd-offer__amount">${e(displayPrice(service))}</strong>
-          <span class="sd-offer__sub">${service.monthlyPrice ? `+ ${e(service.monthlyPrice)} de suivi et hébergement` : 'Paiement unique, sans abonnement'}</span>
+          <span class="sd-offer__sub">${service.monthlyPrice ? `${e(service.priceSetup)} + ${e(service.monthlyPrice)} de suivi (${service.commitment && service.commitment.minMonths ? `${service.commitment.minMonths} mois` : 'résiliable chaque mois'})` : 'Paiement unique, sans abonnement'}</span>
           <span class="sd-offer__note">${e(VAT_NOTE)}</span>
           ${offerNotes(service).map(n => `<span class="sd-offer__promo">${e(n)}</span>`).join('\n          ')}
         </div>`;
@@ -393,10 +393,11 @@ function buildServiceDetailPage(service) {
 
   return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson })}
 <body class="service-page">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
 ${renderHeader('services')}
 
-<main class="sd-main">
+<main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -494,7 +495,7 @@ ${renderHeader('services')}
         <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
       <div class="sd-cases-grid${service.relatedCases.length === 1 ? ' sd-cases-grid--solo' : ''}">
-        ${service.relatedCases.map(rc => `<a class="sd-case-card" href="/cas-concrets/${e(rc.id)}.html">
+        ${service.relatedCases.map(rc => `<a class="sd-case-card" href="/cas-concrets/${e(rc.id)}">
           <img src="${shot(rc.id, 'desktop')}" width="1440" height="900" alt="Accueil de la démo ${e(rc.name)}, ${e(rc.sector.toLowerCase())}" loading="lazy" decoding="async">
           <span class="sd-case-card__meta"><span class="sd-case-card__sector">${e(rc.sector)}</span><strong>${e(rc.name)}</strong></span>
           <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
@@ -505,7 +506,7 @@ ${renderHeader('services')}
     <section class="sd-section" aria-labelledby="sd-offer-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Le prix</span>
-        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise : prix affichés, devis écrit</h2>
       </div>
       <div class="sd-offer">
         ${priceCard}
@@ -593,7 +594,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=2026110301" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 </body>
 </html>`;
 }
@@ -640,10 +641,11 @@ function buildServicesHubPage() {
 
   return `${headHtml({ pageTitle, metaDesc, canonicalUrl, schemaJson })}
 <body class="service-page">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
 ${renderHeader('services')}
 
-<main class="sd-main">
+<main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -730,7 +732,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=2026110301" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 </body>
 </html>`;
 }

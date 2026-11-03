@@ -53,7 +53,7 @@ test('legacy URLs redirect in 301 (trailing slash included) without loops', asyn
     '/services.html': '/services',
     '/services.html/': '/services',
     '/agence-web-charleroi.html': '/agence-web/charleroi',
-    '/liens.html': '/contact.html'
+    '/liens.html': '/contact'
   };
   for (const [from, to] of Object.entries(expected)) {
     assert.equal(resolveLegacyRedirect(from), to, from);
@@ -97,7 +97,7 @@ test('cache policy: short cache for unversioned CSS/JS, immutable for ?v= assets
       assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
       assert.ok(res.headers.get('etag'));
     }
-    const versioned = await fetch(`${baseUrl}/css/app.css?v=42`);
+    const versioned = await fetch(`${baseUrl}/css/app.css?v=20261104b`);
     assert.equal(versioned.headers.get('cache-control'), 'public, max-age=31536000, immutable');
     const html = await fetch(`${baseUrl}/contact`);
     assert.equal(html.status, 200);

@@ -17,12 +17,18 @@
   var quickWrap = document.getElementById('contact-quick');
   // Texte pré-rempli à compléter : envoyé tel quel, il n'apprendrait rien à Amir.
   var templatePrefill = '';
+  // Une puce choisie vaut une réponse : le visiteur l'a sélectionnée lui-même.
+  var chipText = '';
   if (quickWrap) {
+    var chips = [].slice.call(quickWrap.querySelectorAll('button[data-quick]'));
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
     quickWrap.addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-quick]');
       if (!btn || step !== 0) return;
       field.value = btn.getAttribute('data-quick');
-      templatePrefill = field.value;
+      chipText = field.value;
+      templatePrefill = '';
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === btn ? 'true' : 'false'); });
       field.dispatchEvent(new Event('input'));
       field.focus();
       field.setSelectionRange(field.value.length, field.value.length);
@@ -39,8 +45,9 @@
       placeholder: 'Ex. Je rate des appels quand je suis sur chantier…', type: 'textarea', required: true,
       recap: 'Besoin',
       check: function (v) {
+        if (chipText && v === chipText.trim()) return null;
         if (isUnfinished(v)) return 'Complétez la phrase avec votre métier et ce qui coince : quelques mots suffisent.';
-        return v.length >= 10 ? null : 'Écrivez au moins une courte phrase (10 caractères) pour qu’on comprenne votre besoin.';
+        return v.length >= 3 ? null : 'Écrivez quelques mots (3 caractères minimum) ou choisissez un besoin ci-dessus.';
       } },
     { key: 'name', label: 'Votre nom', help: 'Amir vous répond personnellement, pas un robot.',
       placeholder: 'Prénom et nom', type: 'text', required: true, recap: 'Nom',
@@ -48,7 +55,7 @@
     { key: 'email', label: 'Votre e-mail', help: "C’est là qu’arrive la réponse. Pas de newsletter.",
       placeholder: 'vous@entreprise.be', type: 'email', required: true, recap: 'E-mail',
       check: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? null : 'Il manque une partie de l’adresse. Exemple : nom@entreprise.be'; } },
-    { key: 'phone', label: 'Votre téléphone', help: 'Facultatif. Laissez-le si vous préférez qu’on vous appelle.',
+    { key: 'phone', label: 'Téléphone (facultatif, pour être rappelé plus vite)', help: 'Vous pouvez passer cette étape : la réponse arrive par e-mail.',
       placeholder: '0470 12 34 56', type: 'tel', required: false, recap: 'Téléphone',
       check: function () { return null; } }
   ];

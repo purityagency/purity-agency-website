@@ -468,12 +468,12 @@ textarea{
  left:0;
  right:0;
  z-index:45;
- min-height:38px;
+ min-height:44px;
  display:flex;
  align-items:center;
  justify-content:center;
  gap:.55rem .85rem;
- padding:.34rem 2.35rem .34rem 1rem;
+ padding:.1rem 3rem .1rem 1rem;
  background:var(--ink);
  color:#FFFFFF;
  font-size:clamp(.75rem,1.02vw,.87rem);
@@ -492,29 +492,38 @@ textarea{
  right:.45rem;
  top:50%;
  transform:translateY(-50%);
- width:25px;
- height:25px;
+ width:44px;
+ height:44px;
  border:0;
  border-radius:50%;
- background:rgba(255,255,255,.14);
+ background:transparent;
  color:#FFFFFF;
- font-size:1.05rem;
+ font-size:1.45rem;
  line-height:1;
  cursor:pointer;
  display:grid;
  place-items:center;
  transition:background 180ms ease,color 180ms ease
 }
-.promo-bar__close:hover{background:rgba(255,255,255,.28);color:#FFFFFF}
-@media (pointer:coarse){.promo-bar__close::before{content:"";position:absolute;inset:-10px -7px -10px -2px}}
+.promo-bar__close:hover{background:rgba(255,255,255,.18);color:#FFFFFF}
+.promo-bar__short{display:none}
 .price-promo-line{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.35rem}
 .price-old{color:#DC2626!important;font-size:1.06rem;font-weight:750;text-decoration:line-through!important;text-decoration-color:#EF4444!important;text-decoration-thickness:2.4px!important;opacity:1;background:rgba(239,68,68,0.09);padding:.12rem .44rem;border-radius:6px;margin-right:.3rem;display:inline-block;white-space:nowrap}
 .promo-pill{display:inline-flex;align-items:center;padding:.18rem .52rem;border-radius:999px;font-size:.68rem;font-style:normal;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:.03em;line-height:1.2;white-space:nowrap}
 .promo-pill--25{background:#FFE4E6;color:#BE123C;border:1px solid rgba(225,29,72,.35);font-weight:800}
 .promo-pill--expired{background:rgba(11,10,12,.08);color:var(--muted);border:1px solid rgba(11,10,12,.12)}
 .promo-pill--free{background:color-mix(in srgb,var(--accent) 14%,#fff);color:var(--accent-deep);border:1px solid color-mix(in srgb,var(--accent) 32%,transparent)}
+/* Mobile : la barre est posée en haut du document (position absolue : elle
+   défile avec la page, plus de bandeau collé), sur une seule ligne. Sa place
+   reste réservée par --promo-h. L'en-tête fixe se cale sous la partie encore visible
+   (--promo-vis, mise à jour au défilement par js/menu.js). */
 @media (max-width:767px){
- .promo-bar{padding:.36rem 2.05rem .36rem .6rem;gap:.25rem .45rem;font-size:.71rem}
+ .promo-bar{position:absolute;top:0;left:0;right:0;flex-wrap:nowrap;gap:0;padding:0 2.9rem 0 .75rem;font-size:.78rem;white-space:nowrap}
+ .promo-bar__link{min-width:0;max-width:100%}
+ .promo-bar__text{display:block;overflow:hidden;text-overflow:ellipsis}
+ .promo-bar__long{display:none}
+ .promo-bar__short{display:inline}
+ .header{margin-top:calc(8px + var(--promo-vis,0px))}
 }
 @media (prefers-reduced-motion:reduce){
  .btn,
@@ -618,3 +627,13 @@ main[tabindex="-1"]:focus{outline:none}
  .site-footer{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
 }
 h1,h2,h3{text-wrap:balance}
+
+/* ---- Cibles tactiles mobile (44 px) et pied de page, toutes pages ---- */
+@media (max-width:767px){
+ .promo-bar__link{min-height:44px}
+ .header__brand{min-height:44px;display:inline-flex;align-items:center}
+ .menu__nav a,.menu__foot a{min-height:44px;display:flex;align-items:center}
+ .site-footer nav a,.site-footer__inner>div:last-child a,.site-footer__legal a,.site-footer .consent-manage,.site-footer__brand{min-height:44px;display:inline-flex;align-items:center}
+ .site-footer nav,.site-footer__inner>div:last-child{gap:.2rem}
+ .site-footer__legal{gap:0}
+}

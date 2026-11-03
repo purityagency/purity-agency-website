@@ -167,7 +167,7 @@
       const excerpt = text.length > 3400 ? text.slice(0, 1200) + '\n\n[Extrait du fil : échanges intermédiaires omis]\n\n' + text.slice(-2100) : text;
       sessionStorage.setItem('purity-contact-draft', JSON.stringify({ at: Date.now(), message: excerpt }));
     } catch { /* The contact page remains usable without storage. */ }
-    location.href = '/contact.html' + (booking ? '#booking-title' : '#contact-form');
+    location.href = '/contact' + (booking ? '#booking-title' : '#contact-form');
   }
   function actionButton(action) {
     if (!['contact', 'booking'].includes(action)) return;

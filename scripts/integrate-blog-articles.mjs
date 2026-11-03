@@ -74,10 +74,10 @@ const newArticles = [
     ],
     related: [
       ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée pour être trouvé quand un client cherche votre métier à proximité.'],
-      ['/article-seo-local-wallonie.html', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.'],
-      ['/article-gerer-avis-client-negatif-google.html', 'Répondre à un avis négatif sur Google', 'La méthode pour protéger votre réputation sans envenimer l’échange.']
+      ['/article-seo-local-wallonie', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.'],
+      ['/article-gerer-avis-client-negatif-google', 'Répondre à un avis négatif sur Google', 'La méthode pour protéger votre réputation sans envenimer l’échange.']
     ],
-    cta: ['Vous voulez sécuriser votre visibilité locale ?', '/contact.html', 'Faire vérifier ma présence locale']
+    cta: ['Vous voulez sécuriser votre visibilité locale ?', '/contact', 'Faire vérifier ma présence locale']
   },
   {
     slug: 'article-mots-cles-large-google-ads-perte-budget',
@@ -95,11 +95,11 @@ const newArticles = [
       ['Une bonne campagne accepte de perdre du volume', 'Le but n’est pas d’obtenir le maximum de clics. Le but est de payer pour les clics qui peuvent devenir des conversations utiles. Une campagne plus petite, mieux ciblée et mieux mesurée bat souvent une campagne large qui donne l’illusion de bouger.']
     ],
     related: [
-      ['/article-retargeting-pme-visiteurs-indecis.html', 'Retargeting : convertir les visiteurs qui hésitent', 'Reparler aux personnes qui connaissent déjà votre entreprise, sans les harceler.'],
-      ['/article-mots-cles-faible-volume-seo-b2b.html', 'Mots-clés à faible volume en SEO', 'Pourquoi une recherche précise vaut souvent mieux qu’un gros volume, en référencement naturel aussi.'],
+      ['/article-retargeting-pme-visiteurs-indecis', 'Retargeting : convertir les visiteurs qui hésitent', 'Reparler aux personnes qui connaissent déjà votre entreprise, sans les harceler.'],
+      ['/article-mots-cles-faible-volume-seo-b2b', 'Mots-clés à faible volume en SEO', 'Pourquoi une recherche précise vaut souvent mieux qu’un gros volume, en référencement naturel aussi.'],
       ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Vérifier avec vous si la publicité est vraiment la dépense la plus utile pour votre activité.']
     ],
-    cta: ['Votre budget pub part trop vite ?', '/contact.html', 'Auditer mes campagnes']
+    cta: ['Votre budget pub part trop vite ?', '/contact', 'Auditer mes campagnes']
   },
   {
     slug: 'article-cacher-prix-site-web-conversion',
@@ -117,10 +117,10 @@ const newArticles = [
       ['Le bon format : clair, mais pas rigide', 'La meilleure [page tarifs](/services) n’est pas un catalogue infini. Elle montre quelques portes d’entrée, explique les cas concrets et invite à cadrer le besoin. C’est exactement le rôle des repères : aider le prospect à comprendre avant de parler.']
     ],
     related: [
-      ['/article-prix-site-web-belgique.html', 'Combien coûte un site web professionnel en Belgique ?', 'Les fourchettes courantes et ce qui fait réellement varier un devis.'],
-      ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Ce que le visiteur doit comprendre dès le premier écran.']
+      ['/article-prix-site-web-belgique', 'Combien coûte un site web professionnel en Belgique ?', 'Les fourchettes courantes et ce qui fait réellement varier un devis.'],
+      ['/article-above-the-fold-structure-conversion', 'Structurer le haut de page pour convertir', 'Ce que le visiteur doit comprendre dès le premier écran.']
     ],
-    cta: ['Vous voulez des prix plus clairs sans vous enfermer ?', '/contact.html', 'Revoir ma stratégie de conversion']
+    cta: ['Vous voulez des prix plus clairs sans vous enfermer ?', '/contact', 'Revoir ma stratégie de conversion']
   },
   {
     slug: 'article-core-web-vitals-impact-chiffre-affaires',
@@ -139,10 +139,10 @@ const newArticles = [
     ],
     related: [
       ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site lent ou vieillissant en conservant vos adresses et votre positionnement Google.'],
-      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'La lenteur arrive en tête, mais elle n’est pas la seule fuite.'],
-      ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Ce qui doit s’afficher en premier, et ce qu’il vaut mieux retirer.']
+      ['/article-site-ne-convertit-pas', 'Votre site ne convertit pas : 7 raisons fréquentes', 'La lenteur arrive en tête, mais elle n’est pas la seule fuite.'],
+      ['/article-above-the-fold-structure-conversion', 'Structurer le haut de page pour convertir', 'Ce qui doit s’afficher en premier, et ce qu’il vaut mieux retirer.']
     ],
-    cta: ['Votre site semble beau mais lent ?', '/contact.html', 'Demander un audit technique']
+    cta: ['Votre site semble beau mais lent ?', '/contact', 'Demander un audit technique']
   },
   {
     slug: 'article-recuperer-paniers-abandones-emails-e-commerce',
@@ -161,10 +161,10 @@ const newArticles = [
     ],
     related: [
       ['/services/boutique-en-ligne', 'Boutique en ligne', 'Une boutique rapide et sécurisée, avec les moyens de paiement utilisés en Belgique.'],
-      ['/article-ia-pme-belgique.html', 'IA et automatisation : par où commencer ?', 'Choisir une seule tâche à automatiser et garder la main sur les messages sensibles.'],
-      ['/article-rgpd-cookies-popins-prospects.html', 'RGPD et cookies : informer sans faire fuir', 'Rester clair sur les données collectées sans alourdir le parcours.']
+      ['/article-ia-pme-belgique', 'IA et automatisation : par où commencer ?', 'Choisir une seule tâche à automatiser et garder la main sur les messages sensibles.'],
+      ['/article-rgpd-cookies-popins-prospects', 'RGPD et cookies : informer sans faire fuir', 'Rester clair sur les données collectées sans alourdir le parcours.']
     ],
-    cta: ['Vous perdez des ventes après le panier ?', '/contact.html', 'Automatiser mes relances']
+    cta: ['Vous perdez des ventes après le panier ?', '/contact', 'Automatiser mes relances']
   },
   {
     slug: 'article-site-one-page-ou-multi-pages-lancement',
@@ -178,7 +178,7 @@ const newArticles = [
     sections: [
       ['Le one-page : simple, rapide, contrôlé', 'Une page unique fonctionne bien pour une offre précise, une campagne, un lancement ou un indépendant qui veut valider une première demande. Le récit est linéaire, le coût reste contenu et l’expérience mobile peut être très fluide.'],
       ['La limite : une seule page ne peut pas tout porter', 'Une URL unique ne peut pas répondre sérieusement à dix intentions de recherche différentes. Si vous proposez plusieurs services, chaque sujet mérite souvent sa propre page pour être compris par Google et par le visiteur.'],
-      ['Le multi-pages : plus stratégique pour grandir', 'Un site multi-pages structure l’activité : accueil, services, cas, contact, contenus utiles. Chaque page peut traiter une question précise, recevoir des [liens internes](/article-maillage-interne-seo-pages-services.html) et devenir une porte d’entrée. C’est plus long à concevoir, mais plus durable.'],
+      ['Le multi-pages : plus stratégique pour grandir', 'Un site multi-pages structure l’activité : accueil, services, cas, contact, contenus utiles. Chaque page peut traiter une question précise, recevoir des [liens internes](/article-maillage-interne-seo-pages-services) et devenir une porte d’entrée. C’est plus long à concevoir, mais plus durable.'],
       ['Le bon choix : commencer juste, prévoir la suite', 'On peut commencer par une page solide et prévoir une architecture extensible. L’erreur n’est pas de faire simple. L’erreur est de faire simple sans penser à ce qui devra arriver après.']
     ],
     related: [
@@ -186,7 +186,7 @@ const newArticles = [
       ['/services/site-vitrine', 'Site Vitrine (5 pages)', 'Accueil, prestations, réalisations, présentation de l’entreprise et contact.'],
       ['/services/site-complet', 'Site Complet (10 pages et plus)', 'Une page par métier et par ville d’intervention.']
     ],
-    cta: ['Vous lancez une activité et hésitez sur le format ?', '/contact.html', 'Choisir la bonne structure']
+    cta: ['Vous lancez une activité et hésitez sur le format ?', '/contact', 'Choisir la bonne structure']
   },
   {
     slug: 'article-gerer-avis-client-negatif-google',
@@ -205,10 +205,10 @@ const newArticles = [
     ],
     related: [
       ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée pour être trouvé quand un client cherche votre métier à proximité.'],
-      ['/article-google-business-profile-suspendu-recuperation.html', 'Fiche Google suspendue : l’éviter et la récupérer', 'Les erreurs qui déclenchent une suspension et la méthode pour revenir en conformité.'],
-      ['/article-e-e-a-t-artisan-pme-locale.html', 'E-E-A-T : prouver votre sérieux sur votre site', 'Les signes concrets qui rendent une entreprise locale vérifiable.']
+      ['/article-google-business-profile-suspendu-recuperation', 'Fiche Google suspendue : l’éviter et la récupérer', 'Les erreurs qui déclenchent une suspension et la méthode pour revenir en conformité.'],
+      ['/article-e-e-a-t-artisan-pme-locale', 'E-E-A-T : prouver votre sérieux sur votre site', 'Les signes concrets qui rendent une entreprise locale vérifiable.']
     ],
-    cta: ['Votre image locale manque de méthode ?', '/contact.html', 'Structurer ma réputation']
+    cta: ['Votre image locale manque de méthode ?', '/contact', 'Structurer ma réputation']
   },
   {
     slug: 'article-mots-cles-faible-volume-seo-b2b',
@@ -223,13 +223,13 @@ const newArticles = [
       ['Le volume ne dit pas tout', 'Les outils SEO affichent des volumes moyens. Ils ne montrent pas toujours la valeur commerciale d’une recherche. “Logiciel devis menuiserie Belgique” peut avoir peu de volume, mais une personne qui tape cela sait déjà ce qu’elle cherche.'],
       ['La longue traîne convertit mieux', 'Les requêtes spécifiques attirent moins de monde, mais moins de curieux. Elles permettent aussi de créer des pages plus concrètes : cas d’usage, secteur, zone, problème métier. C’est souvent là que les PME peuvent gagner sans affronter les gros acteurs.'],
       ['Construire des pages utiles, pas des pages artificielles', 'Une bonne page de niche ne répète pas un mot-clé. Elle répond à un vrai besoin : contexte, problèmes fréquents, critères de choix, exemples, étapes, limites. Google et le lecteur doivent sentir que la page a été écrite pour une situation réelle.'],
-      ['La stratégie : couvrir un territoire de questions', 'Le SEO durable ressemble moins à un pari sur un mot-clé qu’à une cartographie. Une série de [pages bien reliées](/article-maillage-interne-seo-pages-services.html) autour d’un métier peut devenir une vraie source de demandes qualifiées.']
+      ['La stratégie : couvrir un territoire de questions', 'Le SEO durable ressemble moins à un pari sur un mot-clé qu’à une cartographie. Une série de [pages bien reliées](/article-maillage-interne-seo-pages-services) autour d’un métier peut devenir une vraie source de demandes qualifiées.']
     ],
     related: [
       ['/services/referencement-local-seo', 'Référencement local (SEO)', 'Un travail régulier pour apparaître sur les recherches précises de votre région.'],
       ['/services/site-complet', 'Site Complet (10 pages et plus)', 'Une page par métier et par ville d’intervention.']
     ],
-    cta: ['Votre activité est spécifique et difficile à expliquer ?', '/contact.html', 'Construire ma stratégie SEO']
+    cta: ['Votre activité est spécifique et difficile à expliquer ?', '/contact', 'Construire ma stratégie SEO']
   },
   {
     slug: 'article-instagram-commerce-physique-clients',
@@ -249,9 +249,9 @@ const newArticles = [
     related: [
       ['/services/gestion-reseaux-sociaux', 'Gestion de vos réseaux sociaux', 'Planning du mois, rédaction, visuels et programmation des publications.'],
       ['/services/pack-visuels-reels', 'Pack Visuels et Reels', 'Vos vidéos brutes filmées au smartphone transformées en vidéos sous-titrées prêtes à publier.'],
-      ['/article-minimalisme-digital-strategie-micro-entreprise.html', 'Minimalisme digital : moins de canaux, mieux tenus', 'Choisir les canaux où vos clients prennent vraiment leur décision.']
+      ['/article-minimalisme-digital-strategie-micro-entreprise', 'Minimalisme digital : moins de canaux, mieux tenus', 'Choisir les canaux où vos clients prennent vraiment leur décision.']
     ],
-    cta: ['Votre présence sociale ne ramène pas assez de clients ?', '/contact.html', 'Structurer mes contenus']
+    cta: ['Votre présence sociale ne ramène pas assez de clients ?', '/contact', 'Structurer mes contenus']
   },
   {
     slug: 'article-rgpd-cookies-popins-prospects',
@@ -269,11 +269,11 @@ const newArticles = [
       ['La clarté rassure plus que le jargon', 'Les pages confidentialité, cookies et conditions doivent expliquer le fonctionnement réel du site. Déclarer des traitements inexistants ou cacher les vrais outils crée plus de risque que de valeur.']
     ],
     related: [
-      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Les frictions qui font partir un visiteur avant sa demande.'],
-      ['/article-above-the-fold-structure-conversion.html', 'Structurer le haut de page pour convertir', 'Pourquoi une pop-in immédiate coûte cher dans le premier écran.'],
+      ['/article-site-ne-convertit-pas', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Les frictions qui font partir un visiteur avant sa demande.'],
+      ['/article-above-the-fold-structure-conversion', 'Structurer le haut de page pour convertir', 'Pourquoi une pop-in immédiate coûte cher dans le premier écran.'],
       ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Un échange pour repérer l’action la plus utile sur votre présence en ligne.']
     ],
-    cta: ['Vos parcours manquent de clarté et de confiance ?', '/contact.html', 'Clarifier mon parcours']
+    cta: ['Vos parcours manquent de clarté et de confiance ?', '/contact', 'Clarifier mon parcours']
   },
   {
     slug: 'article-retargeting-pme-visiteurs-indecis',
@@ -291,11 +291,11 @@ const newArticles = [
       ['Le pixel n’est pas une stratégie', 'Installer un pixel ne suffit pas. Il faut un parcours clair : pages vues, actions importantes, exclusions, créas adaptées, mesure des conversions. Sans cela, on suit les visiteurs sans savoir quoi leur dire.']
     ],
     related: [
-      ['/article-mots-cles-large-google-ads-perte-budget.html', 'Google Ads : l’erreur des mots-clés larges', 'Reprendre le contrôle d’un budget qui part sur de mauvaises recherches.'],
-      ['/article-rgpd-cookies-popins-prospects.html', 'RGPD et cookies : informer sans faire fuir', 'Un pixel publicitaire suppose le consentement du visiteur : comment le demander sans casser le parcours.'],
-      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Corriger les fuites du site avant de payer pour faire revenir les visiteurs.']
+      ['/article-mots-cles-large-google-ads-perte-budget', 'Google Ads : l’erreur des mots-clés larges', 'Reprendre le contrôle d’un budget qui part sur de mauvaises recherches.'],
+      ['/article-rgpd-cookies-popins-prospects', 'RGPD et cookies : informer sans faire fuir', 'Un pixel publicitaire suppose le consentement du visiteur : comment le demander sans casser le parcours.'],
+      ['/article-site-ne-convertit-pas', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Corriger les fuites du site avant de payer pour faire revenir les visiteurs.']
     ],
-    cta: ['Vous payez déjà du trafic ?', '/contact.html', 'Rentabiliser mes visiteurs']
+    cta: ['Vous payez déjà du trafic ?', '/contact', 'Rentabiliser mes visiteurs']
   },
   {
     slug: 'article-e-e-a-t-artisan-pme-locale',
@@ -315,9 +315,9 @@ const newArticles = [
     related: [
       ['/services/site-vitrine', 'Site Vitrine (5 pages)', 'Prestations détaillées, galerie de réalisations, présentation de l’entreprise et contact.'],
       ['/services/google-business', 'Fiche Google Business et Maps', 'Une fiche validée et optimisée, premier signal local que voient vos clients.'],
-      ['/article-seo-local-wallonie.html', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.']
+      ['/article-seo-local-wallonie', 'Le guide du SEO local à Charleroi et en Wallonie', 'Fiche, avis, coordonnées et parcours mobile : les bases à poser dans l’ordre.']
     ],
-    cta: ['Votre site ne prouve pas assez votre sérieux ?', '/contact.html', 'Renforcer ma crédibilité']
+    cta: ['Votre site ne prouve pas assez votre sérieux ?', '/contact', 'Renforcer ma crédibilité']
   },
   {
     slug: 'article-minimalisme-digital-strategie-micro-entreprise',
@@ -336,9 +336,9 @@ const newArticles = [
     ],
     related: [
       ['/services/diagnostic-digital', 'Diagnostic digital gratuit de 15 minutes', 'Identifier avec vous le canal qui mérite votre temps en premier.'],
-      ['/article-instagram-commerce-physique-clients.html', 'Transformer ses abonnés Instagram en clients', 'Si Instagram est votre canal, comment le relier à des visites réelles.']
+      ['/article-instagram-commerce-physique-clients', 'Transformer ses abonnés Instagram en clients', 'Si Instagram est votre canal, comment le relier à des visites réelles.']
     ],
-    cta: ['Vous avez trop d’outils et pas assez de résultats ?', '/contact.html?solution=presence-marque', 'Simplifier ma stratégie']
+    cta: ['Vous avez trop d’outils et pas assez de résultats ?', '/contact?solution=presence-marque', 'Simplifier ma stratégie']
   },
   {
     slug: 'article-above-the-fold-structure-conversion',
@@ -356,11 +356,11 @@ const newArticles = [
       ['Ce qu’il faut retirer', 'Carrousel, menu trop long, pop-in immédiate, phrases génériques, image décorative sans sens : le premier écran ne pardonne pas le bruit. Chaque élément doit aider à décider.']
     ],
     related: [
-      ['/article-site-ne-convertit-pas.html', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Les autres fuites entre une visite et une demande.'],
-      ['/article-core-web-vitals-impact-chiffre-affaires.html', 'Core Web Vitals : quand la technique coûte des ventes', 'Un premier écran qui s’affiche trop tard perd le visiteur avant le message.'],
+      ['/article-site-ne-convertit-pas', 'Votre site ne convertit pas : 7 raisons fréquentes', 'Les autres fuites entre une visite et une demande.'],
+      ['/article-core-web-vitals-impact-chiffre-affaires', 'Core Web Vitals : quand la technique coûte des ventes', 'Un premier écran qui s’affiche trop tard perd le visiteur avant le message.'],
       ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site vieillissant en conservant vos adresses et votre positionnement Google.']
     ],
-    cta: ['Votre haut de page ne convertit pas assez vite ?', '/contact.html', 'Repenser mon premier écran']
+    cta: ['Votre haut de page ne convertit pas assez vite ?', '/contact', 'Repenser mon premier écran']
   },
   {
     slug: 'article-piratage-wordpress-cout-pme-prevention',
@@ -379,10 +379,10 @@ const newArticles = [
     ],
     related: [
       ['/services/refonte-modernisation', 'Refonte et modernisation de site', 'Reconstruire un site WordPress instable en conservant vos adresses et votre positionnement Google.'],
-      ['/article-prix-site-web-belgique.html', 'Combien coûte un site web professionnel en Belgique ?', 'Maintenance, hébergement et licences : les coûts à prévoir dès le devis.'],
-      ['/article-core-web-vitals-impact-chiffre-affaires.html', 'Core Web Vitals : quand la technique coûte des ventes', 'Vitesse, réactivité et stabilité : ce que mesurent les indicateurs de Google.']
+      ['/article-prix-site-web-belgique', 'Combien coûte un site web professionnel en Belgique ?', 'Maintenance, hébergement et licences : les coûts à prévoir dès le devis.'],
+      ['/article-core-web-vitals-impact-chiffre-affaires', 'Core Web Vitals : quand la technique coûte des ventes', 'Vitesse, réactivité et stabilité : ce que mesurent les indicateurs de Google.']
     ],
-    cta: ['Votre site WordPress est-il vraiment maintenu ?', '/contact.html', 'Sécuriser mon site']
+    cta: ['Votre site WordPress est-il vraiment maintenu ?', '/contact', 'Sécuriser mon site']
   },
   {
     slug: 'article-maillage-interne-seo-pages-services',
@@ -401,9 +401,9 @@ const newArticles = [
     ],
     related: [
       ['/services/referencement-local-seo', 'Référencement local (SEO)', 'Un travail régulier pour apparaître sur les recherches précises de votre région.'],
-      ['/article-mots-cles-faible-volume-seo-b2b.html', 'Mots-clés à faible volume en SEO', 'Les recherches précises qui méritent chacune leur page.']
+      ['/article-mots-cles-faible-volume-seo-b2b', 'Mots-clés à faible volume en SEO', 'Les recherches précises qui méritent chacune leur page.']
     ],
-    cta: ['Vos contenus n’envoient pas assez vers vos offres ?', '/contact.html', 'Auditer mon maillage']
+    cta: ['Vos contenus n’envoient pas assez vers vos offres ?', '/contact', 'Auditer mon maillage']
   }
 ];
 
@@ -428,7 +428,7 @@ function relatedHtml(links = []) {
   return `<aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">Pour aller plus loin</h2><ul>${items}</ul></aside>`;
 }
 
-const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=2026110102">
+const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/site-additions.css?v=20261101">
 <link rel="stylesheet" href="/css/content.css?v=20261101">`;
@@ -439,13 +439,13 @@ function header(current = '') {
   const blogCurrent = current === 'blog' ? ' aria-current="page"' : '';
   return `<header class="header">
 <a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
-<nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets.html">Nos réalisations</a><a href="/blog.html"${blogCurrent}>Blog</a><a href="/contact.html">Contact</a></nav>
+<nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets">Nos réalisations</a><a href="/blog"${blogCurrent}>Blog</a><a href="/contact">Contact</a></nav>
 <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
 <div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets.html" style="--i:1">Nos réalisations</a><a href="/blog.html" style="--i:2"${blogCurrent}>Blog</a><a href="/contact.html" style="--i:3">Contact</a></nav>
-<div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact.html">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
+<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Nos réalisations</a><a href="/blog" style="--i:2"${blogCurrent}>Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
+<div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
 </div>`;
 }
 
@@ -462,9 +462,9 @@ function footer() {
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/#services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets.html">Nos réalisations</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
@@ -475,13 +475,13 @@ function footer() {
     <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
-    <a href="/legal.html">Légal</a>
-    <a href="/confidentialite.html">Confidentialité</a>
-    <a href="/cookies.html">Cookies</a>
-    <a href="/conditions-generales.html">CGV</a>
+    <a href="/legal">Légal</a>
+    <a href="/confidentialite">Confidentialité</a>
+    <a href="/cookies">Cookies</a>
+    <a href="/conditions-generales">CGV</a>
   </div>
 </footer>
-<script src="/js/menu.js?v=2026110102" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 <script src="/js/cookie-notice.js" defer></script>`;
 }
 
@@ -504,7 +504,7 @@ function articleHtml(article) {
     inLanguage: 'fr-BE',
     author: { '@type': 'Organization', name: 'Purity Agency' },
     publisher: { '@type': 'Organization', name: 'Purity Agency', url: siteUrl },
-    mainEntityOfPage: `${siteUrl}/${article.slug}.html`
+    mainEntityOfPage: `${siteUrl}/${article.slug}`
   };
 
   return `<!doctype html>
@@ -514,7 +514,7 @@ function articleHtml(article) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(article.seoTitle)}</title>
 <meta name="description" content="${esc(article.description)}">
-<link rel="canonical" href="${siteUrl}/${article.slug}.html">
+<link rel="canonical" href="${siteUrl}/${article.slug}">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="fr_BE">
@@ -545,7 +545,7 @@ ${footer()}
 function blogHtml() {
   const featured = allCards.slice(0, 3);
   const rest = allCards.slice(3);
-  const card = (article, featuredClass = '') => `<a class="post-card${featuredClass}" href="/${article.slug}.html"><span class="post-card__cat">${esc(article.category)}</span><h2>${esc(article.title)}</h2><p>${esc(article.description)}</p><span class="post-card__meta">${esc(article.meta)}</span></a>`;
+  const card = (article, featuredClass = '') => `<a class="post-card${featuredClass}" href="/${article.slug}"><span class="post-card__cat">${esc(article.category)}</span><h2>${esc(article.title)}</h2><p>${esc(article.description)}</p><span class="post-card__meta">${esc(article.meta)}</span></a>`;
   const blogJson = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -556,7 +556,7 @@ function blogHtml() {
     blogPost: allCards.map(article => ({
       '@type': 'BlogPosting',
       headline: article.title,
-      url: `${siteUrl}/${article.slug}.html`,
+      url: `${siteUrl}/${article.slug}`,
       datePublished: article.date
     }))
   };
@@ -598,7 +598,7 @@ ${header('blog')}
 <p class="section-kicker">Votre présence</p>
 <h2>Prêt à moderniser votre activité&nbsp;?</h2>
 <p>Diagnostic gratuit en 15 minutes : on passe en revue votre visibilité, votre site et vos automatisations.</p>
-<a class="btn btn--primary" href="/contact.html">Demander un diagnostic <span aria-hidden="true">↗</span></a>
+<a class="btn btn--primary" href="/contact">Demander un diagnostic <span aria-hidden="true">↗</span></a>
 </div>
 </section>
 </main>
@@ -645,10 +645,10 @@ ${[...entries.values()].map(block => `  <url>${block}</url>`).join('\n')}
 
 const changed = new Map();
 for (const article of newArticles) {
-  changed.set(`${siteUrl}/${article.slug}.html`, writeIfChanged(`${article.slug}.html`, articleHtml(article)));
+  changed.set(`${siteUrl}/${article.slug}`, writeIfChanged(`${article.slug}.html`, articleHtml(article)));
 }
 for (const article of oldArticles) {
-  changed.set(`${siteUrl}/${article.slug}.html`, false);
+  changed.set(`${siteUrl}/${article.slug}`, false);
 }
 changed.set(`${siteUrl}/blog.html`, writeIfChanged('blog.html', blogHtml()));
 

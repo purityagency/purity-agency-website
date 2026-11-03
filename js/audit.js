@@ -144,7 +144,7 @@
         '<ul class="cards" id="cards">' +
           d.issues.map(function (i) { return findingHtml(i, false); }).join('') + pending +
         '</ul>' + rest +
-        '<a class="btn btn--primary panel__cta" href="/contact.html">Corriger ça avec nous</a>' +
+        '<a class="btn btn--primary panel__cta" href="/contact">Corriger ça avec nous</a>' +
       '</div>';
 
     countTo(document.getElementById('score-num'), d.score);
@@ -217,7 +217,7 @@
         if (d.reason === 'no-url') {
           message('<p class="panel__sentence">Il nous faut une adresse de site, du type <strong>votre-entreprise.be</strong>.</p>' +
             '<p class="panel__note">Vous n&rsquo;avez pas encore de site ? C&rsquo;est le meilleur moment pour en parler.</p>' +
-            '<a class="btn btn--primary panel__cta" href="/contact.html">En parler avec nous</a>');
+            '<a class="btn btn--primary panel__cta" href="/contact">En parler avec nous</a>');
           showOut();
           return;
         }
@@ -229,7 +229,7 @@
         saveDraft('Le test express n’arrive pas à joindre mon site ' + v.slice(0, 200) + '. Je voudrais le faire vérifier. Mon métier : ');
         message('<p class="panel__sentence">Nous n&rsquo;arrivons pas à joindre ce site.</p>' +
           '<p class="panel__note">Soit l&rsquo;adresse comporte une erreur, soit le site ne répond pas. Dans le second cas, le problème est déjà sérieux.</p>' +
-          '<a class="btn btn--primary panel__cta" href="/contact.html">Faites-le vérifier</a>');
+          '<a class="btn btn--primary panel__cta" href="/contact">Faites-le vérifier</a>');
         showOut();
       })
       .catch(function () {

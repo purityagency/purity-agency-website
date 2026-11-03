@@ -33,3 +33,9 @@
 /* Premium shared primitive: accent-tinted text selection, per world */
 .world ::selection{background:var(--accent);color:var(--ink)}
 .world ::-moz-selection{background:var(--accent);color:var(--ink)}
+/* Passe UX (nov. 2026) : « Je veux un site comme celui-ci » = vrai bouton 44 px, collé en bas sur mobile (au-dessus du bandeau cookies s'il y en a un) */
+.purity-strip a:last-child{min-height:44px;padding:.5rem 1.2rem;border-radius:999px}
+@media(max-width:700px){
+body:has(.purity-strip){padding-bottom:calc(76px + var(--consent-h,0px))}
+.purity-strip a:last-child{position:fixed;left:12px;right:12px;bottom:calc(12px + var(--consent-h,0px) + env(safe-area-inset-bottom,0px));z-index:60;justify-content:center;min-height:48px;padding:.6rem 1rem;font-size:15px;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+}

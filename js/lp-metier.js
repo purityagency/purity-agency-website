@@ -123,6 +123,17 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       // Bouton jamais desactive : un second clic pendant l'envoi est simplement ignore.
       if (sending) return;
+      // Validation à l'envoi (jamais à la frappe) : le bouton reste cliquable,
+      // l'erreur nomme le champ et le focus y va.
+      var msgField = form.querySelector('[name="message"]');
+      if (msgField && msgField.value.trim().length < 3) {
+        status.className = 'lp-form__status is-error';
+        status.textContent = 'Écrivez quelques mots (3 caractères minimum) pour qu’on comprenne votre priorité.';
+        msgField.setAttribute('aria-invalid', 'true');
+        msgField.focus();
+        return;
+      }
+      if (msgField) msgField.removeAttribute('aria-invalid');
       sending = true;
       var btn = form.querySelector('button[type="submit"]');
       btn.setAttribute('aria-busy', 'true');

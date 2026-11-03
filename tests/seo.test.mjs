@@ -10,13 +10,13 @@ test.after(() => server.close());
 const get = (p, h = {}) => fetch(B + p, { redirect: 'manual', headers: h });
 
 test('les .html à canonical propre redirigent en 301 direct', async () => {
-  for (const [from, to] of [['/services/site-vitrine.html', '/services/site-vitrine'], ['/index.html', '/'], ['/agence-web/index.html', '/agence-web'], ['/agence-web-charleroi.html', '/agence-web/charleroi']]) {
+  for (const [from, to] of [['/services/site-vitrine.html', '/services/site-vitrine'], ['/index.html', '/'], ['/agence-web/index.html', '/agence-web'], ['/agence-web-charleroi.html', '/agence-web/charleroi'], ['/contact.html', '/contact'], ['/blog.html', '/blog'], ['/cas-concrets.html', '/cas-concrets'], ['/cas-concrets/garage.html', '/cas-concrets/garage'], ['/article-seo-local-wallonie.html', '/article-seo-local-wallonie'], ['/liens.html', '/contact']]) {
     const r = await get(from);
     assert.equal(r.status, 301, from);
     assert.equal(r.headers.get('location'), to);
     assert.equal((await get(to)).status, 200, to);
   }
-  assert.equal((await get('/contact.html')).status, 200);
+  assert.equal((await get('/contact.html?intent=rdv')).headers.get('location'), '/contact?intent=rdv');
 });
 
 test('HTML compressé brotli/gzip avec Vary, CSP conservée', async () => {
@@ -31,7 +31,7 @@ test('HTML compressé brotli/gzip avec Vary, CSP conservée', async () => {
 });
 
 test('assets versionnés immuables, sitemap 200 et clé IndexNow servie', async () => {
-  const css = await get('/css/app.css?v=1');
+  const css = await get('/css/app.css?v=20261104b');
   assert.match(css.headers.get('cache-control'), /immutable/);
   const sm = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
   for (const m of sm.matchAll(/<loc>https:\/\/purity-agency\.be([^<]*)<\/loc>/g)) {

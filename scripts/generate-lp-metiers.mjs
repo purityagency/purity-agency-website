@@ -563,7 +563,7 @@ for (const study of caseStudies) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${escapeHtml(seoTitle)}</title>
 <meta name="description" content="${meta.subtitle.replace(/"/g, '')}">
-<link rel="canonical" href="https://purity-agency.be/cas-concrets/${study.id}.html">
+<link rel="canonical" href="https://purity-agency.be/cas-concrets/${study.id}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${escapeHtml(seoTitle)}">
 <meta property="og:description" content="${meta.subtitle.replace(/"/g, '')}">
@@ -572,9 +572,9 @@ for (const study of caseStudies) {
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
+<link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=20261101">
+<link rel="stylesheet" href="/css/cases.css?v=20261104b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -583,15 +583,15 @@ for (const study of caseStudies) {
       "@type": "WebPage",
       "name": "${meta.h1.replace(/"/g, '')}",
       "description": "${meta.subtitle.replace(/"/g, '')}",
-      "url": "https://purity-agency.be/cas-concrets/${study.id}.html",
+      "url": "https://purity-agency.be/cas-concrets/${study.id}",
       "isPartOf": { "@type": "WebSite", "name": "Purity Agency", "url": "https://purity-agency.be/" }
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://purity-agency.be/" },
-        { "@type": "ListItem", "position": 2, "name": "Cas concrets", "item": "https://purity-agency.be/cas-concrets.html" },
-        { "@type": "ListItem", "position": 3, "name": "${study.category}", "item": "https://purity-agency.be/cas-concrets/${study.id}.html" }
+        { "@type": "ListItem", "position": 2, "name": "Cas concrets", "item": "https://purity-agency.be/cas-concrets" },
+        { "@type": "ListItem", "position": 3, "name": "${study.category}", "item": "https://purity-agency.be/cas-concrets/${study.id}" }
       ]
     }
   ]
@@ -604,8 +604,8 @@ for (const study of caseStudies) {
   <nav class="header__nav" aria-label="Principal">
     <a href="/#services">Services</a>
     <a href="/#services">Tarifs</a>
-    <a aria-current="page" href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/contact.html">Contact</a>
+    <a aria-current="page" href="/cas-concrets">Nos réalisations</a>
+    <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
@@ -621,14 +621,14 @@ for (const study of caseStudies) {
   <nav class="menu__nav">
     <a href="/#services" style="--i:0">Services</a>
     <a href="/#services" style="--i:1">Tarifs</a>
-    <a href="/cas-concrets.html" style="--i:2">Nos réalisations</a>
-    <a href="/contact.html" style="--i:3">Contact</a>
+    <a href="/cas-concrets" style="--i:2">Nos réalisations</a>
+    <a href="/contact" style="--i:3">Contact</a>
   </nav>
 </div>
 
 <main class="case-detail">
   <nav class="case-crumb" aria-label="Fil d’Ariane">
-    <a href="/cas-concrets.html">Nos réalisations</a>
+    <a href="/cas-concrets">Nos réalisations</a>
     <span aria-hidden="true">/</span>
     <span>${study.category}</span>
   </nav>
@@ -840,22 +840,22 @@ for (const study of caseStudies) {
         <div class="lp-form__row">
           <label>
             Votre nom ou entreprise *
-            <input type="text" name="name" required placeholder="Ex. Jean Dupont / Atelier Noma">
+            <input type="text" name="name" required autocomplete="name" placeholder="Ex. Jean Dupont / Atelier Noma">
           </label>
           <label>
-            Votre téléphone (pour un contact direct) *
-            <input type="tel" name="phone" required placeholder="Ex. 0470 12 34 56">
+            Téléphone (facultatif, pour être rappelé plus vite)
+            <input type="tel" name="phone" autocomplete="tel" placeholder="Ex. 0470 12 34 56">
           </label>
         </div>
 
         <div class="lp-form__row">
           <label>
             Votre adresse e-mail *
-            <input type="email" name="email" required placeholder="Ex. jean@mon-activite.be">
+            <input type="email" name="email" required autocomplete="email" placeholder="Ex. jean@mon-activite.be">
           </label>
           <label>
             Votre ville / localité en Wallonie
-            <input type="text" name="location" placeholder="Ex. Charleroi, Namur, Mons...">
+            <input type="text" name="location" autocomplete="address-level2" placeholder="Ex. Charleroi, Namur, Mons...">
           </label>
         </div>
 
@@ -882,9 +882,9 @@ for (const study of caseStudies) {
       <h2>Explorer</h2>
       <a href="/#services">Services</a>
       <a href="/#services">Tarifs</a>
-      <a href="/cas-concrets.html">Nos réalisations</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
@@ -895,16 +895,16 @@ for (const study of caseStudies) {
     <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
-    <a href="/legal.html">Légal</a>
-    <a href="/confidentialite.html">Confidentialité</a>
-    <a href="/cookies.html">Cookies</a>
-    <a href="/conditions-generales.html">CGV</a>
+    <a href="/legal">Légal</a>
+    <a href="/confidentialite">Confidentialité</a>
+    <a href="/cookies">Cookies</a>
+    <a href="/conditions-generales">CGV</a>
   </div>
 </footer>
 
-<script src="/js/menu.js?v=2026110102" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 <script type="application/json" id="lp-feedbacks">${JSON.stringify(meta.widget1.feedback).replace(/</g, String.fromCharCode(92) + 'u003c')}</script>
-<script src="/js/lp-metier.js?v=20261101" defer></script>
+<script src="/js/lp-metier.js?v=20261104" defer></script>
 </body>
 </html>`;
 

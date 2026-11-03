@@ -65,10 +65,10 @@ Livrables :
 Inclus dans le suivi : Hébergement haute performance, renouvellement annuel de votre nom de domaine .be, surveillance anti-panne et prise en charge rapide de vos changements de tarifs, horaires ou photos.
 
 Déroulement :
-1. Échange de 20 min sur votre activité : On note vos spécialités, vos communes d’intervention en Wallonie et vos photos de chantiers.
+1. Échange de 15 min sur votre activité : On note vos spécialités, vos communes d’intervention en Wallonie et vos photos de chantiers.
 2. Rédaction et mise en page complètes : Nous écrivons tous les textes commerciaux et créons la mise en page sans que vous n’ayez rien à rédiger.
 3. Test direct sur votre téléphone : Vous recevez un lien privé sur votre smartphone pour tester la rapidité et vérifier que tout vous convient.
-4. Mise en ligne & Indexation Google : On branche votre nom de domaine .be et on signale immédiatement votre nouveau site à Google.
+4. Mise en ligne, site visible sur Google : On branche votre nom de domaine .be et on signale immédiatement votre nouveau site à Google.
 
 Questions fréquentes :
 - Puis-je agrandir mon site plus tard avec plus de pages ?
@@ -542,42 +542,42 @@ Questions fréquentes :
 
 ## Articles du blog
 
-- [Above the fold : que mettre en haut de votre site ?](https://purity-agency.be/article-above-the-fold-structure-conversion.html): Titre, sous-titre, bouton, preuve : ce que le premier écran de votre site doit montrer pour qu’un visiteur comprenne et agisse sans chercher.
-- [Afficher ses prix sur son site : pourquoi ça convertit](https://purity-agency.be/article-cacher-prix-site-web-conversion.html): Cacher ses tarifs fait fuir les bons prospects. Prix de départ, fourchettes, ce qui fait varier le budget : comment afficher vos prix sans vous enfermer.
-- [Chèques-Entreprises Wallonie : le point numérique 2026](https://purity-agency.be/article-cheques-entreprises-wallonie.html): Chèque maturité numérique suspendu depuis juillet 2026 : ce qui reste possible, où vérifier votre éligibilité et comment cadrer votre projet web.
-- [Core Web Vitals : LCP, INP, CLS et vos ventes](https://purity-agency.be/article-core-web-vitals-impact-chiffre-affaires.html): LCP, INP et CLS expliqués sans jargon : ce que mesurent les Core Web Vitals de Google et pourquoi un site lent perd des demandes avant le formulaire.
-- [E-E-A-T : prouver son expertise quand on est artisan](https://purity-agency.be/article-e-e-a-t-artisan-pme-locale.html): Expérience, expertise, autorité, fiabilité : les preuves qu’un artisan ou une PME locale peut montrer sur son site pour rassurer Google et ses clients.
-- [Répondre à un avis négatif Google : méthode simple](https://purity-agency.be/article-gerer-avis-client-negatif-google.html): Comment répondre à un avis Google négatif sans envenimer la situation : délai, ton, erreurs à éviter et quand signaler un avis abusif à Google.
-- [Fiche Google Business suspendue : causes et solutions](https://purity-agency.be/article-google-business-profile-suspendu-recuperation.html): Nom gonflé, adresse fictive, doublons : les causes fréquentes de suspension d’une fiche Google Business Profile et la méthode pour la récupérer.
-- [IA pour PME et indépendants : par où commencer ?](https://purity-agency.be/article-ia-pme-belgique.html): Répondre, rédiger, relancer : des usages concrets de l’IA et de l’automatisation pour indépendants et PME belges, avec une méthode progressive.
-- [Instagram commerce local : des abonnés aux clients](https://purity-agency.be/article-instagram-commerce-physique-clients.html): Contenus concrets, stories utiles, lien en bio cohérent : comment un commerce physique transforme ses abonnés Instagram en visites et réservations.
-- [Maillage interne SEO : renforcer vos pages services](https://purity-agency.be/article-maillage-interne-seo-pages-services.html): Ancres descriptives, liens en contexte, pages services en destination : la méthode de maillage interne pour mieux ranker sans chercher de backlinks.
-- [Stratégie digitale micro-entreprise : moins de canaux](https://purity-agency.be/article-minimalisme-digital-strategie-micro-entreprise.html): Indépendant ou micro-entreprise : comment choisir un ou deux canaux utiles, recycler vos contenus et arrêter de vous épuiser sur cinq réseaux.
-- [Mots-clés à faible volume : la stratégie SEO B2B](https://purity-agency.be/article-mots-cles-faible-volume-seo-b2b.html): Pourquoi une requête B2B très précise, même à faible volume, peut rapporter plus de demandes qualifiées qu’un mot-clé concurrentiel, et comment la cibler.
-- [Requête large Google Ads : l’erreur qui coûte cher](https://purity-agency.be/article-mots-cles-large-google-ads-perte-budget.html): La requête large Google Ads peut payer des clics hors sujet. Termes de recherche, mots-clés négatifs, ciblage : reprendre le contrôle d’un petit budget.
-- [Site WordPress piraté : coût réel et prévention](https://purity-agency.be/article-piratage-wordpress-cout-pme-prevention.html): Alerte navigateur, perte de trafic, mails bloqués : ce que coûte vraiment un piratage WordPress à une PME et les mesures simples pour l’éviter.
-- [Prix d’un site web en Belgique en 2026 : repères](https://purity-agency.be/article-prix-site-web-belgique.html): Ce qui fait varier le prix d’un site web professionnel en Belgique, les coûts récurrents oubliés et nos tarifs publics comme repère avant un devis.
-- [Paniers abandonnés : la séquence d’e-mails qui convertit](https://purity-agency.be/article-recuperer-paniers-abandones-emails-e-commerce.html): Trois e-mails, trois moments : comment relancer un panier abandonné sans brader ni harceler, dans le respect du RGPD.
-- [Retargeting pour PME : relancer les visiteurs indécis](https://purity-agency.be/article-retargeting-pme-visiteurs-indecis.html): Audiences simples, message de réassurance, fréquence limitée : comment une PME utilise le retargeting pour convertir les visiteurs qui hésitent.
-- [RGPD et cookies : informer sans faire fuir vos prospects](https://purity-agency.be/article-rgpd-cookies-popins-prospects.html): Bandeau cookies, pop-ins, pages légales : comment rester conforme au RGPD en Belgique sans dégrader l’expérience ni la conversion de votre site.
-- [SEO local à Charleroi et en Wallonie : guide pratique](https://purity-agency.be/article-seo-local-wallonie.html): Fiche Google, avis, mots des clients, coordonnées cohérentes, mobile : les cinq leviers du SEO local pour être trouvé à Charleroi et en Wallonie.
-- [Site qui ne convertit pas : 7 raisons et correctifs](https://purity-agency.be/article-site-ne-convertit-pas.html): Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger.
-- [One-page ou multi-pages : que choisir pour se lancer ?](https://purity-agency.be/article-site-one-page-ou-multi-pages-lancement.html): Landing page ou site structuré : comment choisir selon votre offre, votre besoin d’être trouvé sur Google et vos projets d’évolution.
+- [Above the fold : que mettre en haut de votre site ?](https://purity-agency.be/article-above-the-fold-structure-conversion): Titre, sous-titre, bouton, preuve : ce que le premier écran de votre site doit montrer pour qu’un visiteur comprenne et agisse sans chercher.
+- [Afficher ses prix sur son site : pourquoi ça convertit](https://purity-agency.be/article-cacher-prix-site-web-conversion): Cacher ses tarifs fait fuir les bons prospects. Prix de départ, fourchettes, ce qui fait varier le budget : comment afficher vos prix sans vous enfermer.
+- [Chèques-Entreprises Wallonie : le point numérique 2026](https://purity-agency.be/article-cheques-entreprises-wallonie): Chèque maturité numérique suspendu depuis juillet 2026 : ce qui reste possible, où vérifier votre éligibilité et comment cadrer votre projet web.
+- [Core Web Vitals : LCP, INP, CLS et vos ventes](https://purity-agency.be/article-core-web-vitals-impact-chiffre-affaires): LCP, INP et CLS expliqués sans jargon : ce que mesurent les Core Web Vitals de Google et pourquoi un site lent perd des demandes avant le formulaire.
+- [E-E-A-T : prouver son expertise quand on est artisan](https://purity-agency.be/article-e-e-a-t-artisan-pme-locale): Expérience, expertise, autorité, fiabilité : les preuves qu’un artisan ou une PME locale peut montrer sur son site pour rassurer Google et ses clients.
+- [Répondre à un avis négatif Google : méthode simple](https://purity-agency.be/article-gerer-avis-client-negatif-google): Comment répondre à un avis Google négatif sans envenimer la situation : délai, ton, erreurs à éviter et quand signaler un avis abusif à Google.
+- [Fiche Google Business suspendue : causes et solutions](https://purity-agency.be/article-google-business-profile-suspendu-recuperation): Nom gonflé, adresse fictive, doublons : les causes fréquentes de suspension d’une fiche Google Business Profile et la méthode pour la récupérer.
+- [IA pour PME et indépendants : par où commencer ?](https://purity-agency.be/article-ia-pme-belgique): Répondre, rédiger, relancer : des usages concrets de l’IA et de l’automatisation pour indépendants et PME belges, avec une méthode progressive.
+- [Instagram commerce local : des abonnés aux clients](https://purity-agency.be/article-instagram-commerce-physique-clients): Contenus concrets, stories utiles, lien en bio cohérent : comment un commerce physique transforme ses abonnés Instagram en visites et réservations.
+- [Maillage interne SEO : renforcer vos pages services](https://purity-agency.be/article-maillage-interne-seo-pages-services): Ancres descriptives, liens en contexte, pages services en destination : la méthode de maillage interne pour mieux ranker sans chercher de backlinks.
+- [Stratégie digitale micro-entreprise : moins de canaux](https://purity-agency.be/article-minimalisme-digital-strategie-micro-entreprise): Indépendant ou micro-entreprise : comment choisir un ou deux canaux utiles, recycler vos contenus et arrêter de vous épuiser sur cinq réseaux.
+- [Mots-clés à faible volume : la stratégie SEO B2B](https://purity-agency.be/article-mots-cles-faible-volume-seo-b2b): Pourquoi une requête B2B très précise, même à faible volume, peut rapporter plus de demandes qualifiées qu’un mot-clé concurrentiel, et comment la cibler.
+- [Requête large Google Ads : l’erreur qui coûte cher](https://purity-agency.be/article-mots-cles-large-google-ads-perte-budget): La requête large Google Ads peut payer des clics hors sujet. Termes de recherche, mots-clés négatifs, ciblage : reprendre le contrôle d’un petit budget.
+- [Site WordPress piraté : coût réel et prévention](https://purity-agency.be/article-piratage-wordpress-cout-pme-prevention): Alerte navigateur, perte de trafic, mails bloqués : ce que coûte vraiment un piratage WordPress à une PME et les mesures simples pour l’éviter.
+- [Prix d’un site web en Belgique en 2026 : repères](https://purity-agency.be/article-prix-site-web-belgique): Ce qui fait varier le prix d’un site web professionnel en Belgique, les coûts récurrents oubliés et nos tarifs publics comme repère avant un devis.
+- [Paniers abandonnés : la séquence d’e-mails qui convertit](https://purity-agency.be/article-recuperer-paniers-abandones-emails-e-commerce): Trois e-mails, trois moments : comment relancer un panier abandonné sans brader ni harceler, dans le respect du RGPD.
+- [Retargeting pour PME : relancer les visiteurs indécis](https://purity-agency.be/article-retargeting-pme-visiteurs-indecis): Audiences simples, message de réassurance, fréquence limitée : comment une PME utilise le retargeting pour convertir les visiteurs qui hésitent.
+- [RGPD et cookies : informer sans faire fuir vos prospects](https://purity-agency.be/article-rgpd-cookies-popins-prospects): Bandeau cookies, pop-ins, pages légales : comment rester conforme au RGPD en Belgique sans dégrader l’expérience ni la conversion de votre site.
+- [SEO local à Charleroi et en Wallonie : guide pratique](https://purity-agency.be/article-seo-local-wallonie): Fiche Google, avis, mots des clients, coordonnées cohérentes, mobile : les cinq leviers du SEO local pour être trouvé à Charleroi et en Wallonie.
+- [Site qui ne convertit pas : 7 raisons et correctifs](https://purity-agency.be/article-site-ne-convertit-pas): Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger.
+- [One-page ou multi-pages : que choisir pour se lancer ?](https://purity-agency.be/article-site-one-page-ou-multi-pages-lancement): Landing page ou site structuré : comment choisir selon votre offre, votre besoin d’être trouvé sur Google et vos projets d’évolution.
 
 ## Nos réalisations (démonstrations fictives)
 
-- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux.html): Toiletteurs en Wallonie : vos clients réservent en ligne selon la race, le poil et le gabarit. Le téléphone ne sonne plus pendant le bain.
-- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture.html): Architecte en Wallonie : vos réalisations lisibles sur téléphone et un brief terrain, surface et budget avant le premier rendez-vous. Une démo à essayer.
-- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute.html): Instituts de beauté en Wallonie : vos clientes choisissent soin et créneau en ligne, avec rappel et acompte. Une démo conçue par Purity à essayer.
-- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage.html): Chauffagiste en Wallonie : le client choisit panne, entretien ou projet d’installation, avec marque et photos de la chaudière. Une démo à essayer.
-- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration.html): Boutiques de déco et créateurs en Wallonie : vos pièces visibles en ligne, réservées et payées sur téléphone, retirées en magasin.
-- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire.html): Fiduciaire en Wallonie : attirez les indépendants et PME que vous voulez suivre, recevez leurs pièces avant l’échéance, sans relancer à la main. Démo.
-- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage.html): Garage et carrosserie : le client réserve entretien ou pneus en ligne et envoie plaque et photos du choc avant d’appeler. Une démo à essayer.
-- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier.html): Agent immobilier en Wallonie : une estimation en ligne pour rencontrer les vendeurs, des visites demandées par des acheteurs qui ont parlé financement.
-- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation.html): Rénovation en Wallonie : le client envoie photos, surface et budget avant votre visite, vous savez avant de vous déplacer. Une démo à essayer.
-- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant.html): Restaurateurs en Wallonie : vos clients lisent la carte sur téléphone et réservent leur table en direct. Sans commission, sans appel en plein coup de feu.
-- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante.html): Kinés, ostéos et cabinets paramédicaux en Wallonie : vos patients réservent selon leur motif et savent quoi apporter, sans appeler le cabinet.
-- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport.html): Studios de sport en Wallonie : vos membres réservent leur place, l’essai se prend en ligne, la liste d’attente se gère seule. Une démo à essayer.
+- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux): Toiletteurs en Wallonie : vos clients réservent en ligne selon la race, le poil et le gabarit. Le téléphone ne sonne plus pendant le bain.
+- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture): Architecte en Wallonie : vos réalisations lisibles sur téléphone et un brief terrain, surface et budget avant le premier rendez-vous. Une démo à essayer.
+- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute): Instituts de beauté en Wallonie : vos clientes choisissent soin et créneau en ligne, avec rappel et acompte. Une démo conçue par Purity à essayer.
+- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage): Chauffagiste en Wallonie : le client choisit panne, entretien ou projet d’installation, avec marque et photos de la chaudière. Une démo à essayer.
+- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration): Boutiques de déco et créateurs en Wallonie : vos pièces visibles en ligne, réservées et payées sur téléphone, retirées en magasin.
+- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire): Fiduciaire en Wallonie : attirez les indépendants et PME que vous voulez suivre, recevez leurs pièces avant l’échéance, sans relancer à la main. Démo.
+- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage): Garage et carrosserie : le client réserve entretien ou pneus en ligne et envoie plaque et photos du choc avant d’appeler. Une démo à essayer.
+- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier): Agent immobilier en Wallonie : une estimation en ligne pour rencontrer les vendeurs, des visites demandées par des acheteurs qui ont parlé financement.
+- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation): Rénovation en Wallonie : le client envoie photos, surface et budget avant votre visite, vous savez avant de vous déplacer. Une démo à essayer.
+- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant): Restaurateurs en Wallonie : vos clients lisent la carte sur téléphone et réservent leur table en direct. Sans commission, sans appel en plein coup de feu.
+- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante): Kinés, ostéos et cabinets paramédicaux en Wallonie : vos patients réservent selon leur motif et savent quoi apporter, sans appeler le cabinet.
+- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport): Studios de sport en Wallonie : vos membres réservent leur place, l’essai se prend en ligne, la liste d’attente se gère seule. Une démo à essayer.
 
 ## Informations fiables
 
@@ -585,11 +585,11 @@ Questions fréquentes :
 - Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
 - Les entreprises présentées dans « Nos réalisations » sont fictives : ce sont des démonstrations par métier, pas des références clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
-- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact.html ou par e-mail à contact@purity-agency.be.
+- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact ou par e-mail à contact@purity-agency.be.
 
 ## Pages légales
 
-- [Mentions légales](https://purity-agency.be/legal.html)
-- [Politique de confidentialité](https://purity-agency.be/confidentialite.html)
-- [Cookies](https://purity-agency.be/cookies.html)
-- [Conditions générales](https://purity-agency.be/conditions-generales.html)
+- [Mentions légales](https://purity-agency.be/legal)
+- [Politique de confidentialité](https://purity-agency.be/confidentialite)
+- [Cookies](https://purity-agency.be/cookies)
+- [Conditions générales](https://purity-agency.be/conditions-generales)

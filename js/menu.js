@@ -152,20 +152,31 @@
   promo.className = 'promo-bar';
   promo.setAttribute('aria-label', 'Offre Purity Agency');
   promo.innerHTML =
-    '<a class="promo-bar__link" href="/contact.html?promo=lancement"><span class="promo-bar__text">' +
-      '<strong>-25 %</strong> sur la création si vous validez dans les 24 h suivant votre devis · 1er mois offert sur la formule Réseaux sociaux' +
+    '<a class="promo-bar__link" href="/contact?promo=lancement"><span class="promo-bar__text">' +
+      '<span class="promo-bar__long"><strong>-25 %</strong> sur la création si vous validez dans les 24 h suivant votre devis · 1er mois offert sur la formule Réseaux sociaux</span>' +
+      '<span class="promo-bar__short"><strong>-25 %</strong> si vous validez dans les 24 h</span>' +
     '</span></a>' +
     '<button type="button" class="promo-bar__close" aria-label="Masquer l’offre">×</button>';
 
   document.body.prepend(promo);
 
+  var root = document.documentElement;
+  var mobile = window.matchMedia('(max-width: 767px)');
+  // --promo-h réserve la place de la barre dans la mise en page. --promo-vis est
+  // la partie encore visible : sur mobile la barre défile avec la page, et
+  // l'en-tête fixe suit (il ne la recouvre jamais et ne laisse pas de vide).
   function syncPromoHeight() {
     if (!promo.isConnected) {
-      document.documentElement.style.setProperty('--promo-h', '0px');
+      root.style.setProperty('--promo-h', '0px');
+      root.style.setProperty('--promo-vis', '0px');
       return;
     }
-    document.documentElement.style.setProperty('--promo-h', (promo.offsetHeight + 4) + 'px');
+    var h = (promo.offsetHeight + 4) + 'px';
+    root.style.setProperty('--promo-h', h);
+    root.style.setProperty('--promo-vis', mobile.matches
+      ? Math.max(0, Math.round(promo.getBoundingClientRect().bottom + 4)) + 'px' : h);
   }
+  window.addEventListener('scroll', syncPromoHeight, { passive: true });
 
   promo.querySelector('.promo-bar__close').addEventListener('click', function () {
     promo.remove();
@@ -179,11 +190,18 @@
 
 // Lien d'evitement : premier element tabulable de chaque page, vers le contenu principal.
 (function () {
-  if (document.querySelector('.skip-link')) return;
   var main = document.querySelector('main');
   if (!main) return;
   if (!main.id) main.id = 'contenu';
   if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+  // Lien déjà présent dans le HTML (fonctionne sans JS) : on le remet seulement
+  // avant la barre d'offre, pour qu'il reste le premier élément tabulable.
+  var existing = document.querySelector('.skip-link');
+  if (existing) {
+    if (existing.getAttribute('href') !== '#' + main.id) existing.setAttribute('href', '#' + main.id);
+    document.body.insertBefore(existing, document.body.firstChild);
+    return;
+  }
   var skip = document.createElement('a');
   skip.className = 'skip-link';
   skip.href = '#' + main.id;
@@ -195,7 +213,7 @@
 (() => {
   if (document.querySelector('script[src^="/js/consent.js"]')) return;
   const s = document.createElement('script');
-  s.src = '/js/consent.js?v=2';
+  s.src = '/js/consent.js?v=3';
   s.defer = true;
   document.head.appendChild(s);
 })();

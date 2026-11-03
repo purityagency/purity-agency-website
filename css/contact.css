@@ -106,7 +106,7 @@
  line-height:1.3
 }
 .thread .col__title,
-.booking .col__title{color:rgba(255,250,244,.68)}
+.booking .col__title{color:rgba(255,250,244,.82)}
 .ask__help{text-wrap:pretty;margin:.25rem 0 .9rem;font-size:.9rem;font-weight:var(--fw-emph);color:var(--contact-card-muted)}
 .ask__row{display:flex;gap:.7rem;align-items:flex-end}
 .ask__input{
@@ -452,3 +452,7 @@
 .booking__person strong{color:#fffaf4;font-size:1.12rem;font-weight:620;letter-spacing:-.01em}
 .booking__person span{color:rgba(255,250,244,.7);font-size:.88rem;line-height:1.4;text-wrap:pretty}
 @media (prefers-reduced-motion:reduce){.thread,.booking{transition:none}.thread:hover,.booking:hover{transform:none}}
+
+/* Passe UX (nov. 2026) : puces = boutons à bascule lisibles, cible 44 px */
+.contact-quick button{min-height:44px}
+.contact-quick button[aria-pressed="true"]{background:#fffaf4;border-color:#fffaf4;color:#2a1450}

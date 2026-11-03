@@ -1126,3 +1126,8 @@ body.service-page {
   .sd-flow__icon { width: 44px; height: 44px; }
   .sd-flow__node + .sd-flow__node::before { left: 37px; }
 }
+
+/* Passe UX (nov. 2026) : cibles tactiles mobile */
+@media (max-width: 767px) {
+  .sd-breadcrumbs a, .sd-link-arrow { min-height: 44px; align-items: center; display: inline-flex; }
+}

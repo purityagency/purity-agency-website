@@ -17,9 +17,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=2026110102">
+<link rel="stylesheet" href="/css/app.css?v=20261104b">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261103b">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261104">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,6 +116,7 @@
 </script>
 </head>
 <body class="service-page">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
 <header class="header">
   <a class="header__brand" href="/">
@@ -124,9 +125,9 @@
   </a>
   <nav class="header__nav" aria-label="Principal">
     <a href="/services" aria-current="page">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
@@ -144,13 +145,13 @@
   </div>
   <nav class="menu__nav">
     <a href="/services">Services &amp; Tarifs</a>
-    <a href="/cas-concrets.html">Nos réalisations</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
 </div>
 
-<main class="sd-main">
+<main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
@@ -172,7 +173,7 @@
           <li><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg>Récap écrit après l’appel</li>
         </ul>
         <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic offert (15 min) <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-primary" href="/contact?intent=rdv">Réserver mon diagnostic offert (15 min) <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
           
         </div>
         <p class="sd-hero__promise"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Réponse personnelle sous 24 h ouvrées</p>
@@ -281,12 +282,12 @@
         <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>
       <div class="sd-cases-grid">
-        <a class="sd-case-card" href="/cas-concrets/renovation.html">
+        <a class="sd-case-card" href="/cas-concrets/renovation">
           <img src="/assets/shots/renovation-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Atelier Noma, rénovation &amp; bâtiment" loading="lazy" decoding="async">
           <span class="sd-case-card__meta"><span class="sd-case-card__sector">Rénovation &amp; Bâtiment</span><strong>Atelier Noma</strong></span>
           <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
         </a>
-        <a class="sd-case-card" href="/cas-concrets/chauffage.html">
+        <a class="sd-case-card" href="/cas-concrets/chauffage">
           <img src="/assets/shots/chauffage-desktop-0.webp" width="1440" height="900" alt="Accueil de la démo Thermiq, chauffage &amp; énergie" loading="lazy" decoding="async">
           <span class="sd-case-card__meta"><span class="sd-case-card__sector">Chauffage &amp; Énergie</span><strong>Thermiq</strong></span>
           <span class="sd-case-card__cta">Tester la démo <span aria-hidden="true">→</span></span>
@@ -297,7 +298,7 @@
     <section class="sd-section" aria-labelledby="sd-offer-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Le prix</span>
-        <h2 class="sd-heading" id="sd-offer-title">Sans surprise, écrit au devis</h2>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise : prix affichés, devis écrit</h2>
       </div>
       <div class="sd-offer">
         <div class="sd-offer__price">
@@ -317,7 +318,7 @@
       <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
         <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
-        <a class="sd-link-arrow" href="/contact.html?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
+        <a class="sd-link-arrow" href="/contact?intent=rdv">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
       </div>
       <div class="sd-faq-list">
         <details class="sd-faq-item">
@@ -389,8 +390,8 @@
         <li><a href="/site-internet/chauffagiste">Site internet pour chauffagiste</a></li>
         <li><a href="/site-internet/restaurant">Site internet pour restaurant</a></li>
         <li><a href="/site-internet/comptable">Site internet pour comptable</a></li>
-        <li><a href="/article-prix-site-web-belgique.html">Combien coûte un site web en Belgique</a></li>
-        <li><a href="/article-site-ne-convertit-pas.html">Pourquoi un site ne génère pas de demandes</a></li>
+        <li><a href="/article-prix-site-web-belgique">Combien coûte un site web en Belgique</a></li>
+        <li><a href="/article-site-ne-convertit-pas">Pourquoi un site ne génère pas de demandes</a></li>
       </ul>
     </nav>
 
@@ -399,7 +400,7 @@
         <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
         <p>Vous parlez directement à Amir Kebiyeb. Réponse personnelle sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="/contact.html?intent=rdv">Réserver mon diagnostic offert (15 min) <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+          <a class="sd-btn-primary" href="/contact?intent=rdv">Réserver mon diagnostic offert (15 min) <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
           <a class="sd-btn-secondary" href="/services">Voir les autres services <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -412,7 +413,7 @@
     <span class="sd-floating-price">Offert</span>
     <span class="sd-floating-note">Gratuit · sans engagement</span>
   </div>
-  <a class="sd-floating-cta" href="/contact.html?intent=rdv">Réserver 15 min <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="/contact?intent=rdv">Réserver 15 min <span aria-hidden="true">↗</span></a>
 </aside>
 
 <footer class="site-footer">
@@ -427,10 +428,10 @@
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets.html">Nos réalisations</a>
-      <a href="/blog.html">Blog</a>
+      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
@@ -440,10 +441,10 @@
   <div class="site-footer__legal">
     <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
-    <span><a href="/legal.html">Mentions légales</a> · <a href="/confidentialite.html">Confidentialité</a> · <a href="/cookies.html">Cookies</a></span>
+    <span><a href="/legal">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cookies">Cookies</a></span>
   </div>
 </footer>
 
-<script src="/js/menu.js?v=2026110301" defer></script>
+<script src="/js/menu.js?v=20261104b" defer></script>
 </body>
 </html>

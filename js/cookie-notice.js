@@ -7,7 +7,7 @@
   const notice = document.createElement('aside');
   notice.className = 'cookie-note';
   notice.setAttribute('role', 'status');
-  notice.innerHTML = '<p><strong>Fonctionnement du site</strong><span>OctoMask utilise un cookie de session et un stockage temporaire pour garder le fil de votre échange. Aucun cookie publicitaire ni de mesure d’audience n’est actif.</span></p><a href="/cookies.html">En savoir plus</a><button type="button" aria-label="Fermer cette information">×</button>';
+  notice.innerHTML = '<p><strong>Fonctionnement du site</strong><span>OctoMask utilise un cookie de session et un stockage temporaire pour garder le fil de votre échange. Aucun cookie publicitaire ni de mesure d’audience n’est actif.</span></p><a href="/cookies">En savoir plus</a><button type="button" aria-label="Fermer cette information">×</button>';
   document.body.append(notice);
   notice.querySelector('button').addEventListener('click', () => { try { sessionStorage.setItem(key, '1'); } catch {} notice.remove(); });
 })();

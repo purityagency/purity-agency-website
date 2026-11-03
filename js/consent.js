@@ -101,11 +101,18 @@
   // ---------- Bandeau ----------
   const css = document.createElement('link');
   css.rel = 'stylesheet';
-  css.href = '/css/consent.css?v=1';
+  css.href = '/css/consent.css?v=2';
   document.head.appendChild(css);
 
   let banner = null;
-  const close = () => { if (banner) { banner.remove(); banner = null; } };
+  // Hauteur du bandeau exposée en variable CSS : les barres fixes du bas
+  // (CTA collant des démos) se posent au-dessus, jamais dessous.
+  const setH = (px) => document.documentElement.style.setProperty('--consent-h', px + 'px');
+  const close = () => {
+    if (banner) { banner.remove(); banner = null; }
+    document.body.classList.remove('has-consent');
+    setH(0);
+  };
   const show = () => {
     if (banner) return;
     banner = document.createElement('aside');
@@ -113,8 +120,8 @@
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Choix des cookies de mesure d’audience');
     banner.innerHTML =
-      '<p class="consent__text"><strong>Mesure d’audience</strong>' +
-      '<span>Avec votre accord, Google Analytics nous dit quelles pages aident vraiment. Aucune publicité, aucune revente. <a href="/cookies.html">Détails</a></span></p>' +
+      '<p class="consent__text"><strong>Mesure d’audience<span class="consent__q" aria-hidden="true"> ?</span></strong>' +
+      '<span class="consent__more">Avec votre accord, Google Analytics nous dit quelles pages aident vraiment. Aucune publicité, aucune revente. <a href="/cookies">Détails</a></span></p>' +
       '<div class="consent__actions">' +
       '<button type="button" class="consent__btn" data-consent="deny">Refuser</button>' +
       '<button type="button" class="consent__btn" data-consent="accept">Accepter</button>' +
@@ -128,6 +135,16 @@
       close();
     });
     document.body.appendChild(banner);
+    // Sur mobile (barre d'une ligne), la page gagne une marge basse égale à la
+    // barre : le bas du contenu et ses boutons restent atteignables.
+    const sync = () => {
+      if (!banner) return;
+      const small = matchMedia('(max-width:600px)').matches;
+      document.body.classList.toggle('has-consent', small);
+      setH(small ? banner.offsetHeight : 0);
+    };
+    sync();
+    addEventListener('resize', sync);
   };
 
   // Lien « Gérer les cookies » ajouté dans le pied de page de chaque page.

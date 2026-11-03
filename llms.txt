@@ -12,10 +12,10 @@ Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège,
 - [Services et tarifs](https://purity-agency.be/services): les 14 solutions, avec leurs repères de prix.
 - [Agence web par ville](https://purity-agency.be/agence-web): Charleroi, Namur, Mons, La Louvière, Liège, Brabant wallon.
 - [Site internet par métier](https://purity-agency.be/site-internet/): pages dédiées à 12 métiers.
-- [Nos réalisations](https://purity-agency.be/cas-concrets.html): 12 démonstrations interactives par métier.
-- [Blog](https://purity-agency.be/blog.html): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
+- [Nos réalisations](https://purity-agency.be/cas-concrets): 12 démonstrations interactives par métier.
+- [Blog](https://purity-agency.be/blog): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
 - [À propos](https://purity-agency.be/a-propos): Amir Kebiyeb, fondateur, statut d'entreprise (personne physique, BCE 1036.775.590) et façon de travailler.
-- [Contact](https://purity-agency.be/contact.html): formulaire et réservation d'un appel de 15 minutes, sans engagement.
+- [Contact](https://purity-agency.be/contact): formulaire et réservation d'un appel de 15 minutes, sans engagement.
 - [Version détaillée pour IA](https://purity-agency.be/llms-full.txt): offres, livrables, délais et FAQ complets.
 
 ## Services et prix indicatifs
@@ -61,18 +61,18 @@ Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège,
 
 ## Nos réalisations (démonstrations fictives)
 
-- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux.html)
-- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture.html)
-- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute.html)
-- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage.html)
-- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration.html)
-- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire.html)
-- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage.html)
-- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier.html)
-- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation.html)
-- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant.html)
-- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante.html)
-- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport.html)
+- [Toiletteur à Charleroi : créneaux avec acompte](https://purity-agency.be/cas-concrets/animaux)
+- [Architecte à Charleroi : clients à fort budget](https://purity-agency.be/cas-concrets/architecture)
+- [Institut de beauté à Charleroi : planning rempli](https://purity-agency.be/cas-concrets/beaute)
+- [Chauffagiste à Charleroi : les urgences filtrées](https://purity-agency.be/cas-concrets/chauffage)
+- [Boutique déco à Charleroi : Click &amp; Collect](https://purity-agency.be/cas-concrets/decoration)
+- [Fiduciaire à Charleroi : nouveaux clients PME](https://purity-agency.be/cas-concrets/fiduciaire)
+- [Garage à Charleroi : rendez-vous pris en ligne](https://purity-agency.be/cas-concrets/garage)
+- [Agence immobilière à Charleroi : plus de mandats](https://purity-agency.be/cas-concrets/immobilier)
+- [Rénovation à Charleroi : des chantiers qualifiés](https://purity-agency.be/cas-concrets/renovation)
+- [Restaurant à Charleroi : réservations en direct](https://purity-agency.be/cas-concrets/restaurant)
+- [Cabinet paramédical à Charleroi : agenda rempli](https://purity-agency.be/cas-concrets/sante)
+- [Studio de sport à Charleroi : des cours complets](https://purity-agency.be/cas-concrets/sport)
 
 ## Informations fiables
 
@@ -80,11 +80,11 @@ Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège,
 - Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
 - Les entreprises présentées dans « Nos réalisations » sont fictives : ce sont des démonstrations par métier, pas des références clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
-- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact.html ou par e-mail à contact@purity-agency.be.
+- Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact ou par e-mail à contact@purity-agency.be.
 
 ## Pages légales
 
-- [Mentions légales](https://purity-agency.be/legal.html)
-- [Politique de confidentialité](https://purity-agency.be/confidentialite.html)
-- [Cookies](https://purity-agency.be/cookies.html)
-- [Conditions générales](https://purity-agency.be/conditions-generales.html)
+- [Mentions légales](https://purity-agency.be/legal)
+- [Politique de confidentialité](https://purity-agency.be/confidentialite)
+- [Cookies](https://purity-agency.be/cookies)
+- [Conditions générales](https://purity-agency.be/conditions-generales)

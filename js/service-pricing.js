@@ -63,8 +63,8 @@
     const ctaLabel = offer.id === 'M01' ? 'Réserver mon créneau' : 'Profiter de l’offre';
     // Rendez-vous : bloc de réservation. Devis : offre rappelée avec la remise.
     const ctaUrl = offer.id === 'M01'
-      ? '/contact.html?intent=rdv'
-      : `/contact.html?offer=${encodeURIComponent(offer.id)}&amp;promo=lancement`;
+      ? '/contact?intent=rdv'
+      : `/contact?offer=${encodeURIComponent(offer.id)}&amp;promo=lancement`;
     const detailUrl = offer.slug ? `/services/${encodeURIComponent(offer.slug)}` : '/services';
     return `<article class="service-offer-row">
       <div class="service-offer-row__copy">
@@ -81,7 +81,7 @@
 
   const setError = block => {
     const target = block.querySelector('.service-card__offers');
-    if (target) target.innerHTML = '<p class="service-pricing-error">Les tarifs ne sont pas disponibles pour le moment. <a href="/contact.html">Parlons directement de votre besoin.</a></p>';
+    if (target) target.innerHTML = '<p class="service-pricing-error">Les tarifs ne sont pas disponibles pour le moment. <a href="/contact">Parlons directement de votre besoin.</a></p>';
   };
 
   fetch('/api/offers', { headers: { Accept: 'application/json' } })

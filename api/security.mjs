@@ -59,7 +59,7 @@ export const SECURITY_TXT = [
   'Contact: mailto:contact@purity-agency.be',
   'Preferred-Languages: fr, en',
   'Canonical: https://purity-agency.be/.well-known/security.txt',
-  'Policy: https://purity-agency.be/confidentialite.html',
+  'Policy: https://purity-agency.be/confidentialite',
   'Expires: 2027-12-31T23:59:59.000Z',
   ''
 ].join('\n');
@@ -269,7 +269,7 @@ const LEGACY_REDIRECTS = new Map([
   ['/tarifs.html', '/#services'],
   ['/services.html', '/services'],
   ['/agence-web-charleroi.html', '/agence-web/charleroi'],
-  ['/liens.html', '/contact.html']
+  ['/liens.html', '/contact']
 ]);
 
 export function resolveLegacyRedirect(rawPathname) {
@@ -295,6 +295,7 @@ export function resolveCleanRoute(rawPathname) {
   if (rawPathname.includes('\0') || rawPathname.includes('\\') || rawPathname.includes('//')) return null;
   const trimmed = rawPathname.length > 1 && rawPathname.endsWith('/') ? rawPathname.slice(0, -1) : rawPathname;
   if (CLEAN_HTML_ROUTES.has(trimmed)) return `${trimmed}.html`;
+  if (/^\/article-[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
   if (/^\/cas-concrets\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
   if (/^\/services\/[a-z0-9-]+$/.test(trimmed)) return `${trimmed}.html`;
   if (trimmed === '/agence-web') return '/agence-web/index.html';

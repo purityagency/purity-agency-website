@@ -18,10 +18,10 @@ test('les douze cas sont uniques et possèdent un parcours complet', () => {
 
 test('les pages indexables ont canonical et les démonstrations restent noindex', async () => {
   const gallery = await text('cas-concrets.html');
-  assert.match(gallery, /canonical" href="https:\/\/purity-agency\.be\/cas-concrets\.html"/);
+  assert.match(gallery, /canonical" href="https:\/\/purity-agency\.be\/cas-concrets"/);
   for (const item of caseStudies) {
     const detail = await text(`cas-concrets/${item.id}.html`);
-    assert.match(detail, new RegExp(`canonical" href="https://purity-agency\\.be/cas-concrets/${item.id}\\.html"`));
+    assert.match(detail, new RegExp(`canonical" href="https://purity-agency\\.be/cas-concrets/${item.id}"`));
     assert.doesNotMatch(detail, /name="robots" content="noindex/);
     for (const page of ['index', 'services', 'univers', 'contact', 'studio']) {
       const demo = await text(`demos/${item.id}/${page}.html`);

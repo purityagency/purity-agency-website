@@ -177,10 +177,10 @@ export const services = [
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Échange de 20 min sur votre activité', desc: 'On note vos spécialités, vos communes d’intervention en Wallonie et vos photos de chantiers.' },
+      { step: '01', title: 'Échange de 15 min sur votre activité', desc: 'On note vos spécialités, vos communes d’intervention en Wallonie et vos photos de chantiers.' },
       { step: '02', title: 'Rédaction et mise en page complètes', desc: 'Nous écrivons tous les textes commerciaux et créons la mise en page sans que vous n’ayez rien à rédiger.' },
       { step: '03', title: 'Test direct sur votre téléphone', desc: 'Vous recevez un lien privé sur votre smartphone pour tester la rapidité et vérifier que tout vous convient.' },
-      { step: '04', title: 'Mise en ligne & Indexation Google', desc: 'On branche votre nom de domaine .be et on signale immédiatement votre nouveau site à Google.' }
+      { step: '04', title: 'Mise en ligne, site visible sur Google', desc: 'On branche votre nom de domaine .be et on signale immédiatement votre nouveau site à Google.' }
     ],
     includedMaintenance: 'Hébergement haute performance, renouvellement annuel de votre nom de domaine .be, surveillance anti-panne et prise en charge rapide de vos changements de tarifs, horaires ou photos.',
     faq: [
@@ -1075,7 +1075,7 @@ export const services = [
     id: 'M21',
     slug: 'pilote-automatique-essentiel',
     name: 'Pilote Automatique Essentiel',
-    pillar: 'Pilier 03 · Automatisation & Agents IA',
+    pillar: 'Pilier 03 · Réponses et relances automatiques',
     kicker: '1 tâche automatisée · Fin des rendez-vous oubliés · Devis relancés sans y penser',
     cardDescription: 'Automatiser une tâche précise qui vous fait perdre du temps (prise de RDV, tri de demandes ou relance).',
     commitment: MONTHLY,
@@ -1169,7 +1169,7 @@ export const services = [
     id: 'M22',
     slug: 'pilote-automatique-business',
     name: 'Pilote Automatique Business',
-    pillar: 'Pilier 03 · Automatisation & Agents IA',
+    pillar: 'Pilier 03 · Réponses et relances automatiques',
     kicker: 'Devis, planning et facturation reliés · Peppol 2026 · Zéro ressaisie',
     cardDescription: 'Connecter votre site, vos e-mails, votre agenda et votre suivi client pour ne plus rien ressaisir à la main.',
     commitment: MONTHLY,
@@ -1263,7 +1263,7 @@ export const services = [
     id: 'M23',
     slug: 'pilote-automatique-integral',
     name: 'Pilote Automatique Intégral',
-    pillar: 'Pilier 03 · Automatisation & Agents IA',
+    pillar: 'Pilier 03 · Réponses et relances automatiques',
     kicker: 'Assistant IA métier · Réponse 24/7 Web & WhatsApp · Limité à vos vrais tarifs',
     cardDescription: 'Système complet sur mesure avec agent IA, automatisations métier et tableau de suivi centralisé.',
     commitment: MONTHLY,

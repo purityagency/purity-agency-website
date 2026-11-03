@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORDER = ['app', 'menu', 'octomask', 'hero-video', 'site-additions', 'audit',
-  'method', 'service-grid', 'service-experience', 'services-bg', 'home'];
+  'method', 'service-grid', 'service-experience', 'services-bg', 'be-map', 'home'];
 
 // Reecrit les url() relatifs (ex. ../assets/x.webp, img/x.png) en chemins absolus du site.
 function absolutize(css, fromDir) {

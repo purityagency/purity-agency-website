@@ -1,0 +1,26 @@
+/* Carte de la Belgique : générée par scripts/build-be-map.mjs */
+.be-map{padding:clamp(1rem,3vw,2.5rem);border-radius:20px;background:radial-gradient(120% 90% at 50% 55%,#FFFFFF 0%,#F6F4F9 100%);outline:1px solid rgba(0,0,0,.06);outline-offset:-1px}
+.be-map svg{display:block;width:100%;max-width:760px;height:auto;margin:auto;overflow:visible}
+.bm-fla{fill:#ECEAF0}.bm-wal{fill:#E3D7F4}.bm-bxl{fill:#CDBDE6}
+.bm-fla,.bm-wal,.bm-bxl{stroke:#fff;stroke-width:2;stroke-linejoin:round}
+.bm-inner{fill:none;stroke:#fff;stroke-width:1.2;stroke-linejoin:round;opacity:.9}
+.bm-arc{fill:none;stroke:#6C3CAA;stroke-width:1.5;stroke-linecap:round;opacity:.38;stroke-dasharray:1}
+.bm-dot{fill:#fff;stroke:rgba(108,60,170,.28);stroke-width:1;filter:drop-shadow(0 2px 4px rgba(44,22,110,.18))}
+.bm-dot--hq{stroke:#6C3CAA;stroke-width:2.5;filter:drop-shadow(0 6px 14px rgba(76,38,125,.30))}
+.bm-ring{fill:#6C3CAA;opacity:0;transform-box:fill-box;transform-origin:center}
+.bm-lb{font:600 14px 'General Sans',sans-serif;fill:#3F3A47;paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:4px;stroke-linejoin:round}
+.bm-lb--hq{font-size:20px;font-weight:700;fill:#4D267D;text-anchor:middle}
+.bm-mid{text-anchor:middle}.bm-end{text-anchor:end}
+@media(max-width:640px){.bm-lb{font-size:26px;stroke-width:6px}.bm-lb--hq{font-size:32px}.bm-minor{display:none}.bm-pin:not(.bm-hq) .bm-dot,.bm-pin:not(.bm-hq) image{transform-box:fill-box;transform-origin:center;scale:1.35}}
+.vz-armed .bm-pin{opacity:0;transform:translateY(8px) scale(.85);transform-box:fill-box;transform-origin:center}
+.vz-armed .bm-arc{stroke-dashoffset:1}
+.be-map.is-in .bm-pin{animation:bm-in .5s cubic-bezier(.2,.8,.2,1) forwards}
+.be-map.is-in .bm-arc{animation:bm-draw .9s cubic-bezier(.4,0,.2,1) forwards}
+.be-map.is-in .bm-d1{animation-delay:320ms}.be-map.is-in .bm-d2{animation-delay:390ms}.be-map.is-in .bm-d3{animation-delay:460ms}.be-map.is-in .bm-d4{animation-delay:530ms}.be-map.is-in .bm-d5{animation-delay:600ms}.be-map.is-in .bm-d6{animation-delay:670ms}.be-map.is-in .bm-d7{animation-delay:740ms}.be-map.is-in .bm-d8{animation-delay:810ms}.be-map.is-in .bm-d9{animation-delay:880ms}.be-map.is-in .bm-d10{animation-delay:950ms}.be-map.is-in .bm-d11{animation-delay:1020ms}.be-map.is-in .bm-d12{animation-delay:1090ms}.be-map.is-in .bm-d13{animation-delay:1160ms}.be-map.is-in .bm-d14{animation-delay:1230ms}.be-map.is-in .bm-d15{animation-delay:1300ms}
+.be-map.is-in .bm-ring{animation:bm-pulse 2.8s cubic-bezier(.2,.6,.3,1) 1.2s infinite}
+.be-map.is-in .bm-ring2{animation-delay:2.6s}
+@keyframes bm-in{to{opacity:1;transform:none}}
+@keyframes bm-draw{to{stroke-dashoffset:0}}
+@keyframes bm-pulse{0%{opacity:.28;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@media(prefers-reduced-motion:reduce){.bm-pin{opacity:1!important;transform:none!important;animation:none!important}.bm-arc{stroke-dashoffset:0!important;animation:none!important}.bm-ring{animation:none!important;opacity:0}}
+.be-map a{cursor:pointer}.be-map a:hover .bm-dot,.be-map a:focus-visible .bm-dot{stroke:#6C3CAA;stroke-width:2}.be-map a:hover .bm-lb,.be-map a:focus-visible .bm-lb{fill:#4D267D;text-decoration:underline}.be-map a:focus-visible{outline:none}

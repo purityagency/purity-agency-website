@@ -559,7 +559,7 @@ body.service-page {
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 640;
   color: var(--sd-muted);
 }
@@ -572,7 +572,7 @@ body.service-page {
   aspect-ratio: 9 / 14;
   border-radius: 8px;
   border: 1px dashed var(--sd-line-strong);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--sd-faint);
 }
 

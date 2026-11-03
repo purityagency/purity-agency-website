@@ -456,7 +456,7 @@ export const services = [
     ],
     lossOfInaction: [
       {
-        title: '30 % de vos marges abandonnées aux plateformes de livraison',
+        title: 'Une part de vos marges abandonnée aux plateformes de livraison',
         desc: 'Laisser 1 500 € à 3 000 € chaque mois à des intermédiaires au lieu de fidéliser votre propre clientèle sur votre site.'
       },
       {

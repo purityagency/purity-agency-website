@@ -275,3 +275,30 @@
 .case-detail h2,.cases h2{text-wrap:balance}
 .lp-package [class*="price"]{font-variant-numeric:tabular-nums}
 .cap-slot{min-height:44px}
+
+/* Vitrine 2026-11 : chaque demo en mockup navigateur + telephone (captures reelles), plus d'iframes */
+.case-visual{position:relative;display:block;padding:clamp(1.25rem,3.2vw,2.6rem) clamp(1.25rem,3.2vw,2.6rem) clamp(1rem,2.4vw,1.8rem);border-radius:1.5rem;background:#F2F0F4;overflow:hidden;transition:background-color .5s cubic-bezier(.22,1,.36,1)}
+.case-visual__tag{position:absolute;top:.9rem;left:.9rem;padding:.28rem .6rem;border-radius:999px;background:#fff;color:var(--ink);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.case-visual .mock{position:relative;display:block;padding:0 13% 9% 0}
+.case-visual .mock__browser{display:block;overflow:hidden;border-radius:12px;background:#fff;outline:1px solid rgba(18,14,23,.08);outline-offset:-1px;box-shadow:0 1px 1px rgba(18,14,23,.04),0 24px 46px -26px rgba(30,14,50,.4);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.case-visual .mock__bar{display:flex;align-items:center;gap:5px;height:24px;padding:0 10px;background:#F7F6F8;border-bottom:1px solid rgba(18,14,23,.06)}
+.case-visual .mock__bar i{flex:none;width:7px;height:7px;border-radius:50%;background:#D7D2DC}
+.case-visual .mock__url{flex:1;min-width:0;margin:0 26px 0 10px;padding:1px 8px;border-radius:6px;background:#fff;color:#6E6876;font-size:.62rem;line-height:1.45;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-visual .mock__url::before{content:attr(data-url)}
+.case-visual .mock__screen{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.case-visual .mock__phone{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:390/790;padding:4px;border-radius:clamp(14px,2vw,22px);background:#120E17;box-shadow:0 22px 40px -18px rgba(18,14,23,.6);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.case-visual .mock__phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:clamp(10px,1.6vw,18px)}
+.case-card__link:hover .case-visual,.case-card__link:focus-visible .case-visual{background:#ECE7F3}
+.case-card__link:hover .mock__browser,.case-card__link:focus-visible .mock__browser{transform:translateY(-5px)}
+.case-card__link:hover .mock__phone,.case-card__link:focus-visible .mock__phone{transform:translateY(-12px)}
+.cases .case-card__content p{font-size:.95rem;text-wrap:pretty}
+.cases .case-card__content b{display:inline-flex;align-items:center;gap:.3rem;margin-top:.8rem;color:var(--accent-deep)}
+.case-demo-note{text-wrap:balance}
+@media (max-width:760px){
+ .case-grid{grid-template-columns:1fr}
+ .case-visual{border-radius:1.15rem}
+}
+@media (prefers-reduced-motion:reduce){
+ .case-visual,.case-visual .mock__browser,.case-visual .mock__phone{transition:none}
+ .case-card__link:hover .mock__browser,.case-card__link:hover .mock__phone{transform:none}
+}

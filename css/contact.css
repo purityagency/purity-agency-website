@@ -441,3 +441,14 @@
 .next-steps li::before{content:counter(ns);position:absolute;left:0;top:0;display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;border:1px solid rgba(255,255,255,.5);font-size:.8rem;font-weight:650;color:#fff;font-variant-numeric:tabular-nums}
 .next-steps strong{color:#fffaf4;font-weight:650}
 .ask__input[aria-invalid="true"]{border-color:#b42318}
+
+/* Refonte 2026-11 : aplats francs (sans halo), visuel humain pres de la reservation */
+.contact{background:#fff}
+.thread{background:#4D267D;border-color:transparent;box-shadow:0 1px 2px rgba(18,14,23,.06),0 24px 50px -28px rgba(45,18,90,.45)}
+.booking{background:#120E17;border-color:transparent;box-shadow:0 1px 2px rgba(18,14,23,.06),0 24px 50px -28px rgba(18,14,23,.55)}
+.booking__person{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:1rem;margin:.9rem 0 1.1rem}
+.booking__person img{display:block;width:clamp(84px,9vw,112px);height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:16px;outline:1px solid rgba(255,255,255,.12);outline-offset:-1px}
+.booking__person figcaption{display:grid;gap:.25rem}
+.booking__person strong{color:#fffaf4;font-size:1.12rem;font-weight:620;letter-spacing:-.01em}
+.booking__person span{color:rgba(255,250,244,.7);font-size:.88rem;line-height:1.4;text-wrap:pretty}
+@media (prefers-reduced-motion:reduce){.thread,.booking{transition:none}.thread:hover,.booking:hover{transform:none}}

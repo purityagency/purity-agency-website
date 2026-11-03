@@ -60,7 +60,7 @@
   };
 
   const renderOffer = offer => {
-    const ctaLabel = offer.id === 'M01' ? 'Réserver mon créneau' : 'Profiter de l’offre';
+    const ctaLabel = offer.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Demander ce devis';
     // Rendez-vous : bloc de réservation. Devis : offre rappelée avec la remise.
     const ctaUrl = offer.id === 'M01'
       ? '/contact?intent=rdv'

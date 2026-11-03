@@ -1,5 +1,5 @@
 // Génère sitemap.xml depuis les pages HTML indexables (canonical = URL servie, pas de noindex).
-// lastmod = date réelle du fichier : dernier commit git s'il est propre, sinon date de modification (mtime). Usage : node scripts/build-sitemap.mjs
+// lastmod = dernier commit qui a modifié le texte de la page (voir lastmod()). Usage : node scripts/build-sitemap.mjs
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
@@ -21,11 +21,13 @@ for (const name of LEGAL_NOINDEX) {
   }
 }
 
+// lastmod = date du dernier commit qui a touché le texte (paragraphes, titres, <title>),
+// pour ne pas annoncer une mise à jour quand seuls le menu, le CSS ou les scripts ont bougé.
+// Repli : date de modification du fichier (page jamais commitée ou git absent).
 function lastmod(file) {
   try {
-    const iso = execFileSync('git', ['log', '-1', '--format=%cI', '--', file], { cwd: ROOT, encoding: 'utf8' }).trim();
-    const dirty = execFileSync('git', ['status', '--porcelain', '--', file], { cwd: ROOT, encoding: 'utf8' }).trim();
-    if (iso && !dirty) return iso.slice(0, 10);
+    const day = execFileSync('git', ['log', '-1', '--format=%cs', '-G', '<p|<h[1-3]|<title', '--', file], { cwd: ROOT, encoding: 'utf8' }).trim();
+    if (day) return day;
   } catch { /* pas de git */ }
   return statSync(join(ROOT, file)).mtime.toISOString().slice(0, 10);
 }

@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/toiletteur#webpage",
       "name": "Site internet pour toiletteur en Wallonie | Purity Agency",
-      "description": "Site internet pour toiletteur canin et félin en Wallonie : réservation par race et taille, acompte, tarifs clairs et rappels automatiques.",
+      "description": "Site internet pour toiletteur canin et félin en Wallonie : réservation par race et taille, acompte, tarifs clairs et rappels automatiques.",
       "url": "https://purity-agency.be/site-internet/toiletteur",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,7 +104,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Comment gérer les durées très différentes selon les races ?",
+          "name": "Comment gérer les durées très différentes selon les races ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Chaque prestation est liée à un gabarit et à une durée. L’agenda ne propose que les créneaux compatibles, ce qui évite les chevauchements."
@@ -98,7 +112,7 @@
         },
         {
           "@type": "Question",
-          "name": "L’acompte ne va-t-il pas faire fuir mes clients ?",
+          "name": "L’acompte ne va-t-il pas faire fuir mes clients ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Un acompte modéré, annoncé clairement et remboursé en cas d’annulation dans le délai, est généralement bien accepté. Il protège surtout vos créneaux longs."
@@ -106,15 +120,15 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je afficher des prix fixes alors que chaque chien est différent ?",
+          "name": "Puis-je afficher des prix fixes alors que chaque chien est différent ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui, sous forme de prix « à partir de » par gabarit, avec une mention sur les suppléments pour pelage très emmêlé ou comportement difficile."
+            "text": "Oui, sous forme de prix « à partir de » par gabarit, avec une mention sur les suppléments pour pelage très emmêlé ou comportement difficile."
           }
         },
         {
           "@type": "Question",
-          "name": "Les propriétaires peuvent-ils indiquer les particularités de leur animal ?",
+          "name": "Les propriétaires peuvent-ils indiquer les particularités de leur animal ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, une fiche animal est remplie à la réservation et vous arrive avec la demande."
@@ -122,7 +136,7 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour un salon de toilettage ?",
+          "name": "Combien coûte un site pour un salon de toilettage ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Le site vitrine avec réservation par race et acompte coûte 1 490 € + 79 €/mois. Une page unique démarre à 490 € + 79 €/mois. Prix nets, TVA non applicable."
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/animaux-mobile-0.webp" alt="Capture de la démo Patte Douce conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Patte Douce n’est pas un client réel. <a href="/cas-concrets/animaux">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Patte Douce n’est pas un client réel. <a href="/cas-concrets/animaux">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -216,7 +230,7 @@
         <h2 class="lv-h2" id="pain-title">Le téléphone sonne pendant un bain, et le propriétaire qui ne vous joint pas appelle un autre salon</h2>
       </div>
       <ol class="lv-pain__list">
-        <li><span class="lv-pain__n">01</span>« C’est combien pour mon chien ? »</li>
+        <li><span class="lv-pain__n">01</span>« C’est combien pour mon chien ? »</li>
         <li><span class="lv-pain__n">02</span>Un grand chien casé sur un créneau trop court</li>
         <li><span class="lv-pain__n">03</span>Il hésite à vous confier un chien anxieux</li>
         <li><span class="lv-pain__n">04</span>Les mêmes questions pratiques, encore et encore</li>
@@ -237,7 +251,7 @@
         <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7.2A6 6 0 1 0 17 16.8"/><path d="M5 10.5h8M5 13.5h8"/></svg><strong>Les prix par gabarit, affichés</strong></div>
         <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><strong>Les particularités du chien connues avant son arrivée</strong></div>
         <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h3l1.6-2.5h6.8L17 8.5h3v11H4z"/><circle cx="12" cy="14" r="3.4"/></svg><strong>Vos coupes en photo, avant et après</strong></div>
-        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>Trouvé sur « toiletteur » dans votre commune</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>Trouvé sur « toiletteur » dans votre commune</strong></div>
       </div>
     </section>
 
@@ -247,11 +261,11 @@
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
         <h2 class="lv-h2"><span id="auto-title">Des chiens qui reviennent à temps, des propriétaires prévenus sans vous</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : le service <a href="/services/identite-visuelle-logo">logo et identité visuelle</a>.</p>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : le service <a href="/services/identite-visuelle-logo">logo et identité visuelle</a>.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg><span class="lv-flow__n">01</span><strong>Rappel de la prochaine séance</strong></li>
-        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/></svg><span class="lv-flow__n">02</span><strong>Message « votre animal est prêt »</strong></li>
+        <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/></svg><span class="lv-flow__n">02</span><strong>Message « votre animal est prêt »</strong></li>
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/></svg><span class="lv-flow__n">03</span><strong>Assistant pour les questions courantes</strong></li>
       </ol>
     </section>
@@ -265,21 +279,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/page-essentielle">
           
-          <span class="lv-price__name">Page Essentielle (1 page)</span>
+          <span class="lv-price__name">Page essentielle (1 page)</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -294,10 +308,10 @@
         <p>Un site internet de toiletteur doit permettre de réserver un créneau adapté à la race, la taille et l’état du pelage, afficher des tarifs clairs et demander un acompte pour limiter les absences. Purity Agency conçoit à Charleroi des sites pour salons de toilettage wallons, simples à utiliser pour les propriétaires et pour vous.</p>
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
-          <dt>« C’est combien pour mon chien ? »</dt><dd>Un yorkshire et un berger n’ont pas le même prix. Sans grille par gabarit, il appelle pour savoir, ou il compare ailleurs.</dd>
+          <dt>« C’est combien pour mon chien ? »</dt><dd>Un yorkshire et un berger n’ont pas le même prix. Sans grille par gabarit, il appelle pour savoir, ou il compare ailleurs.</dd>
           <dt>Un grand chien casé sur un créneau trop court</dt><dd>Un toilettage complet de grand chien peut prendre une demi-journée. Réservé sur un créneau trop court, il décale toute votre journée.</dd>
-          <dt>Il hésite à vous confier un chien anxieux</dt><dd>Produits utilisés, manipulation douce, chiens âgés ou craintifs : sans réponse sur le site, il reste chez son toiletteur habituel.</dd>
-          <dt>Les mêmes questions pratiques, encore et encore</dt><dd>Durée sur place, heure de récupération, vaccins demandés, chats acceptés ou non : autant d’appels pris les mains mouillées.</dd>
+          <dt>Il hésite à vous confier un chien anxieux</dt><dd>Produits utilisés, manipulation douce, chiens âgés ou craintifs : sans réponse sur le site, il reste chez son toiletteur habituel.</dd>
+          <dt>Les mêmes questions pratiques, encore et encore</dt><dd>Durée sur place, heure de récupération, vaccins demandés, chats acceptés ou non : autant d’appels pris les mains mouillées.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
@@ -306,16 +320,16 @@
           <dt>Les prix par gabarit, affichés</dt><dd>Prix par gabarit et par prestation (bain, tonte, épilation, coupe aux ciseaux), avec suppléments expliqués.</dd>
           <dt>Les particularités du chien connues avant son arrivée</dt><dd>Nom, âge, particularités (anxiété, peau sensible, nœuds) transmises avant le rendez-vous.</dd>
           <dt>Vos coupes en photo, avant et après</dt><dd>Des photos de vos toilettages, avec l’accord des propriétaires.</dd>
-          <dt>Trouvé sur « toiletteur » dans votre commune</dt><dd>Pages optimisées pour « toiletteur » et « toilettage chien » dans votre commune.</dd>
+          <dt>Trouvé sur « toiletteur » dans votre commune</dt><dd>Pages optimisées pour « toiletteur » et « toilettage chien » dans votre commune.</dd>
         </dl>
         <h3>Automatisations possibles</h3>
         <dl>
           <dt>Rappel de la prochaine séance</dt><dd>Un message automatique quand le prochain toilettage conseillé approche, selon le rythme de chaque animal.</dd>
-          <dt>Message « votre animal est prêt »</dt><dd>Le propriétaire est prévenu automatiquement, sans que vous deviez lâcher la tondeuse pour téléphoner.</dd>
+          <dt>Message « votre animal est prêt »</dt><dd>Le propriétaire est prévenu automatiquement, sans que vous deviez lâcher la tondeuse pour téléphoner.</dd>
           <dt>Assistant pour les questions courantes</dt><dd>Un assistant répond sur les tarifs, la durée et la préparation, à partir des informations que vous avez validées.</dd>
         </dl>
         <h3>Dans la démo Patte Douce</h3>
-        <p>Réservez comme un propriétaire : profil du chien (taille, pelage, habitudes), choix du soin, puis récapitulatif. Voyez aussi comment le salon explique l’accueil des chiens craintifs.</p>
+        <p>Réservez comme un propriétaire : profil du chien (taille, pelage, habitudes), choix du soin, puis récapitulatif. Voyez aussi comment le salon explique l’accueil des chiens craintifs.</p>
       </div>
     </details>
 
@@ -327,31 +341,31 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Comment gérer les durées très différentes selon les races ?</summary>
+            <summary>Comment gérer les durées très différentes selon les races ?</summary>
             <div class="sd-faq-body">
               <p>Chaque prestation est liée à un gabarit et à une durée. L’agenda ne propose que les créneaux compatibles, ce qui évite les chevauchements.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>L’acompte ne va-t-il pas faire fuir mes clients ?</summary>
+            <summary>L’acompte ne va-t-il pas faire fuir mes clients ?</summary>
             <div class="sd-faq-body">
               <p>Un acompte modéré, annoncé clairement et remboursé en cas d’annulation dans le délai, est généralement bien accepté. Il protège surtout vos créneaux longs.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je afficher des prix fixes alors que chaque chien est différent ?</summary>
+            <summary>Puis-je afficher des prix fixes alors que chaque chien est différent ?</summary>
             <div class="sd-faq-body">
-              <p>Oui, sous forme de prix « à partir de » par gabarit, avec une mention sur les suppléments pour pelage très emmêlé ou comportement difficile.</p>
+              <p>Oui, sous forme de prix « à partir de » par gabarit, avec une mention sur les suppléments pour pelage très emmêlé ou comportement difficile.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Les propriétaires peuvent-ils indiquer les particularités de leur animal ?</summary>
+            <summary>Les propriétaires peuvent-ils indiquer les particularités de leur animal ?</summary>
             <div class="sd-faq-body">
               <p>Oui, une fiche animal est remplie à la réservation et vous arrive avec la demande.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour un salon de toilettage ?</summary>
+            <summary>Combien coûte un site pour un salon de toilettage ?</summary>
             <div class="sd-faq-body">
               <p>Le site vitrine avec réservation par race et acompte coûte 1 490 € + 79 €/mois. Une page unique démarre à 490 € + 79 €/mois. Prix nets, TVA non applicable.</p>
             </div>
@@ -412,7 +426,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

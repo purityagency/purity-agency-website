@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/kinesitherapeute#webpage",
       "name": "Site internet pour kinésithérapeute en Wallonie | Purity",
-      "description": "Site internet pour kiné en Wallonie : prise de RDV en ligne, motifs de consultation, infos INAMI et tarifs clairs, dans le respect de la déontologie.",
+      "description": "Site internet pour kiné en Wallonie : prise de RDV en ligne, motifs de consultation, infos INAMI et tarifs clairs, dans le respect de la déontologie.",
       "url": "https://purity-agency.be/site-internet/kinesitherapeute",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,15 +104,15 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Un kinésithérapeute peut-il faire de la publicité sur son site ?",
+          "name": "Un kinésithérapeute peut-il faire de la publicité sur son site ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le site peut informer : spécialités, horaires, tarifs, accès. Il doit rester factuel et éviter les témoignages de patients, les promesses de résultat et le dénigrement de confrères. Nous rédigeons dans ce sens."
+            "text": "Le site peut informer : spécialités, horaires, tarifs, accès. Il doit rester factuel et éviter les témoignages de patients, les promesses de résultat et le dénigrement de confrères. Nous rédigeons dans ce sens."
           }
         },
         {
           "@type": "Question",
-          "name": "Puis-je utiliser mon agenda en ligne actuel ?",
+          "name": "Puis-je utiliser mon agenda en ligne actuel ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Si vous utilisez déjà un outil d’agenda, nous l’intégrons proprement au site. Sinon, nous mettons en place une prise de rendez-vous adaptée au cabinet."
@@ -106,15 +120,15 @@
         },
         {
           "@type": "Question",
-          "name": "Faut-il afficher mes tarifs et mon conventionnement INAMI ?",
+          "name": "Faut-il afficher mes tarifs et mon conventionnement INAMI ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C’est fortement conseillé : c’est la question la plus fréquente des patients et l’afficher clairement réduit les appels. Nous indiquons uniquement les informations que vous nous confirmez."
+            "text": "C’est fortement conseillé : c’est la question la plus fréquente des patients et l’afficher clairement réduit les appels. Nous indiquons uniquement les informations que vous nous confirmez."
           }
         },
         {
           "@type": "Question",
-          "name": "Les données des patients sont-elles protégées ?",
+          "name": "Les données des patients sont-elles protégées ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Le formulaire collecte le strict nécessaire pour fixer un rendez-vous, sans données médicales détaillées, et une politique de confidentialité conforme au RGPD est fournie."
@@ -122,7 +136,7 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour un cabinet de kinésithérapie ?",
+          "name": "Combien coûte un site pour un cabinet de kinésithérapie ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Une page unique démarre à 490 € + 79 €/mois. Un site vitrine avec pages par prise en charge et prise de rendez-vous coûte 1 490 € + 79 €/mois. Prix nets, TVA non applicable."
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/sante-mobile-0.webp" alt="Capture de la démo Cabinet Horizon conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Cabinet Horizon n’est pas un client réel. <a href="/cas-concrets/sante">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Cabinet Horizon n’est pas un client réel. <a href="/cas-concrets/sante">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -218,8 +232,8 @@
       <ol class="lv-pain__list">
         <li><span class="lv-pain__n">01</span>Prescription en main, il cherche le soir</li>
         <li><span class="lv-pain__n">02</span>Il ne sait pas si vous traitez son problème</li>
-        <li><span class="lv-pain__n">03</span>« Vous êtes conventionné ? C’est combien ? »</li>
-        <li><span class="lv-pain__n">04</span>« Vous venez à domicile ? »</li>
+        <li><span class="lv-pain__n">03</span>« Vous êtes conventionné ? C’est combien ? »</li>
+        <li><span class="lv-pain__n">04</span>« Vous venez à domicile ? »</li>
       </ol>
     </section>
 
@@ -289,21 +303,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/page-essentielle">
           
-          <span class="lv-price__name">Page Essentielle (1 page)</span>
+          <span class="lv-price__name">Page essentielle (1 page)</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -319,16 +333,16 @@
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
           <dt>Prescription en main, il cherche le soir</dt><dd>Le cabinet est fermé, personne ne décroche. Il prend le premier créneau proposé en ligne, chez un confrère.</dd>
-          <dt>Il ne sait pas si vous traitez son problème</dt><dd>Lombalgie, rééducation après opération, kiné respiratoire, périnée, sport : sans page claire, il appelle pour demander, ou il passe son chemin.</dd>
-          <dt>« Vous êtes conventionné ? C’est combien ? »</dt><dd>La même question plusieurs fois par jour, qui vous sort de séance pour une réponse qui tient en deux lignes.</dd>
-          <dt>« Vous venez à domicile ? »</dt><dd>Les patients âgés ou opérés appellent pour savoir si vous passez dans leur commune. Vous répondez au cas par cas, entre deux patients.</dd>
+          <dt>Il ne sait pas si vous traitez son problème</dt><dd>Lombalgie, rééducation après opération, kiné respiratoire, périnée, sport : sans page claire, il appelle pour demander, ou il passe son chemin.</dd>
+          <dt>« Vous êtes conventionné ? C’est combien ? »</dt><dd>La même question plusieurs fois par jour, qui vous sort de séance pour une réponse qui tient en deux lignes.</dd>
+          <dt>« Vous venez à domicile ? »</dt><dd>Les patients âgés ou opérés appellent pour savoir si vous passez dans leur commune. Vous répondez au cas par cas, entre deux patients.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
           <dt>Le patient réserve le bon motif</dt><dd>Le patient choisit son motif (première séance, suivi, domicile) et la durée du créneau s’adapte, ce qui évite les erreurs d’agenda.</dd>
           <dt>Une page par prise en charge</dt><dd>Une page claire par spécialité réellement pratiquée au cabinet, rédigée de façon informative et sans promesse de résultat.</dd>
           <dt>Conventionnement et tarifs affichés</dt><dd>Statut de conventionnement, tarifs appliqués et lien vers les informations officielles de remboursement, sans approximation.</dd>
-          <dt>Fini l’appel de la veille pour les documents</dt><dd>Prescription, carte d’identité, tenue, imageries : le patient arrive prêt à sa première séance.</dd>
+          <dt>Fini l’appel de la veille pour les documents</dt><dd>Prescription, carte d’identité, tenue, imageries : le patient arrive prêt à sa première séance.</dd>
           <dt>Parking, accès PMR et communes à domicile</dt><dd>Plan, parking, accessibilité PMR et liste des communes desservies pour les soins à domicile.</dd>
           <dt>Un site conforme à la déontologie</dt><dd>Pas de témoignages de patients, pas de comparaison avec des confrères, pas de formulation publicitaire excessive.</dd>
         </dl>
@@ -339,7 +353,7 @@
           <dt>Assistant pour les questions pratiques</dt><dd>Un assistant répond aux questions sur les horaires, l’accès et les documents à apporter. Il ne donne aucun avis médical et oriente vers le cabinet.</dd>
         </dl>
         <h3>Dans la démo Cabinet Horizon</h3>
-        <p>Réservez comme un patient : chaque soin (kiné, ostéopathie, rééducation périnéale) affiche sa durée et sa prise en charge. Ouvrez ensuite l’agenda tel que le secrétariat le voit.</p>
+        <p>Réservez comme un patient : chaque soin (kiné, ostéopathie, rééducation périnéale) affiche sa durée et sa prise en charge. Ouvrez ensuite l’agenda tel que le secrétariat le voit.</p>
       </div>
     </details>
 
@@ -351,31 +365,31 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Un kinésithérapeute peut-il faire de la publicité sur son site ?</summary>
+            <summary>Un kinésithérapeute peut-il faire de la publicité sur son site ?</summary>
             <div class="sd-faq-body">
-              <p>Le site peut informer : spécialités, horaires, tarifs, accès. Il doit rester factuel et éviter les témoignages de patients, les promesses de résultat et le dénigrement de confrères. Nous rédigeons dans ce sens.</p>
+              <p>Le site peut informer : spécialités, horaires, tarifs, accès. Il doit rester factuel et éviter les témoignages de patients, les promesses de résultat et le dénigrement de confrères. Nous rédigeons dans ce sens.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je utiliser mon agenda en ligne actuel ?</summary>
+            <summary>Puis-je utiliser mon agenda en ligne actuel ?</summary>
             <div class="sd-faq-body">
               <p>Oui. Si vous utilisez déjà un outil d’agenda, nous l’intégrons proprement au site. Sinon, nous mettons en place une prise de rendez-vous adaptée au cabinet.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Faut-il afficher mes tarifs et mon conventionnement INAMI ?</summary>
+            <summary>Faut-il afficher mes tarifs et mon conventionnement INAMI ?</summary>
             <div class="sd-faq-body">
-              <p>C’est fortement conseillé : c’est la question la plus fréquente des patients et l’afficher clairement réduit les appels. Nous indiquons uniquement les informations que vous nous confirmez.</p>
+              <p>C’est fortement conseillé : c’est la question la plus fréquente des patients et l’afficher clairement réduit les appels. Nous indiquons uniquement les informations que vous nous confirmez.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Les données des patients sont-elles protégées ?</summary>
+            <summary>Les données des patients sont-elles protégées ?</summary>
             <div class="sd-faq-body">
               <p>Le formulaire collecte le strict nécessaire pour fixer un rendez-vous, sans données médicales détaillées, et une politique de confidentialité conforme au RGPD est fournie.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour un cabinet de kinésithérapie ?</summary>
+            <summary>Combien coûte un site pour un cabinet de kinésithérapie ?</summary>
             <div class="sd-faq-body">
               <p>Une page unique démarre à 490 € + 79 €/mois. Un site vitrine avec pages par prise en charge et prise de rendez-vous coûte 1 490 € + 79 €/mois. Prix nets, TVA non applicable.</p>
             </div>
@@ -436,7 +450,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

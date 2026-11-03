@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/garage#webpage",
       "name": "Site internet pour garage en Wallonie | Purity Agency",
-      "description": "Site internet pour garage et carrosserie en Wallonie : RDV entretien en ligne, devis carrosserie avec photos, véhicules en vente. Dès 1 490 €.",
+      "description": "Site internet pour garage et carrosserie en Wallonie : RDV entretien en ligne, devis carrosserie avec photos, véhicules en vente. Dès 1 490 €.",
       "url": "https://purity-agency.be/site-internet/garage",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,7 +104,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Mes clients peuvent-ils vraiment prendre rendez-vous seuls ?",
+          "name": "Mes clients peuvent-ils vraiment prendre rendez-vous seuls ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Vous définissez les types d’intervention, leur durée et les créneaux ouverts. Les demandes arrivent par mail ou WhatsApp et vous gardez la main pour confirmer."
@@ -98,15 +112,15 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je afficher des prix indicatifs sans m’engager ?",
+          "name": "Puis-je afficher des prix indicatifs sans m’engager ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui, avec des formulations « à partir de » et une mention claire que le prix final dépend du véhicule. C’est rassurant pour le client et honnête pour vous."
+            "text": "Oui, avec des formulations « à partir de » et une mention claire que le prix final dépend du véhicule. C’est rassurant pour le client et honnête pour vous."
           }
         },
         {
           "@type": "Question",
-          "name": "Le devis carrosserie par photos remplace-t-il l’expertise ?",
+          "name": "Le devis carrosserie par photos remplace-t-il l’expertise ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Non. Il sert à donner un premier ordre de grandeur et à filtrer les demandes. L’expertise sur place ou celle de l’assurance reste nécessaire."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je mettre mes voitures d’occasion en vente sur le site ?",
+          "name": "Puis-je mettre mes voitures d’occasion en vente sur le site ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, une page stock est prévue. Nous ajoutons les véhicules sur simple envoi de photos et caractéristiques dans le cadre du suivi."
@@ -122,10 +136,10 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site internet pour un garage ?",
+          "name": "Combien coûte un site internet pour un garage ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le site vitrine avec réservation et devis photos coûte 1 490 € + 79 €/mois. Avec stock d’occasions et pages par marque, comptez le Site Complet à 2 490 € + 149 €/mois."
+            "text": "Le site vitrine avec réservation et devis photos coûte 1 490 € + 79 €/mois. Avec stock d’occasions et pages par marque, comptez le Site complet à 2 490 € + 149 €/mois."
           }
         }
       ]
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/garage-mobile-0.webp" alt="Capture de la démo Garage Rive conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Garage Rive n’est pas un client réel. <a href="/cas-concrets/garage">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Garage Rive n’est pas un client réel. <a href="/cas-concrets/garage">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -217,7 +231,7 @@
       </div>
       <ol class="lv-pain__list">
         <li><span class="lv-pain__n">01</span>Le téléphone sonne sous le pont</li>
-        <li><span class="lv-pain__n">02</span>« C’est combien, une vidange ? »</li>
+        <li><span class="lv-pain__n">02</span>« C’est combien, une vidange ? »</li>
         <li><span class="lv-pain__n">03</span>Un accrochage, et il hésite</li>
         <li><span class="lv-pain__n">04</span>Il ne sait pas si vous prenez sa marque</li>
       </ol>
@@ -282,21 +296,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/site-complet">
           
-          <span class="lv-price__name">Site Complet (10+ pages)</span>
+          <span class="lv-price__name">Site complet (10+ pages)</span>
           <span class="lv-price__amount">2 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -312,27 +326,27 @@
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
           <dt>Le téléphone sonne sous le pont</dt><dd>Vous êtes en pleine distribution, le client veut juste un créneau pour ses pneus. Vous décrochez les mains sales, ou il tombe sur le répondeur et réserve ailleurs le soir même.</dd>
-          <dt>« C’est combien, une vidange ? »</dt><dd>Vidange, plaquettes, préparation au contrôle technique : sans ordre de grandeur sur le site, chaque prix se donne au téléphone, un client à la fois.</dd>
+          <dt>« C’est combien, une vidange ? »</dt><dd>Vidange, plaquettes, préparation au contrôle technique : sans ordre de grandeur sur le site, chaque prix se donne au téléphone, un client à la fois.</dd>
           <dt>Un accrochage, et il hésite</dt><dd>Sans moyen d’envoyer ses photos, il ne sait pas s’il vaut la peine de passer par l’assurance. Il remet à plus tard, ou il choisit la carrosserie qui répond la première.</dd>
-          <dt>Il ne sait pas si vous prenez sa marque</dt><dd>Marques traitées, agréments éventuels, véhicule de remplacement, délais réels : s’il doit appeler pour le savoir, il regarde d’abord les garages qui l’affichent.</dd>
+          <dt>Il ne sait pas si vous prenez sa marque</dt><dd>Marques traitées, agréments éventuels, véhicule de remplacement, délais réels : s’il doit appeler pour le savoir, il regarde d’abord les garages qui l’affichent.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
           <dt>Les entretiens se réservent seuls</dt><dd>Choix du type d’intervention, de la marque et du créneau, avec plaque d’immatriculation et kilométrage pour préparer l’atelier.</dd>
-          <dt>Les devis carrosserie arrivent avec photos</dt><dd>Le client joint 4 photos des dégâts depuis son téléphone : vous chiffrez avant qu’il se déplace.</dd>
+          <dt>Les devis carrosserie arrivent avec photos</dt><dd>Le client joint 4 photos des dégâts depuis son téléphone : vous chiffrez avant qu’il se déplace.</dd>
           <dt>Vos occasions visibles sans un coup de fil</dt><dd>Une page stock avec photos, kilométrage, année et prix. L’acheteur sait ce qu’il vient voir avant de passer.</dd>
           <dt>Les changements de pneus anticipés</dt><dd>Une page dédiée au changement de pneus été et hiver et au gardiennage, utile aux pics d’octobre et d’avril.</dd>
           <dt>Le contrôle technique sans mauvaise surprise</dt><dd>Une prestation de préparation expliquée clairement, pour le client qui ne veut pas repasser une deuxième fois.</dd>
-          <dt>Trouvé dans vos communes</dt><dd>Le site est construit pour ressortir sur « garage » et « carrosserie » dans vos communes d’intervention.</dd>
+          <dt>Trouvé dans vos communes</dt><dd>Le site est construit pour ressortir sur « garage » et « carrosserie » dans vos communes d’intervention.</dd>
         </dl>
         <h3>Automatisations possibles</h3>
         <dl>
           <dt>Rappel d’entretien automatique</dt><dd>Un message envoyé quand l’entretien annuel ou le contrôle technique approche fait revenir les clients chez vous.</dd>
-          <dt>Suivi du véhicule par message</dt><dd>Le client reçoit « voiture prête » automatiquement, ce qui évite les appels « c’est fini ? ».</dd>
+          <dt>Suivi du véhicule par message</dt><dd>Le client reçoit « voiture prête » automatiquement, ce qui évite les appels « c’est fini ? ».</dd>
           <dt>Les demandes de devis triées pour vous</dt><dd>Une IA résume la demande et les photos reçues pour que vous voyiez en un coup d’œil ce qui est urgent ou rentable.</dd>
         </dl>
         <h3>Dans la démo Garage Rive</h3>
-        <p>Faites une demande comme un automobiliste : motif du passage (entretien, freinage et pneus, carrosserie, diagnostic), jour et créneau, kilométrage, puis récapitulatif prêt à envoyer.</p>
+        <p>Faites une demande comme un automobiliste : motif du passage (entretien, freinage et pneus, carrosserie, diagnostic), jour et créneau, kilométrage, puis récapitulatif prêt à envoyer.</p>
       </div>
     </details>
 
@@ -344,33 +358,33 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Mes clients peuvent-ils vraiment prendre rendez-vous seuls ?</summary>
+            <summary>Mes clients peuvent-ils vraiment prendre rendez-vous seuls ?</summary>
             <div class="sd-faq-body">
               <p>Oui. Vous définissez les types d’intervention, leur durée et les créneaux ouverts. Les demandes arrivent par mail ou WhatsApp et vous gardez la main pour confirmer.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je afficher des prix indicatifs sans m’engager ?</summary>
+            <summary>Puis-je afficher des prix indicatifs sans m’engager ?</summary>
             <div class="sd-faq-body">
-              <p>Oui, avec des formulations « à partir de » et une mention claire que le prix final dépend du véhicule. C’est rassurant pour le client et honnête pour vous.</p>
+              <p>Oui, avec des formulations « à partir de » et une mention claire que le prix final dépend du véhicule. C’est rassurant pour le client et honnête pour vous.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Le devis carrosserie par photos remplace-t-il l’expertise ?</summary>
+            <summary>Le devis carrosserie par photos remplace-t-il l’expertise ?</summary>
             <div class="sd-faq-body">
               <p>Non. Il sert à donner un premier ordre de grandeur et à filtrer les demandes. L’expertise sur place ou celle de l’assurance reste nécessaire.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je mettre mes voitures d’occasion en vente sur le site ?</summary>
+            <summary>Puis-je mettre mes voitures d’occasion en vente sur le site ?</summary>
             <div class="sd-faq-body">
               <p>Oui, une page stock est prévue. Nous ajoutons les véhicules sur simple envoi de photos et caractéristiques dans le cadre du suivi.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site internet pour un garage ?</summary>
+            <summary>Combien coûte un site internet pour un garage ?</summary>
             <div class="sd-faq-body">
-              <p>Le site vitrine avec réservation et devis photos coûte 1 490 € + 79 €/mois. Avec stock d’occasions et pages par marque, comptez le Site Complet à 2 490 € + 149 €/mois.</p>
+              <p>Le site vitrine avec réservation et devis photos coûte 1 490 € + 79 €/mois. Avec stock d’occasions et pages par marque, comptez le Site complet à 2 490 € + 149 €/mois.</p>
             </div>
           </details>
       </div>
@@ -429,7 +443,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

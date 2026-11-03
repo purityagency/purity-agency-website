@@ -19,6 +19,30 @@ const villes = pages('agence-web');
 const metiers = pages('site-internet');
 const cases = pages('cas-concrets');
 const articles = readdirSync(ROOT).filter(f => /^article-.+\.html$/.test(f)).map(meta);
+// Texte brut d'un fragment HTML (balises retirées, entités courantes décodées).
+const txt = (html) => html.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#0?39;/g, '’').replace(/\s+/g, ' ').trim();
+// Articles : titre (H1) et phrase-réponse = première phrase de l'encadré « En bref ».
+const articleAnswers = readdirSync(ROOT).filter(f => /^article-.+\.html$/.test(f)).map(f => {
+  const h = readFileSync(join(ROOT, f), 'utf8');
+  const { c, d } = meta(f);
+  const h1 = txt(/<h1[^>]*>([\s\S]*?)<\/h1>/.exec(h)?.[1] || '').replace(/\.$/, '');
+  const brief = txt(/<p class="article-brief__label">[^<]*<\/p>\s*<p>([\s\S]*?)<\/p>/.exec(h)?.[1] || '') || d;
+  const first = brief.split(/(?<=[.!?])\s+(?=[A-ZÀ-Ý«])/u)[0];
+  return `- [${h1}](${c}): ${first}`;
+});
+// Fondateur : repris de la page À propos (chapô + sections « Qui », « Pourquoi », « Comment »).
+const fondateur = (() => {
+  const h = readFileSync(join(ROOT, 'a-propos.html'), 'utf8');
+  const main = /<main[\s\S]*?<\/main>/.exec(h)?.[0] || '';
+  const lead = txt(/<p class="content-hero__lead">([\s\S]*?)<\/p>/.exec(main)?.[1] || '');
+  const parts = main.split(/<h2[^>]*>/).slice(1).map(sec => {
+    const title = txt(sec.slice(0, sec.indexOf('</h2>')));
+    const body = sec.slice(sec.indexOf('</h2>') + 5);
+    const items = [...body.matchAll(/<(p|li)[^>]*>([\s\S]*?)<\/(?:p|li)>/g)].map(m => (m[1] === 'li' ? '- ' : '') + txt(m[2])).filter(t => t.replace(/^- /, ''));
+    return { title, items };
+  }).filter(p => /^(Qui est|Pourquoi|Comment on travaille)/.test(p.title));
+  return [lead, ...parts.map(p => `### ${p.title}\n\n${p.items.join('\n')}`)].join('\n\n');
+})();
 const prix = (s) => s.price || [s.priceSetup, s.monthlyPrice].filter(Boolean).join(' + ');
 
 const IDENT = `Purity Agency est le nom commercial d'Amir Kebiyeb, entreprise personne physique. Numéro d'entreprise (BCE) et TVA : BE 1036.775.590. Régime de la franchise TVA (article 56bis du Code de la TVA) : TVA non applicable. Adresse : Boulevard Frans Dewandre 14, 6000 Charleroi, Belgique. Contact : contact@purity-agency.be.`;
@@ -70,6 +94,10 @@ ${list(villes)}
 
 ${list(metiers)}
 
+## Articles
+
+${articleAnswers.join('\n')}
+
 ## Démos par métier (démonstrations fictives)
 
 ${cases.map(p => `- [${p.t}](${p.c})`).join('\n')}
@@ -82,6 +110,10 @@ ${LEGAL}
 const full = `${HEAD}
 
 Ce fichier détaille chaque offre (prix indicatifs, délais, livrables, FAQ). Index court : ${O}/llms.txt
+
+## Fondateur
+
+${fondateur}
 
 ${services.map(s => `## ${s.name}
 

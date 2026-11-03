@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/agence-immobiliere#webpage",
       "name": "Site internet pour agence immobilière en Wallonie | Purity",
-      "description": "Site internet pour agence immobilière en Wallonie : biens à vendre et à louer, estimation en ligne pour capter des mandats, visites qualifiées.",
+      "description": "Site internet pour agence immobilière en Wallonie : biens à vendre et à louer, estimation en ligne pour capter des mandats, visites qualifiées.",
       "url": "https://purity-agency.be/site-internet/agence-immobiliere",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Complet (10+ pages)",
+        "name": "Site complet (10+ pages)",
         "price": "2490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-complet"
+        "url": "https://purity-agency.be/services/site-complet",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 2490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 149,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,15 +104,15 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Un site d’agence est-il utile si je publie déjà sur les portails ?",
+          "name": "Un site d’agence est-il utile si je publie déjà sur les portails ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui. Les portails apportent des acheteurs, mais votre site capte les vendeurs : c’est là qu’un propriétaire demande une estimation et compare les agences."
+            "text": "Oui. Les portails apportent des acheteurs, mais votre site capte les vendeurs : c’est là qu’un propriétaire demande une estimation et compare les agences."
           }
         },
         {
           "@type": "Question",
-          "name": "Le formulaire d’estimation donne-t-il un prix automatique ?",
+          "name": "Le formulaire d’estimation donne-t-il un prix automatique ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Nous déconseillons les prix automatiques souvent faux. Le formulaire collecte les informations du bien pour que vous proposiez une estimation sérieuse."
@@ -106,7 +120,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je reprendre automatiquement mes biens depuis mon logiciel ?",
+          "name": "Puis-je reprendre automatiquement mes biens depuis mon logiciel ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Selon le logiciel utilisé, souvent oui. Nous vérifions la faisabilité technique avant de l’inclure dans le devis."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Quelles mentions légales doivent figurer sur un site d’agence ?",
+          "name": "Quelles mentions légales doivent figurer sur un site d’agence ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Notamment le numéro d’agrément IPI, l’autorité de contrôle et les informations de l’entreprise. Nous les intégrons avec vous."
@@ -122,10 +136,10 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour une agence immobilière ?",
+          "name": "Combien coûte un site pour une agence immobilière ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Avec fiches de biens, estimation et pages par commune, le Site Complet coûte 2 490 € + 149 €/mois. Un site vitrine simple démarre à 1 490 € + 79 €/mois."
+            "text": "Avec fiches de biens, estimation et pages par commune, le Site complet coûte 2 490 € + 149 €/mois. Un site vitrine simple démarre à 1 490 € + 79 €/mois."
           }
         }
       ]
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Complet</dt><dd><strong>2 490 €</strong> + 149 €/mois</dd></div>
+          <div><dt>Site complet</dt><dd><strong>2 490 €</strong> + 149 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/immobilier-mobile-0.webp" alt="Capture de la démo Beaux Jours conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Beaux Jours n’est pas un client réel. <a href="/cas-concrets/immobilier">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Beaux Jours n’est pas un client réel. <a href="/cas-concrets/immobilier">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -264,7 +278,7 @@
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
         <h2 class="lv-h2"><span id="auto-title">Vos acquéreurs prévenus avant les portails, vos annonces écrites plus vite</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : <a href="/services/pilote-automatique-integral">assistant IA entraîné sur vos règles</a>, et <a href="/services/pilote-automatique-business">formulaires, e-mails et planning reliés</a>.</p>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : <a href="/services/pilote-automatique-integral">assistant IA entraîné sur vos règles</a>, et <a href="/services/pilote-automatique-business">formulaires, e-mails et planning reliés</a>.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span class="lv-flow__n">01</span><strong>Alertes nouveaux biens</strong></li>
@@ -282,21 +296,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-complet">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Complet (10+ pages)</span>
+          <span class="lv-price__name">Site complet (10+ pages)</span>
           <span class="lv-price__amount">2 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/site-vitrine">
           
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -311,17 +325,17 @@
         <p>Un site internet d’agence immobilière doit présenter les biens avec des fiches complètes, proposer une demande d’estimation pour attirer de nouveaux mandats et qualifier les candidats avant chaque visite. Purity Agency crée à Charleroi des sites pour agences immobilières wallonnes, rapides sur smartphone et pensés pour les propriétaires vendeurs.</p>
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
-          <dt>Une fiche incomplète, un appel de plus</dt><dd>Prix, surface, PEB, revenu cadastral, photos et plan : quand une information manque, l’acquéreur appelle, ou passe au bien suivant sur le portail.</dd>
-          <dt>L’estimation part chez un concurrent</dt><dd>Le propriétaire tape « estimation maison » le soir. Sans formulaire chez vous, le mandat se discute ailleurs.</dd>
-          <dt>Personne derrière la vitrine</dt><dd>Les agents, leurs zones et leur agrément IPI : vendre sa maison est une affaire de confiance, pas de logo.</dd>
+          <dt>Une fiche incomplète, un appel de plus</dt><dd>Prix, surface, PEB, revenu cadastral, photos et plan : quand une information manque, l’acquéreur appelle, ou passe au bien suivant sur le portail.</dd>
+          <dt>L’estimation part chez un concurrent</dt><dd>Le propriétaire tape « estimation maison » le soir. Sans formulaire chez vous, le mandat se discute ailleurs.</dd>
+          <dt>Personne derrière la vitrine</dt><dd>Les agents, leurs zones et leur agrément IPI : vendre sa maison est une affaire de confiance, pas de logo.</dd>
           <dt>Les bons acquéreurs arrivent trop tard</dt><dd>Les acheteurs actifs veulent être prévenus avant que le bien parte sur les portails. Sans alerte, ils l’apprennent en même temps que tout le monde.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
           <dt>Des fiches qui répondent avant l’appel</dt><dd>Photos, PEB, surfaces, caractéristiques et localisation approximative, avec bouton de demande de visite.</dd>
           <dt>Les demandes d’estimation arrivent chez vous</dt><dd>Le propriétaire décrit son bien en quelques étapes. Vous recevez une demande qualifiée, prête pour un rendez-vous.</dd>
-          <dt>Budget et financement connus avant la visite</dt><dd>Avant la visite, le candidat indique son budget, son financement et son délai : moins de visites inutiles.</dd>
-          <dt>Trouvé dans vos quartiers</dt><dd>Des pages sur les quartiers et communes où vous êtes actifs, pour ressortir sur « agence immobilière + commune ».</dd>
+          <dt>Budget et financement connus avant la visite</dt><dd>Avant la visite, le candidat indique son budget, son financement et son délai : moins de visites inutiles.</dd>
+          <dt>Trouvé dans vos quartiers</dt><dd>Des pages sur les quartiers et communes où vous êtes actifs, pour ressortir sur « agence immobilière + commune ».</dd>
           <dt>Vos mentions IPI en règle</dt><dd>Numéro IPI, assurance et informations obligatoires de l’agent immobilier, affichés correctement.</dd>
           <dt>Moins de double saisie</dt><dd>Selon votre logiciel immobilier, les biens peuvent être repris automatiquement pour éviter la double saisie.</dd>
         </dl>
@@ -332,7 +346,7 @@
           <dt>Rédaction d’annonces assistée par IA</dt><dd>Une première version de description générée à partir de vos notes et photos, que vous relisez et corrigez avant publication.</dd>
         </dl>
         <h3>Dans la démo Beaux Jours</h3>
-        <p>Parcourez-la comme un acquéreur : une sélection de biens à filtrer (maison, appartement), des fiches détaillées, puis une demande de visite préparée en trois étapes.</p>
+        <p>Parcourez-la comme un acquéreur : une sélection de biens à filtrer (maison, appartement), des fiches détaillées, puis une demande de visite préparée en trois étapes.</p>
       </div>
     </details>
 
@@ -344,33 +358,33 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Un site d’agence est-il utile si je publie déjà sur les portails ?</summary>
+            <summary>Un site d’agence est-il utile si je publie déjà sur les portails ?</summary>
             <div class="sd-faq-body">
-              <p>Oui. Les portails apportent des acheteurs, mais votre site capte les vendeurs : c’est là qu’un propriétaire demande une estimation et compare les agences.</p>
+              <p>Oui. Les portails apportent des acheteurs, mais votre site capte les vendeurs : c’est là qu’un propriétaire demande une estimation et compare les agences.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Le formulaire d’estimation donne-t-il un prix automatique ?</summary>
+            <summary>Le formulaire d’estimation donne-t-il un prix automatique ?</summary>
             <div class="sd-faq-body">
               <p>Nous déconseillons les prix automatiques souvent faux. Le formulaire collecte les informations du bien pour que vous proposiez une estimation sérieuse.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je reprendre automatiquement mes biens depuis mon logiciel ?</summary>
+            <summary>Puis-je reprendre automatiquement mes biens depuis mon logiciel ?</summary>
             <div class="sd-faq-body">
               <p>Selon le logiciel utilisé, souvent oui. Nous vérifions la faisabilité technique avant de l’inclure dans le devis.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Quelles mentions légales doivent figurer sur un site d’agence ?</summary>
+            <summary>Quelles mentions légales doivent figurer sur un site d’agence ?</summary>
             <div class="sd-faq-body">
               <p>Notamment le numéro d’agrément IPI, l’autorité de contrôle et les informations de l’entreprise. Nous les intégrons avec vous.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour une agence immobilière ?</summary>
+            <summary>Combien coûte un site pour une agence immobilière ?</summary>
             <div class="sd-faq-body">
-              <p>Avec fiches de biens, estimation et pages par commune, le Site Complet coûte 2 490 € + 149 €/mois. Un site vitrine simple démarre à 1 490 € + 79 €/mois.</p>
+              <p>Avec fiches de biens, estimation et pages par commune, le Site complet coûte 2 490 € + 149 €/mois. Un site vitrine simple démarre à 1 490 € + 79 €/mois.</p>
             </div>
           </details>
       </div>
@@ -429,7 +443,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

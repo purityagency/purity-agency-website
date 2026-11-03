@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/institut-beaute#webpage",
       "name": "Site internet pour institut de beauté en Wallonie | Purity",
-      "description": "Site internet pour institut de beauté en Wallonie : réservation 24h/24, acompte contre les rendez-vous manqués, carte des soins et cartes cadeaux.",
+      "description": "Site internet pour institut de beauté en Wallonie : réservation 24 h/24, acompte contre les rendez-vous manqués, carte des soins et cartes cadeaux.",
       "url": "https://purity-agency.be/site-internet/institut-beaute",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -65,7 +63,7 @@
       "@type": "Service",
       "name": "Création de site internet pour instituts de beauté",
       "serviceType": "Création de site internet",
-      "description": "Un site internet d’institut de beauté doit présenter la carte des soins avec durée et prix, et permettre de réserver 24h/24 avec un acompte qui limite les rendez-vous manqués. Purity Agency conçoit à Charleroi des sites pour esthéticiennes et instituts de Wallonie, élégants sur smartphone et reliés à votre agenda.",
+      "description": "Un site internet d’institut de beauté doit présenter la carte des soins avec durée et prix, et permettre de réserver 24 h/24 avec un acompte qui limite les rendez-vous manqués. Purity Agency conçoit à Charleroi des sites pour esthéticiennes et instituts de Wallonie, élégants sur smartphone et reliés à votre agenda.",
       "provider": {
         "@id": "https://purity-agency.be/#business"
       },
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,15 +104,15 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "L’acompte en ligne est-il légal en Belgique ?",
+          "name": "L’acompte en ligne est-il légal en Belgique ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui, si les conditions sont annoncées avant la réservation : montant, délai d’annulation et sort de l’acompte. Nous les affichons clairement sur le site et dans la confirmation."
+            "text": "Oui, si les conditions sont annoncées avant la réservation : montant, délai d’annulation et sort de l’acompte. Nous les affichons clairement sur le site et dans la confirmation."
           }
         },
         {
           "@type": "Question",
-          "name": "Puis-je garder mon logiciel de réservation actuel ?",
+          "name": "Puis-je garder mon logiciel de réservation actuel ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Si votre outil actuel vous convient, nous l’intégrons au site. Sinon, nous mettons en place un outil de réservation simple, adapté à votre institut."
@@ -106,7 +120,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je publier des photos avant et après de mes clientes ?",
+          "name": "Puis-je publier des photos avant et après de mes clientes ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Uniquement avec leur accord écrit. Nous prévoyons une galerie et vous rappelons cette règle, liée au droit à l’image et au RGPD."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Comment vendre des cartes cadeaux sur le site ?",
+          "name": "Comment vendre des cartes cadeaux sur le site ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Une page dédiée permet de choisir un montant ou un soin et de payer en ligne. La carte est envoyée automatiquement par mail."
@@ -122,7 +136,7 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour un institut de beauté ?",
+          "name": "Combien coûte un site pour un institut de beauté ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Le site vitrine avec carte des soins et réservation coûte 1 490 € + 79 €/mois. Une page unique démarre à 490 € + 79 €/mois. Prix nets, TVA non applicable."
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/beaute-mobile-0.webp" alt="Capture de la démo Maison Lune conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Maison Lune n’est pas un client réel. <a href="/cas-concrets/beaute">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Maison Lune n’est pas un client réel. <a href="/cas-concrets/beaute">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -237,7 +251,7 @@
         <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11"/><path d="M4.5 7h.01M4.5 12h.01M4.5 17h.01"/></svg><strong>Une carte des soins lisible</strong></div>
         <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7.2A6 6 0 1 0 17 16.8"/><path d="M5 10.5h8M5 13.5h8"/></svg><strong>Des bons cadeaux vendus sans vous</strong></div>
         <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h3l1.6-2.5h6.8L17 8.5h3v11H4z"/><circle cx="12" cy="14" r="3.4"/></svg><strong>Vos ongles, cils et maquillages en photo</strong></div>
-        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>Trouvée sur « institut de beauté » près de chez elle</strong></div>
+        <div class="lv-tile"><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><strong>Trouvée sur « institut de beauté » près de chez elle</strong></div>
       </div>
     </section>
 
@@ -247,7 +261,7 @@
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
         <h2 class="lv-h2"><span id="auto-title">Des créneaux sauvés la veille, des clientes qui reviennent à temps</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : des <a href="/services/pack-visuels-reels">Reels et visuels prêts à publier</a>, et la <a href="/services/gestion-reseaux-sociaux">gestion de vos réseaux sociaux</a>.</p>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : des <a href="/services/pack-visuels-reels">Reels et visuels prêts à publier</a>, et la <a href="/services/gestion-reseaux-sociaux">gestion de vos réseaux sociaux</a>.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg><span class="lv-flow__n">01</span><strong>Rappel automatique avant le rendez-vous</strong></li>
@@ -265,21 +279,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/page-essentielle">
           
-          <span class="lv-price__name">Page Essentielle (1 page)</span>
+          <span class="lv-price__name">Page essentielle (1 page)</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -291,13 +305,13 @@
     <details class="lv-more">
       <summary><span>En savoir plus sur un site internet pour ce métier</span><span class="lv-more__plus" aria-hidden="true"></span></summary>
       <div class="lv-more__body">
-        <p>Un site internet d’institut de beauté doit présenter la carte des soins avec durée et prix, et permettre de réserver 24h/24 avec un acompte qui limite les rendez-vous manqués. Purity Agency conçoit à Charleroi des sites pour esthéticiennes et instituts de Wallonie, élégants sur smartphone et reliés à votre agenda.</p>
+        <p>Un site internet d’institut de beauté doit présenter la carte des soins avec durée et prix, et permettre de réserver 24 h/24 avec un acompte qui limite les rendez-vous manqués. Purity Agency conçoit à Charleroi des sites pour esthéticiennes et instituts de Wallonie, élégants sur smartphone et reliés à votre agenda.</p>
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
-          <dt>Elle veut réserver le soir, vous êtes fermée</dt><dd>C’est en fin de journée qu’elle pense à son soin. Personne ne répond, rien ne se réserve en ligne : elle va ailleurs.</dd>
-          <dt>Elle ne trouve ni la durée ni le prix</dt><dd>Soin visage, épilation, beauté des mains, extension de cils : elle compare durée, prix et ce qui est inclus. Sans carte claire, elle vous appelle en plein soin, ou elle renonce.</dd>
-          <dt>Elle ne voit pas la cabine</dt><dd>Photos du lieu, des cabines, des marques utilisées : avant un premier soin, l’ambiance pèse autant que le prix.</dd>
-          <dt>Elle cherche un bon cadeau à la dernière minute</dt><dd>Anniversaire, Noël, fête des mères : si elle ne peut pas l’acheter en ligne, elle offre un soin chez un autre institut.</dd>
+          <dt>Elle veut réserver le soir, vous êtes fermée</dt><dd>C’est en fin de journée qu’elle pense à son soin. Personne ne répond, rien ne se réserve en ligne : elle va ailleurs.</dd>
+          <dt>Elle ne trouve ni la durée ni le prix</dt><dd>Soin visage, épilation, beauté des mains, extension de cils : elle compare durée, prix et ce qui est inclus. Sans carte claire, elle vous appelle en plein soin, ou elle renonce.</dd>
+          <dt>Elle ne voit pas la cabine</dt><dd>Photos du lieu, des cabines, des marques utilisées : avant un premier soin, l’ambiance pèse autant que le prix.</dd>
+          <dt>Elle cherche un bon cadeau à la dernière minute</dt><dd>Anniversaire, Noël, fête des mères : si elle ne peut pas l’acheter en ligne, elle offre un soin chez un autre institut.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
@@ -305,8 +319,8 @@
           <dt>Moins de rendez-vous non honorés</dt><dd>Un acompte demandé pour les soins longs décourage les absences sans prévenir, avec des conditions d’annulation affichées clairement.</dd>
           <dt>Une carte des soins lisible</dt><dd>Soins classés par catégorie avec durée, prix et contre-indications éventuelles, plutôt qu’une longue liste illisible.</dd>
           <dt>Des bons cadeaux vendus sans vous</dt><dd>Une carte cadeau achetée en quelques clics et envoyée par mail à la personne qui la reçoit.</dd>
-          <dt>Vos ongles, cils et maquillages en photo</dt><dd>Ongles, maquillage, cils : des photos de vos réalisations, avec l’accord des clientes photographiées.</dd>
-          <dt>Trouvée sur « institut de beauté » près de chez elle</dt><dd>Pages optimisées pour « institut de beauté » et vos soins phares dans votre commune.</dd>
+          <dt>Vos ongles, cils et maquillages en photo</dt><dd>Ongles, maquillage, cils : des photos de vos réalisations, avec l’accord des clientes photographiées.</dd>
+          <dt>Trouvée sur « institut de beauté » près de chez elle</dt><dd>Pages optimisées pour « institut de beauté » et vos soins phares dans votre commune.</dd>
         </dl>
         <h3>Automatisations possibles</h3>
         <dl>
@@ -315,7 +329,7 @@
           <dt>Assistant pour choisir son soin</dt><dd>Un assistant répond aux questions courantes (durée, préparation, différence entre deux soins) à partir de votre carte validée.</dd>
         </dl>
         <h3>Dans la démo Maison Lune</h3>
-        <p>Essayez le parcours d’une cliente qui hésite (« Je ne sais pas quel soin choisir »), choisissez une durée et un créneau, puis ouvrez l’agenda tel que l’institut le reçoit.</p>
+        <p>Essayez le parcours d’une cliente qui hésite (« Je ne sais pas quel soin choisir »), choisissez une durée et un créneau, puis ouvrez l’agenda tel que l’institut le reçoit.</p>
       </div>
     </details>
 
@@ -327,31 +341,31 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>L’acompte en ligne est-il légal en Belgique ?</summary>
+            <summary>L’acompte en ligne est-il légal en Belgique ?</summary>
             <div class="sd-faq-body">
-              <p>Oui, si les conditions sont annoncées avant la réservation : montant, délai d’annulation et sort de l’acompte. Nous les affichons clairement sur le site et dans la confirmation.</p>
+              <p>Oui, si les conditions sont annoncées avant la réservation : montant, délai d’annulation et sort de l’acompte. Nous les affichons clairement sur le site et dans la confirmation.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je garder mon logiciel de réservation actuel ?</summary>
+            <summary>Puis-je garder mon logiciel de réservation actuel ?</summary>
             <div class="sd-faq-body">
               <p>Oui. Si votre outil actuel vous convient, nous l’intégrons au site. Sinon, nous mettons en place un outil de réservation simple, adapté à votre institut.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je publier des photos avant et après de mes clientes ?</summary>
+            <summary>Puis-je publier des photos avant et après de mes clientes ?</summary>
             <div class="sd-faq-body">
               <p>Uniquement avec leur accord écrit. Nous prévoyons une galerie et vous rappelons cette règle, liée au droit à l’image et au RGPD.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Comment vendre des cartes cadeaux sur le site ?</summary>
+            <summary>Comment vendre des cartes cadeaux sur le site ?</summary>
             <div class="sd-faq-body">
               <p>Une page dédiée permet de choisir un montant ou un soin et de payer en ligne. La carte est envoyée automatiquement par mail.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour un institut de beauté ?</summary>
+            <summary>Combien coûte un site pour un institut de beauté ?</summary>
             <div class="sd-faq-body">
               <p>Le site vitrine avec carte des soins et réservation coûte 1 490 € + 79 €/mois. Une page unique démarre à 490 € + 79 €/mois. Prix nets, TVA non applicable.</p>
             </div>
@@ -412,7 +426,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

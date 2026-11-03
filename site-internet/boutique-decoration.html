@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/boutique-decoration#webpage",
       "name": "Site internet pour boutique de décoration en Wallonie",
-      "description": "Site internet pour boutique de décoration en Wallonie : e-commerce, retrait en magasin, paiement Bancontact et stock synchronisé. Dès 3 990 €.",
+      "description": "Site internet pour boutique de décoration en Wallonie : e-commerce, retrait en magasin, paiement Bancontact et stock synchronisé. Dès 3 990 €.",
       "url": "https://purity-agency.be/site-internet/boutique-decoration",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Boutique en ligne (E-commerce)",
+        "name": "Boutique en ligne (e-commerce)",
         "price": "3990",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/boutique-en-ligne"
+        "url": "https://purity-agency.be/services/boutique-en-ligne",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 3990,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 149,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,7 +104,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Faut-il un e-commerce complet ou un simple site vitrine ?",
+          "name": "Faut-il un e-commerce complet ou un simple site vitrine ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Si vous voulez vendre en ligne, la boutique est nécessaire. Si vous souhaitez seulement faire venir en magasin, un site vitrine avec catalogue de présentation peut suffire pour commencer."
@@ -98,7 +112,7 @@
         },
         {
           "@type": "Question",
-          "name": "Le paiement Bancontact est-il inclus ?",
+          "name": "Le paiement Bancontact est-il inclus ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, la boutique est configurée avec Bancontact, les cartes de paiement et d’autres moyens courants en Belgique. Les frais du prestataire de paiement restent à votre charge."
@@ -106,7 +120,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je proposer uniquement le retrait en boutique ?",
+          "name": "Puis-je proposer uniquement le retrait en boutique ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Beaucoup de boutiques de décoration commencent par le retrait sur place et ajoutent la livraison ensuite."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Quelles obligations légales pour vendre en ligne en Belgique ?",
+          "name": "Quelles obligations légales pour vendre en ligne en Belgique ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Notamment les conditions générales de vente, le droit de rétractation de 14 jours, l’identité du vendeur et les prix toutes taxes comprises. Nous les intégrons au site."
@@ -122,7 +136,7 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte une boutique en ligne pour un commerce de décoration ?",
+          "name": "Combien coûte une boutique en ligne pour un commerce de décoration ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "La boutique en ligne coûte 3 990 € + 149 €/mois. Un site vitrine de présentation sans vente en ligne coûte 1 490 € + 79 €/mois. Prix nets, TVA non applicable."
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/decoration-mobile-0.webp" alt="Capture de la démo Matière Commune conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Matière Commune n’est pas un client réel. <a href="/cas-concrets/decoration">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Matière Commune n’est pas un client réel. <a href="/cas-concrets/decoration">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -264,7 +278,7 @@
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
         <h2 class="lv-h2"><span id="auto-title">Moins de soirées sur les fiches produits, moins de paniers oubliés</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : la <a href="/services/gestion-reseaux-sociaux">gestion de vos réseaux sociaux</a>.</p>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : la <a href="/services/gestion-reseaux-sociaux">gestion de vos réseaux sociaux</a>.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span class="lv-flow__n">01</span><strong>Rédaction des fiches produits par IA</strong></li>
@@ -282,21 +296,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/boutique-en-ligne">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Boutique en ligne (E-commerce)</span>
+          <span class="lv-price__name">Boutique en ligne (e-commerce)</span>
           <span class="lv-price__amount">3 990 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/site-vitrine">
           
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -311,9 +325,9 @@
         <p>Un site internet de boutique de décoration doit présenter vos produits avec de belles photos, permettre d’acheter en ligne avec Bancontact et de retirer en magasin, et refléter le stock réel. Purity Agency crée à Charleroi des boutiques en ligne pour commerces de décoration wallons, sans commission sur vos ventes.</p>
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
-          <dt>Une photo floue, une vente perdue</dt><dd>Matière, dimensions, couleur fidèle : en décoration, le client veut voir la pièce en vrai avant de se déplacer.</dd>
+          <dt>Une photo floue, une vente perdue</dt><dd>Matière, dimensions, couleur fidèle : en décoration, le client veut voir la pièce en vrai avant de se déplacer.</dd>
           <dt>Il ne sait pas si la pièce est encore là</dt><dd>Sans stock visible, il ne se déplace pas pour risquer de repartir les mains vides.</dd>
-          <dt>Il veut la réserver et passer la chercher</dt><dd>Pas de frais de livraison, pas de casse : sans retrait en boutique, il achète chez une enseigne qui le propose.</dd>
+          <dt>Il veut la réserver et passer la chercher</dt><dd>Pas de frais de livraison, pas de casse : sans retrait en boutique, il achète chez une enseigne qui le propose.</dd>
           <dt>Il veut payer en Bancontact</dt><dd>C’est le réflexe en Belgique. Sans lui, il abandonne son panier au moment de payer.</dd>
         </dl>
         <h3>Ce que le site change</h3>
@@ -332,7 +346,7 @@
           <dt>Alerte stock bas</dt><dd>Un message quand un produit phare approche de la rupture, pour recommander à temps.</dd>
         </dl>
         <h3>Dans la démo Matière Commune</h3>
-        <p>Composez une sélection comme un client : fiches avec matière, dimensions et entretien, panier, puis retrait en boutique au moment qui lui convient.</p>
+        <p>Composez une sélection comme un client : fiches avec matière, dimensions et entretien, panier, puis retrait en boutique au moment qui lui convient.</p>
       </div>
     </details>
 
@@ -344,31 +358,31 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Faut-il un e-commerce complet ou un simple site vitrine ?</summary>
+            <summary>Faut-il un e-commerce complet ou un simple site vitrine ?</summary>
             <div class="sd-faq-body">
               <p>Si vous voulez vendre en ligne, la boutique est nécessaire. Si vous souhaitez seulement faire venir en magasin, un site vitrine avec catalogue de présentation peut suffire pour commencer.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Le paiement Bancontact est-il inclus ?</summary>
+            <summary>Le paiement Bancontact est-il inclus ?</summary>
             <div class="sd-faq-body">
               <p>Oui, la boutique est configurée avec Bancontact, les cartes de paiement et d’autres moyens courants en Belgique. Les frais du prestataire de paiement restent à votre charge.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je proposer uniquement le retrait en boutique ?</summary>
+            <summary>Puis-je proposer uniquement le retrait en boutique ?</summary>
             <div class="sd-faq-body">
               <p>Oui. Beaucoup de boutiques de décoration commencent par le retrait sur place et ajoutent la livraison ensuite.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Quelles obligations légales pour vendre en ligne en Belgique ?</summary>
+            <summary>Quelles obligations légales pour vendre en ligne en Belgique ?</summary>
             <div class="sd-faq-body">
               <p>Notamment les conditions générales de vente, le droit de rétractation de 14 jours, l’identité du vendeur et les prix toutes taxes comprises. Nous les intégrons au site.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte une boutique en ligne pour un commerce de décoration ?</summary>
+            <summary>Combien coûte une boutique en ligne pour un commerce de décoration ?</summary>
             <div class="sd-faq-body">
               <p>La boutique en ligne coûte 3 990 € + 149 €/mois. Un site vitrine de présentation sans vente en ligne coûte 1 490 € + 79 €/mois. Prix nets, TVA non applicable.</p>
             </div>
@@ -429,7 +443,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

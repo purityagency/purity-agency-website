@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pilote Automatique Essentiel : tarif | Purity Agency</title>
+<title>Automatisation PME : rappels et relance devis | Purity</title>
 <meta name="description" content="Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis ou alerte devis urgent. Tarif : 490 € + 39 €/mois.">
 <link rel="canonical" href="https://purity-agency.be/services/pilote-automatique-essentiel">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_BE">
-<meta property="og:title" content="Pilote Automatique Essentiel : tarif | Purity Agency">
+<meta property="og:title" content="Automatisation PME : rappels et relance devis | Purity">
 <meta property="og:description" content="Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis ou alerte devis urgent. Tarif : 490 € + 39 €/mois.">
 <meta property="og:url" content="https://purity-agency.be/services/pilote-automatique-essentiel">
 <meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg">
@@ -28,13 +28,11 @@
   "@graph": [
     {
       "@type": "WebPage",
-      "name": "Pilote Automatique Essentiel : tarif | Purity Agency",
-      "description": "Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis ou alerte devis urgent. Tarif : 490 € + 39 €/mois.",
+      "name": "Automatisation PME : rappels et relance devis | Purity",
+      "description": "Une automatisation au choix : rappels SMS contre les rendez-vous manqués, relance des devis ou alerte devis urgent. Tarif : 490 € + 39 €/mois.",
       "url": "https://purity-agency.be/services/pilote-automatique-essentiel",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -55,15 +53,15 @@
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Pilote Automatique Essentiel",
+          "name": "Pilote automatique Essentiel",
           "item": "https://purity-agency.be/services/pilote-automatique-essentiel"
         }
       ]
     },
     {
       "@type": "Service",
-      "name": "Pilote Automatique Essentiel",
-      "description": "Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.",
+      "name": "Pilote automatique Essentiel",
+      "description": "Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.",
       "provider": {
         "@id": "https://purity-agency.be/#business"
       },
@@ -73,7 +71,23 @@
         "price": "490",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": "https://purity-agency.be/services/pilote-automatique-essentiel"
+        "url": "https://purity-agency.be/services/pilote-automatique-essentiel",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 39,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -81,7 +95,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Mes clients vont-ils voir que c’est automatique ?",
+          "name": "Mes clients vont-ils voir que c’est automatique ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Non. Les messages sont rédigés dans votre style habituel, courtois et naturel. Les e-mails partent depuis votre vraie adresse professionnelle."
@@ -89,7 +103,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je modifier le texte des messages moi-même ?",
+          "name": "Puis-je modifier le texte des messages moi-même ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, très facilement. On vous montre comment changer un mot en quelques secondes, ou vous nous demandez et nous le faisons pour vous."
@@ -97,15 +111,15 @@
         },
         {
           "@type": "Question",
-          "name": "Que se passe-t-il si un client répond au message automatique ?",
+          "name": "Que se passe-t-il si un client répond au message automatique ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "La réponse arrive directement dans votre boîte de réception ou sur votre téléphone comme d’habitude : vous reprenez la main immédiatement."
+            "text": "La réponse arrive directement dans votre boîte de réception ou sur votre téléphone comme d’habitude : vous reprenez la main immédiatement."
           }
         },
         {
           "@type": "Question",
-          "name": "Mes données clients sont-elles en sécurité ?",
+          "name": "Mes données clients sont-elles en sécurité ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Tout est traité selon le RGPD, les règles européennes sur les données. Rien n’est revendu."
@@ -113,7 +127,7 @@
         },
         {
           "@type": "Question",
-          "name": "Est-ce que je m’engage sur une durée ?",
+          "name": "Est-ce que je m’engage sur une durée ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale."
@@ -121,15 +135,15 @@
         },
         {
           "@type": "Question",
-          "name": "Que se passe-t-il si j’arrête le suivi ?",
+          "name": "Que se passe-t-il si j’arrête le suivi ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez."
+            "text": "Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez."
           }
         },
         {
           "@type": "Question",
-          "name": "À qui appartient ce qui est livré ?",
+          "name": "À qui appartient ce qui est livré ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "À vous. Une fois la facture réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Purity garde seulement ses outils et méthodes génériques."
@@ -137,7 +151,7 @@
         },
         {
           "@type": "Question",
-          "name": "Quand est-ce prêt ?",
+          "name": "Quand est-ce prêt ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Comptez 5 à 7 jours ouvrés après l’entretien de cadrage. Le délai est écrit dans votre devis."
@@ -196,13 +210,13 @@
       <span class="sd-breadcrumbs__sep">/</span>
       <a href="/services">Services</a>
       <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Pilote Automatique Essentiel</span>
+      <span aria-current="page">Pilote automatique Essentiel</span>
     </nav>
 
     <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
       <div class="sd-hero__text">
-        <div class="sd-hero__pill">Réponses et relances automatiques</div>
-        <h1 class="sd-hero__title" id="service-title">Pilote Automatique Essentiel</h1>
+        <div class="sd-hero__pill">Pilote automatique Essentiel</div>
+        <h1 class="sd-hero__title" id="service-title">Automatisation pour PME : rappels SMS et relance des devis</h1>
         <p class="sd-hero__lead">Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine.</p>
         <div class="sd-hero__price"><strong>490 €</strong><span>+ 39 €/mois de suivi</span></div>
         <ul class="sd-hero__chips">
@@ -227,7 +241,7 @@
           <li class="sd-flow__node"><span class="sd-flow__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><span class="sd-flow__label">Le client confirme</span><span class="sd-flow__num" aria-hidden="true">3</span></li>
           <li class="sd-flow__node"><span class="sd-flow__icon"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg></span><span class="sd-flow__label">Agenda à jour</span><span class="sd-flow__num" aria-hidden="true">4</span></li>
         </ol>
-        <figcaption>Exemple : le rappel qui évite les rendez-vous manqués</figcaption>
+        <figcaption>Exemple : le rappel qui évite les rendez-vous manqués</figcaption>
       </figure>
       </div>
     </section>
@@ -308,7 +322,7 @@
       </ol>
       <div class="sd-vz-slot">
         <figure class="vz vz--flux" data-vz>
-<svg viewBox="0 0 400 300" role="img" aria-labelledby="vzt-flux"><title id="vzt-flux">Pilote automatique : une demande arrive par le site, une réponse part automatiquement, une relance est envoyée trois jours plus tard sans réponse, puis le rendez-vous s’ajoute au calendrier.</title>
+<svg viewBox="0 0 400 300" role="img" aria-labelledby="vzt-flux"><title id="vzt-flux">Pilote automatique : une demande arrive par le site, une réponse part automatiquement, une relance est envoyée trois jours plus tard sans réponse, puis le rendez-vous s’ajoute au calendrier.</title>
 <text class="b" x="24" y="36">Pilote automatique</text>
 <g class="af"><rect class="a" x="332" y="18" width="44" height="24" rx="12"/><rect class="g ao d4" x="332" y="18" width="44" height="24" rx="12"/><circle class="wf kn d4" cx="364" cy="30" r="9"/></g>
 <path class="lh ad d2" pathLength="1" d="M52 84V270"/>
@@ -328,7 +342,7 @@
       </div>
       <figure class="sd-result__fig">
         <img src="/assets/visuals/service-pilote-automatique-essentiel-resultat.webp" srcset="/assets/visuals/service-pilote-automatique-essentiel-resultat-800.webp 800w, /assets/visuals/service-pilote-automatique-essentiel-resultat.webp 896w" sizes="(min-width: 1000px) 520px, 92vw" width="896" height="1194" alt="Artisan qui charge sa camionnette dans une rue de briques, en fin de journée" loading="lazy" decoding="async">
-        <figcaption>Vous chargez la camionnette : la réponse au client est déjà partie.</figcaption>
+        <figcaption>Vous chargez la camionnette : la réponse au client est déjà partie.</figcaption>
       </figure>
     </section>
 
@@ -337,7 +351,7 @@
     <section class="sd-section" aria-labelledby="sd-offer-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Le prix</span>
-        <h2 class="sd-heading" id="sd-offer-title">Sans surprise : prix affichés, devis écrit</h2>
+        <h2 class="sd-heading" id="sd-offer-title">Sans surprise : prix affichés, devis écrit</h2>
       </div>
       <div class="sd-offer">
         <div class="sd-offer__price">
@@ -362,35 +376,35 @@
       </div>
       <div class="sd-faq-list">
         <details class="sd-faq-item">
-          <summary>Mes clients vont-ils voir que c’est automatique ?</summary>
+          <summary>Mes clients vont-ils voir que c’est automatique ?</summary>
           <div class="sd-faq-body"><p>Non. Les messages sont rédigés dans votre style habituel, courtois et naturel. Les e-mails partent depuis votre vraie adresse professionnelle.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>Puis-je modifier le texte des messages moi-même ?</summary>
+          <summary>Puis-je modifier le texte des messages moi-même ?</summary>
           <div class="sd-faq-body"><p>Oui, très facilement. On vous montre comment changer un mot en quelques secondes, ou vous nous demandez et nous le faisons pour vous.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>Que se passe-t-il si un client répond au message automatique ?</summary>
-          <div class="sd-faq-body"><p>La réponse arrive directement dans votre boîte de réception ou sur votre téléphone comme d’habitude : vous reprenez la main immédiatement.</p></div>
+          <summary>Que se passe-t-il si un client répond au message automatique ?</summary>
+          <div class="sd-faq-body"><p>La réponse arrive directement dans votre boîte de réception ou sur votre téléphone comme d’habitude : vous reprenez la main immédiatement.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>Mes données clients sont-elles en sécurité ?</summary>
+          <summary>Mes données clients sont-elles en sécurité ?</summary>
           <div class="sd-faq-body"><p>Oui. Tout est traité selon le RGPD, les règles européennes sur les données. Rien n’est revendu.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>Est-ce que je m’engage sur une durée ?</summary>
+          <summary>Est-ce que je m’engage sur une durée ?</summary>
           <div class="sd-faq-body"><p>Non. La mise en place se paie une fois. Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>Que se passe-t-il si j’arrête le suivi ?</summary>
-          <div class="sd-faq-body"><p>Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez.</p></div>
+          <summary>Que se passe-t-il si j’arrête le suivi ?</summary>
+          <div class="sd-faq-body"><p>Le service s’arrête à la fin du préavis. Vous restez propriétaire de vos contenus, visuels, logo et nom de domaine : ils vous sont remis pour continuer ailleurs si vous le souhaitez.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>À qui appartient ce qui est livré ?</summary>
+          <summary>À qui appartient ce qui est livré ?</summary>
           <div class="sd-faq-body"><p>À vous. Une fois la facture réglée, vous êtes propriétaire de vos contenus, visuels, logo et nom de domaine. Purity garde seulement ses outils et méthodes génériques.</p></div>
         </details>
         <details class="sd-faq-item">
-          <summary>Quand est-ce prêt ?</summary>
+          <summary>Quand est-ce prêt ?</summary>
           <div class="sd-faq-body"><p>Comptez 5 à 7 jours ouvrés après l’entretien de cadrage. Le délai est écrit dans votre devis.</p></div>
         </details>
       </div>
@@ -398,35 +412,35 @@
 
     <section class="sd-section sd-section--more" aria-label="Description détaillée">
       <details class="sd-more">
-        <summary><span>En savoir plus sur Pilote Automatique Essentiel</span><span class="sd-more__hint">Détail complet</span></summary>
+        <summary><span>En savoir plus sur Pilote automatique Essentiel</span><span class="sd-more__hint">Détail complet</span></summary>
         <div class="sd-more__body">
-          <p class="sd-more__lead">Pilote Automatique Essentiel par Purity Agency, à Charleroi : 490 € de mise en place, puis 39 €/mois de suivi, résiliable chaque mois. Délai : 5 à 7 jours ouvrés. Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
-          <p>Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.</p>
+          <p class="sd-more__lead">Pilote automatique Essentiel par Purity Agency, à Charleroi : 490 € de mise en place, puis 39 €/mois de suivi, résiliable chaque mois. Délai : 5 à 7 jours ouvrés. Automatisez la corvée répétitive qui vous fait perdre le plus de temps chaque semaine. Un diagnostic gratuit de 15 minutes précède tout devis.</p>
+          <p>Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.</p>
           <h3>Pour qui</h3>
           <p>Artisans et indépendants en Wallonie qui passent leurs soirées à taper les mêmes messages, relancer des devis non signés ou courir après des clients qui oublient leurs rendez-vous.</p>
           <h3>Ce n’est pas pour vous si</h3>
-          <p>Vous recevez deux demandes par mois : l’automatisation ne vous fera pas gagner assez de temps pour se justifier.</p>
+          <p>Vous recevez deux demandes par mois : l’automatisation ne vous fera pas gagner assez de temps pour se justifier.</p>
           <h3>Ce que vous y gagnez</h3>
           <p>Ne plus taper les mêmes messages le soir, ne plus vous déplacer pour rien et relancer chaque devis sans y penser.</p>
           <h3>Le détail des livrables</h3>
           <dl>
-            <dt>Mise en place de votre automatisation n°1 au choix</dt><dd>Exemples concrets : Prise de rendez-vous en ligne avec rappel SMS automatique 24h avant, relance automatique des devis non signés à J+3 et J+7, ou alerte SMS instantanée sur votre smartphone dès qu’un gros chantier arrive.</dd>
+            <dt>Mise en place de votre automatisation n°1 au choix</dt><dd>Exemples concrets : Prise de rendez-vous en ligne avec rappel SMS automatique 24 h avant, relance automatique des devis non signés à J+3 et J+7, ou alerte SMS instantanée sur votre smartphone dès qu’un gros chantier arrive.</dd>
             <dt>Connexion directe avec vos outils habituels</dt><dd>Liaison directe avec votre boîte e-mail, votre agenda Google/Outlook ou votre numéro de téléphone sans changer vos habitudes.</dd>
-            <dt>Modèles de messages rédigés dans votre ton naturel</dt><dd>Les SMS et e-mails automatiques sont rédigés poliment et chaleureusement : vos clients ont l’impression exacte que vous leur écrivez personnellement.</dd>
+            <dt>Modèles de messages rédigés dans votre ton naturel</dt><dd>Les SMS et e-mails automatiques sont rédigés poliment et chaleureusement : vos clients ont l’impression exacte que vous leur écrivez personnellement.</dd>
             <dt>Tous les cas testés avant la mise en route</dt><dd>On teste les annulations, les doublons et les week-ends avec vous avant d’allumer le système.</dd>
             <dt>Fiche d’utilisation simple d’une seule page</dt><dd>Un mémo clair pour savoir comment suspendre le système en vacances ou modifier un texte en 30 secondes en toute autonomie.</dd>
           </dl>
           <h3>Le comparatif en détail</h3>
           <dl>
-            <dt>Rapidité de réponse</dt><dd>Avant : Réponse le lendemain soir après le chantier (le client a déjà appelé un confrère). Avec Purity : Confirmation ou accusé de réception envoyé automatiquement en 30 secondes chrono.</dd>
-            <dt>Relance des devis</dt><dd>Avant : Devis oubliés dans un tiroir ou un carnet de notes. Avec Purity : Relances polies et automatiques à J+3 et J+7 sans y penser.</dd>
-            <dt>Fiabilité du système</dt><dd>Avant : Bricolage maison qui plante dès qu’une application se met à jour. Avec Purity : Système professionnel surveillé en continu avec alertes anti-pannes.</dd>
+            <dt>Rapidité de réponse</dt><dd>Avant : Réponse le lendemain soir après le chantier (le client a déjà appelé un confrère). Avec Purity : Confirmation ou accusé de réception envoyé automatiquement en 30 secondes chrono.</dd>
+            <dt>Relance des devis</dt><dd>Avant : Devis oubliés dans un tiroir ou un carnet de notes. Avec Purity : Relances polies et automatiques à J+3 et J+7 sans y penser.</dd>
+            <dt>Fiabilité du système</dt><dd>Avant : Bricolage maison qui plante dès qu’une application se met à jour. Avec Purity : Système professionnel surveillé en continu avec alertes anti-pannes.</dd>
           </dl>
           <h3>Ce que l’inaction coûte</h3>
           <dl>
             <dt>Des devis jamais relancés qui finissent chez un concurrent</dt><dd>Un client qui ne reçoit aucune relance finit très souvent par signer chez l’artisan qui a simplement pris la peine de lui envoyer un petit message de suivi.</dd>
             <dt>Des soirées perdues à retaper les mêmes messages</dt><dd>Ressaisir manuellement des coordonnées ou retaper les mêmes e-mails types le soir au lieu de se détendre en famille.</dd>
-            <dt>Des rendez-vous manqués qui vous font perdre votre temps</dt><dd>Sans rappel par SMS la veille, des clients oublient leur rendez-vous : vous perdez un déplacement ou un créneau que vous auriez pu donner à un autre.</dd>
+            <dt>Des rendez-vous manqués qui vous font perdre votre temps</dt><dd>Sans rappel par SMS la veille, des clients oublient leur rendez-vous : vous perdez un déplacement ou un créneau que vous auriez pu donner à un autre.</dd>
           </dl>
           <h3>Les étapes</h3>
           <dl>
@@ -444,7 +458,7 @@
     <nav class="sd-section sd-section--links" aria-labelledby="sd-links-title">
       <h2 class="sd-mini-title" id="sd-links-title">Exemples par métier et guides utiles</h2>
       <ul class="sd-links">
-        <li><a href="/agence-web/charleroi">Agence web à Charleroi : qui on est, où on intervient</a></li>
+        <li><a href="/agence-web/charleroi">Agence web à Charleroi : qui on est, où on intervient</a></li>
         <li><a href="/site-internet/kinesitherapeute">Site internet pour kinésithérapeute</a></li>
         <li><a href="/site-internet/garage">Site internet pour garage</a></li>
         <li><a href="/site-internet/institut-beaute">Site internet pour institut de beauté</a></li>
@@ -455,7 +469,7 @@
 
     <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
-        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
+        <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule ?</h2>
         <p>Vous parlez directement à Amir Kebiyeb. Je vous réponds sous 24 h ouvrées.</p>
         <div class="sd-bottom-cta__actions">
           <a class="sd-btn-primary" href="/contact?offer=M21">Écrire à Amir <span class="sd-btn__ico" aria-hidden="true">→</span></a>
@@ -481,7 +495,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

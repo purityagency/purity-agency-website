@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/chauffagiste#webpage",
       "name": "Site internet pour chauffagiste en Wallonie | Purity Agency",
-      "description": "Site internet pour chauffagiste en Wallonie : urgences filtrées, devis pompe à chaleur avec photos, entretien chaudière et zone d’intervention.",
+      "description": "Site internet pour chauffagiste en Wallonie : urgences filtrées, devis pompe à chaleur avec photos, entretien chaudière et zone d’intervention.",
       "url": "https://purity-agency.be/site-internet/chauffagiste",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,7 +104,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Comment éviter les appels pour des dépannages hors de ma zone ?",
+          "name": "Comment éviter les appels pour des dépannages hors de ma zone ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Le site affiche votre zone et le formulaire demande la commune dès la première question. Les demandes hors zone sont signalées avant que vous ne rappeliez."
@@ -98,7 +112,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je indiquer les primes disponibles sur mon site ?",
+          "name": "Puis-je indiquer les primes disponibles sur mon site ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, sous forme d’information générale avec un lien vers les sources officielles. Les montants évoluent, nous évitons donc d’afficher des chiffres qui deviendraient faux."
@@ -106,7 +120,7 @@
         },
         {
           "@type": "Question",
-          "name": "Le devis par photos est-il fiable ?",
+          "name": "Le devis par photos est-il fiable ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Il donne une première estimation et filtre les projets sans budget. La visite technique reste nécessaire avant un devis définitif."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Mes clients peuvent-ils souscrire un contrat d’entretien en ligne ?",
+          "name": "Mes clients peuvent-ils souscrire un contrat d’entretien en ligne ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, une page dédiée permet de demander un contrat d’entretien et de choisir une période de passage."
@@ -122,10 +136,10 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour un chauffagiste ?",
+          "name": "Combien coûte un site pour un chauffagiste ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le site vitrine avec deux parcours et devis photos coûte 1 490 € + 79 €/mois. Avec une page par solution et par commune, le Site Complet coûte 2 490 € + 149 €/mois."
+            "text": "Le site vitrine avec deux parcours et devis photos coûte 1 490 € + 79 €/mois. Avec une page par solution et par commune, le Site complet coûte 2 490 € + 149 €/mois."
           }
         }
       ]
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/chauffage-mobile-0.webp" alt="Capture de la démo Thermiq conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Thermiq n’est pas un client réel. <a href="/cas-concrets/chauffage">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Thermiq n’est pas un client réel. <a href="/cas-concrets/chauffage">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -264,7 +278,7 @@
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
         <h2 class="lv-h2"><span id="auto-title">Votre basse saison se remplit avec les entretiens annuels</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : un <a href="/services/pilote-automatique-integral">assistant IA entraîné sur vos règles</a> qui répond aussi le soir et le week-end.</p>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : un <a href="/services/pilote-automatique-integral">assistant IA entraîné sur vos règles</a> qui répond aussi le soir et le week-end.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg><span class="lv-flow__n">01</span><strong>Rappel d’entretien annuel</strong></li>
@@ -282,21 +296,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/site-complet">
           
-          <span class="lv-price__name">Site Complet (10+ pages)</span>
+          <span class="lv-price__name">Site complet (10+ pages)</span>
           <span class="lv-price__amount">2 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -318,11 +332,11 @@
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
-          <dt>Urgences et projets ne se mélangent plus</dt><dd>Un bouton « dépannage » et un bouton « projet d’installation », pour ne pas mélanger urgences et chantiers.</dd>
-          <dt>Vous voyez la chaudière avant de partir</dt><dd>Photo de la chaudière, de la plaque signalétique et surface à chauffer : vous estimez avant de prendre la route.</dd>
+          <dt>Urgences et projets ne se mélangent plus</dt><dd>Un bouton « dépannage » et un bouton « projet d’installation », pour ne pas mélanger urgences et chantiers.</dd>
+          <dt>Vous voyez la chaudière avant de partir</dt><dd>Photo de la chaudière, de la plaque signalétique et surface à chauffer : vous estimez avant de prendre la route.</dd>
           <dt>Moins de demandes hors zone</dt><dd>Liste des communes couvertes et rayon d’intervention, pour éliminer les demandes trop lointaines.</dd>
           <dt>Les contrats d’entretien demandés en ligne</dt><dd>Une page pour souscrire à l’entretien annuel, une source de revenus régulière et prévisible.</dd>
-          <dt>Une page par installation que vous posez</dt><dd>Pompe à chaleur, chaudière gaz, mazout, sanitaire : une page par solution que vous installez réellement.</dd>
+          <dt>Une page par installation que vous posez</dt><dd>Pompe à chaleur, chaudière gaz, mazout, sanitaire : une page par solution que vous installez réellement.</dd>
           <dt>Les questions de primes déjà répondues</dt><dd>Une page pédagogique qui renvoie vers les sources officielles wallonnes, sans montant inventé.</dd>
         </dl>
         <h3>Automatisations possibles</h3>
@@ -332,7 +346,7 @@
           <dt>Accusé de réception immédiat</dt><dd>Le client reçoit une réponse instantanée avec un délai réaliste, même quand vous êtes sur un chantier.</dd>
         </dl>
         <h3>Dans la démo Thermiq</h3>
-        <p>Faites une demande comme un particulier : votre besoin (dépannage, entretien, remplacement), le type de logement, un jour et un créneau, puis le récapitulatif prêt à envoyer.</p>
+        <p>Faites une demande comme un particulier : votre besoin (dépannage, entretien, remplacement), le type de logement, un jour et un créneau, puis le récapitulatif prêt à envoyer.</p>
       </div>
     </details>
 
@@ -344,33 +358,33 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Comment éviter les appels pour des dépannages hors de ma zone ?</summary>
+            <summary>Comment éviter les appels pour des dépannages hors de ma zone ?</summary>
             <div class="sd-faq-body">
               <p>Le site affiche votre zone et le formulaire demande la commune dès la première question. Les demandes hors zone sont signalées avant que vous ne rappeliez.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je indiquer les primes disponibles sur mon site ?</summary>
+            <summary>Puis-je indiquer les primes disponibles sur mon site ?</summary>
             <div class="sd-faq-body">
               <p>Oui, sous forme d’information générale avec un lien vers les sources officielles. Les montants évoluent, nous évitons donc d’afficher des chiffres qui deviendraient faux.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Le devis par photos est-il fiable ?</summary>
+            <summary>Le devis par photos est-il fiable ?</summary>
             <div class="sd-faq-body">
               <p>Il donne une première estimation et filtre les projets sans budget. La visite technique reste nécessaire avant un devis définitif.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Mes clients peuvent-ils souscrire un contrat d’entretien en ligne ?</summary>
+            <summary>Mes clients peuvent-ils souscrire un contrat d’entretien en ligne ?</summary>
             <div class="sd-faq-body">
               <p>Oui, une page dédiée permet de demander un contrat d’entretien et de choisir une période de passage.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour un chauffagiste ?</summary>
+            <summary>Combien coûte un site pour un chauffagiste ?</summary>
             <div class="sd-faq-body">
-              <p>Le site vitrine avec deux parcours et devis photos coûte 1 490 € + 79 €/mois. Avec une page par solution et par commune, le Site Complet coûte 2 490 € + 149 €/mois.</p>
+              <p>Le site vitrine avec deux parcours et devis photos coûte 1 490 € + 79 €/mois. Avec une page par solution et par commune, le Site complet coûte 2 490 € + 149 €/mois.</p>
             </div>
           </details>
       </div>
@@ -429,7 +443,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/architecte#webpage",
       "name": "Site internet pour architecte en Wallonie | Purity Agency",
-      "description": "Site internet pour architecte en Wallonie : portfolio de projets, démarche, permis d’urbanisme expliqué et demandes de projet qualifiées.",
+      "description": "Site internet pour architecte en Wallonie : portfolio de projets, démarche, permis d’urbanisme expliqué et demandes de projet qualifiées.",
       "url": "https://purity-agency.be/site-internet/architecte",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,15 +104,15 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Un architecte peut-il faire la promotion de son bureau en ligne ?",
+          "name": "Un architecte peut-il faire la promotion de son bureau en ligne ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui, dans le respect de la déontologie : informations factuelles, réalisations, démarche. Nous évitons les comparaisons et les promesses commerciales."
+            "text": "Oui, dans le respect de la déontologie : informations factuelles, réalisations, démarche. Nous évitons les comparaisons et les promesses commerciales."
           }
         },
         {
           "@type": "Question",
-          "name": "Combien de projets faut-il pour lancer le portfolio ?",
+          "name": "Combien de projets faut-il pour lancer le portfolio ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Trois à cinq projets bien documentés suffisent. Il vaut mieux peu de projets bien présentés qu’une galerie sans contexte."
@@ -106,7 +120,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je afficher mes honoraires ?",
+          "name": "Puis-je afficher mes honoraires ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Vous pouvez expliquer votre méthode de calcul ou donner des fourchettes indicatives. Nous rédigeons cela avec vous."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Les photos lourdes ne ralentissent-elles pas le site ?",
+          "name": "Les photos lourdes ne ralentissent-elles pas le site ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Nous compressons et dimensionnons chaque image selon l’écran du visiteur. Le site reste rapide même avec un portfolio fourni."
@@ -122,10 +136,10 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour un bureau d’architecture ?",
+          "name": "Combien coûte un site pour un bureau d’architecture ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le site vitrine avec portfolio coûte 1 490 € + 79 €/mois. Avec de nombreux projets et contenus sur le permis, le Site Complet coûte 2 490 € + 149 €/mois."
+            "text": "Le site vitrine avec portfolio coûte 1 490 € + 79 €/mois. Avec de nombreux projets et contenus sur le permis, le Site complet coûte 2 490 € + 149 €/mois."
           }
         }
       ]
@@ -188,13 +202,13 @@
       <div class="lv-hero__copy">
         <span class="lv-eyebrow">Site internet par métier · Architecte</span>
         <h1 class="lv-h1" id="service-title">Site internet pour architecte en Wallonie</h1>
-        <p class="lv-lede">Des maîtres d’ouvrage qui arrivent avec un terrain, un programme et un budget, pas seulement « une idée comme ça ».</p>
+        <p class="lv-lede">Des maîtres d’ouvrage qui arrivent avec un terrain, un programme et un budget, pas seulement « une idée comme ça ».</p>
         <div class="lv-actions">
           <a class="lv-btn lv-btn--primary" href="/demos/architecture/">Essayer la démo <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/architecture-mobile-0.webp" alt="Capture de la démo Ligne Claire conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Ligne Claire n’est pas un client réel. <a href="/cas-concrets/architecture">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Ligne Claire n’est pas un client réel. <a href="/cas-concrets/architecture">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -263,8 +277,8 @@
     <section class="lv-section" aria-labelledby="auto-title">
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
-        <h2 class="lv-h2"><span id="auto-title">Moins d’appels « où en est mon permis ? », plus de temps pour dessiner</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : le service <a href="/services/identite-visuelle-logo">logo et identité visuelle</a>.</p>
+        <h2 class="lv-h2"><span id="auto-title">Moins d’appels « où en est mon permis ? », plus de temps pour dessiner</span></h2>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : le service <a href="/services/identite-visuelle-logo">logo et identité visuelle</a>.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15.5h6"/></svg><span class="lv-flow__n">01</span><strong>Résumé des demandes de projet</strong></li>
@@ -282,21 +296,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/site-complet">
           
-          <span class="lv-price__name">Site Complet (10+ pages)</span>
+          <span class="lv-price__name">Site complet (10+ pages)</span>
           <span class="lv-price__amount">2 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -311,17 +325,17 @@
         <p>Un site internet d’architecte doit montrer des projets réalisés avec de belles images et le contexte de chaque mission, expliquer la démarche et le permis d’urbanisme, et qualifier les demandes selon le type de projet et le budget. Purity Agency crée à Charleroi des sites d’architectes wallons sobres, rapides et orientés vers les bons projets.</p>
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
-          <dt>Il ne voit pas de projet comme le sien</dt><dd>Maison mitoyenne à rénover, extension, construction neuve, aménagement commercial : sans exemple proche, il passe au bureau suivant.</dd>
-          <dt>Il ne comprend pas votre mission</dt><dd>Esquisse, permis, suivi de chantier : s’il ignore ce que comprend votre mission, le premier rendez-vous sert à tout expliquer depuis le début.</dd>
+          <dt>Il ne voit pas de projet comme le sien</dt><dd>Maison mitoyenne à rénover, extension, construction neuve, aménagement commercial : sans exemple proche, il passe au bureau suivant.</dd>
+          <dt>Il ne comprend pas votre mission</dt><dd>Esquisse, permis, suivi de chantier : s’il ignore ce que comprend votre mission, le premier rendez-vous sert à tout expliquer depuis le début.</dd>
           <dt>Il redoute vos honoraires</dt><dd>Sans méthode de calcul claire, il n’ose pas vous écrire, ou il vient avec un budget qui ne correspond pas à votre mission.</dd>
-          <dt>Il ne voit pas votre regard</dt><dd>Matériaux, performance énergétique, patrimoine : il choisit un architecte pour sa vision. Une galerie sans un mot ne la montre pas.</dd>
+          <dt>Il ne voit pas votre regard</dt><dd>Matériaux, performance énergétique, patrimoine : il choisit un architecte pour sa vision. Une galerie sans un mot ne la montre pas.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
           <dt>Chaque projet raconté, pas seulement montré</dt><dd>Une page par projet avec grandes images, programme, surface, contraintes et réponses apportées.</dd>
           <dt>De grandes images qui ne ralentissent rien</dt><dd>Des photos optimisées qui restent belles sans ralentir le site sur smartphone.</dd>
           <dt>Votre mission comprise avant le rendez-vous</dt><dd>Une page qui décrit votre mission, du premier rendez-vous à la réception des travaux.</dd>
-          <dt>Terrain, budget et délai connus d’avance</dt><dd>Type de projet, commune, budget de travaux, délai : vous recevez des demandes que vous pouvez évaluer.</dd>
+          <dt>Terrain, budget et délai connus d’avance</dt><dd>Type de projet, commune, budget de travaux, délai : vous recevez des demandes que vous pouvez évaluer.</dd>
           <dt>Les questions de permis déjà répondues</dt><dd>Des contenus pédagogiques sur le permis en Wallonie, utiles aux visiteurs et au référencement.</dd>
           <dt>Les mentions de l’Ordre en règle</dt><dd>Inscription à l’Ordre des architectes et assurance professionnelle indiquées correctement.</dd>
         </dl>
@@ -332,7 +346,7 @@
           <dt>Suivi client automatisé</dt><dd>Des messages d’étape envoyés au client pendant le permis et le chantier, pour moins d’appels de suivi.</dd>
         </dl>
         <h3>Dans la démo Ligne Claire</h3>
-        <p>Parcourez-la comme un maître d’ouvrage : quatre projets détaillés, une maquette à faire pivoter, puis une demande de rendez-vous avec la nature du projet, la surface et l’horizon.</p>
+        <p>Parcourez-la comme un maître d’ouvrage : quatre projets détaillés, une maquette à faire pivoter, puis une demande de rendez-vous avec la nature du projet, la surface et l’horizon.</p>
       </div>
     </details>
 
@@ -344,33 +358,33 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Un architecte peut-il faire la promotion de son bureau en ligne ?</summary>
+            <summary>Un architecte peut-il faire la promotion de son bureau en ligne ?</summary>
             <div class="sd-faq-body">
-              <p>Oui, dans le respect de la déontologie : informations factuelles, réalisations, démarche. Nous évitons les comparaisons et les promesses commerciales.</p>
+              <p>Oui, dans le respect de la déontologie : informations factuelles, réalisations, démarche. Nous évitons les comparaisons et les promesses commerciales.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien de projets faut-il pour lancer le portfolio ?</summary>
+            <summary>Combien de projets faut-il pour lancer le portfolio ?</summary>
             <div class="sd-faq-body">
               <p>Trois à cinq projets bien documentés suffisent. Il vaut mieux peu de projets bien présentés qu’une galerie sans contexte.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je afficher mes honoraires ?</summary>
+            <summary>Puis-je afficher mes honoraires ?</summary>
             <div class="sd-faq-body">
               <p>Vous pouvez expliquer votre méthode de calcul ou donner des fourchettes indicatives. Nous rédigeons cela avec vous.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Les photos lourdes ne ralentissent-elles pas le site ?</summary>
+            <summary>Les photos lourdes ne ralentissent-elles pas le site ?</summary>
             <div class="sd-faq-body">
               <p>Nous compressons et dimensionnons chaque image selon l’écran du visiteur. Le site reste rapide même avec un portfolio fourni.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour un bureau d’architecture ?</summary>
+            <summary>Combien coûte un site pour un bureau d’architecture ?</summary>
             <div class="sd-faq-body">
-              <p>Le site vitrine avec portfolio coûte 1 490 € + 79 €/mois. Avec de nombreux projets et contenus sur le permis, le Site Complet coûte 2 490 € + 149 €/mois.</p>
+              <p>Le site vitrine avec portfolio coûte 1 490 € + 79 €/mois. Avec de nombreux projets et contenus sur le permis, le Site complet coûte 2 490 € + 149 €/mois.</p>
             </div>
           </details>
       </div>
@@ -429,7 +443,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

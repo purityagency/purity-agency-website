@@ -321,8 +321,10 @@ export function weekImg(key, i) {
   const pr = i < 2 ? ' fetchpriority="high"' : '';
   const id = WEEK_PHOTOS[key];
   if (!id) return `<img src="/assets/cases/visuals/${key}.webp" width="1200" height="800" alt="" decoding="async"${pr}>`;
-  const [w, h, small] = PHOTOS[id];
+  const [w, h, small, desc] = PHOTOS[id];
+  // Alt descriptif : chaque case du planning montre une publication type.
+  const alt = `Exemple de publication : ${desc.charAt(0).toLowerCase()}${desc.slice(1)}`.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
   return small
-    ? `<img src="/assets/visuals/${id}-800.webp" width="800" height="${Math.round(800 * h / w)}" alt="" decoding="async"${pr}>`
-    : `<img src="/assets/visuals/${id}.webp" width="${w}" height="${h}" alt="" decoding="async"${pr}>`;
+    ? `<img src="/assets/visuals/${id}-800.webp" width="800" height="${Math.round(800 * h / w)}" alt="${alt}" decoding="async"${pr}>`
+    : `<img src="/assets/visuals/${id}.webp" width="${w}" height="${h}" alt="${alt}" decoding="async"${pr}>`;
 }

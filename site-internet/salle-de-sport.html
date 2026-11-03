@@ -29,13 +29,11 @@
       "@type": "WebPage",
       "@id": "https://purity-agency.be/site-internet/salle-de-sport#webpage",
       "name": "Site internet pour salle de sport en Wallonie | Purity",
-      "description": "Site internet pour salle de sport et studio en Wallonie : planning des cours, réservation de places, essai gratuit et abonnements en ligne.",
+      "description": "Site internet pour salle de sport et studio en Wallonie : planning des cours, réservation de places, essai gratuit et abonnements en ligne.",
       "url": "https://purity-agency.be/site-internet/salle-de-sport",
       "inLanguage": "fr-BE",
       "isPartOf": {
-        "@type": "WebSite",
-        "name": "Purity Agency",
-        "url": "https://purity-agency.be/"
+        "@id": "https://purity-agency.be/#website"
       }
     },
     {
@@ -79,10 +77,26 @@
       },
       "offers": {
         "@type": "Offer",
-        "name": "Site Vitrine (5 pages)",
+        "name": "Site vitrine (5 pages)",
         "price": "1490",
         "priceCurrency": "EUR",
-        "url": "https://purity-agency.be/services/site-vitrine"
+        "url": "https://purity-agency.be/services/site-vitrine",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Création",
+            "price": 1490,
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Suivi mensuel",
+            "price": 79,
+            "priceCurrency": "EUR",
+            "billingDuration": "P1M",
+            "unitText": "mois"
+          }
+        ]
       }
     },
     {
@@ -90,7 +104,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Le site peut-il se connecter à mon logiciel de réservation ?",
+          "name": "Le site peut-il se connecter à mon logiciel de réservation ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Souvent oui. Si vous utilisez déjà un outil de gestion des membres, nous l’intégrons au site. Sinon, nous mettons en place une réservation adaptée."
@@ -98,7 +112,7 @@
         },
         {
           "@type": "Question",
-          "name": "Puis-je vendre mes abonnements en ligne ?",
+          "name": "Puis-je vendre mes abonnements en ligne ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui, avec paiement en ligne et conditions affichées avant l’achat, comme l’exige le droit de la consommation en Belgique."
@@ -106,7 +120,7 @@
         },
         {
           "@type": "Question",
-          "name": "Comment éviter les cours à moitié vides ?",
+          "name": "Comment éviter les cours à moitié vides ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "La réservation obligatoire, les rappels et la liste d’attente aident à remplir chaque créneau. Le planning vous montre aussi quels horaires fonctionnent le mieux."
@@ -114,7 +128,7 @@
         },
         {
           "@type": "Question",
-          "name": "Le planning est-il facile à modifier ?",
+          "name": "Le planning est-il facile à modifier ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Un cours annulé ou un remplacement de coach se met à jour rapidement, par vous ou par nous sur simple message."
@@ -122,10 +136,10 @@
         },
         {
           "@type": "Question",
-          "name": "Combien coûte un site pour une salle de sport ?",
+          "name": "Combien coûte un site pour une salle de sport ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le site vitrine avec planning et essai gratuit coûte 1 490 € + 79 €/mois. Avec pages par discipline et coachs, le Site Complet coûte 2 490 € + 149 €/mois."
+            "text": "Le site vitrine avec planning et essai gratuit coûte 1 490 € + 79 €/mois. Avec pages par discipline et coachs, le Site complet coûte 2 490 € + 149 €/mois."
           }
         }
       ]
@@ -194,7 +208,7 @@
           <a class="lv-btn lv-btn--ghost" href="/contact">Écrire à Amir <span aria-hidden="true">→</span></a>
         </div>
         <dl class="lv-facts">
-          <div><dt>Site Vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
+          <div><dt>Site vitrine</dt><dd><strong>1 490 €</strong> + 79 €/mois</dd></div>
           <div><dt>Interlocuteur</dt><dd><strong>Amir</strong>, de A à Z</dd></div>
         </dl>
       </div>
@@ -206,7 +220,7 @@
         </div>
           <div class="lv-phone lv-device__phone"><img src="/assets/shots/sport-mobile-0.webp" alt="Capture de la démo Cadence Studio conçue par Purity, page d’accueil sur smartphone" width="390" height="844" decoding="async"></div>
         </div>
-        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Cadence Studio n’est pas un client réel. <a href="/cas-concrets/sport">Lire le cas concret</a></figcaption>
+        <figcaption class="lv-honest"><span class="lv-honest__dot" aria-hidden="true"></span>Démonstration conçue par Purity : Cadence Studio n’est pas un client réel. <a href="/cas-concrets/sport">Lire le cas concret</a></figcaption>
       </figure>
     </section>
 
@@ -271,7 +285,7 @@
       <div class="lv-head">
         <span class="lv-kicker">Automatisation &amp; IA</span>
         <h2 class="lv-h2"><span id="auto-title">Des places rattrapées et des membres retenus avant qu’ils résilient</span></h2>
-        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : un <a href="/services/pilote-automatique-integral">assistant IA entraîné sur vos règles</a>, des <a href="/services/pack-visuels-reels">Reels et visuels prêts à publier</a> et la <a href="/services/gestion-reseaux-sociaux">gestion de vos réseaux sociaux</a>.</p>
+        <p class="lv-sub">Des tâches répétitives qui tournent seules, toujours sous votre contrôle. Aucune IA ne répond à votre place sur ce que vous n’avez pas validé. Pour aller plus loin : un <a href="/services/pilote-automatique-integral">assistant IA entraîné sur vos règles</a>, des <a href="/services/pack-visuels-reels">Reels et visuels prêts à publier</a> et la <a href="/services/gestion-reseaux-sociaux">gestion de vos réseaux sociaux</a>.</p>
       </div>
       <ol class="lv-flow">
         <li><svg class="lv-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg><span class="lv-flow__n">01</span><strong>Liste d’attente automatique</strong></li>
@@ -289,21 +303,21 @@
       <div class="lv-prices">
         <a class="lv-price lv-price--reco" href="/services/site-vitrine">
           <span class="lv-price__flag">Conseillé</span>
-          <span class="lv-price__name">Site Vitrine (5 pages)</span>
+          <span class="lv-price__name">Site vitrine (5 pages)</span>
           <span class="lv-price__amount">1 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 79 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/site-complet">
           
-          <span class="lv-price__name">Site Complet (10+ pages)</span>
+          <span class="lv-price__name">Site complet (10+ pages)</span>
           <span class="lv-price__amount">2 490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 149 €/mois</strong> suivi &amp; hébergement</span>
         </a>
         <a class="lv-price" href="/services/pilote-automatique-essentiel">
           
-          <span class="lv-price__name">Pilote Automatique Essentiel</span>
+          <span class="lv-price__name">Pilote automatique Essentiel</span>
           <span class="lv-price__amount">490 €</span>
           <span class="lv-price__note">de mise en place</span>
           <span class="lv-price__month"><strong>+ 39 €/mois</strong> suivi &amp; hébergement</span>
@@ -318,10 +332,10 @@
         <p>Un site internet de salle de sport doit afficher le planning des cours à jour, permettre de réserver sa place et de demander une séance d’essai, et présenter les abonnements avec leurs conditions. Purity Agency crée à Charleroi des sites pour salles de sport, studios de yoga et coachs de Wallonie, reliés à votre outil de réservation.</p>
         <h3>Ce qui coince aujourd’hui</h3>
         <dl>
-          <dt>Il ne trouve pas le planning de la semaine</dt><dd>Quel cours, à quelle heure, avec quel coach : s’il doit envoyer un message pour le savoir, il ne vient pas ce soir.</dd>
+          <dt>Il ne trouve pas le planning de la semaine</dt><dd>Quel cours, à quelle heure, avec quel coach : s’il doit envoyer un message pour le savoir, il ne vient pas ce soir.</dd>
           <dt>Il veut essayer avant de signer</dt><dd>Sans séance d’essai réservable en ligne, il remet à plus tard, puis s’inscrit dans la salle qui la proposait.</dd>
-          <dt>Il compare vos prix avec la salle d’en face</dt><dd>Abonnement mensuel, carte de séances, durée d’engagement : si vos prix ne sont pas affichés, il retient ceux du concurrent.</dd>
-          <dt>Il a peur de ne pas suivre</dt><dd>Débutants acceptés, encadrement, équipement, vestiaires : sans réponse, il n’ose pas pousser la porte.</dd>
+          <dt>Il compare vos prix avec la salle d’en face</dt><dd>Abonnement mensuel, carte de séances, durée d’engagement : si vos prix ne sont pas affichés, il retient ceux du concurrent.</dd>
+          <dt>Il a peur de ne pas suivre</dt><dd>Débutants acceptés, encadrement, équipement, vestiaires : sans réponse, il n’ose pas pousser la porte.</dd>
         </dl>
         <h3>Ce que le site change</h3>
         <dl>
@@ -329,7 +343,7 @@
           <dt>Les places réservées et libérées seules</dt><dd>Le membre réserve son cours, reçoit une confirmation et peut annuler, ce qui libère la place pour un autre.</dd>
           <dt>La séance d’essai réservée en ligne</dt><dd>Un formulaire court pour réserver une séance découverte, la porte d’entrée des nouveaux membres.</dd>
           <dt>Des abonnements sans petits caractères</dt><dd>Formules, prix, durée d’engagement et conditions de résiliation affichés sans petits caractères.</dd>
-          <dt>Une page par discipline</dt><dd>CrossTraining, yoga, pilates, boxe : une page par discipline réellement proposée, bien référencée.</dd>
+          <dt>Une page par discipline</dt><dd>CrossTraining, yoga, pilates, boxe : une page par discipline réellement proposée, bien référencée.</dd>
           <dt>Vos coachs présentés</dt><dd>Leur parcours et leurs qualifications réelles, pour que le nouveau sache qui l’attend.</dd>
         </dl>
         <h3>Automatisations possibles</h3>
@@ -339,7 +353,7 @@
           <dt>Alerte membres inactifs</dt><dd>Un message bienveillant quand un membre ne vient plus depuis plusieurs semaines, avant qu’il résilie.</dd>
         </dl>
         <h3>Dans la démo Cadence Studio</h3>
-        <p>Faites le parcours d’un débutant : « Je débute : quel cours choisir ? », le planning des séances, puis la réservation de la première séance.</p>
+        <p>Faites le parcours d’un débutant : « Je débute : quel cours choisir ? », le planning des séances, puis la réservation de la première séance.</p>
       </div>
     </details>
 
@@ -351,33 +365,33 @@
       </div>
       <div class="sd-faq-list">
           <details class="sd-faq-item">
-            <summary>Le site peut-il se connecter à mon logiciel de réservation ?</summary>
+            <summary>Le site peut-il se connecter à mon logiciel de réservation ?</summary>
             <div class="sd-faq-body">
               <p>Souvent oui. Si vous utilisez déjà un outil de gestion des membres, nous l’intégrons au site. Sinon, nous mettons en place une réservation adaptée.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Puis-je vendre mes abonnements en ligne ?</summary>
+            <summary>Puis-je vendre mes abonnements en ligne ?</summary>
             <div class="sd-faq-body">
               <p>Oui, avec paiement en ligne et conditions affichées avant l’achat, comme l’exige le droit de la consommation en Belgique.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Comment éviter les cours à moitié vides ?</summary>
+            <summary>Comment éviter les cours à moitié vides ?</summary>
             <div class="sd-faq-body">
               <p>La réservation obligatoire, les rappels et la liste d’attente aident à remplir chaque créneau. Le planning vous montre aussi quels horaires fonctionnent le mieux.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Le planning est-il facile à modifier ?</summary>
+            <summary>Le planning est-il facile à modifier ?</summary>
             <div class="sd-faq-body">
               <p>Oui. Un cours annulé ou un remplacement de coach se met à jour rapidement, par vous ou par nous sur simple message.</p>
             </div>
           </details>
           <details class="sd-faq-item">
-            <summary>Combien coûte un site pour une salle de sport ?</summary>
+            <summary>Combien coûte un site pour une salle de sport ?</summary>
             <div class="sd-faq-body">
-              <p>Le site vitrine avec planning et essai gratuit coûte 1 490 € + 79 €/mois. Avec pages par discipline et coachs, le Site Complet coûte 2 490 € + 149 €/mois.</p>
+              <p>Le site vitrine avec planning et essai gratuit coûte 1 490 € + 79 €/mois. Avec pages par discipline et coachs, le Site complet coûte 2 490 € + 149 €/mois.</p>
             </div>
           </details>
       </div>
@@ -436,7 +450,7 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>

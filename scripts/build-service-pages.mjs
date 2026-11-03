@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { services } from '../data/services.mjs';
 import { caseById } from '../data/case-studies.mjs';
+import { typoHtml, typoText, typoJson } from './typo-fr.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,6 +74,37 @@ const META_DESCRIPTIONS = {
   'pilote-automatique-integral': s => `Assistant IA entraîné sur vos tarifs, vos zones et vos règles métier : il répond à vos clients le soir et le week-end. ${tarif(s)}`
 };
 
+// Title (< 60 car.) et H1 calés sur la requête : le mot-clé en tête, le nom du produit passe en kicker.
+const SEO = {
+  'diagnostic-digital': { title: () => 'Audit site internet gratuit en 15 min | Purity', h1: 'Audit gratuit de votre site et de votre visibilité en 15 minutes' },
+  'page-essentielle': { title: s => `Site one-page pour artisan dès ${s.priceSetup} | Purity`, h1: 'Site one-page pour artisan et indépendant' },
+  'site-vitrine': { title: s => `Création site vitrine Charleroi : ${s.priceSetup} | Purity`, h1: 'Création de site vitrine à Charleroi' },
+  'site-complet': { title: s => `Site internet PME 10 pages et plus : ${s.priceSetup} | Purity`, h1: 'Site internet complet pour PME, 10 pages et plus' },
+  'boutique-en-ligne': { title: s => `Création boutique en ligne Belgique : ${s.priceSetup} | Purity`, h1: 'Création de boutique en ligne en Belgique' },
+  'refonte-modernisation': { title: s => `Refonte de site internet ${s.priceSetup} | Purity`, h1: 'Refonte de site internet lent ou dépassé' },
+  'google-business': { title: s => `Optimisation fiche Google Business : ${s.priceSetup} | Purity`, h1: 'Optimisation de votre fiche Google Business' },
+  'identite-visuelle-logo': { title: () => 'Logo et identité visuelle à Charleroi | Purity', h1: 'Création de logo et identité visuelle à Charleroi' },
+  'pack-visuels-reels': { title: s => `Montage Reels et visuels pour PME : ${s.priceSetup} | Purity`, h1: 'Montage de Reels et visuels pour vos réseaux sociaux' },
+  'referencement-local-seo': { title: () => 'Référencement local SEO en Wallonie | Purity', h1: 'Référencement local en Wallonie' },
+  'gestion-reseaux-sociaux': { title: () => 'Gestion réseaux sociaux pour PME en Wallonie | Purity', h1: 'Gestion de réseaux sociaux pour PME en Wallonie' },
+  'pilote-automatique-essentiel': { title: () => 'Automatisation PME : rappels et relance devis | Purity', h1: 'Automatisation pour PME : rappels SMS et relance des devis' },
+  'pilote-automatique-business': { title: () => 'Automatisation PME : dossiers, planning, factures | Purity', h1: 'Automatisation pour PME : dossiers, planning et factures reliés' },
+  'pilote-automatique-integral': { title: () => 'Assistant IA pour PME : réponses 24 h/24 | Purity', h1: 'Assistant IA pour PME qui répond à vos clients 24 h/24' }
+};
+// Prix en nombre pour le JSON-LD (« 1 490 € » → 1490, « 79 €/mois » → 79).
+const amount = p => Number(String(p || '').replace(/[^0-9]/g, '')) || 0;
+function offerSchema(service, url) {
+  const offer = { "@type": "Offer", "price": String(amount(service.priceSetup)), "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": url };
+  if (service.monthlyPrice) {
+    offer.priceSpecification = [
+      { "@type": "UnitPriceSpecification", "name": "Création", "price": amount(service.priceSetup), "priceCurrency": "EUR" },
+      { "@type": "UnitPriceSpecification", "name": "Suivi mensuel", "price": amount(service.monthlyPrice), "priceCurrency": "EUR", "billingDuration": "P1M", "unitText": "mois" }
+    ];
+  }
+  return offer;
+}
+const WEBSITE_REF = { "@id": "https://purity-agency.be/#website" };
+
 function metaDescriptionFor(service) {
   const build = META_DESCRIPTIONS[service.slug];
   const desc = build ? build(service) : service.headline;
@@ -102,7 +134,7 @@ ${OG_IMAGE}
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=${CSS_VERSION}">
 ${vz ? VZ_ASSETS : ''}<script type="application/ld+json">
-${JSON.stringify(schemaJson, null, 2)}
+${JSON.stringify(typoJson(schemaJson), null, 2)}
 </script>
 </head>`;
 }
@@ -278,7 +310,10 @@ function resultSection(service) {
 function buildServiceDetailPage(service) {
   const canonicalUrl = `https://purity-agency.be/services/${service.slug}`;
   const plainName = service.name.replace(/\s*&\s*/g, ' et ');
-  const pageTitle = [' : tarif et livrables | Purity Agency', ' : tarif | Purity Agency', ' | Purity Agency'].map(x => plainName + x).find(t => t.length < 60);
+  const seo = SEO[service.slug];
+  const pageTitle = typoText(seo ? seo.title(service) : [' : tarif | Purity Agency', ' | Purity Agency'].map(x => plainName + x).find(t => t.length < 60));
+  if (pageTitle.length >= 60) console.warn(`Title de 60 caractères ou plus (${pageTitle.length}) : ${service.slug}`);
+  const h1 = seo ? seo.h1 : service.name;
   const allFaq = [...service.faq, ...objectionsFor(service)];
   const answer = answerFor(service);
   const metaDesc = metaDescriptionFor(service);
@@ -296,7 +331,7 @@ function buildServiceDetailPage(service) {
         "name": pageTitle,
         "description": metaDesc,
         "url": canonicalUrl,
-        "isPartOf": { "@type": "WebSite", "name": "Purity Agency", "url": "https://purity-agency.be/" }
+        "isPartOf": WEBSITE_REF
       },
       {
         "@type": "BreadcrumbList",
@@ -312,13 +347,7 @@ function buildServiceDetailPage(service) {
         "description": service.summary,
         "provider": { "@id": "https://purity-agency.be/#business" },
         "areaServed": "Wallonie",
-        "offers": {
-          "@type": "Offer",
-          "price": service.priceSetup.replace(/[^0-9]/g, '') || "0",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock",
-          "url": canonicalUrl
-        }
+        "offers": offerSchema(service, canonicalUrl)
       },
       {
         "@type": "FAQPage",
@@ -377,8 +406,8 @@ ${renderHeader('services')}
 
     <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
       <div class="sd-hero__text">
-        <div class="sd-hero__pill">${e(service.pillar.replace(/Pilier \d+ · /, ''))}</div>
-        <h1 class="sd-hero__title" id="service-title">${e(service.name)}</h1>
+        <div class="sd-hero__pill">${e(service.name)}</div>
+        <h1 class="sd-hero__title" id="service-title">${e(h1)}</h1>
         <p class="sd-hero__lead">${e(service.headline)}</p>
         ${heroPrice}
         <ul class="sd-hero__chips">
@@ -587,7 +616,7 @@ function hubPriceHtml(svc) {
 
 function buildServicesHubPage() {
   const canonicalUrl = `https://purity-agency.be/services`;
-  const pageTitle = `Services et tarifs : sites, SEO et IA | Purity Agency`;
+  const pageTitle = typoText(`Services et tarifs : sites, SEO et IA | Purity Agency`);
   const metaDesc = `Les 14 services de Purity Agency pour indépendants et PME en Wallonie : sites web, e-commerce, réseaux sociaux, automatisation et IA, prix affichés.`;
 
   const schemaJson = {
@@ -598,7 +627,7 @@ function buildServicesHubPage() {
         "name": pageTitle,
         "description": metaDesc,
         "url": canonicalUrl,
-        "isPartOf": { "@type": "WebSite", "name": "Purity Agency", "url": "https://purity-agency.be/" }
+        "isPartOf": WEBSITE_REF
       },
       {
         "@type": "BreadcrumbList",
@@ -719,9 +748,9 @@ ${renderFooter()}
 
 let count = 0;
 for (const svc of services) {
-  fs.writeFileSync(path.join(SERVICES_DIR, `${svc.slug}.html`), buildServiceDetailPage(svc), 'utf8');
+  fs.writeFileSync(path.join(SERVICES_DIR, `${svc.slug}.html`), typoHtml(buildServiceDetailPage(svc)), 'utf8');
   count++;
 }
 console.log(`Generated ${count} individual service detail pages in services/*.html`);
-fs.writeFileSync(path.join(ROOT, 'services.html'), buildServicesHubPage(), 'utf8');
+fs.writeFileSync(path.join(ROOT, 'services.html'), typoHtml(buildServicesHubPage()), 'utf8');
 console.log(`Generated services.html hub page at root`);

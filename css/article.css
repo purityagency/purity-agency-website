@@ -69,3 +69,7 @@
  .blog .blog-index__head p{display:none}
 }
 @media (prefers-reduced-motion:reduce){.blog .post-card__thumb img{transition:none}.blog .post-card:hover .post-card__thumb img{transform:none}}
+
+/* Maillage vers metiers / villes / blog */
+.article-local{margin:2rem 0 0;font-size:.95rem;color:var(--muted,#4A4640)}
+.article-related__all{margin:1rem 0 0;font-size:.9rem}

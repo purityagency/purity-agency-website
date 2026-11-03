@@ -2526,3 +2526,12 @@ html{-moz-osx-font-smoothing:grayscale}
 .hero__trust{text-wrap:balance}
 .site-footer__inner a[href^="/contact.html"]{display:block;font-weight:600;color:var(--accent);margin-bottom:.5rem}
 .mock__url::before{content:attr(data-url)}
+
+/* Maillage : villes, metiers, guides */
+.home-reach{max-width:1200px;margin:0 auto;padding:clamp(3rem,7vw,5.5rem) 16px}
+.home-reach__title{margin:0 0 2rem;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+.home-reach__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+.home-reach__hub{display:inline-block;margin-bottom:.8rem;font-weight:650;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink)}
+.home-reach ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem}
+.home-reach li a{color:var(--muted);text-decoration:none;font-size:.95rem}
+.home-reach a:hover,.home-reach a:focus-visible{color:var(--ink);text-decoration:underline;text-underline-offset:3px}

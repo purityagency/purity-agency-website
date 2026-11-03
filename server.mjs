@@ -55,6 +55,7 @@ const pagespeedLimiter = createRateLimiter({ windowMs: 60_000, max: 20 });
 const mutationLimiter = createRateLimiter({ windowMs: 60_000, max: 8 });
 const slotsLimiter = createRateLimiter({ windowMs: 60_000, max: 25 });
 const offersLimiter = createRateLimiter({ windowMs: 60_000, max: 60 });
+const cspReportLimiter = createRateLimiter({ windowMs: 60_000, max: 20 });
 
 // Page 404 brandee : le visiteur garde le header, le footer et des liens de sortie.
 async function notFound(res) {
@@ -282,6 +283,30 @@ export const server = http.createServer(async (req, res) => {
       } catch {
         return json(200, { ok: false, reason: 'unreachable' });
       }
+    }
+
+    // Rapports de blocage CSP (report-uri et Reporting API) : une ligne courte
+    // dans le journal, sans IP ni URL complète.
+    if (path === '/api/csp-report') {
+      if (req.method !== 'POST') return json(405, { ok: false }, { Allow: 'POST' });
+      if (cspReportLimiter(ip)) return res.writeHead(204).end();
+      try {
+        const body = await readJsonBody(req, {
+          maxBytes: 16_384,
+          timeoutMs: 5_000,
+          types: ['application/csp-report', 'application/reports+json', 'application/json']
+        });
+        const list = Array.isArray(body) ? body.map(r => r?.body) : [body?.['csp-report']];
+        for (const r of list.slice(0, 5)) {
+          if (!r || typeof r !== 'object') continue;
+          const clip = (v) => String(v || '').replace(/[?#].*$/, '').replace(/\s+/g, ' ').slice(0, 200);
+          const page = clip(r.documentURL || r['document-uri']);
+          const directive = clip(r.effectiveDirective || r['effective-directive'] || r['violated-directive']);
+          const blocked = clip(r.blockedURL || r['blocked-uri']);
+          console.warn(`[csp] ${directive} bloqué: ${blocked || '(inline)'} sur ${page}`);
+        }
+      } catch { /* rapport illisible : ignoré */ }
+      return res.writeHead(204, { 'Cache-Control': 'no-store' }).end();
     }
 
     // Bloque toute route /api/* inconnue sans tomber dans le serveur de fichiers.

@@ -230,3 +230,28 @@ test('CSRF origin check, prototype pollution guard, IP extraction, and honeypot 
   });
 });
 
+
+test('CSP reports: directives exposed and /api/csp-report accepts both formats', async () => {
+  await withServer(async baseUrl => {
+    const page = await fetch(`${baseUrl}/`);
+    assert.match(page.headers.get('content-security-policy') || '', /report-uri \/api\/csp-report; report-to csp/);
+    assert.equal(page.headers.get('reporting-endpoints'), 'csp="/api/csp-report"');
+
+    const legacy = await fetch(`${baseUrl}/api/csp-report`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/csp-report' },
+      body: JSON.stringify({ 'csp-report': { 'document-uri': 'https://purity-agency.be/x?y=1', 'effective-directive': 'script-src-elem', 'blocked-uri': 'inline' } })
+    });
+    assert.equal(legacy.status, 204);
+
+    const modern = await fetch(`${baseUrl}/api/csp-report`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/reports+json' },
+      body: JSON.stringify([{ type: 'csp-violation', body: { documentURL: 'https://purity-agency.be/', effectiveDirective: 'style-src-elem', blockedURL: 'inline' } }])
+    });
+    assert.equal(modern.status, 204);
+
+    const get = await fetch(`${baseUrl}/api/csp-report`);
+    assert.equal(get.status, 405);
+  });
+});

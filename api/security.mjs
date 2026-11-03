@@ -18,7 +18,10 @@ const CSP_DIRECTIVES = [
   "media-src 'self'",
   "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
   "manifest-src 'self'",
-  "worker-src 'self'"
+  "worker-src 'self'",
+  // Les navigateurs signalent les blocages CSP à /api/csp-report (journal Render).
+  'report-uri /api/csp-report',
+  'report-to csp'
 ];
 
 const PERMISSIONS_POLICY = [
@@ -83,6 +86,7 @@ export function applySecurityHeaders(res, { isNoIndex = false, isDemo = false } 
     ? [...baseDirectives, 'upgrade-insecure-requests'].join('; ')
     : baseDirectives.join('; ');
   res.setHeader('Content-Security-Policy', csp);
+  res.setHeader('Reporting-Endpoints', 'csp="/api/csp-report"');
   if (isNoIndex) {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   }
@@ -164,10 +168,10 @@ export function stripPrototypePollution(value, depth = 0) {
   return { ...clean };
 }
 
-export function readJsonBody(req, { maxBytes = 16_384, timeoutMs = 8_000 } = {}) {
+export function readJsonBody(req, { maxBytes = 16_384, timeoutMs = 8_000, types = ['application/json'] } = {}) {
   return new Promise((resolve, reject) => {
     const ct = String(req.headers['content-type'] || '').toLowerCase();
-    if (ct && !ct.includes('application/json')) {
+    if (ct && !types.some(t => ct.includes(t))) {
       reject(new Error('unsupported-media-type'));
       return;
     }

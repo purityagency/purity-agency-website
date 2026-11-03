@@ -11,8 +11,8 @@
 
   var introTitle = document.querySelector('.cases__intro h1');
   var introKicker = document.querySelector('.cases__intro .section-kicker');
-  if (introTitle) introTitle.textContent = 'Nos réalisations.';
-  if (introKicker) introKicker.textContent = 'Portfolio Purity';
+  if (introTitle) introTitle.textContent = 'Démos par métier.';
+  if (introKicker) introKicker.textContent = 'Démos par métier';
 
   // --preview-scale ajuste l'iframe de 1280 px a la largeur de l'apercu.
   var previews = cards.map(function (card) { return card.querySelector('.case-preview'); }).filter(Boolean);

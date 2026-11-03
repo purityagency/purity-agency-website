@@ -22,14 +22,40 @@
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 <header class="header">
-<a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
-<nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets">Nos réalisations</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav>
-<button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
+  <a class="header__brand" href="/">
+    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
+    <span>Purity Agency</span>
+  </a>
+  <nav class="header__nav" aria-label="Principal">
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
+  </button>
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
-<div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Nos réalisations</a><a href="/blog" style="--i:2">Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
-<div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
+  <div class="menu__top">
+    <span class="menu__brand">
+      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
+      <span>Purity Agency</span>
+    </span>
+    <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
+      <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
+    </button>
+  </div>
+  <nav class="menu__nav">
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+    <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+  </div>
 </div>
 <main id="contenu" tabindex="-1" class="content-page">
 <header class="content-hero">
@@ -52,7 +78,7 @@
 <text x="168" y="194">Sauvegarde</text><rect class="k" x="168" y="204" width="164" height="6" rx="3"/><rect class="a ax d7" x="168" y="204" width="164" height="6" rx="3"/><g class="ap d11"><circle class="a" cx="358" cy="202" r="10"/><path class="lw" d="M353.5 202l3 3 5.5-5.5"/></g>
 </svg>
 </figure>
-<h2>Le coût dépasse la réparation</h2><p>Un piratage peut provoquer une alerte navigateur, une baisse de trafic, une perte de mails, une suspension d’hébergement, une perte de confiance ou une désindexation temporaire. Le nettoyage technique n’est qu’une partie du problème.</p><h2>La base : mises à jour et sobriété</h2><p>Les rapports annuels de <a href="https://patchstack.com/whitepaper/" rel="noopener">Patchstack sur la sécurité WordPress</a> situent l’essentiel des failles découvertes dans les extensions, pas dans le cœur de WordPress. Versions obsolètes, plugins inutiles et thèmes abandonnés sont donc les premières portes à fermer. Moins il y a de composants, moins il y a de portes à surveiller.</p><aside class="article-midcta" aria-label="Pour aller plus vite"><p>Votre WordPress n’a plus été mis à jour depuis longtemps ? Une refonte peut repartir sur une base saine sans perdre votre positionnement.</p><a href="/services/refonte-modernisation">Voir l’offre refonte</a></aside><figure class="article-figure article-figure--section"><img src="/assets/visuals/article-piratage-wordpress-cout-pme-section.webp" srcset="/assets/visuals/article-piratage-wordpress-cout-pme-section-800.webp 800w, /assets/visuals/article-piratage-wordpress-cout-pme-section.webp 1195w" sizes="(min-width: 820px) 760px, 92vw" width="1195" height="896" alt="Technicien qui intervient sur un petit routeur et ses câbles réseau" loading="lazy" decoding="async"></figure><h2>Sauvegardes et accès propres</h2><p>Un mot de passe fort, des rôles limités, une authentification double facteur et des sauvegardes externes changent tout. La question n’est pas “est-ce que ça arrivera ?”, mais “comment on récupère si ça arrive ?”.</p><h2>La sécurité est une maintenance, pas un plugin</h2><p>Un plugin de sécurité peut aider, mais il ne remplace pas une discipline : mises à jour, surveillance, hébergement sérieux, sauvegardes testées et décisions techniques sobres. Si votre site repose sur trop d’extensions anciennes, une <a href="/services/refonte-modernisation">refonte sur une base plus sobre</a> peut coûter moins cher que des réparations répétées.</p><p>Pour un cabinet qui manipule des données sensibles, voyez le <a href="/site-internet/comptable">site internet pour comptable et fiduciaire</a>.</p><p class="article-local">Exemples concrets : <a href="/site-internet/kinesitherapeute">site pour kinésithérapeute</a> · <a href="/site-internet/agence-immobiliere">site pour agence immobilière</a>.</p><div class="article-cta"><p>Votre site WordPress est-il vraiment maintenu ? <span>Diagnostic gratuit de 15 minutes avec Amir, sans engagement.</span></p><a class="btn btn--primary" href="/contact">Demander mon diagnostic gratuit</a></div><aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">À lire ensuite</h2><ul><li><a href="/article-core-web-vitals-impact-chiffre-affaires">Core Web Vitals : pourquoi la technique peut coûter du chiffre d’affaires</a><span>LCP, INP et CLS expliqués sans jargon : ce que mesurent les Core Web Vitals de Google et pourquoi un site lent perd des demandes avant le formulaire.</span></li><li><a href="/article-rgpd-cookies-popins-prospects">RGPD et cookies : informer sans faire fuir vos prospects</a><span>Bandeau cookies, pop-ins, pages légales : comment rester conforme au RGPD en Belgique sans dégrader l’expérience ni la conversion de votre site.</span></li><li><a href="/article-site-ne-convertit-pas">Votre site ne convertit pas : 7 raisons fréquentes</a><span>Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger.</span></li></ul><p class="article-related__all"><a href="/blog">Tous les guides du blog</a></p></aside></article>
+<h2>Le coût dépasse la réparation</h2><p>Un piratage peut provoquer une alerte navigateur, une baisse de trafic, une perte de mails, une suspension d’hébergement, une perte de confiance ou une désindexation temporaire. Le nettoyage technique n’est qu’une partie du problème.</p><h2>La base : mises à jour et sobriété</h2><p>Les rapports annuels de <a href="https://patchstack.com/whitepaper/" rel="noopener">Patchstack sur la sécurité WordPress</a> situent l’essentiel des failles découvertes dans les extensions, pas dans le cœur de WordPress. Versions obsolètes, plugins inutiles et thèmes abandonnés sont donc les premières portes à fermer. Moins il y a de composants, moins il y a de portes à surveiller.</p><aside class="article-midcta" aria-label="Pour aller plus vite"><p>Votre WordPress n’a plus été mis à jour depuis longtemps ? Une refonte peut repartir sur une base saine sans perdre votre positionnement.</p><a href="/services/refonte-modernisation">Voir l’offre refonte</a></aside><figure class="article-figure article-figure--section"><img src="/assets/visuals/article-piratage-wordpress-cout-pme-section.webp" srcset="/assets/visuals/article-piratage-wordpress-cout-pme-section-800.webp 800w, /assets/visuals/article-piratage-wordpress-cout-pme-section.webp 1195w" sizes="(min-width: 820px) 760px, 92vw" width="1195" height="896" alt="Technicien qui intervient sur un petit routeur et ses câbles réseau" loading="lazy" decoding="async"></figure><h2>Sauvegardes et accès propres</h2><p>Un mot de passe fort, des rôles limités, une authentification double facteur et des sauvegardes externes changent tout. La question n’est pas “est-ce que ça arrivera ?”, mais “comment on récupère si ça arrive ?”.</p><h2>La sécurité est une maintenance, pas un plugin</h2><p>Un plugin de sécurité peut aider, mais il ne remplace pas une discipline : mises à jour, surveillance, hébergement sérieux, sauvegardes testées et décisions techniques sobres. Si votre site repose sur trop d’extensions anciennes, une <a href="/services/refonte-modernisation">refonte sur une base plus sobre</a> peut coûter moins cher que des réparations répétées.</p><p>Pour un cabinet qui manipule des données sensibles, voyez le <a href="/site-internet/comptable">site internet pour comptable et fiduciaire</a>.</p><p class="article-local">Exemples concrets : <a href="/site-internet/kinesitherapeute">site pour kinésithérapeute</a> · <a href="/site-internet/agence-immobiliere">site pour agence immobilière</a>.</p><div class="article-cta"><p>Votre site WordPress est-il vraiment maintenu ? <span>Diagnostic gratuit de 15 minutes avec Amir, sans engagement.</span></p><a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a></div><aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">À lire ensuite</h2><ul><li><a href="/article-core-web-vitals-impact-chiffre-affaires">Core Web Vitals : pourquoi la technique peut coûter du chiffre d’affaires</a><span>LCP, INP et CLS expliqués sans jargon : ce que mesurent les Core Web Vitals de Google et pourquoi un site lent perd des demandes avant le formulaire.</span></li><li><a href="/article-rgpd-cookies-popins-prospects">RGPD et cookies : informer sans faire fuir vos prospects</a><span>Bandeau cookies, pop-ins, pages légales : comment rester conforme au RGPD en Belgique sans dégrader l’expérience ni la conversion de votre site.</span></li><li><a href="/article-site-ne-convertit-pas">Votre site ne convertit pas : 7 raisons fréquentes</a><span>Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger.</span></li></ul><p class="article-related__all"><a href="/blog">Tous les guides du blog</a></p></aside></article>
 </main>
 <footer class="site-footer">
   <div class="site-footer__inner">
@@ -61,18 +87,22 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
-      <a href="/#services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/services">Services et tarifs</a>
+      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/agence-web">Agence web par ville</a>
+      <a href="/site-internet/">Site internet par métier</a>
       <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
       <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
+      <a href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+      <a href="/contact">Écrire à Amir</a>
       <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
     </div>
   </div>

@@ -166,7 +166,7 @@ export const icon = (name, cls = 'sd-ico') =>
 export const VISUALS = {
   'diagnostic-digital': {
     tiles: [['search', 'Visibilité locale vérifiée en direct'], ['phone', 'Test vitesse sur smartphone'], ['mail', 'Devis hors des spams'], ['file', 'Récapitulatif écrit après l’appel']],
-    vs: [['Un pack vendu dès la 5e minute', 'Un avis franc, même « rien à acheter »'], ['Un commercial qui lit un script', 'Amir, le fondateur, en direct'], ['Un devis générique sans explication', 'Un récap écrit et l’action prioritaire']],
+    vs: [['Par où commencer ? Flou', 'Un avis franc, même « rien à acheter »'], ['Personne ne regarde en détail', 'Amir, le fondateur, en direct'], ['Aucune priorité écrite', 'Un récap écrit et l’action prioritaire']],
     hero: { type: 'audit' }
   },
   'page-essentielle': {
@@ -181,17 +181,17 @@ export const VISUALS = {
   },
   'site-complet': {
     tiles: [['pages', '10 à 15 pages sur mesure'], ['pin', 'Une page par ville et métier'], ['route', 'Chaque devis au bon responsable'], ['users', 'Espace recrutement pour ouvriers'], ['chart', 'Statistiques privées, RGPD'], ['clock', 'Modifications sous 24 h ouvrées']],
-    vs: [['Une page générale, une seule commune', 'Une page par ville et par spécialité'], ['Tous les messages mélangés', 'Chaque devis au bon responsable'], ['5 à 10 jours pour une modification', 'Amir en direct, sous 24 h ouvrées']],
+    vs: [['Une page générale, une seule commune', 'Une page par ville et par spécialité'], ['Tous les messages mélangés', 'Chaque devis au bon responsable'], ['Pas d’interlocuteur clair', 'Amir en direct, sous 24 h ouvrées']],
     hero: { type: 'device', demo: 'architecture', name: 'Ligne Claire', sector: 'Architecture' }
   },
   'boutique-en-ligne': {
     tiles: [['cart', 'Jusqu’à 100 produits'], ['card', 'Bancontact et Payconiq'], ['bolt', 'Paiement en un seul écran'], ['truck', 'Bpost, point relais, retrait'], ['tag', '0 % de commission Purity'], ['receipt', 'Factures TVA et Peppol']],
-    vs: [['15 à 30 % pris par les plateformes', '0 % de commission Purity'], ['La carte de crédit seulement', 'Bancontact, Payconiq et cartes'], ['5 étapes et un compte obligatoire', 'Un écran, sans compte obligatoire']],
+    vs: [['Une commission par vente sur plateforme', '0 % de commission Purity'], ['Pas de Bancontact au paiement', 'Bancontact, Payconiq et cartes'], ['5 étapes et un compte obligatoire', 'Un écran, sans compte obligatoire']],
     hero: { type: 'device', demo: 'decoration', name: 'Matière Commune', sector: 'Décoration' }
   },
   'refonte-modernisation': {
     tiles: [['list', 'Inventaire de l’ancien site'], ['refresh', 'Chaque adresse redirigée'], ['brush', 'Design remis à neuf'], ['shield', 'Extensions lourdes supprimées'], ['form', 'Formulaire de devis moderne'], ['id', 'Mentions légales belges en ordre']],
-    vs: [['Liens cassés, visites Google en chute', 'Chaque ancienne adresse redirigée'], ['Un thème lourd et ses extensions', 'Un code léger et durable'], ['De vieux plugins faciles à pirater', 'Beaucoup moins de portes d’entrée']],
+    vs: [['Des anciens liens cassés', 'Chaque ancienne adresse redirigée'], ['Un thème lourd et ses extensions', 'Un code léger et durable'], ['Des extensions à surveiller sans cesse', 'Beaucoup moins de portes d’entrée']],
     hero: { type: 'beforeafter', demo: 'renovation', name: 'Atelier Noma' }
   },
   'google-business': {
@@ -201,22 +201,22 @@ export const VISUALS = {
   },
   'identite-visuelle-logo': {
     tiles: [['brush', '3 propositions de logo'], ['file', 'Fichiers HD pour l’imprimeur'], ['image', 'Images site et réseaux'], ['palette', 'Fiche de vos couleurs'], ['truck', 'Gabarits lettrage et flocage'], ['key', 'Droits d’auteur cédés']],
-    vs: [['Un JPEG pixélisé refusé', 'Des vectoriels pour toutes les tailles'], ['Des droits refacturés par support', 'Droits cédés, sans frais par support'], ['Illisible sur la camionnette', 'Pensé pour véhicule et vêtements']],
+    vs: [['Une image trop petite pour l’imprimeur', 'Des vectoriels pour toutes les tailles'], ['Des droits pas cédés par écrit', 'Droits cédés, sans frais par support'], ['Illisible sur la camionnette', 'Pensé pour véhicule et vêtements']],
     hero: { type: 'photo', id: 'service-identite-visuelle-logo-hero' }
   },
   'pack-visuels-reels': {
     tiles: [['video', '4 Reels montés'], ['text', 'Sous-titres mot à mot'], ['image', '6 visuels de réalisations'], ['pen', 'Textes et mots-clés locaux'], ['frame', 'Couvertures de vidéo personnalisées']],
-    vs: [['Des vidéos sans rythme ni texte', 'Un montage rythmé et sous-titré'], ['3 heures de montage le soir', 'Vous envoyez, on monte'], ['Le son coupé pour droits musicaux', 'Des musiques autorisées pour les pros']],
+    vs: [['Des vidéos sans rythme ni texte', 'Un montage rythmé et sous-titré'], ['Des soirées de montage', 'Vous envoyez, on monte'], ['Le son coupé pour droits musicaux', 'Des musiques autorisées pour les pros']],
     hero: { type: 'photo', id: 'service-pack-visuels-reels-hero' }
   },
   'referencement-local-seo': {
     tiles: [['target', '20 recherches rentables ciblées'], ['gear', 'Site optimisé en continu'], ['pen', 'Contenus rédigés chaque mois'], ['list', 'Annuaires belges reconnus'], ['chart', 'Bilan mensuel d’une page']],
-    vs: [['La pub : les appels s’arrêtent avec elle', 'Une place durable sur Google'], ['Un rapport de 30 pages de jargon', 'Un bilan clair d’une page'], ['Des bidouillages risqués', 'Des méthodes conformes à Google']],
+    vs: [['La pub : les appels s’arrêtent avec elle', 'Une place durable sur Google'], ['Des rapports pleins de jargon', 'Un bilan clair d’une page'], ['Des raccourcis risqués', 'Des méthodes conformes à Google']],
     hero: { type: 'serp' }
   },
   'gestion-reseaux-sociaux': {
-    tiles: [['image', '3 publications par semaine'], ['video', '3 vidéos courtes par semaine'], ['pen', 'Textes rédigés pour vous'], ['calendar', 'Planning validé à l’avance'], ['clock', 'Diffusion aux bonnes heures'], ['gift', '1er mois offert']],
-    vs: [['3 posts, puis 6 mois de silence', '3 vidéos et 3 posts chaque semaine'], ['Des photos brutes sans texte', 'Vidéos, réalisations et avis mêlés'], ['12 mois d’engagement d’emblée', '1er mois offert pour essayer']],
+    tiles: [['image', '3 publications par semaine'], ['video', '3 vidéos courtes par semaine'], ['pen', 'Textes rédigés pour vous'], ['calendar', 'Planning validé à l’avance'], ['clock', 'Diffusion aux bonnes heures'], ['gift', '1er mois offert, puis 6 mois à 349 €/mois']],
+    vs: [['Des publications irrégulières', '3 vidéos et 3 posts chaque semaine'], ['Des photos brutes sans texte', 'Vidéos, réalisations et avis mêlés'], ['S’engager sans tester', '1er mois offert, puis 6 mois à 349 €/mois']],
     hero: { type: 'week' }
   },
   'pilote-automatique-essentiel': {
@@ -231,7 +231,7 @@ export const VISUALS = {
   },
   'pilote-automatique-integral': {
     tiles: [['bot', 'Réglé sur vos tarifs et règles'], ['chat', 'Sur le site et WhatsApp'], ['filter', 'Demandes triées pour vous'], ['phone', 'Dossier sur votre téléphone'], ['chart', 'Toutes les discussions visibles'], ['shield', 'AI Act et RGPD accompagnés']],
-    vs: [['« Je n’ai pas compris » en boucle', 'Il comprend le langage courant'], ['Des prix inventés', 'Vos tarifs, sinon il vous passe la main'], ['Des données envoyées n’importe où', 'Client informé, RGPD respecté']],
+    vs: [['« Je n’ai pas compris » en boucle', 'Il comprend le langage courant'], ['Un prix qui peut être inventé', 'Vos tarifs, sinon il vous passe la main'], ['Des données sans cadre RGPD', 'Client informé, RGPD respecté']],
     hero: { type: 'flow', caption: 'Le soir et le week-end, l’assistant répond et vous prépare le dossier', steps: [['chat', 'Message à 21 h'], ['bot', 'L’assistant répond'], ['filter', 'Demande triée'], ['phone', 'Dossier sur votre téléphone']] }
   }
 };

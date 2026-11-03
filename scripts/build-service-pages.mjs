@@ -1,4 +1,5 @@
 import { answerFor, objectionsFor, linksFor, commitmentAnswer, NOT_FOR, VISUALS, HUB_THUMB, photoImg, RESULT_PHOTO, weekImg, icon, SVG_VISUALS } from './service-page-extras.mjs';
+import { renderHeader as renderSiteHeader, renderMenu, renderFooter as renderSiteFooter } from './site-chrome.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,80 +28,19 @@ function escapeHtml(str) {
 }
 const e = escapeHtml;
 
-// Le décalage de cascade du menu (--i) est posé en CSS (nth-child) : aucun
-// attribut style= dans les pages générées.
-function renderHeader(activePage = 'services') {
-  return `<header class="header">
-  <a class="header__brand" href="/">
-    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
-    <span>Purity Agency</span>
-  </a>
-  <nav class="header__nav" aria-label="Principal">
-    <a href="/services" ${activePage === 'services' ? 'aria-current="page"' : ''}>Services &amp; Tarifs</a>
-    <a href="/cas-concrets">Nos réalisations</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact">Contact</a>
-  </nav>
-  <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-    <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
-  </button>
-</header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
-  <div class="menu__top">
-    <span class="menu__brand">
-      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
-      <span>Purity Agency</span>
-    </span>
-    <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
-      <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
-    </button>
-  </div>
-  <nav class="menu__nav">
-    <a href="/services">Services &amp; Tarifs</a>
-    <a href="/cas-concrets">Nos réalisations</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact">Contact</a>
-  </nav>
-</div>`;
+// En-tête, menu et pied de page : source unique dans site-chrome.mjs.
+function renderHeader(active = 'services') {
+  return `${renderSiteHeader(active)}
+${renderMenu(active)}`;
 }
-
-function renderFooter() {
-  return `<footer class="site-footer">
-  <div class="site-footer__inner">
-    <div>
-      <a class="site-footer__brand" href="/">
-        <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
-        Purity Agency
-      </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie.</p>
-    </div>
-    <nav aria-label="Navigation de pied de page">
-      <h2>Explorer</h2>
-      <a href="/services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
-      <a href="/blog">Blog</a>
-      <a href="/a-propos">À propos</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <div>
-      <h2>Parlons-en</h2>
-      <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
-    </div>
-  </div>
-  <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
-    <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
-    <span><a href="/legal">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cookies">Cookies</a></span>
-  </div>
-</footer>`;
-}
+const renderFooter = renderSiteFooter;
 
 const OG_IMAGE = `<meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">`;
 const VAT_NOTE = 'Prix nets · TVA non applicable (franchise, art. 56bis CTVA)';
-const OFFER_NOTE = '-25 % sur la création si vous validez dans les 24 h suivant votre devis';
-const PROMISE = 'Réponse personnelle sous 24 h ouvrées';
+const OFFER_NOTE = '-25 % si vous signez dans les 24 h après votre devis';
+const PROMISE = 'Je vous réponds sous 24 h ouvrées';
 const RDV_URL = '/contact?intent=rdv';
 
 // Prix affiché = tarif réel ; la remise des 24 h n'est qu'une note conditionnelle.
@@ -117,7 +57,7 @@ function offerNotes(svc) {
 // Descriptions de 140 à 160 caractères, propres à chaque page (le résumé complet reste dans la page).
 const tarif = s => `Tarif : ${s.priceSetup}${s.monthlyPrice ? ` + ${s.monthlyPrice}` : ''}.`;
 const META_DESCRIPTIONS = {
-  'diagnostic-digital': () => 'Diagnostic digital offert : 15 minutes par téléphone ou en visio avec Amir Kebiyeb pour repérer ce qui freine vos demandes et l’action la plus rentable.',
+  'diagnostic-digital': () => 'Diagnostic digital gratuit : 15 minutes par téléphone ou en visio avec Amir Kebiyeb pour repérer ce qui freine vos demandes et l’action la plus rentable.',
   'page-essentielle': s => `Page Essentielle pour artisans et indépendants : une page pro claire et rapide qui présente votre métier, contact en un clic. ${tarif(s)}`,
   'site-vitrine': s => `Site vitrine de 5 pages pour artisans et PME en Wallonie : prestations, réalisations avant/après et demande de devis. ${tarif(s)}`,
   'site-complet': s => `Site complet de plus de 10 pages pour PME multi-métiers : une page par service et par ville d’intervention en Wallonie. ${tarif(s)}`,
@@ -346,7 +286,7 @@ function buildServiceDetailPage(service) {
   const free = isFree(service);
 
   const contactOfferUrl = service.id === 'M01' ? RDV_URL : `/contact?offer=${service.id}`;
-  const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic offert (15 min)' : 'Recevoir mon devis écrit';
+  const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Écrire à Amir';
 
   const schemaJson = {
     "@context": "https://schema.org",
@@ -445,8 +385,8 @@ ${renderHeader('services')}
           ${heroChips.map(([ic, t]) => `<li>${icon(ic)}${e(t)}</li>`).join('\n          ')}
         </ul>
         <div class="sd-hero__actions">
-          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
-          ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Parler 15 min avec Amir <span aria-hidden="true">→</span></a>` : ''}
+          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">→</span></a>
+          ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Réserver mon diagnostic gratuit <span aria-hidden="true">→</span></a>` : ''}
         </div>
         <p class="sd-hero__promise">${icon('clock')}${PROMISE}</p>
         <div class="sd-trust-strip" aria-label="Garanties et réassurance">
@@ -472,15 +412,15 @@ ${renderHeader('services')}
     <section class="sd-section sd-section--vs" aria-labelledby="sd-vs-title">
       <div class="sd-section-header">
         <span class="sd-kicker">Pourquoi Purity</span>
-        <h2 class="sd-heading" id="sd-vs-title">Ailleurs, et chez Purity</h2>
+        <h2 class="sd-heading" id="sd-vs-title">Avant, et avec Purity</h2>
       </div>
       <div class="sd-comparison-wrap">
         <table class="sd-comparison-table">
           <thead>
             <tr>
               <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
-              <th scope="col"><span class="sd-vs__h">${icon('cross')}Souvent ailleurs</span></th>
-              <th scope="col" class="sd-col-purity"><span class="sd-vs__h">${icon('tick')}Chez Purity</span></th>
+              <th scope="col"><span class="sd-vs__h">${icon('cross')}Avant</span></th>
+              <th scope="col" class="sd-col-purity"><span class="sd-vs__h">${icon('tick')}Avec Purity</span></th>
             </tr>
           </thead>
           <tbody>
@@ -509,7 +449,7 @@ ${renderHeader('services')}
           <span class="sd-kicker">Comment ça se passe</span>
           <h2 class="sd-heading" id="sd-steps-title">4 étapes, très peu de travail pour vous</h2>
         </div>
-        <span class="sd-steps__delay">${icon('clock')}${free ? '15 min, au créneau choisi' : `Livré en ${e(cleanDelay(service.delay))}`}</span>
+        <span class="sd-steps__delay">${icon('clock')}${free ? '15 min, au créneau choisi' : (/^Démarrage/.test(cleanDelay(service.delay)) ? e(cleanDelay(service.delay)) : `Livré en ${e(cleanDelay(service.delay))}`)}</span>
       </div>
       <ol class="sd-timeline">
         ${service.howItWorks.map(s => `<li class="sd-timeline__step"><span class="sd-timeline__num">${e(s.step)}</span><strong>${e(s.title)}</strong></li>`).join('\n        ')}
@@ -551,7 +491,7 @@ ${renderHeader('services')}
       <div class="sd-faq__aside">
         <span class="sd-kicker">Transparence</span>
         <h2 class="sd-heading" id="sd-faq-title">Questions fréquentes</h2>
-        <a class="sd-link-arrow" href="${RDV_URL}">Une autre question ? Parlons-en <span aria-hidden="true">→</span></a>
+        <a class="sd-link-arrow" href="${RDV_URL}">Réserver mon diagnostic gratuit <span aria-hidden="true">→</span></a>
       </div>
       <div class="sd-faq-list">
         ${allFaq.map(item => `<details class="sd-faq-item">
@@ -579,7 +519,7 @@ ${renderHeader('services')}
           </dl>
           <h3>Le comparatif en détail</h3>
           <dl>
-            ${service.comparison.map(c => `<dt>${e(c.aspect)}</dt><dd>Souvent ailleurs : ${e(c.others)}. Avec Purity : ${e(c.purity)}.</dd>`).join('\n            ')}
+            ${service.comparison.map(c => `<dt>${e(c.aspect)}</dt><dd>Avant : ${e(c.others)}. Avec Purity : ${e(c.purity)}.</dd>`).join('\n            ')}
           </dl>
           <h3>Ce que l’inaction coûte</h3>
           <dl>
@@ -607,8 +547,8 @@ ${renderHeader('services')}
         <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
         <p>Vous parlez directement à Amir Kebiyeb. ${PROMISE}.</p>
         <div class="sd-bottom-cta__actions">
-          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
-          ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Prendre rendez-vous <span aria-hidden="true">→</span></a>` : `<a class="sd-btn-secondary" href="/services">Voir les autres services <span aria-hidden="true">→</span></a>`}
+          <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">→</span></a>
+          ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Réserver mon diagnostic gratuit <span aria-hidden="true">→</span></a>` : `<a class="sd-btn-secondary" href="/services">Voir les autres services <span aria-hidden="true">→</span></a>`}
         </div>
       </div>
     </section>
@@ -620,7 +560,7 @@ ${renderHeader('services')}
     <span class="sd-floating-price">${e(displayPrice(service))}</span>
     <span class="sd-floating-note">${free ? e(service.promoTag || 'Sans engagement') : (service.monthlyPrice ? `+ ${e(service.monthlyPrice)} · prix net` : 'Paiement unique · prix net')}</span>
   </div>
-  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Réserver 15 min' : 'Recevoir mon devis'} <span aria-hidden="true">↗</span></a>
+  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Écrire à Amir'} <span aria-hidden="true">→</span></a>
 </aside>
 
 ${renderFooter()}
@@ -681,7 +621,7 @@ ${renderHeader('services')}
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
       <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Services &amp; Tarifs</span>
+      <span aria-current="page">Services et tarifs</span>
     </nav>
 
     <section class="sd-hero sd-hero--hub" aria-labelledby="hub-title">
@@ -693,7 +633,7 @@ ${renderHeader('services')}
         <div class="sd-hub-hero__side">
           <p class="sd-hero__lead">Sites, fiche Google, réseaux et automatisation pour les indépendants et PME de Wallonie. Chaque prix est celui de votre devis.</p>
           <div class="sd-hero__actions">
-            <a class="sd-btn-primary" href="${RDV_URL}">Diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+            <a class="sd-btn-primary" href="${RDV_URL}">Réserver mon diagnostic gratuit <span class="sd-btn__ico" aria-hidden="true">→</span></a>
           </div>
           <p class="sd-hero__promise">${icon('clock')}${PROMISE}</p>
         </div>
@@ -753,7 +693,7 @@ ${renderHeader('services')}
         <summary><span>En savoir plus sur nos services</span><span class="sd-more__hint">Comment on travaille</span></summary>
         <div class="sd-more__body">
           <p class="sd-more__lead">Purity Agency, agence web à Charleroi, crée des sites, des fiches Google, du contenu pour les réseaux et des automatisations pour les indépendants et PME de Wallonie. Chaque service affiche son prix, son délai et ses livrables. Vous ne savez pas lequel choisir ? Le diagnostic de 15 minutes est gratuit et sans engagement.</p>
-          <p>Les prix affichés sont ceux de votre devis, pas un tarif à la tête du client. Pour les sites, l’hébergement, la sécurité et les petites modifications sont compris dans le suivi mensuel.</p>
+          <p>Le prix affiché est le prix de départ. Le devis écrit le confirme avant tout paiement. Pour les sites, l’hébergement, la sécurité et les petites modifications sont compris dans le suivi mensuel.</p>
         </div>
       </details>
     </section>
@@ -762,7 +702,7 @@ ${renderHeader('services')}
       <div class="sd-bottom-cta__inner">
         <h2 id="hub-cta-title">Vous ne savez pas par quoi commencer&nbsp;?</h2>
         <p>15 minutes avec Amir. Il vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. ${PROMISE}.</p>
-        <a class="sd-btn-primary" href="${RDV_URL}">Réserver mon diagnostic 15 min offert <span class="sd-btn__ico" aria-hidden="true">↗</span></a>
+        <a class="sd-btn-primary" href="${RDV_URL}">Réserver mon diagnostic gratuit <span class="sd-btn__ico" aria-hidden="true">→</span></a>
       </div>
     </section>
   </div>

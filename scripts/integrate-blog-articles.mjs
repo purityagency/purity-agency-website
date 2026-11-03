@@ -442,12 +442,12 @@ function header(current = '') {
   const blogCurrent = current === 'blog' ? ' aria-current="page"' : '';
   return `<header class="header">
 <a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
-<nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets">Nos réalisations</a><a href="/blog"${blogCurrent}>Blog</a><a href="/contact">Contact</a></nav>
+<nav class="header__nav" aria-label="Principal"><a href="/#services">Services et tarifs</a><a href="/cas-concrets">Démos par métier</a><a href="/blog"${blogCurrent}>Blog</a><a href="/contact">Contact</a></nav>
 <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
 <div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Nos réalisations</a><a href="/blog" style="--i:2"${blogCurrent}>Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
+<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Démos par métier</a><a href="/blog" style="--i:2"${blogCurrent}>Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
 <div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
 </div>`;
 }
@@ -464,8 +464,8 @@ function footer() {
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
-      <a href="/#services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/#services">Services et tarifs</a>
+      <a href="/cas-concrets">Démos par métier</a>
       <a href="/blog">Blog</a>
       <a href="/contact">Contact</a>
     </nav>

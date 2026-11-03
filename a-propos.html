@@ -66,14 +66,40 @@
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 <header class="header">
-  <a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
-  <nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets">Nos réalisations</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav>
-  <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
+  <a class="header__brand" href="/">
+    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
+    <span>Purity Agency</span>
+  </a>
+  <nav class="header__nav" aria-label="Principal">
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
+  </button>
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
-  <div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-  <nav class="menu__nav"><a href="/#services">Services</a><a href="/cas-concrets">Nos réalisations</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav>
-  <div class="menu__foot"><a class="btn btn--primary" href="/contact">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
+  <div class="menu__top">
+    <span class="menu__brand">
+      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
+      <span>Purity Agency</span>
+    </span>
+    <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
+      <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
+    </button>
+  </div>
+  <nav class="menu__nav">
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+    <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+  </div>
 </div>
 <main id="contenu" tabindex="-1" class="content-page">
   <header class="content-hero">
@@ -103,6 +129,9 @@
     <h2>Qui est derrière Purity Agency</h2>
     <p>Amir Kebiyeb est le fondateur. C’est lui qui lit chaque demande, répond, rédige le devis et reste votre interlocuteur jusqu’à la mise en ligne. Purity Agency est une entreprise personne physique, comme l’indiquent les <a href="/legal">mentions légales</a>.</p>
 
+    <h2>Pourquoi j’ai créé Purity Agency</h2>
+    <p>Je voyais des artisans et des commerçants excellents dans leur métier perdre des clients à cause d’un site lent, d’un appel manqué en plein travail ou d’un devis jamais relancé. J’ai créé Purity Agency pour leur installer des outils simples qui font ce travail à leur place, avec des prix affichés et un seul interlocuteur : moi.</p>
+
     <figure class="article-figure"><img src="/assets/visuals/about-atelier-bureau.webp" srcset="/assets/visuals/about-atelier-bureau-800.webp 800w, /assets/visuals/about-atelier-bureau.webp 1194w" sizes="(min-width: 820px) 760px, 92vw" width="1194" height="896" alt="Bureau en bois devant une grande fenêtre sur une rue de briques, ordinateur portable, carnet et plante" loading="lazy" decoding="async"></figure>
 
     <h2>Ce que fait Purity Agency</h2>
@@ -125,8 +154,8 @@
 
     <h2>Ce que Purity Agency ne prétend pas</h2>
     <ul>
-      <li>Les entreprises présentées dans <a href="/cas-concrets">Nos réalisations</a> sont fictives : ce sont des démonstrations conçues par Purity, pas des clients réels.</li>
-      <li>Les prix affichés sont des repères : le devis accepté par écrit fixe le périmètre et le prix.</li>
+      <li>Les entreprises présentées dans <a href="/cas-concrets">Démos par métier</a> sont fictives : ce sont des démonstrations conçues par Purity, pas des clients réels.</li>
+      <li>Le prix affiché est le prix de départ. Le devis écrit le confirme avant tout paiement.</li>
       <li>L’assistant OctoMask du site oriente les visiteurs. Il ne fixe aucun prix et ne confirme ni paiement ni réservation.</li>
     </ul>
 
@@ -145,18 +174,22 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
-      <a href="/#services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/services">Services et tarifs</a>
+      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/agence-web">Agence web par ville</a>
+      <a href="/site-internet/">Site internet par métier</a>
       <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
       <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
+      <a href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+      <a href="/contact">Écrire à Amir</a>
       <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
     </div>
   </div>

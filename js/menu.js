@@ -153,8 +153,8 @@
   promo.setAttribute('aria-label', 'Offre Purity Agency');
   promo.innerHTML =
     '<a class="promo-bar__link" href="/contact?promo=lancement"><span class="promo-bar__text">' +
-      '<span class="promo-bar__long"><strong>-25 %</strong> sur la création si vous validez dans les 24 h suivant votre devis · 1er mois offert sur la formule Réseaux sociaux</span>' +
-      '<span class="promo-bar__short"><strong>-25 %</strong> si vous validez dans les 24 h</span>' +
+      '<span class="promo-bar__long"><strong>-25 %</strong> si vous signez dans les 24 h après votre devis</span>' +
+      '<span class="promo-bar__short"><strong>-25 %</strong> si vous signez dans les 24 h après votre devis</span>' +
     '</span></a>' +
     '<button type="button" class="promo-bar__close" aria-label="Masquer l’offre">×</button>';
 

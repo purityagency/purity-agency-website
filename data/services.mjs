@@ -42,8 +42,8 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Approche commerciale', others: 'On essaie de vous faire signer un pack à 5 000 € dès la 5e minute', purity: 'Du conseil franc : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit' },
-      { aspect: 'Interlocuteur', others: 'Commercial junior qui n’y connaît rien à votre métier et lit un argumentaire', purity: 'Échange direct avec Amir Kebiyeb, fondateur de l’agence' },
-      { aspect: 'Ce que vous recevez', others: 'Un devis générique automatique envoyé sans explication', purity: 'Un récapitulatif écrit après l’appel, avec l’action prioritaire à mener' }
+      { aspect: 'Interlocuteur', others: 'Personne ne regarde votre situation en détail', purity: 'Échange direct avec Amir Kebiyeb, fondateur de l’agence' },
+      { aspect: 'Ce que vous recevez', others: 'Aucune trace écrite de ce qu’il faut faire en premier', purity: 'Un récapitulatif écrit après l’appel, avec l’action prioritaire à mener' }
     ],
     deliverables: [
       {
@@ -83,7 +83,7 @@ export const services = [
       { step: '03', title: 'Échange de 15 minutes chrono', desc: 'Par téléphone ou en visio sur votre écran, droit au but, centré uniquement sur la rentabilité de votre entreprise.' },
       { step: '04', title: 'Récapitulatif écrit', desc: 'Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec nous.' }
     ],
-    includedMaintenance: 'Non applicable (rendez-vous de diagnostic 100 % offert).',
+    includedMaintenance: 'Non applicable (rendez-vous de diagnostic 100 % gratuit).',
     faq: [
       {
         q: 'Est-ce vraiment 100 % gratuit sans aucun engagement ?',
@@ -115,7 +115,7 @@ export const services = [
     summary: 'Pour les artisans et indépendants (électriciens, plombiers, dépanneurs, coachs) qui n’ont qu’une page Facebook ou un vieux site : une page nette qui inspire confiance, où le client vous appelle ou vous écrit en 1 clic.',
     price: '490 € + 79 €/mois',
     priceSetup: '490 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement haute vitesse, nom de domaine .be, boîte e-mail pro et modifications de vos coordonnées incluses.',
     delay: '5 à 7 jours ouvrés',
@@ -210,7 +210,7 @@ export const services = [
     summary: 'Accueil, prestations détaillées, réalisations avec comparateur avant/après, présentation de l’entreprise, contact et demande de devis. De quoi être choisi quand un client compare trois artisans de votre région.',
     price: '1 490 € + 79 €/mois',
     priceSetup: '1 490 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.',
     delay: '7 à 10 jours ouvrés',
@@ -272,7 +272,7 @@ export const services = [
       }
     ],
     howItWorks: [
-      { step: '01', title: 'Entretien de cadrage (30 min)', desc: 'On liste vos prestations les plus rentables, vos tarifs indicatifs et les communes où vous voulez travailler en priorité.' },
+      { step: '01', title: 'Cadrage de 30 min, après la signature', desc: 'On liste vos prestations les plus rentables, vos tarifs indicatifs et les communes où vous voulez travailler en priorité.' },
       { step: '02', title: 'Création et rédaction de vos 5 pages', desc: 'Nous rédigeons les textes, mettons en forme vos photos de chantiers et créons un parcours de contact sans friction.' },
       { step: '03', title: 'Validation ensemble sur smartphone', desc: 'Vous testez la version interactive sur votre téléphone et nous ajustons chaque détail selon vos préférences.' },
       { step: '04', title: 'Mise en ligne & Remise des clés', desc: 'Activation de votre nom de domaine .be, signalement à Google et envoi de vos accès.' }
@@ -309,7 +309,7 @@ export const services = [
     summary: 'Plus de 10 pages complètes pour couvrir chacun de vos métiers et chacune de vos villes d’intervention en Wallonie (Charleroi, Namur, Mons, Liège, Nivelles, Brabant Wallon), avec des formulaires spécifiques par équipe et un espace de recrutement.',
     price: '2 490 € + 149 €/mois',
     priceSetup: '2 490 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Maintenance avancée, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 h de modifications incluses chaque mois.',
     delay: '12 à 18 jours ouvrés',
@@ -328,7 +328,7 @@ export const services = [
     comparison: [
       { aspect: 'Couverture géographique', others: 'Une seule page générale qui n’apparaît que dans sa propre commune', purity: 'Pages dédiées par ville et arrondissement pour capter les chantiers de toute la région' },
       { aspect: 'Tri des demandes', others: 'Tous les messages mélangés dans une boîte mail unique', purity: 'Formulaires intelligents qui envoient directement le devis au bon responsable d’équipe' },
-      { aspect: 'Assistance technique', others: 'Délai d’attente de 5 à 10 jours pour la moindre modification', purity: 'Contact direct avec Amir, réponse sous 24 h ouvrées' }
+      { aspect: 'Assistance technique', others: 'Pas d’interlocuteur clair quand une modification presse', purity: 'Contact direct avec Amir, réponse sous 24 h ouvrées' }
     ],
     deliverables: [
       {
@@ -404,11 +404,11 @@ export const services = [
     kicker: 'Vente directe 24/7 · Bancontact & Payconiq · 0 % de commission',
     cardDescription: 'Catalogue produits, paiement sécurisé (Bancontact, carte) et gestion simple des commandes. Maintenance incluse.',
     commitment: MONTHLY,
-    headline: 'Votre boutique en ligne pour vendre vos produits et services en Belgique sans commissions abusives.',
+    headline: 'Votre boutique en ligne pour vendre vos produits et services en Belgique sans commission sur vos ventes.',
     summary: 'Une boutique rapide et sécurisée, connectée aux moyens de paiement préférés des Belges (Bancontact, Payconiq, Apple Pay, cartes bancaires), adaptée aussi bien aux commerçants qu’aux restaurateurs (commandes à emporter et réservations anti-no-show).',
     price: '3 990 € + 149 €/mois',
     priceSetup: '3 990 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Sécurité bancaire continue, surveillance des paiements, maintenance des passerelles et assistance technique.',
     delay: '15 à 25 jours ouvrés',
@@ -424,8 +424,8 @@ export const services = [
       { id: 'decoration', name: 'Matière Commune', sector: 'Commerce & Décoration' }
     ],
     comparison: [
-      { aspect: 'Commissions sur vos ventes', others: '15 % à 30 % prélevés par les plateformes (Takeaway, Deliveroo, Amazon)', purity: '0 % de commission Purity : vous conservez 100 % de votre marge' },
-      { aspect: 'Paiements belges', others: 'Uniquement carte de crédit (abandon massif par les clients belges)', purity: 'Bancontact, Payconiq, Apple Pay et cartes bancaires intégrés nativement' },
+      { aspect: 'Commissions sur vos ventes', others: 'Une commission sur chaque vente passée par une plateforme', purity: '0 % de commission Purity : vous conservez 100 % de votre marge' },
+      { aspect: 'Paiements belges', others: 'Sans Bancontact, une partie des clients belges abandonne au paiement', purity: 'Bancontact, Payconiq, Apple Pay et cartes bancaires intégrés nativement' },
       { aspect: 'Facilité de commande', others: '5 étapes compliquées avec création de compte obligatoire', purity: 'Paiement express en 1 écran sans compte obligatoire' }
     ],
     deliverables: [
@@ -506,7 +506,7 @@ export const services = [
     summary: 'Votre site a plusieurs années, s’affiche mal sur smartphone ou a été fait sur un WordPress qui plante tout le temps ? Nous le reconstruisons entièrement en redirigeant chaque ancienne adresse pour préserver votre référencement.',
     price: '890 à 2 490 € + 79 €/mois',
     priceSetup: 'dès 890 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '79 €/mois',
     monthlyNote: 'Hébergement, maintenance technique et redirection de chaque ancienne adresse, vérifiée page par page.',
     delay: '7 à 14 jours ouvrés',
@@ -522,8 +522,8 @@ export const services = [
       { id: 'renovation', name: 'Atelier Noma', sector: 'Rénovation' }
     ],
     comparison: [
-      { aspect: 'Conservation de vos liens Google', others: 'Liens cassés et chute de moitié de vos visites Google après la refonte', purity: 'Redirection de chaque ancienne adresse pour préserver votre référencement' },
-      { aspect: 'Technologie employée', others: 'Nouveau thème WordPress lourd avec des dizaines d’extensions qui ralentiront dans 6 mois', purity: 'Code artisanal ultra-léger et durable, sans mises à jour qui cassent votre affichage' },
+      { aspect: 'Conservation de vos liens Google', others: 'Une refonte sans redirections casse les anciens liens et fait perdre des visites Google', purity: 'Redirection de chaque ancienne adresse pour préserver votre référencement' },
+      { aspect: 'Technologie employée', others: 'Un thème lourd et de nombreuses extensions qui ralentissent le site avec le temps', purity: 'Code artisanal ultra-léger et durable, sans mises à jour qui cassent votre affichage' },
       { aspect: 'Sécurité & Fiabilité', others: 'Risque permanent d’attaques et de piratages sur les vieux plugins', purity: 'Pas d’extensions à mettre à jour : beaucoup moins de portes d’entrée pour les pirates' }
     ],
     deliverables: [
@@ -604,7 +604,7 @@ export const services = [
     summary: 'Beaucoup de personnes qui cherchent un artisan sur leur téléphone appellent directement depuis la carte Google Maps, sans passer par un site web. Nous validons et optimisons votre fiche pour que votre téléphone sonne dès qu’un client cherche votre métier à proximité.',
     price: '290 €',
     priceSetup: '290 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique sans abonnement obligatoire.',
     delay: '3 à 5 jours ouvrés',
@@ -621,7 +621,7 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Validation officielle', others: 'Fiche bloquée en attente de code postal pendant des semaines', purity: 'On gère la validation avec Google, et les relances si elle bloque' },
-      { aspect: 'Collecte des avis', others: 'Aucun système : 3 vieux avis qui datent de 2 ans', purity: 'Kit QR Code imprimable + lien direct pour récolter facilement des 5 étoiles' },
+      { aspect: 'Collecte des avis', others: 'Aucun système pour demander des avis', purity: 'Kit QR Code imprimable + lien direct pour récolter facilement des 5 étoiles' },
       { aspect: 'Présentation de vos tarifs', others: 'Fiche vide sans prestations ni photos', purity: 'Catalogue complet de vos spécialités avec photos valorisées' }
     ],
     deliverables: [
@@ -702,7 +702,7 @@ export const services = [
     summary: 'Fini les logos bricolés ou pixélisés : nous créons une identité de marque nette, lisible et professionnelle, pensée pour le monde réel (flocage de véhicules utilitaires, vêtements de travail, devis et factures).',
     price: '690 €',
     priceSetup: '690 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique · cession des droits du logo livré incluse.',
     delay: '7 à 10 jours ouvrés',
@@ -719,7 +719,7 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Fichiers fournis', others: 'Une simple image JPEG pixélisée que votre imprimeur refuse', purity: 'Fichiers vectoriels professionnels haute définition utilisables pour toute taille' },
-      { aspect: 'Propriété du logo', others: 'Droits conservés par le graphiste avec factures supplémentaires pour chaque support', purity: 'Cession des droits d’auteur du logo livré, sans frais par support' },
+      { aspect: 'Propriété du logo', others: 'Des droits d’auteur pas cédés clairement par écrit', purity: 'Cession des droits d’auteur du logo livré, sans frais par support' },
       { aspect: 'Usage sur camionnette', others: 'Logo trop complexe illisible quand le véhicule roule', purity: 'Pensé spécifiquement pour le lettrage de véhicules et les vêtements de travail' }
     ],
     deliverables: [
@@ -800,7 +800,7 @@ export const services = [
     summary: 'Les simples photos prises à la va-vite ne suffisent plus : nous prenons vos vidéos brutes filmées au smartphone sur vos chantiers et les transformons en vidéos dynamiques avec sous-titres et visuels prêts à publier.',
     price: '390 €',
     priceSetup: '390 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: null,
     monthlyNote: 'Paiement unique sans abonnement.',
     delay: '4 à 7 jours ouvrés',
@@ -817,7 +817,7 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Qualité vidéo', others: 'Vidéos bancales sans rythme ni texte que personne ne regarde jusqu’au bout', purity: 'Montage dynamique au bon format avec sous-titres synchronisés faciles à lire' },
-      { aspect: 'Temps passé', others: '3 heures de galère sur son téléphone le soir pour un résultat décevant', purity: 'Vous envoyez vos vidéos sur WhatsApp, nous nous occupons de tout le montage' },
+      { aspect: 'Temps passé', others: 'Des soirées à monter soi-même ses vidéos sur son téléphone', purity: 'Vous envoyez vos vidéos sur WhatsApp, nous nous occupons de tout le montage' },
       { aspect: 'Droits musicaux', others: 'Vidéos muettes ou coupées par Instagram pour droits musicaux', purity: 'Musiques autorisées pour les comptes professionnels sans risque de coupure' }
     ],
     deliverables: [
@@ -894,7 +894,7 @@ export const services = [
     summary: 'Un travail régulier pour placer votre site web en tête des résultats Google dès qu’un habitant de votre région cherche une intervention précise (ex: "chauffagiste agréé Charleroi", "carrossier Namur", "rénovation toiture Mons") sans dépendre de publicités payantes.',
     price: '590 € + 149 €/mois',
     priceSetup: '590 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '149 €/mois',
     monthlyNote: 'Optimisations continues, création de contenus mensuels sur vos chantiers et bilan transparent sans jargon.',
     delay: 'Mise en place : 10 jours ouvrés',
@@ -912,8 +912,8 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Rentabilité à long terme', others: 'Publicité payante : dès qu’on arrête de payer, les appels s’arrêtent net', purity: 'Référencement naturel : une place acquise en tête de Google vous rapporte des chantiers pendant des années' },
-      { aspect: 'Rapport d’activité', others: 'Rapport automatique de 30 pages incompréhensible plein de jargon', purity: 'Bilan mensuel simple d’une page avec vos vraies positions et les appels générés' },
-      { aspect: 'Méthodes de travail', others: 'Bidouillages risqués qui peuvent faire bannir votre site par Google', purity: 'Méthodes saines et durables respectant rigoureusement les consignes de Google' }
+      { aspect: 'Rapport d’activité', others: 'Des rapports pleins de jargon, difficiles à lire', purity: 'Bilan mensuel simple d’une page avec vos vraies positions et les appels générés' },
+      { aspect: 'Méthodes de travail', others: 'Des raccourcis qui exposent le site à une pénalité de Google', purity: 'Méthodes saines et durables respectant rigoureusement les consignes de Google' }
     ],
     deliverables: [
       {
@@ -978,14 +978,14 @@ export const services = [
     slug: 'gestion-reseaux-sociaux',
     name: 'Réseaux sociaux (3x/semaine)',
     pillar: 'Pilier 02 · Réseaux Sociaux & Image',
-    kicker: '3 vidéos + 3 posts par semaine · 1er mois offert · Réseaux au choix',
-    cardDescription: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. 1er mois d’abonnement offert pour essayer, puis engagement de 6 mois si vous continuez.',
-    commitment: { minMonths: 6, text: 'Le 1er mois d’abonnement est offert pour essayer. Si vous continuez, l’abonnement est conclu pour 6 mois, puis il se résilie par écrit chaque mois, avec un mois de préavis.' },
+    kicker: '3 vidéos courtes + 3 publications par semaine · 1er mois offert, puis 6 mois à 349 €/mois',
+    cardDescription: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. 1er mois offert, puis 6 mois à 349 €/mois.',
+    commitment: { minMonths: 6, text: 'Le 1er mois est offert, puis 6 mois à 349 €/mois. Si vous continuez, l’abonnement est conclu pour 6 mois, puis il se résilie par écrit chaque mois, avec un mois de préavis.' },
     headline: 'Des réseaux sociaux actifs chaque semaine, pour 5 minutes de validation par mois.',
     summary: 'Vous n’avez ni le temps ni l’envie de passer vos soirées à chercher quoi publier sur Instagram et Facebook ? Nous nous occupons de tout : planning du mois, rédaction, visuels, montage des vidéos courtes (Reels, TikTok ou Shorts) et programmation automatique.',
     price: '290 € + 349 €/mois',
     priceSetup: '290 €',
-    promoTag: '1er mois offert',
+    promoTag: '1er mois offert, puis 6 mois à 349 €/mois',
     monthlyPrice: '349 €/mois',
     monthlyNote: 'Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.',
     delay: 'Démarrage sous 5 jours ouvrés',
@@ -1001,9 +1001,9 @@ export const services = [
       { id: 'animaux', name: 'Patte Douce', sector: 'Commerce Local' }
     ],
     comparison: [
-      { aspect: 'Régularité des publications', others: '3 posts en une semaine puis plus rien pendant 6 mois', purity: '3 vidéos et 3 publications chaque semaine, sans interruption' },
+      { aspect: 'Régularité des publications', others: 'Des publications irrégulières quand le temps manque', purity: '3 vidéos et 3 publications chaque semaine, sans interruption' },
       { aspect: 'Variété des contenus', others: 'Photos de chantier brutes sans texte ni explication', purity: 'Mélange équilibré de vidéos courtes, photos de réalisations et avis clients' },
-      { aspect: 'Offre découverte', others: 'Engagement immédiat de 12 mois sans tester le résultat', purity: '1er mois d’abonnement offert pour essayer, puis engagement de 6 mois si vous continuez' }
+      { aspect: 'Offre découverte', others: 'S’engager sans avoir pu tester', purity: '1er mois offert, puis 6 mois à 349 €/mois' }
     ],
     deliverables: [
       {
@@ -1027,8 +1027,8 @@ export const services = [
         desc: 'Vos contenus sont publiés automatiquement aux moments où vos clients locaux sont les plus attentifs (pauses déjeuner, soirées, week-ends).'
       },
       {
-        title: '1er mois d’abonnement offert pour essayer',
-        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous validez dans les 24 h suivant votre devis). Le premier mois de gestion est offert. Si vous continuez, l’abonnement est conclu pour 6 mois (349 €/mois).'
+        title: '1er mois offert, puis 6 mois à 349 €/mois',
+        desc: 'Vous ne payez que les frais de démarrage (290 €, -25 % si vous signez dans les 24 h après votre devis). Le 1er mois est offert, puis 6 mois à 349 €/mois.'
       }
     ],
     lossOfInaction: [
@@ -1058,8 +1058,8 @@ export const services = [
         a: 'Non, il vous suffit de déposer vos photos de chantiers sur une conversation WhatsApp au fil de vos journées. Nous nous chargeons de les trier, recadrer et scénariser.'
       },
       {
-        q: 'Comment fonctionne le 1er mois offert ?',
-        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous validez dans les 24 h suivant votre devis). Le premier mois d’abonnement (valeur 349 €) est offert. Si vous continuez ensuite, l’abonnement est conclu pour 6 mois à 349 €/mois.'
+        q: 'Comment fonctionne le 1er mois offert, puis 6 mois à 349 €/mois ?',
+        a: 'Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous signez dans les 24 h après votre devis). Le 1er mois est offert, puis 6 mois à 349 €/mois.'
       },
       {
         q: 'Puis-je continuer à poster moi-même de temps en temps ?',
@@ -1083,7 +1083,7 @@ export const services = [
     summary: 'Mise en place clé en main d’une automatisation ciblée au choix : rappel automatique par SMS pour éliminer les rendez-vous manqués (no-shows), relance courtoise de vos devis en attente à J+3 et J+7, ou alerte SMS immédiate dès qu’un devis urgent arrive.',
     price: '490 € + 39 €/mois',
     priceSetup: '490 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '39 €/mois',
     monthlyNote: 'Surveillance automatique des connexions, alertes anti-erreurs et assistance technique.',
     delay: '5 à 7 jours ouvrés',
@@ -1177,7 +1177,7 @@ export const services = [
     summary: 'Fini les post-its, les notes égarées et les ressaisies manuelles : nous connectons vos formulaires web, vos e-mails, votre planning d’équipe et votre logiciel de facturation pour que chaque nouveau contact crée son dossier complet automatiquement.',
     price: '990 € + 69 €/mois',
     priceSetup: '990 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '69 €/mois',
     monthlyNote: 'Surveillance des liaisons multi-outils, ajustement des champs et assistance technique.',
     delay: '10 à 14 jours ouvrés',
@@ -1271,7 +1271,7 @@ export const services = [
     summary: 'Notre formule la plus complète : nous paramétrons un assistant IA sur mesure (comme OctoMask sur notre site), entraîné exclusivement sur vos vrais tarifs, vos zones d’intervention et vos règles métier, pour répondre à vos clients le soir et le week-end et ne vous transmettre que les dossiers prêts à signer.',
     price: '1 990 € + 119 €/mois',
     priceSetup: '1 990 €',
-    promoTag: '-25 % si devis validé sous 24 h',
+    promoTag: '-25 % si vous signez dans les 24 h après votre devis',
     monthlyPrice: '119 €/mois',
     monthlyNote: 'Surveillance de l’assistant, mises à jour de vos tarifs et ajustements continus.',
     delay: '15 à 20 jours ouvrés',
@@ -1288,9 +1288,9 @@ export const services = [
       { id: 'immobilier', name: 'Beaux Jours', sector: 'Immobilier' }
     ],
     comparison: [
-      { aspect: 'Intelligence des réponses', others: 'Vieux robot bête qui répète en boucle "Je n’ai pas compris votre question"', purity: 'Assistant moderne qui comprend le langage courant de vos clients et répond avec précision' },
-      { aspect: 'Respect de vos prix', others: 'IA mal réglée qui invente des faux prix ou promet des réductions impossibles', purity: 'L’assistant ne donne que vos tarifs ; hors de votre grille, il vous passe la main' },
-      { aspect: 'Conformité aux lois européennes', others: 'Données clients envoyées n’importe où sans respecter la loi', purity: 'Mise en conformité AI Act et RGPD accompagnée : le client sait qu’il parle à un assistant' }
+      { aspect: 'Intelligence des réponses', others: 'Un robot qui répète « Je n’ai pas compris votre question »', purity: 'Assistant moderne qui comprend le langage courant de vos clients et répond avec précision' },
+      { aspect: 'Respect de vos prix', others: 'Une IA non cadrée qui peut inventer un prix ou une remise', purity: 'L’assistant ne donne que vos tarifs ; hors de votre grille, il vous passe la main' },
+      { aspect: 'Conformité aux lois européennes', others: 'Des données clients traitées sans cadre RGPD clair', purity: 'Mise en conformité AI Act et RGPD accompagnée : le client sait qu’il parle à un assistant' }
     ],
     deliverables: [
       {

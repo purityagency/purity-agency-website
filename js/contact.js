@@ -49,7 +49,7 @@
         if (isUnfinished(v)) return 'Complétez la phrase avec votre métier et ce qui coince : quelques mots suffisent.';
         return v.length >= 3 ? null : 'Écrivez quelques mots (3 caractères minimum) ou choisissez un besoin ci-dessus.';
       } },
-    { key: 'name', label: 'Votre nom', help: 'Amir vous répond personnellement, pas un robot.',
+    { key: 'name', label: 'Votre nom', help: 'Je vous réponds moi-même, pas un robot.',
       placeholder: 'Prénom et nom', type: 'text', required: true, recap: 'Nom',
       check: function (v) { return v.length >= 2 ? null : 'Votre prénom suffit pour continuer.'; } },
     { key: 'email', label: 'Votre e-mail', help: "C’est là qu’arrive la réponse. Pas de newsletter.",
@@ -71,7 +71,7 @@
   // ?promo= ne sert qu'aux demandes de devis ; « novdec25 » reste accepté pour
   // les anciens liens déjà partagés.
   var promoActive = promo === 'lancement' || promo === 'novdec25';
-  var PROMO_TEXT = '-25 % sur la création si vous validez dans les 24 h suivant votre devis, 1er mois de réseaux sociaux offert';
+  var PROMO_TEXT = '-25 % si vous signez dans les 24 h après votre devis';
   // Un rendez-vous n'est pas une demande de devis : on mène au bloc de réservation.
   var wantsBooking = params.get('intent') === 'rdv' || solution === 'diagnostic' || offer === 'M01';
   var caseLabels = {
@@ -111,7 +111,7 @@
     field.value = 'Je cherche à ' + solutionLabels[solution] + '. Mon métier : ';
     help.textContent = 'Votre message est prérempli depuis votre choix. Complétez-le : rien n’est envoyé avant votre validation.';
   } else if (promoActive) {
-    field.value = 'Je voudrais un devis (' + PROMO_TEXT.replace(/vous validez/, 'je valide').replace(/votre devis/, 'le devis') + '). Mon métier et ce qui coince : ';
+    field.value = 'Je voudrais un devis (' + PROMO_TEXT.replace(/vous signez/, 'je signe').replace(/votre devis/, 'le devis') + '). Mon métier et ce qui coince : ';
     help.textContent = 'L’offre est rappelée dans votre message : ' + PROMO_TEXT + '. Ajoutez votre métier et ce qui coince.';
   }
   if (promoActive && field.value && !wantsBooking && !/-25/.test(field.value)) {
@@ -134,6 +134,9 @@
   // Rendez-vous demandé : le bloc de réservation passe au premier plan.
   if (wantsBooking) {
     var booking = document.querySelector('.booking');
+    // Rendez-vous demandé : le bloc réservation passe avant le formulaire.
+    var thread = document.querySelector('.thread');
+    if (booking && thread && thread.parentNode === booking.parentNode) thread.parentNode.insertBefore(booking, thread);
     var bookingBtn = booking && booking.querySelector('.booking__external');
     if (booking) {
       var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -211,7 +214,7 @@
     // La question qui remplace la precedente doit etre annoncee : sans cela
     // un lecteur d'ecran reste sur l'ancien libelle apres validation.
     label.setAttribute('aria-live', 'polite');
-    next.textContent = step === STEPS.length - 1 ? 'Envoyer ma demande' : 'Continuer';
+    next.textContent = step === STEPS.length - 1 ? 'Envoyer ma demande' : s.key === 'email' ? 'Suivant : téléphone (facultatif)' : 'Continuer';
     if (!s.required) next.textContent = 'Envoyer ma demande';
     ask.classList.remove('is-in');
     void ask.offsetWidth;          // relance l'animation d'entree
@@ -271,8 +274,8 @@
         // Seul le paragraphe change : le bouton « Choisir mon créneau
         // maintenant » reste en place sous le texte.
         done.querySelector('.thread__done-text').textContent = d.delivered
-          ? 'Amir a reçu votre message. Réponse personnelle sous 24 h ouvrées, par e-mail, ou par téléphone si vous avez laissé votre numéro.'
-          : 'Votre demande est bien enregistrée. Réponse personnelle sous 24 h ouvrées ; sans nouvelles d’ici là, écrivez à contact@purity-agency.be.';
+          ? 'Amir a reçu votre message. Je vous réponds sous 24 h ouvrées, par e-mail, ou par téléphone si vous avez laissé votre numéro.'
+          : 'Votre demande est bien enregistrée. Je vous réponds sous 24 h ouvrées ; sans nouvelles d’ici là, écrivez à contact@purity-agency.be.';
         try { document.dispatchEvent(new CustomEvent('purity:lead', { detail: { form: 'contact' } })); } catch {}
         try { sessionStorage.removeItem('purity-contact-draft'); } catch {}
         // Le focus va sur la confirmation : sans cela il reste sur un bouton

@@ -22,14 +22,40 @@
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 <header class="header">
-<a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
-<nav class="header__nav" aria-label="Principal"><a href="/#services">Services &amp; Tarifs</a><a href="/cas-concrets">Nos réalisations</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav>
-<button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
+  <a class="header__brand" href="/">
+    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
+    <span>Purity Agency</span>
+  </a>
+  <nav class="header__nav" aria-label="Principal">
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
+  </button>
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
-<div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Nos réalisations</a><a href="/blog" style="--i:2">Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
-<div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
+  <div class="menu__top">
+    <span class="menu__brand">
+      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
+      <span>Purity Agency</span>
+    </span>
+    <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
+      <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
+    </button>
+  </div>
+  <nav class="menu__nav">
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+    <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+  </div>
 </div>
 <main id="contenu" tabindex="-1" class="content-page">
 <header class="content-hero">
@@ -55,7 +81,7 @@
 <g class="ap d10"><circle class="a" cx="290" cy="236" r="9"/><path class="lw" d="M286 236l3 3 5-5"/></g><text class="mid" x="290" y="264">Stabilité</text>
 </svg>
 </figure>
-<h2>LCP : le visiteur attend-il trop longtemps ?</h2><p>Le Largest Contentful Paint mesure le moment où le contenu principal devient visible. Si le titre, l’image ou le bloc central arrive trop tard, le visiteur pense que le site est lourd ou cassé. Sur mobile, quelques secondes suffisent pour perdre une demande. Google considère un LCP comme bon sous 2,5 secondes, selon <a href="https://web.dev/articles/vitals" rel="noopener">ses seuils publiés sur web.dev</a>.</p><h2>INP : le site répond-il au clic ?</h2><p>L’Interaction to Next Paint mesure la réactivité après une interaction. Un bouton qui semble ne rien faire, un menu qui tarde ou un formulaire lent crée une hésitation immédiate. La conversion commence souvent par une micro-réponse fluide.</p><aside class="article-midcta" aria-label="Pour aller plus vite"><p>Votre site paraît beau mais lent sur mobile ? On mesure ses Core Web Vitals réels et on vous dit ce qui bloque.</p><a href="/services/refonte-modernisation">Voir l’offre refonte</a></aside><figure class="article-figure article-figure--section"><img src="/assets/visuals/article-core-web-vitals-impact-section.webp" srcset="/assets/visuals/article-core-web-vitals-impact-section-800.webp 800w, /assets/visuals/article-core-web-vitals-impact-section.webp 1195w" sizes="(min-width: 820px) 760px, 92vw" width="1195" height="896" alt="Smartphone qui charge une page à un arrêt de bus, sous la pluie" loading="lazy" decoding="async"></figure><h2>CLS : la page bouge-t-elle au mauvais moment ?</h2><p>Le Cumulative Layout Shift mesure les décalages inattendus. Une image qui charge et pousse un bouton, une bannière qui apparaît trop tard, un formulaire qui saute : ce sont de petites frustrations qui donnent une impression d’amateurisme.</p><h2>La performance est une promesse silencieuse</h2><p>Un site rapide ne garantit pas une vente. Mais un site lent peut empêcher une bonne offre d’être lue. La technique doit soutenir le message, pas voler l’attention. Si vos scores sont mauvais sur mobile, une <a href="/services/refonte-modernisation">refonte technique</a> traite la cause plutôt que les symptômes.</p><p>Pour un métier où la vitesse sur mobile compte, voyez le <a href="/site-internet/garage">site internet pour garage</a>.</p><p class="article-local">Exemples concrets : <a href="/site-internet/boutique-decoration">site pour boutique de décoration</a> · <a href="/site-internet/restaurant">site pour restaurant</a>.</p><div class="article-cta"><p>Votre site semble beau mais lent ? <span>Diagnostic gratuit de 15 minutes avec Amir, sans engagement.</span></p><a class="btn btn--primary" href="/contact">Demander mon diagnostic gratuit</a></div><aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">À lire ensuite</h2><ul><li><a href="/article-site-ne-convertit-pas">Votre site ne convertit pas : 7 raisons fréquentes</a><span>Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger d’abord.</span></li><li><a href="/article-above-the-fold-structure-conversion">Above the fold : structurer le haut de page pour convertir</a><span>Titre, sous-titre, bouton, preuve : ce que le premier écran de votre site doit montrer pour qu’un visiteur comprenne et agisse sans chercher.</span></li><li><a href="/article-piratage-wordpress-cout-pme-prevention">Piratage WordPress : le vrai coût pour une PME</a><span>Alerte navigateur, perte de trafic, mails bloqués : ce que coûte vraiment un piratage WordPress à une PME et les mesures simples pour l’éviter.</span></li></ul><p class="article-related__all"><a href="/blog">Tous les guides du blog</a></p></aside></article>
+<h2>LCP : le visiteur attend-il trop longtemps ?</h2><p>Le Largest Contentful Paint mesure le moment où le contenu principal devient visible. Si le titre, l’image ou le bloc central arrive trop tard, le visiteur pense que le site est lourd ou cassé. Sur mobile, quelques secondes suffisent pour perdre une demande. Google considère un LCP comme bon sous 2,5 secondes, selon <a href="https://web.dev/articles/vitals" rel="noopener">ses seuils publiés sur web.dev</a>.</p><h2>INP : le site répond-il au clic ?</h2><p>L’Interaction to Next Paint mesure la réactivité après une interaction. Un bouton qui semble ne rien faire, un menu qui tarde ou un formulaire lent crée une hésitation immédiate. La conversion commence souvent par une micro-réponse fluide.</p><aside class="article-midcta" aria-label="Pour aller plus vite"><p>Votre site paraît beau mais lent sur mobile ? On mesure ses Core Web Vitals réels et on vous dit ce qui bloque.</p><a href="/services/refonte-modernisation">Voir l’offre refonte</a></aside><figure class="article-figure article-figure--section"><img src="/assets/visuals/article-core-web-vitals-impact-section.webp" srcset="/assets/visuals/article-core-web-vitals-impact-section-800.webp 800w, /assets/visuals/article-core-web-vitals-impact-section.webp 1195w" sizes="(min-width: 820px) 760px, 92vw" width="1195" height="896" alt="Smartphone qui charge une page à un arrêt de bus, sous la pluie" loading="lazy" decoding="async"></figure><h2>CLS : la page bouge-t-elle au mauvais moment ?</h2><p>Le Cumulative Layout Shift mesure les décalages inattendus. Une image qui charge et pousse un bouton, une bannière qui apparaît trop tard, un formulaire qui saute : ce sont de petites frustrations qui donnent une impression d’amateurisme.</p><h2>La performance est une promesse silencieuse</h2><p>Un site rapide ne garantit pas une vente. Mais un site lent peut empêcher une bonne offre d’être lue. La technique doit soutenir le message, pas voler l’attention. Si vos scores sont mauvais sur mobile, une <a href="/services/refonte-modernisation">refonte technique</a> traite la cause plutôt que les symptômes.</p><p>Pour un métier où la vitesse sur mobile compte, voyez le <a href="/site-internet/garage">site internet pour garage</a>.</p><p class="article-local">Exemples concrets : <a href="/site-internet/boutique-decoration">site pour boutique de décoration</a> · <a href="/site-internet/restaurant">site pour restaurant</a>.</p><div class="article-cta"><p>Votre site semble beau mais lent ? <span>Diagnostic gratuit de 15 minutes avec Amir, sans engagement.</span></p><a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a></div><aside class="article-related" aria-labelledby="article-related-title"><h2 id="article-related-title">À lire ensuite</h2><ul><li><a href="/article-site-ne-convertit-pas">Votre site ne convertit pas : 7 raisons fréquentes</a><span>Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger d’abord.</span></li><li><a href="/article-above-the-fold-structure-conversion">Above the fold : structurer le haut de page pour convertir</a><span>Titre, sous-titre, bouton, preuve : ce que le premier écran de votre site doit montrer pour qu’un visiteur comprenne et agisse sans chercher.</span></li><li><a href="/article-piratage-wordpress-cout-pme-prevention">Piratage WordPress : le vrai coût pour une PME</a><span>Alerte navigateur, perte de trafic, mails bloqués : ce que coûte vraiment un piratage WordPress à une PME et les mesures simples pour l’éviter.</span></li></ul><p class="article-related__all"><a href="/blog">Tous les guides du blog</a></p></aside></article>
 </main>
 <footer class="site-footer">
   <div class="site-footer__inner">
@@ -64,18 +90,22 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
-      <a href="/#services">Services &amp; Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/services">Services et tarifs</a>
+      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/agence-web">Agence web par ville</a>
+      <a href="/site-internet/">Site internet par métier</a>
       <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
       <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
+      <a href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+      <a href="/contact">Écrire à Amir</a>
       <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
     </div>
   </div>

@@ -11,13 +11,13 @@ function addCasesNavigation(html) {
   const headerNavMatch = html.match(/<nav class="header__nav"[^>]*>([\s\S]*?)<\/nav>/i);
   if (headerNavMatch && !headerNavMatch[1].includes('href="/cas-concrets"')) {
     html = html.replace(/(<nav class="header__nav"[^>]*>[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
-      return `${p1}\n    <a href="/cas-concrets">Nos réalisations</a>${p2}`;
+      return `${p1}\n    <a href="/cas-concrets">Démos par métier</a>${p2}`;
     });
   }
   // Mobile popover menu nav
   html = html.replace(/(<nav class="menu__nav">[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*style="--i:0"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
     if (m.includes('/cas-concrets')) return m;
-    return `${p1}\n    <a href="/cas-concrets" style="--i:1">Nos réalisations</a>${p2}`;
+    return `${p1}\n    <a href="/cas-concrets" style="--i:1">Démos par métier</a>${p2}`;
   });
   return html.replace(/(<a [^>]*href="\/?blog\.html"[^>]*style=")--i:1("[^>]*>Blog<\/a>)/gi, '$1--i:2$2');
 }

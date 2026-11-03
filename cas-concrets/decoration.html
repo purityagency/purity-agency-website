@@ -32,7 +32,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://purity-agency.be/" },
-        { "@type": "ListItem", "position": 2, "name": "Cas concrets", "item": "https://purity-agency.be/cas-concrets" },
+        { "@type": "ListItem", "position": 2, "name": "Démos par métier", "item": "https://purity-agency.be/cas-concrets" },
         { "@type": "ListItem", "position": 3, "name": "Commerce", "item": "https://purity-agency.be/cas-concrets/decoration" }
       ]
     }
@@ -43,11 +43,14 @@
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 <header class="header">
-  <a class="header__brand" href="/"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26"><span>Purity Agency</span></a>
+  <a class="header__brand" href="/">
+    <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="26" height="26">
+    <span>Purity Agency</span>
+  </a>
   <nav class="header__nav" aria-label="Principal">
-    <a href="/#services">Services</a>
-    <a href="/#services">Tarifs</a>
-    <a aria-current="page" href="/cas-concrets">Nos réalisations</a>
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets" aria-current="page">Démos par métier</a>
+    <a href="/blog">Blog</a>
     <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
@@ -56,22 +59,29 @@
 </header>
 <div id="menu" popover="auto" class="menu" aria-label="Menu">
   <div class="menu__top">
-    <span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span>
+    <span class="menu__brand">
+      <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
+      <span>Purity Agency</span>
+    </span>
     <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/#services" style="--i:0">Services</a>
-    <a href="/#services" style="--i:1">Tarifs</a>
-    <a href="/cas-concrets" style="--i:2">Nos réalisations</a>
-    <a href="/contact" style="--i:3">Contact</a>
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets" aria-current="page">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
   </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+    <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
+  </div>
 </div>
 
 <main id="contenu" tabindex="-1" class="case-detail">
   <nav class="case-crumb" aria-label="Fil d’Ariane">
-    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/cas-concrets">Démos par métier</a>
     <span aria-hidden="true">/</span>
     <span>Commerce</span>
   </nav>
@@ -79,25 +89,25 @@
   <!-- HERO HIGH-CONVERSION GOOGLE ADS -->
   <section class="case-detail__hero" style="--case-ink:#173c35;--case-paper:#f3efe7;--case-accent:#cc754c">
     <div>
-      <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> -25 % sur la création si vous validez dans les 24 h suivant votre devis</div>
+      <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> -25 % si vous signez dans les 24 h après votre devis</div>
       <p class="section-kicker">Démonstration · Boutique de décoration</p>
       <h1>Le client repère la pièce en ligne le soir et vient la chercher en boutique.</h1>
       <p>Boutiques de déco et créateurs en Wallonie : vos pièces visibles en ligne, réservées et payées sur téléphone, retirées en magasin.</p>
 
       <div class="lp-hero__cta">
-        <a class="lp-btn-primary" href="#devis-direct">Demander mon devis <span aria-hidden="true">→</span></a>
-        <a class="lp-btn-demo" href="/demos/decoration/">Essayer la démo <span aria-hidden="true">↗</span></a>
+        <a class="lp-btn-primary" href="#devis-direct">Écrire à Amir <span aria-hidden="true">→</span></a>
+        <a class="lp-btn-demo" href="/demos/decoration/">Essayer la démo <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="lp-guarantee">
         <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Prêt en 7 à 10 jours</span>
-        <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Zéro commission cachée</span>
+        <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Aucune commission sur vos ventes</span>
         <span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Accompagnement local Wallonie</span>
       </div>
       <nav class="case-next" aria-label="Aller plus loin">
         <a href="/demos/decoration/">Essayer la démo</a>
         <a href="/site-internet/boutique-decoration">Voir l’offre pour ce métier</a>
-        <a href="/contact?case=decoration">Parler de mon projet</a>
+        <a href="/contact?case=decoration">Écrire à Amir</a>
       </nav>
 
     </div>
@@ -122,7 +132,7 @@
         </picture>
         <iframe class="case-preview__frame-site" src="/demos/decoration/" title="Matière Commune" tabindex="-1" loading="eager" aria-hidden="true"></iframe>
       </div>
-      <span class="case-preview__hint">Survolez pour explorer le site ↓</span>
+      <span class="case-preview__hint">Touchez ou faites défiler pour explorer la démo</span>
     </div>
     </div>
   </section>
@@ -289,9 +299,9 @@
           <span class="lp-package__unit">€</span>
         </div>
         <span class="lp-package__sub">+ 79&nbsp;€/mois (hébergement, maintenance, sécurité) · Prix nets · TVA non applicable (franchise, art. 56bis CTVA)</span>
-        <p class="lp-package__offer">-25 % sur la création si vous validez dans les 24 h suivant votre devis, soit 1&nbsp;117&nbsp;€ pour la création.</p>
-        <a class="lp-package__cta" href="#devis-direct">Demander mon devis</a>
-        <span class="lp-package__bonus">En option : 1er mois offert sur la formule Réseaux sociaux, puis engagement de 6 mois</span>
+        <p class="lp-package__offer">-25 % si vous signez dans les 24 h après votre devis, soit 1&nbsp;117&nbsp;€ pour la création.</p>
+        <a class="lp-package__cta" href="#devis-direct">Écrire à Amir</a>
+        <span class="lp-package__bonus">En option : formule Réseaux sociaux, 1er mois offert, puis 6 mois à 349 €/mois</span>
       </div>
     </div>
   </section>
@@ -299,9 +309,9 @@
   <!-- FORMULAIRE DE CONVERSION DIRECT -->
   <section id="devis-direct" class="lp-lead-section">
     <div class="lp-lead-section__inner">
-      <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> Réponse personnelle sous 24 h ouvrées</div>
+      <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> Je vous réponds sous 24 h ouvrées</div>
       <h2>Recevez une proposition pour votre boutique.</h2>
-      <p>Quelques lignes suffisent. Amir Kebiyeb lit votre demande lui-même et vous répond sous 24 h ouvrées avec une proposition chiffrée.</p>
+      <p>Quelques lignes suffisent. Je lis votre demande moi-même et je vous réponds sous 24 h ouvrées avec une proposition chiffrée.</p>
 
       <form class="lp-form" id="lp-form" action="/api/contact" method="POST">
         <input type="hidden" name="context" value="Cas concret Commerce (/cas-concrets/decoration, offre -25 %)">
@@ -336,7 +346,7 @@
 
         <button type="submit" class="lp-form__btn">Recevoir ma proposition</button>
         <div id="lp-status" class="lp-form__status" role="status"></div>
-        <p class="lp-form__note">Confidentiel · Sans engagement · Réponse personnelle sous 24 h ouvrées</p>
+        <p class="lp-form__note">Confidentiel · Je vous réponds sous 24 h ouvrées</p>
         <p class="lp-form__privacy">Vos réponses servent uniquement à vous répondre. Pas de revente, pas de newsletter. <a href="/confidentialite">Données et droits</a>.</p>
       </form>
     </div>
@@ -346,20 +356,26 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div>
-      <a class="site-footer__brand" href="/"><img src="/assets/logo-mark.webp" alt="" width="32" height="32">Purity Agency</a>
-      <p>Modernisation, optimisation et solutions digitales pour les indépendants et PME.</p>
+      <a class="site-footer__brand" href="/">
+        <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
+        Purity Agency
+      </a>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
-      <a href="/#services">Services</a>
-      <a href="/#services">Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/services">Services et tarifs</a>
+      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/agence-web">Agence web par ville</a>
+      <a href="/site-internet/">Site internet par métier</a>
       <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
       <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
+      <a href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+      <a href="/contact">Écrire à Amir</a>
       <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
     </div>
   </div>

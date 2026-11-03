@@ -26,18 +26,13 @@
     <span>Purity Agency</span>
   </a>
   <nav class="header__nav" aria-label="Principal">
-    <a href="/#services">Services &amp; Tarifs</a>
-    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
     <a href="/contact" aria-current="page">Contact</a>
   </nav>
-
-  <button class="burger" type="button" command="toggle-popover" commandfor="menu"
-          aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-    <span class="burger__box" aria-hidden="true">
-      <span class="burger__bar"></span>
-      <span class="burger__bar"></span>
-    </span>
+  <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
 
@@ -48,20 +43,17 @@
       <span>Purity Agency</span>
     </span>
     <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
-      <span class="burger__box" aria-hidden="true">
-        <span class="burger__bar"></span>
-        <span class="burger__bar"></span>
-      </span>
+      <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
   <nav class="menu__nav">
-    <a href="/#services" style="--i:0">Services &amp; Tarifs</a>
-    <a href="/cas-concrets" style="--i:1">Nos réalisations</a>
-    <a href="/blog" style="--i:2">Blog</a>
-    <a href="/contact" style="--i:3">Contact</a>
+    <a href="/services">Services et tarifs</a>
+    <a href="/cas-concrets">Démos par métier</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact" aria-current="page">Contact</a>
   </nav>
-  <div class="menu__foot" style="--i:4">
-    <a class="btn btn--primary" href="/contact">Écrire ma demande</a>
+  <div class="menu__foot">
+    <a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
     <a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
   </div>
 </div>
@@ -70,8 +62,8 @@
   <div class="contact__inner">
 
     <div class="contact__intro">
-      <h1 class="contact__title">Dites-nous ce qui coince. Réponse sous 24 h ouvrées.</h1>
-      <p class="contact__lead">Une phrase suffit. Amir vous répond lui-même sous 24&nbsp;h ouvrées, avec une fourchette de budget.</p>
+      <h1 class="contact__title">Dites-moi ce qui coince. Je vous réponds sous 24 h ouvrées.</h1>
+      <p class="contact__lead">Une phrase suffit. Je vous réponds moi-même sous 24&nbsp;h ouvrées, avec une fourchette de budget.</p>
     </div>
 
     <div class="contact__cols">
@@ -86,7 +78,7 @@
 
           <div class="ask" id="ask">
             <label class="ask__label" for="field" id="ask-label">Votre besoin, en une phrase</label>
-            <p class="ask__help" id="ask-help">Choisissez un besoin ou écrivez avec vos mots. Pas besoin de termes techniques.</p><div class="contact-quick" id="contact-quick" aria-label="Choisir rapidement un besoin"><button type="button" data-quick="Je voudrais un devis pour un site ou une boutique en ligne. Mon métier : ">Un site ou une boutique</button><button type="button" data-quick="Je voudrais confier mes réseaux sociaux (chaque semaine 3 vidéos courtes et 3 publications, 1er mois offert). Mon métier : ">Réseaux sociaux (1er mois offert)</button><button type="button" data-quick="Je voudrais être trouvé sur Google quand on cherche mon métier près de chez moi. Mon métier : ">Être trouvé sur Google</button><button type="button" data-quick="Je perds du temps sur les relances, les rendez-vous ou les messages répétitifs. Mon métier : ">Gagner du temps (automatisation)</button></div>
+            <p class="ask__help" id="ask-help">Choisissez un besoin ou écrivez avec vos mots. Pas besoin de termes techniques.</p><div class="contact-quick" id="contact-quick" aria-label="Choisir rapidement un besoin"><button type="button" data-quick="Je voudrais un devis pour un site ou une boutique en ligne. Mon métier : ">Un site ou une boutique</button><button type="button" data-quick="Je voudrais confier mes réseaux sociaux (chaque semaine 3 vidéos courtes et 3 publications, 1er mois offert, puis 6 mois à 349 €/mois). Mon métier : ">Réseaux sociaux (1er mois offert, puis 6 mois à 349 €/mois)</button><button type="button" data-quick="Je voudrais être trouvé sur Google quand on cherche mon métier près de chez moi. Mon métier : ">Être trouvé sur Google</button><button type="button" data-quick="Je perds du temps sur les relances, les rendez-vous ou les messages répétitifs. Mon métier : ">Gagner du temps (automatisation)</button></div>
 
             <div class="ask__row">
               <textarea class="ask__input" id="field" name="field" rows="3"
@@ -114,7 +106,7 @@
 
         <div class="thread__done" id="thread-done" hidden>
           <h3 class="thread__done-title">Demande bien reçue. Merci.</h3>
-          <p class="thread__done-text">Réponse personnelle d’Amir sous 24&nbsp;h ouvrées. Pour aller plus vite, réservez 15 minutes par téléphone ou en visio.</p>
+          <p class="thread__done-text">Je vous réponds sous 24&nbsp;h ouvrées. Pour aller plus vite, réservez 15 minutes par téléphone ou en visio.</p>
           <a class="booking__external thread__done-cta" href="https://calendar.app.google/yybUurryQkpLmyCQ9" target="_blank" rel="noopener">Choisir mon créneau maintenant</a>
         </div>
       </section>
@@ -131,7 +123,7 @@
         <ul class="reassure" aria-label="Nos engagements">
           <li>Diagnostic gratuit de 15 minutes</li>
           <li>Diagnostic sans engagement, sans devis forcé</li>
-          <li>Réponse personnelle sous 24&nbsp;h ouvrées</li>
+          <li>Je vous réponds sous 24&nbsp;h ouvrées</li>
         </ul>
         <h3 class="next-steps__title">Après votre envoi</h3>
         <ol class="next-steps">
@@ -153,19 +145,22 @@
         <img src="/assets/logo-mark.webp" alt="" width="32" height="32">
         Purity Agency
       </a>
-      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie.</p>
+      <p>Sites, fiche Google, réseaux sociaux et automatisation pour les indépendants et PME de Wallonie. Basés à Charleroi : <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
     </div>
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
-      <a href="/#services">Services &amp; Tarifs</a>
-      <a href="/services">Nos 14 services en détail</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/services">Services et tarifs</a>
+      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/agence-web">Agence web par ville</a>
+      <a href="/site-internet/">Site internet par métier</a>
       <a href="/blog">Blog</a>
       <a href="/a-propos">À propos</a>
       <a href="/contact">Contact</a>
     </nav>
     <div>
       <h2>Parlons-en</h2>
+      <a href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a>
+      <a href="/contact">Écrire à Amir</a>
       <a href="mailto:contact@purity-agency.be">contact@purity-agency.be</a>
     </div>
   </div>

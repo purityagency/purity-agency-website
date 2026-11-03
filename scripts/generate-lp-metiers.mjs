@@ -590,7 +590,7 @@ for (const study of caseStudies) {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://purity-agency.be/" },
-        { "@type": "ListItem", "position": 2, "name": "Cas concrets", "item": "https://purity-agency.be/cas-concrets" },
+        { "@type": "ListItem", "position": 2, "name": "Démos par métier", "item": "https://purity-agency.be/cas-concrets" },
         { "@type": "ListItem", "position": 3, "name": "${study.category}", "item": "https://purity-agency.be/cas-concrets/${study.id}" }
       ]
     }
@@ -604,7 +604,7 @@ for (const study of caseStudies) {
   <nav class="header__nav" aria-label="Principal">
     <a href="/#services">Services</a>
     <a href="/#services">Tarifs</a>
-    <a aria-current="page" href="/cas-concrets">Nos réalisations</a>
+    <a aria-current="page" href="/cas-concrets">Démos par métier</a>
     <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
@@ -621,14 +621,14 @@ for (const study of caseStudies) {
   <nav class="menu__nav">
     <a href="/#services" style="--i:0">Services</a>
     <a href="/#services" style="--i:1">Tarifs</a>
-    <a href="/cas-concrets" style="--i:2">Nos réalisations</a>
+    <a href="/cas-concrets" style="--i:2">Démos par métier</a>
     <a href="/contact" style="--i:3">Contact</a>
   </nav>
 </div>
 
 <main class="case-detail">
   <nav class="case-crumb" aria-label="Fil d’Ariane">
-    <a href="/cas-concrets">Nos réalisations</a>
+    <a href="/cas-concrets">Démos par métier</a>
     <span aria-hidden="true">/</span>
     <span>${study.category}</span>
   </nav>
@@ -882,7 +882,7 @@ for (const study of caseStudies) {
       <h2>Explorer</h2>
       <a href="/#services">Services</a>
       <a href="/#services">Tarifs</a>
-      <a href="/cas-concrets">Nos réalisations</a>
+      <a href="/cas-concrets">Démos par métier</a>
       <a href="/blog">Blog</a>
       <a href="/contact">Contact</a>
     </nav>

@@ -195,7 +195,7 @@
 (() => {
   if (document.querySelector('script[src^="/js/consent.js"]')) return;
   const s = document.createElement('script');
-  s.src = '/js/consent.js?v=1';
+  s.src = '/js/consent.js?v=2';
   s.defer = true;
   document.head.appendChild(s);
 })();

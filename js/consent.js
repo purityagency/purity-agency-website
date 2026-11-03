@@ -5,6 +5,9 @@
 // gardé 6 mois puis redemandé ; il se modifie via « Gérer les cookies ».
 (() => {
   const GTM_ID = 'GTM-W95H5T7D';
+  // GA4 est chargé directement (gtag.js) ; ne pas ajouter aussi une balise GA4
+  // dans le conteneur GTM, sinon chaque visite serait comptée deux fois.
+  const GA4_ID = 'G-SKEC13DFN7';
   const KEY = 'purity-consent-v1';
   const MAX_AGE = 1000 * 60 * 60 * 24 * 182; // 6 mois
   const w = window;
@@ -40,6 +43,12 @@
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
     document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', GA4_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
+    const g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(g);
   };
 
   const grant = () => {
@@ -59,7 +68,10 @@
   };
 
   // ---------- Événements mesurés (envoyés seulement si GTM est chargé) ----------
-  const track = (event, params) => { if (gtmLoaded) w.dataLayer.push(Object.assign({ event }, params || {})); };
+  const track = (event, params) => {
+    if (!gtmLoaded) return;
+    gtag('event', event, params || {});
+  };
   const page = location.pathname;
   document.addEventListener('click', (e) => {
     const a = e.target.closest && e.target.closest('a, button');

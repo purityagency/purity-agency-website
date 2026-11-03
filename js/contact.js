@@ -266,6 +266,7 @@
         done.querySelector('.thread__done-text').textContent = d.delivered
           ? 'Amir a reçu votre message. Réponse personnelle sous 24 h ouvrées, par e-mail, ou par téléphone si vous avez laissé votre numéro.'
           : 'Votre demande est bien enregistrée. Réponse personnelle sous 24 h ouvrées ; sans nouvelles d’ici là, écrivez à contact@purity-agency.be.';
+        try { document.dispatchEvent(new CustomEvent('purity:lead', { detail: { form: 'contact' } })); } catch {}
         try { sessionStorage.removeItem('purity-contact-draft'); } catch {}
         // Le focus va sur la confirmation : sans cela il reste sur un bouton
         // qui vient de disparaitre.

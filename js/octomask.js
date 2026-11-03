@@ -208,6 +208,7 @@
     status.textContent = 'OctoMask prépare sa réponse…';
     typing.hidden = false; toBottom();
     try {
+      if (!window.__purityChatStarted) { window.__purityChatStarted = true; try { document.dispatchEvent(new CustomEvent('purity:chat_start')); } catch {} }
       const response = await fetch('/api/chat', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, page: location.pathname }), signal: AbortSignal.timeout(27_000)

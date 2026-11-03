@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         var data = await res.json();
         if (res.ok && data.ok) {
+          try { document.dispatchEvent(new CustomEvent('purity:lead', { detail: { form: 'cas_concret' } })); } catch {}
           status.className = 'lp-form__status is-success';
           status.textContent = '';
           var text = document.createElement('p');

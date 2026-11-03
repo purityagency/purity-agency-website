@@ -190,3 +190,12 @@
   skip.textContent = 'Aller au contenu';
   document.body.insertBefore(skip, document.body.firstChild);
 })();
+
+// Consentement + mesure d'audience, chargé sur toutes les pages.
+(() => {
+  if (document.querySelector('script[src^="/js/consent.js"]')) return;
+  const s = document.createElement('script');
+  s.src = '/js/consent.js?v=1';
+  s.defer = true;
+  document.head.appendChild(s);
+})();

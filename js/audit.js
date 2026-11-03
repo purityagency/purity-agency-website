@@ -203,6 +203,7 @@
 
     showOut();
 
+    try { document.dispatchEvent(new CustomEvent('purity:site_test')); } catch {}
     fetch('/api/audit?url=' + encodeURIComponent(v))
       .then(function (r) { return r.json(); })
       .then(function (d) {

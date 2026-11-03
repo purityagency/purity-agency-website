@@ -9,14 +9,14 @@ const CSP_DIRECTIVES = [
   "object-src 'none'",
   "frame-ancestors 'none'",
   "frame-src 'self'",
-  "script-src 'self'",
+  "script-src 'self' https://www.googletagmanager.com",
   "script-src-attr 'none'",
   "style-src 'self'",
   "style-src-attr 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self'",
   "media-src 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
   "manifest-src 'self'",
   "worker-src 'self'"
 ];

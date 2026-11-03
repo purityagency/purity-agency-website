@@ -54,3 +54,13 @@ test('page À propos routée, pages légales en noindex et hors sitemap', async 
     assert.match(html, /<meta name="robots" content="noindex,follow">/, p);
   }
 });
+
+test('une seule forme par URL : slash final et favicon.ico redirigés', async () => {
+  for (const [from, to] of [['/blog/', '/blog'], ['/contact/', '/contact'], ['/agence-web/', '/agence-web'], ['/services/site-vitrine/', '/services/site-vitrine'], ['/site-internet', '/site-internet/'], ['/favicon.ico', '/assets/favicon-32.png']]) {
+    const r = await get(from);
+    assert.equal(r.status, 301, from);
+    assert.equal(r.headers.get('location'), to, from);
+  }
+  assert.equal((await get('/site-internet/')).status, 200);
+  assert.equal((await get('/')).status, 200);
+});

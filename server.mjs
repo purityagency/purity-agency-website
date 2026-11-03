@@ -310,6 +310,17 @@ export const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // Une seule forme par page : slash final retiré (sauf /site-internet/, dont c'est la canonical).
+    const qsSlash = rawUrl.includes('?') ? rawUrl.slice(rawUrl.indexOf('?')) : '';
+    const slashTo = path === '/site-internet' ? '/site-internet/'
+      : path === '/favicon.ico' ? '/assets/favicon-32.png'
+      : path.length > 1 && path.endsWith('/') && path !== '/site-internet/' && /\.html$/.test(resolveCleanRoute(path.slice(0, -1)) || '') ? path.slice(0, -1)
+      : null;
+    if (slashTo) {
+      res.writeHead(301, { Location: slashTo + qsSlash, 'Cache-Control': 'public, max-age=86400' }).end();
+      return;
+    }
+
     const resolvedRoute = resolveCleanRoute(path);
     if (!resolvedRoute) {
       await notFound(res);

@@ -69,11 +69,12 @@ test('legacy URLs redirect in 301 (trailing slash included) without loops', asyn
       assert.equal(res.status, 301, from);
       assert.equal(res.headers.get('location'), to, from);
     }
-    for (const hub of ['/services', '/services/']) {
-      const res = await fetch(`${baseUrl}${hub}`, { redirect: 'manual' });
-      assert.equal(res.status, 200, hub);
-      assert.match(await res.text(), /canonical" href="https:\/\/purity-agency\.be\/services"/);
-    }
+    const hub = await fetch(`${baseUrl}/services`, { redirect: 'manual' });
+    assert.equal(hub.status, 200);
+    assert.match(await hub.text(), /canonical" href="https:\/\/purity-agency\.be\/services"/);
+    const slash = await fetch(`${baseUrl}/services/`, { redirect: 'manual' });
+    assert.equal(slash.status, 301);
+    assert.equal(slash.headers.get('location'), '/services');
   });
 });
 

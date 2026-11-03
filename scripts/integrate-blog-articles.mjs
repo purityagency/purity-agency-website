@@ -518,6 +518,7 @@ function articleHtml(article) {
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="fr_BE">
+<meta property="og:url" content="${siteUrl}/${article.slug}">
 <meta property="og:title" content="${esc(article.title)}">
 <meta property="og:description" content="${esc(article.description)}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -550,15 +551,10 @@ function blogHtml() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Le journal Purity',
-    url: `${siteUrl}/blog.html`,
+    url: `${siteUrl}/blog`,
     inLanguage: 'fr-BE',
     publisher: { '@type': 'Organization', name: 'Purity Agency', url: siteUrl },
-    blogPost: allCards.map(article => ({
-      '@type': 'BlogPosting',
-      headline: article.title,
-      url: `${siteUrl}/${article.slug}`,
-      datePublished: article.date
-    }))
+    blogPost: allCards.map(article => ({ '@id': `${siteUrl}/${article.slug}#article` }))
   };
 
   return `<!doctype html>

@@ -60,7 +60,7 @@ const short = `${HEAD}
 
 ## Services et prix indicatifs
 
-${services.map(s => `- [${s.name}](${O}/services/${s.slug}): ${prix(s)}${s.delay ? `, délai ${s.delay}` : ''}. ${s.summary || ''}`.trim()).join('\n')}
+${services.map(s => `- [${s.name}](${O}/services/${s.slug}): ${prix(s)}${s.delay ? (/^[0-9]/.test(s.delay) ? `, délai ${s.delay}` : `, ${s.delay[0].toLowerCase() + s.delay.slice(1)}`) : ''}. ${s.summary || ''}`.trim()).join('\n')}
 
 ## Agence web par ville
 

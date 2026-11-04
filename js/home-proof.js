@@ -11,7 +11,7 @@
   var toggle = nav.querySelector('[data-proof-toggle]');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var SPEED = 28;         // pixels par seconde : un défilement au ralenti
+  var SPEED = 60;         // pixels par seconde : défilement lent mais vivant
   var RESUME_AFTER = 4500; // pause après une action de l'utilisateur (ms)
 
   // Une copie des cartes à la suite des originales permet de boucler sans

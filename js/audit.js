@@ -257,6 +257,9 @@
 
     function apply(val) {
       card.style.setProperty('--split', val.toFixed(2) + '%');
+      /* Le téléphone du côté dévoilé s'allume, l'autre s'estompe. */
+      card.classList.toggle('is-before', val > 62);
+      card.classList.toggle('is-after', val < 38);
     }
 
     function step() {
@@ -279,6 +282,7 @@
 
     range.addEventListener('pointerdown', function () {
       userTouched = true;
+      card.classList.add('is-touched');
       card.classList.add('is-dragging');
     });
     window.addEventListener('pointerup', function () {
@@ -286,6 +290,7 @@
     });
     range.addEventListener('input', function () {
       userTouched = true;
+      card.classList.add('is-touched');
       setTarget(range.value);
     });
     range.addEventListener('change', function () {

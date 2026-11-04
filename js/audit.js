@@ -255,9 +255,21 @@
     var rafId = 0;
     var userTouched = false;
 
+    var mock = card.querySelector('.audit-mock');
+    var vp = card.querySelector('.audit-compare__viewport');
+    var ph = card.querySelector('.audit-mock__screen');
+    var clamp = function (n) { return Math.max(0, Math.min(100, n)); };
+    /* Un seul trait vertical traverse l'ordinateur et le téléphone :
+       chaque écran est coupé là où le trait le croise. */
     function apply(val) {
-      card.style.setProperty('--split', val.toFixed(2) + '%');
+      var m = mock.getBoundingClientRect();
+      var x = m.left + (val / 100) * m.width;
+      var v = vp.getBoundingClientRect();
+      var p = ph.getBoundingClientRect();
+      card.style.setProperty('--split', clamp((x - v.left) / v.width * 100).toFixed(2) + '%');
+      card.style.setProperty('--psplit', clamp((x - p.left) / p.width * 100).toFixed(2) + '%');
     }
+    window.addEventListener('resize', function () { apply(current); });
 
     function step() {
       var diff = target - current;
@@ -273,7 +285,7 @@
     }
 
     function setTarget(val) {
-      target = Math.max(6, Math.min(94, Number(val) || 50));
+      target = Math.max(2, Math.min(98, Number(val) || 50));
       if (!rafId) rafId = requestAnimationFrame(step);
     }
 
@@ -304,47 +316,20 @@
         var delay = idx * 140;
         setTimeout(function () {
           if (userTouched) return;
-          setTarget(idx === 0 ? 36 : 64);
+          /* Balayage d'invitation : le trait passe sur le téléphone puis revient. */
+          setTarget(92);
           setTimeout(function () {
             if (userTouched) return;
-            setTarget(50);
-            range.value = '50';
-          }, 420);
+            setTarget(22);
+            setTimeout(function () {
+              if (userTouched) return;
+              setTarget(50);
+              range.value = '50';
+            }, 650);
+          }, 750);
         }, 260 + delay);
       }, { threshold: 0.45 });
       io.observe(card);
     }
-  });
-})();
-
-/* Portables 3D : se redressent au survol et suivent légèrement la souris. */
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  document.querySelectorAll('[data-audit-compare]').forEach(function (card) {
-    var scene = card.querySelector('.audit-compare__scene');
-    if (!scene) return;
-    var raf = 0, x = 0, y = 0;
-    function apply() {
-      raf = 0;
-      card.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
-      card.style.setProperty('--rx', (-y * 5).toFixed(2) + 'deg');
-    }
-    scene.addEventListener('pointerenter', function () {
-      card.classList.add('is-tracking');
-      card.style.setProperty('--tilt', '0deg');
-    });
-    scene.addEventListener('pointermove', function (e) {
-      var r = scene.getBoundingClientRect();
-      x = (e.clientX - r.left) / r.width - 0.5;
-      y = (e.clientY - r.top) / r.height - 0.5;
-      if (!raf) raf = requestAnimationFrame(apply);
-    });
-    scene.addEventListener('pointerleave', function () {
-      card.classList.remove('is-tracking');
-      card.style.removeProperty('--tilt');
-      card.style.setProperty('--rx', '0deg');
-      card.style.setProperty('--ry', '0deg');
-    });
   });
 })();

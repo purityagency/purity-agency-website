@@ -238,30 +238,29 @@
   <section class="audit" id="audit" aria-labelledby="audit-title">
     <div class="audit__inner">
       <div class="audit__stage">
-        <figure class="audit-compare audit-compare--left" data-audit-compare style="--split:50%">
-          <div class="audit-compare__scene">
-            <div class="audit-compare__device">
-              <div class="audit-compare__lid"><span class="audit-compare__cam" aria-hidden="true"></span>
-            <div class="audit-compare__viewport">
-            <img class="audit-compare__img audit-compare__img--before" src="/assets/audit-compare/before-artisan.webp" alt="Exemple fictif de site artisan avant refonte : mise en page datée et illisible" width="820" height="612" loading="lazy" decoding="async">
-            <img class="audit-compare__img audit-compare__img--after" src="/assets/audit-compare/after-artisan.webp" alt="Le même exemple fictif après refonte : design moderne et demande de devis directe" width="820" height="612" loading="lazy" decoding="async">
-            <span class="audit-compare__tag audit-compare__tag--before" aria-hidden="true">Avant</span>
-            <span class="audit-compare__tag audit-compare__tag--after" aria-hidden="true">Après Purity</span>
-            <div class="audit-compare__divider" aria-hidden="true">
-              <span class="audit-compare__handle">
-                <svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-            <input class="audit-compare__range" type="range" min="6" max="94" value="50" aria-label="Glisser pour comparer le site artisan avant et après refonte">
-          </div>
+        <figure class="audit-compare audit-compare--left" data-audit-compare>
+          <div class="audit-mock">
+            <div class="audit-mock__browser">
+              <span class="audit-mock__bar" aria-hidden="true"><i></i><i></i><i></i><span class="audit-mock__url">renov-chauffage.be</span></span>
+              <div class="audit-compare__viewport">
+                <img class="audit-compare__img audit-compare__img--before" src="/assets/audit-compare/before-artisan.webp" alt="Exemple fictif de site artisan avant refonte : mise en page datée et illisible" width="820" height="612" loading="lazy" decoding="async">
+                <img class="audit-compare__img audit-compare__img--after" src="/assets/audit-compare/after-artisan.webp" alt="Le même exemple fictif après refonte : design moderne et demande de devis directe" width="820" height="612" loading="lazy" decoding="async">
+                <span class="audit-compare__tag audit-compare__tag--before" aria-hidden="true">Avant</span>
+                <span class="audit-compare__tag audit-compare__tag--after" aria-hidden="true">Après Purity</span>
+                <span class="audit-compare__line" aria-hidden="true"><span class="audit-compare__handle"><svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
               </div>
-              <div class="audit-compare__base" aria-hidden="true"><span></span></div>
             </div>
-            <span class="audit-compare__phone" aria-hidden="true"><img src="/assets/shots/chauffage-mobile-0.webp" width="390" height="844" loading="lazy" decoding="async" alt=""></span>
-            <span class="audit-compare__score" aria-hidden="true"><svg viewBox="0 0 36 36" width="26" height="26" focusable="false"><circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="3"/><circle class="audit-compare__ring" cx="18" cy="18" r="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" pathLength="100" stroke-dasharray="96 100" transform="rotate(-90 18 18)"/></svg><span class="audit-compare__score-txt"><b>96</b><small>Score mobile · avant 34</small></span></span>
+            <div class="audit-mock__phone" aria-hidden="true">
+              <div class="audit-mock__screen">
+                <img class="audit-compare__img audit-mock__before" src="/assets/audit-compare/before-artisan.webp" width="820" height="612" loading="lazy" decoding="async" alt="">
+                <img class="audit-compare__img audit-mock__after" src="/assets/shots/chauffage-mobile-0.webp" width="390" height="844" loading="lazy" decoding="async" alt="">
+                <span class="audit-compare__line audit-compare__line--phone"></span>
+              </div>
+            </div>
+            <input class="audit-compare__range" type="range" min="2" max="98" value="50" aria-label="Glisser pour comparer le site artisan avant et après refonte, sur ordinateur et sur mobile">
           </div>
           <figcaption class="audit-compare__caption">
-            <span class="audit-compare__site">renov-chauffage.be</span><strong>Artisan &amp; rénovation</strong>
+            <strong>Artisan &amp; rénovation</strong>
             <span class="audit-compare__hint"><svg viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
             <small class="audit-compare__note">Exemple illustratif (site fictif)</small>
           </figcaption>
@@ -280,30 +279,29 @@
           <p class="audit__hint" id="audit-hint">Gratuit, sans inscription, sans démarchage.</p>
         </div>
 
-        <figure class="audit-compare audit-compare--right" data-audit-compare style="--split:50%">
-          <div class="audit-compare__scene">
-            <div class="audit-compare__device">
-              <div class="audit-compare__lid"><span class="audit-compare__cam" aria-hidden="true"></span>
-            <div class="audit-compare__viewport">
-            <img class="audit-compare__img audit-compare__img--before" src="/assets/audit-compare/before-resto.webp" alt="Exemple fictif de site restaurant avant refonte : menu PDF illisible et sans réservation" width="820" height="612" loading="lazy" decoding="async">
-            <img class="audit-compare__img audit-compare__img--after" src="/assets/audit-compare/after-resto.webp" alt="Le même exemple fictif après refonte : réservation en 1 clic et visuels studio" width="820" height="612" loading="lazy" decoding="async">
-            <span class="audit-compare__tag audit-compare__tag--before" aria-hidden="true">Avant</span>
-            <span class="audit-compare__tag audit-compare__tag--after" aria-hidden="true">Après Purity</span>
-            <div class="audit-compare__divider" aria-hidden="true">
-              <span class="audit-compare__handle">
-                <svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-            <input class="audit-compare__range" type="range" min="6" max="94" value="50" aria-label="Glisser pour comparer le site restaurant avant et après refonte">
-          </div>
+        <figure class="audit-compare audit-compare--right" data-audit-compare>
+          <div class="audit-mock">
+            <div class="audit-mock__browser">
+              <span class="audit-mock__bar" aria-hidden="true"><i></i><i></i><i></i><span class="audit-mock__url">table-serein.be</span></span>
+              <div class="audit-compare__viewport">
+                <img class="audit-compare__img audit-compare__img--before" src="/assets/audit-compare/before-resto.webp" alt="Exemple fictif de site restaurant avant refonte : menu PDF illisible et sans réservation" width="820" height="612" loading="lazy" decoding="async">
+                <img class="audit-compare__img audit-compare__img--after" src="/assets/audit-compare/after-resto.webp" alt="Le même exemple fictif après refonte : réservation en 1 clic et visuels studio" width="820" height="612" loading="lazy" decoding="async">
+                <span class="audit-compare__tag audit-compare__tag--before" aria-hidden="true">Avant</span>
+                <span class="audit-compare__tag audit-compare__tag--after" aria-hidden="true">Après Purity</span>
+                <span class="audit-compare__line" aria-hidden="true"><span class="audit-compare__handle"><svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
               </div>
-              <div class="audit-compare__base" aria-hidden="true"><span></span></div>
             </div>
-            <span class="audit-compare__phone" aria-hidden="true"><img src="/assets/shots/restaurant-mobile-0.webp" width="390" height="844" loading="lazy" decoding="async" alt=""></span>
-            <span class="audit-compare__score" aria-hidden="true"><svg viewBox="0 0 36 36" width="26" height="26" focusable="false"><circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="3"/><circle class="audit-compare__ring" cx="18" cy="18" r="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" pathLength="100" stroke-dasharray="98 100" transform="rotate(-90 18 18)"/></svg><span class="audit-compare__score-txt"><b>98</b><small>Score mobile · avant 41</small></span></span>
+            <div class="audit-mock__phone" aria-hidden="true">
+              <div class="audit-mock__screen">
+                <img class="audit-compare__img audit-mock__before" src="/assets/audit-compare/before-resto.webp" width="820" height="612" loading="lazy" decoding="async" alt="">
+                <img class="audit-compare__img audit-mock__after" src="/assets/shots/restaurant-mobile-0.webp" width="390" height="844" loading="lazy" decoding="async" alt="">
+                <span class="audit-compare__line audit-compare__line--phone"></span>
+              </div>
+            </div>
+            <input class="audit-compare__range" type="range" min="2" max="98" value="50" aria-label="Glisser pour comparer le site restaurant avant et après refonte, sur ordinateur et sur mobile">
           </div>
           <figcaption class="audit-compare__caption">
-            <span class="audit-compare__site">table-serein.be</span><strong>Restaurant &amp; commerce</strong>
+            <strong>Restaurant &amp; commerce</strong>
             <span class="audit-compare__hint"><svg viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
             <small class="audit-compare__note">Exemple illustratif (site fictif)</small>
           </figcaption>
@@ -648,7 +646,7 @@
 
 <script src="/js/defer-css.js" defer></script>
 <script src="/js/menu.js?v=20261107" defer></script>
-<script src="/js/audit.js?v=20261109" defer></script>
+<script src="/js/audit.js?v=20261110" defer></script>
 <script src="/js/reveal.js?v=2" defer></script>
 <script src="/js/home-proof.js?v=1" defer></script>
 <script src="/js/method-waves.js?v=3" defer></script>

@@ -316,3 +316,35 @@
     }
   });
 })();
+
+/* Portables 3D : se redressent au survol et suivent légèrement la souris. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('[data-audit-compare]').forEach(function (card) {
+    var scene = card.querySelector('.audit-compare__scene');
+    if (!scene) return;
+    var raf = 0, x = 0, y = 0;
+    function apply() {
+      raf = 0;
+      card.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
+      card.style.setProperty('--rx', (-y * 5).toFixed(2) + 'deg');
+    }
+    scene.addEventListener('pointerenter', function () {
+      card.classList.add('is-tracking');
+      card.style.setProperty('--tilt', '0deg');
+    });
+    scene.addEventListener('pointermove', function (e) {
+      var r = scene.getBoundingClientRect();
+      x = (e.clientX - r.left) / r.width - 0.5;
+      y = (e.clientY - r.top) / r.height - 0.5;
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+    scene.addEventListener('pointerleave', function () {
+      card.classList.remove('is-tracking');
+      card.style.removeProperty('--tilt');
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+})();

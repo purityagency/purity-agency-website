@@ -255,21 +255,9 @@
     var rafId = 0;
     var userTouched = false;
 
-    var mock = card.querySelector('.audit-mock');
-    var vp = card.querySelector('.audit-compare__viewport');
-    var ph = card.querySelector('.audit-mock__screen');
-    var clamp = function (n) { return Math.max(0, Math.min(100, n)); };
-    /* Un seul trait vertical traverse l'ordinateur et le téléphone :
-       chaque écran est coupé là où le trait le croise. */
     function apply(val) {
-      var m = mock.getBoundingClientRect();
-      var x = m.left + (val / 100) * m.width;
-      var v = vp.getBoundingClientRect();
-      var p = ph.getBoundingClientRect();
-      card.style.setProperty('--split', clamp((x - v.left) / v.width * 100).toFixed(2) + '%');
-      card.style.setProperty('--psplit', clamp((x - p.left) / p.width * 100).toFixed(2) + '%');
+      card.style.setProperty('--split', val.toFixed(2) + '%');
     }
-    window.addEventListener('resize', function () { apply(current); });
 
     function step() {
       var diff = target - current;

@@ -1,0 +1,102 @@
+/* Mini-sites codés des avant/après de l'accueil.
+   Bureau : conçus pour 1280 px de large (1em = 16 px), réduits à la taille de l'écran.
+   Mobile (.ms--m) : conçus pour 390 px. L'ancien site garde sa mise en page
+   d'ordinateur même sur téléphone : il n'a jamais été adapté au mobile. */
+.ms{position:absolute;inset:0;overflow:hidden;font-size:1.25cqw;line-height:1.4;text-align:left;-webkit-font-smoothing:antialiased}
+.ms.ms--m{font-size:4.1cqw}
+.ms img{display:block;max-width:none}
+.ms h3,.ms h4,.ms p{margin:0}
+
+/* --- Ancien site chauffagiste (vers 2011) --- */
+.ms-oa{background:#BDBDBD;font-family:Verdana,Tahoma,sans-serif;color:#000;-webkit-font-smoothing:auto}
+.oa-page{width:52em;margin:0 auto;min-height:100%;background:#fff;border-left:.15em solid #8a8a8a;border-right:.15em solid #8a8a8a}
+.oa-head{display:flex;align-items:center;gap:1.2em;height:6.5em;padding:0 2em;background:linear-gradient(180deg,#9EC3EA,#FFFFFF 85%);border-bottom:.2em solid #2E5E9E}
+.oa-head b{font-family:"Comic Sans MS","Comic Sans",cursive;font-size:1.45em;color:#1F3F78;text-shadow:.06em .06em 0 #fff}
+.oa-sun{flex:none;width:3.4em;height:3.4em;border-radius:50%;background:radial-gradient(circle,#FFE14D 45%,#F5A623 46% 52%,transparent 53%)}
+.oa-nav{display:flex;gap:.25em;padding:.35em;background:#2E5E9E}
+.oa-nav span{flex:1;padding:.35em 0;text-align:center;font-size:.7em;font-weight:700;color:#fff;background:linear-gradient(#5B8FD6,#2D5EA6);border:.12em outset #8FB4E8}
+.oa-nav span:first-child{background:#F0A030;border-color:#FFD08A}
+.oa-promo{padding:.3em;text-align:center;font-size:.8em;font-weight:700;color:#E00000;background:#FFFF99}
+.oa-cols{display:flex;gap:1em;padding:1em}
+.oa-side{flex:none;width:12em;display:flex;flex-direction:column;gap:.3em;padding:.6em;background:#DCE8F7;border:.1em solid #7FA3D6;font-size:.75em}
+.oa-side b{padding:.3em;color:#fff;background:#2E5E9E;text-align:center}
+.oa-side span{color:#1F3F78;text-decoration:underline}
+.oa-side i{margin-top:1em;font-style:normal;text-align:center}
+.oa-side tt{display:inline-block;margin-top:.3em;padding:.1em .3em;font-size:1.2em;color:#0f0;background:#000;letter-spacing:.15em}
+.oa-main{flex:1;font-family:"Times New Roman",Times,serif;font-size:.85em;text-align:justify}
+.oa-main img{float:right;width:13em;height:13em;object-fit:cover;margin:0 0 .6em .8em;border:.25em ridge #999;filter:saturate(1.5) contrast(1.15)}
+.oa-main p{margin-bottom:.6em}
+.oa-main h4{margin:.4em 0 .2em;font-family:Arial,sans-serif;font-size:1.05em;color:#E69138;text-decoration:underline}
+.oa-main a{color:#0000EE;text-decoration:underline}
+.oa-foot{clear:both;padding:1em;text-align:center;font-size:.6em;color:#666}
+
+/* --- Thermiq, refonte --- */
+.tq{background:#F4F2ED;color:#16181A;font-family:'General Sans',-apple-system,sans-serif}
+.tq-nav{display:flex;align-items:center;gap:2em;padding:1.6em 4em}
+.tq-nav b{font-size:1.15em;letter-spacing:.22em;font-weight:700}
+.tq-links{display:flex;gap:2em;margin-left:auto;font-size:.85em;color:#5D615F}
+.tq-btn{display:inline-flex;align-items:center;padding:.8em 1.4em;border-radius:99em;background:#D9692E;color:#fff;font-size:.85em;font-weight:600;white-space:nowrap}
+.tq-btn--ghost{background:#16181A}
+.tq-hero{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5em;align-items:center;padding:2em 4em 0}
+.tq-copy small{display:block;margin-bottom:1.2em;font-size:.85em;font-weight:600;color:#D9692E}
+.tq-copy h3{font-size:4.4em;line-height:1;font-weight:600;letter-spacing:-.035em}
+.tq-copy p{max-width:26em;margin-top:1.3em;font-size:1.05em;line-height:1.55;color:#5D615F}
+.tq-cta{display:flex;align-items:center;gap:1.4em;margin-top:2em}
+.tq-note{font-size:.85em;color:#5D615F}
+.tq-note i{font-style:normal;color:#E0A21B;letter-spacing:.05em}
+.tq-photo{position:relative;height:30em;border-radius:1.4em;overflow:hidden}
+.tq-photo img{width:100%;height:100%;object-fit:cover}
+.tq-badge{position:absolute;left:1.2em;bottom:1.2em;padding:.8em 1.1em;border-radius:.9em;background:#fff;font-size:.8em;color:#5D615F;box-shadow:0 .6em 1.6em -.6em rgba(0,0,0,.35)}
+.tq-badge b{display:block;font-size:1.6em;line-height:1.1;color:#16181A}
+.tq-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin:2.2em 4em 0}
+.tq-strip span{padding:1.1em 1.3em;border-radius:1em;background:#fff;font-size:.8em;color:#5D615F}
+.tq-strip b{display:block;font-size:1.15em;color:#16181A}
+.tq.ms--m .tq-nav{padding:1.1em 1.25em}
+.tq.ms--m .tq-links{display:none}
+.tq.ms--m .tq-nav .tq-btn{margin-left:auto;padding:.55em 1em}
+.tq.ms--m .tq-hero{grid-template-columns:1fr;gap:1.4em;padding:0 1.25em}
+.tq.ms--m .tq-photo{order:-1;height:15em}
+.tq.ms--m .tq-copy small{margin-bottom:.6em}
+.tq.ms--m .tq-copy h3{font-size:2.5em}
+.tq.ms--m .tq-copy p{margin-top:.8em;font-size:.95em}
+.tq.ms--m .tq-cta{flex-direction:column;align-items:stretch;gap:.8em;margin-top:1.3em}
+.tq.ms--m .tq-cta .tq-btn{justify-content:center;padding:1em}
+.tq.ms--m .tq-strip{display:none}
+
+/* --- Ancienne brasserie --- */
+.ms-or{background:radial-gradient(ellipse at center,#F1E3BE 0%,#E2CC97 62%,#B8955A 100%);font-family:"Times New Roman",Times,serif;color:#2B1A0C;-webkit-font-smoothing:auto}
+.or-page{width:54em;margin:0 auto;padding:1.4em 0;text-align:center}
+.or-title{font-family:"Monotype Corsiva","Apple Chancery","URW Chancery L",cursive;font-size:2.8em;font-weight:400;color:#4A2A10}
+.or-page img{width:17em;height:11.3em;margin:1em auto;object-fit:cover;border:.3em solid #fff;outline:.1em solid #6b4a2b;filter:saturate(1.6) contrast(1.2) brightness(.9)}
+.or-page a{display:block;margin-bottom:1em;font-family:Arial,sans-serif;font-size:1em;font-weight:700;color:#1010C8;text-decoration:underline}
+.or-page table{width:100%;border-collapse:collapse;font-size:.85em;background:rgba(255,255,255,.35)}
+.or-page td{padding:.25em .5em;border:.08em solid #000;text-align:left}
+.or-page td:first-child{font-weight:700;width:7em}
+.or-page td[rowspan]{text-align:center;vertical-align:middle;width:16em}
+.or-page p{margin-top:1em;font-size:.85em}
+
+/* --- Table Serein, refonte --- */
+.ts{background:#4A1822;color:#F4E9DC;font-family:'General Sans',-apple-system,sans-serif}
+.ts-nav{display:flex;align-items:center;gap:2em;padding:1.6em 4em;border-bottom:.06em solid rgba(244,233,220,.14)}
+.ts-nav b{font-family:Georgia,"Times New Roman",serif;font-size:1.5em;font-weight:400}
+.ts-links{display:flex;gap:2em;margin-left:auto;font-size:.85em;color:rgba(244,233,220,.7)}
+.ts-btn{display:inline-flex;justify-content:center;padding:.85em 1.4em;border-radius:.4em;background:#E3B66B;color:#2A0E14;font-size:.85em;font-weight:600;white-space:nowrap}
+.ts-btn--ghost{background:transparent;color:#F4E9DC;box-shadow:inset 0 0 0 .07em rgba(244,233,220,.5)}
+.ts-hero{display:grid;grid-template-columns:1fr 1.05fr;gap:3.5em;align-items:center;padding:3em 4em 0}
+.ts-copy small{display:block;margin-bottom:1.2em;font-size:.85em;color:#E3B66B}
+.ts-copy h3{font-family:Georgia,"Times New Roman",serif;font-size:4.6em;line-height:1;font-weight:400;letter-spacing:-.02em}
+.ts-book{display:grid;gap:.9em;max-width:24em;margin-top:2.2em;padding:1.3em;border-radius:.9em;background:rgba(244,233,220,.07);box-shadow:inset 0 0 0 .06em rgba(244,233,220,.14)}
+.ts-k{font-size:.8em;color:rgba(244,233,220,.7)}
+.ts-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.5em}
+.ts-slots i{padding:.55em 0;border-radius:.4em;text-align:center;font-style:normal;font-size:.8em;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 .07em rgba(244,233,220,.3)}
+.ts-slots i.on{background:#F4E9DC;color:#2A0E14;box-shadow:none;font-weight:600}
+.ts-photo{height:32em;border-radius:1.4em;overflow:hidden}
+.ts-photo img{width:100%;height:100%;object-fit:cover}
+.ts.ms--m .ts-nav{padding:1.1em 1.25em}
+.ts.ms--m .ts-links{display:none}
+.ts.ms--m .ts-nav .ts-btn{margin-left:auto;padding:.55em 1em}
+.ts.ms--m .ts-hero{grid-template-columns:1fr;gap:1.4em;padding:1.25em 1.25em 0}
+.ts.ms--m .ts-photo{order:-1;height:14em}
+.ts.ms--m .ts-copy small{margin-bottom:.6em}
+.ts.ms--m .ts-copy h3{font-size:2.7em}
+.ts.ms--m .ts-book{margin-top:1.3em;padding:1em}

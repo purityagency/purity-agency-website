@@ -8,7 +8,7 @@ import { resolve, dirname, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const ORDER = ['app', 'menu', 'octomask', 'hero-video', 'site-additions', 'audit',
+const ORDER = ['app', 'menu', 'octomask', 'hero-video', 'site-additions', 'audit', 'audit-sites',
   'method', 'service-grid', 'service-experience', 'services-bg', 'be-map', 'home'];
 
 // Reecrit les url() relatifs (ex. ../assets/x.webp, img/x.png) en chemins absolus du site.

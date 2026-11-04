@@ -1051,10 +1051,10 @@ html:has(.octo[open]){overflow:hidden}
 .audit-mock__screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:clamp(10px,1.8vw,18px);background:#121016}
 .audit-compare__viewport{position:relative;width:100%;aspect-ratio:16 / 10;overflow:hidden;background:#121016}
 .audit-compare__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-.audit-compare__img--before{filter:saturate(.7) contrast(.94);object-position:center 16%}
-.audit-compare__img--after{clip-path:inset(0 0 0 var(--split));object-position:center 20%}
+.audit-compare__img--before{filter:saturate(.8);object-position:center top}
+.audit-compare__img--after{clip-path:inset(0 0 0 var(--split));object-position:center top}
 /* Sur le téléphone, l'ancien site n'est pas adapté : on voit la page d'ordinateur coupée */
-.audit-mock__before{filter:saturate(.7) contrast(.94);object-position:left top}
+.audit-mock__before{filter:saturate(.8);object-fit:contain;object-position:center top;background:#E9E8EC}
 .audit-mock__after{clip-path:inset(0 0 0 var(--psplit));object-position:top}
 .audit-compare__tag{
  position:absolute;top:.55rem;z-index:2;padding:.22rem .5rem;border-radius:7px;

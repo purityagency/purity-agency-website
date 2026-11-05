@@ -463,6 +463,10 @@ textarea{
  }
 }
 .hero{padding-top:calc(var(--nav-h) + var(--promo-h, 0px) + clamp(2rem,6vw,4rem))}
+/* Place de la barre d'offre réservée dès le premier rendu (44 px + 4) : sans ça,
+   la barre injectée par js/menu.js poussait toute la page (CLS). menu.js remet 0
+   si le visiteur l'a fermée. */
+:root{--promo-h:48px;--promo-vis:48px}
 .promo-bar{
  position:fixed;
  top:5px;

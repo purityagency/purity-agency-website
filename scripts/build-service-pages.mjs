@@ -130,7 +130,7 @@ ${OG_IMAGE}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/app.css?v=20261107">
+<link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/service-detail.css?v=${CSS_VERSION}">
 ${vz ? VZ_ASSETS : ''}<script type="application/ld+json">
@@ -602,7 +602,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=20261107" defer></script>
+<script src="/js/menu.js?v=20261105r" defer></script>
 </body>
 </html>`;
 }
@@ -749,7 +749,7 @@ ${renderHeader('services')}
 
 ${renderFooter()}
 
-<script src="/js/menu.js?v=20261107" defer></script>
+<script src="/js/menu.js?v=20261105r" defer></script>
 </body>
 </html>`;
 }

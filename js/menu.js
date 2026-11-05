@@ -146,7 +146,12 @@
   if (document.querySelector('.promo-bar')) return;
   var dismissed = false;
   try { dismissed = sessionStorage.getItem('purity-promo-bar-dismissed') === '1'; } catch (e) {}
-  if (dismissed) return;
+  if (dismissed) {
+    // La place est réservée en CSS : on la libère si la barre a été fermée.
+    document.documentElement.style.setProperty('--promo-h', '0px');
+    document.documentElement.style.setProperty('--promo-vis', '0px');
+    return;
+  }
 
   var promo = document.createElement('aside');
   promo.className = 'promo-bar';

@@ -574,7 +574,7 @@ for (const study of caseStudies) {
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=20261105b">
+<link rel="stylesheet" href="/css/cases.css?v=20261106a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

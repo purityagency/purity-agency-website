@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SERVICES_DIR = path.join(ROOT, 'services');
-const CSS_VERSION = '20261106';
+const CSS_VERSION = '20261108b';
 // Snippet SVG lu tel quel dans partials/visuals (pas d'include côté serveur).
 const vzSnippet = name => fs.readFileSync(path.join(ROOT, 'partials', 'visuals', `${name}.html`), 'utf8').trim();
 const VZ_ASSETS = `<link rel="stylesheet" href="/css/visuals.css?v=20261107">

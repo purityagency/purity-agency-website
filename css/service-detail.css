@@ -1147,3 +1147,10 @@ body.service-page {
 .sd-vz-slot { max-width: 580px; margin: clamp(1.8rem, 4vw, 2.8rem) auto 0; }
 .sd-hub-steps .sd-vz-slot { margin-top: 0; }
 .sd-result__fig--vz { align-items: center; }
+
+/* Bandeau cookies plein écran (≤ 600 px, voir consent.css) : la barre de prix
+   se pose au-dessus au lieu d'être cachée dessous. */
+@media (max-width: 600px) {
+  .sd-floating-bar { bottom: var(--consent-h, 0px); }
+  body.service-page, body.service-page.has-consent { padding-bottom: calc(84px + var(--consent-h, 0px)); }
+}

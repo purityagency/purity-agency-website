@@ -39,12 +39,9 @@
     }
 
     if (offer.id === 'M16') {
-      return `<div class="price-setup">
-        <strong class="price-current">${escapeHtml(parts[0])}</strong>
-      </div>
-      <div class="price-recurring">
+      return `<div class="price-recurring">
         <span class="price-recurring__amount">${monthlyText}</span>
-        <em class="promo-pill promo-pill--free">1er mois offert</em>
+        <em class="promo-pill promo-pill--free">Sans frais de départ</em>
       </div>`;
     }
 

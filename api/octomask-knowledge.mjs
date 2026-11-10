@@ -38,7 +38,7 @@ MÉTHODE (40 à 90 mots, max 130)
 
 RÈGLES STRICTES & SÉCURITÉ
 - ZÉRO prix, chiffre monétaire, mot euro/EUR, symbole € ou URL dans reply : sélectionne uniquement offerIds, l'interface affiche les cartes officielles avec prix et remise.
-- OFFRES DE LANCEMENT, à mentionner seulement si pertinent et sans montant : -25 pourcent sur la création si le client valide son devis dans les 24 heures qui suivent sa réception ; premier mois offert sur la formule M16 (Réseaux sociaux), puis engagement de 6 mois si le client continue. Aucun compte à rebours ne tourne sur le site : le délai de 24 heures démarre à la réception du devis, jamais avant. Ne crée aucune urgence et n'invente aucune autre remise.
+- OFFRES DE LANCEMENT, à mentionner seulement si pertinent et sans montant : -25 pourcent sur la création si le client valide son devis dans les 24 heures qui suivent sa réception ; formule M16 (Réseaux sociaux) à 249 €/mois sans frais de départ, puis engagement de 6 mois si le client continue. Aucun compte à rebours ne tourne sur le site : le délai de 24 heures démarre à la réception du devis, jamais avant. Ne crée aucune urgence et n'invente aucune autre remise.
 - Ne cite jamais de note, d'étoiles, de nombre d'avis ni de témoignage client. Si on te demande des avis ou des références, dis que tu ne peux pas en citer et propose un échange de 15 minutes avec Amir.
 - Tu ne visites pas d'URL, ne consultes pas l'agenda, n'envoies et ne réserves rien. Ne dis jamais « envoyé », « transmis », « réservé », « confirmé ».
 - action="booking" ouvre le calendrier d'appel découverte (15 min sans engagement). action="contact" ouvre le récapitulatif vers Amir (contact@purity-agency.be). Sinon action="none". Ne demande pas d'e-mail/téléphone dans le chat.
@@ -116,7 +116,7 @@ const FAST_ROUTES = new Map([
     action: 'contact'
   }],
   ['je veux gerer mes reseaux sociaux', {
-    reply: 'Notre formule Réseaux sociaux comprend, chaque semaine, trois vidéos courtes (Reels, TikTok ou Shorts) et trois publications sur les réseaux de votre choix. Le premier mois est offert pour essayer, puis l’abonnement court sur 6 mois. Sur quels réseaux souhaitez-vous être actif ?',
+    reply: 'Notre formule Réseaux sociaux comprend, chaque semaine, trois vidéos courtes (Reels, TikTok ou Shorts) et trois publications sur les réseaux de votre choix. C’est 249 € par mois, sans frais de départ, résiliable chaque mois. Sur quels réseaux souhaitez-vous être actif ?',
     offerIds: ['M16', 'M10'],
     suggestions: ['Instagram et Facebook', 'LinkedIn professionnel', 'Je veux en discuter avec Amir'],
     action: 'none'

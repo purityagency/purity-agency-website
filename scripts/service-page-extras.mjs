@@ -215,8 +215,8 @@ export const VISUALS = {
     hero: { type: 'serp' }
   },
   'gestion-reseaux-sociaux': {
-    tiles: [['image', '3 publications par semaine'], ['video', '3 vidéos courtes par semaine'], ['pen', 'Textes rédigés pour vous'], ['calendar', 'Planning validé à l’avance'], ['clock', 'Diffusion aux bonnes heures'], ['gift', '1er mois offert, puis 6 mois à 349 €/mois']],
-    vs: [['Des publications irrégulières', '3 vidéos et 3 posts chaque semaine'], ['Des photos brutes sans texte', 'Vidéos, réalisations et avis mêlés'], ['S’engager sans tester', '1er mois offert, puis 6 mois à 349 €/mois']],
+    tiles: [['image', '3 publications par semaine'], ['video', '3 vidéos courtes par semaine'], ['pen', 'Textes rédigés pour vous'], ['calendar', 'Planning validé à l’avance'], ['clock', 'Diffusion aux bonnes heures'], ['gift', '249 €/mois, sans frais de départ']],
+    vs: [['Des publications irrégulières', '3 vidéos et 3 posts chaque semaine'], ['Des photos brutes sans texte', 'Vidéos, réalisations et avis mêlés'], ['S’engager sans tester', '249 €/mois, sans frais de départ']],
     hero: { type: 'week' }
   },
   'pilote-automatique-essentiel': {

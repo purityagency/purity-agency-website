@@ -65,9 +65,9 @@ Questions fréquentes :
 ## Page essentielle (1 page)
 
 URL : https://purity-agency.be/services/page-essentielle
-Prix indicatif : 490 € + 79 €/mois (mensuel : Hébergement haute vitesse, nom de domaine .be, boîte e-mail pro et modifications de vos coordonnées incluses.)
+Prix indicatif : 390 € + 19 €/mois (mensuel : Hébergement haute vitesse, nom de domaine .be, boîte e-mail pro et modifications de vos coordonnées incluses.)
 Délai : 5 à 7 jours ouvrés
-Engagement : Le suivi mensuel est conclu pour 12 mois, pour amortir la mise en place. Ensuite, il se résilie par écrit chaque mois, avec un mois de préavis.
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Artisans solos, dépanneurs, réparateurs, indépendants en bâtiment et prestataires de services en Wallonie qui exercent une activité ciblée.
 Utilité : Rassurer immédiatement un client local qui cherche votre métier sur son smartphone et lui permettre de vous appeler ou de vous écrire sur WhatsApp sans chercher votre numéro.
 
@@ -100,7 +100,7 @@ Questions fréquentes :
 ## Site vitrine (5 pages)
 
 URL : https://purity-agency.be/services/site-vitrine
-Prix indicatif : 1 490 € + 79 €/mois (mensuel : Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.)
+Prix indicatif : 890 € + 19 €/mois (mensuel : Hébergement infogéré, domaine .be, boîtes e-mails pro, sauvegardes et modifications courantes incluses.)
 Délai : 7 à 10 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Chauffagistes, entreprises de rénovation, carrosseries, garagistes, électriciens, plombiers, toitures et PME régionales en Wallonie.
@@ -137,7 +137,7 @@ Questions fréquentes :
 ## Site complet (10+ pages)
 
 URL : https://purity-agency.be/services/site-complet
-Prix indicatif : 2 490 € + 149 €/mois (mensuel : Maintenance avancée, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 h de modifications incluses chaque mois.)
+Prix indicatif : 1 490 € + 29 €/mois (mensuel : Maintenance avancée, sauvegardes quotidiennes automatiques, réponse sous 24 h ouvrées et 2 h de modifications incluses chaque mois.)
 Délai : 12 à 18 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Entreprises générales de bâtiment, bureaux d’études, promoteurs, concessions, installateurs avec plusieurs équipes sur la route.
@@ -174,7 +174,7 @@ Questions fréquentes :
 ## Boutique en ligne (e-commerce)
 
 URL : https://purity-agency.be/services/boutique-en-ligne
-Prix indicatif : 3 990 € + 149 €/mois (mensuel : Sécurité bancaire continue, surveillance des paiements, maintenance des passerelles et assistance technique.)
+Prix indicatif : 1 290 € + 39 €/mois (mensuel : Sécurité bancaire continue, surveillance des paiements, maintenance des passerelles et assistance technique.)
 Délai : 15 à 25 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Commerçants, artisans créateurs, producteurs locaux, restaurateurs (Horeca) et distributeurs en Belgique souhaitant vendre en direct.
@@ -211,7 +211,7 @@ Questions fréquentes :
 ## Refonte et modernisation de site web
 
 URL : https://purity-agency.be/services/refonte-modernisation
-Prix indicatif : 890 à 2 490 € + 79 €/mois (mensuel : Hébergement, maintenance technique et redirection de chaque ancienne adresse, vérifiée page par page.)
+Prix indicatif : 690 € + 19 €/mois (mensuel : Hébergement, maintenance technique et redirection de chaque ancienne adresse, vérifiée page par page.)
 Délai : 7 à 14 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Entreprises en Wallonie qui ont déjà un site web mais qui ont honte de le montrer, qui ne reçoivent plus de demandes, ou qui ont peur de tout perdre en le refaisant.
@@ -243,12 +243,12 @@ Questions fréquentes :
 - Mes adresses e-mails vont-elles continuer de fonctionner ?
   Oui, exactement comme avant, sans aucune coupure de vos e-mails professionnels.
 - Quel est le prix exact pour moderniser mon site ?
-  Le tarif dépend de la taille de votre site : 890 € pour un petit site ou une page unique, jusqu’à 2 490 € pour un grand site de plus de 10 pages. Le tarif est fixé à l’avance sans mauvaise surprise.
+  Le prix est fixé à l’avance : 690 € pour moderniser un site jusqu’à 5 pages, plus 19 €/mois d’hébergement. Un site plus grand reçoit un prix fixe avant de commencer, sans mauvaise surprise.
 
 ## Fiche Google Business et Maps
 
 URL : https://purity-agency.be/services/google-business
-Prix indicatif : 290 € (mensuel : Paiement unique sans abonnement obligatoire.)
+Prix indicatif : 149 € (mensuel : Paiement unique sans abonnement obligatoire.)
 Délai : 3 à 5 jours ouvrés
 Engagement : Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.
 Pour qui : Tous les artisans, dépanneurs, commerçants et PME en Wallonie dont les clients se trouvent dans un rayon de 10 à 30 km.
@@ -285,7 +285,7 @@ Questions fréquentes :
 ## Identité visuelle et logo
 
 URL : https://purity-agency.be/services/identite-visuelle-logo
-Prix indicatif : 690 € (mensuel : Paiement unique · cession des droits du logo livré incluse.)
+Prix indicatif : 190 € (mensuel : Paiement unique · cession des droits du logo livré incluse.)
 Délai : 7 à 10 jours ouvrés
 Engagement : Aucun engagement : c’est un paiement unique, sans abonnement ni reconduction.
 Pour qui : Artisans du bâtiment, indépendants qui se lancent, commerces locaux et entreprises voulant une image sérieuse qui inspire confiance dès le premier coup d’œil.
@@ -358,7 +358,7 @@ Questions fréquentes :
 ## Référencement local (SEO)
 
 URL : https://purity-agency.be/services/referencement-local-seo
-Prix indicatif : 590 € + 149 €/mois (mensuel : Optimisations continues, création de contenus mensuels sur vos chantiers et bilan transparent sans jargon.)
+Prix indicatif : 149 €/mois (mensuel : Optimisations continues, création de contenus mensuels sur vos chantiers et bilan transparent sans jargon.)
 Délai : Mise en place : 10 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale. Nous recommandons de compter environ 6 mois pour juger les résultats : c’est une recommandation, pas un engagement.
 Pour qui : Entreprises établies en Wallonie qui ne veulent plus dépendre du bouche-à-oreille aléatoire et souhaitent devenir la référence évidente sur leur secteur.
@@ -392,9 +392,9 @@ Questions fréquentes :
 ## Réseaux sociaux (3x/semaine)
 
 URL : https://purity-agency.be/services/gestion-reseaux-sociaux
-Prix indicatif : 290 € + 349 €/mois (mensuel : Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.)
+Prix indicatif : 249 €/mois (mensuel : Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. Contenu cadré sur devis.)
 Délai : Démarrage sous 5 jours ouvrés
-Engagement : Le 1er mois est offert, puis 6 mois à 349 €/mois. Si vous continuez, l’abonnement est conclu pour 6 mois, puis il se résilie par écrit chaque mois, avec un mois de préavis.
+Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Artisans, commerçants, restaurateurs et gérants de PME en Wallonie qui savent qu’il faut être visible sur les réseaux mais qui manquent de temps pour s’en occuper.
 Utilité : Une page qui montre que vous êtes actif et sérieux, et qui rappelle votre nom à vos anciens clients. Votre seul travail : envoyer quelques photos sur WhatsApp et valider le mois en 5 minutes.
 
@@ -406,7 +406,7 @@ Livrables :
 - Rédaction complète des textes sans aucun jargon : Chaque publication est accompagnée d’un texte clair, poli et direct invitant les personnes intéressées à vous demander un devis.
 - Planning du mois partagé à l’avance pour validation : Vous validez l’ensemble des publications du mois en 5 minutes sur votre téléphone avant qu’elles ne soient programmées.
 - Diffusion automatique aux meilleures heures de la journée : Vos contenus sont publiés automatiquement aux moments où vos clients locaux sont les plus attentifs (pauses déjeuner, soirées, week-ends).
-- 1er mois offert, puis 6 mois à 349 €/mois : Vous ne payez que les frais de démarrage (290 €, -25 % si vous signez dans les 24 h après votre devis). Le 1er mois est offert, puis 6 mois à 349 €/mois.
+- Sans frais de départ, résiliable chaque mois : Vous payez 249 €/mois, rien au démarrage. Si le contenu ne vous convient pas, vous arrêtez le mois suivant.
 
 Inclus dans le suivi : Programmation des posts, assistance rapide si vous avez une annonce urgente (ex : congés annuels) et surveillance de vos comptes.
 
@@ -419,8 +419,8 @@ Déroulement :
 Questions fréquentes :
 - Dois-je vous envoyer des photos chaque semaine ?
   Non, il vous suffit de déposer vos photos de chantiers sur une conversation WhatsApp au fil de vos journées. Nous nous chargeons de les trier, recadrer et scénariser.
-- Comment fonctionne le 1er mois offert, puis 6 mois à 349 €/mois ?
-  Vous ne réglez que les frais de mise en place (290 €, ramenés à 217 € si vous signez dans les 24 h après votre devis). Le 1er mois est offert, puis 6 mois à 349 €/mois.
+- Est-ce que je m’engage pour plusieurs mois ?
+  Non. C’est 249 €/mois, sans frais de départ, et l’abonnement se résilie par écrit chaque mois, avec un mois de préavis.
 - Puis-je continuer à poster moi-même de temps en temps ?
   Oui, bien sûr ! Notre travail assure votre présence régulière, mais vous restez totalement libre de poster une story spontanée quand vous le souhaitez.
 - Sur quels réseaux sociaux publiez-vous ?
@@ -429,7 +429,7 @@ Questions fréquentes :
 ## Pilote automatique Essentiel
 
 URL : https://purity-agency.be/services/pilote-automatique-essentiel
-Prix indicatif : 490 € + 39 €/mois (mensuel : Surveillance automatique des connexions, alertes anti-erreurs et assistance technique.)
+Prix indicatif : 190 € + 39 €/mois (mensuel : Surveillance automatique des connexions, alertes anti-erreurs et assistance technique.)
 Délai : 5 à 7 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Artisans et indépendants en Wallonie qui passent leurs soirées à taper les mêmes messages, relancer des devis non signés ou courir après des clients qui oublient leurs rendez-vous.
@@ -465,7 +465,7 @@ Questions fréquentes :
 ## Pilote automatique Business
 
 URL : https://purity-agency.be/services/pilote-automatique-business
-Prix indicatif : 990 € + 69 €/mois (mensuel : Surveillance des liaisons multi-outils, ajustement des champs et assistance technique.)
+Prix indicatif : 490 € + 69 €/mois (mensuel : Surveillance des liaisons multi-outils, ajustement des champs et assistance technique.)
 Délai : 10 à 14 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : PME, entreprises du bâtiment avec plusieurs camionnettes sur la route, cabinets comptables et sociétés recevant plus de 10 demandes par semaine en Wallonie.
@@ -501,7 +501,7 @@ Questions fréquentes :
 ## Pilote automatique Intégral
 
 URL : https://purity-agency.be/services/pilote-automatique-integral
-Prix indicatif : 1 990 € + 119 €/mois (mensuel : Surveillance de l’assistant, mises à jour de vos tarifs et ajustements continus.)
+Prix indicatif : 990 € + 99 €/mois (mensuel : Surveillance de l’assistant, mises à jour de vos tarifs et ajustements continus.)
 Délai : 15 à 20 jours ouvrés
 Engagement : Le suivi mensuel se résilie par écrit chaque mois, avec un mois de préavis, sans durée minimale.
 Pour qui : Entreprises en forte croissance, sociétés de dépannage avec beaucoup d’appels et gérants qui n’en peuvent plus d’être dérangés en permanence pour des questions basiques.
@@ -538,7 +538,7 @@ Questions fréquentes :
 ## Agence web par ville
 
 - [Agence web en Brabant wallon : sites et IA](https://purity-agency.be/agence-web/brabant-wallon): Création de site internet, SEO local et automatisation pour PME du Brabant wallon : Wavre, Nivelles, Louvain-la-Neuve, Waterloo. Dès 490 €.
-- [Agence web à Charleroi : sites, SEO et IA](https://purity-agency.be/agence-web/charleroi): Agence web basée à Charleroi : sites internet, SEO local, automatisation et IA pour indépendants et PME. Site vitrine dès 1 490 € + 79 €/mois.
+- [Agence web à Charleroi : sites, SEO et IA](https://purity-agency.be/agence-web/charleroi): Agence web basée à Charleroi : sites internet, SEO local, automatisation et IA pour indépendants et PME. Site vitrine dès 890 € + 19 €/mois.
 - [Agence web à La Louvière : sites et SEO local](https://purity-agency.be/agence-web/la-louviere): Création de site internet, SEO local et automatisation pour artisans et PME de La Louvière et de la région du Centre. Agence à Charleroi. Dès 490 €.
 - [Agence web pour PME à Liège : sites, SEO, IA](https://purity-agency.be/agence-web/liege): Sites internet, référencement local, automatisation et IA pour indépendants et PME liégeoises. Agence basée à Charleroi, à distance ou sur place.
 - [Agence web à Mons : création de site et SEO](https://purity-agency.be/agence-web/mons): Sites internet, référencement local et automatisation pour indépendants et PME à Mons et dans le Borinage. Agence basée à Charleroi. Dès 490 €.
@@ -555,7 +555,7 @@ Questions fréquentes :
 - [Site internet pour garage en Wallonie](https://purity-agency.be/site-internet/garage): Site internet pour garage et carrosserie en Wallonie : RDV entretien en ligne, devis carrosserie avec photos, véhicules en vente. Dès 1 490 €.
 - [Site internet pour institut de beauté en Wallonie](https://purity-agency.be/site-internet/institut-beaute): Site internet pour institut de beauté en Wallonie : réservation 24h/24, acompte contre les rendez-vous manqués, carte des soins et cartes cadeaux.
 - [Site internet pour kinésithérapeute en Wallonie](https://purity-agency.be/site-internet/kinesitherapeute): Site internet pour kiné en Wallonie : prise de RDV en ligne, motifs de consultation, infos INAMI et tarifs clairs, dans le respect de la déontologie.
-- [Site internet pour restaurant en Wallonie](https://purity-agency.be/site-internet/restaurant): Site internet pour restaurant en Wallonie : carte à jour, réservation en ligne sans commission, avis Google et SEO local. Dès 1 490 € + 79 €/mois.
+- [Site internet pour restaurant en Wallonie](https://purity-agency.be/site-internet/restaurant): Site internet pour restaurant en Wallonie : carte à jour, réservation en ligne sans commission, avis Google et SEO local. Dès 890 € + 19 €/mois.
 - [Site internet pour salle de sport en Wallonie](https://purity-agency.be/site-internet/salle-de-sport): Site internet pour salle de sport et studio en Wallonie : planning des cours, réservation de places, essai gratuit et abonnements en ligne.
 - [Site internet pour toiletteur en Wallonie](https://purity-agency.be/site-internet/toiletteur): Site internet pour toiletteur canin et félin en Wallonie : réservation par race et taille, acompte, tarifs clairs et rappels automatiques.
 

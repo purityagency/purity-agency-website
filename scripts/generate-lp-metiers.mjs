@@ -821,7 +821,7 @@ for (const study of caseStudies) {
         <span class="lp-package__sub">+ 79&nbsp;€/mois (hébergement, maintenance, sécurité) · ${VAT_NOTE}</span>
         <p class="lp-package__offer">${OFFER_NOTE}, soit 1&nbsp;117&nbsp;€ pour la création.</p>
         <a class="lp-package__cta" href="#devis-direct">Demander mon devis</a>
-        <span class="lp-package__bonus">En option : 1er mois offert sur la formule Réseaux sociaux, puis engagement de 6 mois</span>
+        <span class="lp-package__bonus">En option : formule Réseaux sociaux à 249 €/mois, sans frais de départ</span>
       </div>
     </div>
   </section>

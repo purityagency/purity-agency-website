@@ -1151,6 +1151,7 @@ body.service-page {
 /* Bandeau cookies plein écran (≤ 600 px, voir consent.css) : la barre de prix
    se pose au-dessus au lieu d'être cachée dessous. */
 @media (max-width: 600px) {
-  .sd-floating-bar { bottom: var(--consent-h, 0px); }
+  /* transform et non bottom : déplacer la barre sans décalage de mise en page (CLS) */
+  .sd-floating-bar { transform: translateY(calc(-1 * var(--consent-h, 0px))); }
   body.service-page, body.service-page.has-consent { padding-bottom: calc(84px + var(--consent-h, 0px)); }
 }

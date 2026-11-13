@@ -485,7 +485,7 @@ function footer() {
   </div>
 </footer>
 <script src="/js/menu.js?v=20261105r" defer></script>
-<script src="/js/cookie-notice.js" defer></script>`;
+<script src="/js/cookie-notice.js?v=20261113" defer></script>`;
 }
 
 function articleHtml(article) {
@@ -524,7 +524,7 @@ function articleHtml(article) {
 <meta property="og:url" content="${siteUrl}/${article.slug}">
 <meta property="og:title" content="${esc(article.title)}">
 <meta property="og:description" content="${esc(article.description)}">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 ${cssLinks}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 ${ogImage}</head>
@@ -573,7 +573,7 @@ function blogHtml() {
 <meta property="og:locale" content="fr_BE">
 <meta property="og:title" content="Le journal Purity : acquisition, systèmes et IA sans jargon">
 <meta property="og:description" content="Des guides utiles, datés et concrets pour les indépendants et PME de Wallonie.">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 ${cssLinks}
 <script type="application/ld+json">${JSON.stringify(blogJson)}</script>
 ${ogImage}</head>

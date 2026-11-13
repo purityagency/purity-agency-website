@@ -314,6 +314,7 @@ export function isAllowedStaticPath(path) {
   if (segments.some(seg => seg.startsWith('.'))) return false;
   return (
     /^\/[a-zA-Z0-9_-]+\.(?:html|txt|xml)$/.test(path) ||
+    path === '/site.webmanifest' ||
     /^\/(?:assets|css|js)\/[a-zA-Z0-9_./-]+$/.test(path) ||
     /^\/cas-concrets\/[a-z0-9-]+\.html$/.test(path) ||
     /^\/services\/[a-z0-9-]+\.html$/.test(path) ||

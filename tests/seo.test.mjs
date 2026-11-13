@@ -39,6 +39,10 @@ test('assets versionnés immuables, sitemap 200 et clé IndexNow servie', async 
   }
   const key = (await readFile(new URL('../scripts/indexnow.mjs', import.meta.url), 'utf8')).match(/KEY = '([0-9a-f]+)'/)[1];
   assert.equal((await (await get(`/${key}.txt`)).text()).trim(), key);
+  const mf = await get('/site.webmanifest');
+  assert.equal(mf.status, 200);
+  assert.match(mf.headers.get('content-type'), /application\/manifest\+json/);
+  assert.equal((await mf.json()).name, 'Purity Agency');
 });
 
 test('page À propos routée, pages légales en noindex et hors sitemap', async () => {

@@ -571,7 +571,7 @@ for (const study of caseStudies) {
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
 <link rel="stylesheet" href="/css/cases.css?v=20261106a">

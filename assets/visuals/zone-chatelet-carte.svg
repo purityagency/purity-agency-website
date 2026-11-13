@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1365 853" width="1365" height="853" font-family="Helvetica, Arial, sans-serif">
+<rect width="1365" height="853" fill="#F4F2F7"/>
+<circle cx="560" cy="470" r="170" fill="none" stroke="#D9D4E2" stroke-width="1.5"/><text x="686.207" y="612.207" font-size="30" fill="#8C8696">5 km</text><circle cx="560" cy="470" r="340" fill="none" stroke="#D9D4E2" stroke-width="1.5"/><text x="806.414" y="732.414" font-size="30" fill="#8C8696">10 km</text>
+<line x1="560" y1="470" x2="752" y2="494" stroke="#6C3CAA" stroke-width="3" stroke-dasharray="10 8"/>
+<circle cx="560" cy="470" r="12" fill="#0B0A0C"/>
+<text x="540" y="530" font-size="40" font-weight="600" fill="#0B0A0C" text-anchor="end">Charleroi</text>
+<circle cx="752" cy="494" r="22" fill="#6C3CAA" fill-opacity=".18"/>
+<circle cx="752" cy="494" r="11" fill="#6C3CAA"/>
+<text x="782" y="504" font-size="48" font-weight="700" fill="#0B0A0C">Châtelet</text>
+<text x="70" y="120" font-size="84" font-weight="700" fill="#0B0A0C">Châtelet</text>
+<text x="72" y="185" font-size="40" fill="#55504A">≈ 6 km de notre bureau, à vol d’oiseau</text>
+<text x="72" y="800" font-size="30" fill="#8C8696">Carte schématique · nord en haut</text>
+</svg>

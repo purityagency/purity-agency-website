@@ -74,7 +74,7 @@ const short = `${HEAD}
 
 - [Accueil](${O}/): présentation de l'agence et de ses solutions.
 - [Services et tarifs](${O}/services): les ${services.length} solutions, avec leurs repères de prix.
-- [Agence web par ville](${O}/agence-web): Charleroi, Namur, Mons, La Louvière, Liège, Brabant wallon.
+- [Agence web par ville](${O}/agence-web): Charleroi, Gosselies, Fleurus, Châtelet, Namur, Mons, La Louvière, Liège, Brabant wallon.
 - [Site internet par métier](${O}/site-internet/): pages dédiées à ${metiers.length} métiers.
 - [Démos par métier](${O}/cas-concrets): ${cases.length} démonstrations interactives par métier.
 - [Blog](${O}/blog): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.

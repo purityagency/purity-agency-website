@@ -10,7 +10,7 @@ Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège,
 
 - [Accueil](https://purity-agency.be/): présentation de l'agence et de ses solutions.
 - [Services et tarifs](https://purity-agency.be/services): les 14 solutions, avec leurs repères de prix.
-- [Agence web par ville](https://purity-agency.be/agence-web): Charleroi, Namur, Mons, La Louvière, Liège, Brabant wallon.
+- [Agence web par ville](https://purity-agency.be/agence-web): Charleroi, Gosselies, Fleurus, Châtelet, Namur, Mons, La Louvière, Liège, Brabant wallon.
 - [Site internet par métier](https://purity-agency.be/site-internet/): pages dédiées à 12 métiers.
 - [Démos par métier](https://purity-agency.be/cas-concrets): 12 démonstrations interactives par métier.
 - [Blog](https://purity-agency.be/blog): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
@@ -39,6 +39,9 @@ Zone servie : Charleroi et toute la Wallonie (Namur, Mons, La Louvière, Liège,
 
 - [Agence web en Brabant wallon : sites et IA](https://purity-agency.be/agence-web/brabant-wallon): Création de site internet, SEO local et automatisation pour PME du Brabant wallon : Wavre, Nivelles, Louvain-la-Neuve, Waterloo. Dès 390 €.
 - [Agence web à Charleroi : sites, SEO et IA](https://purity-agency.be/agence-web/charleroi): Agence web basée à Charleroi : sites internet, SEO local, automatisation et IA pour indépendants et PME. Site vitrine dès 890 € + 19 €/mois.
+- [Agence web à Châtelet : sites, SEO et IA](https://purity-agency.be/agence-web/chatelet): Sites internet, référencement local et automatisation pour les commerces, artisans et PME de Châtelet, Châtelineau et Bouffioulx. Agence à 6 km.
+- [Agence web à Fleurus : sites, SEO et IA](https://purity-agency.be/agence-web/fleurus): Sites internet, référencement local et automatisation pour les commerces, artisans et PME de Fleurus et de ses villages. Agence basée à Charleroi.
+- [Agence web à Gosselies : sites, SEO et IA](https://purity-agency.be/agence-web/gosselies): Sites internet, référencement local et automatisation pour les PME de Gosselies, de l’Aéropole et du nord de Charleroi. Agence à 6 km, prix publics.
 - [Agence web à La Louvière : sites et SEO local](https://purity-agency.be/agence-web/la-louviere): Création de site internet, SEO local et automatisation pour artisans et PME de La Louvière et de la région du Centre. Agence à Charleroi. Dès 390 €.
 - [Agence web pour PME à Liège : sites, SEO, IA](https://purity-agency.be/agence-web/liege): Sites internet, référencement local, automatisation et IA pour indépendants et PME liégeoises. Agence basée à Charleroi, à distance ou sur place.
 - [Agence web à Mons : création de site et SEO](https://purity-agency.be/agence-web/mons): Sites internet, référencement local et automatisation pour indépendants et PME à Mons et dans le Borinage. Agence basée à Charleroi. Dès 390 €.

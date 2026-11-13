@@ -34,8 +34,17 @@ function load(file, seen = new Set()) {
   return absolutize(css, dir);
 }
 
-const parts = ORDER.map((n) => `/* ---- ${n}.css ---- */\n${load(`css/${n}.css`).trim()}\n`);
-const out = parts.join('\n');
-writeFileSync(resolve(ROOT, 'css/home.bundle.css'), out);
-const v = createHash('sha1').update(out).digest('hex').slice(0, 8);
-console.log(`css/home.bundle.css : ${Buffer.byteLength(out)} octets, v=${v}`);
+// Pages metier (site-internet/*) et villes (agence-web/*) : memes 4 feuilles, meme ordre.
+// A reconstruire (et ?v= a monter dans ces 19 pages) des que l'une d'elles change.
+const LANDING_ORDER = ['app', 'menu', 'service-detail', 'landing-visual'];
+
+function bundle(order, name) {
+  const parts = order.map((n) => `/* ---- ${n}.css ---- */\n${load(`css/${n}.css`).trim()}\n`);
+  const out = parts.join('\n');
+  writeFileSync(resolve(ROOT, `css/${name}`), out);
+  const v = createHash('sha1').update(out).digest('hex').slice(0, 8);
+  console.log(`css/${name} : ${Buffer.byteLength(out)} octets, v=${v}`);
+}
+
+bundle(ORDER, 'home.bundle.css');
+bundle(LANDING_ORDER, 'landing.bundle.css');

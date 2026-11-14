@@ -35,7 +35,7 @@ function load(file, seen = new Set()) {
 }
 
 // Pages metier (site-internet/*) et villes (agence-web/*) : memes 4 feuilles, meme ordre.
-// A reconstruire (et ?v= a monter dans ces 19 pages) des que l'une d'elles change.
+// A reconstruire (et ?v= a monter dans ces pages, agence-web/index.html compris) des que l'une d'elles change.
 const LANDING_ORDER = ['app', 'menu', 'service-detail', 'landing-visual'];
 
 function bundle(order, name) {

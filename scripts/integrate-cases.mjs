@@ -15,7 +15,7 @@ function addCasesNavigation(html) {
     });
   }
   // Mobile popover menu nav
-  html = html.replace(/(<nav class="menu__nav">[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*style="--i:0"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
+  html = html.replace(/(<nav class="menu__nav"[^>]*>[\s\S]*?<a [^>]*href="(?:\/#services|#services)"[^>]*style="--i:0"[^>]*>Services<\/a>)([\s\S]*?<a [^>]*href="\/?blog\.html")/gi, (m, p1, p2) => {
     if (m.includes('/cas-concrets')) return m;
     return `${p1}\n    <a href="/cas-concrets" style="--i:1">Démos par métier</a>${p2}`;
   });

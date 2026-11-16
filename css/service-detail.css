@@ -64,8 +64,10 @@ body.service-page {
 }
 .sd-breadcrumbs a { color: inherit; text-decoration: none; transition: color 160ms var(--sd-ease); }
 .sd-breadcrumbs a:hover { color: var(--sd-accent); }
-.sd-breadcrumbs span[aria-current="page"] { color: var(--sd-text); font-weight: 600; }
-.sd-breadcrumbs__sep { opacity: 0.35; }
+.sd-breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
+.sd-breadcrumbs li { display: inline-flex; align-items: center; gap: 0.45rem; }
+.sd-breadcrumbs li + li::before { content: "/"; content: "/" / ""; opacity: 0.35; }
+.sd-breadcrumbs [aria-current="page"] { color: var(--sd-text); font-weight: 600; }
 
 /* ---------------------------------------------------------------- Boutons */
 .sd-btn-primary,
@@ -1155,3 +1157,6 @@ body.service-page {
   .sd-floating-bar { transform: translateY(calc(-1 * var(--consent-h, 0px))); }
   body.service-page, body.service-page.has-consent { padding-bottom: calc(84px + var(--consent-h, 0px)); }
 }
+/* Listes de cartes : le li ne cree pas de boite, la grille reste identique. */
+.u-contents { display: contents; }
+ul.sd-hub-grid, ul.lv-thumbs, ul.lv-tiles { list-style: none; margin: 0; padding: 0; }

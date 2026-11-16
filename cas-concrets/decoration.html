@@ -16,7 +16,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=20261106a">
+<link rel="stylesheet" href="/css/cases.css?v=20261116b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,7 +74,7 @@
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -84,7 +84,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services">Services et tarifs</a>
     <a href="/cas-concrets" aria-current="page">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -97,18 +97,14 @@
 </div>
 
 <main id="contenu" tabindex="-1" class="case-detail">
-  <nav class="case-crumb" aria-label="Fil d’Ariane">
-    <a href="/cas-concrets">Démos par métier</a>
-    <span aria-hidden="true">/</span>
-    <span>Commerce</span>
-  </nav>
+  <nav class="case-crumb" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/cas-concrets">Démos par métier</a></li><li aria-current="page">Commerce</li></ol></nav>
 
   <!-- HERO HIGH-CONVERSION GOOGLE ADS -->
-  <section class="case-detail__hero" style="--case-ink:#173c35;--case-paper:#f3efe7;--case-accent:#cc754c">
+  <section class="case-detail__hero" style="--case-ink:#173c35;--case-paper:#f3efe7;--case-accent:#cc754c" aria-labelledby="titre-section-1">
     <div>
       <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> -25 % si vous signez dans les 24 h après votre devis</div>
       <p class="section-kicker">Démonstration · Boutique de décoration</p>
-      <h1>Le client repère la pièce en ligne le soir et vient la chercher en boutique.</h1>
+      <h1 id="titre-section-1">Le client repère la pièce en ligne le soir et vient la chercher en boutique.</h1>
       <p>Boutiques de déco et créateurs en Wallonie : vos pièces visibles en ligne, réservées et payées sur téléphone, retirées en magasin.</p>
 
       <div class="lp-hero__cta">
@@ -155,11 +151,11 @@
   </section>
 
   <!-- CONTRASTE AVANT / AVEC PURITY -->
-  <section class="lp-contrast">
+  <section class="lp-contrast" aria-labelledby="titre-section-2">
     <div class="lp-contrast__inner">
       <div class="lp-contrast__head">
         <span class="section-kicker">Ce que vous perdez aujourd’hui</span>
-        <h2>Un client qui hésite en boutique finit parfois par commander ailleurs, le soir, sur son téléphone.</h2>
+        <h2 id="titre-section-2">Un client qui hésite en boutique finit parfois par commander ailleurs, le soir, sur son téléphone.</h2>
       </div>
 
       <div class="lp-contrast__grid">
@@ -187,17 +183,17 @@
   </section>
 
   <!-- CE QUI EST INCLUS : BENTO GRID INTERACTIVE STUDIO-GRADE -->
-  <section class="case-detail__capabilities">
+  <section class="case-detail__capabilities" aria-labelledby="titre-section-3">
     <div class="case-detail__capabilities-wrap">
       <div class="case-detail__capabilities-head">
         <span class="section-kicker">Ce que montre la démo</span>
-        <h2>Ce que voit un client, de la pièce repérée au retrait en boutique.</h2>
+        <h2 id="titre-section-3">Ce que voit un client, de la pièce repérée au retrait en boutique.</h2>
         <p class="capabilities-head__lead">En déco, on achète ce qu’on a vu de près. La démo montre vos pièces avec matière, dimensions et provenance, puis fait venir le client en boutique pour les récupérer.</p>
       </div>
 
-      <div class="capabilities-grid">
+      <ul class="capabilities-grid">
         <!-- Card 1: Interactive Formula Selector -->
-        <article class="cap-card" data-tilt>
+        <li class="u-contents"><article class="cap-card" data-tilt>
           <div class="cap-card__header">
             <span class="cap-card__num">01</span>
             <span class="cap-card__tag">Dès la mise en ligne</span>
@@ -227,10 +223,10 @@
               <span class="cap-widget__output" role="status">Stock boutique en direct : 2 pièces restantes · Retrait disponible dès 14 h 00</span>
             </div>
           </div>
-        </article>
+        </article></li>
 
         <!-- Card 2: Interactive Realtime Calendar Booking -->
-        <article class="cap-card" data-tilt>
+        <li class="u-contents"><article class="cap-card" data-tilt>
           <div class="cap-card__header">
             <span class="cap-card__num">02</span>
             <span class="cap-card__tag">Tourne la nuit aussi</span>
@@ -262,10 +258,10 @@
               </div>
             </div>
           </div>
-        </article>
+        </article></li>
 
         <!-- Card 3: Interactive SMS & Anti-No-Show Engine -->
-        <article class="cap-card" data-tilt>
+        <li class="u-contents"><article class="cap-card" data-tilt>
           <div class="cap-card__header">
             <span class="cap-card__num">03</span>
             <span class="cap-card__tag">Moins d’oublis</span>
@@ -289,17 +285,17 @@
               </div>
             </div>
           </div>
-        </article>
-      </div>
+        </article></li>
+      </ul>
     </div>
   </section>
 
   <!-- OFFRE & PRIX TRANSPARENT (PURITY EDITORIAL) -->
-  <section class="lp-package">
+  <section class="lp-package" aria-labelledby="titre-section-4">
     <div class="lp-package__card" data-tilt>
       <div>
         <span class="lp-package__tag">Site vitrine métier · 5 pages</span>
-        <h2 class="lp-package__title">Votre boutique ouverte en ligne, vos clients qui viennent en magasin.</h2>
+        <h2 class="lp-package__title" id="titre-section-4">Votre boutique ouverte en ligne, vos clients qui viennent en magasin.</h2>
         <p class="lp-package__desc">Cinq pages rapides sur téléphone, la fonction clé de votre métier, votre nom de domaine et le référencement local en Wallonie. Textes rédigés pour vous.</p>
         <ul class="lp-package__features">
           <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Textes écrits pour votre métier, pas un modèle recopié</li>
@@ -324,10 +320,10 @@
   </section>
 
   <!-- FORMULAIRE DE CONVERSION DIRECT -->
-  <section id="devis-direct" class="lp-lead-section">
+  <section id="devis-direct" class="lp-lead-section" aria-labelledby="titre-section-5">
     <div class="lp-lead-section__inner">
       <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> Je vous réponds sous 24 h ouvrées</div>
-      <h2>Recevez une proposition pour votre boutique.</h2>
+      <h2 id="titre-section-5">Recevez une proposition pour votre boutique.</h2>
       <p>Quelques lignes suffisent. Je lis votre demande moi-même et je vous réponds sous 24 h ouvrées avec une proposition chiffrée.</p>
 
       <form class="lp-form" id="lp-form" action="/api/contact" method="POST">
@@ -397,7 +393,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

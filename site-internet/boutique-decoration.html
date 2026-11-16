@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/landing.bundle.css?v=69ec86db">
+<link rel="stylesheet" href="/css/landing.bundle.css?v=9abdb2bf">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -163,7 +163,7 @@
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -173,7 +173,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -188,11 +188,11 @@
 <main id="contenu" tabindex="-1" class="sd-main lv-main">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
-      <a href="/">Accueil</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <a href="/site-internet/">Site internet par métier</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Boutique de décoration</span>
+      <ol>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/site-internet/">Site internet par métier</a></li>
+      <li aria-current="page">Boutique de décoration</li>
+      </ol>
     </nav>
 
     <section class="lv-hero" aria-labelledby="service-title">
@@ -392,29 +392,29 @@
         <span class="lv-kicker">Métiers proches</span>
         <h2 class="lv-h2"><span id="near-title">Métiers voisins</span></h2>
       </div>
-      <div class="lv-thumbs lv-thumbs--4">
-        <a class="lv-thumb" href="/site-internet/architecte">
+      <ul class="lv-thumbs lv-thumbs--4">
+        <li class="u-contents"><a class="lv-thumb" href="/site-internet/architecte">
           <span class="lv-thumb__img"><img src="/assets/shots/architecture-desktop-0.webp" srcset="/assets/shots/architecture-desktop-0-720.webp 720w, /assets/shots/architecture-desktop-0.webp 1440w" alt="Aperçu de la démo Ligne Claire conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Architecte</h3>
-        </a>
-        <a class="lv-thumb" href="/site-internet/institut-beaute">
+        </a></li>
+        <li class="u-contents"><a class="lv-thumb" href="/site-internet/institut-beaute">
           <span class="lv-thumb__img"><img src="/assets/shots/beaute-desktop-0.webp" srcset="/assets/shots/beaute-desktop-0-720.webp 720w, /assets/shots/beaute-desktop-0.webp 1440w" alt="Aperçu de la démo Maison Lune conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Institut de beauté</h3>
-        </a>
-        <a class="lv-thumb" href="/site-internet/restaurant">
+        </a></li>
+        <li class="u-contents"><a class="lv-thumb" href="/site-internet/restaurant">
           <span class="lv-thumb__img"><img src="/assets/shots/restaurant-desktop-0.webp" srcset="/assets/shots/restaurant-desktop-0-720.webp 720w, /assets/shots/restaurant-desktop-0.webp 1440w" alt="Aperçu de la démo Table Serein conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Restaurant</h3>
-        </a>
-        <a class="lv-thumb" href="/site-internet/agence-immobiliere">
+        </a></li>
+        <li class="u-contents"><a class="lv-thumb" href="/site-internet/agence-immobiliere">
           <span class="lv-thumb__img"><img src="/assets/shots/immobilier-desktop-0.webp" srcset="/assets/shots/immobilier-desktop-0-720.webp 720w, /assets/shots/immobilier-desktop-0.webp 1440w" alt="Aperçu de la démo Beaux Jours conçue par Purity" width="1440" height="900" loading="lazy" decoding="async" sizes="(max-width: 640px) 46vw, 270px"></span>
           <h3>Agence immobilière</h3>
-        </a>
-      </div>
+        </a></li>
+      </ul>
     </section>
 
-    <section class="lv-cta">
+    <section class="lv-cta" aria-labelledby="titre-section-9">
       <div class="lv-cta__inner">
-        <h2 class="lv-cta__title">Vos pièces vues en ligne, retirées en boutique</h2>
+        <h2 class="lv-cta__title" id="titre-section-9">Vos pièces vues en ligne, retirées en boutique</h2>
         <p>Amir Kebiyeb vous répond lui-même avec un devis à prix fixe. Voir aussi notre <a href="/agence-web/charleroi">agence web à Charleroi</a>.</p>
         <div class="lv-actions">
           <a class="lv-btn lv-btn--primary" href="/contact">Écrire à Amir <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
@@ -460,7 +460,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

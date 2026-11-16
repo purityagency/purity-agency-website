@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
-<link rel="stylesheet" href="/css/landing.bundle.css?v=69ec86db">
+<link rel="stylesheet" href="/css/landing.bundle.css?v=9abdb2bf">
 <link rel="stylesheet" href="/css/visuals.css?v=20261107">
   <link rel="stylesheet" href="/css/be-map.css?v=1">
 <script type="application/ld+json">
@@ -73,7 +73,7 @@
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -83,7 +83,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -98,9 +98,10 @@
 <main id="contenu" tabindex="-1" class="sd-main lv-main">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
-      <a href="/">Accueil</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Agence web</span>
+      <ol>
+      <li><a href="/">Accueil</a></li>
+      <li aria-current="page">Agence web</li>
+      </ol>
     </nav>
 
     <section class="lv-hero lv-hero--city" aria-labelledby="hub-title">
@@ -198,9 +199,9 @@
       </div>
     </details>
 
-    <section class="lv-cta">
+    <section class="lv-cta" aria-labelledby="titre-section-3">
       <div class="lv-cta__inner">
-        <h2 class="lv-cta__title">Votre ville n’est pas dans la liste ?</h2>
+        <h2 class="lv-cta__title" id="titre-section-3">Votre ville n’est pas dans la liste ?</h2>
         <p>Amir Kebiyeb vous répond lui-même avec un devis à prix fixe. Partout en Wallonie, sur place ou en visio.</p>
         <div class="lv-actions">
           <a class="lv-btn lv-btn--primary" href="/contact">Écrire à Amir <span class="lv-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
@@ -238,7 +239,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

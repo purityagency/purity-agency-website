@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261111a">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261116b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -179,7 +179,7 @@
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -189,7 +189,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services" aria-current="page">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -204,11 +204,11 @@
 <main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
-      <a href="/">Accueil</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <a href="/services">Services</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Site complet (10+ pages)</span>
+      <ol>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/services">Services</a></li>
+      <li aria-current="page">Site complet (10+ pages)</li>
+      </ol>
     </nav>
 
     <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
@@ -266,7 +266,7 @@
         <h2 class="sd-heading" id="sd-vs-title">Avant, et avec Purity</h2>
       </div>
       <div class="sd-comparison-wrap">
-        <table class="sd-comparison-table">
+        <table class="sd-comparison-table" aria-label="Comparaison avant et avec Purity">
           <thead>
             <tr>
               <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
@@ -505,7 +505,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

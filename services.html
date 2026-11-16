@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/service-detail.css?v=20261111a">
+<link rel="stylesheet" href="/css/service-detail.css?v=20261116b">
 <link rel="stylesheet" href="/css/visuals.css?v=20261107">
 <script src="/js/visuals.js?v=1" defer></script>
 <script type="application/ld+json">
@@ -47,7 +47,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Services",
+          "name": "Services et tarifs",
           "item": "https://purity-agency.be/services"
         }
       ]
@@ -74,7 +74,7 @@
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -84,7 +84,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services" aria-current="page">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -99,16 +99,17 @@
 <main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
-      <a href="/">Accueil</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Services et tarifs</span>
+      <ol>
+      <li><a href="/">Accueil</a></li>
+      <li aria-current="page">Services et tarifs</li>
+      </ol>
     </nav>
 
     <section class="sd-hero sd-hero--hub" aria-labelledby="hub-title">
       <div class="sd-hub-hero">
         <div>
           <div class="sd-hero__pill">Services et prix 2026-2027</div>
-          <h1 class="sd-hero__title" id="hub-title">Des solutions concrètes.<br>Des prix affichés.</h1>
+          <h1 class="sd-hero__title" id="hub-title">Des solutions concrètes. <br>Des prix affichés.</h1>
         </div>
         <div class="sd-hub-hero__side">
           <p class="sd-hero__lead">Sites, fiche Google, réseaux et automatisation pour les indépendants et PME de Wallonie. Chaque prix est celui de votre devis.</p>
@@ -137,8 +138,8 @@
 
     <section class="sd-section sd-section--hub" aria-label="Tous les services">
       <p class="sd-hub-price-note">Prix nets · TVA non applicable (franchise, art. 56bis CTVA). -25 % si vous signez dans les 24 h après votre devis.</p>
-      <div class="sd-hub-grid" id="services-grid">
-        <article class="sd-hub-card" data-pillar="pilier-4">
+      <ul class="sd-hub-grid" id="services-grid">
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-4">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-diagnostic-digital-hero.webp" srcset="/assets/visuals/service-diagnostic-digital-hero-800.webp 800w, /assets/visuals/service-diagnostic-digital-hero.webp 1195w" sizes="(max-width: 767px) 92vw, 380px" width="1195" height="896" alt="Deux personnes à une table de café qui passent en revue une page web sur un ordinateur, un sablier à côté" decoding="async" loading="lazy">
           </div>
@@ -154,8 +155,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb sd-hub-card__thumb--tall">
             <img src="/assets/shots/chauffage-mobile-0.webp" width="390" height="844" alt="Page d’accueil mobile de la démo chauffagiste Thermiq" decoding="async" loading="lazy">
           </div>
@@ -171,8 +172,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb">
             <img src="/assets/shots/renovation-desktop-0.webp" srcset="/assets/shots/renovation-desktop-0-720.webp 720w, /assets/shots/renovation-desktop-0.webp 1440w" sizes="(max-width: 767px) 92vw, 380px" width="1440" height="900" alt="Accueil de la démo rénovation Atelier Noma" decoding="async" loading="lazy">
           </div>
@@ -188,8 +189,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb">
             <img src="/assets/shots/architecture-desktop-0.webp" srcset="/assets/shots/architecture-desktop-0-720.webp 720w, /assets/shots/architecture-desktop-0.webp 1440w" sizes="(max-width: 767px) 92vw, 380px" width="1440" height="900" alt="Accueil de la démo bureau d’architecture Ligne Claire" decoding="async" loading="lazy">
           </div>
@@ -205,8 +206,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb">
             <img src="/assets/shots/decoration-desktop-0.webp" srcset="/assets/shots/decoration-desktop-0-720.webp 720w, /assets/shots/decoration-desktop-0.webp 1440w" sizes="(max-width: 767px) 92vw, 380px" width="1440" height="900" alt="Accueil de la démo boutique de décoration Matière Commune" decoding="async" loading="lazy">
           </div>
@@ -222,8 +223,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-refonte-modernisation-hero.webp" srcset="/assets/visuals/service-refonte-modernisation-hero-800.webp 800w, /assets/visuals/service-refonte-modernisation-hero.webp 1194w" sizes="(max-width: 767px) 92vw, 380px" width="1194" height="896" alt="Vieil écran cathodique beige à côté d’un ordinateur portable moderne, sur une étagère encombrée de classeurs" decoding="async" loading="lazy">
           </div>
@@ -239,8 +240,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-google-business-hero.webp" srcset="/assets/visuals/service-google-business-hero-800.webp 800w, /assets/visuals/service-google-business-hero.webp 1024w" sizes="(max-width: 767px) 92vw, 380px" width="1024" height="768" alt="Smartphone affichant une carte, tenu dans une ruelle pavée de briques" decoding="async" loading="lazy">
           </div>
@@ -256,8 +257,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-2">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-2">
           <div class="sd-hub-card__thumb">
             <img src="/assets/shots/beaute-desktop-0.webp" srcset="/assets/shots/beaute-desktop-0-720.webp 720w, /assets/shots/beaute-desktop-0.webp 1440w" sizes="(max-width: 767px) 92vw, 380px" width="1440" height="900" alt="Identité de la démo institut de beauté Maison Lune" decoding="async" loading="lazy">
           </div>
@@ -273,8 +274,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-2">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-2">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-pack-visuels-reels-hero.webp" srcset="/assets/visuals/service-pack-visuels-reels-hero-800.webp 800w, /assets/visuals/service-pack-visuels-reels-hero.webp 1195w" sizes="(max-width: 767px) 92vw, 380px" width="1195" height="896" alt="Smartphone sur trépied qui filme un potier au tour dans son atelier" decoding="async" loading="lazy">
           </div>
@@ -290,8 +291,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-1">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-1">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-referencement-local-seo-hero.webp" srcset="/assets/visuals/service-referencement-local-seo-hero-800.webp 800w, /assets/visuals/service-referencement-local-seo-hero.webp 1195w" sizes="(max-width: 767px) 92vw, 380px" width="1195" height="896" alt="Vue en hauteur sur les toits de briques de Charleroi et un terril" decoding="async" loading="lazy">
           </div>
@@ -307,8 +308,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-2">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-2">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-gestion-reseaux-sociaux-hero.webp" srcset="/assets/visuals/service-gestion-reseaux-sociaux-hero-800.webp 800w, /assets/visuals/service-gestion-reseaux-sociaux-hero.webp 1194w" sizes="(max-width: 767px) 92vw, 380px" width="1194" height="896" alt="Smartphone sur mini trépied qui filme un pâtissier en train de poser une tarte sur une table en marbre" decoding="async" loading="lazy">
           </div>
@@ -324,8 +325,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-3">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-3">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-pilote-automatique-essentiel-resultat.webp" srcset="/assets/visuals/service-pilote-automatique-essentiel-resultat-800.webp 800w, /assets/visuals/service-pilote-automatique-essentiel-resultat.webp 896w" sizes="(max-width: 767px) 92vw, 380px" width="896" height="1194" alt="Artisan qui charge sa camionnette dans une rue de briques, en fin de journée" decoding="async" loading="lazy">
           </div>
@@ -341,8 +342,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-3">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-3">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-pilote-automatique-business-hero.webp" srcset="/assets/visuals/service-pilote-automatique-business-hero-800.webp 800w, /assets/visuals/service-pilote-automatique-business-hero.webp 1195w" sizes="(max-width: 767px) 92vw, 380px" width="1195" height="896" alt="Imprimante qui sort une facture dans un petit bureau administratif" decoding="async" loading="lazy">
           </div>
@@ -358,8 +359,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-        <article class="sd-hub-card" data-pillar="pilier-3">
+        </article></li>
+        <li class="u-contents"><article class="sd-hub-card" data-pillar="pilier-3">
           <div class="sd-hub-card__thumb">
             <img src="/assets/visuals/service-pilote-automatique-integral-hero.webp" srcset="/assets/visuals/service-pilote-automatique-integral-hero-800.webp 800w, /assets/visuals/service-pilote-automatique-integral-hero.webp 1024w" sizes="(max-width: 767px) 92vw, 380px" width="1024" height="768" alt="Coiffeuse qui consulte ses rendez-vous sur une tablette à l’accueil de son salon" decoding="async" loading="lazy">
           </div>
@@ -375,8 +376,8 @@
               <span class="sd-hub-card__btn" aria-hidden="true"><svg class="sd-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </div>
           </div>
-        </article>
-      </div>
+        </article></li>
+      </ul>
     </section>
 
     <section class="sd-section sd-hub-steps" aria-label="Les étapes d’un projet">
@@ -448,7 +449,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

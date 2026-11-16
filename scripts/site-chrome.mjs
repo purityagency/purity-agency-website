@@ -26,7 +26,7 @@ export function renderHeader(active = '') {
 }
 
 export function renderMenu(active = '') {
-  return `<div id="menu" popover="auto" class="menu" aria-label="Menu">
+  return `<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -36,7 +36,7 @@ export function renderMenu(active = '') {
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     ${NAV.map(link(active)).join('\n    ')}
   </nav>
   <div class="menu__foot">
@@ -74,7 +74,7 @@ export function renderFooter() {
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

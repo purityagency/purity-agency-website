@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const SERVICES_DIR = path.join(ROOT, 'services');
-const CSS_VERSION = '20261111a';
+const CSS_VERSION = '20261116b';
 // Snippet SVG lu tel quel dans partials/visuals (pas d'include côté serveur).
 const vzSnippet = name => fs.readFileSync(path.join(ROOT, 'partials', 'visuals', `${name}.html`), 'utf8').trim();
 const VZ_ASSETS = `<link rel="stylesheet" href="/css/visuals.css?v=20261107">
@@ -94,7 +94,7 @@ const SEO = {
 // Prix en nombre pour le JSON-LD (« 1 490 € » → 1490, « 79 €/mois » → 79).
 const amount = p => Number(String(p || '').replace(/[^0-9]/g, '')) || 0;
 function offerSchema(service, url) {
-  const offer = { "@type": "Offer", "price": String(amount(service.priceSetup)), "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": url };
+  const offer = { "@type": "Offer", "price": String(amount(service.priceSetup) || amount(service.monthlyPrice)), "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": url };
   if (service.monthlyPrice) {
     offer.priceSpecification = [
       { "@type": "UnitPriceSpecification", "name": "Création", "price": amount(service.priceSetup), "priceCurrency": "EUR" },
@@ -405,11 +405,11 @@ ${renderHeader('services')}
 <main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
-      <a href="/">Accueil</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <a href="/services">Services</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">${e(service.name)}</span>
+      <ol>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/services">Services</a></li>
+      <li aria-current="page">${e(service.name)}</li>
+      </ol>
     </nav>
 
     <section class="sd-hero sd-hero--split" aria-labelledby="service-title">
@@ -452,7 +452,7 @@ ${renderHeader('services')}
         <h2 class="sd-heading" id="sd-vs-title">Avant, et avec Purity</h2>
       </div>
       <div class="sd-comparison-wrap">
-        <table class="sd-comparison-table">
+        <table class="sd-comparison-table" aria-label="Comparaison avant et avec Purity">
           <thead>
             <tr>
               <th scope="col" class="sd-col-aspect"><span class="sd-visually-hidden">Point</span></th>
@@ -641,7 +641,7 @@ function buildServicesHubPage() {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://purity-agency.be/" },
-          { "@type": "ListItem", "position": 2, "name": "Services", "item": canonicalUrl }
+          { "@type": "ListItem", "position": 2, "name": "Services et tarifs", "item": canonicalUrl }
         ]
       }
     ]
@@ -656,9 +656,10 @@ ${renderHeader('services')}
 <main class="sd-main" id="contenu" tabindex="-1">
   <div class="sd-container">
     <nav class="sd-breadcrumbs" aria-label="Fil d'Ariane">
-      <a href="/">Accueil</a>
-      <span class="sd-breadcrumbs__sep">/</span>
-      <span aria-current="page">Services et tarifs</span>
+      <ol>
+      <li><a href="/">Accueil</a></li>
+      <li aria-current="page">Services et tarifs</li>
+      </ol>
     </nav>
 
     <section class="sd-hero sd-hero--hub" aria-labelledby="hub-title">
@@ -694,11 +695,11 @@ ${renderHeader('services')}
 
     <section class="sd-section sd-section--hub" aria-label="Tous les services">
       <p class="sd-hub-price-note">${VAT_NOTE}. ${OFFER_NOTE}.</p>
-      <div class="sd-hub-grid" id="services-grid">
+      <ul class="sd-hub-grid" id="services-grid">
         ${services.map((svc, idx) => {
           const [, src, w, h, alt] = HUB_THUMB[svc.slug];
           const tall = h > w && !src.startsWith('/assets/visuals/');
-          return `<article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
+          return `<li class="u-contents"><article class="sd-hub-card" data-pillar="${pillarTagOf(svc)}">
           <div class="sd-hub-card__thumb${tall ? ' sd-hub-card__thumb--tall' : ''}">
             <img src="${src}"${respSet(src, w, '(max-width: 767px) 92vw, 380px')} width="${w}" height="${h}" alt="${e(alt)}" decoding="async" loading="lazy">
           </div>
@@ -714,9 +715,9 @@ ${renderHeader('services')}
               <span class="sd-hub-card__btn" aria-hidden="true">${icon('arrow')}</span>
             </div>
           </div>
-        </article>`;
+        </article></li>`;
         }).join('\n        ')}
-      </div>
+      </ul>
     </section>
 
     <section class="sd-section sd-hub-steps" aria-label="Les étapes d’un projet">

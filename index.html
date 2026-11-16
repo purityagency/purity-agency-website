@@ -13,7 +13,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="/assets/hero-tentacle-studio-v3-poster.webp" imagesrcset="/assets/hero-tentacle-studio-v3-poster-640.webp 640w, /assets/hero-tentacle-studio-v3-poster.webp 1280w" imagesizes="(max-width: 767px) 62vw, 44vw" fetchpriority="high">
 <!-- Bundle genere par scripts/build-home-css.mjs (app, menu, octomask, hero-video, site-additions, audit, method, service-grid, service-experience, services-bg, home). -->
-<link rel="stylesheet" href="/css/home.bundle.css?v=dca5332d">
+<link rel="stylesheet" href="/css/home.bundle.css?v=2118bf1b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -172,7 +172,7 @@
   </button>
 </header>
 
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -182,7 +182,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -195,10 +195,10 @@
 </div>
 
 <main id="contenu" tabindex="-1">
-  <section class="hero">
+  <section class="hero" aria-labelledby="titre-section-1">
     <div class="hero__inner">
       <p class="section-kicker hero__kicker">Agence web à Charleroi et en Wallonie</p>
-      <h1 class="hero__title"><span class="hero__line hero__lead">Votre entreprise doit</span><span class="hero__line hero__delivery"><span class="hero__word"><span class="sr-only"> ramener </span></span><span class="hero__delivered-clients">des clients,<span class="hero__tail"> sans vous</span></span></span> <span class="hero__line hero__consequence"><span class="hero__exister">épuiser</span>.</span></h1>
+      <h1 class="hero__title" id="titre-section-1"><span class="hero__line hero__lead">Votre entreprise doit</span><span class="hero__line hero__delivery"><span class="hero__word"><span class="sr-only"> ramener </span></span><span class="hero__delivered-clients">des clients,<span class="hero__tail"> sans vous</span></span></span> <span class="hero__line hero__consequence"><span class="hero__exister">épuiser</span>.</span></h1>
               <video class="hero__source" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true"></video>
               <canvas class="hero__canvas" aria-hidden="true"></canvas>
               <img class="hero__poster" src="/assets/hero-tentacle-studio-v3-poster.webp" srcset="/assets/hero-tentacle-studio-v3-poster-640.webp 640w, /assets/hero-tentacle-studio-v3-poster.webp 1280w" sizes="(max-width: 767px) 62vw, 44vw" fetchpriority="high" width="1280" height="720" decoding="async" aria-hidden="true" alt="">
@@ -254,11 +254,11 @@
       <div class="oa-main">
         <img src="/assets/audit-sites/old-chaudiere.jpg" width="180" height="180" alt="" loading="lazy" decoding="async">
         <p>Veuillez decouvrir nos services de chauffage et de renovation generale. Nous sommes a votre service depuis 19 ans dans toute la region.</p>
-        <h4>Installation Chaudieres</h4>
+        <div class="ms-h4">Installation Chaudieres</div>
         <p>L'chauffage central de installations centrall et accumulez chauffage noeuve des domestiques ainsi que les systemes de chauffage. Pour tout renseignement veuillez nous contacter par telephone ou par fax aux heures de bureau.</p>
-        <h4>Renovation Salle de Bain</h4>
+        <div class="ms-h4">Renovation Salle de Bain</div>
         <p>Travaux Carrelage - Renovation complete - Remplacement baignoire - Douche italienne - Devis sur demande.</p>
-        <a>Cliquez ici pour nous contacter</a>
+        <span class="ms-a">Cliquez ici pour nous contacter</span>
       </div>
     </div>
     <p class="oa-foot">© 2011 Renov &amp; Chauffage - Derniere mise a jour le 12/03/2011 - Site optimise pour Internet Explorer 8 en 1024x768</p>
@@ -269,7 +269,7 @@
   <div class="tq-hero">
     <div class="tq-copy">
       <small>Chauffagiste à Charleroi</small>
-      <h3>Bien chez soi.<br>En toute saison.</h3>
+      <div class="ms-h3">Bien chez soi.<br>En toute saison.</div>
       <p>Chaudières et pompes à chaleur : installation, entretien et dépannage sous 24&nbsp;h.</p>
       <div class="tq-cta"><span class="tq-btn">Demander un devis</span><span class="tq-note"><i>★★★★★</i> 4,9 sur Google</span></div>
     </div>
@@ -293,11 +293,11 @@
       <div class="oa-main">
         <img src="/assets/audit-sites/old-chaudiere.jpg" width="180" height="180" alt="" loading="lazy" decoding="async">
         <p>Veuillez decouvrir nos services de chauffage et de renovation generale. Nous sommes a votre service depuis 19 ans dans toute la region.</p>
-        <h4>Installation Chaudieres</h4>
+        <div class="ms-h4">Installation Chaudieres</div>
         <p>L'chauffage central de installations centrall et accumulez chauffage noeuve des domestiques ainsi que les systemes de chauffage. Pour tout renseignement veuillez nous contacter par telephone ou par fax aux heures de bureau.</p>
-        <h4>Renovation Salle de Bain</h4>
+        <div class="ms-h4">Renovation Salle de Bain</div>
         <p>Travaux Carrelage - Renovation complete - Remplacement baignoire - Douche italienne - Devis sur demande.</p>
-        <a>Cliquez ici pour nous contacter</a>
+        <span class="ms-a">Cliquez ici pour nous contacter</span>
       </div>
     </div>
     <p class="oa-foot">© 2011 Renov &amp; Chauffage - Derniere mise a jour le 12/03/2011 - Site optimise pour Internet Explorer 8 en 1024x768</p>
@@ -308,7 +308,7 @@
   <div class="tq-hero">
     <div class="tq-copy">
       <small>Chauffagiste à Charleroi</small>
-      <h3>Bien chez soi.<br>En toute saison.</h3>
+      <div class="ms-h3">Bien chez soi.<br>En toute saison.</div>
       <p>Chaudières et pompes à chaleur : installation, entretien et dépannage sous 24&nbsp;h.</p>
       <div class="tq-cta"><span class="tq-btn">Demander un devis</span><span class="tq-note"><i>★★★★★</i> 4,9 sur Google</span></div>
     </div>
@@ -319,7 +319,7 @@
           </div>
           <figcaption class="audit-compare__caption">
             <strong>Artisan &amp; rénovation</strong>
-            <span class="audit-compare__hint"><svg viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
+            <span class="audit-compare__hint"><svg aria-hidden="true" viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
             <small class="audit-compare__note">Exemple illustratif (sites fictifs, codés par Purity)</small>
           </figcaption>
         </figure>
@@ -344,9 +344,9 @@
               <div class="audit-compare__viewport" aria-hidden="true">
                 <div class="audit-compare__layer audit-compare__layer--before"><div class="ms ms-old ms-or">
   <div class="or-page">
-    <h4 class="or-title">Brasserie du Centre - Cuisine Traditionnelle</h4>
+    <div class="ms-h4 or-title">Brasserie du Centre - Cuisine Traditionnelle</div>
     <img src="/assets/audit-sites/old-plat.jpg" width="180" height="120" alt="" loading="lazy" decoding="async">
-    <a>Cliquez ici pour télécharger le menu en PDF</a>
+    <span class="ms-a">Cliquez ici pour télécharger le menu en PDF</span>
     <table><tr><td>Lundi</td><td>De 9h00 à 14h00 (ouverture d'Il)</td><td rowspan="5">Télef: 06 33 55 88<br><br>Adresse Adress<br>2532 Brasserie du Centre</td></tr><tr><td>Mardi</td><td>De 9h00 à 19h30</td></tr><tr><td>Mercredi</td><td>De 9h00 à 19h30</td></tr><tr><td>Jeudi</td><td>De 9h00 à 20h00</td></tr><tr><td>Vendredi</td><td>De 9h00 à 14h00</td></tr></table>
     <p>Restaurant de mods our faciller notre d'onners et immediaque tous chanits du vaite. Reservation par telephone uniquement.</p>
   </div>
@@ -356,7 +356,7 @@
   <div class="ts-hero">
     <div class="ts-copy">
       <small>Cuisine de marché · Charleroi</small>
-      <h3>La saison<br>est à table.</h3>
+      <div class="ms-h3">La saison<br>est à table.</div>
       <div class="ts-book"><span class="ts-k">Ce soir, 2 personnes</span><span class="ts-slots"><i>19:00</i><i class="on">19:30</i><i>20:00</i><i>20:30</i></span><span class="ts-btn">Réserver une table</span></div>
     </div>
     <div class="ts-photo"><img src="/assets/audit-sites/serein.webp" width="720" height="480" alt="" loading="lazy" decoding="async"></div>
@@ -370,9 +370,9 @@
             </div>
             <div class="audit-mock__phone audit-mock__phone--before" aria-hidden="true"><div class="audit-mock__screen"><div class="ms ms-old ms-or">
   <div class="or-page">
-    <h4 class="or-title">Brasserie du Centre - Cuisine Traditionnelle</h4>
+    <div class="ms-h4 or-title">Brasserie du Centre - Cuisine Traditionnelle</div>
     <img src="/assets/audit-sites/old-plat.jpg" width="180" height="120" alt="" loading="lazy" decoding="async">
-    <a>Cliquez ici pour télécharger le menu en PDF</a>
+    <span class="ms-a">Cliquez ici pour télécharger le menu en PDF</span>
     <table><tr><td>Lundi</td><td>De 9h00 à 14h00 (ouverture d'Il)</td><td rowspan="5">Télef: 06 33 55 88<br><br>Adresse Adress<br>2532 Brasserie du Centre</td></tr><tr><td>Mardi</td><td>De 9h00 à 19h30</td></tr><tr><td>Mercredi</td><td>De 9h00 à 19h30</td></tr><tr><td>Jeudi</td><td>De 9h00 à 20h00</td></tr><tr><td>Vendredi</td><td>De 9h00 à 14h00</td></tr></table>
     <p>Restaurant de mods our faciller notre d'onners et immediaque tous chanits du vaite. Reservation par telephone uniquement.</p>
   </div>
@@ -382,7 +382,7 @@
   <div class="ts-hero">
     <div class="ts-copy">
       <small>Cuisine de marché · Charleroi</small>
-      <h3>La saison<br>est à table.</h3>
+      <div class="ms-h3">La saison<br>est à table.</div>
       <div class="ts-book"><span class="ts-k">Ce soir, 2 personnes</span><span class="ts-slots"><i>19:00</i><i class="on">19:30</i><i>20:00</i><i>20:30</i></span><span class="ts-btn">Réserver une table</span></div>
     </div>
     <div class="ts-photo"><img src="/assets/audit-sites/serein.webp" width="720" height="480" alt="" loading="lazy" decoding="async"></div>
@@ -391,7 +391,7 @@
           </div>
           <figcaption class="audit-compare__caption">
             <strong>Restaurant &amp; commerce</strong>
-            <span class="audit-compare__hint"><svg viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
+            <span class="audit-compare__hint"><svg aria-hidden="true" viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
             <small class="audit-compare__note">Exemple illustratif (sites fictifs, codés par Purity)</small>
           </figcaption>
         </figure>
@@ -516,7 +516,7 @@
         <details class="service-card service-card--clients" name="service-priority">
           <summary>
             <span class="service-card__index">01 · Sites web, Boutique &amp; fiche Google</span>
-            <h3>Attirer plus<br>de clients</h3>
+            <h3>Attirer plus <br>de clients</h3>
             <div class="service-card__visual" aria-hidden="true">
               <svg viewBox="0 0 360 220" focusable="false">
                 <path class="service-tentacle" pathLength="1" d="M370 192C300 194 294 127 236 131c-55 4-57 52-111 45-37-5-57-29-88-22"/>
@@ -531,13 +531,13 @@
           <div class="service-card__body">
             <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
             <div class="service-card__pricing" data-service-pricing="acquisition"><div class="service-card__pricing-head"><strong>Tarifs &amp; formules</strong><span>Hébergement rapide, domaine .be, sécurité, sauvegardes et modifications courantes inclus dans le suivi mensuel.</span></div><div class="service-card__offers"><p><strong>Dès 390&nbsp;€ + 19&nbsp;€/mois</strong> de suivi, sans engagement. <a href="/services">Voir toutes les formules</a></p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact?solution=acquisition&amp;promo=lancement">Recevoir mon devis</a><a class="service-card__example" href="/cas-concrets/renovation">Voir la démo métier</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact?solution=acquisition&amp;promo=lancement">Recevoir mon devis</a><a class="service-card__example" href="/cas-concrets/renovation">Voir la démo métier<span class="sr-only"> : rénovation</span></a></div>
           </div>
         </details>
         <details class="service-card service-card--trust" name="service-priority">
           <summary>
             <span class="service-card__index">02 · Réseaux sociaux (3x/sem.) &amp; Image</span>
-            <h3>Être actif &amp; crédible<br>sur les réseaux</h3>
+            <h3>Être actif &amp; crédible <br>sur les réseaux</h3>
             <div class="service-card__visual" aria-hidden="true">
               <svg viewBox="0 0 360 220" focusable="false">
                 <path class="service-shield" d="M105 33 174 56v50c0 40-27 67-69 83-42-16-69-43-69-83V56Z"/><path class="service-shield__mark" d="m72 107 22 23 45-54"/>
@@ -552,13 +552,13 @@
           <div class="service-card__body">
             <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
             <div class="service-card__pricing" data-service-pricing="visibilite"><div class="service-card__pricing-head"><strong>Tarifs image &amp; Réseaux sociaux</strong><span>Chaque semaine : 3 vidéos courtes (Reels, TikTok ou Shorts) et 3 publications, sur les réseaux de votre choix. 249 €/mois, sans frais de départ.</span></div><div class="service-card__offers"><p><strong>249&nbsp;€/mois</strong>, sans frais de départ. <a href="/services/gestion-reseaux-sociaux">Voir la formule</a></p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact?offer=M16&amp;promo=lancement">Recevoir mon devis</a><a class="service-card__example" href="/cas-concrets/restaurant">Voir la démo métier</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact?offer=M16&amp;promo=lancement">Recevoir mon devis</a><a class="service-card__example" href="/cas-concrets/restaurant">Voir la démo métier<span class="sr-only"> : restaurant</span></a></div>
           </div>
         </details>
         <details class="service-card service-card--time" name="service-priority">
           <summary>
             <span class="service-card__index">03 · Réponses et relances automatiques</span>
-            <h3>Gagner du temps<br>chaque semaine</h3>
+            <h3>Gagner du temps <br>chaque semaine</h3>
             <div class="service-card__visual" aria-hidden="true">
               <svg viewBox="0 0 360 220" focusable="false">
                 <circle class="service-object" cx="119" cy="92" r="51"/><path class="service-object__line" d="M119 61v33l24 14"/><path class="service-signal" d="M87 31h64M68 51l-13-13M170 51l13-13"/>
@@ -573,13 +573,13 @@
           <div class="service-card__body">
             <button class="service-card__back" type="button"><span aria-hidden="true">←</span> Retour aux priorités</button>
             <div class="service-card__pricing" data-service-pricing="automatisation"><div class="service-card__pricing-head"><strong>Tarifs automatisation &amp; IA</strong><span>On installe tout, on teste avec vous, puis on surveille que ça tourne chaque mois.</span></div><div class="service-card__offers"><p><strong>Dès 190&nbsp;€ + 39&nbsp;€/mois</strong> de suivi. <a href="/services">Voir toutes les formules</a></p></div></div>
-            <div class="service-card__actions"><a class="service-card__primary" href="/contact?solution=automatisation&amp;promo=lancement">Recevoir mon devis</a><a class="service-card__example" href="/cas-concrets/chauffage">Voir la démo métier</a></div>
+            <div class="service-card__actions"><a class="service-card__primary" href="/contact?solution=automatisation&amp;promo=lancement">Recevoir mon devis</a><a class="service-card__example" href="/cas-concrets/chauffage">Voir la démo métier<span class="sr-only"> : chauffage</span></a></div>
           </div>
         </details>
         <details class="service-card service-card--tools" name="service-priority">
           <summary>
             <span class="service-card__index">04 · Pas sûr de quoi choisir ?</span>
-            <h3>Diagnostic<br>gratuit<br>15 min</h3>
+            <h3>Diagnostic <br>gratuit <br>15 min</h3>
             <div class="service-card__visual" aria-hidden="true">
               <svg viewBox="0 0 360 220" focusable="false">
                 <g class="service-board"><rect x="62" y="38" width="102" height="70" rx="12"/><rect x="176" y="38" width="64" height="70" rx="12"/><rect x="62" y="120" width="64" height="52" rx="12"/><rect x="138" y="120" width="102" height="52" rx="12"/></g>
@@ -724,7 +724,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

@@ -574,7 +574,7 @@ for (const study of caseStudies) {
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css?v=3">
-<link rel="stylesheet" href="/css/cases.css?v=20261106a">
+<link rel="stylesheet" href="/css/cases.css?v=20261116b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -611,14 +611,14 @@ for (const study of caseStudies) {
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span>
     <button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu">
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/#services" style="--i:0">Services</a>
     <a href="/#services" style="--i:1">Tarifs</a>
     <a href="/cas-concrets" style="--i:2">Démos par métier</a>
@@ -627,11 +627,7 @@ for (const study of caseStudies) {
 </div>
 
 <main class="case-detail">
-  <nav class="case-crumb" aria-label="Fil d’Ariane">
-    <a href="/cas-concrets">Démos par métier</a>
-    <span aria-hidden="true">/</span>
-    <span>${study.category}</span>
-  </nav>
+  <nav class="case-crumb" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/cas-concrets">Démos par métier</a></li><li aria-current="page">${study.category}</li></ol></nav>
 
   <!-- HERO HIGH-CONVERSION GOOGLE ADS -->
   <section class="case-detail__hero" style="--case-ink:${study.palette[0]};--case-paper:${study.palette[1]};--case-accent:${study.palette[2]}">
@@ -892,7 +888,7 @@ for (const study of caseStudies) {
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

@@ -90,3 +90,6 @@
 .article-figure--section img{aspect-ratio:4/3}
 .blog .post-card__thumb .post-card__photo{object-position:center}
 .prose .article-figure--inline{margin:0 0 1.6rem}
+
+/* Mobile : le fil d Ariane passait sous l en-tete fixe. */
+@media(max-width:700px){.article-crumbs{margin-top:1.25rem}}

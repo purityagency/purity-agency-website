@@ -436,7 +436,7 @@ function relatedHtml(links = []) {
 const cssLinks = `<link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/site-additions.css?v=20261101">
-<link rel="stylesheet" href="/css/content.css?v=20261107">`;
+<link rel="stylesheet" href="/css/content.css?v=20261116a">`;
 
 const ogImage = `<meta property="og:image" content="${siteUrl}/assets/og-purity.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">`;
 
@@ -447,9 +447,9 @@ function header(current = '') {
 <nav class="header__nav" aria-label="Principal"><a href="/#services">Services et tarifs</a><a href="/cas-concrets">Démos par métier</a><a href="/blog"${blogCurrent}>Blog</a><a href="/contact">Contact</a></nav>
 <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
 <div class="menu__top"><span class="menu__brand"><img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24"><span>Purity Agency</span></span><button class="burger burger--close" type="button" command="hide-popover" commandfor="menu" aria-label="Fermer le menu"><span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span></button></div>
-<nav class="menu__nav"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Démos par métier</a><a href="/blog" style="--i:2"${blogCurrent}>Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
+<nav class="menu__nav" aria-label="Menu mobile"><a href="/#services" style="--i:0">Services</a><a href="/cas-concrets" style="--i:1">Démos par métier</a><a href="/blog" style="--i:2"${blogCurrent}>Blog</a><a href="/contact" style="--i:3">Contact</a></nav>
 <div class="menu__foot" style="--i:3"><a class="btn btn--primary" href="/contact">Parler de votre projet</a><a class="menu__mail" href="mailto:contact@purity-agency.be">contact@purity-agency.be</a></div>
 </div>`;
 }
@@ -477,7 +477,7 @@ function footer() {
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>
@@ -533,6 +533,7 @@ ${ogImage}</head>
 <body>
 ${header()}
 <main class="content-page">
+<article>
 <header class="content-hero">
 <div class="content-hero__inner">
 <p class="content-hero__eyebrow">${esc(article.category)}</p>
@@ -540,7 +541,8 @@ ${header()}
 <p class="content-meta">${esc(article.meta)}</p>
 </div>
 </header>
-<article class="content-main prose">${body}</article>
+<div class="content-main prose">${body}</div>
+</article>
 </main>
 ${footer()}
 </body>

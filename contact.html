@@ -16,7 +16,8 @@
 <link rel="stylesheet" href="/css/contact.css?v=20261104b">
 <link rel="stylesheet" href="/css/octomask.css?v=20261101">
 <link rel="stylesheet" href="/css/site-additions.css?v=20261101">
-<meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://purity-agency.be/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://purity-agency.be/contact"}]}</script>
+<meta property="og:image" content="https://purity-agency.be/assets/og-purity.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","url":"https://purity-agency.be/contact","name":"Contact - Purity Agency","inLanguage":"fr-BE"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://purity-agency.be/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://purity-agency.be/contact"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -37,7 +38,7 @@
   </button>
 </header>
 
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -47,7 +48,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -108,7 +109,7 @@
         <div class="thread__done" id="thread-done" hidden>
           <h3 class="thread__done-title">Demande bien reçue. Merci.</h3>
           <p class="thread__done-text">Je vous réponds sous 24&nbsp;h ouvrées. Pour aller plus vite, réservez 15 minutes par téléphone ou en visio.</p>
-          <a class="booking__external thread__done-cta" href="https://calendar.app.google/yybUurryQkpLmyCQ9" target="_blank" rel="noopener">Choisir mon créneau maintenant</a>
+          <a class="booking__external thread__done-cta" href="https://calendar.app.google/yybUurryQkpLmyCQ9" target="_blank" rel="noopener">Choisir mon créneau maintenant<span class="sr-only"> (nouvel onglet)</span></a>
         </div>
       </section>
 
@@ -120,7 +121,7 @@
           <figcaption><strong>Amir Kebiyeb</strong><span>Fondateur. C’est lui que vous aurez au bout du fil.</span></figcaption>
         </figure>
         <p class="booking__lead">15 min par téléphone ou en visio : ce qui coince et quoi faire en premier.</p>
-        <a class="booking__external" href="https://calendar.app.google/yybUurryQkpLmyCQ9" target="_blank" rel="noopener">Réserver mon diagnostic gratuit de 15 min</a>
+        <a class="booking__external" href="https://calendar.app.google/yybUurryQkpLmyCQ9" target="_blank" rel="noopener">Réserver mon diagnostic gratuit de 15 min<span class="sr-only"> (nouvel onglet)</span></a>
         <ul class="reassure" aria-label="Nos engagements">
           <li>Diagnostic gratuit de 15 minutes</li>
           <li>Diagnostic sans engagement, sans devis forcé</li>
@@ -166,7 +167,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

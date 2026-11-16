@@ -23,8 +23,8 @@
 <link rel="stylesheet" href="/css/app.css?v=20261105r">
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/site-additions.css?v=20261101">
-<link rel="stylesheet" href="/css/content.css?v=20261107">
-<link rel="stylesheet" href="/css/article.css?v=20261104c">
+<link rel="stylesheet" href="/css/content.css?v=20261116a">
+<link rel="stylesheet" href="/css/article.css?v=20261116a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -101,7 +101,7 @@
     <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
   </button>
 </header>
-<div id="menu" popover="auto" class="menu" aria-label="Menu">
+<div id="menu" popover="auto" class="menu">
   <div class="menu__top">
     <span class="menu__brand">
       <img src="/assets/logo-mark.webp" alt="" aria-hidden="true" width="24" height="24">
@@ -111,7 +111,7 @@
       <span class="burger__box" aria-hidden="true"><span class="burger__bar"></span><span class="burger__bar"></span></span>
     </button>
   </div>
-  <nav class="menu__nav">
+  <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/services">Services et tarifs</a>
     <a href="/cas-concrets">Démos par métier</a>
     <a href="/blog">Blog</a>
@@ -181,7 +181,7 @@
     </ul>
 
     <h2>Vérifier ces informations</h2>
-    <p>Les données d’entreprise sont publiques : vous pouvez consulter la <a href="https://kbopub.economie.fgov.be/kbopub/zoeknummerform.html?nummer=1036775590" target="_blank" rel="noopener">fiche de l’entreprise sur la BCE</a>. Pour l’activité à Charleroi, voyez la page <a href="/agence-web/charleroi">agence web à Charleroi</a>. Les <a href="/blog">articles du blog</a> sont signés Amir Kebiyeb.</p>
+    <p>Les données d’entreprise sont publiques : vous pouvez consulter la <a href="https://kbopub.economie.fgov.be/kbopub/zoeknummerform.html?nummer=1036775590" target="_blank" rel="noopener">fiche de l’entreprise sur la BCE<span class="sr-only"> (nouvel onglet)</span></a>. Pour l’activité à Charleroi, voyez la page <a href="/agence-web/charleroi">agence web à Charleroi</a>. Les <a href="/blog">articles du blog</a> sont signés Amir Kebiyeb.</p>
 
     <div class="article-cta"><p>Une question sur votre projet ? <span>Diagnostic gratuit de 15 minutes avec Amir, sans engagement.</span></p><a class="btn btn--primary" href="/contact?intent=rdv">Réserver mon diagnostic gratuit</a></div>
     <p class="legal-updated">Dernière mise à jour : 3 novembre 2026.</p>
@@ -214,7 +214,7 @@
     </div>
   </div>
   <div class="site-footer__legal">
-    <span>Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</span>
+    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

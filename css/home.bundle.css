@@ -1298,7 +1298,8 @@ html:has(.octo[open]){overflow:hidden}
 .ms{position:absolute;inset:0;overflow:hidden;font-size:1.25cqw;line-height:1.4;text-align:left;-webkit-font-smoothing:antialiased}
 .ms.ms--m{font-size:4.1cqw}
 .ms img{display:block;max-width:none}
-.ms h3,.ms h4,.ms p{margin:0}
+.ms .ms-h3,.ms .ms-h4,.ms p{margin:0}
+.ms-h3,.ms-h4{font-weight:700}
 
 /* --- Ancien site chauffagiste (vers 2011) --- */
 .ms-oa{background:#BDBDBD;font-family:Verdana,Tahoma,sans-serif;color:#000;-webkit-font-smoothing:auto}
@@ -1319,8 +1320,8 @@ html:has(.octo[open]){overflow:hidden}
 .oa-main{flex:1;font-family:"Times New Roman",Times,serif;font-size:.85em;text-align:justify}
 .oa-main img{float:right;width:13em;height:13em;object-fit:cover;margin:0 0 .6em .8em;border:.25em ridge #999;filter:saturate(1.5) contrast(1.15)}
 .oa-main p{margin-bottom:.6em}
-.oa-main h4{margin:.4em 0 .2em;font-family:Arial,sans-serif;font-size:1.05em;color:#E69138;text-decoration:underline}
-.oa-main a{color:#0000EE;text-decoration:underline}
+.oa-main .ms-h4{margin:.4em 0 .2em;font-family:Arial,sans-serif;font-size:1.05em;color:#E69138;text-decoration:underline}
+.oa-main .ms-a{color:#0000EE;text-decoration:underline}
 .oa-foot{clear:both;padding:1em;text-align:center;font-size:.6em;color:#666}
 
 /* --- Thermiq, refonte --- */
@@ -1332,7 +1333,7 @@ html:has(.octo[open]){overflow:hidden}
 .tq-btn--ghost{background:#16181A}
 .tq-hero{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5em;align-items:center;padding:2em 4em 0}
 .tq-copy small{display:block;margin-bottom:1.2em;font-size:.85em;font-weight:600;color:#D9692E}
-.tq-copy h3{font-size:4.4em;line-height:1;font-weight:600;letter-spacing:-.035em}
+.tq-copy .ms-h3{font-size:4.4em;line-height:1;font-weight:600;letter-spacing:-.035em}
 .tq-copy p{max-width:26em;margin-top:1.3em;font-size:1.05em;line-height:1.55;color:#5D615F}
 .tq-cta{display:flex;align-items:center;gap:1.4em;margin-top:2em}
 .tq-note{font-size:.85em;color:#5D615F}
@@ -1350,7 +1351,7 @@ html:has(.octo[open]){overflow:hidden}
 .tq.ms--m .tq-hero{grid-template-columns:1fr;gap:1.4em;padding:0 1.25em}
 .tq.ms--m .tq-photo{order:-1;height:15em}
 .tq.ms--m .tq-copy small{margin-bottom:.6em}
-.tq.ms--m .tq-copy h3{font-size:2.5em}
+.tq.ms--m .tq-copy .ms-h3{font-size:2.5em}
 .tq.ms--m .tq-copy p{margin-top:.8em;font-size:.95em}
 .tq.ms--m .tq-cta{flex-direction:column;align-items:stretch;gap:.8em;margin-top:1.3em}
 .tq.ms--m .tq-cta .tq-btn{justify-content:center;padding:1em}
@@ -1361,7 +1362,7 @@ html:has(.octo[open]){overflow:hidden}
 .or-page{width:54em;margin:0 auto;padding:1.4em 0;text-align:center}
 .or-title{font-family:"Monotype Corsiva","Apple Chancery","URW Chancery L",cursive;font-size:2.8em;font-weight:400;color:#4A2A10}
 .or-page img{width:17em;height:11.3em;margin:1em auto;object-fit:cover;border:.3em solid #fff;outline:.1em solid #6b4a2b;filter:saturate(1.6) contrast(1.2) brightness(.9)}
-.or-page a{display:block;margin-bottom:1em;font-family:Arial,sans-serif;font-size:1em;font-weight:700;color:#1010C8;text-decoration:underline}
+.or-page .ms-a{display:block;margin-bottom:1em;font-family:Arial,sans-serif;font-size:1em;font-weight:700;color:#1010C8;text-decoration:underline}
 .or-page table{width:100%;border-collapse:collapse;font-size:.85em;background:rgba(255,255,255,.35)}
 .or-page td{padding:.25em .5em;border:.08em solid #000;text-align:left}
 .or-page td:first-child{font-weight:700;width:7em}
@@ -1377,7 +1378,7 @@ html:has(.octo[open]){overflow:hidden}
 .ts-btn--ghost{background:transparent;color:#F4E9DC;box-shadow:inset 0 0 0 .07em rgba(244,233,220,.5)}
 .ts-hero{display:grid;grid-template-columns:1fr 1.05fr;gap:3.5em;align-items:center;padding:3em 4em 0}
 .ts-copy small{display:block;margin-bottom:1.2em;font-size:.85em;color:#E3B66B}
-.ts-copy h3{font-family:Georgia,"Times New Roman",serif;font-size:4.6em;line-height:1;font-weight:400;letter-spacing:-.02em}
+.ts-copy .ms-h3{font-family:Georgia,"Times New Roman",serif;font-size:4.6em;line-height:1;font-weight:400;letter-spacing:-.02em}
 .ts-book{display:grid;gap:.9em;max-width:24em;margin-top:2.2em;padding:1.3em;border-radius:.9em;background:rgba(244,233,220,.07);box-shadow:inset 0 0 0 .06em rgba(244,233,220,.14)}
 .ts-k{font-size:.8em;color:rgba(244,233,220,.7)}
 .ts-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.5em}
@@ -1391,7 +1392,7 @@ html:has(.octo[open]){overflow:hidden}
 .ts.ms--m .ts-hero{grid-template-columns:1fr;gap:1.4em;padding:1.25em 1.25em 0}
 .ts.ms--m .ts-photo{order:-1;height:14em}
 .ts.ms--m .ts-copy small{margin-bottom:.6em}
-.ts.ms--m .ts-copy h3{font-size:2.7em}
+.ts.ms--m .ts-copy .ms-h3{font-size:2.7em}
 .ts.ms--m .ts-book{margin-top:1.3em;padding:1em}
 
 /* ---- method.css ---- */

@@ -46,7 +46,8 @@ const MIME = {
   '.ico': 'image/x-icon',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
-  '.txt': 'text/plain; charset=utf-8'
+  '.txt': 'text/plain; charset=utf-8',
+  '.vcf': 'text/vcard; charset=utf-8'
 };
 
 // Limiteurs de debit dedies par type d'operation pour empecher qu'un appel

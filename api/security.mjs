@@ -280,6 +280,7 @@ export function resolveLegacyRedirect(rawPathname) {
 }
 
 const CLEAN_HTML_ROUTES = new Set([
+  '/liens',
   '/contact',
   '/cas-concrets',
   '/services',

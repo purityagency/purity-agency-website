@@ -82,10 +82,11 @@
 @media (min-width:1080px){
  .audit__stage{
   display:grid;
-  grid-template-columns:minmax(360px,540px) minmax(400px,500px) minmax(360px,540px);
-  align-items:start;justify-content:center;gap:clamp(1.5rem,2.6vw,3.2rem)
+  grid-template-columns:minmax(400px,540px) minmax(420px,620px);
+  align-items:center;justify-content:center;gap:clamp(2rem,4vw,5rem)
  }
- .audit-compare{display:block;margin-top:clamp(-15rem,-18vw,-19rem);position:relative;z-index:3}
+ .audit__stage .audit__copy{margin:0}
+ .audit-compare{display:block;position:relative;z-index:3}
 }
 .audit__copy{
  position:relative;

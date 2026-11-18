@@ -13,7 +13,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/GeneralSans-Variable.woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="/assets/hero-tentacle-studio-v3-poster.webp" imagesrcset="/assets/hero-tentacle-studio-v3-poster-640.webp 640w, /assets/hero-tentacle-studio-v3-poster.webp 1280w" imagesizes="(max-width: 767px) 62vw, 44vw" fetchpriority="high">
 <!-- Bundle genere par scripts/build-home-css.mjs (app, menu, octomask, hero-video, site-additions, audit, method, service-grid, service-experience, services-bg, home). -->
-<link rel="stylesheet" href="/css/home.bundle.css?v=2118bf1b">
+<link rel="stylesheet" href="/css/home.bundle.css?v=b050808a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -238,7 +238,20 @@
   <section class="audit" id="audit" aria-labelledby="audit-title">
     <div class="audit__inner">
       <div class="audit__stage">
-        <figure class="audit-compare audit-compare--left" data-audit-compare>
+        <div class="audit__copy">
+          <h2 class="audit__title" id="audit-title">Voyez ce qui fait fuir les clients de votre site.</h2>
+          <p class="audit__lead">Vitesse, mobile, Google, numéro : on vous montre ce qui bloque.</p>
+
+          <form class="audit__form" id="audit-form" novalidate>
+            <label class="sr-only" for="audit-url">Adresse de votre site</label>
+            <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
+                   placeholder="votre-entreprise.be" aria-describedby="audit-hint">
+            <button class="btn btn--primary audit__submit" type="submit">Tester mon site</button>
+          </form>
+          <p class="audit__hint" id="audit-hint">Gratuit, sans inscription, sans démarchage.</p>
+        </div>
+
+        <figure class="audit-compare audit-compare--left" data-audit-compare data-nosnippet>
           <div class="audit-mock" role="img" aria-label="Exemple fictif : un ancien site de chauffagiste (bandeau bleu, texte serré, compteur de visites) comparé à sa refonte moderne avec demande de devis">
             <div class="audit-mock__browser">
               <span class="audit-mock__bar" aria-hidden="true"><i></i><i></i><i></i><span class="audit-mock__url"></span></span>
@@ -318,78 +331,6 @@
           </div>
           <figcaption class="audit-compare__caption">
             <strong>Artisan &amp; rénovation</strong>
-            <span class="audit-compare__hint"><svg aria-hidden="true" viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
-            <small class="audit-compare__note">Exemple illustratif (sites fictifs, codés par Purity)</small>
-          </figcaption>
-        </figure>
-
-        <div class="audit__copy">
-          <h2 class="audit__title" id="audit-title">Voyez ce qui fait fuir les clients de votre site.</h2>
-          <p class="audit__lead">Vitesse, mobile, Google, numéro : on vous montre ce qui bloque.</p>
-
-          <form class="audit__form" id="audit-form" novalidate>
-            <label class="sr-only" for="audit-url">Adresse de votre site</label>
-            <input class="audit__input" id="audit-url" name="url" type="text" inputmode="url" autocomplete="url"
-                   placeholder="votre-entreprise.be" aria-describedby="audit-hint">
-            <button class="btn btn--primary audit__submit" type="submit">Tester mon site</button>
-          </form>
-          <p class="audit__hint" id="audit-hint">Gratuit, sans inscription, sans démarchage.</p>
-        </div>
-
-        <figure class="audit-compare audit-compare--right" data-audit-compare>
-          <div class="audit-mock" role="img" aria-label="Exemple fictif : un ancien site de brasserie (fond parchemin, menu en PDF, tableau d’horaires) comparé à sa refonte avec réservation en ligne">
-            <div class="audit-mock__browser">
-              <span class="audit-mock__bar" aria-hidden="true"><i></i><i></i><i></i><span class="audit-mock__url"></span></span>
-              <div class="audit-compare__viewport" aria-hidden="true">
-                <div class="audit-compare__layer audit-compare__layer--before"><div class="ms ms-old ms-or">
-  <div class="or-page">
-    <div class="ms-h4 or-title">Brasserie du Centre - Cuisine Traditionnelle</div>
-    <img src="/assets/audit-sites/old-plat.jpg" width="180" height="120" alt="" loading="lazy" decoding="async">
-    <span class="ms-a">Cliquez ici pour télécharger le menu en PDF</span>
-    <table><tr><td>Lundi</td><td>De 9h00 à 14h00 (ouverture d'Il)</td><td rowspan="5">Télef: 06 33 55 88<br><br>Adresse Adress<br>2532 Brasserie du Centre</td></tr><tr><td>Mardi</td><td>De 9h00 à 19h30</td></tr><tr><td>Mercredi</td><td>De 9h00 à 19h30</td></tr><tr><td>Jeudi</td><td>De 9h00 à 20h00</td></tr><tr><td>Vendredi</td><td>De 9h00 à 14h00</td></tr></table>
-    <p>Restaurant de mods our faciller notre d'onners et immediaque tous chanits du vaite. Reservation par telephone uniquement.</p>
-  </div>
-</div></div>
-                <div class="audit-compare__layer audit-compare__layer--after"><div class="ms ts">
-  <div class="ts-nav"><b>table serein</b><span class="ts-links"><span>La carte</span><span>Le lieu</span><span>Contact</span></span><span class="ts-btn ts-btn--ghost">Réserver</span></div>
-  <div class="ts-hero">
-    <div class="ts-copy">
-      <small>Cuisine de marché · Charleroi</small>
-      <div class="ms-h3">La saison<br>est à table.</div>
-      <div class="ts-book"><span class="ts-k">Ce soir, 2 personnes</span><span class="ts-slots"><i>19:00</i><i class="on">19:30</i><i>20:00</i><i>20:30</i></span><span class="ts-btn">Réserver une table</span></div>
-    </div>
-    <div class="ts-photo"><img src="/assets/audit-sites/serein.webp" width="720" height="480" alt="" loading="lazy" decoding="async"></div>
-  </div>
-</div></div>
-                <span class="audit-compare__tag audit-compare__tag--before">Avant</span>
-                <span class="audit-compare__tag audit-compare__tag--after">Après Purity</span>
-                <span class="audit-compare__line"><span class="audit-compare__handle"><svg viewBox="0 0 20 20" width="14" height="14" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="audit-compare__pill">Glissez</span></span>
-              </div>
-              <input class="audit-compare__range" type="range" min="2" max="98" value="50" aria-label="Glisser pour comparer le site restaurant avant et après refonte">
-            </div>
-            <div class="audit-mock__phone audit-mock__phone--before" aria-hidden="true"><div class="audit-mock__screen"><div class="ms ms-old ms-or">
-  <div class="or-page">
-    <div class="ms-h4 or-title">Brasserie du Centre - Cuisine Traditionnelle</div>
-    <img src="/assets/audit-sites/old-plat.jpg" width="180" height="120" alt="" loading="lazy" decoding="async">
-    <span class="ms-a">Cliquez ici pour télécharger le menu en PDF</span>
-    <table><tr><td>Lundi</td><td>De 9h00 à 14h00 (ouverture d'Il)</td><td rowspan="5">Télef: 06 33 55 88<br><br>Adresse Adress<br>2532 Brasserie du Centre</td></tr><tr><td>Mardi</td><td>De 9h00 à 19h30</td></tr><tr><td>Mercredi</td><td>De 9h00 à 19h30</td></tr><tr><td>Jeudi</td><td>De 9h00 à 20h00</td></tr><tr><td>Vendredi</td><td>De 9h00 à 14h00</td></tr></table>
-    <p>Restaurant de mods our faciller notre d'onners et immediaque tous chanits du vaite. Reservation par telephone uniquement.</p>
-  </div>
-</div></div><span class="audit-mock__label"><b>Avant</b>pas adapté au mobile</span></div>
-            <div class="audit-mock__phone audit-mock__phone--after" aria-hidden="true"><div class="audit-mock__screen"><div class="ms ts ms--m">
-  <div class="ts-nav"><b>table serein</b><span class="ts-links"><span>La carte</span><span>Le lieu</span><span>Contact</span></span><span class="ts-btn ts-btn--ghost">Menu</span></div>
-  <div class="ts-hero">
-    <div class="ts-copy">
-      <small>Cuisine de marché · Charleroi</small>
-      <div class="ms-h3">La saison<br>est à table.</div>
-      <div class="ts-book"><span class="ts-k">Ce soir, 2 personnes</span><span class="ts-slots"><i>19:00</i><i class="on">19:30</i><i>20:00</i><i>20:30</i></span><span class="ts-btn">Réserver une table</span></div>
-    </div>
-    <div class="ts-photo"><img src="/assets/audit-sites/serein.webp" width="720" height="480" alt="" loading="lazy" decoding="async"></div>
-  </div>
-</div></div><span class="audit-mock__label"><b>Après</b>pensé pour le mobile</span></div>
-          </div>
-          <figcaption class="audit-compare__caption">
-            <strong>Restaurant &amp; commerce</strong>
             <span class="audit-compare__hint"><svg aria-hidden="true" viewBox="0 0 20 20" width="12" height="12" focusable="false"><path d="M7 5L2 10l5 5M13 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Glissez</span>
             <small class="audit-compare__note">Exemple illustratif (sites fictifs, codés par Purity)</small>
           </figcaption>

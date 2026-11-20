@@ -307,3 +307,22 @@ html{-moz-osx-font-smoothing:grayscale}
 @keyframes method-float{from{transform:translateY(0) rotate(-.8deg)}to{transform:translateY(-10px) rotate(.4deg)}}
 .method-steps{max-width:44rem}.method-steps__item strong{max-width:17ch}
 @media (max-width:860px){.method__headline{font-size:clamp(1.85rem,8.2vw,2.5rem);max-width:15ch}}
+/* v2 (2026-11-20) : titre nettement plus petit + vraie entree animee (js/method-motion.js) */
+.method__headline{font-size:clamp(1.75rem,2.7vw,2.6rem)!important;max-width:19ch!important;line-height:1.08!important}
+@media (max-width:860px){.method__headline{font-size:clamp(1.6rem,7vw,2.1rem)!important;max-width:16ch!important}}
+.method.has-motion .method__kicker,.method.has-motion .method__headline,.method.has-motion .method__actions{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1),filter .8s cubic-bezier(.22,1,.36,1)}
+.method.has-motion .method__headline{transition-delay:.12s}
+.method.has-motion .method__actions{transition-delay:.95s}
+.method.has-motion .method-steps__item{opacity:0!important;transform:translateY(24px) scale(.96)!important;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.34,1.56,.64,1)!important}
+.method.has-motion .method-steps__item:nth-child(1){transition-delay:.45s!important}
+.method.has-motion .method-steps__item:nth-child(2){transition-delay:.6s!important}
+.method.has-motion .method-steps__item:nth-child(3){transition-delay:.75s!important}
+.method.has-motion .method-steps::before{transform:scaleX(0)!important;transform-origin:left center;transition:transform 1.2s cubic-bezier(.22,1,.36,1) .5s!important}
+.method.has-motion .method__visual{opacity:0;transform:scale(.82) rotate(-6deg);transition:opacity 1s cubic-bezier(.22,1,.36,1) .25s,transform 1.2s cubic-bezier(.34,1.4,.64,1) .25s}
+.method.is-live .method__kicker,.method.is-live .method__headline,.method.is-live .method__actions{opacity:1;transform:none;filter:none}
+.method.is-live .method-steps__item{opacity:1!important;transform:none!important}
+.method.is-live .method-steps::before{transform:scaleX(1)!important}
+.method.is-live .method__visual{opacity:1;transform:none}
+.method.is-live .method__visual-orbit{animation:method-orbit 18s linear infinite}
+@keyframes method-orbit{from{transform:translate(50%,50%) rotate(14deg) scaleX(1.12)}to{transform:translate(50%,50%) rotate(374deg) scaleX(1.12)}}
+@media (max-width:860px){@keyframes method-orbit{from{transform:translate(-50%,50%) rotate(14deg) scaleX(1.12)}to{transform:translate(-50%,50%) rotate(374deg) scaleX(1.12)}}}

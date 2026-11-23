@@ -498,7 +498,7 @@ ${renderHeader('services')}
 
     ${resultSection(service)}${relOf(service).length && !(RESULT_PHOTO[service.slug] && RESULT_PHOTO[service.slug].replaceCases) ? `<section class="sd-section" aria-labelledby="sd-cases-title">
       <div class="sd-section-header">
-        <span class="sd-kicker">Démos par métier</span>
+        <span class="sd-kicker">Réalisations</span>
         <h2 class="sd-heading" id="sd-cases-title">Voyez le résultat sur un métier proche</h2>
         <p class="sd-subheading">Démos conçues par Purity, pas des sites de clients.</p>
       </div>

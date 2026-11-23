@@ -57,7 +57,7 @@ const FIABLE = `## Informations fiables
 
 - Les repères de prix affichés sur le site sont indicatifs ; le devis accepté par écrit fixe le périmètre et le prix.
 - Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
-- Les entreprises présentées dans « Démos par métier » sont fictives : ce sont des démonstrations par métier, pas des références clients.
+- Certaines réalisations sont des démonstrations conçues par Purity pour un métier, pas des projets de clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
 - Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur ${O}/contact ou par e-mail à contact@purity-agency.be.`;
 const LEGAL = `## Pages légales
@@ -76,7 +76,7 @@ const short = `${HEAD}
 - [Services et tarifs](${O}/services): les ${services.length} solutions, avec leurs repères de prix.
 - [Agence web par ville](${O}/agence-web): Charleroi, Gosselies, Fleurus, Châtelet, Namur, Mons, La Louvière, Liège, Brabant wallon.
 - [Site internet par métier](${O}/site-internet/): pages dédiées à ${metiers.length} métiers.
-- [Démos par métier](${O}/cas-concrets): ${cases.length} démonstrations interactives par métier.
+- [Réalisations](${O}/cas-concrets): ${cases.length} démonstrations interactives par métier.
 - [Blog](${O}/blog): guides pratiques sur l'acquisition, le SEO local, la conversion, l'automatisation et l'IA.
 - [À propos](${O}/a-propos): Amir Kebiyeb, fondateur, statut d'entreprise (personne physique, BCE 1036.775.590) et façon de travailler.
 - [Contact](${O}/contact): formulaire et réservation d'un appel de 15 minutes, sans engagement.
@@ -98,7 +98,7 @@ ${list(metiers)}
 
 ${articleAnswers.join('\n')}
 
-## Démos par métier (démonstrations fictives)
+## Réalisations
 
 ${cases.map(p => `- [${p.t}](${p.c})`).join('\n')}
 
@@ -143,7 +143,7 @@ ${list(metiers)}
 
 ${list(articles)}
 
-## Démos par métier (démonstrations fictives)
+## Réalisations
 
 ${list(cases)}
 

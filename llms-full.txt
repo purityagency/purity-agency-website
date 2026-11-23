@@ -586,7 +586,7 @@ Questions fréquentes :
 - [Site qui ne convertit pas : 7 raisons et correctifs](https://purity-agency.be/article-site-ne-convertit-pas): Des visites mais peu de demandes ? Les sept causes fréquentes d’un site qui ne convertit pas (lenteur, promesse floue, formulaire) et quoi corriger.
 - [One-page ou multi-pages : que choisir pour se lancer ?](https://purity-agency.be/article-site-one-page-ou-multi-pages-lancement): Landing page ou site structuré : comment choisir selon votre offre, votre besoin d’être trouvé sur Google et vos projets d’évolution.
 
-## Démos par métier (démonstrations fictives)
+## Réalisations
 
 - [Démo site toiletteur : réservation et acompte](https://purity-agency.be/cas-concrets/animaux): Toiletteurs en Wallonie : vos clients réservent en ligne selon la race, le poil et le gabarit. Le téléphone ne sonne plus pendant le bain.
 - [Démo site architecte : réalisations et demandes](https://purity-agency.be/cas-concrets/architecture): Architecte en Wallonie : vos réalisations lisibles sur téléphone et un brief terrain, surface et budget avant le premier rendez-vous. Une démo à essayer.
@@ -605,7 +605,7 @@ Questions fréquentes :
 
 - Les repères de prix affichés sur le site sont indicatifs ; le devis accepté par écrit fixe le périmètre et le prix.
 - Une fois la création réglée, le client est propriétaire de ses contenus, visuels, logo et nom de domaine (conditions générales, art. 6).
-- Les entreprises présentées dans « Démos par métier » sont fictives : ce sont des démonstrations par métier, pas des références clients.
+- Certaines réalisations sont des démonstrations conçues par Purity pour un métier, pas des projets de clients.
 - OctoMask est l'assistant IA du site : il oriente les visiteurs, ne fixe aucun prix et ne confirme ni paiement ni réservation.
 - Premier contact : diagnostic digital gratuit de 15 minutes, sans engagement, réservable sur https://purity-agency.be/contact ou par e-mail à contact@purity-agency.be.
 

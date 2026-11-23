@@ -3,7 +3,7 @@
 // main ont reçu exactement ce balisage. Le décalage du menu (--i) est en CSS.
 const NAV = [
   ['services', '/services', 'Services et tarifs'],
-  ['demos', '/cas-concrets', 'Démos par métier'],
+  ['demos', '/cas-concrets', 'Réalisations'],
   ['blog', '/blog', 'Blog'],
   ['contact', '/contact', 'Contact']
 ];
@@ -59,7 +59,7 @@ export function renderFooter() {
     <nav aria-label="Navigation de pied de page">
       <h2>Explorer</h2>
       <a href="/services">Services et tarifs</a>
-      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/cas-concrets">Réalisations</a>
       <a href="/agence-web">Agence web par ville</a>
       <a href="/site-internet/">Site internet par métier</a>
       <a href="/blog">Blog</a>

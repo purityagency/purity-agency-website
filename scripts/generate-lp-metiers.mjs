@@ -590,7 +590,7 @@ for (const study of caseStudies) {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://purity-agency.be/" },
-        { "@type": "ListItem", "position": 2, "name": "Démos par métier", "item": "https://purity-agency.be/cas-concrets" },
+        { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "https://purity-agency.be/cas-concrets" },
         { "@type": "ListItem", "position": 3, "name": "${study.category}", "item": "https://purity-agency.be/cas-concrets/${study.id}" }
       ]
     }
@@ -604,7 +604,7 @@ for (const study of caseStudies) {
   <nav class="header__nav" aria-label="Principal">
     <a href="/#services">Services</a>
     <a href="/#services">Tarifs</a>
-    <a aria-current="page" href="/cas-concrets">Démos par métier</a>
+    <a aria-current="page" href="/cas-concrets">Réalisations</a>
     <a href="/contact">Contact</a>
   </nav>
   <button class="burger" type="button" command="toggle-popover" commandfor="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
@@ -621,13 +621,13 @@ for (const study of caseStudies) {
   <nav class="menu__nav" aria-label="Menu mobile">
     <a href="/#services" style="--i:0">Services</a>
     <a href="/#services" style="--i:1">Tarifs</a>
-    <a href="/cas-concrets" style="--i:2">Démos par métier</a>
+    <a href="/cas-concrets" style="--i:2">Réalisations</a>
     <a href="/contact" style="--i:3">Contact</a>
   </nav>
 </div>
 
 <main class="case-detail">
-  <nav class="case-crumb" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/cas-concrets">Démos par métier</a></li><li aria-current="page">${study.category}</li></ol></nav>
+  <nav class="case-crumb" aria-label="Fil d’Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/cas-concrets">Réalisations</a></li><li aria-current="page">${study.category}</li></ol></nav>
 
   <!-- HERO HIGH-CONVERSION GOOGLE ADS -->
   <section class="case-detail__hero" style="--case-ink:${study.palette[0]};--case-paper:${study.palette[1]};--case-accent:${study.palette[2]}">
@@ -878,7 +878,7 @@ for (const study of caseStudies) {
       <h2>Explorer</h2>
       <a href="/#services">Services</a>
       <a href="/#services">Tarifs</a>
-      <a href="/cas-concrets">Démos par métier</a>
+      <a href="/cas-concrets">Réalisations</a>
       <a href="/blog">Blog</a>
       <a href="/contact">Contact</a>
     </nav>

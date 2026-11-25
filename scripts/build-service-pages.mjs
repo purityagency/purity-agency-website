@@ -58,7 +58,7 @@ function offerNotes(svc) {
 // Descriptions de 140 à 160 caractères, propres à chaque page (le résumé complet reste dans la page).
 const tarif = s => `Tarif : ${s.priceSetup}${s.monthlyPrice ? ` + ${s.monthlyPrice}` : ''}.`;
 const META_DESCRIPTIONS = {
-  'diagnostic-digital': () => 'Diagnostic digital gratuit : 15 minutes par téléphone ou en visio avec Amir Kebiyeb pour repérer ce qui freine vos demandes et l’action la plus rentable.',
+  'diagnostic-digital': () => 'Diagnostic digital gratuit : 15 minutes par téléphone ou en visio avec nous pour repérer ce qui freine vos demandes et l’action la plus rentable.',
   'page-essentielle': s => `Page Essentielle pour artisans et indépendants : une page pro claire et rapide qui présente votre métier, contact en un clic. ${tarif(s)}`,
   'site-vitrine': s => `Site vitrine de 5 pages pour artisans et PME en Wallonie : prestations, réalisations avant/après et demande de devis. ${tarif(s)}`,
   'site-complet': s => `Site complet de plus de 10 pages pour PME multi-métiers : une page par service et par ville d’intervention en Wallonie. ${tarif(s)}`,

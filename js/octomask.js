@@ -58,8 +58,8 @@
       <button type="submit" aria-label="Envoyer le message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
     </form>
     <div class="octo__foot">
-      <details class="octo__privacy"><summary>Assistant IA · confidentialité</summary><p>Vos messages sont traités par Google Gemini pour vous répondre. Le fil est conservé temporairement dans cet onglet et dans la mémoire du serveur (30 minutes d’inactivité). Aucun contact n’est envoyé à Amir sans votre validation sur le formulaire. Évitez les informations sensibles. « Nouvelle conversation » (bouton ↺ en haut) efface le contexte côté site ; cela ne supprime pas les éventuels journaux du fournisseur IA.</p></details>
-      <button type="button" class="octo__human">Parler à Amir</button>
+      <details class="octo__privacy"><summary>Assistant IA · confidentialité</summary><p>Vos messages sont traités par Google Gemini pour vous répondre. Le fil est conservé temporairement dans cet onglet et dans la mémoire du serveur (30 minutes d’inactivité). Aucun contact n’est envoyé sans votre validation sur le formulaire. Évitez les informations sensibles. « Nouvelle conversation » (bouton ↺ en haut) efface le contexte côté site ; cela ne supprime pas les éventuels journaux du fournisseur IA.</p></details>
+      <button type="button" class="octo__human">Nous parler</button>
     </div>`;
   document.body.append(dialog);
   const body = dialog.querySelector('.octo__body');
@@ -173,7 +173,7 @@
     if (!['contact', 'booking'].includes(action)) return;
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'octo__action';
-    b.textContent = action === 'booking' ? 'Voir les créneaux disponibles' : 'Préparer ma demande avec Amir';
+    b.textContent = action === 'booking' ? 'Voir les créneaux disponibles' : 'Préparer ma demande';
     b.addEventListener('click', () => {
       if (action === 'booking') window.open(BOOKING_URL, '_blank', 'noopener');
       else handoff(false);
@@ -214,7 +214,7 @@
         body: JSON.stringify({ message, page: location.pathname }), signal: AbortSignal.timeout(27_000)
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'La réponse est indisponible. Réessayez ou contactez Amir.');
+      if (!response.ok) throw new Error(data.error || 'La réponse est indisponible. Réessayez ou contactez-nous.');
       typing.hidden = true;
       const reply = bubble(data.reply, 'assistant');
       cards(data.offers);
@@ -231,7 +231,7 @@
       typing.hidden = true;
       retryMessage = message;
       status.textContent = error.name === 'TimeoutError' || error instanceof TypeError
-        ? 'La connexion n’a pas abouti. Votre message est conservé ; vous pouvez réessayer ou parler à Amir.' : error.message;
+        ? 'La connexion n’a pas abouti. Votre message est conservé ; vous pouvez réessayer ou nous parler.' : error.message;
       const retryButton = document.createElement('button');
       retryButton.type = 'button'; retryButton.textContent = 'Réessayer';
       retryButton.addEventListener('click', () => send(retryMessage, true)); chips.append(retryButton);

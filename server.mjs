@@ -193,7 +193,7 @@ export const server = http.createServer(async (req, res) => {
       }
       if (!verifySameOrigin(req)) return json(403, { error: 'Origine non autorisée.' });
       if (!allowed(ip)) {
-        return json(429, { error: 'Trop de messages. Réessayez dans quelques minutes ou contactez Amir.' }, { 'Retry-After': '60' });
+        return json(429, { error: 'Trop de messages. Réessayez dans quelques minutes ou contactez-nous.' }, { 'Retry-After': '60' });
       }
       const { id, session } = sessionFor(req.headers.cookie);
       res.setHeader(

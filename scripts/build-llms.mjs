@@ -45,7 +45,7 @@ const fondateur = (() => {
 })();
 const prix = (s) => s.price || [s.priceSetup, s.monthlyPrice].filter(Boolean).join(' + ');
 
-const IDENT = `Purity Agency est le nom commercial d'Amir Kebiyeb, entreprise personne physique. Numéro d'entreprise (BCE) et TVA : BE 1036.775.590. Régime de la franchise TVA (article 56bis du Code de la TVA) : TVA non applicable. Adresse : Boulevard Frans Dewandre 14, 6000 Charleroi, Belgique. Contact : contact@purity-agency.be.`;
+const IDENT = `Purity Agency est le nom commercial d'Amir Kebiyeb, entreprise personne physique. Numéro d'entreprise (BCE) et TVA : BE 1036.775.590. Régime de la franchise TVA (article 56bis du Code de la TVA) : TVA non applicable. Contact : contact@purity-agency.be.`;
 const HEAD = `# Purity Agency
 
 > Agence digitale basée à Charleroi, Belgique. Purity Agency aide les indépendants et PME de Wallonie à moderniser et optimiser leur activité : sites web et e-commerce, visibilité locale, réseaux sociaux, automatisation, intégration d'IA, identité visuelle et outils métier.

@@ -42,7 +42,7 @@ export const services = [
     ],
     comparison: [
       { aspect: 'Approche commerciale', others: 'On essaie de vous faire signer un pack à 5 000 € dès la 5e minute', purity: 'Du conseil franc : si votre site actuel suffit ou si vous n’avez besoin de rien, on vous le dit' },
-      { aspect: 'Interlocuteur', others: 'Personne ne regarde votre situation en détail', purity: 'Échange direct avec Amir Kebiyeb, fondateur de l’agence' },
+      { aspect: 'Interlocuteur', others: 'Personne ne regarde votre situation en détail', purity: 'Échange direct avec le fondateur de l’agence' },
       { aspect: 'Ce que vous recevez', others: 'Aucune trace écrite de ce qu’il faut faire en premier', purity: 'Un récapitulatif écrit après l’appel, avec l’action prioritaire à mener' }
     ],
     deliverables: [
@@ -79,7 +79,7 @@ export const services = [
     ],
     howItWorks: [
       { step: '01', title: 'Choix de votre créneau', desc: 'Vous sélectionnez l’heure qui vous convient le mieux dans l’agenda en ligne, selon vos disponibilités entre deux chantiers.' },
-      { step: '02', title: 'Préparation du dossier', desc: 'Amir regarde votre site et vos concurrents locaux avant l’appel pour ne pas vous faire perdre une minute.' },
+      { step: '02', title: 'Préparation du dossier', desc: 'On regarde votre site et vos concurrents locaux avant l’appel pour ne pas vous faire perdre une minute.' },
       { step: '03', title: 'Échange de 15 minutes chrono', desc: 'Par téléphone ou en visio sur votre écran, droit au but, centré uniquement sur la rentabilité de votre entreprise.' },
       { step: '04', title: 'Récapitulatif écrit', desc: 'Vous recevez la synthèse de ce qu’il faut corriger, libre à vous de le faire seul ou avec nous.' }
     ],

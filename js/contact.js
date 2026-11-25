@@ -15,7 +15,7 @@
   var done = document.getElementById('thread-done');
   var dots = document.querySelectorAll('#progress .progress__dot');
   var quickWrap = document.getElementById('contact-quick');
-  // Texte pré-rempli à compléter : envoyé tel quel, il n'apprendrait rien à Amir.
+  // Texte pré-rempli à compléter : envoyé tel quel, il n'nous apprendrait rien.
   var templatePrefill = '';
   // Une puce choisie vaut une réponse : le visiteur l'a sélectionnée lui-même.
   var chipText = '';
@@ -274,7 +274,7 @@
         // Seul le paragraphe change : le bouton « Choisir mon créneau
         // maintenant » reste en place sous le texte.
         done.querySelector('.thread__done-text').textContent = d.delivered
-          ? 'Amir a reçu votre message. Je vous réponds sous 24 h ouvrées, par e-mail, ou par téléphone si vous avez laissé votre numéro.'
+          ? 'Message bien reçu. On vous répond sous 24 h ouvrées, par e-mail, ou par téléphone si vous avez laissé votre numéro.'
           : 'Votre demande est bien enregistrée. Je vous réponds sous 24 h ouvrées ; sans nouvelles d’ici là, écrivez à contact@purity-agency.be.';
         try { document.dispatchEvent(new CustomEvent('purity:lead', { detail: { form: 'contact' } })); } catch {}
         try { sessionStorage.removeItem('purity-contact-draft'); } catch {}

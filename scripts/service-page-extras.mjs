@@ -166,7 +166,7 @@ export const icon = (name, cls = 'sd-ico') =>
 export const VISUALS = {
   'diagnostic-digital': {
     tiles: [['search', 'Visibilité locale vérifiée en direct'], ['phone', 'Test vitesse sur smartphone'], ['mail', 'Devis hors des spams'], ['file', 'Récapitulatif écrit après l’appel']],
-    vs: [['Par où commencer ? Flou', 'Un avis franc, même « rien à acheter »'], ['Personne ne regarde en détail', 'Amir, le fondateur, en direct'], ['Aucune priorité écrite', 'Un récap écrit et l’action prioritaire']],
+    vs: [['Par où commencer ? Flou', 'Un avis franc, même « rien à acheter »'], ['Personne ne regarde en détail', 'Le fondateur, en direct'], ['Aucune priorité écrite', 'Un récap écrit et l’action prioritaire']],
     hero: { type: 'audit' }
   },
   'page-essentielle': {
@@ -181,7 +181,7 @@ export const VISUALS = {
   },
   'site-complet': {
     tiles: [['pages', '10 à 15 pages sur mesure'], ['pin', 'Une page par ville et métier'], ['route', 'Chaque devis au bon responsable'], ['users', 'Espace recrutement pour ouvriers'], ['chart', 'Statistiques privées, RGPD'], ['clock', 'Modifications sous 24 h ouvrées']],
-    vs: [['Une page générale, une seule commune', 'Une page par ville et par spécialité'], ['Tous les messages mélangés', 'Chaque devis au bon responsable'], ['Pas d’interlocuteur clair', 'Amir en direct, sous 24 h ouvrées']],
+    vs: [['Une page générale, une seule commune', 'Une page par ville et par spécialité'], ['Tous les messages mélangés', 'Chaque devis au bon responsable'], ['Pas d’interlocuteur clair', 'En direct, sous 24 h ouvrées']],
     hero: { type: 'device', demo: 'architecture', name: 'Ligne Claire', sector: 'Architecture' }
   },
   'boutique-en-ligne': {

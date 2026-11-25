@@ -251,7 +251,7 @@ const DATA_METIERS = {
     },
     widget3: {
       sender: "Beaux Jours · Immobilier",
-      text: "Votre estimation pour la maison située à Nalinnes est prête. Amir Kebiyeb vous la présente par téléphone aujourd'hui à 15h00. Dossier complet en pièce jointe.",
+      text: "Votre estimation pour la maison située à Nalinnes est prête. Votre agent vous la présente par téléphone aujourd'hui à 15h00. Dossier complet en pièce jointe.",
       stat: "Mandat exclusif capté · Visite 100 % qualifiée"
     }
   },
@@ -827,7 +827,7 @@ for (const study of caseStudies) {
     <div class="lp-lead-section__inner">
       <div class="lp-badge"><span class="lp-badge__dot" aria-hidden="true"></span> PROPOSITION SOUS 24H OUVRÉES</div>
       <h2>Discutons de votre projet pour ${study.category}.</h2>
-      <p>Remplissez ces 3 informations. Amir Kebiyeb analyse votre besoin et vous recontacte avec une maquette indicative sous 24h.</p>
+      <p>Remplissez ces 3 informations. On analyse votre besoin et on vous recontacte avec une maquette indicative sous 24h.</p>
 
       <form class="lp-form" id="lp-form" action="/api/contact" method="POST">
         <input type="hidden" name="slot" value="Cas Métier: ${study.category} (Offre -25%)">
@@ -862,7 +862,7 @@ for (const study of caseStudies) {
 
         <button type="submit" class="lp-form__btn">Recevoir ma proposition</button>
         <div id="lp-status" class="lp-form__status" role="status"></div>
-        <p class="lp-form__note">🔒 100 % confidentiel · Zéro engagement · Réponse directe sous 24h par Amir Kebiyeb</p>
+        <p class="lp-form__note">🔒 100 % confidentiel · Zéro engagement · Réponse directe sous 24h</p>
       </form>
     </div>
   </section>
@@ -888,7 +888,7 @@ for (const study of caseStudies) {
     </div>
   </div>
   <div class="site-footer__legal">
-    <address style="font-style:normal">Purity Agency · Boulevard Frans Dewandre 14, 6000 Charleroi</address>
+    <address style="font-style:normal">Purity Agency · Wallonie, Belgique</address>
     <span>BCE 1036.775.590 · TVA BE 1036.775.590 · Franchise TVA, art. 56bis CTVA</span>
     <span>© 2026 Purity Agency</span>
     <a href="/legal">Légal</a>

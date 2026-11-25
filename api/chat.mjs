@@ -152,10 +152,10 @@ export async function chat(session, message, { fetcher = fetch, apiKey = key(), 
     }
   }
 
-  if (!apiKey) return { status: 503, error: 'La conversation IA est indisponible. Vous pouvez transmettre votre projet directement à Amir.' };
+  if (!apiKey) return { status: 503, error: 'La conversation IA est indisponible. Vous pouvez nous transmettre votre projet directement.' };
   const today = new Date().toISOString().slice(0, 10);
   if (today !== day) { day = today; daily = 0; }
-  if (active >= 4 || daily >= (Number(process.env.CHAT_DAILY_LIMIT) || 500)) return { status: 503, error: 'OctoMask est momentanément occupé. Réessayez plus tard ou contactez Amir.' };
+  if (active >= 4 || daily >= (Number(process.env.CHAT_DAILY_LIMIT) || 500)) return { status: 503, error: 'OctoMask est momentanément occupé. Réessayez plus tard ou contactez-nous.' };
   session.busy = true;
   active++;
   daily++;
@@ -206,6 +206,6 @@ export async function chat(session, message, { fetcher = fetch, apiKey = key(), 
     session.at = Date.now();
     return { status: 200, ...answer };
   } catch {
-    return { status: 503, error: 'Je n’ai pas pu préparer une réponse fiable. Réessayez, ou transmettez votre question à Amir avec le bouton ci-dessous.' };
+    return { status: 503, error: 'Je n’ai pas pu préparer une réponse fiable. Réessayez, ou transmettez-nous votre question avec le bouton ci-dessous.' };
   } finally { session.busy = false; active--; }
 }

@@ -11,8 +11,6 @@
 
   var introTitle = document.querySelector('.cases__intro h1');
   var introKicker = document.querySelector('.cases__intro .section-kicker');
-  if (introTitle) introTitle.textContent = 'Réalisations.';
-  if (introKicker) introKicker.textContent = 'Réalisations';
 
   // --preview-scale ajuste l'iframe de 1280 px a la largeur de l'apercu.
   var previews = cards.map(function (card) { return card.querySelector('.case-preview'); }).filter(Boolean);
@@ -45,7 +43,7 @@
       card.style.setProperty('--case-index', index);
       if (visible) count++;
     });
-    status.textContent = count === 1 ? '1 démonstration affichée.' : count + ' démonstrations affichées.';
+    status.textContent = count === 1 ? '1 réalisation affichée.' : count + ' réalisations affichées.';
     if (!observer) requestAnimationFrame(updateScales);
   }
   buttons.forEach(function (button) { button.addEventListener('click', function () { apply(button.dataset.filter, true); }); });

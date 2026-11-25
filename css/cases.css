@@ -318,3 +318,10 @@
 .u-contents{display:contents}
 ul.case-grid,ul.capabilities-grid{list-style:none;margin:0;padding:0}
 .lp-badge{display:none!important}
+/* 25/11 : barre d'outils centrée et empilée, plus d'adresses coupées dans les maquettes, plus d'étiquettes mauves */
+.cases__toolbar{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;gap:1.1rem}
+.cases__toolbar .case-filters{justify-content:center;max-width:none}
+.case-filter{white-space:nowrap}
+.case-visual .mock__url{visibility:hidden}
+.case-card__content>span:first-child{display:none}
+.case-status{text-align:center}

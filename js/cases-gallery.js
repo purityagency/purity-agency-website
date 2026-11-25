@@ -9,6 +9,31 @@
   var scrollKey = 'purity-case-scroll';
   var current = sessionStorage.getItem(storageKey) || 'Tous';
 
+  function isClient(card) { return !!card.querySelector('a.case-card__link[target="_blank"]'); }
+  // Compteur dans chaque filtre + repli des métiers sur téléphone
+  buttons.forEach(function (button) {
+    var f = button.dataset.filter;
+    var n = f === 'Tous' ? cards.length : cards.filter(function (c) { return f === 'Clients' ? isClient(c) : c.dataset.category === f; }).length;
+    var badge = document.createElement('span');
+    badge.className = 'case-filter__n';
+    badge.textContent = n;
+    button.appendChild(badge);
+  });
+  var filtersBox = document.querySelector('.case-filters');
+  if (filtersBox && buttons.length > 6) {
+    var more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'case-filter case-filters__more';
+    more.setAttribute('aria-expanded', 'false');
+    more.textContent = '+ ' + (buttons.length - 6) + ' métiers';
+    filtersBox.appendChild(more);
+    more.addEventListener('click', function () {
+      var open = filtersBox.classList.toggle('is-open');
+      more.setAttribute('aria-expanded', String(open));
+      more.textContent = open ? 'Moins' : '+ ' + (buttons.length - 6) + ' métiers';
+    });
+  }
+
   var introTitle = document.querySelector('.cases__intro h1');
   var introKicker = document.querySelector('.cases__intro .section-kicker');
 
@@ -38,7 +63,7 @@
     if (select) select.value = filter;
     var count = 0;
     cards.forEach(function (card, index) {
-      var visible = filter === 'Tous' || card.dataset.category === filter;
+      var visible = filter === 'Tous' || (filter === 'Clients' ? isClient(card) : card.dataset.category === filter);
       card.hidden = !visible;
       card.style.setProperty('--case-index', index);
       if (visible) count++;

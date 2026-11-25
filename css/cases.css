@@ -325,3 +325,31 @@ ul.case-grid,ul.capabilities-grid{list-style:none;margin:0;padding:0}
 .case-visual .mock__url{visibility:hidden}
 .case-card__content>span:first-child{display:none}
 .case-status{text-align:center}
+/* 25/11 : filtre retravaillé (compteurs, projets clients, pastilles tactiles, repli sur téléphone) */
+.case-filter{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:.45rem 1rem;transition-property:background-color,color,border-color,transform;transition-duration:.18s;transition-timing-function:ease-out}
+.case-filter:active{transform:scale(.96)}
+.case-filter__n{font-size:.74rem;font-weight:600;font-variant-numeric:tabular-nums;color:#8A8590;transition:color .18s ease-out}
+.case-filter.is-active .case-filter__n,.case-filter:hover .case-filter__n{color:rgb(255 255 255 / .7)}
+.case-filter--client{border-color:#6C2BD9;color:#6C2BD9}
+.case-filter--client.is-active,.case-filter--client:hover{background:#6C2BD9;border-color:#6C2BD9;color:#fff}
+.case-filters__more{display:none;border-style:dashed}
+.case-card h2{text-wrap:balance}
+.case-card p,.case-chips li{text-wrap:pretty}
+.case-visual img{outline:1px solid rgb(0 0 0 / .08);outline-offset:-1px}
+.case-card:not([hidden]){animation:caseIn .35s ease-out both}
+@keyframes caseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.case-card:not([hidden]){animation:none}.case-filter:active{transform:none}}
+@media (max-width:760px){
+  .cases__toolbar{display:grid}
+  .case-filters{display:flex;gap:.45rem;justify-content:center;margin-top:.2rem}
+  .case-select-label{display:none}
+  .case-filter{min-height:42px;padding:.4rem .85rem;font-size:.9rem}
+  .case-filters:not(.is-open) .case-filter:nth-child(n+7):not(.is-active):not(.case-filters__more){display:none}
+  .case-filters__more{display:inline-flex}
+  .cases__intro h1{font-size:clamp(2.2rem,10vw,2.8rem);text-wrap:balance}
+  .cases__intro p{font-size:1.02rem;text-wrap:pretty}
+  .cases__toolbar h2{font-size:1.45rem}
+  .case-card h2{font-size:1.5rem}
+  .case-card p{font-size:1rem;line-height:1.5}
+  .case-chips li{font-size:.86rem}
+}

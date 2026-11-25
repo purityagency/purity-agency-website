@@ -20,17 +20,17 @@
     button.appendChild(badge);
   });
   var filtersBox = document.querySelector('.case-filters');
-  if (filtersBox && buttons.length > 6) {
+  if (filtersBox && buttons.length > 4) {
     var more = document.createElement('button');
     more.type = 'button';
     more.className = 'case-filter case-filters__more';
     more.setAttribute('aria-expanded', 'false');
-    more.textContent = '+ ' + (buttons.length - 6) + ' métiers';
+    more.textContent = '+ ' + (buttons.length - 4) + ' métiers';
     filtersBox.appendChild(more);
     more.addEventListener('click', function () {
       var open = filtersBox.classList.toggle('is-open');
       more.setAttribute('aria-expanded', String(open));
-      more.textContent = open ? 'Moins' : '+ ' + (buttons.length - 6) + ' métiers';
+      more.textContent = open ? 'Moins' : '+ ' + (buttons.length - 4) + ' métiers';
     });
   }
 

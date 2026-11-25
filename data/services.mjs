@@ -21,7 +21,7 @@ export const services = [
     cardDescription: 'En 15 minutes par téléphone ou en visio, on regarde votre site ou vos réseaux et on identifie la priorité qui ramènera des clients le plus vite.',
     commitment: { minMonths: 0, text: 'Aucun engagement : l’appel est gratuit et ne vous oblige à rien acheter.' },
     headline: 'Découvrez en 15 minutes ce qui freine vos demandes de devis et ce qu’il faut corriger en priorité.',
-    summary: 'Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec Amir Kebiyeb pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.',
+    summary: 'Avant de dépenser un euro dans un site, des réseaux sociaux ou de la publicité : 15 minutes avec nous pour savoir où vous perdez des clients et quelle action rapporte le plus. Parfois la réponse est de ne rien acheter.',
     price: 'Offert',
     priceSetup: 'Offert',
     promoTag: 'Gratuit · sans engagement',
@@ -328,7 +328,7 @@ export const services = [
     comparison: [
       { aspect: 'Couverture géographique', others: 'Une seule page générale qui n’apparaît que dans sa propre commune', purity: 'Pages dédiées par ville et arrondissement pour capter les chantiers de toute la région' },
       { aspect: 'Tri des demandes', others: 'Tous les messages mélangés dans une boîte mail unique', purity: 'Formulaires intelligents qui envoient directement le devis au bon responsable d’équipe' },
-      { aspect: 'Assistance technique', others: 'Pas d’interlocuteur clair quand une modification presse', purity: 'Contact direct avec Amir, réponse sous 24 h ouvrées' }
+      { aspect: 'Assistance technique', others: 'Pas d’interlocuteur clair quand une modification presse', purity: 'Contact direct avec nous, réponse sous 24 h ouvrées' }
     ],
     deliverables: [
       {
@@ -353,7 +353,7 @@ export const services = [
       },
       {
         title: 'Réponse sous 24 h ouvrées pour vos mises à jour',
-        desc: 'Contact direct avec Amir pour toute mise à jour de vos chantiers ou plannings.'
+        desc: 'Contact direct avec nous pour toute mise à jour de vos chantiers ou plannings.'
       }
     ],
     lossOfInaction: [

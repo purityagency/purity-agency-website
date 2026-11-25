@@ -329,7 +329,7 @@ function buildServiceDetailPage(service) {
   const free = isFree(service);
 
   const contactOfferUrl = service.id === 'M01' ? RDV_URL : `/contact?offer=${service.id}`;
-  const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Écrire à Amir';
+  const primaryCtaText = service.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Nous écrire';
 
   const schemaJson = {
     "@context": "https://schema.org",
@@ -369,8 +369,8 @@ function buildServiceDetailPage(service) {
     : `<div class="sd-hero__price"><strong>${e(service.priceSetup)}</strong><span>${service.monthlyPrice ? `+ ${e(service.monthlyPrice)} de suivi` : 'paiement unique'}</span></div>`;
 
   const heroChips = free
-    ? [['clock', '15 min chrono'], ['users', 'Avec Amir, le fondateur'], ['file', 'Récap écrit après l’appel']]
-    : [['clock', cleanDelay(service.delay)], ['users', 'Amir, de A à Z']];
+    ? [['clock', '15 min chrono'], ['users', 'Avec le fondateur'], ['file', 'Récap écrit après l’appel']]
+    : [['clock', cleanDelay(service.delay)], ['users', 'Un seul contact, de A à Z']];
 
   const notFor = NOT_FOR[service.slug];
 
@@ -582,7 +582,7 @@ ${renderHeader('services')}
     <section class="sd-bottom-cta" aria-labelledby="sd-cta-title">
       <div class="sd-bottom-cta__inner">
         <h2 id="sd-cta-title">On vérifie ensemble si c’est la bonne formule&nbsp;?</h2>
-        <p>Vous parlez directement à Amir Kebiyeb. ${PROMISE}.</p>
+        <p>${PROMISE}.</p>
         <div class="sd-bottom-cta__actions">
           <a class="sd-btn-primary" href="${contactOfferUrl}">${primaryCtaText} <span class="sd-btn__ico" aria-hidden="true">→</span></a>
           ${service.id !== 'M01' ? `<a class="sd-btn-secondary" href="${RDV_URL}">Réserver mon diagnostic gratuit <span aria-hidden="true">→</span></a>` : `<a class="sd-btn-secondary" href="/services">Voir les autres services <span aria-hidden="true">→</span></a>`}
@@ -597,7 +597,7 @@ ${renderHeader('services')}
     <span class="sd-floating-price">${e(displayPrice(service))}</span>
     <span class="sd-floating-note">${free ? e(service.promoTag || 'Sans engagement') : (service.monthlyPrice ? `+ ${e(service.monthlyPrice)} · prix net` : 'Paiement unique · prix net')}</span>
   </div>
-  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Écrire à Amir'} <span aria-hidden="true">→</span></a>
+  <a class="sd-floating-cta" href="${contactOfferUrl}">${service.id === 'M01' ? 'Réserver mon diagnostic gratuit' : 'Nous écrire'} <span aria-hidden="true">→</span></a>
 </aside>
 
 ${renderFooter()}
@@ -739,7 +739,7 @@ ${renderHeader('services')}
     <section class="sd-bottom-cta" aria-labelledby="hub-cta-title">
       <div class="sd-bottom-cta__inner">
         <h2 id="hub-cta-title">Vous ne savez pas par quoi commencer&nbsp;?</h2>
-        <p>15 minutes avec Amir. Il vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. ${PROMISE}.</p>
+        <p>15 minutes avec nous. On vous dit quel service vous sert vraiment, ou qu’aucun ne vous sert. ${PROMISE}.</p>
         <a class="sd-btn-primary" href="${RDV_URL}">Réserver mon diagnostic gratuit <span class="sd-btn__ico" aria-hidden="true">→</span></a>
       </div>
     </section>

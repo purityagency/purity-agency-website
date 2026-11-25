@@ -63,7 +63,7 @@ export function commitmentAnswer(svc) {
 }
 
 export function answerFor(svc) {
-  if (isFree(svc)) return 'Le diagnostic digital est un appel gratuit de 15 minutes avec Amir Kebiyeb, fondateur de Purity Agency à Charleroi. Il regarde votre site, votre fiche Google et vos concurrents locaux, puis vous dit quoi corriger en premier. Vous recevez un récapitulatif écrit après l’appel. Aucun paiement, aucun engagement, et parfois la réponse est qu’il ne faut rien acheter.';
+  if (isFree(svc)) return 'Le diagnostic digital est un appel gratuit de 15 minutes avec Purity Agency. On regarde votre site, votre fiche Google et vos concurrents locaux, puis vous dit quoi corriger en premier. Vous recevez un récapitulatif écrit après l’appel. Aucun paiement, aucun engagement, et parfois la réponse est qu’il ne faut rien acheter.';
   const prix = svc.monthlyPrice
     ? `${svc.priceSetup} de mise en place, puis ${svc.monthlyPrice} de suivi, ${commitmentShort(svc)}`
     : `${svc.priceSetup} en paiement unique, sans abonnement`;
